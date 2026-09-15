@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { kanjiChapter1 } from "./data/kanjiChapter1.js";
 import { kanjiChapter2 } from "./data/kanjiChapter2.js";
+import { kanjiChapter3 } from "./data/kanjiChapter3.js";
 
-const chapters = [kanjiChapter1, kanjiChapter2];
+const chapters = [kanjiChapter1, kanjiChapter2, kanjiChapter3];
 
 const displayText = (text, showReadings) =>
   showReadings ? text : text.replace(/（[^）]*）/g, "");
