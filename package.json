@@ -1,0 +1,21 @@
+{
+  "name": "jlpt-n3-vocab-static",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "npm run extract && npm run annotate && vite",
+    "extract": "node scripts/extract-content.mjs && node scripts/import-exercises.mjs",
+    "annotate": "node scripts/add-readings.mjs",
+    "build": "npm run extract && npm run annotate && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "async": "^3.2.6",
+    "kuromoji": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "vite": "latest"
+  }
+}
