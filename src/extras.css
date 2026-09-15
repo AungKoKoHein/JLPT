@@ -10,6 +10,44 @@
   padding: 12px;
   border-radius: 10px;
 }
+.study-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  margin: 28px 0;
+  padding: 6px;
+  background: #ede9fe;
+  border-radius: 16px;
+}
+.study-tabs button {
+  flex: 1 0 auto;
+  min-height: 48px;
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: #4338ca;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.study-tabs button:hover {
+  background: #ddd6fe;
+}
+.study-tabs button[aria-selected="true"] {
+  background: #4f46e5;
+  color: #fff;
+  box-shadow: 0 4px 12px #312e8126;
+}
+.study-tabs button:focus-visible,
+[role="tabpanel"]:focus-visible {
+  outline: 3px solid #818cf8;
+  outline-offset: 2px;
+}
+.study-placeholder {
+  padding: 24px;
+  background: #fff;
+}
 .empty {
   display: grid;
   min-height: 360px;
@@ -43,6 +81,28 @@
   perspective: 1200px;
   cursor: pointer;
   text-align: left;
+}
+.kanji-card .front .kanji-character {
+  font-size: 5rem;
+  line-height: 1.2;
+}
+.kanji-card .front .meaning {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+.kanji-word {
+  display: block;
+  margin-top: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e0e7ff;
+}
+.kanji-word-explanation {
+  display: block;
+  margin-top: 6px;
+  font-family: "Pyidaungsu", "Myanmar Text", "Noto Sans Myanmar", sans-serif;
+  font-size: 1rem;
+  line-height: 1.9;
+  color: #334155;
 }
 .flash-inner {
   position: relative;
@@ -162,6 +222,15 @@ main {
 }
 .answer-key-toggle {
   bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+}
+.back-to-top {
+  bottom: calc(136px + env(safe-area-inset-bottom, 0px));
+  color: #fff;
+  background: #4f46e5;
+  border-color: #4f46e5;
+}
+.back-to-top:hover {
+  background: #4338ca;
 }
 .exercises {
   padding-bottom: 60px;
