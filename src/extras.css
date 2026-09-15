@@ -225,6 +225,14 @@ main {
 }
 .back-to-top {
   bottom: calc(136px + env(safe-area-inset-bottom, 0px));
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  padding-bottom: 5px;
+  font-size: 30px;
+  line-height: 1;
   color: #fff;
   background: #4f46e5;
   border-color: #4f46e5;

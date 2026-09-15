@@ -40,7 +40,9 @@ function BackToTop() {
         });
       }}
     >
-      <span aria-hidden="true">↑</span> Top
+      <span aria-hidden="true" width="1em" height="1em">
+        ▲
+      </span>
     </button>
   );
 }
