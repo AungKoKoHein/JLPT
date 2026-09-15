@@ -4,6 +4,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "dev": "npm run extract && npm run annotate && vite",
     "extract": "node scripts/extract-content.mjs && node scripts/import-exercises.mjs",
     "annotate": "node scripts/add-readings.mjs",
@@ -17,5 +19,8 @@
     "react": "latest",
     "react-dom": "latest",
     "vite": "latest"
+  },
+  "devDependencies": {
+    "prettier": "^3.9.6"
   }
 }
