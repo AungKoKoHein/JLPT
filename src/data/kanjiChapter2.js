@@ -1,3 +1,5 @@
+import { getKanjiReadings } from "./kanjiReadings.js";
+
 // Transcribed from the supplied DOCX and checked against PDF pp. 14–19,
 // with answers checked against pp. 175–176. Myanmar glosses added for study.
 // Rows: sentence with |target|, answer, Myanmar word explanation.
@@ -542,6 +544,7 @@ export const kanjiChapter2 = {
           return {
             id: `kanji-2-${lesson.page}-${mode}-${index}`,
             kanji: term,
+            readings: getKanjiReadings(term),
             term: `${term}（${reading}）`,
             meaning: explanation.split("။")[0],
             sentence: `${before}${term}（${reading}）${after}`,

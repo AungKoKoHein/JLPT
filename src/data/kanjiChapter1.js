@@ -1,3 +1,5 @@
+import cardData from "./kanjiChapter1Cards.json" with { type: "json" };
+
 // Checked against the supplied PDF pp. 8–13 and answer key p. 175.
 // Rows: sentence with |target|, answer, added Myanmar explanation.
 const lessons = [
@@ -198,7 +200,7 @@ const lessons = [
     ],
   },
   {
-    title: "ゴミ",
+    title: "生活（せいかつ）3",
     page: 10,
     reading: [
       [
@@ -527,33 +529,38 @@ const questions = (rows) =>
 export const kanjiChapter1 = {
   id: "kanji-1",
   number: 1,
+  groupCardsByLesson: true,
   title: "生活（せいかつ）",
   sections: lessons.map((lesson) => ({
     ...lesson,
     reading: questions(lesson.reading),
     writing: questions(lesson.writing),
   })),
-  cards: lessons
-    .filter((lesson) => !lesson.review)
-    .flatMap((lesson) =>
-      ["reading", "writing"].flatMap((mode) =>
-        lesson[mode].map(([sentence, answer, explanation], index) => {
+  cards: Object.entries(cardData).map(
+    ([kanji, { on, kun, examples }], index) => {
+      const lesson = lessons[Math.floor(index / 4)];
+      const firstGloss = lesson.reading.find(([sentence]) =>
+        sentence.split("|")[1].includes(kanji),
+      )?.[2];
+      return {
+        id: `kanji-1-${kanji}`,
+        kanji,
+        readings: [{ kanji, on: on.join("\u30fb"), kun: kun.join("\u30fb") }],
+        meaning: firstGloss?.split("\u104b")[0] ?? "",
+        lesson: lesson.title,
+        page: lesson.page,
+        examples,
+        words: examples.map(([sentence, reading, explanation]) => {
           const [before, target, after] = sentence.split("|");
-          const term = mode === "reading" ? target : answer;
-          const reading = mode === "reading" ? answer : target;
           return {
-            id: `kanji-1-${lesson.page}-${mode}-${index}`,
-            kanji: term,
-            term: `${term}（${reading}）`,
-            meaning: explanation.split("။")[0],
-            sentence: `${before}${term}（${reading}）${after}`,
-            lesson: lesson.title,
-            page: lesson.page,
-            words: [{ term: `${term}（${reading}）`, explanation }],
+            term: `${target}\uff08${reading}\uff09`,
+            sentence: `${before}${target}\uff08${reading}\uff09${after}`,
+            explanation,
           };
         }),
-      ),
-    ),
+      };
+    },
+  ),
   extraWords: [
     {
       term: "浴衣（ゆかた）",

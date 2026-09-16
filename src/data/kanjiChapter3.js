@@ -1,3 +1,5 @@
+import { getKanjiReadings } from "./kanjiReadings.js";
+
 // Transcribed from source/kanji-master.txt, printed pp. 24–29 and its answer key.
 // OCR errors normalized; Myanmar glosses added for study.
 // Rows: sentence with |target|, answer, Myanmar explanation.
@@ -338,6 +340,7 @@ export const kanjiChapter3 = {
           return {
             id: `kanji-3-${lesson.page}-${mode}-${index}`,
             kanji: term,
+            readings: getKanjiReadings(term),
             term: `${term}（${reading}）`,
             meaning: explanation.split("။")[0],
             sentence: `${before}${term}（${reading}）${after}`,
