@@ -2,8 +2,9 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { chapters } from "./data/n3Vocabulary.js";
 import { exercisesByChapter } from "./data/exercises.js";
-import { moveVocabularyCard, resolveVocabularyCards } from "./vocabularyContent.js";
+import { moveVocabularyCard, resolveVocabularyCards, resolveVocabularySubchapters } from "./vocabularyContent.js";
 import Exercises from "./Exercises.jsx";
+import SubchapterNav, { subchapterTargetId } from "./SubchapterNav.jsx";
 import { vocabularyExercises, resolveExercises, exercisesForView, saveExercise, unassignExercises } from "./exerciseContent.js";
 import Kanji, { kanjiChapterOptions, baseKanjiExercises } from "./Kanji.jsx";
 import { useCloudContent } from "./useCloudContent.js";
@@ -477,6 +478,10 @@ function App() {
     () => resolveVocabularyCards(chapters, content),
     [content],
   );
+  const vocabularySubchapters = useMemo(
+    () => resolveVocabularySubchapters(chapters, content),
+    [content],
+  );
   const moveCard = (cardId, direction) => {
     setContent((current) => moveVocabularyCard(chapters, current, cardId, direction));
   };
@@ -485,7 +490,7 @@ function App() {
       ...chapters.map((chapter) => ({
         ...chapter,
         ...content.chapterOverrides[chapter.id],
-        subchapters: content.subchapters.filter(
+        subchapters: vocabularySubchapters.filter(
           (subchapter) => subchapter.parentChapterId === chapter.id &&
             (subchapter.studyTab ?? "Vocab") === "Vocab",
         ),
@@ -493,13 +498,13 @@ function App() {
       })),
       ...(content.chapters ?? []).filter((chapter) => (chapter.studyTab ?? "Vocab") === "Vocab").map((chapter) => ({
         ...chapter,
-        subchapters: content.subchapters.filter(
+        subchapters: vocabularySubchapters.filter(
           (subchapter) => subchapter.parentChapterId === chapter.id && (subchapter.studyTab ?? "Vocab") === "Vocab",
         ),
         cards: allVocabularyCards.filter((card) => card.chapterId === chapter.id && (!card.studyTab || card.studyTab === "Vocab")),
       })),
     ],
-    [content, allVocabularyCards],
+    [content, allVocabularyCards, vocabularySubchapters],
   );
   const chapterOptions = useMemo(
     () => [
@@ -644,9 +649,9 @@ function App() {
       if (draft.type === "subchapter" && draft.mode === "edit") {
         const subchapterId = draft.subchapterId || draft.id;
         if (current.subchapters.some((item) => item.id === subchapterId)) {
-          return { ...current, subchapters: current.subchapters.map((item) => item.id === subchapterId ? { ...item, parentChapterId: draft.chapterId, studyTab: draft.studyTab, number: draft.number, title: draft.title } : item) };
+          return { ...current, subchapters: current.subchapters.map((item) => item.id === subchapterId ? { ...item, ...(draft.sourceId ? { sourceId: draft.sourceId } : {}), parentChapterId: draft.chapterId, studyTab: draft.studyTab, number: draft.number, title: draft.title } : item) };
         }
-        return { ...current, chapterOverrides: { ...current.chapterOverrides, [draft.id]: { number: draft.number, title: draft.title } } };
+        return { ...current, chapterOverrides: { ...current.chapterOverrides, [subchapterId]: { number: draft.number, title: draft.title } } };
       }
       if (draft.type === "subchapter") {
         const id = `user-${Date.now()}`;
@@ -695,6 +700,10 @@ function App() {
     setContent((current) => ({
       ...current,
       ...unassignExercises(current, chapter.id, allExercises),
+      ...(chapter.studyTab === "Vocab" ? {
+        deletedSubchapters: [...new Set([...(current.deletedSubchapters ?? []), chapter.id, ...(chapter.sourceId ? [chapter.sourceId] : [])])],
+        deletedCards: [...new Set([...current.deletedCards, ...resolveVocabularyCards(chapters, current).filter((card) => card.chapterId === chapter.id).map((card) => card._id)])],
+      } : {}),
       subchapters: current.subchapters.filter((item) => item.id !== chapter.id),
       cards: current.cards.filter((item) => item.chapterId !== chapter.id),
     }));
@@ -936,12 +945,13 @@ function App() {
                     )
                   ) : (
                     <div className="vocab-sections">
+                      <SubchapterNav sections={vocabSections.filter((section) => section.isSubchapter).map((section) => section.chapter)} />
                       {vocabSections.map(({ chapter, isSubchapter, cards: sectionCards }) => (
                         <section className="vocab-section" key={chapter.id}>
                           <div className="vocab-section-heading">
                             <div>
                               <p className="eyebrow">{isSubchapter ? `Sub Chapter ${chapter.number}` : `Chapter ${chapter.number}`}</p>
-                              <h3 lang="ja">{chapterTitle(chapter.title, showMyanmar, showReadings, showJapanese)}</h3>
+                              <h3 lang="ja" id={isSubchapter ? subchapterTargetId(chapter.id) : undefined} tabIndex={isSubchapter ? -1 : undefined}>{chapterTitle(chapter.title, showMyanmar, showReadings, showJapanese)}</h3>
                             </div>
                             <div className="vocab-section-actions">
                               <button

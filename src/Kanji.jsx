@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Exercises from "./Exercises.jsx";
+import SubchapterNav, { subchapterTargetId } from "./SubchapterNav.jsx";
 import { kanjiExercises, exercisesForView } from "./exerciseContent.js";
 import { kanjiChapter1 } from "./data/kanjiChapter1.js";
 import { kanjiChapter2 } from "./data/kanjiChapter2.js";
@@ -320,12 +321,20 @@ export default function Kanji({
               {query.trim() || tab === "kanji" ? (
                 <>
                   <p className="note">{cards.length} kanji cards</p>
+                  <SubchapterNav sections={[
+                    ...(selected.id === "kanji-1"
+                      ? [{ id: "kanji-1-subchapter-1l1", title: "1l1" }]
+                      : selected.groupCardsByLesson
+                        ? selected.sections.filter((section) => !section.review && cards.some((card) => card.page === section.page)).map((section) => ({ id: `${selected.id}-section-${section.page}`, title: section.title }))
+                        : []),
+                    ...customSubchapters,
+                  ]} />
                   {selected.id === "kanji-1" ? (
                     <section className="vocab-section kanji-subchapter-section">
                       <div className="vocab-section-heading">
                         <div>
                           <p className="eyebrow">Sub Chapter 1l1</p>
-                          <h3 lang="ja">1l1</h3>
+                          <h3 lang="ja" id={subchapterTargetId("kanji-1-subchapter-1l1")} tabIndex={-1}>1l1</h3>
                         </div>
                         {manageMode && isEditor && (
                           <button
@@ -361,7 +370,7 @@ export default function Kanji({
                             key={section.page}
                             className="kanji-lesson-group"
                           >
-                            <h3 lang="ja">
+                            <h3 lang="ja" id={subchapterTargetId(`${selected.id}-section-${section.page}`)} tabIndex={-1}>
                               {displayText(section.title, false)}
                             </h3>
                             <p className="note" lang="ja">
@@ -392,7 +401,7 @@ export default function Kanji({
                         <div className="vocab-section-heading">
                           <div>
                             <p className="eyebrow">Sub Chapter {subchapter.number}</p>
-                            <h3 lang="ja">{displayText(subchapter.title, showReadings)}</h3>
+                            <h3 lang="ja" id={subchapterTargetId(subchapter.id)} tabIndex={-1}>{displayText(subchapter.title, showReadings)}</h3>
                           </div>
                           {manageMode && isEditor && (
                             <div className="item-actions">

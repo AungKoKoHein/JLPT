@@ -3,6 +3,7 @@ export const emptyContent = {
   cards: [],
   exercises: [],
   subchapters: [],
+  deletedSubchapters: [],
   cardOverrides: {},
   exerciseOverrides: {},
   deletedCards: [],

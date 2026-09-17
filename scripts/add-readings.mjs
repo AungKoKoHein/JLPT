@@ -46,6 +46,9 @@ const source = JSON.parse(
 );
 for (const chapter of source) {
   chapter.title = addReadings(chapter.title);
+  for (const section of chapter.subchapters ?? []) {
+    section.title = addReadings(section.title);
+  }
   for (const card of chapter.cards) {
     card.term = addReadings(card.term);
     card.context = addReadings(card.context);

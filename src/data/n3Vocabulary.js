@@ -2,10 +2,30 @@
 export const chapters = [
   {
     "id": "part-1-chapter-1",
-    "number": "1.1",
-    "title": "家族（かぞく）と友達（ともだち） / 家族（かぞく）と友達（ともだち）",
+    "number": "1",
+    "sourceNumber": "1.1",
+    "title": "1課（か）：人間（にんげん）関係（かんけい）1：家族（かぞく）と友達（ともだち）、性格（せいかく）",
+    "subchapters": [
+      {
+        "id": "part-1-chapter-1-subchapter-1",
+        "number": "1",
+        "title": "家族（かぞく）と友達（ともだち）",
+        "parentChapterId": "part-1-chapter-1",
+        "studyTab": "Vocab",
+        "sourcePage": 2
+      },
+      {
+        "id": "part-1-chapter-1-subchapter-2",
+        "number": "2",
+        "title": "性格（せいかく）",
+        "parentChapterId": "part-1-chapter-1",
+        "studyTab": "Vocab",
+        "sourcePage": 3
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-1",
         "term": "長男（ちょうなん）",
         "meaning": "သားကြီး / သားအကြီးဆုံး",
         "context": "① 私（わたし）は ______ だ",
@@ -14,6 +34,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-1",
         "term": "長女（ちょうじょ）",
         "meaning": "သမီးကြီး / သမီးအကြီးဆုံး",
         "context": "① 私（わたし）は ______ だ",
@@ -22,6 +43,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-1",
         "term": "末（すえ）っ子（こ）",
         "meaning": "သားသမီးအငယ်ဆုံး",
         "context": "① 私（わたし）は ______ だ",
@@ -30,6 +52,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-1",
         "term": "一人（ひとり）っ子（こ）",
         "meaning": "တစ်ဦးတည်းသောကလေး",
         "context": "① 私（わたし）は ______ だ",
@@ -38,6 +61,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-1",
         "term": "いとこ",
         "meaning": "ဝမ်းကွဲ မောင်နှမ",
         "context": "② 彼（かれ）は私（わたし）のいとこだ",
@@ -46,6 +70,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-1",
         "term": "孫（まご）",
         "meaning": "မြေး",
         "context": "③ 孫（まご）が生（うま）れる",
@@ -54,6 +79,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-1",
         "term": "そっくりな",
         "meaning": "ချွတ်စွပ်တူသော",
         "context": "④ そっくりな双子（ふたご）",
@@ -62,6 +88,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-1",
         "term": "双子（ふたご）",
         "meaning": "အမွှာ",
         "context": "④ そっくりな双子（ふたご）",
@@ -70,6 +97,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-1",
         "term": "親戚（しんせき）",
         "meaning": "ဆွေမျိုး",
         "context": "⑤ 親戚（しんせき）が集（あつ）まる",
@@ -78,6 +106,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-1",
         "term": "仲（なか）",
         "meaning": "ဆက်ဆံရေး / ခင်မင်ရင်းနှီးမှု",
         "context": "⑥ 仲（なか）のいい夫婦（ふうふ）",
@@ -86,6 +115,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-1",
         "term": "夫婦（ふうふ）",
         "meaning": "ဇနီးမောင်နှံ / လင်မယား",
         "context": "⑥ 仲（なか）のいい夫婦（ふうふ）",
@@ -94,6 +124,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-1",
         "term": "親友（しんゆう）",
         "meaning": "အရင်းနှီးဆုံး သူငယ်ချင်း / ရင်ဖွင့်ဖက်",
         "context": "⑦ 彼女（かのじょ）は私（わたし）の ______ だ",
@@ -102,6 +133,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-1",
         "term": "親（した）しい",
         "meaning": "ရင်းနှီးသော",
         "context": "⑦ 彼女（かのじょ）は私（わたし）の ______ だ",
@@ -110,6 +142,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-1",
         "term": "友人（ゆうじん）",
         "meaning": "သူငယ်ချင်း / မိတ်ဆွေ",
         "context": "⑦ 彼女（かのじょ）は私（わたし）の ______ だ",
@@ -118,6 +151,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-1",
         "term": "恋人（こいびと）",
         "meaning": "ချစ်သူ",
         "context": "⑦ 彼女（かのじょ）は私（わたし）の ______ だ",
@@ -126,6 +160,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-1",
         "term": "仲間（なかま）",
         "meaning": "အလုပ်ဖော် / အပေါင်းအသင်း",
         "context": "⑧ 仕事（しごと）の仲間（なかま）と遊（あそ）びに行（い）く",
@@ -134,6 +169,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-1",
         "term": "相手（あいて）",
         "meaning": "အိမ်ထောင်ဖက် / လက်တွဲဖော် / တစ်ဖက်လူ",
         "context": "⑨ 結婚（けっこん）の相手（あいて）を探（さが）す",
@@ -142,6 +178,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-1",
         "term": "知（し）り合（あ）い",
         "meaning": "အသိမိတ်ဆွေ",
         "context": "⑩ パーティーに知（し）り合（あ）いを呼（よ）ぶ",
@@ -150,6 +187,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-2",
         "term": "いい",
         "meaning": "စိတ်သဘောထားကောင်းသော",
         "context": "① 性格（せいかく）が ______",
@@ -158,6 +196,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-2",
         "term": "悪（わる）い",
         "meaning": "စိတ်သဘောထားမကောင်းသော",
         "context": "① 性格（せいかく）が ______",
@@ -166,6 +205,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-2",
         "term": "明（あかる）い",
         "meaning": "တက်ကြွရွှင်လန်းသော",
         "context": "① 性格（せいかく）が ______",
@@ -174,6 +214,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-2",
         "term": "暗（くら）い",
         "meaning": "မှိုင်တွေ့သော / စိတ်ဓာတ်ကျလွယ်သော",
         "context": "① 性格（せいかく）が ______",
@@ -182,6 +223,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-2",
         "term": "子供（こども）っぽい",
         "meaning": "ကလေးဆန်သော",
         "context": "① 性格（せいかく）が ______",
@@ -190,6 +232,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-2",
         "term": "男（おとこ）っぽい",
         "meaning": "ယောက်ျားဆန်သော",
         "context": "① 性格（せいかく）が ______",
@@ -198,6 +241,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-2",
         "term": "大人（おとな）しい",
         "meaning": "အေးဆေးတည်ငြိမ်သော / လိမ်မာသော",
         "context": "② ______ 人（ひと）",
@@ -206,6 +250,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-2",
         "term": "だらしない",
         "meaning": "စည်းစနစ်မရှိသော / ရှုပ်ပွနေသော",
         "context": "② ______ 人（ひと）",
@@ -214,6 +259,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-2",
         "term": "冷（つめ）たい",
         "meaning": "အေးစက်သော (သဘောထားမရှိသော)",
         "context": "② ______ 人（ひと）",
@@ -222,6 +268,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-2",
         "term": "細（こま）かい",
         "meaning": "သေးစိတ် စေ့စပ်လွန်းသော",
         "context": "② ______ 人（ひと）",
@@ -230,6 +277,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-2",
         "term": "意地悪（いじわる）な",
         "meaning": "စိတ်ပုတ်သော / မသမာသော",
         "context": "③ ______ 人（ひと）",
@@ -238,6 +286,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-2",
         "term": "素直（すなお）な",
         "meaning": "ရိုးသားဖြောင့်မတ်သော / စကားနားထောင်သော",
         "context": "③ ______ 人（ひと）",
@@ -246,6 +295,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-2",
         "term": "正直（しょうじき）な",
         "meaning": "ဖြောင့်မတ်မှန်ကန်သော",
         "context": "③ ______ 人（ひと）",
@@ -254,6 +304,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-2",
         "term": "乱暴（らんぼう）な",
         "meaning": "ရမ်းကားသော / ကြမ်းတမ်းသော",
         "context": "③ ______ 人（ひと）",
@@ -262,6 +313,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-2",
         "term": "わがままな",
         "meaning": "အလိုလိုက်ထားခံရသော / တစ်ကိုယ်ကောင်းဆန်သော",
         "context": "③ ______ 人（ひと）",
@@ -270,6 +322,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-2",
         "term": "積極的（せっきょくてき）な",
         "meaning": "တက်ကြွလှုပ်ရှားသော / ဦးဆောင်မှုရှိသော",
         "context": "③ ______ 人（ひと）",
@@ -278,6 +331,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-2",
         "term": "落（お）ち着（つ）いた",
         "meaning": "တည်ငြိမ်အေးဆေးသော",
         "context": "④ ______ 人（ひと）",
@@ -286,6 +340,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-2",
         "term": "きちんとした",
         "meaning": "သပ်သပ်ရပ်ရပ်ရှိသော / စည်းစနစ်ကျသော",
         "context": "④ ______ 人（ひと）",
@@ -294,6 +349,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-2",
         "term": "変（かわ）った",
         "meaning": "ဆန်းပြားသော / ထူးဆန်းသော",
         "context": "④ ______ 人（ひと）",
@@ -302,6 +358,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-2",
         "term": "思（お）いやり",
         "meaning": "စာနာထောက်ထားစိတ်",
         "context": "⑤ 彼（かれ）は ______ がある",
@@ -310,6 +367,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-2",
         "term": "ユーモア",
         "meaning": "ဟာသဉာဏ်",
         "context": "⑤ 彼（かれ）は ______ がある",
@@ -318,6 +376,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-2",
         "term": "勇気（ゆうき）",
         "meaning": "သတ္တိ",
         "context": "⑤ 彼（かれ）は ______ がある",
@@ -326,6 +385,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-2",
         "term": "冗談（じょうだん）",
         "meaning": "နောက်ပြောင်စကား / ဟာသ",
         "context": "⑥ よく冗談（じょうだん）を言（い）う",
@@ -334,6 +394,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-1-subchapter-2",
         "term": "自慢（じまん）",
         "meaning": "ကြွားဝါခြင်း",
         "context": "⑦ 自分（じぶん）の自慢（じまん）をする",
@@ -396,10 +457,30 @@ export const chapters = [
   },
   {
     "id": "part-1-chapter-2",
-    "number": "1.2",
-    "title": "付き合い（つきあい）、気持ち（きもち） / ပေါင်းသင်းဆက်ဆံရေးနှင့် ခံစားချက်",
+    "number": "2",
+    "sourceNumber": "1.2",
+    "title": "2課（か）：人間（にんげん）関係（かんけい）2：付き合い（つきあい）、気持ち（きもち）",
+    "subchapters": [
+      {
+        "id": "part-1-chapter-2-subchapter-1",
+        "number": "1",
+        "title": "付き合い（つきあい）",
+        "parentChapterId": "part-1-chapter-2",
+        "studyTab": "Vocab",
+        "sourcePage": 6
+      },
+      {
+        "id": "part-1-chapter-2-subchapter-2",
+        "number": "2",
+        "title": "気持ち（きもち）",
+        "parentChapterId": "part-1-chapter-2",
+        "studyTab": "Vocab",
+        "sourcePage": 7
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-1",
         "term": "出会（であ）う",
         "meaning": "တွေ့ဆုံသည်",
         "context": "① 独身（どくしん）の男性（だんせい）と ______",
@@ -408,6 +489,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-1",
         "term": "知（し）り合（あ）う",
         "meaning": "ခင်မင်သိကျွမ်းသည်",
         "context": "① 独身（どくしん）の男性（だんせい）と ______",
@@ -416,6 +498,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-1",
         "term": "女性（じょせい）",
         "meaning": "အမျိုးသမီး",
         "context": "② 女性（じょせい）と付（つ）き合（あ）う",
@@ -424,6 +507,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-1",
         "term": "付（つ）き合（あ）う",
         "meaning": "တွဲသည် / ချစ်သူအဖြစ် တွဲသွားတွဲလာလုပ်သည်",
         "context": "② 女性（じょせい）と付（つ）き合（あ）う",
@@ -432,6 +516,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-1",
         "term": "恋（こい）",
         "meaning": "အချစ် / ချစ်ခြင်းမေတ္တာ",
         "context": "③ 恋（こい）をする",
@@ -440,6 +525,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-1",
         "term": "デート",
         "meaning": "ဒိတ်လုပ်ခြင်း / ချစ်သူချင်း တွေ့ဆုံခြင်း",
         "context": "④ デートに誘（さそ）う",
@@ -448,6 +534,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-1",
         "term": "誘（さそ）う",
         "meaning": "ဖိတ်ခေါ်သည် / ချိန်းဆိုသည်",
         "context": "④ デートに誘（さそ）う",
@@ -456,6 +543,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-1",
         "term": "断（ことわ）る",
         "meaning": "ငြင်းပယ်သည်",
         "context": "⑤ はっきり断（ことわ）る",
@@ -464,6 +552,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-1",
         "term": "付（つ）き合（あ）い",
         "meaning": "ပေါင်းသင်းဆက်ဆံရေး / ချစ်သူအဖြစ် တွဲဆိုင်းမှု",
         "context": "⑥ 付（つ）き合（あ）いが続（つづ）く",
@@ -472,6 +561,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-1",
         "term": "続（つづ）く",
         "meaning": "ဆက်လက်တည်ရှိသည် / ဆက်ဖြစ်သည်",
         "context": "⑥ 付（つ）き合（あ）いが続（つづ）く",
@@ -480,6 +570,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-1",
         "term": "愛（あい）",
         "meaning": "အချစ်",
         "context": "⑦ 愛（あい）を感（かん）じる",
@@ -488,6 +579,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-1",
         "term": "感（かん）じる",
         "meaning": "ခံစားရသည်",
         "context": "⑦ 愛（あい）を感（かん）じる",
@@ -496,6 +588,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-1",
         "term": "約束（やくそく）",
         "meaning": "ကတိ",
         "context": "⑧ 約束（やくそく）を ______",
@@ -504,6 +597,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-1",
         "term": "破（やぶ）る",
         "meaning": "ဖောက်ဖျက်သည်",
         "context": "⑧ 約束（やくそく）を ______",
@@ -512,6 +606,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-1",
         "term": "守（まも）る",
         "meaning": "လိုက်နာသည် / စောင့်ထိန်းသည်",
         "context": "⑧ 約束（やくそく）を ______",
@@ -520,6 +615,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-1",
         "term": "疑（うたが）う",
         "meaning": "သံသယရှိသည် / မယုံကြည်သည်",
         "context": "⑨ 彼（かれ）を ______",
@@ -528,6 +624,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-1",
         "term": "許（ゆる）す",
         "meaning": "ခွင့်လွှတ်သည်",
         "context": "⑨ 彼（かれ）を ______",
@@ -536,6 +633,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-1",
         "term": "顔（かお）",
         "meaning": "မျက်နှာ",
         "context": "⑩ 顔（かお）をたたく",
@@ -544,6 +642,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-1",
         "term": "たたく",
         "meaning": "ရိုက်သည် / ပုတ်သည်",
         "context": "⑩ 顔（かお）をたたく",
@@ -552,6 +651,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-1",
         "term": "冷（つめ）たい",
         "meaning": "အေးစက်သော",
         "context": "⑪ 冷（つめ）たい態度（たいど）を取（と）る",
@@ -560,6 +660,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-1",
         "term": "態度（たいど）",
         "meaning": "အမူအရာ / သဘောထား",
         "context": "⑪ 冷（つめ）たい態度（たいど）を取（と）る",
@@ -568,6 +669,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-1",
         "term": "取（と）る",
         "meaning": "ပြုမူသည် / ပြသသည်",
         "context": "⑪ 冷（つめ）たい態度（たいど）を取（と）る",
@@ -576,6 +678,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-1",
         "term": "彼（かれ）",
         "meaning": "သူ (အမျိုးသား)",
         "context": "⑫ 彼（かれ）に振（ふ）られる",
@@ -584,6 +687,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-1",
         "term": "振（ふ）られる",
         "meaning": "အငြင်းခံရသည် / အဖြတ်ခံရသည်",
         "context": "⑫ 彼（かれ）に振（ふ）られる",
@@ -592,6 +696,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-1",
         "term": "夫（おっと）",
         "meaning": "ခင်ပွန်း / လင်ယောက်ျား",
         "context": "⑬ 夫（おっと）と離婚（りこん）する",
@@ -600,6 +705,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-1",
         "term": "離婚（りこん）する",
         "meaning": "ကွာရှင်းသည်",
         "context": "⑬ 夫（おっと）と離婚（りこん）する",
@@ -608,6 +714,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-2",
         "term": "悲（かな）しむ",
         "meaning": "ဝမ်းနည်းသည် / ပူဆွေးသည်",
         "context": "① 先生（せんせい）の死（し）を悲（かな）しむ",
@@ -616,6 +723,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-2",
         "term": "腹（はら）が立（た）つ",
         "meaning": "ဒေါသထွက်သည် / စိတ်တိုသည်",
         "context": "② 失礼（しつれい）な客（きゃく）に腹（はら）が立（た）つ",
@@ -624,6 +732,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-2",
         "term": "不安（ふあん）",
         "meaning": "စိုးရိမ်ပူပန်မှု / မအေးချမ်းမှု",
         "context": "③ ______ を感（かん）じる",
@@ -632,6 +741,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-2",
         "term": "恐怖（きょうふ）",
         "meaning": "ကြောက်ရွံ့မှု / ထိတ်လန့်မှု",
         "context": "③ ______ を感（かん）じる",
@@ -640,6 +750,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-2",
         "term": "感（かん）じる",
         "meaning": "ခံစားရသည်",
         "context": "③ ______ を感（かん）じる",
@@ -648,6 +759,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-2",
         "term": "不満（ふまん）",
         "meaning": "မကျေနပ်မှု / အလိုမကျမှု",
         "context": "④ 夫（おっと）に不満（ふまん）を持（も）つ",
@@ -656,6 +768,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-2",
         "term": "満足（まんぞく）する",
         "meaning": "ကျေနပ်အားရသည်",
         "context": "⑤ 料理（りょうり）に満足（まんぞく）する",
@@ -664,6 +777,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-2",
         "term": "がっかりする",
         "meaning": "စိတ်ပျက်သည် / စိတ်ဓာတ်ကျသည်",
         "context": "⑥ 試験（しけん）に落（お）ちて、がっかりする",
@@ -672,6 +786,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-2",
         "term": "悩（なや）む",
         "meaning": "စိတ်ညစ်သည် / စိတ်ပူပန်သောကရောက်သည်",
         "context": "⑦ 病気（びょうき）に悩（なや）む",
@@ -680,6 +795,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-2",
         "term": "迷（まよ）う",
         "meaning": "တွန့်ဆုတ်နေသည် / ဝေခွဲမရဖြစ်သည်",
         "context": "⑧ どれを買（か）うか、迷（まよ）う",
@@ -688,6 +804,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-2",
         "term": "感動（かんどう）する",
         "meaning": "စိတ်လှုပ်ရှားကြည်နူးသည် / ထိခိုက်ခံစားရသည်",
         "context": "⑨ 音楽（おんがく）に感動（かんどう）する",
@@ -696,6 +813,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-2",
         "term": "感情（かんじょう）",
         "meaning": "ခံစားချက် / စိတ်လှုပ်ရှားမှု",
         "context": "⑩ 感情（かんじょう）を外（そと）に出（だ）す",
@@ -704,6 +822,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-2",
         "term": "感謝（かんしゃ）",
         "meaning": "ကျေးဇူးတင်ခြင်း / ကျေးဇူးသိတတ်ခြင်း",
         "context": "⑪ 感謝（かんしゃ）の気持（きも）ちを持（も）つ",
@@ -712,6 +831,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-2",
         "term": "びっくりする",
         "meaning": "အံ့အားသင့်သည် / လန့်သွားသည်",
         "context": "⑫ 急（きゅう）に起（お）こされて、びっくりする",
@@ -720,6 +840,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-2",
         "term": "慌（あわ）てる",
         "meaning": "ပျာယာခတ်သည် / ပြာပြာသလဲဖြစ်သည်",
         "context": "⑬ 友達（ともだち）が急（きゅう）に家（いえ）に来（き）て、慌（あわ）てる",
@@ -728,6 +849,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-2",
         "term": "希望（きぼう）する",
         "meaning": "မျှော်လင့်သည် / တောင်းဆိုသည်",
         "context": "⑭ 日本（にほん）に行（い）くことを希望（きぼう）する",
@@ -736,6 +858,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-2-subchapter-2",
         "term": "望（のぞ）む",
         "meaning": "မျှော်လင့်သည် / တောင့်တသည်",
         "context": "⑮ 結婚（けっこん）を望（のぞ）む",
@@ -790,10 +913,30 @@ export const chapters = [
   },
   {
     "id": "part-1-chapter-3",
-    "number": "1.3",
-    "title": "毎日（まいにち）の生活（せいかつ） / နေ့စဉ်ဘဝ",
+    "number": "3",
+    "sourceNumber": "1.3",
+    "title": "3課（か）：生活（せいかつ）1：毎日（まいにち）の生活（せいかつ）",
+    "subchapters": [
+      {
+        "id": "part-1-chapter-3-subchapter-1",
+        "number": "1",
+        "title": "家事（かじ）",
+        "parentChapterId": "part-1-chapter-3",
+        "studyTab": "Vocab",
+        "sourcePage": 10
+      },
+      {
+        "id": "part-1-chapter-3-subchapter-2",
+        "number": "2",
+        "title": "起き（おき）てから寝る（ねる）まで",
+        "parentChapterId": "part-1-chapter-3",
+        "studyTab": "Vocab",
+        "sourcePage": 11
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "食器（しょっき）",
         "meaning": "ပန်းကန်ခွက်ယောက်",
         "context": "① 食器（しょっき）を洗（あら）う",
@@ -802,6 +945,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "洗（あら）う",
         "meaning": "ဆေးကြောသည်",
         "context": "① 食器（しょっき）を洗（あら）う",
@@ -810,6 +954,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "汚（よご）れ",
         "meaning": "အညစ်အကြေး / အစွန်းအထင်း",
         "context": "② 汚（よご）れが落（お）ちない",
@@ -818,6 +963,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "落（お）ちない",
         "meaning": "မပြောင်သည် / မကျွတ်သည်",
         "context": "② 汚（よご）れが落（お）ちない",
@@ -826,6 +972,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "洗剤（せんざい）",
         "meaning": "ဆပ်ပြာ / သန့်စင်ဆေး",
         "context": "③ 洗剤（せんざい）がなくなる",
@@ -834,6 +981,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "なくなる",
         "meaning": "ကုန်သွားသည်",
         "context": "③ 洗剤（せんざい）がなくなる",
@@ -842,6 +990,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "服（ふく）",
         "meaning": "အဝတ်အစား",
         "context": "④ 服（ふく）を汚（よご）す",
@@ -850,6 +999,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "汚（よご）す",
         "meaning": "ပေပွစေသည် / ညစ်ပတ်အောင်လုပ်သည်",
         "context": "④ 服（ふく）を汚（よご）す",
@@ -858,6 +1008,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "Tシャツ",
         "meaning": "တီရှပ်",
         "context": "⑤ Tシャツを畳（たた）む",
@@ -866,6 +1017,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "畳（たた）む",
         "meaning": "ခေါက်သည်",
         "context": "⑤ Tシャツを畳（たた）む",
@@ -874,6 +1026,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "靴下（くつした）",
         "meaning": "ခြေအိတ်",
         "context": "⑥ 靴下（くつした）をしまう",
@@ -882,6 +1035,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "しまう",
         "meaning": "သိမ်းဆည်းသည်",
         "context": "⑥ 靴下（くつした）をしまう",
@@ -890,6 +1044,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "掃除機（そうじき）",
         "meaning": "ဖုန်စုပ်စက်",
         "context": "⑦ ______ をかける",
@@ -898,6 +1053,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "アイロン",
         "meaning": "မီးပူ",
         "context": "⑦ ______ をかける",
@@ -906,6 +1062,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "かける",
         "meaning": "(ဖုန်) စုပ်သည် / (မီးပူ) တိုက်သည်",
         "context": "⑦ ______ をかける",
@@ -914,6 +1071,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "家具（かぐ）",
         "meaning": "ပရိဘောဂ",
         "context": "⑧ 家具（かぐ）を動（うご）かす",
@@ -922,6 +1080,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "動（うご）かす",
         "meaning": "ရွှေ့သည် / ရွှေ့ရှားသည်",
         "context": "⑧ 家具（かぐ）を動（うご）かす",
@@ -930,6 +1089,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "床（ゆか）",
         "meaning": "ကြမ်းပြင်",
         "context": "⑨ 床（ゆか）を拭（ふ）く",
@@ -938,6 +1098,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "拭（ふ）く",
         "meaning": "သုတ်သည်",
         "context": "⑨ 床（ゆか）を拭（ふ）く",
@@ -946,6 +1107,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "エアコン",
         "meaning": "အဲကွန်း (လေအေးပေးစက်)",
         "context": "⑩ エアコンの調子（ちょうし）が悪（わる）い",
@@ -954,6 +1116,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "調子（ちょうし）",
         "meaning": "အခြေအနေ / စက်လည်ပတ်မှုအခြေအနေ",
         "context": "⑩ エアコンの調子（ちょうし）が悪（わる）い",
@@ -962,6 +1125,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "悪（わる）い",
         "meaning": "မကောင်းသော",
         "context": "⑩ エアコンの調子（ちょうし）が悪（わる）い",
@@ -970,6 +1134,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "テレビ",
         "meaning": "တီဗီ",
         "context": "⑪ テレビを修理（しゅうり）に出（だ）す",
@@ -978,6 +1143,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "修理（しゅうり）",
         "meaning": "ပြင်ဆင်ခြင်း",
         "context": "⑪ テレビを修理（しゅうり）に出（だ）す",
@@ -986,6 +1152,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "出（だ）す",
         "meaning": "ပို့သည် / ပေးပို့သည်",
         "context": "⑪ テレビを修理（しゅうり）に出（だ）す",
@@ -994,6 +1161,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "ゴミ",
         "meaning": "အမှိုက်",
         "context": "⑫ ゴミをリサイクルに出（だ）す",
@@ -1002,6 +1170,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "リサイクル",
         "meaning": "ပြန်လည်အသုံးပြုခြင်း (Recycling)",
         "context": "⑫ ゴミをリサイクルに出（だ）す",
@@ -1010,6 +1179,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "出（だ）す",
         "meaning": "စွန့်ပစ်သည် / ပို့သည်",
         "context": "⑫ ゴミをリサイクルに出（だ）す",
@@ -1018,6 +1188,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "家事（かじ）",
         "meaning": "အိမ်ထောင်မှုကိစ္စ / အိမ်အလုပ်",
         "context": "⑬ 家事（かじ）は面倒臭（めんどうくさ）い",
@@ -1026,6 +1197,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-1",
         "term": "面倒臭（めんどうくさ）い",
         "meaning": "စိတ်ရှုပ်စရာကောင်းသော / ငြီးငွေ့စရာကောင်းသော",
         "context": "⑬ 家事（かじ）は面倒臭（めんどうくさ）い",
@@ -1034,6 +1206,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "目（め）が覚（さ）める",
         "meaning": "နိုးလာသည် / မျက်လုံးပွင့်လာသည်",
         "context": "① 3時（じ）に目（め）が覚（さ）める",
@@ -1042,6 +1215,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "あくび",
         "meaning": "သápခြင်း / သápဝေခြင်း",
         "context": "② ______ が出（で）る",
@@ -1050,6 +1224,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "涙（なみだ）",
         "meaning": "မျက်ရည်",
         "context": "② ______ が出（で）る",
@@ -1058,6 +1233,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "出（で）る",
         "meaning": "ထွက်သည်",
         "context": "② ______ が出（で）る",
@@ -1066,6 +1242,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "睡眠（すいみん）",
         "meaning": "အိပ်စက်ခြင်း / အိပ်ချိန်",
         "context": "③ 睡眠（すいみん）が足（た）りない",
@@ -1074,6 +1251,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "足（た）りない",
         "meaning": "မလုံလောက်သည်",
         "context": "③ 睡眠（すいみん）が足（た）りない",
@@ -1082,6 +1260,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "朝食（ちょうしょく）",
         "meaning": "မနက်စာ",
         "context": "④ 朝食（ちょうしょく）を取（と）る",
@@ -1090,6 +1269,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "取（と）る",
         "meaning": "စားသုံးသည်",
         "context": "④ 朝食（ちょうしょく）を取（と）る",
@@ -1098,6 +1278,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "化粧（けしょう）",
         "meaning": "မိတ်ကပ် / ပြင်ဆင်ခြယ်သခြင်း",
         "context": "⑤ 化粧（けしょう）をする",
@@ -1106,6 +1287,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "ペット",
         "meaning": "အိမ်မွေးတိရစ္ဆာန်",
         "context": "⑥ ペットにえさをやる",
@@ -1114,6 +1296,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "えさ",
         "meaning": "အစာ",
         "context": "⑥ ペットにえさをやる",
@@ -1122,6 +1305,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "やる",
         "meaning": "ကျွေးသည် / ပေးသည်",
         "context": "⑥ ペットにえさをやる",
@@ -1130,6 +1314,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "猫（ねこ）",
         "meaning": "ကြောင်",
         "context": "⑦ 猫（ねこ）を可愛（かわい）がる",
@@ -1138,6 +1323,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "可愛（かわい）がる",
         "meaning": "ချစ်ခင်ယုယသည်",
         "context": "⑦ 猫（ねこ）を可愛（かわい）がる",
@@ -1146,6 +1332,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "定期（ていき）",
         "meaning": "ရာသီလက်မှတ် (လစဉ်စီးလက်မှတ်)",
         "context": "⑧ 定期（ていき）を忘（わす）れる",
@@ -1154,6 +1341,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "忘（わす）れる",
         "meaning": "မေ့သည် / မေ့ကျန်ခဲ့သည်",
         "context": "⑧ 定期（ていき）を忘（わす）れる",
@@ -1162,6 +1350,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "会社（かいしゃ）",
         "meaning": "ကုမ္ပဏီ",
         "context": "⑨ 会社（かいしゃ）に遅刻（ちこく）する",
@@ -1170,6 +1359,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "遅刻（ちこく）する",
         "meaning": "နောက်ကျသည်",
         "context": "⑨ 会社（かいしゃ）に遅刻（ちこく）する",
@@ -1178,6 +1368,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "携帯電話（けいたいでんわ）",
         "meaning": "လက်ကိုင်ဖုန်း",
         "context": "⑩ 携帯電話（けいたいでんわ）の電池（でんち）が切（き）れる",
@@ -1186,6 +1377,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "電池（でんち）",
         "meaning": "ဘက်ထရီ",
         "context": "⑩ 携帯電話（けいたいでんわ）の電池（でんち）が切（き）れる",
@@ -1194,6 +1386,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "切（き）れる",
         "meaning": "ကုန်သွားသည် / ပြတ်တောက်သွားသည်",
         "context": "⑩ 携帯電話（けいたいでんわ）の電池（でんち）が切（き）れる",
@@ -1202,6 +1395,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "退屈（たいくつ）な",
         "meaning": "ပျင်းစရာကောင်းသော",
         "context": "⑪ 退屈（たいくつ）な仕事（しごと）",
@@ -1210,6 +1404,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "仕事（しごと）",
         "meaning": "အလုပ်",
         "context": "⑪ 退屈（たいくつ）な仕事（しごと）",
@@ -1218,6 +1413,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "帰宅（きたく）する",
         "meaning": "အိမ်ပြန်သည်",
         "context": "⑫ 12時（じ）に帰宅（きたく）する",
@@ -1226,6 +1422,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "妻（つま）",
         "meaning": "ဇနီး / မယား",
         "context": "⑬ 妻（つま）に文句（もんく）を言（い）われる",
@@ -1234,6 +1431,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "文句（もんく）",
         "meaning": "ပြစ်တင်ဝေဖန်မှု / မကျေနပ်စကား",
         "context": "⑬ 妻（つま）に文句（もんく）を言（い）われる",
@@ -1242,6 +1440,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "言（い）われる",
         "meaning": "ပြောဆိုခြင်းခံရသည်",
         "context": "⑬ 妻（つま）に文句（もんく）を言（い）われる",
@@ -1250,6 +1449,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "疲（つか）れ",
         "meaning": "မောပန်းနွမ်းနယ်မှု",
         "context": "⑭ 疲（つか）れが取（と）れない",
@@ -1258,6 +1458,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "取（と）れない",
         "meaning": "မပြေပျောက်နိုင်သည်",
         "context": "⑭ 疲（つか）れが取（と）れない",
@@ -1266,6 +1467,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "毛布（もうふ）",
         "meaning": "စောင်",
         "context": "⑮ 毛布（もうふ）をかける",
@@ -1274,6 +1476,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-3-subchapter-2",
         "term": "かける",
         "meaning": "ခြုံသည်",
         "context": "⑮ 毛布（もうふ）をかける",
@@ -1332,10 +1535,30 @@ export const chapters = [
   },
   {
     "id": "part-1-chapter-4",
-    "number": "1.4",
-    "title": "料理（りょうり）・食事（しょくじ） / ချက်ပြုတ်ခြင်းနှင့် အစားအသောက်",
+    "number": "4",
+    "sourceNumber": "1.4",
+    "title": "4課（か）：生活（せいかつ）2：食生活（しょくせいかつ）",
+    "subchapters": [
+      {
+        "id": "part-1-chapter-4-subchapter-1",
+        "number": "1",
+        "title": "料理（りょうり）",
+        "parentChapterId": "part-1-chapter-4",
+        "studyTab": "Vocab",
+        "sourcePage": 14
+      },
+      {
+        "id": "part-1-chapter-4-subchapter-2",
+        "number": "2",
+        "title": "食事（しょくじ）",
+        "parentChapterId": "part-1-chapter-4",
+        "studyTab": "Vocab",
+        "sourcePage": 15
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "皮（かわ）",
         "meaning": "အခွံ",
         "context": "① 皮（かわ）をむく",
@@ -1344,6 +1567,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "むく",
         "meaning": "အခွံနွှာသည်",
         "context": "① 皮（かわ）をむく",
@@ -1352,6 +1576,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "砂糖（さとう）",
         "meaning": "သကြား",
         "context": "② 砂糖（さとう）を加（くわ）える",
@@ -1360,6 +1585,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "加（くわ）える",
         "meaning": "ပေါင်းထည့်သည် / ထည့်သည်",
         "context": "② 砂糖（さとう）を加（くわ）える",
@@ -1368,6 +1594,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "材料（ざいりょう）",
         "meaning": "ပါဝင်ပစ္စည်းများ / ကုန်ကြမ်း",
         "context": "③ 材料（ざいりょう）を混（ま）ぜる",
@@ -1376,6 +1603,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "混（ま）ぜる",
         "meaning": "ရောမွှေသည်",
         "context": "③ 材料（ざいりょう）を混（ま）ぜる",
@@ -1384,6 +1612,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "鍋（なべ）",
         "meaning": "အိုး",
         "context": "④ 鍋（なべ）で煮（に）る",
@@ -1392,6 +1621,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "煮（に）る",
         "meaning": "ပြုတ်သည် / ချက်ပြုတ်သည် (ပြုတ်ပြုတ်နူးအောင်ချက်သည်)",
         "context": "④ 鍋（なべ）で煮（に）る",
@@ -1400,6 +1630,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "油（あぶら）",
         "meaning": "ဆီ",
         "context": "⑤ 油（あぶら）で揚（あ）げる",
@@ -1408,6 +1639,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "揚（あ）げる",
         "meaning": "ကြော်သည် (ဆီမြုပ်ကြော်သည်)",
         "context": "⑤ 油（あぶら）で揚（あ）げる",
@@ -1416,6 +1648,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "容器（ようき）",
         "meaning": "ထည့်စရာခွက် / ဘူး / ဇလုံ",
         "context": "⑥ 容器（ようき）に移（うつ）す",
@@ -1424,6 +1657,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "移（うつ）す",
         "meaning": "ပြောင်းထည့်သည် / ရွှေ့ပြောင်းသည်",
         "context": "⑥ 容器（ようき）に移（うつ）す",
@@ -1432,6 +1666,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "冷蔵庫（れいぞうこ）",
         "meaning": "ရေခဲသေတ္တာ",
         "context": "⑦ 冷蔵庫（れいぞうこ）で保存（ほぞん）する",
@@ -1440,6 +1675,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "保存（ほぞん）する",
         "meaning": "ထိန်းသိမ်းထားသည် / သိမ်းဆည်းထားသည်",
         "context": "⑦ 冷蔵庫（れいぞうこ）で保存（ほぞん）する",
@@ -1448,6 +1684,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "野菜（やさい）",
         "meaning": "ဟင်းသီးဟင်းရွက်",
         "context": "⑧ 野菜（やさい）が腐（くさ）る",
@@ -1456,6 +1693,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "腐（くさ）る",
         "meaning": "ပုပ်သိုးသည်",
         "context": "⑧ 野菜（やさい）が腐（くさ）る",
@@ -1464,6 +1702,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "生（なま）",
         "meaning": "အစိမ်း",
         "context": "⑨ 生（なま）で食（た）べる",
@@ -1472,6 +1711,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "食（た）べる",
         "meaning": "စားသည်",
         "context": "⑨ 生（なま）で食（た）べる",
@@ -1480,6 +1720,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "酸（す）っぱい",
         "meaning": "ချဉ်သော",
         "context": "⑩ ______ 味（あじ）",
@@ -1488,6 +1729,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "濃（こ）い",
         "meaning": "အရသာပြင်းသော / အရသာပစ်သော",
         "context": "⑩ ______ 味（あじ）",
@@ -1496,6 +1738,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "しつこい",
         "meaning": "အဆီများလွန်း၍ အီသော / အရသာ လေးလွန်းသော",
         "context": "⑩ ______ 味（あじ）",
@@ -1504,6 +1747,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "肉（にく）",
         "meaning": "အသား",
         "context": "⑪ 肉（にく）が ______",
@@ -1512,6 +1756,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "軟（やわ）らかい",
         "meaning": "နူးညံ့သော / ပျော့သော",
         "context": "⑪ 肉（にく）が ______",
@@ -1520,6 +1765,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "固（かた）い",
         "meaning": "မာသော / ကြမ်းသော",
         "context": "⑪ 肉（にく）が ______",
@@ -1528,6 +1774,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "香（かお）り",
         "meaning": "ရနံ့ / အနံ့",
         "context": "⑫ 香（かお）りがいい",
@@ -1536,6 +1783,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "いい",
         "meaning": "ကောင်းသော",
         "context": "⑫ 香（かお）りがいい",
@@ -1544,6 +1792,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "皿（さら）",
         "meaning": "ပန်းကန်",
         "context": "⑫ 香（かお）りがいい",
@@ -1552,6 +1801,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "包丁（ほうちょう）",
         "meaning": "ဓားမြှောင် / အိမ်သုံးဓား",
         "context": "⑫ 香（かお）りがいい",
@@ -1560,6 +1810,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "フライパン",
         "meaning": "ဒယ်အိုး",
         "context": "⑫ 香（かお）りがいい",
@@ -1568,6 +1819,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-1",
         "term": "片付（かたづ）ける",
         "meaning": "သိမ်းဆည်းသန့်ရှင်းသည်",
         "context": "⑫ 香（かお）りがいい",
@@ -1576,6 +1828,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "お腹（なか）",
         "meaning": "ဝမ်းဗိုက် / ဗိုက်",
         "context": "① お腹（なか）がぺこぺこだ",
@@ -1584,6 +1837,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "ぺこぺこだ",
         "meaning": "ဆာလောင်မွတ်သိပ်သော (ဗိုက်ဟောင်းလောင်းဖြစ်သော)",
         "context": "① お腹（なか）がぺこぺこだ",
@@ -1592,6 +1846,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "喉（のど）",
         "meaning": "လည်ချောင်း",
         "context": "② 喉（のど）がからからだ",
@@ -1600,6 +1855,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "からからだ",
         "meaning": "ခြောက်ကပ်နေသော",
         "context": "② 喉（のど）がからからだ",
@@ -1608,6 +1864,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "高級（こうきゅう）な",
         "meaning": "အဆင့်မြင့်သော / ဈေးကြီးသော",
         "context": "③ 高級（こうきゅう）なレストランに行（い）く",
@@ -1616,6 +1873,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "レストラン",
         "meaning": "စားသောက်ဆိုင်",
         "context": "③ 高級（こうきゅう）なレストランに行（い）く",
@@ -1624,6 +1882,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "行（い）く",
         "meaning": "သွားသည်",
         "context": "③ 高級（こうきゅう）なレストランに行（い）く",
@@ -1632,6 +1891,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "メニュー",
         "meaning": "မီနူး (အစားအသောက်စာရင်း)",
         "context": "④ メニューから選（えら）ぶ",
@@ -1640,6 +1900,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "選（えら）ぶ",
         "meaning": "ရွေးချယ်သည်",
         "context": "④ メニューから選（えら）ぶ",
@@ -1648,6 +1909,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "栄養（えいよう）",
         "meaning": "အာဟာရ",
         "context": "⑤ 栄養（えいよう）のバランスを考（かんが）える",
@@ -1656,6 +1918,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "バランス",
         "meaning": "မျှခြေ (Balance)",
         "context": "⑤ 栄養（えいよう）のバランスを考（かんが）える",
@@ -1664,6 +1927,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "考（かんが）える",
         "meaning": "စဉ်းစားသည်",
         "context": "⑤ 栄養（えいよう）のバランスを考（かんが）える",
@@ -1672,6 +1936,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "料理（りょうり）",
         "meaning": "ဟင်းလျာ / အစားအသောက်",
         "context": "⑥ 料理（りょうり）を注文（ちゅうもん）する",
@@ -1680,6 +1945,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "注文（ちゅうもん）する",
         "meaning": "မှာယူသည် (Order ပေးသည်)",
         "context": "⑥ 料理（りょうり）を注文（ちゅうもん）する",
@@ -1688,6 +1954,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "ポテト",
         "meaning": "အာလူးကြော် (Potato)",
         "context": "⑦ ポテトを追加（ついか）で頼（たの）む",
@@ -1696,6 +1963,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "追加（ついか）",
         "meaning": "ဖြည့်စွက်ခြင်း / အပိုထပ်မံ",
         "context": "⑦ ポテトを追加（ついか）で頼（たの）む",
@@ -1704,6 +1972,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "頼（たの）む",
         "meaning": "မှာယူသည် / တောင်းဆိုသည်",
         "context": "⑦ ポテトを追加（ついか）で頼（たの）む",
@@ -1712,6 +1981,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "ビール",
         "meaning": "ဘီယာ",
         "context": "⑧ ビールで乾杯（かんぱい）する",
@@ -1720,6 +1990,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "乾杯（かんぱい）する",
         "meaning": "ခွက်ချင်းရိုက်၍ အောင်ပွဲခံသည် / သောက်ကြစို့ (Cheer လုပ်သည်)",
         "context": "⑧ ビールで乾杯（かんぱい）する",
@@ -1728,6 +1999,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "お酒（さけ）",
         "meaning": "အရက်",
         "context": "⑨ お酒（さけ）に酔（よ）う",
@@ -1736,6 +2008,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "酔（よ）う",
         "meaning": "မူးယစ်သည် / အရက်မူးသည်",
         "context": "⑨ お酒（さけ）に酔（よ）う",
@@ -1744,6 +2017,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "舌（した）",
         "meaning": "လျှာ",
         "context": "⑩ 舌（した）を火傷（やけど）する",
@@ -1752,6 +2026,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "火傷（やけど）する",
         "meaning": "အပူလောင်သည်",
         "context": "⑩ 舌（した）を火傷（やけど）する",
@@ -1760,6 +2035,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "野菜（やさい）",
         "meaning": "ဟင်းသီးဟင်းရွက်",
         "context": "⑪ 野菜（やさい）を残（のこ）す",
@@ -1768,6 +2044,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "残（のこ）す",
         "meaning": "ချန်ထားသည် / ကျန်ခဲ့စေသည်",
         "context": "⑪ 野菜（やさい）を残（のこ）す",
@@ -1776,6 +2053,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "食事（しょくじ）",
         "meaning": "အစားအသောက် / အစားစားခြင်း",
         "context": "⑫ 食事（しょくじ）のマナーを教（おし）える",
@@ -1784,6 +2062,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "マナー",
         "meaning": "ယဉ်ကျေးမှုအမူအကျင့် (Manners)",
         "context": "⑫ 食事（しょくじ）のマナーを教（おし）える",
@@ -1792,6 +2071,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "教（おし）える",
         "meaning": "သင်ကြားပြသပေးသည်",
         "context": "⑫ 食事（しょくじ）のマナーを教（おし）える",
@@ -1800,6 +2080,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "支払（しはら）い",
         "meaning": "ငွေပေးချေခြင်း",
         "context": "⑬ 支払（しはら）いが済（す）む",
@@ -1808,6 +2089,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "済（す）む",
         "meaning": "ပြီးစီးသည် / ကျေလည်သည်",
         "context": "⑬ 支払（しはら）いが済（す）む",
@@ -1816,6 +2098,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "食費（しょくひ）",
         "meaning": "စားစရိတ် / အစားအသောက်ကုန်ကျစရိတ်",
         "context": "⑭ 食費（しょくひ）がかかる",
@@ -1824,6 +2107,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "かかる",
         "meaning": "ကုန်ကျသည်",
         "context": "⑭ 食費（しょくひ）がかかる",
@@ -1832,6 +2116,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "お弁当（べんとう）",
         "meaning": "ထမင်းဗူး",
         "context": "⑭ 食費（しょくひ）がかかる",
@@ -1840,6 +2125,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "おかず",
         "meaning": "ဟင်း",
         "context": "⑭ 食費（しょくひ）がかかる",
@@ -1848,6 +2134,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "おにぎり",
         "meaning": "ထမင်းဆုပ်",
         "context": "⑭ 食費（しょくひ）がかかる",
@@ -1856,6 +2143,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "お菓子（かし）",
         "meaning": "မုန့်",
         "context": "⑭ 食費（しょくひ）がかかる",
@@ -1864,6 +2152,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-4-subchapter-2",
         "term": "食（た）べる",
         "meaning": "စားသည်",
         "context": "⑭ 食費（しょくひ）がかかる",
@@ -1918,10 +2207,30 @@ export const chapters = [
   },
   {
     "id": "part-1-chapter-5",
-    "number": "1.5",
-    "title": "住まい（すまい） / နေထိုင်မှု",
+    "number": "5",
+    "sourceNumber": "1.5",
+    "title": "5課（か）：生活（せいかつ）3：家（いえ）",
+    "subchapters": [
+      {
+        "id": "part-1-chapter-5-subchapter-1",
+        "number": "1",
+        "title": "家（いえ）",
+        "parentChapterId": "part-1-chapter-5",
+        "studyTab": "Vocab",
+        "sourcePage": 18
+      },
+      {
+        "id": "part-1-chapter-5-subchapter-2",
+        "number": "2",
+        "title": "引っ越し（ひっこし）",
+        "parentChapterId": "part-1-chapter-5",
+        "studyTab": "Vocab",
+        "sourcePage": 19
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "自宅（じたく）",
         "meaning": "မိမိအိမ် / ကိုယ်ပိုင်အိမ်",
         "context": "① 自宅（じたく）を建（た）てる",
@@ -1930,6 +2239,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "建（た）てる",
         "meaning": "ဆောက်လုပ်သည်",
         "context": "① 自宅（じたく）を建（た）てる",
@@ -1938,6 +2248,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "家（いえ）",
         "meaning": "အိမ်",
         "context": "② 家（いえ）を設計（せっけい）する",
@@ -1946,6 +2257,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "設計（せっけい）する",
         "meaning": "ဒီဇိုင်းဆွဲသည် / ပုံစံထုတ်သည်",
         "context": "② 家（いえ）を設計（せっけい）する",
@@ -1954,6 +2266,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "工事（こうじ）",
         "meaning": "ဆောက်လုပ်ရေးလုပ်ငန်း",
         "context": "③ 工事（こうじ）が遅（おく）れる",
@@ -1962,6 +2275,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "遅（おく）れる",
         "meaning": "နောက်ကျသည် / ကြန့်ကြာသည်",
         "context": "③ 工事（こうじ）が遅（おく）れる",
@@ -1970,6 +2284,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "建築中（けんちくちゅう）",
         "meaning": "ဆောက်လုပ်ဆဲ",
         "context": "④ 建築中（けんちくちゅう）の家（いえ）",
@@ -1978,6 +2293,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "家（いえ）",
         "meaning": "အိမ်",
         "context": "④ 建築中（けんちくちゅう）の家（いえ）",
@@ -1986,6 +2302,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "マンション",
         "meaning": "ကွန်ဒို / တိုက်ခန်း",
         "context": "⑤ マンションの建設（けんせつ）が進（すす）む",
@@ -1994,6 +2311,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "建設（けんせつ）",
         "meaning": "ဆောက်လုပ်ခြင်း / အဆောက်အအုံဆောက်လုပ်မှု",
         "context": "⑤ マンションの建設（けんせつ）が進（すす）む",
@@ -2002,6 +2320,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "進（すす）む",
         "meaning": "တိုးတက်သည် / ပြီးစီးလုနီးပါးဖြစ်လာသည်",
         "context": "⑤ マンションの建設（けんせつ）が進（すす）む",
@@ -2010,6 +2329,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "建（た）つ",
         "meaning": "ဆောက်လုပ်ပြီးစီးသည် / ပေါ်ပေါက်လာသည်",
         "context": "⑥ 家（いえ）が ______",
@@ -2018,6 +2338,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "完成（かんせい）する",
         "meaning": "ပြီးစီးသည် / အပြီးသတ်သည်",
         "context": "⑥ 家（いえ）が ______",
@@ -2026,6 +2347,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "土地（とち）",
         "meaning": "မြေနေရာ / မြေကွက်",
         "context": "⑦ 土地（とち）の価値（かち）が上（あ）がる",
@@ -2034,6 +2356,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "価値（かち）",
         "meaning": "တန်ဖိုး",
         "context": "⑦ 土地（とち）の価値（かち）が上（あ）がる",
@@ -2042,6 +2365,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "上（あ）がる",
         "meaning": "မြင့်တက်သည်",
         "context": "⑦ 土地（とち）の価値（かち）が上（あ）がる",
@@ -2050,6 +2374,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "地下（ちか）",
         "meaning": "မြေအောက်",
         "context": "⑧ 地下（ちか）に部屋（へや）を造（つく）る",
@@ -2058,6 +2383,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "部屋（へや）",
         "meaning": "အခန်း",
         "context": "⑧ 地下（ちか）に部屋（へや）を造（つく）る",
@@ -2066,6 +2392,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "造（つく）る",
         "meaning": "ဖန်တီးသည် / ဆောက်လုပ်သည်",
         "context": "⑧ 地下（ちか）に部屋（へや）を造（つく）る",
@@ -2074,6 +2401,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "屋根（やね）",
         "meaning": "အမိုး / အိမ်မိုး",
         "context": "⑨ 屋根（やね）を直（なお）す",
@@ -2082,6 +2410,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "直（なお）す",
         "meaning": "ပြင်ဆင်သည်",
         "context": "⑨ 屋根（やね）を直（なお）す",
@@ -2090,6 +2419,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "インテリア",
         "meaning": "အိမ်တွင်းအလှဆင်ပစ္စည်း / အခန်းတွင်းဒီဇိုင်း (Interior)",
         "context": "⑩ インテリアを選（えら）ぶ",
@@ -2098,6 +2428,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "選（えら）ぶ",
         "meaning": "ရွေးချယ်သည်",
         "context": "⑩ インテリアを選（えら）ぶ",
@@ -2106,6 +2437,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "机（つくえ）",
         "meaning": "စားပွဲ",
         "context": "⑪ 机（つくえ）を置（お）くスペースがない",
@@ -2114,6 +2446,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "置（お）く",
         "meaning": "ထားသည်",
         "context": "⑪ 机（つくえ）を置（お）くスペースがない",
@@ -2122,6 +2455,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "スペース",
         "meaning": "နေရာလွတ် / အခန်းအနား (Space)",
         "context": "⑪ 机（つくえ）を置（お）くスペースがない",
@@ -2130,6 +2464,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "ない",
         "meaning": "မရှိပါ",
         "context": "⑪ 机（つくえ）を置（お）くスペースがない",
@@ -2138,6 +2473,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "デザイン",
         "meaning": "ဒီဇိုင်း (Design)",
         "context": "⑫ デザインがいい家具（かぐ）",
@@ -2146,6 +2482,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "いい",
         "meaning": "ကောင်းသော",
         "context": "⑫ デザインがいい家具（かぐ）",
@@ -2154,6 +2491,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "家具（かぐ）",
         "meaning": "ပရိဘောဂ",
         "context": "⑫ デザインがいい家具（かぐ）",
@@ -2162,6 +2500,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "部屋（へや）の中（なか）",
         "meaning": "အခန်းတွင်း",
         "context": "⑬ 部屋（へや）の中（なか）がすっきりする",
@@ -2170,6 +2509,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-1",
         "term": "すっきりする",
         "meaning": "ရှင်းလင်းသွားသည် / သပ်သပ်ရပ်ရပ်ဖြစ်သွားသည်",
         "context": "⑬ 部屋（へや）の中（なか）がすっきりする",
@@ -2178,6 +2518,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "町（まち）",
         "meaning": "မြို့",
         "context": "① 町（まち）の中心（ちゅうしん）に住（す）む",
@@ -2186,6 +2527,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "中心（ちゅうしん）",
         "meaning": "ဗဟို / အလယ်ဗဟို",
         "context": "① 町（まち）の中心（ちゅうしん）に住（す）む",
@@ -2194,6 +2536,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "住（す）む",
         "meaning": "နေထိုင်သည်",
         "context": "① 町（まち）の中心（ちゅうしん）に住（す）む",
@@ -2202,6 +2545,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "商店街（しょうてんがい）",
         "meaning": "စေျးတန်း / ဈေးလမ်းမ",
         "context": "② 商店街（しょうてんがい）が近（ちか）い",
@@ -2210,6 +2554,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "近（ちか）い",
         "meaning": "နီးသော",
         "context": "② 商店街（しょうてんがい）が近（ちか）い",
@@ -2218,6 +2563,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "外国人（がいこくじん）",
         "meaning": "နိုင်ငံခြားသား",
         "context": "③ 外国人（がいこくじん）が多い（おおい）地区（ちく）",
@@ -2226,6 +2572,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "多（おお）い",
         "meaning": "များသော",
         "context": "③ 外国人（がいこくじん）が多い（おおい）地区（ちく）",
@@ -2234,6 +2581,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "地区（ちく）",
         "meaning": "ဧရိယာ / ရပ်ကွက် / ဒေသ",
         "context": "③ 外国人（がいこくじん）が多い（おおい）地区（ちく）",
@@ -2242,6 +2590,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "かなり",
         "meaning": "တော်တော်လေး",
         "context": "④ 駅（えき）から ______",
@@ -2250,6 +2599,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "遠（とお）い",
         "meaning": "ဝေးသော",
         "context": "④ 駅（えき）から ______",
@@ -2258,6 +2608,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "距離（きょり）がある",
         "meaning": "အကွာအဝေး ရှိသည်",
         "context": "④ 駅（えき）から ______",
@@ -2266,6 +2617,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "6畳（じょう）",
         "meaning": "ဖျာ ၆ ချပ်စာ အကျယ်အဝန်း (တတမိ ၆ ချပ်)",
         "context": "⑤ 6畳（じょう）の部屋（へや）",
@@ -2274,6 +2626,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "部屋（へや）",
         "meaning": "အခန်း",
         "context": "⑤ 6畳（じょう）の部屋（へや）",
@@ -2282,6 +2635,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "日（ひ）",
         "meaning": "နေရောင်ခြည်",
         "context": "⑥ 日（ひ）が当（あ）たる",
@@ -2290,6 +2644,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "当（あ）たる",
         "meaning": "ထိုးသည် / ကျရောက်သည်",
         "context": "⑥ 日（ひ）が当（あ）たる",
@@ -2298,6 +2653,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "日当（ひあ）たり",
         "meaning": "နေရောင်ခြည်ရရှိမှု",
         "context": "⑦ 日当（ひあ）たりがいい",
@@ -2306,6 +2662,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "いい",
         "meaning": "ကောင်းသော",
         "context": "⑦ 日当（ひあ）たりがいい",
@@ -2314,6 +2671,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "西向（にしむ）き",
         "meaning": "အနောက်ဘက်လှည့်",
         "context": "⑧ 西向（にしむ）きの窓（まど）",
@@ -2322,6 +2680,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "窓（まど）",
         "meaning": "ပြတင်းပေါက်",
         "context": "⑧ 西向（にしむ）きの窓（まど）",
@@ -2330,6 +2689,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "長（なが）い",
         "meaning": "ရှည်လျားသော",
         "context": "⑨ 長（なが）い影（かげ）が出（で）きる",
@@ -2338,6 +2698,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "影（かげ）",
         "meaning": "အရိပ်",
         "context": "⑨ 長（なが）い影（かげ）が出（で）きる",
@@ -2346,6 +2707,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "出（で）きる",
         "meaning": "ဖြစ်ပေါ်သည် / ထွက်ပေါ်သည်",
         "context": "⑨ 長（なが）い影（かげ）が出（で）きる",
@@ -2354,6 +2716,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "風呂（ふろ）",
         "meaning": "ရေချိုးခန်း / ရေချိုးကန်",
         "context": "⑩ 風呂（ふろ）______ のアパート",
@@ -2362,6 +2725,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "付（つ）き",
         "meaning": "ပါရှိသော",
         "context": "⑩ 風呂（ふろ）______ のアパート",
@@ -2370,6 +2734,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "なし",
         "meaning": "မပါသော",
         "context": "⑩ 風呂（ふろ）______ のアパート",
@@ -2378,6 +2743,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "アパート",
         "meaning": "အပါတ်မန့် / တိုက်ခန်း",
         "context": "⑩ 風呂（ふろ）______ のアパート",
@@ -2386,6 +2752,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "引（ひ）っ越（こ）し",
         "meaning": "အိမ်ပြောင်းခြင်း",
         "context": "⑪ 引（ひ）っ越（こ）しを手伝（てつだ）う",
@@ -2394,6 +2761,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "手伝（てつだ）う",
         "meaning": "ကူညီသည်",
         "context": "⑪ 引（ひ）っ越（こ）しを手伝（てつだ）う",
@@ -2402,6 +2770,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "床（ゆか）",
         "meaning": "ကြမ်းပြင်",
         "context": "⑫ 床（ゆか）に傷（きず）が付（つ）く",
@@ -2410,6 +2779,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "傷（きず）",
         "meaning": "အရာ / အဆုတ်အပြဲ",
         "context": "⑫ 床（ゆか）に傷（きず）が付（つ）く",
@@ -2418,6 +2788,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "付（つ）く",
         "meaning": "ဖြစ်ပေါ်သည် / ထိခိုက်မိသည်",
         "context": "⑫ 床（ゆか）に傷（きず）が付（つ）く",
@@ -2426,6 +2797,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "家賃（やちん）",
         "meaning": "အိမ်ငှားခ",
         "context": "⑬ 家賃（やちん）を払（はら）う",
@@ -2434,6 +2806,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-5-subchapter-2",
         "term": "払（はら）う",
         "meaning": "ပေးချေသည်",
         "context": "⑬ 家賃（やちん）を払（はら）う",
@@ -2496,10 +2869,30 @@ export const chapters = [
   },
   {
     "id": "part-1-chapter-6",
-    "number": "1.6",
-    "title": "外見（がいけん）・健康（けんこう） / အသွင်အပြင်နှင့် ကျန်းမာရေး",
+    "number": "6",
+    "sourceNumber": "1.6",
+    "title": "6課（か）：体（からだ）1：美容（びよう）、健康（けんこう）",
+    "subchapters": [
+      {
+        "id": "part-1-chapter-6-subchapter-1",
+        "number": "1",
+        "title": "美容（びよう）",
+        "parentChapterId": "part-1-chapter-6",
+        "studyTab": "Vocab",
+        "sourcePage": 24
+      },
+      {
+        "id": "part-1-chapter-6-subchapter-2",
+        "number": "2",
+        "title": "健康（けんこう）",
+        "parentChapterId": "part-1-chapter-6",
+        "studyTab": "Vocab",
+        "sourcePage": 25
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "伸（の）ばす",
         "meaning": "ဆံပင်ရှည်ထားသည် / ဆန့်ထုတ်သည်",
         "context": "① 髪（かみ）を ______",
@@ -2508,6 +2901,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "結（むす）ぶ",
         "meaning": "ဆံပင်စည်းသည် / ချည်နှောင်သည်",
         "context": "① 髪（かみ）を ______",
@@ -2516,6 +2910,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "美容院（びよういん）",
         "meaning": "အလှပြင်ဆိုင် / ဆံပင်ညှပ်ဆိုင်",
         "context": "② 美容院（びよういん）へ行（い）く",
@@ -2524,6 +2919,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "行（い）く",
         "meaning": "သွားသည်",
         "context": "② 美容院（びよういん）へ行（い）く",
@@ -2532,6 +2928,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "雰囲気（ふんいき）",
         "meaning": "အငွေ့အသက် / ရုပ်သွင် / ပတ်ဝန်းကျင်လေထု",
         "context": "③ 雰囲気（ふんいき）が変わ（かわ）（か）わる",
@@ -2540,6 +2937,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "変（か）わる",
         "meaning": "ပြောင်းလဲသည်",
         "context": "③ 雰囲気（ふんいき）が変わ（かわ）（か）わる",
@@ -2548,6 +2946,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "しわ",
         "meaning": "အရေးအကြောင်း",
         "context": "④ しわが増（ふ）える",
@@ -2556,6 +2955,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "増（ふ）える",
         "meaning": "တိုးပွားလာသည် / တိုးလာသည်",
         "context": "④ しわが増（ふ）える",
@@ -2564,6 +2964,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "肌（はだ）",
         "meaning": "အသားအရေ",
         "context": "⑤ 肌（はだ）にクリームを塗（ぬ）る",
@@ -2572,6 +2973,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "クリーム",
         "meaning": "ခရမ် / ကလီးမ် (Cream)",
         "context": "⑤ 肌（はだ）にクリームを塗（ぬ）る",
@@ -2580,6 +2982,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "塗（ぬ）る",
         "meaning": "လိမ်းသည်",
         "context": "⑤ 肌（はだ）にクリームを塗（ぬ）る",
@@ -2588,6 +2991,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "まったく",
         "meaning": "လုံးဝ (နောက်တွင် မ... နှင့် တွဲသုံးသည်)",
         "context": "⑥ まったく効果（こうか）がない",
@@ -2596,6 +3000,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "効果（こうか）",
         "meaning": "အကျိုးသက်ရောက်မှု / အာနိသင်",
         "context": "⑥ まったく効果（こうか）がない",
@@ -2604,6 +3009,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "ない",
         "meaning": "မရှိပါ",
         "context": "⑥ まったく効果（こうか）がない",
@@ -2612,6 +3018,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "化粧（けしょう）",
         "meaning": "မိတ်ကပ် / ပြင်ဆင်ခြယ်သခြင်း",
         "context": "⑦ 化粧（けしょう）が濃（こ）い",
@@ -2620,6 +3027,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "濃（こ）い",
         "meaning": "ရင့်သော / ထူသော",
         "context": "⑦ 化粧（けしょう）が濃（こ）い",
@@ -2628,6 +3036,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "スタイル",
         "meaning": "စတိုင်လ် / ကိုယ်လုံးကိုယ်ထည် (Style)",
         "context": "⑧ スタイルに自信（じしん）がない",
@@ -2636,6 +3045,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "自信（じしん）",
         "meaning": "ကိုယ့်ကိုယ်ကို ယုံကြည်မှု",
         "context": "⑧ スタイルに自信（じしん）がない",
@@ -2644,6 +3054,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "ない",
         "meaning": "မရှိပါ",
         "context": "⑧ スタイルに自信（じしん）がない",
@@ -2652,6 +3063,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "姿勢（しせい）",
         "meaning": "ခန္ဓာကိုယ် ထိုင်ပုံထရပ်ပုံ အမူအရာ (Posture)",
         "context": "⑨ 姿勢（しせい）が悪（わる）い",
@@ -2660,6 +3072,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "悪（わる）い",
         "meaning": "မကောင်းသော",
         "context": "⑨ 姿勢（しせい）が悪（わる）い",
@@ -2668,6 +3081,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "みっともない",
         "meaning": "ကြည့်ရဆိုးသော / ရုပ်ပျက်သော",
         "context": "⑩ みっともない格好（かっこう）",
@@ -2676,6 +3090,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "格好（かっこう）",
         "meaning": "ပုံစံ / အသွင်အပြင်",
         "context": "⑩ みっともない格好（かっこう）",
@@ -2684,6 +3099,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "食事（しょくじ）",
         "meaning": "အစားအသောက်",
         "context": "⑪ 食事（しょくじ）の量（りょう）を制限（せいげん）する",
@@ -2692,6 +3108,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "量（りょう）",
         "meaning": "ပမာဏ",
         "context": "⑪ 食事（しょくじ）の量（りょう）を制限（せいげん）する",
@@ -2700,6 +3117,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "制限（せいげん）する",
         "meaning": "ကန့်သတ်သည်",
         "context": "⑪ 食事（しょくじ）の量（りょう）を制限（せいげん）する",
@@ -2708,6 +3126,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "外食（がいしょく）",
         "meaning": "အပြင်စာ စားခြင်း",
         "context": "⑫ 外食（がいしょく）が多い（おおい）（おおい）",
@@ -2716,6 +3135,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "多（おお）い",
         "meaning": "များသော",
         "context": "⑫ 外食（がいしょく）が多い（おおい）（おおい）",
@@ -2724,6 +3144,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "カロリー",
         "meaning": "ကယ်လိုရီ (Calories)",
         "context": "⑬ カロリーが高い（たかい）（たかい）",
@@ -2732,6 +3153,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-1",
         "term": "高（たか）い",
         "meaning": "မြင့်မားသော",
         "context": "⑬ カロリーが高い（たかい）（たかい）",
@@ -2740,6 +3162,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "体力（たいりょく）",
         "meaning": "ကိုယ်ကာယခွန်အား",
         "context": "① 体力（たいりょく）を付（つ）ける",
@@ -2748,6 +3171,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "付（つ）ける",
         "meaning": "မြှင့်တင်သည် / လေ့ကျင့်ယူသည်",
         "context": "① 体力（たいりょく）を付（つ）ける",
@@ -2756,6 +3180,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "体操（たいそう）",
         "meaning": "ကိုယ်လက်လေ့ကျင့်ခန်း",
         "context": "② 体操（たいそう）をする",
@@ -2764,6 +3189,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "する",
         "meaning": "လုပ်သည်",
         "context": "② 体操（たいそう）をする",
@@ -2772,6 +3198,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "全身（ぜんしん）",
         "meaning": "တစ်ကိုယ်လုံး",
         "context": "③ 全身（ぜんしん）の筋肉（きんにく）を使う（つかう）（つかう）",
@@ -2780,6 +3207,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "筋肉（きんにく）",
         "meaning": "ကြွက်သား",
         "context": "③ 全身（ぜんしん）の筋肉（きんにく）を使う（つかう）（つかう）",
@@ -2788,6 +3216,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "使（つか）う",
         "meaning": "သုံးသည် / အသုံးပြုသည်",
         "context": "③ 全身（ぜんしん）の筋肉（きんにく）を使う（つかう）（つかう）",
@@ -2796,6 +3225,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "汗（あせ）",
         "meaning": "ချွေး",
         "context": "④ 汗（あせ）が出る（でる）（でる）",
@@ -2804,6 +3234,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "出（で）る",
         "meaning": "ထွက်သည်",
         "context": "④ 汗（あせ）が出る（でる）（でる）",
@@ -2812,6 +3243,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "息（いき）",
         "meaning": "အသက်ရှူခြင်း",
         "context": "⑤ 息（いき）が苦しい（くるしい）（くるしい）",
@@ -2820,6 +3252,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "苦（くる）しい",
         "meaning": "ခက်ခဲသော / အသက်ရှူရကျပ်သော",
         "context": "⑤ 息（いき）が苦しい（くるしい）（くるしい）",
@@ -2828,6 +3261,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "中年（ちゅうねん）",
         "meaning": "သက်လတ်ပိုင်း",
         "context": "⑥ 中年（ちゅうねん）になる",
@@ -2836,6 +3270,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "になる",
         "meaning": "ဖြစ်လာသည်",
         "context": "⑥ 中年（ちゅうねん）になる",
@@ -2844,6 +3279,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "普段（ふだん）",
         "meaning": "ပုံမှန် / အမြဲတမ်း",
         "context": "⑦ 普段（ふだん）から健康（けんこう）に気（き）を付ける（つける）（きをつける）",
@@ -2852,6 +3288,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "健康（けんこう）",
         "meaning": "ကျန်းမာရေး",
         "context": "⑦ 普段（ふだん）から健康（けんこう）に気（き）を付ける（つける）（きをつける）",
@@ -2860,6 +3297,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "気（き）を付（つ）ける",
         "meaning": "ဂရုစိုက်သည်",
         "context": "⑦ 普段（ふだん）から健康（けんこう）に気（き）を付ける（つける）（きをつける）",
@@ -2868,6 +3306,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "禁煙（きんえん）",
         "meaning": "ဆေးလိပ်ဖြတ်ခြင်း",
         "context": "⑧ 禁煙（きんえん）をする",
@@ -2876,6 +3315,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "する",
         "meaning": "လုပ်သည်",
         "context": "⑧ 禁煙（きんえん）をする",
@@ -2884,6 +3324,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "妻（つま）",
         "meaning": "ဇနီး / မယား",
         "context": "⑨ 妻（つま）に内緒（ないしょ）で煙草（たばこ）を吸う（すう）（すう）",
@@ -2892,6 +3333,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "内緒（ないしょ）",
         "meaning": "တိတ်တဆိတ် / လျှို့ဝှက်စွာ",
         "context": "⑨ 妻（つま）に内緒（ないしょ）で煙草（たばこ）を吸う（すう）（すう）",
@@ -2900,6 +3342,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "煙草（たばこ）",
         "meaning": "ဆေးလိပ်",
         "context": "⑨ 妻（つま）に内緒（ないしょ）で煙草（たばこ）を吸う（すう）（すう）",
@@ -2908,6 +3351,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "吸（す）う",
         "meaning": "သောက်သည် (ဆေးလိပ်သောက်သည်)",
         "context": "⑨ 妻（つま）に内緒（ないしょ）で煙草（たばこ）を吸う（すう）（すう）",
@@ -2916,6 +3360,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "頑張（がんば）っても",
         "meaning": "ကြိုးစားပေမဲ့",
         "context": "⑩ 頑張っ（がんばっ）ても（がんばっても）、無駄（むだ）だ",
@@ -2924,6 +3369,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "無駄（むだ）だ",
         "meaning": "အလကားပဲ / အဖတ်မတင်ဘူး",
         "context": "⑩ 頑張っ（がんばっ）ても（がんばっても）、無駄（むだ）だ",
@@ -2932,6 +3378,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "意志（いし）",
         "meaning": "စိတ်ဓာတ် / သန္နိဋ္ဌာန်",
         "context": "⑪ 意志（いし）が弱い（よわい）（よわい）",
@@ -2940,6 +3387,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "弱（よわ）い",
         "meaning": "အားနည်းသော",
         "context": "⑪ 意志（いし）が弱い（よわい）（よわい）",
@@ -2948,6 +3396,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "ヨガ",
         "meaning": "ယောဂ (Yoga)",
         "context": "⑪ 意志（いし）が弱い（よわい）（よわい）",
@@ -2956,6 +3405,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "ジョギング",
         "meaning": "ဖြေးဖြေးမှန်မှန်ပြေးခြင်း (Jogging)",
         "context": "⑪ 意志（いし）が弱い（よわい）（よわい）",
@@ -2964,6 +3414,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "ダイエット",
         "meaning": "ဝိတ်လျှော့ခြင်း (Dieting)",
         "context": "⑪ 意志（いし）が弱い（よわい）（よわい）",
@@ -2972,6 +3423,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "始（はじ）める",
         "meaning": "စတင်သည်",
         "context": "⑪ 意志（いし）が弱い（よわい）（よわい）",
@@ -2980,6 +3432,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "ジム",
         "meaning": "အားကစားရုံ (Gym)",
         "context": "⑪ 意志（いし）が弱い（よわい）（よわい）",
@@ -2988,6 +3441,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-6-subchapter-2",
         "term": "通（かよ）う",
         "meaning": "ပုံမှန်သွားရောက်သည်",
         "context": "⑪ 意志（いし）が弱い（よわい）（よわい）",
@@ -3042,10 +3496,30 @@ export const chapters = [
   },
   {
     "id": "part-1-chapter-7",
-    "number": "1.7",
-    "title": "病気（びょうき）・怪我（けが） / ရောဂါနှင့် ဒဏ်ရာ",
+    "number": "7",
+    "sourceNumber": "1.7",
+    "title": "7課（か）：体（からだ）2：病気（びょうき）",
+    "subchapters": [
+      {
+        "id": "part-1-chapter-7-subchapter-1",
+        "number": "1",
+        "title": "病気（びょうき）と怪我（けが）",
+        "parentChapterId": "part-1-chapter-7",
+        "studyTab": "Vocab",
+        "sourcePage": 28
+      },
+      {
+        "id": "part-1-chapter-7-subchapter-2",
+        "number": "2",
+        "title": "入院（にゅういん）",
+        "parentChapterId": "part-1-chapter-7",
+        "studyTab": "Vocab",
+        "sourcePage": 29
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "体調（たいちょう）",
         "meaning": "ခန္ဓာကိုယ်ကျန်းမာရေးအခြေအနေ",
         "context": "① 体調（たいちょう）が悪（わる）い",
@@ -3054,6 +3528,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "悪（わる）い",
         "meaning": "မကောင်းသော",
         "context": "① 体調（たいちょう）が悪（わる）い",
@@ -3062,6 +3537,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "食欲（しょくよく）",
         "meaning": "အစားအသောက်ဆန္ဒ / အစားစားချင်စိတ်",
         "context": "② 食欲（しょくよく）がない",
@@ -3070,6 +3546,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "ない",
         "meaning": "မရှိပါ",
         "context": "② 食欲（しょくよく）がない",
@@ -3078,6 +3555,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "喉（のど）",
         "meaning": "လည်ချောင်း",
         "context": "③ 喉（のど）が変（へん）な感（かん）じだ",
@@ -3086,6 +3564,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "変（へん）な",
         "meaning": "ပုံမှန်မဟုတ်သော / ဆန်းကြယ်သော",
         "context": "③ 喉（のど）が変（へん）な感（かん）じだ",
@@ -3094,6 +3573,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "感（かん）じ",
         "meaning": "ခံစားချက်",
         "context": "③ 喉（のど）が変（へん）な感（かん）じだ",
@@ -3102,6 +3582,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "体温（たいおん）",
         "meaning": "ကိုယ်အပူချိန်",
         "context": "④ 体温（たいおん）を測（はか）る",
@@ -3110,6 +3591,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "測（はか）る",
         "meaning": "တိုင်းတာသည်",
         "context": "④ 体温（たいおん）を測（はか）る",
@@ -3118,6 +3600,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "病院（びょういん）",
         "meaning": "ဆေးရုံ / ဆေးခန်း",
         "context": "⑤ 病院（びょういん）で順番（じゅんばん）を待（ま）つ",
@@ -3126,6 +3609,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "順番（じゅんばん）",
         "meaning": "အလှည့် / အစီအစဉ်",
         "context": "⑤ 病院（びょういん）で順番（じゅんばん）を待（ま）つ",
@@ -3134,6 +3618,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "待（ま）つ",
         "meaning": "စောင့်ဆိုင်းသည်",
         "context": "⑤ 病院（びょういん）で順番（じゅんばん）を待（ま）つ",
@@ -3142,6 +3627,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "頭（あたま）",
         "meaning": "ခေါင်း",
         "context": "⑥ 頭（あたま）を冷（ひ）やす",
@@ -3150,6 +3636,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "冷（ひ）やす",
         "meaning": "အေးအောင်လုပ်သည် / အအေးဓာတ်ပေးသည်",
         "context": "⑥ 頭（あたま）を冷（ひ）やす",
@@ -3158,6 +3645,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "体（からだ）",
         "meaning": "ခန္ဓာကိုယ်",
         "context": "⑦ 体（からだ）を温（あたた）める",
@@ -3166,6 +3654,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "温（あたた）める",
         "meaning": "နွေးအောင်လုပ်သည်",
         "context": "⑦ 体（からだ）を温（あたた）める",
@@ -3174,6 +3663,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "傷（きず）",
         "meaning": "ဒဏ်ရာ / အနာ",
         "context": "⑧ 傷（きず）が深（ふか）い",
@@ -3182,6 +3672,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "深（ふか）い",
         "meaning": "နက်သော",
         "context": "⑧ 傷（きず）が深（ふか）い",
@@ -3190,6 +3681,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "火傷（やけど）",
         "meaning": "အပူလောင်ခြင်း",
         "context": "⑨ 火傷（やけど）をする",
@@ -3198,6 +3690,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "する",
         "meaning": "ဖြစ်သည် / မိသည်",
         "context": "⑨ 火傷（やけど）をする",
@@ -3206,6 +3699,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "歯（は）",
         "meaning": "သွား",
         "context": "⑩ 歯（は）を ______",
@@ -3214,6 +3708,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "削（けず）る",
         "meaning": "ခြစ်သည် / သွားညှိသည် (ကြိတ်သည်/ဖောက်သည်)",
         "context": "⑩ 歯（は）を ______",
@@ -3222,6 +3717,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "抜（ぬ）く",
         "meaning": "နှုတ်သည်",
         "context": "⑩ 歯（は）を ______",
@@ -3230,6 +3726,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "風邪（かぜ）",
         "meaning": "အအေးမိတုပ်ကွေး",
         "context": "⑪ 風邪（かぜ）を防（ふせ）ぐ",
@@ -3238,6 +3735,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "防（ふせ）ぐ",
         "meaning": "ကာကွယ်သည်",
         "context": "⑪ 風邪（かぜ）を防（ふせ）ぐ",
@@ -3246,6 +3744,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "手（て）",
         "meaning": "လက်",
         "context": "⑫ 手（て）を清潔（せいけつ）にする",
@@ -3254,6 +3753,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "清潔（せいけつ）に",
         "meaning": "သန့်သန့်ရှင်းရှင်း",
         "context": "⑫ 手（て）を清潔（せいけつ）にする",
@@ -3262,6 +3762,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "する",
         "meaning": "ထားသည် / ပြုလုပ်သည်",
         "context": "⑫ 手（て）を清潔（せいけつ）にする",
@@ -3270,6 +3771,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "薬局（やっきょく）",
         "meaning": "ဆေးဆိုင်",
         "context": "⑬ 薬局（やっきょく）でマスクを買（か）う",
@@ -3278,6 +3780,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "マスク",
         "meaning": "မာစ်ခ် / နှာခေါင်းစည်း (Mask)",
         "context": "⑬ 薬局（やっきょく）でマスクを買（か）う",
@@ -3286,6 +3789,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "買（か）う",
         "meaning": "ဝယ်ယူသည်",
         "context": "⑬ 薬局（やっきょく）でマスクを買（か）う",
@@ -3294,6 +3798,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "胃（い）",
         "meaning": "အစာအိမ်",
         "context": "⑬ 薬局（やっきょく）でマスクを買（か）う",
@@ -3302,6 +3807,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "肩（かた）",
         "meaning": "ပခုံး",
         "context": "⑬ 薬局（やっきょく）でマスクを買（か）う",
@@ -3310,6 +3816,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "腰（こし）",
         "meaning": "ခါး",
         "context": "⑬ 薬局（やっきょく）でマスクを買（か）う",
@@ -3318,6 +3825,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "膝（ひざ）",
         "meaning": "ဒူး",
         "context": "⑬ 薬局（やっきょく）でマスクを買（か）う",
@@ -3326,6 +3834,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "胸（むね）",
         "meaning": "ရင်ဘတ်",
         "context": "⑬ 薬局（やっきょく）でマスクを買（か）う",
@@ -3334,6 +3843,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "心臓（しんぞう）",
         "meaning": "နှလုံး",
         "context": "⑬ 薬局（やっきょく）でマスクを買（か）う",
@@ -3342,6 +3852,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-1",
         "term": "痛（いた）い",
         "meaning": "နာကျင်သော",
         "context": "⑬ 薬局（やっきょく）でマスクを買（か）う",
@@ -3350,6 +3861,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "病気（びょうき）",
         "meaning": "ရောဂါ",
         "context": "① 病気（びょうき）にかかる",
@@ -3358,6 +3870,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "かかる",
         "meaning": "(ရောဂါ) ဖြစ်ပွားသည် / ကူးစက်ခံရသည်",
         "context": "① 病気（びょうき）にかかる",
@@ -3366,6 +3879,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "検査（けんさ）",
         "meaning": "ဆေးစစ်ခြင်း / စမ်းသပ်စစ်ဆေးခြင်း",
         "context": "② 検査（けんさ）を受ける（うける）（うける）",
@@ -3374,6 +3888,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "受（う）ける",
         "meaning": "ခံယူသည်",
         "context": "② 検査（けんさ）を受ける（うける）（うける）",
@@ -3382,6 +3897,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "異常（いじょう）",
         "meaning": "မူမမှန်မှု / ပုံမှန်မဟုတ်သော အခြေအနေ",
         "context": "③ ______ を発見（はっけん）する",
@@ -3390,6 +3906,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "ガン",
         "meaning": "ကင်ဆာရောဂါ",
         "context": "③ ______ を発見（はっけん）する",
@@ -3398,6 +3915,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "発見（はっけん）する",
         "meaning": "တွေ့ရှိသည် / ရှာဖွေတွေ့ရှိသည်",
         "context": "③ ______ を発見（はっけん）する",
@@ -3406,6 +3924,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "痛（いた）み",
         "meaning": "နာကျင်မှု",
         "context": "④ 痛み（いたみ）（いたみ）を我慢（がまん）する",
@@ -3414,6 +3933,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "我慢（がまん）する",
         "meaning": "သည်းခံသည် / အောင့်ခံသည်",
         "context": "④ 痛み（いたみ）（いたみ）を我慢（がまん）する",
@@ -3422,6 +3942,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "長（なが）い間（あいだ）",
         "meaning": "အချိန်အကြာကြီး / ကာလရှည်",
         "context": "⑤ 長い（ながい）間（ながいあいだ）苦しむ（くるしむ）（くるしむ）",
@@ -3430,6 +3951,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "苦（くる）しむ",
         "meaning": "ခံစားရသည် / ဒုက္ခရောက်သည်",
         "context": "⑤ 長い（ながい）間（ながいあいだ）苦しむ（くるしむ）（くるしむ）",
@@ -3438,6 +3960,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "危険（きけん）な",
         "meaning": "စိုးရိမ်ရသော / အန္တရာယ်ရှိသော",
         "context": "⑥ 危険（きけん）な状態（じょうたい）が続く（つづく）（つづく）",
@@ -3446,6 +3969,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "状態（じょうたい）",
         "meaning": "အခြေအနေ",
         "context": "⑥ 危険（きけん）な状態（じょうたい）が続く（つづく）（つづく）",
@@ -3454,6 +3978,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "続（つづ）く",
         "meaning": "ဆက်လက်ဖြစ်ပွားသည် / ဆက်ဖြစ်နေသည်",
         "context": "⑥ 危険（きけん）な状態（じょうたい）が続く（つづく）（つづく）",
@@ -3462,6 +3987,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "手術（しゅじゅつ）",
         "meaning": "ခွဲစိတ်ကုသမှု",
         "context": "⑦ 手術（しゅじゅつ）が成功（せいこう）する",
@@ -3470,6 +3996,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "成功（せいこう）する",
         "meaning": "အောင်မြင်သည်",
         "context": "⑦ 手術（しゅじゅつ）が成功（せいこう）する",
@@ -3478,6 +4005,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "回復（かいふく）",
         "meaning": "ပြန်လည်ကောင်းမွန်လာခြင်း / ရောဂါသက်သာလာခြင်း",
         "context": "⑧ 回復（かいふく）が早い（はやい）（はやい）",
@@ -3486,6 +4014,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "早（はや）い",
         "meaning": "မြန်ဆန်သော",
         "context": "⑧ 回復（かいふく）が早い（はやい）（はやい）",
@@ -3494,6 +4023,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "ほぼ",
         "meaning": "နီးပါး / တော်တော်များများ",
         "context": "⑨ 病気（びょうき）が ______ 治る（なおる）（なおる）",
@@ -3502,6 +4032,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "完全（かんぜん）に",
         "meaning": "လုံးဝ / အပြီးတိုင်",
         "context": "⑨ 病気（びょうき）が ______ 治る（なおる）（なおる）",
@@ -3510,6 +4041,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "治（なお）る",
         "meaning": "ပျောက်ကင်းသည်",
         "context": "⑨ 病気（びょうき）が ______ 治る（なおる）（なおる）",
@@ -3518,6 +4050,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "命（いのち）",
         "meaning": "အသက်",
         "context": "⑩ 命（いのち）を ______",
@@ -3526,6 +4059,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "助（たす）ける・救（すく）う",
         "meaning": "ကယ်တင်သည်",
         "context": "⑩ 命（いのち）を ______",
@@ -3534,6 +4068,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "落（お）とす",
         "meaning": "ဆုံးရှုံးသည် (အသက်ဆုံးရှုံးသည်)",
         "context": "⑩ 命（いのち）を ______",
@@ -3542,6 +4077,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "母（はは）",
         "meaning": "အမေ",
         "context": "⑪ 母（はは）が助かる（たすかる）（たすかる）",
@@ -3550,6 +4086,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "助（たす）かる",
         "meaning": "အသက်ဘေးမှ လွတ်မြောက်သည် / သက်သာရာရသည်",
         "context": "⑪ 母（はは）が助かる（たすかる）（たすかる）",
@@ -3558,6 +4095,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "お見舞（みまい）",
         "meaning": "လူမမာမေးခြင်း",
         "context": "⑫ お見舞い（みまい）（みまい）に行く（いく）（いく）",
@@ -3566,6 +4104,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-7-subchapter-2",
         "term": "行（い）く",
         "meaning": "သွားသည်",
         "context": "⑫ お見舞い（みまい）（みまい）に行く（いく）（いく）",
@@ -3620,10 +4159,30 @@ export const chapters = [
   },
   {
     "id": "part-1-chapter-8",
-    "number": "1.8",
-    "title": "スポーツ・試合（しあい） / အားကစားနှင့် ပြိုင်ပွဲ",
+    "number": "8",
+    "sourceNumber": "1.8",
+    "title": "8課（か）：趣味（しゅみ）と旅行（りょこう）1：スポーツ、芸術（げいじゅつ）",
+    "subchapters": [
+      {
+        "id": "part-1-chapter-8-subchapter-1",
+        "number": "1",
+        "title": "スポーツ",
+        "parentChapterId": "part-1-chapter-8",
+        "studyTab": "Vocab",
+        "sourcePage": 32
+      },
+      {
+        "id": "part-1-chapter-8-subchapter-2",
+        "number": "2",
+        "title": "芸術（げいじゅつ）",
+        "parentChapterId": "part-1-chapter-8",
+        "studyTab": "Vocab",
+        "sourcePage": 33
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "試合（しあい）",
         "meaning": "ပြိုင်ပွဲ / ပွဲစဉ်",
         "context": "① 試合（しあい）の開始（かいし）を待（ま）つ",
@@ -3632,6 +4191,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "開始（かいし）",
         "meaning": "စတင်ခြင်း",
         "context": "① 試合（しあい）の開始（かいし）を待（ま）つ",
@@ -3640,6 +4200,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "待（ま）つ",
         "meaning": "စောင့်ဆိုင်းသည်",
         "context": "① 試合（しあい）の開始（かいし）を待（ま）つ",
@@ -3648,6 +4209,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "選手（せんしゅ）",
         "meaning": "အားကစားသမား",
         "context": "② 選手（せんしゅ）の活躍（かつやく）に期待（きたい）する",
@@ -3656,6 +4218,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "活躍（かつやく）",
         "meaning": "တက်ကြွစွာ ယှဉ်ပြိုင်စွမ်းဆောင်မှု",
         "context": "② 選手（せんしゅ）の活躍（かつやく）に期待（きたい）する",
@@ -3664,6 +4227,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "期待（きたい）する",
         "meaning": "မျှော်လင့်သည်",
         "context": "② 選手（せんしゅ）の活躍（かつやく）に期待（きたい）する",
@@ -3672,6 +4236,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "日本（にほん）チーム",
         "meaning": "ဂျပန်အသင်း",
         "context": "③ 日本（にほん）チームを応援（おうえん）する",
@@ -3680,6 +4245,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "応援（おうえん）する",
         "meaning": "အားပေးသည်",
         "context": "③ 日本（にほん）チームを応援（おうえん）する",
@@ -3688,6 +4254,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "試合（しあい）",
         "meaning": "ပြိုင်ပွဲ",
         "context": "④ 試合（しあい）に出場（しゅつじょう）する",
@@ -3696,6 +4263,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "出場（しゅつじょう）する",
         "meaning": "ဝင်ရောက်ယှဉ်ပြိုင်သည်",
         "context": "④ 試合（しあい）に出場（しゅつじょう）する",
@@ -3704,6 +4272,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "ボール",
         "meaning": "ဘောလုံး (Ball)",
         "context": "⑤ ボールを ______",
@@ -3712,6 +4281,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "投（な）げる",
         "meaning": "ပစ်သည် / ပစ်လွှတ်သည်",
         "context": "⑤ ボールを ______",
@@ -3720,6 +4290,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "打（う）つ",
         "meaning": "ရိုက်သည်",
         "context": "⑤ ボールを ______",
@@ -3728,6 +4299,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "蹴（け）る",
         "meaning": "ကန်သည်",
         "context": "⑤ ボールを ______",
@@ -3736,6 +4308,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "優勝（ゆうしょう）",
         "meaning": "ဗိုလ်စွဲခြင်း / チャンピオン",
         "context": "⑥ 優勝（ゆうしょう）を争（あらそ）う",
@@ -3744,6 +4317,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "争（あらそ）う",
         "meaning": "လုယူယှဉ်ပြိုင်သည်",
         "context": "⑥ 優勝（ゆうしょう）を争（あらそ）う",
@@ -3752,6 +4326,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "負（ま）けて",
         "meaning": "ရှုံးနိမ့်ပြီး",
         "context": "⑦ 負（ま）けて、悔（くや）しい",
@@ -3760,6 +4335,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "悔（くや）しい",
         "meaning": "မခံချင်ဖြစ်သည် / စိတ်မကျေနပ်ဖြစ်သည် / နာည်းသည်",
         "context": "⑦ 負（ま）けて、悔（くや）しい",
@@ -3768,6 +4344,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "日本（にほん）の代表（だいひょう）",
         "meaning": "ဂျပန်လက်ရွေးစင် / ကိုယ်စားလှယ်",
         "context": "⑧ 日本（にほん）の代表（だいひょう）に選（えら）ばれる",
@@ -3776,6 +4353,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "選（えら）ばれる",
         "meaning": "ရွေးချယ်ခံရသည်",
         "context": "⑧ 日本（にほん）の代表（だいひょう）に選（えら）ばれる",
@@ -3784,6 +4362,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "厳（きび）しい",
         "meaning": "ပြင်းထန်သော / စည်းကမ်းကြီးသော",
         "context": "⑨ 厳（きび）しいトレーニングをする",
@@ -3792,6 +4371,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "トレーニング",
         "meaning": "လေ့ကျင့်ခန်း (Training)",
         "context": "⑨ 厳（きび）しいトレーニングをする",
@@ -3800,6 +4380,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "する",
         "meaning": "ပြုလုပ်သည်",
         "context": "⑨ 厳（きび）しいトレーニングをする",
@@ -3808,6 +4389,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "町（まち）の中（なか）",
         "meaning": "မြို့တွင်း",
         "context": "⑩ 町（まち）の中（なか）のコースを走（はし）る",
@@ -3816,6 +4398,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "コース",
         "meaning": "ပြေးလမ်းကြောင်း (Course)",
         "context": "⑩ 町（まち）の中（なか）のコースを走（はし）る",
@@ -3824,6 +4407,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "走（はし）る",
         "meaning": "ပြေးသည်",
         "context": "⑩ 町（まち）の中（なか）のコースを走（はし）る",
@@ -3832,6 +4416,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "トップ",
         "meaning": "ထိပ်ဆုံး / ပထမ (Top)",
         "context": "⑪ トップでゴールする",
@@ -3840,6 +4425,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "ゴールする",
         "meaning": "ပန်းဝင်သည် / ဂိုးသွင်းသည် (Goal)",
         "context": "⑪ トップでゴールする",
@@ -3848,6 +4434,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "途中（とちゅう）で",
         "meaning": "လမ်းခုလတ်တွင်",
         "context": "⑫ 途中（とちゅう）であきらめる",
@@ -3856,6 +4443,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "あきらめる",
         "meaning": "လက်လျှော့သည် / စွန့်လွှတ်သည်",
         "context": "⑫ 途中（とちゅう）であきらめる",
@@ -3864,6 +4452,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "記録（きろく）",
         "meaning": "စံချိန် / မှတ်တမ်း",
         "context": "⑬ 記録（きろく）を破（やぶ）る",
@@ -3872,6 +4461,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-1",
         "term": "破（やぶ）る",
         "meaning": "ချိုးဖျက်သည် (စံချိန်ချိုးသည်)",
         "context": "⑬ 記録（きろく）を破（やぶ）る",
@@ -3880,6 +4470,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "芸術（げいじゅつ）",
         "meaning": "အနုပညာ",
         "context": "① 芸術（げいじゅつ）に興味（きょうみ）がある",
@@ -3888,6 +4479,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "興味（きょうみ）",
         "meaning": "စိတ်ဝင်စားမှု",
         "context": "① 芸術（げいじゅつ）に興味（きょうみ）がある",
@@ -3896,6 +4488,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "ある",
         "meaning": "ရှိသည်",
         "context": "① 芸術（げいじゅつ）に興味（きょうみ）がある",
@@ -3904,6 +4497,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "一流（いちりゅう）",
         "meaning": "ပထမတန်းစား / ထိပ်တန်း",
         "context": "② 一流（いちりゅう）の ______",
@@ -3912,6 +4506,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "作家（さっか）",
         "meaning": "စာရေးဆရာ",
         "context": "② 一流（いちりゅう）の ______",
@@ -3920,6 +4515,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "画家（がか）",
         "meaning": "ပန်းချီဆရာ",
         "context": "② 一流（いちりゅう）の ______",
@@ -3928,6 +4524,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "音楽家（おんがくか）",
         "meaning": "ဂီတပညာရှင်",
         "context": "② 一流（いちりゅう）の ______",
@@ -3936,6 +4533,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "才能（さいのう）",
         "meaning": "ပါရမီ / အရည်အချင်း",
         "context": "③ 才能（さいのう）のある監督（かんとく）",
@@ -3944,6 +4542,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "監督（かんとく）",
         "meaning": "ဒါရိုက်တာ / နည်းပြ",
         "context": "③ 才能（さいのう）のある監督（かんとく）",
@@ -3952,6 +4551,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "人気（にんき）",
         "meaning": "လူကြိုက်များမှု / ရေပန်းစားမှု",
         "context": "④ 人気（にんき）のある ______",
@@ -3960,6 +4560,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "俳優（はいゆう）",
         "meaning": "မင်းသား / သရုပ်ဆောင်",
         "context": "④ 人気（にんき）のある ______",
@@ -3968,6 +4569,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "女優（じょゆう）",
         "meaning": "မင်းသမီး / အမျိုးသမီးသရုပ်ဆောင်",
         "context": "④ 人気（にんき）のある ______",
@@ -3976,6 +4578,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "お勧（すす）め",
         "meaning": "ညွှန်းဆိုချက် / တိုက်တွန်းချက်",
         "context": "⑤ お勧（すす）めの作品（さくひん）",
@@ -3984,6 +4587,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "作品（さくひん）",
         "meaning": "အနုပညာလက်ရာ / စာပေလက်ရာ",
         "context": "⑤ お勧（すす）めの作品（さくひん）",
@@ -3992,6 +4596,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "ストーリー",
         "meaning": "ဇာတ်လမ်း",
         "context": "⑥ ストーリーが単純（たんじゅん）だ",
@@ -4000,6 +4605,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "単純（たんじゅん）だ",
         "meaning": "ရိုးရှင်းသည်",
         "context": "⑥ ストーリーが単純（たんじゅん）だ",
@@ -4008,6 +4614,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "喜び（よろこび）（よろこび）",
         "meaning": "ဝမ်းမြောက်ခြင်း / ဝမ်းသာမှု",
         "context": "⑦ ______ を表現（ひょうげん）する",
@@ -4016,6 +4623,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "悲しみ（かなしみ）（かなしみ）",
         "meaning": "ဝမ်းနည်းခြင်း / ဝမ်းနည်းမှု",
         "context": "⑦ ______ を表現（ひょうげん）する",
@@ -4024,6 +4632,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "感情（かんじょう）",
         "meaning": "ခံစားချက် / စိတ်ခံစားမှု",
         "context": "⑦ ______ を表現（ひょうげん）する",
@@ -4032,6 +4641,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "表現（ひょうげん）する",
         "meaning": "ဖော်ပြသည် / သရုပ်ဖော်သည်",
         "context": "⑦ ______ を表現（ひょうげん）する",
@@ -4040,6 +4650,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "楽器（がっき）",
         "meaning": "တူရိယာ",
         "context": "⑧ 楽器（がっき）を弾（ひ）く",
@@ -4048,6 +4659,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "弾（ひ）く",
         "meaning": "တီးခတ်သည်",
         "context": "⑧ 楽器（がっき）を弾（ひ）く",
@@ -4056,6 +4668,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "プロ",
         "meaning": "ပရိုဖက်ရှင်နယ် / ကျွမ်းကျင်ပညာရှင်",
         "context": "⑨ プロの演奏（えんそう）を聞（き）く",
@@ -4064,6 +4677,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "演奏（えんそう）",
         "meaning": "တီးခတ်ဖျော်ဖြေမှု",
         "context": "⑨ プロの演奏（えんそう）を聞（き）く",
@@ -4072,6 +4686,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "聞（き）く",
         "meaning": "နားထောင်သည်",
         "context": "⑨ プロの演奏（えんそう）を聞（き）く",
@@ -4080,6 +4695,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "感想（かんそう）",
         "meaning": "အမြင် / ခံစားချက် ထင်မြင်ချက်",
         "context": "⑩ 感想（かんそう）を言（い）う",
@@ -4088,6 +4704,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "言（い）う",
         "meaning": "ပြောသည်",
         "context": "⑩ 感想（かんそう）を言（い）う",
@@ -4096,6 +4713,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "コンクール",
         "meaning": "ပြိုင်ပွဲ / အနုပညာပြိုင်ပွဲ",
         "context": "⑩ 感想（かんそう）を言（い）う",
@@ -4104,6 +4722,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "出（で）る",
         "meaning": "ဝင်ရောက်ယှဉ်ပြိုင်သည်",
         "context": "⑩ 感想（かんそう）を言（い）う",
@@ -4112,6 +4731,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "演劇（えんげき）",
         "meaning": "ပြဇာတ်",
         "context": "⑩ 感想（かんそう）を言（い）う",
@@ -4120,6 +4740,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "絵画（かいが）",
         "meaning": "ပန်းချီကား",
         "context": "⑩ 感想（かんそう）を言（い）う",
@@ -4128,6 +4749,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-8-subchapter-2",
         "term": "アニメ",
         "meaning": "အန်နီမေးရှင်း",
         "context": "⑩ 感想（かんそう）を言（い）う",
@@ -4190,10 +4812,30 @@ export const chapters = [
   },
   {
     "id": "part-1-chapter-9",
-    "number": "1.9",
-    "title": "服（ふく）・ファッション / အဝတ်အထည်နှင့် ဖက်ရှင်",
+    "number": "9",
+    "sourceNumber": "1.9",
+    "title": "9課（か）：趣味（しゅみ）と旅行（りょこう）2：ファッション",
+    "subchapters": [
+      {
+        "id": "part-1-chapter-9-subchapter-1",
+        "number": "1",
+        "title": "ファッション①",
+        "parentChapterId": "part-1-chapter-9",
+        "studyTab": "Vocab",
+        "sourcePage": 36
+      },
+      {
+        "id": "part-1-chapter-9-subchapter-2",
+        "number": "2",
+        "title": "ファッション②",
+        "parentChapterId": "part-1-chapter-9",
+        "studyTab": "Vocab",
+        "sourcePage": 37
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "最新（さいしん）",
         "meaning": "နောက်ဆုံးပေါ် / နောက်ဆုံးထွက်",
         "context": "① 最新（さいしん）のファッション",
@@ -4202,6 +4844,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "ファッション",
         "meaning": "ဖက်ရှင် (Fashion)",
         "context": "① 最新（さいしん）のファッション",
@@ -4210,6 +4853,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "流行（りゅうこう）",
         "meaning": "ခေတ်စားမှု / ရေပန်းစားမှု",
         "context": "② 流行（りゅうこう）の ______",
@@ -4218,6 +4862,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "スタイル",
         "meaning": "စတိုင်လ် / ပုံစံ",
         "context": "② 流行（りゅうこう）の ______",
@@ -4226,6 +4871,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "デザイン",
         "meaning": "ဒီဇိုင်း",
         "context": "② 流行（りゅうこう）の ______",
@@ -4234,6 +4880,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "おしゃれな",
         "meaning": "ခေတ်မီဆန်းသစ်သော / စမတ်ကျသော",
         "context": "③ おしゃれな眼鏡（めがね）",
@@ -4242,6 +4889,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "眼鏡（めがね）",
         "meaning": "မျက်မှန်",
         "context": "③ おしゃれな眼鏡（めがね）",
@@ -4250,6 +4898,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "服（ふく）",
         "meaning": "အဝတ်အစား",
         "context": "④ 服（ふく）を ______",
@@ -4258,6 +4907,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "試着（しちゃく）する",
         "meaning": "အဝတ်အစား ဝတ်ကြည့်သည်",
         "context": "④ 服（ふく）を ______",
@@ -4266,6 +4916,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "着替（きが）える",
         "meaning": "အဝတ်အစား လဲလှယ်သည်",
         "context": "④ 服（ふく）を ______",
@@ -4274,6 +4925,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "ズボン",
         "meaning": "ဘောင်းဘီ",
         "context": "⑤ ズボンが ______",
@@ -4282,6 +4934,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "きつい",
         "meaning": "ကျပ်သော",
         "context": "⑤ ズボンが ______",
@@ -4290,6 +4943,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "緩（ゆる）い",
         "meaning": "ချောင်သော",
         "context": "⑤ ズボンが ______",
@@ -4298,6 +4952,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "袖（そで）",
         "meaning": "အင်္ကျီလက်",
         "context": "⑥ 袖（そで）が短（みじか）い",
@@ -4306,6 +4961,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "短（みじか）い",
         "meaning": "တိုသော",
         "context": "⑥ 袖（そで）が短（みじか）い",
@@ -4314,6 +4970,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "サイズ",
         "meaning": "အရွယ်အစား (Size)",
         "context": "⑦ サイズが ______",
@@ -4322,6 +4979,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "合（あ）う",
         "meaning": "ကိုက်ညီသည် / တော်သည်",
         "context": "⑦ サイズが ______",
@@ -4330,6 +4988,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "ぴったりだ",
         "meaning": "အကွက်ကျ တော်စပ်သည်",
         "context": "⑦ サイズが ______",
@@ -4338,6 +4997,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "ネクタイ",
         "meaning": "နက်ကတိုင် (Necktie)",
         "context": "⑧ ネクタイが気（き）に入（い）る",
@@ -4346,6 +5006,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "気（き）に入（い）る",
         "meaning": "သဘောကျသည် / ကြိုက်နှစ်သက်သည်",
         "context": "⑧ ネクタイが気（き）に入（い）る",
@@ -4354,6 +5015,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "スーツ",
         "meaning": "ဝတ်စုံ / ကုတ်အင်္ကျီဝတ်စုံ (Suit)",
         "context": "⑨ スーツが似合（にあ）う",
@@ -4362,6 +5024,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "似合（にあ）う",
         "meaning": "လိုက်ဖက်သည်",
         "context": "⑨ スーツが似合（にあ）う",
@@ -4370,6 +5033,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "服（ふく）",
         "meaning": "အဝတ်အစား",
         "context": "⑩ 服（ふく）に関心（かんしん）がない",
@@ -4378,6 +5042,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "関心（かんしん）",
         "meaning": "စိတ်ဝင်စားမှု",
         "context": "⑩ 服（ふく）に関心（かんしん）がない",
@@ -4386,6 +5051,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "ない",
         "meaning": "မရှိပါ",
         "context": "⑩ 服（ふく）に関心（かんしん）がない",
@@ -4394,6 +5060,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "パジャマ",
         "meaning": "ညဝတ်အင်္ကျီ (Pajamas)",
         "context": "⑩ 服（ふく）に関心（かんしん）がない",
@@ -4402,6 +5069,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "ワンピース",
         "meaning": "ဂါဝန် (One-piece)",
         "context": "⑩ 服（ふく）に関心（かんしん）がない",
@@ -4410,6 +5078,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "浴衣（ゆかた）",
         "meaning": "ယူကာတ (ဂျပန် ရိုးရာ အပေါ့စား ဝတ်စုံ)",
         "context": "⑩ 服（ふく）に関心（かんしん）がない",
@@ -4418,6 +5087,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "水着（みずぎ）",
         "meaning": "ရေကူးဝတ်စုံ",
         "context": "⑩ 服（ふく）に関心（かんしん）がない",
@@ -4426,6 +5096,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-1",
         "term": "着（き）る",
         "meaning": "ဝတ်ဆင်သည်",
         "context": "⑩ 服（ふく）に関心（かんしん）がない",
@@ -4434,6 +5105,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "きちんとした",
         "meaning": "သပ်သပ်ရပ်ရပ်ရှိသော / စည်းစနစ်ကျသော",
         "context": "① ______ 服（ふく）",
@@ -4442,6 +5114,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "高級（こうきゅう）な",
         "meaning": "အဆင့်မြင့်သော / ဈေးကြီးသော",
         "context": "① ______ 服（ふく）",
@@ -4450,6 +5123,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "上品（じょうひん）な",
         "meaning": "ယဉ်ကျေးသိမ်မွေ့သော / ခန့်ညားသော",
         "context": "① ______ 服（ふく）",
@@ -4458,6 +5132,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "シンプル（しんぷる）な",
         "meaning": "ရိုးရှင်းသော",
         "context": "① ______ 服（ふく）",
@@ -4466,6 +5141,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "服装（ふくそう）",
         "meaning": "ဝတ်စားဆင်ယင်မှု",
         "context": "② ______ 服装（ふくそう）",
@@ -4474,6 +5150,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "派手（はで）な",
         "meaning": "တောက်ပြောင်ဆန်းပြားသော / ပေါ်လွင်သော",
         "context": "② ______ 服装（ふくそう）",
@@ -4482,6 +5159,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "地味（じみ）な",
         "meaning": "ရိုးရိုးရှင်းရှင်း / မှိန်သော",
         "context": "② ______ 服装（ふくそう）",
@@ -4490,6 +5168,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "かっこいい",
         "meaning": "ကြည့်ကောင်းသော / စမတ်ကျသော",
         "context": "③ ______ 人（ひと）",
@@ -4498,6 +5177,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "かっこ悪（わる）い",
         "meaning": "ကြည့်ရဆိုးသော / မစမတ်ကျသော",
         "context": "③ ______ 人（ひと）",
@@ -4506,6 +5186,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "素敵（すてき）な",
         "meaning": "စွဲမက်ဖွယ်ကောင်းသော / သာယာလှပသော",
         "context": "③ ______ 人（ひと）",
@@ -4514,6 +5195,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "ドレス",
         "meaning": "ဂါဝန် / ပွဲတက်ဝတ်စုံ (Dress)",
         "context": "④ ______ ドレス",
@@ -4522,6 +5204,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "真（ま）っ赤（っか）な",
         "meaning": "ရဲရဲနီသော",
         "context": "④ ______ ドレス",
@@ -4530,6 +5213,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "真（ま）っ白（しろ）な",
         "meaning": "ဖြူဖွေးသော",
         "context": "④ ______ ドレス",
@@ -4538,6 +5222,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "真（ま）っ黒（くろ）な",
         "meaning": "မည်းနက်သော",
         "context": "④ ______ ドレス",
@@ -4546,6 +5231,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "スカート",
         "meaning": "စကတ် (Skirt)",
         "context": "⑤ ______ のスカート",
@@ -4554,6 +5240,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "オレンジ",
         "meaning": "လိမ္မော်ရောင် (Orange)",
         "context": "⑤ ______ のスカート",
@@ -4562,6 +5249,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "ピンク",
         "meaning": "ပန်းရောင် (Pink)",
         "context": "⑤ ______ のスカート",
@@ -4570,6 +5258,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "紫（むらさき）",
         "meaning": "ခရမ်းရောင်",
         "context": "⑤ ______ のスカート",
@@ -4578,6 +5267,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "灰色（はいいろ）",
         "meaning": "မီးခိုးရောင်",
         "context": "⑤ ______ のスカート",
@@ -4586,6 +5276,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "濃（こ）い",
         "meaning": "ရင့်သော / အခဲ (အရောင်)",
         "context": "⑥ 濃（こ）い緑色（みどりいろ）の服（ふく）",
@@ -4594,6 +5285,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "緑色（みどりいろ）",
         "meaning": "အစိမ်းရောင်",
         "context": "⑥ 濃（こ）い緑色（みどりいろ）の服（ふく）",
@@ -4602,6 +5294,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "服（ふく）",
         "meaning": "အဝတ်အစား",
         "context": "⑥ 濃（こ）い緑色（みどりいろ）の服（ふく）",
@@ -4610,6 +5303,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "バッグ",
         "meaning": "အိတ် (Bag)",
         "context": "⑦ バッグと靴（くつ）の色（いろ）を合（あ）わせる",
@@ -4618,6 +5312,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "靴（くつ）",
         "meaning": "ဖိနပ်",
         "context": "⑦ バッグと靴（くつ）の色（いろ）を合（あ）わせる",
@@ -4626,6 +5321,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "色（いろ）",
         "meaning": "အရောင်",
         "context": "⑦ バッグと靴（くつ）の色（いろ）を合（あ）わせる",
@@ -4634,6 +5330,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "合（あ）わせる",
         "meaning": "လိုက်ဖက်အောင် ညှိစပ်သည် / တူအောင်ထားသည်",
         "context": "⑦ バッグと靴（くつ）の色（いろ）を合（あ）わせる",
@@ -4642,6 +5339,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "花（はな）",
         "meaning": "ပန်း",
         "context": "⑧ 花（はな）の模様（もよう）のハンカチ",
@@ -4650,6 +5348,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "模様（もよう）",
         "meaning": "အကွက် / ဒီဇိုင်း / ပန်းပွင့်ပုံစံ",
         "context": "⑧ 花（はな）の模様（もよう）のハンカチ",
@@ -4658,6 +5357,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "ハンカチ",
         "meaning": "လက်ကိုင်ပဝါ (Handkerchief)",
         "context": "⑧ 花（はな）の模様（もよう）のハンカチ",
@@ -4666,6 +5366,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "無地（むじ）",
         "meaning": "အပြောင် / ဒီဇိုင်းမပါသော",
         "context": "⑨ 無地（むじ）の着物（きもの）",
@@ -4674,6 +5375,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "着物（きもの）",
         "meaning": "ကိမိုနို (Kimono)",
         "context": "⑨ 無地（むじ）の着物（きもの）",
@@ -4682,6 +5384,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "セーター",
         "meaning": "ဆဝေတာ (Sweater)",
         "context": "⑨ 無地（むじ）の着物（きもの）",
@@ -4690,6 +5393,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "ウール",
         "meaning": "သိုးမွှေး (Wool)",
         "context": "⑨ 無地（むじ）の着物（きもの）",
@@ -4698,6 +5402,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "綿（めん）",
         "meaning": "ဂွမ်း / ပိတ်သား (Cotton)",
         "context": "⑨ 無地（むじ）の着物（きもの）",
@@ -4706,6 +5411,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "革（かわ）",
         "meaning": "သားရေ",
         "context": "⑨ 無地（むじ）の着物（きもの）",
@@ -4714,6 +5420,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "コート",
         "meaning": "ကုတ်အင်္ကျီ (Coat)",
         "context": "⑨ 無地（むじ）の着物（きもの）",
@@ -4722,6 +5429,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "履（は）く",
         "meaning": "ဝတ်ဆင်သည် (အောက်ပိုင်း / ဖိနပ်)",
         "context": "⑨ 無地（むじ）の着物（きもの）",
@@ -4730,6 +5438,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "パンツ",
         "meaning": "ဘောင်းဘီ / အတွင်းခံ (Pants)",
         "context": "⑨ 無地（むじ）の着物（きもの）",
@@ -4738,6 +5447,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "ストッキング",
         "meaning": "စတော့ကင်း / ခြေအိတ်ရှည် (Stockings)",
         "context": "⑨ 無地（むじ）の着物（きもの）",
@@ -4746,6 +5456,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "ジーンズ",
         "meaning": "ဂျင်းဘောင်းဘီ (Jeans)",
         "context": "⑨ 無地（むじ）の着物（きもの）",
@@ -4754,6 +5465,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "サンダル",
         "meaning": "စိပ္ပတ်ဖိနပ် / ညှပ်ဖိနပ် (Sandals)",
         "context": "⑨ 無地（むじ）の着物（きもの）",
@@ -4762,6 +5474,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-9-subchapter-2",
         "term": "ブーツ",
         "meaning": "ဘုိးတ်ဖိနပ် / သားရေဖိနပ်ရှည် (Boots)",
         "context": "⑨ 無地（むじ）の着物（きもの）",
@@ -4812,10 +5525,30 @@ export const chapters = [
   },
   {
     "id": "part-1-chapter-10",
-    "number": "1.10",
-    "title": "旅行（りょこう）・観光（かんこう） / ခရီးသွားခြင်းနှင့် လည်ပတ်ခြင်း",
+    "number": "10",
+    "sourceNumber": "1.10",
+    "title": "10課（か）：趣味（しゅみ）と旅行（りょこう）3：旅行（りょこう）",
+    "subchapters": [
+      {
+        "id": "part-1-chapter-10-subchapter-1",
+        "number": "1",
+        "title": "旅行（りょこう）",
+        "parentChapterId": "part-1-chapter-10",
+        "studyTab": "Vocab",
+        "sourcePage": 40
+      },
+      {
+        "id": "part-1-chapter-10-subchapter-2",
+        "number": "2",
+        "title": "移動（いどう）",
+        "parentChapterId": "part-1-chapter-10",
+        "studyTab": "Vocab",
+        "sourcePage": 41
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "休暇（きゅうか）",
         "meaning": "ခွင့်ရက် / အားလပ်ရက်",
         "context": "① ______ を取（と）る",
@@ -4824,6 +5557,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "休憩（きゅうけい）",
         "meaning": "အနားယူခြင်း",
         "context": "① ______ を取（と）る",
@@ -4832,6 +5566,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "ツアー",
         "meaning": "တူးရစ် / ခရီးစဉ် (Tour)",
         "context": "② ツアーに申（も）し込（こ）む",
@@ -4840,6 +5575,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "申（も）し込（こ）む",
         "meaning": "လျှောက်ထားသည် / စာရင်းပေးသည်",
         "context": "② ツアーに申（も）し込（こ）む",
@@ -4848,6 +5584,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "予算（よさん）",
         "meaning": "ဘတ်ဂျက် / သုံးစွဲရန် လျာထားငွေ",
         "context": "③ 予算（よさん）が少（すく）ない",
@@ -4856,6 +5593,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "少（すく）ない",
         "meaning": "နည်းပါးသော",
         "context": "③ 予算（よさん）が少（すく）ない",
@@ -4864,6 +5602,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "予約（よやく）",
         "meaning": "ဘိုကင် / ကြိုတင်မှာယူမှု",
         "context": "④ 予約（よやく）をキャンセルする",
@@ -4872,6 +5611,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "キャンセルする",
         "meaning": "ပယ်ဖျက်သည် (Cancel)",
         "context": "④ 予約（よやく）をキャンセルする",
@@ -4880,6 +5620,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "ガイド",
         "meaning": "လမ်းညွှန် / ဧည့်လမ်းညွှန် (Guide)",
         "context": "⑤ ガイドの説明（せつめい）を聞（き）く",
@@ -4888,6 +5629,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "説明（せつめい）",
         "meaning": "ရှင်းလင်းပြောကြားချက်",
         "context": "⑤ ガイドの説明（せつめい）を聞（き）く",
@@ -4896,6 +5638,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "聞（き）く",
         "meaning": "နားထောင်သည်",
         "context": "⑤ ガイドの説明（せつめい）を聞（き）く",
@@ -4904,6 +5647,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "観光（かんこう）",
         "meaning": "Sightseeing / လည်ပတ်ကြည့်ရှုခြင်း",
         "context": "⑥ 観光（かんこう）を楽（たの）しむ",
@@ -4912,6 +5656,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "楽（たの）しむ",
         "meaning": "ပျော်ရွှင်စွာ လုပ်ဆောင်သည်",
         "context": "⑥ 観光（かんこう）を楽（たの）しむ",
@@ -4920,6 +5665,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "詳（くわ）しい",
         "meaning": "အသေးစိတ်ကျသော",
         "context": "⑦ 好（くわ）しい地図（ちず）で調（しら）べる",
@@ -4928,6 +5674,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "地図（ちず）",
         "meaning": "မြေပုံ",
         "context": "⑦ 好（くわ）しい地図（ちず）で調（しら）べる",
@@ -4936,6 +5683,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "調（しら）べる",
         "meaning": "ရှာဖွေကြည့်ရှုသည်",
         "context": "⑦ 好（くわ）しい地図（ちず）で調（しら）べる",
@@ -4944,6 +5692,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "道（みち）",
         "meaning": "လမ်း",
         "context": "⑧ 道（みち）に迷（まよ）う",
@@ -4952,6 +5701,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "迷（まよ）う",
         "meaning": "လမ်းမှားသည် / လမ်းပျောက်သည်",
         "context": "⑧ 道（みち）に迷（まよ）う",
@@ -4960,6 +5710,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "お金（かね）",
         "meaning": "ပိုက်ဆံ",
         "context": "⑨ お金（かね）を両替（りょうがえ）する",
@@ -4968,6 +5719,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "両替（りょうがえ）する",
         "meaning": "ငွေလဲလှယ်သည်",
         "context": "⑨ お金（かね）を両替（りょうがえ）する",
@@ -4976,6 +5728,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "お土産（みやげ）",
         "meaning": "လက်ဆောင် / အမှတ်တရပစ္စည်း",
         "context": "⑩ お土産（みやげ）を買（か）う",
@@ -4984,6 +5737,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "買（か）う",
         "meaning": "ဝယ်ယူသည်",
         "context": "⑩ お土産（みやげ）を買（か）う",
@@ -4992,6 +5746,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "京都（きょうと）",
         "meaning": "ကျိုတို (မြို့)",
         "context": "⑪ 京都（きょうと）の名物（めいぶつ）のお菓子（かし）",
@@ -5000,6 +5755,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "名物（めいぶつ）",
         "meaning": "ဒေသထွက် နာမည်ကြီးပစ္စည်း",
         "context": "⑪ 京都（きょうと）の名物（めいぶつ）のお菓子（かし）",
@@ -5008,6 +5764,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "お菓子（かし）",
         "meaning": "မုန့်",
         "context": "⑪ 京都（きょうと）の名物（めいぶつ）のお菓子（かし）",
@@ -5016,6 +5773,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "風景（ふうけい）",
         "meaning": "ရှုခင်း",
         "context": "⑫ 風景（ふうけい）の美（うつく）しさに感動（かんどう）する",
@@ -5024,6 +5782,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "美（うつく）しさ",
         "meaning": "လှပမှု",
         "context": "⑫ 風景（ふうけい）の美（うつく）しさに感動（かんどう）する",
@@ -5032,6 +5791,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "感動（かんどう）する",
         "meaning": "စိတ်ထိခိုက်ကြည်နူးရသည် / စိတ်လှုပ်ရှားမိသည်",
         "context": "⑫ 風景（ふうけい）の美（うつく）しさに感動（かんどう）する",
@@ -5040,6 +5800,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "温泉（おんせん）",
         "meaning": "ရေပူစမ်း",
         "context": "⑬ 温泉（おんせん）に入（はい）って、______",
@@ -5048,6 +5809,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "入（はい）って",
         "meaning": "ဝင်ရောက်ပြီး",
         "context": "⑬ 温泉（おんせん）に入（はい）って、______",
@@ -5056,6 +5818,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "のんびりする",
         "meaning": "အေးအေးဆေးဆေး နေထိုင်သည်",
         "context": "⑬ 温泉（おんせん）に入（はい）って、______",
@@ -5064,6 +5827,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "リラックスする",
         "meaning": "စိတ်လက်ပေါ့ပါးစွာ အနားယူသည် (Relax)",
         "context": "⑬ 温泉（おんせん）に入（はい）って、______",
@@ -5072,6 +5836,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "残（のこ）る",
         "meaning": "ကျန်ရစ်သည်",
         "context": "⑭ ______ に残（のこ）る",
@@ -5080,6 +5845,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "思い（おもい）出（おもいで）",
         "meaning": "အမှတ်တရ / အမှတ်ရစရာ Memory",
         "context": "⑭ ______ に残（のこ）る",
@@ -5088,6 +5854,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-1",
         "term": "記憶（きおく）",
         "meaning": "မှတ်ဉာဏ် / အမှတ်ရမှု",
         "context": "⑭ ______ に残（のこ）る",
@@ -5096,6 +5863,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "駅（えき）",
         "meaning": "ဘူတာ",
         "context": "① 駅（えき）に集合（しゅうごう）する",
@@ -5104,6 +5872,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "集合（しゅうごう）する",
         "meaning": "စုဝေးသည် / ဆုံကြသည်",
         "context": "① 駅（えき）に集合（しゅうごう）する",
@@ -5112,6 +5881,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "バス",
         "meaning": "ဘတ်စ်ကား (Bus)",
         "context": "② バスで移動（いどう）する",
@@ -5120,6 +5890,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "移動（いどう）する",
         "meaning": "ရွှေ့ပြောင်းသွားလာသည်",
         "context": "② バスで移動（いどう）する",
@@ -5128,6 +5899,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "空港（くうこう）",
         "meaning": "လေဆိပ်",
         "context": "③ 空港（くうこう）でチェックインする",
@@ -5136,6 +5908,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "チェックインする",
         "meaning": "စက်အင် ဝင်သည် (Check-in)",
         "context": "③ 空港（くうこう）でチェックインする",
@@ -5144,6 +5917,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "荷物（にもつ）",
         "meaning": "အိတ် / အထုတ်အပိုး",
         "context": "④ 荷物（にもつ）を検査（けんさ）する",
@@ -5152,6 +5926,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "検査（けんさ）する",
         "meaning": "စစ်ဆေးသည်",
         "context": "④ 荷物（にもつ）を検査（けんさ）する",
@@ -5160,6 +5935,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "国内線（こくないせん）",
         "meaning": "တွင်းလိုင်း (ပြည်တွင်းလေကြောင်း/ရထားလိုင်း)",
         "context": "⑤ ______ に乗り換える（のりかえる）（のりかえる）",
@@ -5168,6 +5944,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "国際線（こくさいせん）",
         "meaning": "နိုင်ငံတကာလိုင်း (ပြည်ပလေကြောင်း)",
         "context": "⑤ ______ に乗り換える（のりかえる）（のりかえる）",
@@ -5176,6 +5953,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "乗（の）り換（か）える",
         "meaning": "ပြောင်းစီးသည်",
         "context": "⑤ ______ に乗り換える（のりかえる）（のりかえる）",
@@ -5184,6 +5962,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "満員（まんいん）",
         "meaning": "လူပြည့်နေသော",
         "context": "⑥ 満員（まんいん）で乗れ（のれ）ない（のれない）",
@@ -5192,6 +5971,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "乗（の）れない",
         "meaning": "မစီးနိုင်ပါ / စီးလို့မရပါ",
         "context": "⑥ 満員（まんいん）で乗れ（のれ）ない（のれない）",
@@ -5200,6 +5980,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "ドライブ",
         "meaning": "ကားလျှောက်မောင်းခြင်း (Drive)",
         "context": "⑦ ドライブをする",
@@ -5208,6 +5989,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "する",
         "meaning": "ပြုလုပ်သည်",
         "context": "⑦ ドライブをする",
@@ -5216,6 +5998,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "道路（どうろ）",
         "meaning": "လမ်း / ကားလမ်း",
         "context": "⑧ 道路（どうろ）が ______",
@@ -5224,6 +6007,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "混雑（こんざつ）する",
         "meaning": "ရှုပ်ထွေးကြပ်ညပ်သည်",
         "context": "⑧ 道路（どうろ）が ______",
@@ -5232,6 +6016,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "渋滞（じゅうたい）する",
         "meaning": "ယာဉ်ကြောပိတ်ဆို့သည်",
         "context": "⑧ 道路（どうろ）が ______",
@@ -5240,6 +6025,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "すく",
         "meaning": "ယာဉ်ကြောရှင်းသည် / ခြောက်ကပ်သည်",
         "context": "⑧ 道路（どうろ）が ______",
@@ -5248,6 +6034,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "スピード",
         "meaning": "အရှိန် (Speed)",
         "context": "⑨ ______ を落とす（おとす）（おとす）",
@@ -5256,6 +6043,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "速度（そくど）",
         "meaning": "အရှိန် / အမြန်နှုန်း",
         "context": "⑨ ______ を落とす（おとす）（おとす）",
@@ -5264,6 +6052,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "落（お）とす",
         "meaning": "လျှော့ချသည် (အရှိန်လျှော့သည်)",
         "context": "⑨ ______ を落とす（おとす）（おとす）",
@@ -5272,6 +6061,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "のろのろ",
         "meaning": "ဖြေးဖြေးနှေးနှေး",
         "context": "⑩ のろのろ進む（すすむ）（すすむ）",
@@ -5280,6 +6070,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "進（すす）む",
         "meaning": "ရှေ့သို့ဆက်သွားသည်",
         "context": "⑩ のろのろ進む（すすむ）（すすむ）",
@@ -5288,6 +6079,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "信号（しんごう）",
         "meaning": "မီးပွိုင့်",
         "context": "⑪ 信号（しんごう）で止まる（とまる）（とまる）",
@@ -5296,6 +6088,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "止（と）まる",
         "meaning": "ရပ်တန့်သည်",
         "context": "⑪ 信号（しんごう）で止まる（とまる）（とまる）",
@@ -5304,6 +6097,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "車（くるま）",
         "meaning": "ကား",
         "context": "⑫ 車（くるま）に酔う（よう）（よう）",
@@ -5312,6 +6106,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "酔（よ）う",
         "meaning": "ကားမူးသည်",
         "context": "⑫ 車（くるま）に酔う（よう）（よう）",
@@ -5320,6 +6115,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "途中（とちゅう）で",
         "meaning": "လမ်းခုလတ်တွင်",
         "context": "⑬ 途中（とちゅう）で（とちゅうで）くたびれる",
@@ -5328,6 +6124,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "くたびれる",
         "meaning": "ပင်ပန်းနွမ်းနယ်သည်",
         "context": "⑬ 途中（とちゅう）で（とちゅうで）くたびれる",
@@ -5336,6 +6133,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "無事（ぶじ）に",
         "meaning": "ဘေးကင်းကင်းနှင့် / အန္တရာယ်မရှိဘဲ",
         "context": "⑭ 無事（ぶじ）に（ぶじに）到着（とうちゃく）する（とうちゃくする）",
@@ -5344,6 +6142,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "到着（とうちゃく）する",
         "meaning": "ဆိုက်ရောက်သည်",
         "context": "⑭ 無事（ぶじ）に（ぶじに）到着（とうちゃく）する（とうちゃくする）",
@@ -5352,6 +6151,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "チケット",
         "meaning": "လက်မှတ် (Ticket)",
         "context": "⑭ 無事（ぶじ）に（ぶじに）到着（とうちゃく）する（とうちゃくする）",
@@ -5360,6 +6160,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "パスポート",
         "meaning": "ပတ်စပို့ / နိုင်ငံကူးလက်မှတ် (Passport)",
         "context": "⑭ 無事（ぶじ）に（ぶじに）到着（とうちゃく）する（とうちゃくする）",
@@ -5368,6 +6169,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "見（み）せる",
         "meaning": "ပြသသည်",
         "context": "⑭ 無事（ぶじ）に（ぶじに）到着（とうちゃく）する（とうちゃくする）",
@@ -5376,6 +6178,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "シートベルト",
         "meaning": "ထိုင်ခုံခါးပတ် (Seat-belt)",
         "context": "⑭ 無事（ぶじ）に（ぶじに）到着（とうちゃく）する（とうちゃくする）",
@@ -5384,6 +6187,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-10-subchapter-2",
         "term": "締（し）める",
         "meaning": "ပတ်သည် / စီးနှောင်သည်",
         "context": "⑭ 無事（ぶじ）に（ぶじに）到着（とうちゃく）する（とうちゃくする）",
@@ -5426,10 +6230,30 @@ export const chapters = [
   },
   {
     "id": "part-1-chapter-11",
-    "number": "1.11",
-    "title": "学校（がっこう）・学習（がくしゅう） / ကျောင်းနှင့် ပညာရေး",
+    "number": "11",
+    "sourceNumber": "1.11",
+    "title": "11課（か）：教育（きょういく）1：学校生活（小中高）",
+    "subchapters": [
+      {
+        "id": "part-1-chapter-11-subchapter-1",
+        "number": "1",
+        "title": "学校（がっこう）生活（せいかつ）",
+        "parentChapterId": "part-1-chapter-11",
+        "studyTab": "Vocab",
+        "sourcePage": 46
+      },
+      {
+        "id": "part-1-chapter-11-subchapter-2",
+        "number": "2",
+        "title": "勉強（べんきょう）",
+        "parentChapterId": "part-1-chapter-11",
+        "studyTab": "Vocab",
+        "sourcePage": 47
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "学年（がくねん）",
         "meaning": "စာသင်နှစ် (School year)",
         "context": "① 新（あたら）しい ______ が始（はじ）まる",
@@ -5438,6 +6262,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "学期（がっき）",
         "meaning": "စာသင်ကာလ / စာသင်နှစ်ဝက် (Semester)",
         "context": "① 新（あたら）しい ______ が始（はじ）まる",
@@ -5446,6 +6271,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "始（はじ）まる",
         "meaning": "စတင်သည်",
         "context": "① 新（あたら）しい ______ が始（はじ）まる",
@@ -5454,6 +6280,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "電車（でんしゃ）",
         "meaning": "ရထား",
         "context": "② 電車（でんしゃ）で通学（つうがく）する",
@@ -5462,6 +6289,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "通学（つうがく）する",
         "meaning": "ကျောင်းတက်/ကျောင်းသွားသည်",
         "context": "② 電車（でんしゃ）で通学（つうがく）する",
@@ -5470,6 +6298,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "授業（じゅぎょう）",
         "meaning": "အတန်း / သင်ခန်းစာ",
         "context": "③ 授業（じゅぎょう）に遅刻（ちこく）する",
@@ -5478,6 +6307,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "遅刻（ちこく）する",
         "meaning": "နောက်ကျသည်",
         "context": "③ 授業（じゅぎょう）に遅刻（ちこく）する",
@@ -5486,6 +6316,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "授業（じゅぎょう）",
         "meaning": "အတန်း / သင်ခန်းစာ",
         "context": "④ 授業（じゅぎょう）を欠席（けっせき）する",
@@ -5494,6 +6325,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "欠席（けっせき）する",
         "meaning": "အတန်းပျက်သည် / ပျက်ကွက်သည်",
         "context": "④ 授業（じゅぎょう）を欠席（けっせき）する",
@@ -5502,6 +6334,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "生徒（せいと）",
         "meaning": "ကျောင်းသား / ကျောင်းသူ",
         "context": "⑤ 生徒（せいと）にプリントを配（くば）る",
@@ -5510,6 +6343,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "プリント",
         "meaning": "သင်ထောက်ကူ လက်ကမ်းစာစောင် (Printout)",
         "context": "⑤ 生徒（せいと）にプリントを配（くば）る",
@@ -5518,6 +6352,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "配（くば）る",
         "meaning": "ဝေငှပေးသည်",
         "context": "⑤ 生徒（せいと）にプリントを配（くば）る",
@@ -5526,6 +6361,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "得意（とくい）",
         "meaning": "ကျွမ်းကျင်သော / တော်သော",
         "context": "⑥ 勉強（べんきょう）が ______ だ",
@@ -5534,6 +6370,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "苦手（にがて）",
         "meaning": "မကျွမ်းကျင်သော / အားနည်းသော",
         "context": "⑥ 勉強（べんきょう）が ______ だ",
@@ -5542,6 +6379,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "おしゃべり",
         "meaning": "စကားစမြည်ပြောခြင်း / စကားပြောခြင်း",
         "context": "⑦ 授業中（じゅぎょうちゅう）に ______ する",
@@ -5550,6 +6388,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "居眠（いねむ）り",
         "meaning": "ငိုက်မျဉ်းခြင်း / အတန်းထဲ အိပ်ပျော်ခြင်း",
         "context": "⑦ 授業中（じゅぎょうちゅう）に ______ する",
@@ -5558,6 +6397,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "給食（きゅうしょく）",
         "meaning": "ကျောင်းမှ ကျွေးမွေးသော အာဟာရစာ (School meal)",
         "context": "⑧ ______ を食（た）べる",
@@ -5566,6 +6406,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "お弁当（べんとう）",
         "meaning": "ထမင်းဘူး",
         "context": "⑧ ______ を食（た）べる",
@@ -5574,6 +6415,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "クラブ",
         "meaning": "ကလပ် (Club)",
         "context": "⑨ ______ に入（はい）る",
@@ -5582,6 +6424,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "サッカー部（ぶ）",
         "meaning": "ဘောလုံးအသင်း / ဘောလုံးအဖွဲ့",
         "context": "⑨ ______ に入（はい）る",
@@ -5590,6 +6433,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "テニス",
         "meaning": "တင်းနစ် (Tennis)",
         "context": "⑩ テニスの大会（たいかい）に出（で）る",
@@ -5598,6 +6442,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "大会（たいかい）",
         "meaning": "ပြိုင်ပွဲကြီး / ပြိုင်ပွဲ",
         "context": "⑩ テニスの大会（たいかい）に出（で）る",
@@ -5606,6 +6451,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "出（で）る",
         "meaning": "ဝင်ရောက်ယှဉ်ပြိုင်သည်",
         "context": "⑩ テニスの大会（たいかい）に出（で）る",
@@ -5614,6 +6460,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "遠足（えんそく）",
         "meaning": "လေ့လာရေးခရီး / ခရီးတို (Excursion)",
         "context": "⑩ テニスの大会（たいかい）に出（で）る",
@@ -5622,6 +6469,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "修学旅行（しゅうがくりょこう）",
         "meaning": "ကျောင်းလေ့လာရေး ခရီးစဉ် (School trip)",
         "context": "⑩ テニスの大会（たいかい）に出（で）る",
@@ -5630,6 +6478,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "運動会（うんどうかい）",
         "meaning": "အားကစားပြိုင်ပွဲ (Sports meeting)",
         "context": "⑩ テニスの大会（たいかい）に出（で）る",
@@ -5638,6 +6487,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "体育祭（たいいくさい）",
         "meaning": "အားကစားပွဲတော် (Sports festival)",
         "context": "⑩ テニスの大会（たいかい）に出（で）る",
@@ -5646,6 +6496,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "文化祭（ぶんかさい）",
         "meaning": "ယဉ်ကျေးမှုပွဲတော် (Cultural festival)",
         "context": "⑩ テニスの大会（たいかい）に出（で）る",
@@ -5654,6 +6505,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-1",
         "term": "準備（じゅんび）",
         "meaning": "ပြင်ဆင်မှု",
         "context": "⑩ テニスの大会（たいかい）に出（で）る",
@@ -5662,6 +6514,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "外国語（がいこくご）",
         "meaning": "နိုင်ငံခြားဘာသာစကား",
         "context": "① 外国語（がいこくご）を ______",
@@ -5670,6 +6523,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "学（まな）ぶ",
         "meaning": "လေ့လာသင်ယူသည်",
         "context": "① 外国語（がいこくご）を ______",
@@ -5678,6 +6532,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "学習（がくしゅう）する",
         "meaning": "လေ့လာသင်ယူသည်",
         "context": "① 外国語（がいこくご）を ______",
@@ -5686,6 +6541,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "先生（せんせい）",
         "meaning": "ဆရာ / ဆရာမ",
         "context": "② 先生（せんせい）に数学（すうがく）の基礎（きそ）を ______",
@@ -5694,6 +6550,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "数学（すうがく）",
         "meaning": "သင်္ချာ",
         "context": "② 先生（せんせい）に数学（すうがく）の基礎（きそ）を ______",
@@ -5702,6 +6559,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "基礎（きそ）",
         "meaning": "အခြေခံ",
         "context": "② 先生（せんせい）に数学（すうがく）の基礎（きそ）を ______",
@@ -5710,6 +6568,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "習（なら）う",
         "meaning": "သင်ယူသည် / သင်တန်းတက်သည်",
         "context": "② 先生（せんせい）に数学（すうがく）の基礎（きそ）を ______",
@@ -5718,6 +6577,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "教（おし）わる",
         "meaning": "သင်ကြားပြသမှုကို ခံယူရရှိသည်",
         "context": "② 先生（せんせい）に数学（すうがく）の基礎（きそ）を ______",
@@ -5726,6 +6586,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "知識（ちしき）",
         "meaning": "ဗဟုသုတ / အသိပညာ",
         "context": "③ 知識（ちしき）が増（ふ）える",
@@ -5734,6 +6595,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "増（ふ）える",
         "meaning": "တိုးပွားလာသည်",
         "context": "③ 知識（ちしき）が増（ふ）える",
@@ -5742,6 +6604,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "疑問（ぎもん）",
         "meaning": "သံသယ / မေးခွန်း / သို့လော သို့လော အချက်",
         "context": "④ 疑問（ぎもん）を持（も）つ",
@@ -5750,6 +6613,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "持（も）つ",
         "meaning": "ရှိသည် / စွဲကိုင်ထားသည်",
         "context": "④ 疑問（ぎもん）を持（も）つ",
@@ -5758,6 +6622,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "実力（じつりょく）",
         "meaning": "စစ်မှန်သော အရည်အချင်း / စွမ်းရည်",
         "context": "⑤ 実力（じつりょく）を ______",
@@ -5766,6 +6631,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "付（つ）ける",
         "meaning": "တိုးတက်အောင် မွေးမြူသည်",
         "context": "⑤ 実力（じつりょく）を ______",
@@ -5774,6 +6640,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "試（ため）す",
         "meaning": "စမ်းသပ်သည်",
         "context": "⑤ 実力（じつりょく）を ______",
@@ -5782,6 +6649,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "出（だ）す",
         "meaning": "ဖော်ထုတ်သည် / ထုတ်သုံးသည်",
         "context": "⑤ 実力（じつりょく）を ______",
@@ -5790,6 +6658,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "満点（まんてん）",
         "meaning": "အမှတ်ပြည့်",
         "context": "⑥ ______ を取（と）る",
@@ -5798,6 +6667,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "いい成績（せいせき）",
         "meaning": "ကောင်းမွန်သော အမှတ်/ရလဒ်",
         "context": "⑥ ______ を取（と）る",
@@ -5806,6 +6676,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "取（と）る",
         "meaning": "ရရှိသည်",
         "context": "⑥ ______ を取（と）る",
@@ -5814,6 +6685,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "単語（たんご）",
         "meaning": "ဝေါဟာရ / စာလုံး",
         "context": "⑦ 単語（たんご）を暗記（あんき）する",
@@ -5822,6 +6694,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "暗記（あんき）する",
         "meaning": "အလွတ်ကျက်မှတ်သည်",
         "context": "⑦ 単語（たんご）を暗記（あんき）する",
@@ -5830,6 +6703,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "話（はなし）",
         "meaning": "အကြောင်းအရာ / စကား",
         "context": "⑧ 話（はなし）の内容（ないよう）を理解（りかい）する",
@@ -5838,6 +6712,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "内容（ないよう）",
         "meaning": "အကြောင်းအရာ / ပါဝင်သည့်အချက်",
         "context": "⑧ 話（はなし）の内容（ないよう）を理解（りかい）する",
@@ -5846,6 +6721,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "理解（りかい）する",
         "meaning": "နားလည်သဘောပေါက်သည်",
         "context": "⑧ 話（はなし）の内容（ないよう）を理解（りかい）する",
@@ -5854,6 +6730,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "日本語（にほんご）",
         "meaning": "ဂျပန်ဘာသာစကား",
         "context": "⑨ 日本語（にほんご）でスピーチする",
@@ -5862,6 +6739,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "スピーチする",
         "meaning": "စကားပြောပွဲ/မိန့်ခွန်း ပြောကြားသည် (Speech)",
         "context": "⑨ 日本語（にほんご）でスピーチする",
@@ -5870,6 +6748,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "会話（かいわ）",
         "meaning": "စကားပြော",
         "context": "⑩ 会話（かいわ）のレベルは ______ だ",
@@ -5878,6 +6757,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "レベル",
         "meaning": "အဆင့် (Level)",
         "context": "⑩ 会話（かいわ）のレベルは ______ だ",
@@ -5886,6 +6766,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "初級（しょきゅう）",
         "meaning": "အခြေခံအဆင့် (Basic)",
         "context": "⑩ 会話（かいわ）のレベルは ______ だ",
@@ -5894,6 +6775,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "中級（ちゅうきゅう）",
         "meaning": "အလယ်အလတ်အဆင့် (Intermediate)",
         "context": "⑩ 会話（かいわ）のレベルは ______ だ",
@@ -5902,6 +6784,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "上級（じょうきゅう）",
         "meaning": "အဆင့်မြင့် (Advanced)",
         "context": "⑩ 会話（かいわ）のレベルは ______ だ",
@@ -5910,6 +6793,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "授業（じゅぎょう）",
         "meaning": "အတန်း / သင်ခန်းစာ",
         "context": "⑩ 会話（かいわ）のレベルは ______ だ",
@@ -5918,6 +6802,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "出（で）る",
         "meaning": "တက်ရောက်သည်",
         "context": "⑩ 会話（かいわ）のレベルは ______ だ",
@@ -5926,6 +6811,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "国語（こくご）",
         "meaning": "အမျိုးသားဘာသာစကား (ဂျပန်စာ)",
         "context": "⑩ 会話（かいわ）のレベルは ______ だ",
@@ -5934,6 +6820,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "理科（りか）",
         "meaning": "သိပ္ပံ",
         "context": "⑩ 会話（かいわ）のレベルは ______ だ",
@@ -5942,6 +6829,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "体育（たいいく）",
         "meaning": "ကာယ",
         "context": "⑩ 会話（かいわ）のレベルは ______ だ",
@@ -5950,6 +6838,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "数学（すうがく）",
         "meaning": "သင်္ချာ",
         "context": "⑩ 会話（かいわ）のレベルは ______ だ",
@@ -5958,6 +6847,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "社会（しゃかい）",
         "meaning": "လူမှုရေးရာ / ပထဝီနှင့် သမိုင်း",
         "context": "⑩ 会話（かいわ）のレベルは ______ だ",
@@ -5966,6 +6856,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-11-subchapter-2",
         "term": "音楽（おんがく）",
         "meaning": "ဂီတ",
         "context": "⑩ 会話（かいわ）のレベルは ______ だ",
@@ -6016,10 +6907,30 @@ export const chapters = [
   },
   {
     "id": "part-1-chapter-12",
-    "number": "1.12",
-    "title": "進学（しんがく）・試験（しけん） / ပညာဆက်သင်ခြင်းနှင့် စာမေးပွဲ",
+    "number": "12",
+    "sourceNumber": "1.12",
+    "title": "12課（か）：教育（きょういく）2：学校生活（大学）",
+    "subchapters": [
+      {
+        "id": "part-1-chapter-12-subchapter-1",
+        "number": "1",
+        "title": "受験（じゅけん）勉強（べんきょう）・試験（しけん）",
+        "parentChapterId": "part-1-chapter-12",
+        "studyTab": "Vocab",
+        "sourcePage": 50
+      },
+      {
+        "id": "part-1-chapter-12-subchapter-2",
+        "number": "2",
+        "title": "大学（だいがく）生活（せいかつ）",
+        "parentChapterId": "part-1-chapter-12",
+        "studyTab": "Vocab",
+        "sourcePage": 51
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "私立（しりつ）",
         "meaning": "ကိုယ်ပိုင် / ပုဂ္ဂလိက",
         "context": "① ______ の大学（だいがく）を受験（じゅけん）する",
@@ -6028,6 +6939,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "国立（こくりつ）",
         "meaning": "အမျိုးသား / အစိုးရပိုင်",
         "context": "① ______ の大学（だいがく）を受験（じゅけん）する",
@@ -6036,6 +6948,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "受験（じゅけん）する",
         "meaning": "စာမေးပွဲ ဖြေဆိုသည်",
         "context": "① ______ の大学（だいがく）を受験（じゅけん）する",
@@ -6044,6 +6957,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "大学院（だいがくいん）",
         "meaning": "ဘွဲ့လွန်တက္ကသိုလ် (Graduate School)",
         "context": "② 大学院（だいがくいん）に進学（しんがく）する",
@@ -6052,6 +6966,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "進学（しんがく）する",
         "meaning": "ပညာဆက်လက်သင်ယူသည်",
         "context": "② 大学院（だいがくいん）に進学（しんがく）する",
@@ -6060,6 +6975,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "徹夜（てつや）",
         "meaning": "တစ်ညလုံး မအိပ်ဘဲ နေခြင်း",
         "context": "③ 徹夜（てつや）で勉強（べんきょう）する",
@@ -6068,6 +6984,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "勉強（べんきょう）する",
         "meaning": "စာကျက်သည် / စာလေ့လာသည်",
         "context": "③ 徹夜（てつや）で勉強（べんきょう）する",
@@ -6076,6 +6993,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "一生懸命（いっしょうけんめい）",
         "meaning": "အစွမ်းကုန် / ကြိုးကြိုးစားစား",
         "context": "④ 一生懸命（いっしょうけんめい）努力（どりょく）する",
@@ -6084,6 +7002,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "努力（どりょく）する",
         "meaning": "ကြိုးပမ်းအားထုတ်သည်",
         "context": "④ 一生懸命（いっしょうけんめい）努力（どりょく）する",
@@ -6092,6 +7011,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "ミス",
         "meaning": "အမှား (Mistake)",
         "context": "⑤ ミスがないか、______",
@@ -6100,6 +7020,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "確かめる（たしかめる）（たしかめる）",
         "meaning": "စစ်ဆေးအတည်ပြုသည်",
         "context": "⑤ ミスがないか、______",
@@ -6108,6 +7029,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "確認（かくにん）する",
         "meaning": "စစ်ဆေးအတည်ပြုသည်",
         "context": "⑤ ミスがないか、______",
@@ -6116,6 +7038,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "解答（かいとう）",
         "meaning": "အဖြေ",
         "context": "⑥ 解答（かいとう）を見直す（みなおす）（みなおす）",
@@ -6124,6 +7047,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "見直（みなお）す",
         "meaning": "ပြန်လည်စစ်ဆေးသည်",
         "context": "⑥ 解答（かいとう）を見直す（みなおす）（みなおす）",
@@ -6132,6 +7056,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "計算（けいさん）",
         "meaning": "တွက်ချက်မှု",
         "context": "⑦ 計算（けいさん）を間違える（まちがえる）（まちがえる）",
@@ -6140,6 +7065,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "間違（まちが）える",
         "meaning": "မှားယွင်းသည်",
         "context": "⑦ 計算（けいさん）を間違える（まちがえる）（まちがえる）",
@@ -6148,6 +7074,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "試験（しけん）",
         "meaning": "စာမေးပွဲ",
         "context": "⑧ 試験（しけん）の結果（けっか）が発表（はっぴょう）される",
@@ -6156,6 +7083,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "結果（けっか）",
         "meaning": "ရလဒ်",
         "context": "⑧ 試験（しけん）の結果（けっか）が発表（はっぴょう）される",
@@ -6164,6 +7092,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "発表（はっぴょう）される",
         "meaning": "ထုတ်ပြန်ကြေညာခြင်း ခံရသည်",
         "context": "⑧ 試験（しけん）の結果（けっか）が発表（はっぴょう）される",
@@ -6172,6 +7101,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "通（とお）る",
         "meaning": "အောင်မြင်သည်",
         "context": "⑨ 試験（しけん）に ______",
@@ -6180,6 +7110,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "合格（ごうかく）する",
         "meaning": "အောင်မြင်သည်",
         "context": "⑨ 試験（しけん）に ______",
@@ -6188,6 +7119,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "パスする",
         "meaning": "အောင်မြင်သည် (Pass)",
         "context": "⑨ 試験（しけん）に ______",
@@ -6196,6 +7128,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "落（お）ちる",
         "meaning": "ကျရှုံးသည်",
         "context": "⑨ 試験（しけん）に ______",
@@ -6204,6 +7137,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "東京大学（とうきょうだいがく）",
         "meaning": "တိုကျိုတက္ကသိုလ်",
         "context": "⑩ 東京大学（とうきょうだいがく）を不合格（ふごうかく）になる",
@@ -6212,6 +7146,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "不合格（ふごうかく）になる",
         "meaning": "စာမေးပွဲ ကျရှုံးသည်",
         "context": "⑩ 東京大学（とうきょうだいがく）を不合格（ふごうかく）になる",
@@ -6220,6 +7155,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "買（か）いに行（い）く",
         "meaning": "သွားရောက်ဝယ်ယူသည်",
         "context": "⑩ 東京大学（とうきょうだいがく）を不合格（ふごうかく）になる",
@@ -6228,6 +7164,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "教科書（きょうかしょ）",
         "meaning": "ကျောင်းသုံးစာအုပ်",
         "context": "⑩ 東京大学（とうきょうだいがく）を不合格（ふごうかく）になる",
@@ -6236,6 +7173,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "参考書（さんこうしょ）",
         "meaning": "ကိုးကားစာအုပ် / လေ့လာရန်စာအုပ်",
         "context": "⑩ 東京大学（とうきょうだいがく）を不合格（ふごうかく）になる",
@@ -6244,6 +7182,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "問題集（もんだいしゅう）",
         "meaning": "လေ့ကျင့်ခန်းစာအုပ်",
         "context": "⑩ 東京大学（とうきょうだいがく）を不合格（ふごうかく）になる",
@@ -6252,6 +7191,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "入（はい）る",
         "meaning": "ဝင်ရောက်သည် / တက်ရောက်သည်",
         "context": "⑩ 東京大学（とうきょうだいがく）を不合格（ふごうかく）になる",
@@ -6260,6 +7200,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "医学部（いがくぶ）",
         "meaning": "ဆေးတက္ကသိုလ် / ဆေးပညာဌာန",
         "context": "⑩ 東京大学（とうきょうだいがく）を不合格（ふごうかく）になる",
@@ -6268,6 +7209,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "理工学部（りこうがくぶ）",
         "meaning": "သိပ္ပံနှင့် နည်းပညာဌာန",
         "context": "⑩ 東京大学（とうきょうだいがく）を不合格（ふごうかく）になる",
@@ -6276,6 +7218,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "文学部（ぶんがくぶ）",
         "meaning": "ဝိဇ္ဇာပညာဌာန (စာပေဌာန)",
         "context": "⑩ 東京大学（とうきょうだいがく）を不合格（ふごうかく）になる",
@@ -6284,6 +7227,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "法学部（ほうがくぶ）",
         "meaning": "ဥပဒေပညာဌာန",
         "context": "⑩ 東京大学（とうきょうだいがく）を不合格（ふごうかく）になる",
@@ -6292,6 +7236,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "経済学部（けいざいがくぶ）",
         "meaning": "စီးပွားရေးပညာဌာန",
         "context": "⑩ 東京大学（とうきょうだいがく）を不合格（ふごうかく）になる",
@@ -6300,6 +7245,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-1",
         "term": "社会学部（しゃかいがくぶ）",
         "meaning": "လူမှုရေးရာပညာဌာန",
         "context": "⑩ 東京大学（とうきょうだいがく）を不合格（ふごうかく）になる",
@@ -6308,6 +7254,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "講義（こうぎ）",
         "meaning": "ပို့ချချက် / လာက်ချာ (Lecture)",
         "context": "① ______ に出席（しゅっせき）する",
@@ -6316,6 +7263,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "ゼミ",
         "meaning": "ဆေမီနာ / သုတေသနဆွေးနွေးပွဲ (Seminar)",
         "context": "① ______ に出席（しゅっせき）する",
@@ -6324,6 +7272,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "出席（しゅっせき）する",
         "meaning": "တက်ရောက်သည်",
         "context": "① ______ に出席（しゅっせき）する",
@@ -6332,6 +7281,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "田中教授（たなかきょうじゅ）",
         "meaning": "ပါမောက္ခ တာနာကာ",
         "context": "② 田中教授（たなかきょうじゅ）の指導（しどう）を受ける（うける）（うける）",
@@ -6340,6 +7290,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "指導（しどう）",
         "meaning": "လမ်းညွှန်ပြသမှု / သင်ကြားပြသမှု",
         "context": "② 田中教授（たなかきょうじゅ）の指導（しどう）を受ける（うける）（うける）",
@@ -6348,6 +7299,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "受（う）ける",
         "meaning": "ခံယူသည် / ရယူသည်",
         "context": "② 田中教授（たなかきょうじゅ）の指導（しどう）を受ける（うける）（うける）",
@@ -6356,6 +7308,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "先輩（せんぱい）",
         "meaning": "စီနီယာ / အထက်တန်းကျောင်းသား",
         "context": "③ 先輩（せんぱい）から ______ をもらう",
@@ -6364,6 +7317,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "アドバイス",
         "meaning": "အကြံဉာဏ် (Advice)",
         "context": "③ 先輩（せんぱい）から ______ をもらう",
@@ -6372,6 +7326,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "コメント",
         "meaning": "မှတ်ချက် / အကြံပြုချက် (Comment)",
         "context": "③ 先輩（せんぱい）から ______ をもらう",
@@ -6380,6 +7335,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "もらえ",
         "meaning": "ရရှိသည်",
         "context": "③ 先輩（せんぱい）から ______ をもらう",
@@ -6388,6 +7344,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "授業（じゅぎょう）",
         "meaning": "အတန်း / သင်ခန်းစာ",
         "context": "④ ______ が面白い（おもしろい）（おもしろい）",
@@ -6396,6 +7353,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "研究（けんきゅう）",
         "meaning": "သုတေသန",
         "context": "④ ______ が面白い（おもしろい）（おもしろい）",
@@ -6404,6 +7362,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "実験（じっけん）",
         "meaning": "ဓာတ်ခွဲခန်းစမ်းသပ်မှု / စမ်းသပ်မှု",
         "context": "④ ______ が面白い（おもしろい）（おもしろい）",
@@ -6412,6 +7371,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "面白（おもしろ）い",
         "meaning": "စိတ်ဝင်စားဖို့ကောင်းသော",
         "context": "④ ______ が面白い（おもしろい）（おもしろい）",
@@ -6420,6 +7380,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "レポート",
         "meaning": "အစီရင်ခံစာ (Report)",
         "context": "⑤ ______ を提出（ていしゅつ）する",
@@ -6428,6 +7389,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "課題（かだい）",
         "meaning": "တာဝန် / အိမ်စာ Assignment",
         "context": "⑤ ______ を提出（ていしゅつ）する",
@@ -6436,6 +7398,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "卒業論文（そつぎょうろんぶん） / 卒論（そつろん）",
         "meaning": "ဘွဲ့ယူသုတေသနစာတမ်း (Graduation thesis)",
         "context": "⑤ ______ を提出（ていしゅつ）する",
@@ -6444,6 +7407,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "提出（ていしゅつ）する",
         "meaning": "တင်သွင်းသည်",
         "context": "⑤ ______ を提出（ていしゅつ）する",
@@ -6452,6 +7416,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "授業料（じゅぎょうりょう）",
         "meaning": "သင်တန်းကြေး / ကျောင်းလခ",
         "context": "⑥ ______ を払う（はらう）（はらう）",
@@ -6460,6 +7425,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "学費（がくひ）",
         "meaning": "ကျောင်းစရိတ် / ပညာသင်စရိတ်",
         "context": "⑥ ______ を払う（はらう）（はらう）",
@@ -6468,6 +7434,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "払（はら）う",
         "meaning": "ပေးချေသည်",
         "context": "⑥ ______ を払う（はらう）（はらう）",
@@ -6476,6 +7443,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "大学（だいがく）",
         "meaning": "တက္ကသိုလ်",
         "context": "⑦ 大学（だいがく）の寮（りょう）に住む（すむ）（すむ）",
@@ -6484,6 +7452,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "寮（りょう）",
         "meaning": "အဆောင် / ကျောင်းဆောင်",
         "context": "⑦ 大学（だいがく）の寮（りょう）に住む（すむ）（すむ）",
@@ -6492,6 +7461,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "住（す）む",
         "meaning": "နေထိုင်သည်",
         "context": "⑦ 大学（だいがく）の寮（りょう）に住む（すむ）（すむ）",
@@ -6500,6 +7470,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "一人（ひとり）で暮（く）らす",
         "meaning": "တစ်ယောက်တည်း နေထိုင်သည်",
         "context": "⑧ 一人（ひとり）で暮らす（くらす）（くらす） （一人暮らし（ひとりぐらし）（ひとりぐらし）をする）",
@@ -6508,6 +7479,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "一人暮（ひとりぐ）らし",
         "meaning": "တစ်ယောက်တည်းနေထိုင်ခြင်း",
         "context": "⑧ 一人（ひとり）で暮らす（くらす）（くらす） （一人暮らし（ひとりぐらし）（ひとりぐらし）をする）",
@@ -6516,6 +7488,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "サークル",
         "meaning": "ကလပ် / အသင်း (Circle/Club)",
         "context": "⑨ サークルの ______ に行く（いく）（いく）",
@@ -6524,6 +7497,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "飲み（のみ）会（のみかい）",
         "meaning": "သောက်စားပွဲ / မိတ်ဆုံပွဲ",
         "context": "⑨ サークルの ______ に行く（いく）（いく）",
@@ -6532,6 +7506,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "合宿（がっしゅく）",
         "meaning": "စုပေါင်းစခန်းသွင်း လေ့ကျင့်ပွဲ / စုပေါင်းနေထိုင်လေ့ကျင့်မှု",
         "context": "⑨ サークルの ______ に行く（いく）（いく）",
@@ -6540,6 +7515,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "行（い）く",
         "meaning": "သွားသည်",
         "context": "⑨ サークルの ______ に行く（いく）（いく）",
@@ -6548,6 +7524,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "後輩（こうはい）",
         "meaning": "ဂျူနီယာ / အောက်တန်းကျောင်းသား",
         "context": "⑩ 後輩（こうはい）を育てる（そだてる）（そだてる）",
@@ -6556,6 +7533,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "育（そだ）てる",
         "meaning": "ပျိုးထောင်ပေးသည် / သင်ကြားပြသပေးသည်",
         "context": "⑩ 後輩（こうはい）を育てる（そだてる）（そだてる）",
@@ -6564,6 +7542,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "学園祭（がくえんさい）",
         "meaning": "ကျောင်းပွဲတော်",
         "context": "⑪ 学園祭（がくえんさい）に参加（さんか）する",
@@ -6572,6 +7551,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "参加（さんか）する",
         "meaning": "ပါဝင်ဆင်နွှဲသည်",
         "context": "⑪ 学園祭（がくえんさい）に参加（さんか）する",
@@ -6580,6 +7560,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "海外（かいがい）",
         "meaning": "ပြည်ပ / နိုင်ငံခြား",
         "context": "⑫ 海外（かいがい）の大学（だいがく）に留学（りゅうがく）する",
@@ -6588,6 +7569,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "大学（だいがく）",
         "meaning": "တက္ကသိုလ်",
         "context": "⑫ 海外（かいがい）の大学（だいがく）に留学（りゅうがく）する",
@@ -6596,6 +7578,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-12-subchapter-2",
         "term": "留学（りゅうがく）する",
         "meaning": "နိုင်ငံခြားသို့ သွားရောက်ပညာသင်ယူသည်",
         "context": "⑫ 海外（かいがい）の大学（だいがく）に留学（りゅうがく）する",
@@ -6646,10 +7629,30 @@ export const chapters = [
   },
   {
     "id": "part-1-chapter-13",
-    "number": "1.13",
-    "title": "仕事（しごと）・職業（しょくぎょう） / အလုပ်အကိုင်နှင့် အလုပ်ခန့်မှု",
+    "number": "13",
+    "sourceNumber": "1.13",
+    "title": "13課（か）：仕事（しごと）1：仕事（しごと）",
+    "subchapters": [
+      {
+        "id": "part-1-chapter-13-subchapter-1",
+        "number": "1",
+        "title": "就職（しゅうしょく）する",
+        "parentChapterId": "part-1-chapter-13",
+        "studyTab": "Vocab",
+        "sourcePage": 54
+      },
+      {
+        "id": "part-1-chapter-13-subchapter-2",
+        "number": "2",
+        "title": "仕事（しごと）をする",
+        "parentChapterId": "part-1-chapter-13",
+        "studyTab": "Vocab",
+        "sourcePage": 55
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "スタッフ",
         "meaning": "ဝန်ထမ်း / ဝန်ထမ်းအဖွဲ့ (Staff)",
         "context": "① ______ を募集（ぼしゅう）する",
@@ -6658,6 +7661,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "社員（しゃいん）",
         "meaning": "ကုမ္ပဏီဝန်ထမ်း",
         "context": "① ______ を募集（ぼしゅう）する",
@@ -6666,6 +7670,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "アルバイト（バイト）",
         "meaning": "အချိန်ပိုင်းဝန်ထမ်း / အလုပ်သမား (Part-time job)",
         "context": "① ______ を募集（ぼしゅう）する",
@@ -6674,6 +7679,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "募集（ぼしゅう）する",
         "meaning": "အလုပ်ခေါ်ယူသည် / ဖိတ်ခေါ်သည်",
         "context": "① ______ を募集（ぼしゅう）する",
@@ -6682,6 +7688,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "履歴書（りれきしょ）",
         "meaning": "ကိုယ်ရေးရာဇဝင် / CV",
         "context": "② 履歴書（りれきしょ）を書（か）く",
@@ -6690,6 +7697,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "書（か）く",
         "meaning": "ရေးသည်",
         "context": "② 履歴書（りれきしょ）を書（か）く",
@@ -6698,6 +7706,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "面接（めんせつ）",
         "meaning": "အင်တာဗျူး / လူတွေ့စစ်ဆေးမှု (Interview)",
         "context": "③ ______ を受（う）ける",
@@ -6706,6 +7715,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "入社試験（にゅうしゃしけん）",
         "meaning": "ကုမ္ပဏီဝင်ခွင့် စာမေးပွဲ",
         "context": "③ ______ を受（う）ける",
@@ -6714,6 +7724,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "受（う）ける",
         "meaning": "ဖြေဆိုသည် / ခံယူသည်",
         "context": "③ ______ を受（う）ける",
@@ -6722,6 +7733,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "生年月日（せいねんがっぴ）",
         "meaning": "မွေးနေ့ (ခုနှစ်၊ လ၊ ရက်)",
         "context": "④ 生年月日（せいねんがっぴ）を聞（き）かれる",
@@ -6730,6 +7742,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "聞（き）かれる",
         "meaning": "မေးမြန်းခြင်း ခံရသည်",
         "context": "④ 生年月日（せいねんがっぴ）を聞（き）かれる",
@@ -6738,6 +7751,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "資格（しかく）",
         "meaning": "အရည်အချင်းလက်မှတ် / အသိအမှတ်ပြုလက်မှတ်",
         "context": "⑤ ______ を取（と）る",
@@ -6746,6 +7760,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "免許（めんきょ）",
         "meaning": "လိုင်စင် / ခွင့်ပြုချက်လက်မှတ်",
         "context": "⑤ ______ を取（と）る",
@@ -6754,6 +7769,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "取（と）る",
         "meaning": "ရယူသည် / အောင်မြင်သည်",
         "context": "⑤ ______ を取（と）る",
@@ -6762,6 +7778,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "好き（すき）（すき）な",
         "meaning": "နှစ်သက်သော",
         "context": "⑥ 好（す）な職業（しょくぎょう）に就（つ）く",
@@ -6770,6 +7787,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "職業（しょくぎょう）",
         "meaning": "အလုပ်အကိုင်",
         "context": "⑥ 好（す）な職業（しょくぎょう）に就（つ）く",
@@ -6778,6 +7796,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "就（つ）く",
         "meaning": "အလုပ်ဝင်သည် / တာဝန်ထမ်းဆောင်သည်",
         "context": "⑥ 好（す）な職業（しょくぎょう）に就（つ）く",
@@ -6786,6 +7805,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "日本（にほん）",
         "meaning": "ဂျပန်",
         "context": "⑦ 日本（にほん）の企業（きぎょう）に ______",
@@ -6794,6 +7814,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "企業（きぎょう）",
         "meaning": "ကုမ္ပဏီ / စီးပွားရေးလုပ်ငန်း",
         "context": "⑦ 日本（にほん）の企業（きぎょう）に ______",
@@ -6802,6 +7823,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "就職（しゅうしょく）する",
         "meaning": "အလုပ်ဝင်သည် (အလုပ်အကိုင်ရရှိသည်)",
         "context": "⑦ 日本（にほん）の企業（きぎょう）に ______",
@@ -6810,6 +7832,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "入（はい）る",
         "meaning": "ဝင်ရောက်သည်",
         "context": "⑦ 日本（にほん）の企業（きぎょう）に ______",
@@ -6818,6 +7841,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "仕事（しごと）",
         "meaning": "အလုပ်",
         "context": "⑧ 仕事（しごと）を ______",
@@ -6826,6 +7850,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "辞（や）める",
         "meaning": "အလုပ်ထွက်သည် / လက်လွှတ်သည်",
         "context": "⑧ 仕事（しごと）を ______",
@@ -6834,6 +7859,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "首（くび）になる",
         "meaning": "အလုပ်ထုတ်ခံရသည်",
         "context": "⑧ 仕事（しごと）を ______",
@@ -6842,6 +7868,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "失（うしな）う",
         "meaning": "ဆုံးရှုံးသည် (အလုပ်လက်မဲ့ဖြစ်သည်)",
         "context": "⑧ 仕事（しごと）を ______",
@@ -6850,6 +7877,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "会社員（かいしゃいん）",
         "meaning": "ကုမ္ပဏီဝန်ထမ်း",
         "context": "⑨ 山田（やまだ）さんは ______ だ",
@@ -6858,6 +7886,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "公務員（こうむいん）",
         "meaning": "အစိုးရဝန်ထမ်း",
         "context": "⑨ 山田（やまだ）さんは ______ だ",
@@ -6866,6 +7895,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "職人（しょくにん）",
         "meaning": "လက်မှုပညာရှင် / ကျွမ်းကျင်လုပ်သား",
         "context": "⑨ 山田（やまだ）さんは ______ だ",
@@ -6874,6 +7904,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "モデル",
         "meaning": "မော်ဒယ် (Model)",
         "context": "⑨ 山田（やまだ）さんは ______ だ",
@@ -6882,6 +7913,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "記者（きしゃ）",
         "meaning": "သတင်းထောက်",
         "context": "⑨ 山田（やまだ）さんは ______ だ",
@@ -6890,6 +7922,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "パイロット",
         "meaning": "လေယာဉ်မှူး (Pilot)",
         "context": "⑨ 山田（やまだ）さんは ______ だ",
@@ -6898,6 +7931,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "教師（きょうし）",
         "meaning": "ဆရာ / ဆရာမ",
         "context": "⑨ 山田（やまだ）さんは ______ だ",
@@ -6906,6 +7940,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "医師（いし）",
         "meaning": "ဆရာဝန်",
         "context": "⑨ 山田（やまだ）さんは ______ だ",
@@ -6914,6 +7949,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "看護師（かんごし）",
         "meaning": "သူနာပြု",
         "context": "⑨ 山田（やまだ）さんは ______ だ",
@@ -6922,6 +7958,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "弁護士（べんごし）",
         "meaning": "ရှေ့နေ",
         "context": "⑨ 山田（やまだ）さんは ______ だ",
@@ -6930,6 +7967,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-1",
         "term": "政治家（せいじか）",
         "meaning": "နိုင်ငံရေးသမား",
         "context": "⑨ 山田（やまだ）さんは ______ だ",
@@ -6938,6 +7976,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "ミーティング",
         "meaning": "အစည်းအဝေး (Meeting)",
         "context": "① ミーティングをする",
@@ -6946,6 +7985,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "する",
         "meaning": "ပြုလုပ်သည်",
         "context": "① ミーティングをする",
@@ -6954,6 +7994,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "資料（しりょう）",
         "meaning": "စာရွက်စာတမ်း / အချက်အလက်",
         "context": "② 資料（しりょう）を配る（くばる）（配る（くばる））",
@@ -6962,6 +8003,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "配（くば）る",
         "meaning": "ဝေငှသည်",
         "context": "② 資料（しりょう）を配る（くばる）（配る（くばる））",
@@ -6970,6 +8012,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "スケジュール",
         "meaning": "အချိန်ဇယား (Schedule)",
         "context": "③ スケジュールを立てる（たてる）（たてる）",
@@ -6978,6 +8021,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "立（た）てる",
         "meaning": "ရေးဆွဲသည် / ချမှတ်သည်",
         "context": "③ スケジュールを立てる（たてる）（たてる）",
@@ -6986,6 +8030,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "アイデア",
         "meaning": "အကြံဉာဏ် / Idea",
         "context": "④ いいアイデアが出（で）ない（でない）",
@@ -6994,6 +8039,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "出（で）ない",
         "meaning": "မထွက်လာပါ / မရှိပါ",
         "context": "④ いいアイデアが出（で）ない（でない）",
@@ -7002,6 +8048,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "部長（ぶちょう）",
         "meaning": "ဌာနမှူး",
         "context": "⑤ 部長（ぶちょう）から指示（しじ）が出る（でる）",
@@ -7010,6 +8057,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "指示（しじ）",
         "meaning": "ညွှန်ကြားချက် / ညွှန်ကြားမှု",
         "context": "⑤ 部長（ぶちょう）から指示（しじ）が出る（でる）",
@@ -7018,6 +8066,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "出（で）る",
         "meaning": "ထွက်ပေါ်လာသည်",
         "context": "⑤ 部長（ぶちょう）から指示（しじ）が出る（でる）",
@@ -7026,6 +8075,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "作業（さぎょう）",
         "meaning": "လုပ်ငန်းဆောင်တာ / အလုပ်",
         "context": "⑥ 作業（さぎょう）が進む（すすむ）（すすむ）",
@@ -7034,6 +8084,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "進（すす）む",
         "meaning": "ရှေ့သို့တိုးတက်သည် / ပြီးမြောက်မှု ရှိသည်",
         "context": "⑥ 作業（さぎょう）が進む（すすむ）（すすむ）",
@@ -7042,6 +8093,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "書類（しょるい）",
         "meaning": "စာရွက်စာတမ်း",
         "context": "⑦ 書類（しょるい）を整理（せいり）する（せいりする）",
@@ -7050,6 +8102,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "整理（せいり）する",
         "meaning": "စနစ်တကျ ရှင်းလင်းစီစဉ်သည်",
         "context": "⑦ 書類（しょるい）を整理（せいり）する（せいりする）",
@@ -7058,6 +8111,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "契約（けいやく）",
         "meaning": "စာချုပ် / သဘောတူညီချက်",
         "context": "⑧ 契約（けいやく）を結ぶ（むすぶ）（むすぶ）",
@@ -7066,6 +8120,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "結（むすぶ）",
         "meaning": "ချုပ်ဆိုသည်",
         "context": "⑧ 契約（けいやく）を結ぶ（むすぶ）（むすぶ）",
@@ -7074,6 +8129,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "商品（しょうひん）",
         "meaning": "ကုန်ပစ္စည်း",
         "context": "⑨ 商品（しょうひん）を販売（はんばい）する（はんばいする）",
@@ -7082,6 +8138,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "販売（はんばい）する",
         "meaning": "ရောင်းချသည်",
         "context": "⑨ 商品（しょうひん）を販売（はんばい）する（はんばいする）",
@@ -7090,6 +8147,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "自転車（じてんしゃ）",
         "meaning": "စက်ဘီး",
         "context": "⑩ 自転車（じてんしゃ）で ______ 通う（かよう）（かよう）／通勤（つうきん）する（つうきんする）",
@@ -7098,6 +8156,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "通（か）う",
         "meaning": "သွားလာသည် (ကျောင်း/ရုံး)",
         "context": "⑩ 自転車（じてんしゃ）で ______ 通う（かよう）（かよう）／通勤（つうきん）する（つうきんする）",
@@ -7106,6 +8165,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "通勤（つうきん）する",
         "meaning": "ရုံးတက်သွားလာသည်",
         "context": "⑩ 自転車（じてんしゃ）で ______ 通う（かよう）（かよう）／通勤（つうきん）する（つうきんする）",
@@ -7114,6 +8174,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "9時（くじ）",
         "meaning": "၉ နာရီ",
         "context": "⑪ 9時（じ）に（くじに）出勤（しゅっきん）する（しゅっきんする）",
@@ -7122,6 +8183,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "出勤（しゅっきん）する",
         "meaning": "ရုံးသို့ တက်ရောက်သည် / အလုပ်စတင်ဝင်ရောက်သည်",
         "context": "⑪ 9時（じ）に（くじに）出勤（しゅっきん）する（しゅっきんする）",
@@ -7130,6 +8192,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "事務所（じむしょ）",
         "meaning": "ရုံးခန်း",
         "context": "⑫ ______ に戻る（もどる）（もどる） ＝ 事務所（じむしょ）・オフィス／本社（ほんしゃ）",
@@ -7138,6 +8201,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "オフィス",
         "meaning": "ရုံး (Office)",
         "context": "⑫ ______ に戻る（もどる）（もどる） ＝ 事務所（じむしょ）・オフィス／本社（ほんしゃ）",
@@ -7146,6 +8210,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "本社（ほんしゃ）",
         "meaning": "ရုံးချုပ် (Head office)",
         "context": "⑫ ______ に戻る（もどる）（もどる） ＝ 事務所（じむしょ）・オフィス／本社（ほんしゃ）",
@@ -7154,6 +8219,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "戻（もどる）",
         "meaning": "ပြန်သွားသည် / ပြန်ရောက်သည်",
         "context": "⑫ ______ に戻る（もどる）（もどる） ＝ 事務所（じむしょ）・オフィス／本社（ほんしゃ）",
@@ -7162,6 +8228,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "深夜（しんや）",
         "meaning": "သန်းခေါင်ယံ / ညဉ့်နက်ပိုင်း",
         "context": "⑬ 深夜（しんや）まで残業（ざんぎょう）する（さんぎょうする）",
@@ -7170,6 +8237,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "残業（ざんぎょう）する",
         "meaning": "အချိန်ပိုဆင်းသည် (Overtime)",
         "context": "⑬ 深夜（しんや）まで残業（ざんぎょう）する（さんぎょうする）",
@@ -7178,6 +8246,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "仕事（しごと）",
         "meaning": "အလုပ်",
         "context": "⑭ ______ 仕事（しごと） ＝ きつい／楽（らく）な（らくな）",
@@ -7186,6 +8255,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "きつい",
         "meaning": "ပင်ပန်းခက်ခဲသော",
         "context": "⑭ ______ 仕事（しごと） ＝ きつい／楽（らく）な（らくな）",
@@ -7194,6 +8264,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "楽（らく）な",
         "meaning": "ပေါ့ပါးလွယ်ကူသော",
         "context": "⑭ ______ 仕事（しごと） ＝ きつい／楽（らく）な（らくな）",
@@ -7202,6 +8273,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "時給（じきゅう）",
         "meaning": "တစ်နာရီလုပ်ခ (Hourly pay)",
         "context": "⑮ 時給（じきゅう）1,000円（えん）のアルバイト",
@@ -7210,6 +8282,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "1,000円（せんえん）",
         "meaning": "ယန်း ၁၀၀၀",
         "context": "⑮ 時給（じきゅう）1,000円（えん）のアルバイト",
@@ -7218,6 +8291,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "アルバイト",
         "meaning": "အချိန်ပိုင်းအလုပ်",
         "context": "⑮ 時給（じきゅう）1,000円（えん）のアルバイト",
@@ -7226,6 +8300,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "給料（きゅうりょう）",
         "meaning": "လစာ (Salary)",
         "context": "⑯ ______ をもらう ＝ 給料（きゅうりょう）／ボーナス",
@@ -7234,6 +8309,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "ボーナス",
         "meaning": "ဘောနပ်စ် / ဆုကြေးငွေ (Bonus)",
         "context": "⑯ ______ をもらう ＝ 給料（きゅうりょう）／ボーナス",
@@ -7242,6 +8318,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-13-subchapter-2",
         "term": "もらえ",
         "meaning": "ရရှိသည်",
         "context": "⑯ ______ をもらう ＝ 給料（きゅうりょう）／ボーナス",
@@ -7296,10 +8373,30 @@ export const chapters = [
   },
   {
     "id": "part-1-chapter-14",
-    "number": "1.14",
-    "title": "パソコン・インターネット / ကွန်ပျူတာနှင့် အင်တာနက်",
+    "number": "14",
+    "sourceNumber": "1.14",
+    "title": "14課（か）：仕事（しごと）2：コンピューター、郵便（ゆうびん）、電話（でんわ）など",
+    "subchapters": [
+      {
+        "id": "part-1-chapter-14-subchapter-1",
+        "number": "1",
+        "title": "コンピューター",
+        "parentChapterId": "part-1-chapter-14",
+        "studyTab": "Vocab",
+        "sourcePage": 58
+      },
+      {
+        "id": "part-1-chapter-14-subchapter-2",
+        "number": "2",
+        "title": "郵便（ゆうびん）、電話（でんわ）など",
+        "parentChapterId": "part-1-chapter-14",
+        "studyTab": "Vocab",
+        "sourcePage": 59
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "パソコン",
         "meaning": "ကွန်ပျူတာ (Personal Computer)",
         "context": "① パソコンのスイッチを入（い）れる",
@@ -7308,6 +8405,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "スイッチ",
         "meaning": "ခလုတ် (Switch)",
         "context": "① パソコンのスイッチを入（い）れる",
@@ -7316,6 +8414,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "入（い）れる",
         "meaning": "ဖွင့်သည် (မီးခလုတ်ဖွင့်သည်)",
         "context": "① パソコンのスイッチを入（い）れる",
@@ -7324,6 +8423,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "マウス",
         "meaning": "မောက်စ် (Mouse)",
         "context": "② ______ をクリックする",
@@ -7332,6 +8432,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "ボタン",
         "meaning": "ခလုတ် (Button)",
         "context": "② ______ をクリックする",
@@ -7340,6 +8441,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "クリックする",
         "meaning": "ကလစ်နှိပ်သည် (Click)",
         "context": "② ______ をクリックする",
@@ -7348,6 +8450,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "ファイル",
         "meaning": "ဖိုင် (File)",
         "context": "③ ファイルを ______",
@@ -7356,6 +8459,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "開（ひら）く",
         "meaning": "ဖွင့်သည်",
         "context": "③ ファイルを ______",
@@ -7364,6 +8468,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "閉（と）じる",
         "meaning": "ပိတ်သည်",
         "context": "③ ファイルを ______",
@@ -7372,6 +8477,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "次（つぎ）の",
         "meaning": "နောက်လာမည့် / တဆက်တည်းဖြစ်သော",
         "context": "④ 次（つぎ）の画面（がめん）を表示（ひょうじ）する",
@@ -7380,6 +8486,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "画面（がめん）",
         "meaning": "မျက်နှာပြင် / မျက်နှာစာ (Screen)",
         "context": "④ 次（つぎ）の画面（がめん）を表示（ひょうじ）する",
@@ -7388,6 +8495,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "表示（ひょうじ）する",
         "meaning": "ဖော်ပြသည် / ပြသသည်",
         "context": "④ 次（つぎ）の画面（がめん）を表示（ひょうじ）する",
@@ -7396,6 +8504,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "文字（もじ）",
         "meaning": "စာလုံး / စာသား (Letter/Character)",
         "context": "⑤ ______ を入力（にゅうりょく）する",
@@ -7404,6 +8513,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "数字（すうじ）",
         "meaning": "ဂဏန်း (Number)",
         "context": "⑤ ______ を入力（にゅうりょく）する",
@@ -7412,6 +8522,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "入力（にゅうりょく）する",
         "meaning": "ထည့်သွင်းသည် (Input)",
         "context": "⑤ ______ を入力（にゅうりょく）する",
@@ -7420,6 +8531,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "パスワード",
         "meaning": "စကားဝှက် (Password)",
         "context": "⑥ パスワードを確認（かくにん）する",
@@ -7428,6 +8540,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "確認（かくにん）する",
         "meaning": "စစ်ဆေးအတည်ပြုသည်",
         "context": "⑥ パスワードを確認（かくにん）する",
@@ -7436,6 +8549,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "メール",
         "meaning": "အီးမေးလ် (Email)",
         "context": "⑦ メールをチェックする",
@@ -7444,6 +8558,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "チェックする",
         "meaning": "စစ်ဆေးသည် (Check)",
         "context": "⑦ メールをチェックする",
@@ -7452,6 +8567,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "ウェブサイト（サイト）",
         "meaning": "ဝက်ဘ်ဆိုက် (Website)",
         "context": "⑧ ______ を見（み）る",
@@ -7460,6 +8576,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "ホームページ",
         "meaning": "ပင်မစာမျက်နှာ (Homepage)",
         "context": "⑧ ______ を見（み）る",
@@ -7468,6 +8585,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "見（み）る",
         "meaning": "ကြည့်ရှုသည်",
         "context": "⑧ ______ を見（み）る",
@@ -7476,6 +8594,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "インターネット",
         "meaning": "အင်တာနက် (The Internet)",
         "context": "⑨ インターネットで調（しら）べる",
@@ -7484,6 +8603,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "調（しら）べる",
         "meaning": "ရှာဖွေစစ်ဆေးသည်",
         "context": "⑨ インターネットで調（しら）べる",
@@ -7492,6 +8612,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "サービス",
         "meaning": "ဝန်ဆောင်မှု (Service)",
         "context": "⑩ サービスを利用（りよう）する",
@@ -7500,6 +8621,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "利用（りよう）する",
         "meaning": "အသုံးပြုသည်",
         "context": "⑩ サービスを利用（りよう）する",
@@ -7508,6 +8630,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "考（かんが）え",
         "meaning": "အကြံဉာဏ် / အတွေး",
         "context": "⑪ 考（かんが）えを文章（ぶんしょう）にまとめる",
@@ -7516,6 +8639,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "文章（ぶんしょう）",
         "meaning": "စာကြောင်း / စာပိုဒ်",
         "context": "⑪ 考（かんが）えを文章（ぶんしょう）にまとめる",
@@ -7524,6 +8648,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "まとめる",
         "meaning": "စုစည်းသည် / တစုတစည်းတည်း ဖြစ်စေသည်",
         "context": "⑪ 考（かんが）えを文章（ぶんしょう）にまとめる",
@@ -7532,6 +8657,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "基本（きほん）",
         "meaning": "အခြေခံ (The basics)",
         "context": "⑫ 基本（きほん）をマスターする",
@@ -7540,6 +8666,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-1",
         "term": "マスターする",
         "meaning": "ကျွမ်းကျင်ပိုင်နိုင်အောင် တတ်မြောက်သည် (Master)",
         "context": "⑫ 基本（きほん）をマスターする",
@@ -7548,6 +8675,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "書類（しょるい）",
         "meaning": "စာရွက်စာတမ်း",
         "context": "① 書類（しょるい）を郵送（ゆうそう）する",
@@ -7556,6 +8684,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "郵送（ゆうそう）する",
         "meaning": "စာတိုက်ကနေ ပို့ဆောင်သည်",
         "context": "① 書類（しょるい）を郵送（ゆうそう）する",
@@ -7564,6 +8693,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "速達（そくたつ）",
         "meaning": "အမြန်ချောပို့ (Express mail)",
         "context": "② 速達（そくたつ）で手紙（てがみ）を出（だ）す",
@@ -7572,6 +8702,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "手紙（てがみ）",
         "meaning": "စာ",
         "context": "② 速達（そくたつ）で手紙（てがみ）を出（だ）す",
@@ -7580,6 +8711,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "出（だ）す",
         "meaning": "ပို့သည်",
         "context": "② 速達（そくたつ）で手紙（てがみ）を出（だ）す",
@@ -7588,6 +8720,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "手紙（てがみ）",
         "meaning": "စာ",
         "context": "③ 手紙（てがみ）を配達（はいたつ）する",
@@ -7596,6 +8729,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "配達（はいたつ）する",
         "meaning": "ဝေငှပို့ဆောင်ပေးသည် (Delivery)",
         "context": "③ 手紙（てがみ）を配達（はいたつ）する",
@@ -7604,6 +8738,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "郵便（ゆうびん）",
         "meaning": "စာတိုက်",
         "context": "④ 郵便（ゆうびん）で荷物（にもつ）が届（とどく）",
@@ -7612,6 +8747,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "荷物（にもつ）",
         "meaning": "ပစ္စည်း / အထုပ်အပိုး",
         "context": "④ 郵便（ゆうびん）で荷物（にもつ）が届（とどく）",
@@ -7620,6 +8756,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "届（とど）く",
         "meaning": "ရောက်ရှိလာသည်",
         "context": "④ 郵便（ゆうびん）で荷物（にもつ）が届（とどく）",
@@ -7628,6 +8765,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "電話（でんわ）",
         "meaning": "ဖုန်း",
         "context": "⑤ 電話（でんわ）が ______",
@@ -7636,6 +8774,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "つながる",
         "meaning": "လိုင်းဆက်သွယ်မိသည် / ဖုန်းခေါ်ဆို၍ရသည်",
         "context": "⑤ 電話（でんわ）が ______",
@@ -7644,6 +8783,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "切（き）れる",
         "meaning": "လိုင်းပြတ်သွားသည်",
         "context": "⑤ 電話（でんわ）が ______",
@@ -7652,6 +8792,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "友達（ともだち）",
         "meaning": "သူငယ်ချင်း",
         "context": "⑥ 友達（ともだち）と電話（でんわ）でしゃべる",
@@ -7660,6 +8801,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "電話（でんわ）で",
         "meaning": "ဖုန်းဖြင့်",
         "context": "⑥ 友達（ともだち）と電話（でんわ）でしゃべる",
@@ -7668,6 +8810,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "しゃべる",
         "meaning": "စကားပြောသည်",
         "context": "⑥ 友達（ともだち）と電話（でんわ）でしゃべる",
@@ -7676,6 +8819,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "先生（せんせい）",
         "meaning": "ဆရာ / ဆရာမ",
         "context": "⑦ 先生（せんせい）と連絡（れんらく）を取（と）る",
@@ -7684,6 +8828,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "連絡（れんらく）を取（と）る",
         "meaning": "အဆက်အသွယ်လုပ်သည် / ချိတ်ဆက်သည်",
         "context": "⑦ 先生（せんせい）と連絡（れんらく）を取（と）る",
@@ -7692,6 +8837,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "携帯電話（けいたいでんわ）",
         "meaning": "လက်ကိုင်ဖုန်း (Cellphone)",
         "context": "⑧ 携帯電話（けいたいでんわ）の電源（でんげん）を切（き）る",
@@ -7700,6 +8846,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "電源（でんげん）",
         "meaning": "မီးခလုတ် / ပါဝါ",
         "context": "⑧ 携帯電話（けいたいでんわ）の電源（でんげん）を切（き）る",
@@ -7708,6 +8855,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "切（き）る",
         "meaning": "ပိတ်သည်",
         "context": "⑧ 携帯電話（けいたいでんわ）の電源（でんげん）を切（き）る",
@@ -7716,6 +8864,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "マナー",
         "meaning": "ယဉ်ကျေးမှု စည်းကမ်း (Manners)",
         "context": "⑨ マナーを和守（まも）る (※ 正確（せいかく）には「守る（まもる）」)",
@@ -7724,6 +8873,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "守（まも）る",
         "meaning": "စောင့်ထိန်းသည် / လိုက်နာသည်",
         "context": "⑨ マナーを和守（まも）る (※ 正確（せいかく）には「守る（まもる）」)",
@@ -7732,6 +8882,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "メッセージ",
         "meaning": "မက်ဆေ့ချ် (Message)",
         "context": "⑩ メッセージを ______",
@@ -7740,6 +8891,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "送（おく）る",
         "meaning": "ပို့သည်",
         "context": "⑩ メッセージを ______",
@@ -7748,6 +8900,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "残（のこ）す",
         "meaning": "ချန်ထားခဲ့သည်",
         "context": "⑩ メッセージを ______",
@@ -7756,6 +8909,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "再生（さいせい）する",
         "meaning": "ပြန်လည်ဖွင့်ပြသည် (Play/Replay)",
         "context": "⑩ メッセージを ______",
@@ -7764,6 +8918,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "ファックス",
         "meaning": "ဖက်စ် (Fax)",
         "context": "⑪ ファックスで送（おく）る",
@@ -7772,6 +8927,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "送（おく）る",
         "meaning": "ပို့သည်",
         "context": "⑪ ファックスで送（おく）る",
@@ -7780,6 +8936,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "郵便番号（ゆうびんばんごう）",
         "meaning": "စာတိုက်သင်္ကေတ / ဇစ်ကုဒ် (Zip code)",
         "context": "⑪ ファックスで送（おく）る",
@@ -7788,6 +8945,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "住所（じゅうしょ）",
         "meaning": "နေရပ်လိပ်စာ",
         "context": "⑪ ファックスで送（おく）る",
@@ -7796,6 +8954,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "送料（そうりょう）",
         "meaning": "ပို့ခ",
         "context": "⑪ ファックスで送（おく）る",
@@ -7804,6 +8963,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "宅配便（たくはいびん）",
         "meaning": "အိမ်အရောက်ပို့ဆောင်ရေး (Courier)",
         "context": "⑪ ファックスで送（おく）る",
@@ -7812,6 +8972,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "航空便（こうくうびん）",
         "meaning": "လေကြောင်းစာတိုက်ပို့ဆောင်ရေး (Airmail)",
         "context": "⑪ ファックスで送（おく）る",
@@ -7820,6 +8981,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-14-subchapter-2",
         "term": "船便（ふなびん）",
         "meaning": "ရေကြောင်းစာတိုက်ပို့ဆောင်ရေး (Sea mail)",
         "context": "⑪ ファックスで送（おく）る",
@@ -7882,10 +9044,30 @@ export const chapters = [
   },
   {
     "id": "part-1-chapter-15",
-    "number": "1.15",
-    "title": "事件（じけん）・トラブル / ပြဿနာနှင့် ရာဇဝတ်မှု",
+    "number": "15",
+    "sourceNumber": "1.15",
+    "title": "15課（か）：社会（しゃかい）1：事件（じけん）、事故（じこ）",
+    "subchapters": [
+      {
+        "id": "part-1-chapter-15-subchapter-1",
+        "number": "1",
+        "title": "事件（じけん）",
+        "parentChapterId": "part-1-chapter-15",
+        "studyTab": "Vocab",
+        "sourcePage": 64
+      },
+      {
+        "id": "part-1-chapter-15-subchapter-2",
+        "number": "2",
+        "title": "事故（じこ）",
+        "parentChapterId": "part-1-chapter-15",
+        "studyTab": "Vocab",
+        "sourcePage": 65
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-1",
         "term": "恐（おそ）ろしい",
         "meaning": "ကြောက်မက်ဖွယ်ကောင်းသော",
         "context": "① ______ 事件（じけん）が起（お）きる",
@@ -7894,6 +9076,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-1",
         "term": "重大（じゅうだい）な",
         "meaning": "ကြီးမားအရေးပါသော",
         "context": "① ______ 事件（じけん）が起（お）きる",
@@ -7902,6 +9085,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-1",
         "term": "事件（じけん）",
         "meaning": "ဖြစ်ရပ် / ရာဇဝတ်မှု",
         "context": "① ______ 事件（じけん）が起（お）きる",
@@ -7910,6 +9094,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-1",
         "term": "起（お）きる",
         "meaning": "ဖြစ်ပွားသည်",
         "context": "① ______ 事件（じけん）が起（お）きる",
@@ -7918,6 +9103,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-1",
         "term": "トラブル",
         "meaning": "ပြဿနာ (Trouble)",
         "context": "② トラブルをおこす（起こす（おこす））",
@@ -7926,6 +9112,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-1",
         "term": "起（お）こす",
         "meaning": "ဖြစ်ပွားစေသည် / ဖန်တီးသည်",
         "context": "② トラブルをおこす（起こす（おこす））",
@@ -7934,6 +9121,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-1",
         "term": "だます",
         "meaning": "လိမ်လည်သည်",
         "context": "③ 人（ひと）を ______",
@@ -7942,6 +9130,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-1",
         "term": "殴（なぐ）る",
         "meaning": "ထိုးကြိတ်သည်",
         "context": "③ 人（ひと）を ______",
@@ -7950,6 +9139,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-1",
         "term": "撃（う）つ",
         "meaning": "သေနတ်ဖြင့် ပစ်ခတ်သည်",
         "context": "③ 人（ひと）を ______",
@@ -7958,6 +9148,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-1",
         "term": "殺（ころ）す",
         "meaning": "သတ်ဖြတ်သည်",
         "context": "③ 人（ひと）を ______",
@@ -7966,6 +9157,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-1",
         "term": "受（う）け取（と）る",
         "meaning": "လက်ခံရယူသည်",
         "context": "④ 金（かね）を ______",
@@ -7974,6 +9166,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-1",
         "term": "奪（うば）う",
         "meaning": "လုယူသည်",
         "context": "④ 金（かね）を ______",
@@ -7982,6 +9175,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-1",
         "term": "隠（かく）す",
         "meaning": "ဖាក់ဝှက်သည် / ထိန်ချန်သည်",
         "context": "④ 金（かね）を ______",
@@ -7990,6 +9184,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-1",
         "term": "怪（あや）しい",
         "meaning": "သံသယဖြစ်ဖွယ်ကောင်းသော / ထူးဆန်းသော",
         "context": "⑤ 怪（あや）しい男（おとこ）がいる",
@@ -7998,6 +9193,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-1",
         "term": "男（おとこ）",
         "meaning": "ယောက်ျား",
         "context": "⑤ 怪（あや）しい男（おとこ）がいる",
@@ -8006,6 +9202,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-1",
         "term": "いる",
         "meaning": "ရှိသည်",
         "context": "⑤ 怪（あや）しい男（おとこ）がいる",
@@ -8014,6 +9211,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-1",
         "term": "様子（ようす）",
         "meaning": "ပုံစံ / အခြေအနေ",
         "context": "⑥ 様子（ようす）がおかしい",
@@ -8022,6 +9220,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-1",
         "term": "おかしい",
         "meaning": "ထူးဆန်းနေသည်",
         "context": "⑥ 様子（ようす）がおかしい",
@@ -8030,6 +9229,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-1",
         "term": "被害（ひがい）",
         "meaning": "ထိခိုက်နစ်နာမှု",
         "context": "⑦ 被害（ひがい）に遭（あ）う",
@@ -8038,6 +9238,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-1",
         "term": "遭（あ）う",
         "meaning": "ကြုံတွေ့ရသည် (ဆိုးရွားသည့်အရာ)",
         "context": "⑦ 被害（ひがい）に遭（あ）う",
@@ -8046,6 +9247,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-1",
         "term": "警察（けいさつ）",
         "meaning": "ရဲ",
         "context": "⑧ 警察（けいさつ）が犯人（はんにん）を逮捕（たいほ）する",
@@ -8054,6 +9256,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-1",
         "term": "犯人（はんにん）",
         "meaning": "တရားခံ / ရာဇဝတ်ကောင်",
         "context": "⑧ 警察（けいさつ）が犯人（はんにん）を逮捕（たいほ）する",
@@ -8062,6 +9265,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-1",
         "term": "逮捕（たいほ）する",
         "meaning": "ဖမ်းဆီးသည်",
         "context": "⑧ 警察（けいさつ）が犯人（はんにん）を逮捕（たいほ）する",
@@ -8070,6 +9274,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-1",
         "term": "罪（つみ）",
         "meaning": "ပြစ်မှု",
         "context": "⑨ 罪（つみ）を認（みと）める",
@@ -8078,6 +9283,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-1",
         "term": "認（みと）める",
         "meaning": "ဝန်ခံသည် / လက်ခံသည်",
         "context": "⑨ 罪（つみ）を認（みと）める",
@@ -8086,6 +9292,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-2",
         "term": "交通事故（こうつうじこ）",
         "meaning": "လမ်းမတော်တဆမှု / ကားတိုက်မှု",
         "context": "① 交通事故（こうつうじこ）が起（お）きる",
@@ -8094,6 +9301,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-2",
         "term": "起（お）きる",
         "meaning": "ဖြစ်ပွားသည်",
         "context": "① 交通事故（こうつうじこ）が起（お）きる",
@@ -8102,6 +9310,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-2",
         "term": "車（くるま）",
         "meaning": "ကား",
         "context": "② 車（くるま）とバイクがぶつかる",
@@ -8110,6 +9319,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-2",
         "term": "バイク",
         "meaning": "ဆိုင်ကယ်",
         "context": "② 車（くるま）とバイクがぶつかる",
@@ -8118,6 +9328,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-2",
         "term": "ぶつかる",
         "meaning": "ဝင်တိုက်သည် / တိုက်မိသည်",
         "context": "② 車（くるま）とバイクがぶつかる",
@@ -8126,6 +9337,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-2",
         "term": "車（くるま）にひかれる",
         "meaning": "ကားတိုက်ခံရသည် (ကြိတ်ခံရသည်)",
         "context": "③ 車（くるま）にひかれる",
@@ -8134,6 +9346,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-2",
         "term": "事故（じこ）",
         "meaning": "မတော်တဆမှု",
         "context": "④ 事故（じこ）の原因（げんいん）を調査（ちょうさ）する",
@@ -8142,6 +9355,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-2",
         "term": "原因（げんいん）",
         "meaning": "အကြောင်းအရင်း",
         "context": "④ 事故（じこ）の原因（げんいん）を調査（ちょうさ）する",
@@ -8150,6 +9364,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-2",
         "term": "調査（ちょうさ）する",
         "meaning": "စစ်ဆေးစုံစမ်းသည်",
         "context": "④ 事故（じこ）の原因（げんいん）を調査（ちょうさ）する",
@@ -8158,6 +9373,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-2",
         "term": "信号（しんごう）",
         "meaning": "မီးပွိုင့် / အချက်ပြမီး",
         "context": "⑤ 信号（しんごう）を無視（むし）する",
@@ -8166,6 +9382,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-2",
         "term": "無視（むし）する",
         "meaning": "လျစ်လျူရှုသည် / စည်းကမ်းဖောက်ဖျက်သည်",
         "context": "⑤ 信号（しんごう）を無視（むし）する",
@@ -8174,6 +9391,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-2",
         "term": "歩道（ほどう）",
         "meaning": "လမ်းလျှောက်လမ်း (Sidewalk)",
         "context": "⑥ 歩道（ほどう）を歩（ある）く",
@@ -8182,6 +9400,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-2",
         "term": "歩（ある）く",
         "meaning": "လမ်းလျှောက်သည်",
         "context": "⑥ 歩道（ほどう）を歩（ある）く",
@@ -8190,6 +9409,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-2",
         "term": "道路（どうろ）",
         "meaning": "လမ်းမကြီး",
         "context": "⑦ 道路（どうろ）に飛（と）び出（だ）す",
@@ -8198,6 +9418,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-2",
         "term": "飛び出す（とびだす）（とびだす）",
         "meaning": "ရုတ်တရက် ခုန်ထွက်သည် / ပြေးထွက်သည်",
         "context": "⑦ 道路（どうろ）に飛（と）び出（だ）す",
@@ -8206,6 +9427,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-2",
         "term": "スピード",
         "meaning": "အမြန်နှုန်း (Speed)",
         "context": "⑧ スピードを出（だ）す",
@@ -8214,6 +9436,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-2",
         "term": "出す（だす）（だす）",
         "meaning": "အရှိန်တင်သည် / မောင်းသည်",
         "context": "⑧ スピードを出（だ）す",
@@ -8222,6 +9445,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-2",
         "term": "ブレーキ",
         "meaning": "ဘရိတ် (Brakes)",
         "context": "⑨ ブレーキを踏（ふ）む",
@@ -8230,6 +9454,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-2",
         "term": "踏（ふ）む",
         "meaning": "နင်းသည်",
         "context": "⑨ ブレーキを踏（ふ）む",
@@ -8238,6 +9463,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-2",
         "term": "自転車（じてんしゃ）",
         "meaning": "စက်ဘီး",
         "context": "⑩ 自転車（じてんしゃ）で転（ころ）ぶ",
@@ -8246,6 +9472,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-2",
         "term": "転（ころ）ぶ",
         "meaning": "လဲကျသည်",
         "context": "⑩ 自転車（じてんしゃ）で転（ころ）ぶ",
@@ -8254,6 +9481,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-2",
         "term": "足（あし）の骨（ほね）",
         "meaning": "ခြေထောက်ရိုး",
         "context": "⑪ 足（あし）の骨（ほね）を折（お）る・足（あし）を骨折（こっせつ）する",
@@ -8262,6 +9490,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-2",
         "term": "折（お）る",
         "meaning": "ကျိုးသည် / ချိုးသည်",
         "context": "⑪ 足（あし）の骨（ほね）を折（お）る・足（あし）を骨折（こっせつ）する",
@@ -8270,6 +9499,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-2",
         "term": "骨折（こっせつ）する",
         "meaning": "အရိုးကျိုးသည်",
         "context": "⑪ 足（あし）の骨（ほね）を折（お）る・足（あし）を骨折（こっせつ）する",
@@ -8278,6 +9508,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-2",
         "term": "気（き）を付（つ）ける",
         "meaning": "သတိထားသည် / ဆင်ခြင်သည်",
         "context": "⑫ 車（くるま）に気（き）を付（つ）ける",
@@ -8286,6 +9517,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-15-subchapter-2",
         "term": "防（ふ）ぐ",
         "meaning": "ကာကွယ်သည် / တားဆီးသည်",
         "context": "⑬ 事故（じこ）を防（ふ）ぐ",
@@ -8372,10 +9604,30 @@ export const chapters = [
   },
   {
     "id": "part-1-chapter-16",
-    "number": "1.16",
-    "title": "政治（せいじ）・社会（しゃかい） / နိုင်ငံရေးနှင့် လူမှုရေး",
+    "number": "16",
+    "sourceNumber": "1.16",
+    "title": "16課（か）：社会（しゃかい）2：政治（せいじ）、経済（けいざい）",
+    "subchapters": [
+      {
+        "id": "part-1-chapter-16-subchapter-1",
+        "number": "1",
+        "title": "政治（せいじ）",
+        "parentChapterId": "part-1-chapter-16",
+        "studyTab": "Vocab",
+        "sourcePage": 68
+      },
+      {
+        "id": "part-1-chapter-16-subchapter-2",
+        "number": "2",
+        "title": "経済（けいざい）",
+        "parentChapterId": "part-1-chapter-16",
+        "studyTab": "Vocab",
+        "sourcePage": 69
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "大統領（だいとうりょう）",
         "meaning": "သမ္မတ",
         "context": "① ______ を選挙（せんきょ）で選（えら）ぶ",
@@ -8384,6 +9636,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "首相（しゅしょう）",
         "meaning": "ဝန်ကြီးချုပ်",
         "context": "① ______ を選挙（せんきょ）で選（えら）ぶ",
@@ -8392,6 +9645,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "リーダー",
         "meaning": "ခေါင်းဆောင် (Leader)",
         "context": "① ______ を選挙（せんきょ）で選（えら）ぶ",
@@ -8400,6 +9654,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "選挙（せんきょ）",
         "meaning": "ရွေးကောက်ပွဲ",
         "context": "① ______ を選挙（せんきょ）で選（えら）ぶ",
@@ -8408,6 +9663,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "選（えら）ぶ",
         "meaning": "ရွေးချယ်သည်",
         "context": "① ______ を選挙（せんきょ）で選（えら）ぶ",
@@ -8416,6 +9672,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "国民（こくみん）",
         "meaning": "နိုင်ငံသား / ပြည်သူ",
         "context": "② 国民（こくみん）から信頼（しんらい）される",
@@ -8424,6 +9681,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "信頼（しんらい）される",
         "meaning": "ယုံကြည်ကိုးစားခြင်း ခံရသည်",
         "context": "② 国民（こくみん）から信頼（しんらい）される",
@@ -8432,6 +9690,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "投票（とうひょう）",
         "meaning": "မဲပေးခြင်း (Vote)",
         "context": "③ 投票（とうひょう）で決（き）める",
@@ -8440,6 +9699,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "決（き）める",
         "meaning": "ဆုံးဖြတ်သည် / ရွေးချယ်သည်",
         "context": "③ 投票（とうひょう）で決（き）める",
@@ -8448,6 +9708,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "権利（けんり）",
         "meaning": "အခွင့်အရေး (Right)",
         "context": "④ 権利（けんり）を守（まも）る",
@@ -8456,6 +9717,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "守（まも）る",
         "meaning": "ကာကွယ်စောင့်ရှောက်သည်",
         "context": "④ 権利（けんり）を守（まも）る",
@@ -8464,6 +9726,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "平等（びょうどう）な",
         "meaning": "တန်းတူညီမျှသော",
         "context": "⑤ ______ 社会（しゃかい）を実現（じげん）する",
@@ -8472,6 +9735,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "公平（こうへい）な",
         "meaning": "တရားမျှတသော",
         "context": "⑤ ______ 社会（しゃかい）を実現（じげん）する",
@@ -8480,6 +9744,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "社会（しゃかい）",
         "meaning": "လူ့အဖွဲ့အစည်း",
         "context": "⑤ ______ 社会（しゃかい）を実現（じげん）する",
@@ -8488,6 +9753,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "実現（じげん）する",
         "meaning": "လက်တွေ့ဖော်ဆောင်သည်",
         "context": "⑤ ______ 社会（しゃかい）を実現（じげん）する",
@@ -8496,6 +9762,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "マスコミ",
         "meaning": "မီဒီယာ (The media)",
         "context": "⑥ マスコミから批判（ひはん）される",
@@ -8504,6 +9771,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "批判（ひはん）される",
         "meaning": "ဝေဖန်ခြင်း ခံရသည်",
         "context": "⑥ マスコミから批判（ひはん）される",
@@ -8512,6 +9780,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "政府（せいふ）",
         "meaning": "အစိုးရ",
         "context": "⑦ 政府（せいふ）の責任（せきにん）は重（おも）い",
@@ -8520,6 +9789,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "責任（せきにん）",
         "meaning": "တာဝန်",
         "context": "⑦ 政府（せいふ）の責任（せきにん）は重（おも）い",
@@ -8528,6 +9798,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "重（おも）い",
         "meaning": "ကြီးမားသည်",
         "context": "⑦ 政府（せいふ）の責任（せきにん）は重（おも）い",
@@ -8536,6 +9807,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "市民（しみん）",
         "meaning": "မြို့ပြနေပြည်သူ / နိုင်ငံသား",
         "context": "⑧ 市民（しみん）がデモを行（おこな）う",
@@ -8544,6 +9816,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "デモ",
         "meaning": "ဆန္ဒပြပွဲ (Demo/Demonstration)",
         "context": "⑧ 市民（しみん）がデモを行（おこな）う",
@@ -8552,6 +9825,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "行（おこな）う",
         "meaning": "ပြုလုပ်သည်",
         "context": "⑧ 市民（しみん）がデモを行（おこな）う",
@@ -8560,6 +9834,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "隣（となり）の国（くに）",
         "meaning": "အိမ်နီးချင်းနိုင်ငံ",
         "context": "⑨ 隣（となり）の国（くに）と戦（たたか）う",
@@ -8568,6 +9843,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "戦（たたか）う",
         "meaning": "တိုက်ခိုက်သည် / စစ်ခင်းသည်",
         "context": "⑨ 隣（となり）の国（くに）と戦（たたか）う",
@@ -8576,6 +9852,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "国（くに）",
         "meaning": "နိုင်ငံ",
         "context": "⑩ ほかの方（くに）から攻撃（こうげき）をを受（う）ける (※ 正確（せいかく）には「ほかの国（くに）から攻撃（こうげき）を受ける（うける）」)",
@@ -8584,6 +9861,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "攻撃（こうげき）",
         "meaning": "တိုက်ခိုက်မှု",
         "context": "⑩ ほかの方（くに）から攻撃（こうげき）をを受（う）ける (※ 正確（せいかく）には「ほかの国（くに）から攻撃（こうげき）を受ける（うける）」)",
@@ -8592,6 +9870,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-1",
         "term": "受（う）ける",
         "meaning": "ခံရသည်",
         "context": "⑩ ほかの方（くに）から攻撃（こうげき）をを受（う）ける (※ 正確（せいかく）には「ほかの国（くに）から攻撃（こうげき）を受ける（うける）」)",
@@ -8600,6 +9879,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "景気（けいき）",
         "meaning": "စီးပွားရေးအခြေအနေ / စီးပွားရေးကောင်းခြင်း",
         "context": "① 景気（けいき）がよくなる",
@@ -8608,6 +9888,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "よくなる",
         "meaning": "တိုးတက်ကောင်းမွန်လာသည်",
         "context": "① 景気（けいき）がよくなる",
@@ -8616,6 +9897,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "物価（ぶっか）",
         "meaning": "ကုန်ဈေးနှုန်း",
         "context": "② 物価（ぶっか）が安定（あんてい）する",
@@ -8624,6 +9906,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "安定（あんてい）する",
         "meaning": "တည်ငြိမ်သည်",
         "context": "② 物価（ぶっか）が安定（あんてい）する",
@@ -8632,6 +9915,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "自動車（じどうしゃ）",
         "meaning": "မော်တော်ကား",
         "context": "③ 自動車（じどうしゃ）が売（う）れる",
@@ -8640,6 +9924,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "売（う）れる",
         "meaning": "ရောင်းထွက်သည် / ရောင်းရသည်",
         "context": "③ 自動車（じどうしゃ）が売（う）れる",
@@ -8648,6 +9933,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "定価（ていか）",
         "meaning": "သတ်မှတ်ဈေး / ပုံမှန်ဈေး",
         "context": "④ 定価（ていか）から30%割引（わりびき）をする",
@@ -8656,6 +9942,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "30%割引（さんじゅっぱーせんとわりびき）",
         "meaning": "၃၀ ရာခိုင်နှုန်း လျှော့ဈေး",
         "context": "④ 定価（ていか）から30%割引（わりびき）をする",
@@ -8664,6 +9951,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "割引（わりびき）をする",
         "meaning": "ဈေးလျော့ပေးသည်",
         "context": "④ 定価（ていか）から30%割引（わりびき）をする",
@@ -8672,6 +9960,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "価格（かかく）",
         "meaning": "ဈေးနှုန်း",
         "context": "⑤ 価格（かかく）を値下（ねさ）げする",
@@ -8680,6 +9969,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "値下（ねさ）げする",
         "meaning": "ဈေးလျှော့ချသည်",
         "context": "⑤ 価格（かかく）を値下（ねさ）げする",
@@ -8688,6 +9978,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "損（そん）",
         "meaning": "ဆုံးရှုံးမှု / အရှုံး",
         "context": "⑥ 損（そん）をする",
@@ -8696,6 +9987,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "損（そん）をする",
         "meaning": "အရှုံးပေါ်သည် / ထိခိုက်နစ်နာသည်",
         "context": "⑥ 損（そん）をする",
@@ -8704,6 +9996,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "会社（かいしゃ）",
         "meaning": "ကုမ္ပဏီ",
         "context": "⑦ 会社（かいしゃ）がつぶれる",
@@ -8712,6 +10005,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "つぶれる",
         "meaning": "ပြိုလဲသည် / ဒေဝါလီခံသည် / ပိတ်သိမ်းသွားသည်",
         "context": "⑦ 会社（かいしゃ）がつぶれる",
@@ -8720,6 +10014,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "税金（ぜいきん）",
         "meaning": "အခွန်",
         "context": "⑧ ______ を払（はら）う",
@@ -8728,6 +10023,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "電気料金（でんきりょうきん）",
         "meaning": "လျှပ်စစ်မီးခ / မီးဖိုး",
         "context": "⑧ ______ を払（はら）う",
@@ -8736,6 +10032,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "払（はら）う",
         "meaning": "ပေးချေသည်",
         "context": "⑧ ______ を払（はら）う",
@@ -8744,6 +10041,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "食事代（しょくじだい）",
         "meaning": "ထမင်းစားစရိတ် / အစားအသောက်ဖိုး",
         "context": "⑨ 食事代（しょくじだい）を節約（せつやく）する",
@@ -8752,6 +10050,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "節約（せつやく）する",
         "meaning": "ချွေတာသည်",
         "context": "⑨ 食事代（しょくじだい）を節約（せつやく）する",
@@ -8760,6 +10059,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "友達（ともだち）",
         "meaning": "သူငယ်ချင်း",
         "context": "⑩ 友達（ともだち）から借金（しゃっきん）をする",
@@ -8768,6 +10068,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "借金（しゃっきん）をする",
         "meaning": "အကြွေးတင်သည် / ချေးငှားသည်",
         "context": "⑩ 友達（ともだち）から借金（しゃっきん）をする",
@@ -8776,6 +10077,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "銀行（ぎんこう）",
         "meaning": "ဘဏ်",
         "context": "⑪ 銀行（ぎんこう）にお金（かね）を預（あず）ける（貯金（ちょきん）をする）",
@@ -8784,6 +10086,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "預（あず）ける",
         "meaning": "အပ်နှံသည်",
         "context": "⑪ 銀行（ぎんこう）にお金（かね）を預（あず）ける（貯金（ちょきん）をする）",
@@ -8792,6 +10095,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "貯金（ちょきん）する",
         "meaning": "ပိုက်ဆံစုဆောင်းသည်",
         "context": "⑪ 銀行（ぎんこう）にお金（かね）を預（あず）ける（貯金（ちょきん）をする）",
@@ -8800,6 +10104,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "無料（むりょう）",
         "meaning": "အခမဲ့",
         "context": "⑫ ______ で映画（えいが）が見（み）られる",
@@ -8808,6 +10113,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "ただ",
         "meaning": "အခမဲ့ / အလကား",
         "context": "⑫ ______ で映画（えいが）が見（み）られる",
@@ -8816,6 +10122,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "映画（えいが）が見（み）られる",
         "meaning": "ရုပ်ရှင်ကြည့်လို့ရသည်",
         "context": "⑫ ______ で映画（えいが）が見（み）られる",
@@ -8824,6 +10131,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "貧（まず）しい",
         "meaning": "ဆင်းရဲသော / ကျပ်တည်းသော",
         "context": "⑬ ______ 生活（せいかつ）",
@@ -8832,6 +10140,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "豊（ゆた）かな",
         "meaning": "ချမ်းသာကြွယ်ဝသော / ပြည့်စုံသော",
         "context": "⑬ ______ 生活（せいかつ）",
@@ -8840,6 +10149,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-16-subchapter-2",
         "term": "生活（せいかつ）",
         "meaning": "နေထိုင်မှုဘဝ",
         "context": "⑬ ______ 生活（せいかつ）",
@@ -8898,10 +10208,30 @@ export const chapters = [
   },
   {
     "id": "part-1-chapter-17",
-    "number": "1.17",
-    "title": "行事（ぎょうじ）・お祝い（おいわい） / ပွဲတော်နှင့် မင်္ဂလာပွဲများ",
+    "number": "17",
+    "sourceNumber": "1.17",
+    "title": "17課（か）：社会（しゃかい）3：行事（ぎょうじ）、宗教（しゅうきょう）",
+    "subchapters": [
+      {
+        "id": "part-1-chapter-17-subchapter-1",
+        "number": "1",
+        "title": "行事（ぎょうじ）",
+        "parentChapterId": "part-1-chapter-17",
+        "studyTab": "Vocab",
+        "sourcePage": 72
+      },
+      {
+        "id": "part-1-chapter-17-subchapter-2",
+        "number": "2",
+        "title": "宗教（しゅうきょう）",
+        "parentChapterId": "part-1-chapter-17",
+        "studyTab": "Vocab",
+        "sourcePage": 73
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-1",
         "term": "行事（ぎょうじ）",
         "meaning": "အခမ်းအနား / ပွဲတော် (Event/Function)",
         "context": "① ______ に参加（さんか）する（さんかする）",
@@ -8910,6 +10240,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-1",
         "term": "イベント",
         "meaning": "အဖြစ်အပျက် / ပွဲလမ်းသဘင် (Event)",
         "context": "① ______ に参加（さんか）する（さんかする）",
@@ -8918,6 +10249,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-1",
         "term": "参加（さんか）する",
         "meaning": "ပါဝင်ဆင်နွှဲသည်",
         "context": "① ______ に参加（さんか）する（さんかする）",
@@ -8926,6 +10258,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-1",
         "term": "誕生（たんじょう）",
         "meaning": "မွေးဖွားခြင်း (Birth)",
         "context": "② ______ を祝う（いわう）（いわう）",
@@ -8934,6 +10267,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-1",
         "term": "成人（せいじん）",
         "meaning": "လူငယ်ဘဝပြည့်မြောက်ခြင်း / အရွယ်ရောက်ခြင်း (Coming-of-age)",
         "context": "② ______ を祝う（いわう）（いわう）",
@@ -8942,6 +10276,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-1",
         "term": "祝う（いわう）",
         "meaning": "ဂုဏ်ပြုသည် / ဆင်နွှဲသည်",
         "context": "② ______ を祝う（いわう）（いわう）",
@@ -8950,6 +10285,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-1",
         "term": "クリスマス",
         "meaning": "ခရစ္စမတ် (Christmas)",
         "context": "③ 家族（かぞく）と ______ を過ごす（すごす）（すごす）",
@@ -8958,6 +10294,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-1",
         "term": "年末年始（ねんまつねんし）",
         "meaning": "နှစ်ကုန်နှစ်သစ် ကာလ (Year-end/New Year's)",
         "context": "③ 家族（かぞく）と ______ を過ごす（すごす）（すごす）",
@@ -8966,6 +10303,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-1",
         "term": "過ごす（すごす）",
         "meaning": "ကုန်ဆုံးသည် / ဖြတ်သန်းသည်",
         "context": "③ 家族（かぞく）と ______ を過ごす（すごす）（すごす）",
@@ -8974,6 +10312,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-1",
         "term": "伝統（でんとう）",
         "meaning": "အစဉ်အလာ / ရိုးရာ (Tradition)",
         "context": "④ 伝統（でんとう）のある祭り（まつり）（でんとうのあるまつり）",
@@ -8982,6 +10321,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-1",
         "term": "祭り（まつり）（まつり）",
         "meaning": "ပွဲတော်",
         "context": "④ 伝統（でんとう）のある祭り（まつり）（でんとうのあるまつり）",
@@ -8990,6 +10330,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-1",
         "term": "部屋（へや）",
         "meaning": "အခန်း",
         "context": "⑤ 部屋（へや）に飾り（かざり）を付ける（つける）（へやにかざりをつける）",
@@ -8998,6 +10339,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-1",
         "term": "飾り（かざり）（かざり）",
         "meaning": "အလှဆင်ပစ္စည်း / အဆင်တန်ဆာ (Decorations)",
         "context": "⑤ 部屋（へや）に飾り（かざり）を付ける（つける）（へやにかざりをつける）",
@@ -9006,6 +10348,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-1",
         "term": "付ける（つける）",
         "meaning": "တပ်ဆင်သည် / ခြယ်သသည်",
         "context": "⑤ 部屋（へや）に飾り（かざり）を付ける（つける）（へやにかざりをつける）",
@@ -9014,6 +10357,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-1",
         "term": "卒業式（そつぎょうしき）",
         "meaning": "ကျောင်းဆင်းပွဲ / ဘွဲ့နှင်းသဘင် (Graduation ceremony)",
         "context": "⑥ ______ のシーズンになる",
@@ -9022,6 +10366,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-1",
         "term": "運動会（うんどうかい）",
         "meaning": "အားကစားပွဲတော် (Sports day)",
         "context": "⑥ ______ のシーズンになる",
@@ -9030,6 +10375,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-1",
         "term": "シーズン",
         "meaning": "ရာသီဥတု / အချိန်အခါ (Season)",
         "context": "⑥ ______ のシーズンになる",
@@ -9038,6 +10384,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-1",
         "term": "拍手（はくしゅ）",
         "meaning": "လက်ခုပ်တီးခြင်း (Clapping)",
         "context": "⑦ 拍手（はくしゅ）をする（はくしゅをする）",
@@ -9046,6 +10393,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-1",
         "term": "する",
         "meaning": "ပြုလုပ်သည်",
         "context": "⑦ 拍手（はくしゅ）をする（はくしゅをする）",
@@ -9054,6 +10402,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-1",
         "term": "お祝い（おいわい）（いわい）",
         "meaning": "ဂုဏ်ပြုလက်ဆောင် / မင်္ဂလာလက်ဆောင် (Congratulatory gift)",
         "context": "⑧ ______ を贈る（おくる）（おくる）",
@@ -9062,6 +10411,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-1",
         "term": "記念品（きねんひん）",
         "meaning": "အမှတ်တရပစ္စည်း (Souvenir/Memento)",
         "context": "⑧ ______ を贈る（おくる）（おくる）",
@@ -9070,6 +10420,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-1",
         "term": "贈る（おくる）",
         "meaning": "လက်ဆောင်ပေးသည် / ပေးအပ်သည်",
         "context": "⑧ ______ を贈る（おくる）（おくる）",
@@ -9078,6 +10429,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "宗教（しゅうきょう）",
         "meaning": "ကိုးကွယ်ယုံကြည်မှု / ဘာသာတရား (Religion)",
         "context": "① ______ を信（しん）じる",
@@ -9086,6 +10438,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "神（かみ）",
         "meaning": "ဘုရားသခင် (God)",
         "context": "① ______ を信（しん）じる",
@@ -9094,6 +10447,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "信（しん）じる",
         "meaning": "ယုံကြည်သည်",
         "context": "① ______ を信（しん）じる",
@@ -9102,6 +10456,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "自分（じぶん）の",
         "meaning": "ကိုယ့်ရဲ့",
         "context": "② 自分（じぶん）の未来（みらい）を占（うらな）う",
@@ -9110,6 +10465,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "未来（みらい）",
         "meaning": "အနာဂတ် (Future)",
         "context": "② 自分（じぶん）の未来（みらい）を占（うらな）う",
@@ -9118,6 +10474,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "占（うらな）う",
         "meaning": "ဗေဒင်ဟောသည် / ကံစမ်းသည်",
         "context": "② 自分（じぶん）の未来（みらい）を占（うらな）う",
@@ -9126,6 +10483,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "占い（うらない）（うらない）",
         "meaning": "ဗေဒင်ဟောကိန်း",
         "context": "③ 占（うらな）いが当（あ）たる",
@@ -9134,6 +10492,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "当（あ）たる",
         "meaning": "မှန်ကန်သည် / ထိရောက်သည်",
         "context": "③ 占（うらな）いが当（あ）たる",
@@ -9142,6 +10501,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "教会（きょうかい）",
         "meaning": "ခရစ်ယာန်ဘုရားကျောင်း (Church)",
         "context": "④ 教会（きょうかい）で結婚式（けっこんしき）を挙（あ）げる",
@@ -9150,6 +10510,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "結婚式（けっこんしき）",
         "meaning": "မင်္ဂလာပွဲ",
         "context": "④ 教会（きょうかい）で結婚式（けっこんしき）を挙（あ）げる",
@@ -9158,6 +10519,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "挙（あ）げる",
         "meaning": "ကျင်းပသည်",
         "context": "④ 教会（きょうかい）で結婚式（けっこんしき）を挙（あ）げる",
@@ -9166,6 +10528,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "寺（てら）",
         "meaning": "ဗုဒ္ဓဘာသာဘုရားကျောင်း / ကျောင်းတိုက် (Temple)",
         "context": "⑤ 寺（てら）で葬式（そうしき）をする",
@@ -9174,6 +10537,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "葬式（そうしき）",
         "meaning": "ဈာပန / နာရေးအခမ်းအနား (Funeral)",
         "context": "⑤ 寺（てら）で葬式（そうしき）をする",
@@ -9182,6 +10546,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "する",
         "meaning": "ပြုလုပ်သည်",
         "context": "⑤ 寺（てら）で葬式（そうしき）をする",
@@ -9190,6 +10555,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "手（て）を合（あ）わせる",
         "meaning": "လက်အုပ်ချီသည် / ဆုတောင်းရန် လက်နှစ်ဖက်ကို စုစည်းသည်",
         "context": "⑥ 手（て）を合（あ）わせる",
@@ -9198,6 +10564,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "墓（はか）",
         "meaning": "သချႌုင်းဂူ / အုတ်ဂူ (Grave/Tomb)",
         "context": "⑦ 墓（はか）を建（た）てる",
@@ -9206,6 +10573,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "建（た）てる",
         "meaning": "တည်ဆောက်သည်",
         "context": "⑦ 墓（はか）を建（た）てる",
@@ -9214,6 +10582,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "幸せ（しあわせ）（しあわせ）",
         "meaning": "ချမ်းသာသုခ / ပျော်ရွှင်မှု (Happiness)",
         "context": "⑧ ______ を願（ねが）う",
@@ -9222,6 +10591,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "幸福（こうふく）",
         "meaning": "သုခချမ်းသာ",
         "context": "⑧ ______ を願（ねが）う",
@@ -9230,6 +10600,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "平和（へいわ）",
         "meaning": "ငြိမ်းချမ်းရေး (Peace)",
         "context": "⑧ ______ を願（ねが）う",
@@ -9238,6 +10609,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "願（ねが）う",
         "meaning": "ဆုတောင်းသည် / တောင်းတသည်",
         "context": "⑧ ______ を願（ねが）う",
@@ -9246,6 +10618,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "運（うん）がいい",
         "meaning": "ကံကောင်းသည်",
         "context": "⑨ 彼（かれ）は ______ だ",
@@ -9254,6 +10627,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "幸運（こううん）だ",
         "meaning": "ကံကောင်းထောက်မသည်",
         "context": "⑨ 彼（かれ）は ______ だ",
@@ -9262,6 +10636,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "ラッキーだ",
         "meaning": "ကံကောင်းသည် (Lucky)",
         "context": "⑨ 彼（かれ）は ______ だ",
@@ -9270,6 +10645,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "仏教（ぶっきょう）",
         "meaning": "ဗုဒ္ဓဘာသာ (Buddhism)",
         "context": "⑨ 彼（かれ）は ______ だ",
@@ -9278,6 +10654,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "キリスト教（きりすときょう）",
         "meaning": "ခရစ်ယာန်ဘာသာ (Christianity)",
         "context": "⑨ 彼（かれ）は ______ だ",
@@ -9286,6 +10663,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "イスラム教（きょう）",
         "meaning": "အစ္စလာမ်ဘာသာ (Islam)",
         "context": "⑨ 彼（かれ）は ______ だ",
@@ -9294,6 +10672,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-17-subchapter-2",
         "term": "伝（つた）える",
         "meaning": "သတင်းစကားပါးသည် / လက်ဆင့်ကမ်းပြောပြသည်",
         "context": "⑨ 彼（かれ）は ______ だ",
@@ -9356,10 +10735,30 @@ export const chapters = [
   },
   {
     "id": "part-1-chapter-18",
-    "number": "1.18",
-    "title": "天気（てんき）・気候（きこう） / ရာသီဥတု",
+    "number": "18",
+    "sourceNumber": "1.18",
+    "title": "18課（か）：自然（しぜん）1：季節（きせつ）と天気（てんき）、地理（ちり）",
+    "subchapters": [
+      {
+        "id": "part-1-chapter-18-subchapter-1",
+        "number": "1",
+        "title": "季節（きせつ）と天気（てんき）",
+        "parentChapterId": "part-1-chapter-18",
+        "studyTab": "Vocab",
+        "sourcePage": 76
+      },
+      {
+        "id": "part-1-chapter-18-subchapter-2",
+        "number": "2",
+        "title": "地理（ちり）",
+        "parentChapterId": "part-1-chapter-18",
+        "studyTab": "Vocab",
+        "sourcePage": 77
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "気温（きおん）",
         "meaning": "အပူချိန်",
         "context": "① 気温（きおん）が30度（ど）を越（こ）える",
@@ -9368,6 +10767,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "30度（さんじゅうど）",
         "meaning": "၃၀ ဒီဂရီ",
         "context": "① 気温（きおん）が30度（ど）を越（こ）える",
@@ -9376,6 +10776,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "越（こ）える",
         "meaning": "ကျော်လွန်သည်",
         "context": "① 気温（きおん）が30度（ど）を越（こ）える",
@@ -9384,6 +10785,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "確率（かくりつ）",
         "meaning": "ဖြစ်နိုင်ခြေ (Probability)",
         "context": "② 80パーセントの確率（かくりつ）で雨（あめ）が降（ふ）る",
@@ -9392,6 +10794,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "雨（あめ）が降（ふ）る",
         "meaning": "မိုးရွာသည်",
         "context": "② 80パーセントの確率（かくりつ）で雨（あめ）が降（ふ）る",
@@ -9400,6 +10803,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "嵐（あらし）",
         "meaning": "မုန်တိုင်း (Storm)",
         "context": "③ 嵐（あらし）が近（ちか）付（づ）く",
@@ -9408,6 +10812,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "近（ちか）付（づ）く",
         "meaning": "ချဉ်းကပ်လာသည်",
         "context": "③ 嵐（あらし）が近（ちか）付（づ）く",
@@ -9416,6 +10821,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "雷（かみなり）",
         "meaning": "မိုးကြိုး (Thunder)",
         "context": "④ 雷（かみなり）が鳴（（な）る",
@@ -9424,6 +10830,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "鳴（な）る",
         "meaning": "မြည်သည် / ပစ်သည်",
         "context": "④ 雷（かみなり）が鳴（（な）る",
@@ -9432,6 +10839,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "激（はげ）しく",
         "meaning": "ပြင်းထန်စွာ",
         "context": "⑤ 雨（あめ）が激（はげ）しく降（ふ）る",
@@ -9440,6 +10848,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "降（ふ）る",
         "meaning": "ရွာသည်",
         "context": "⑤ 雨（あめ）が激（はげ）しく降（ふ）る",
@@ -9448,6 +10857,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "虹（にじ）",
         "meaning": "သက်တန့် (Rainbow)",
         "context": "⑥ 虹（にじ）が出（で）る",
@@ -9456,6 +10866,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "出（で）る",
         "meaning": "ပေါ်ထွက်လာသည်",
         "context": "⑥ 虹（にじ）が出（で）る",
@@ -9464,6 +10875,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "湿度（しつど）",
         "meaning": "စိုထိုင်းဆ (Humidity)",
         "context": "⑦ 湿度（しつど）が和（たか）い (※ 正確（せいかく）には「高い（たかい）」)",
@@ -9472,6 +10884,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "高（たか）い",
         "meaning": "မြင့်သည်",
         "context": "⑦ 湿度（しつど）が和（たか）い (※ 正確（せいかく）には「高い（たかい）」)",
@@ -9480,6 +10893,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "空気（くうき）",
         "meaning": "လေထု",
         "context": "⑧ 空気（くうき）が乾燥（かんそう）する",
@@ -9488,6 +10902,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "乾燥（かんそう）する",
         "meaning": "ခြောက်သွေ့သည်",
         "context": "⑧ 空気（くうき）が乾燥（かんそう）する",
@@ -9496,6 +10911,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "夜（よる）",
         "meaning": "ည",
         "context": "⑨ 夜（よる）が明（あ）ける",
@@ -9504,6 +10920,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "明（あ）ける",
         "meaning": "လင်းလာသည် / မိုးလင်းသည်",
         "context": "⑨ 夜（よる）が明（あ）ける",
@@ -9512,6 +10929,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "太陽（たいよう）",
         "meaning": "နေ (Sun)",
         "context": "⑩ 太陽（たいよう）がまぶしい",
@@ -9520,6 +10938,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "まぶしい",
         "meaning": "မျက်စိစူးအောင် တောက်ပသည်",
         "context": "⑩ 太陽（たいよう）がまぶしい",
@@ -9528,6 +10947,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "日（ひ）",
         "meaning": "နေ",
         "context": "⑪ 日（ひ）が沈（しん）む (※ 沈む（しずむ） - しずむ)",
@@ -9536,6 +10956,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "沈（しず）む",
         "meaning": "ဝင်သွားသည် (နေဝင်သည်)",
         "context": "⑪ 日（ひ）が沈（しん）む (※ 沈む（しずむ） - しずむ)",
@@ -9544,6 +10965,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "四季（しき）",
         "meaning": "ရာသီဥတုလေးပါး (The four seasons)",
         "context": "⑫ 四季（しき）がある",
@@ -9552,6 +10974,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "爽（さわ）やかな",
         "meaning": "လန်းဆန်းတက်ကြွသော / လေညင်းဆော်သော",
         "context": "⑬ ______ 季節（きせつ）になる",
@@ -9560,6 +10983,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "蒸（む）し暑（あつ）い",
         "meaning": "အိုက်စပ်သော (Humid/Muggy)",
         "context": "⑬ ______ 季節（きせつ）になる",
@@ -9568,6 +10992,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "季節（きせつ）",
         "meaning": "ရာသီဥတု",
         "context": "⑬ ______ 季節（きせつ）になる",
@@ -9576,6 +11001,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "梅雨（つゆ）",
         "meaning": "မိုးတွင်း / မိုးစဲရာသီ (Rainy season)",
         "context": "⑭ 梅雨（つゆ）に入（はい）る",
@@ -9584,6 +11010,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-1",
         "term": "入（はい）る",
         "meaning": "ဝင်ရောက်သည်",
         "context": "⑭ 梅雨（つゆ）に入（はい）る",
@@ -9592,6 +11019,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-2",
         "term": "大陸（たいりく）",
         "meaning": "တိုက်ကြီး (The continent)",
         "context": "① 大陸（たいりく）から鳥（とり）が渡（わた）ってくる",
@@ -9600,6 +11028,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-2",
         "term": "鳥（とり）",
         "meaning": "ငှက်",
         "context": "① 大陸（たいりく）から鳥（とり）が渡（わた）ってくる",
@@ -9608,6 +11037,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-2",
         "term": "渡（わた）ってくる",
         "meaning": "ကူးခတ်ပျံသန်းလာသည်",
         "context": "① 大陸（たいりく）から鳥（とり）が渡（わた）ってくる",
@@ -9616,6 +11046,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-2",
         "term": "砂漠（さばく）",
         "meaning": "သဲကန္တာရ (Desert)",
         "context": "② 砂漠（さばく）が広（ひろ）がる",
@@ -9624,6 +11055,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-2",
         "term": "広（ひろ）がる",
         "meaning": "ကျယ်ပြန့်လာသည် / ဆန့်ထွက်သွားသည်",
         "context": "② 砂漠（さばく）が広（ひろ）がる",
@@ -9632,6 +11064,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-2",
         "term": "火山（かざん）",
         "meaning": "မီးတောင် (Volcano)",
         "context": "③ 火山（かざん）が爆発（ばくはつ）する",
@@ -9640,6 +11073,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-2",
         "term": "爆発（ばくはつ）する",
         "meaning": "ပေါက်ကွဲသည်",
         "context": "③ 火山（かざん）が爆発（ばくはつ）する",
@@ -9648,6 +11082,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-2",
         "term": "流（なが）れる",
         "meaning": "စီးဆင်းသည်",
         "context": "④ 川（かわ）が ______",
@@ -9656,6 +11091,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-2",
         "term": "あふれる",
         "meaning": "ရေလျှံသည် / ဖိတ်စင်ထွက်သည်",
         "context": "④ 川（かわ）が ______",
@@ -9664,6 +11100,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-2",
         "term": "滝（たき）",
         "meaning": "ရေတံခွန် (Waterfall)",
         "context": "⑤ 滝（たき）を眺（なが）める",
@@ -9672,6 +11109,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-2",
         "term": "眺（なが）める",
         "meaning": "ငေးကြည့်သည် / အကဲခတ်သည်",
         "context": "⑤ 滝（たき）を眺（なが）める",
@@ -9680,6 +11118,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-2",
         "term": "湖（みずうみ）",
         "meaning": "အိုင် / ကန်ကြီး (Lake)",
         "context": "⑥ 湖（うずうみ）に浮（う）かぶ島（しま） (※ 湖（みずうみ） - みずうみ)",
@@ -9688,6 +11127,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-2",
         "term": "浮（う）かぶ",
         "meaning": "ပေါ်နေသည် / ပေါ်လာသည်",
         "context": "⑥ 湖（うずうみ）に浮（う）かぶ島（しま） (※ 湖（みずうみ） - みずうみ)",
@@ -9696,6 +11136,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-2",
         "term": "島（しま）",
         "meaning": "ကျွန်း",
         "context": "⑥ 湖（うずうみ）に浮（う）かぶ島（しま） (※ 湖（みずうみ） - みずうみ)",
@@ -9704,6 +11145,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-2",
         "term": "農業（のうぎょう）",
         "meaning": "စိုက်ပျိုးရေး (Agriculture)",
         "context": "⑦ 農業（のうぎょう）が盛（さか）んな地域（ちいき）",
@@ -9712,6 +11154,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-2",
         "term": "盛（さか）んな",
         "meaning": "ထွန်းကားသော / စည်ပင်သော",
         "context": "⑦ 農業（のうぎょう）が盛（さか）んな地域（ちいき）",
@@ -9720,6 +11163,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-2",
         "term": "地域（ちいき）",
         "meaning": "ဒေသ (Region)",
         "context": "⑦ 農業（のうぎょう）が盛（さか）んな地域（ちいき）",
@@ -9728,6 +11172,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-2",
         "term": "都会（とかい）",
         "meaning": "မြို့ပြကြီး",
         "context": "⑧ ______ に住（す）む",
@@ -9736,6 +11181,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-2",
         "term": "地方（ちほう）",
         "meaning": "ဒေသန္တရ / ပြည်နယ်ဒေသ",
         "context": "⑧ ______ に住（す）む",
@@ -9744,6 +11190,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-2",
         "term": "田舎（いなか）",
         "meaning": "ကျေးလက်တောရွာ (Rural area/Countryside)",
         "context": "⑧ ______ に住（す）む",
@@ -9752,6 +11199,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-2",
         "term": "住（す）む",
         "meaning": "နေထိုင်သည်",
         "context": "⑧ ______ に住（す）む",
@@ -9760,6 +11208,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-2",
         "term": "故郷（こきょう）",
         "meaning": "မွေးရပ်ဇာတိ / ဇာတိမြေ (Home, native place)",
         "context": "⑨ 故郷（こきょう）を離（はな）れる",
@@ -9768,6 +11217,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-2",
         "term": "離（はな）れる",
         "meaning": "ခွဲခွာသည် / ဝေးကွာသွားသည်",
         "context": "⑨ 故郷（こきょう）を離（はな）れる",
@@ -9776,6 +11226,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-2",
         "term": "ふるさと",
         "meaning": "မွေးရပ်ဇာတိ (故郷 – こきょう)",
         "context": "⑩ ふるさとが懐（なつ）かしい",
@@ -9784,6 +11235,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-18-subchapter-2",
         "term": "懐（なつ）かしい",
         "meaning": "လွမ်းဆွတ်ဖွယ်ကောင်းသော / သတိရစရာဖြစ်သော",
         "context": "⑩ ふるさとが懐（なつ）かしい",
@@ -9842,10 +11294,30 @@ export const chapters = [
   },
   {
     "id": "part-1-chapter-19",
-    "number": "1.19",
-    "title": "植物（しょくぶつ）・育成（いくせい） / အပင်နှင့် ကြီးထွားမှုဆိုင်ရာ စကားလုံးများ",
+    "number": "19",
+    "sourceNumber": "1.19",
+    "title": "19課（か）：自然（しぜん）2：植物（しょくぶつ）、動物（どうぶつ）など",
+    "subchapters": [
+      {
+        "id": "part-1-chapter-19-subchapter-1",
+        "number": "1",
+        "title": "植物（しょくぶつ）",
+        "parentChapterId": "part-1-chapter-19",
+        "studyTab": "Vocab",
+        "sourcePage": 80
+      },
+      {
+        "id": "part-1-chapter-19-subchapter-2",
+        "number": "2",
+        "title": "動物（どうぶつ）など",
+        "parentChapterId": "part-1-chapter-19",
+        "studyTab": "Vocab",
+        "sourcePage": 81
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-1",
         "term": "植物（しょくぶつ）",
         "meaning": "အပင်",
         "context": "① 植物（しょくぶつ）が育（そだ）つ",
@@ -9854,6 +11326,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-1",
         "term": "育（そだ）つ",
         "meaning": "ကြီးထွားလာသည် / ရှင်သန်ကြီးထွားသည်",
         "context": "① 植物（しょくぶつ）が育（そだ）つ",
@@ -9862,6 +11335,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-1",
         "term": "木（き）",
         "meaning": "သစ်ပင်",
         "context": "② 木（き）から種（たね）が落（お）ちる",
@@ -9870,6 +11344,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-1",
         "term": "種（たね）",
         "meaning": "အစေ့",
         "context": "② 木（き）から種（たね）が落（お）ちる",
@@ -9878,6 +11353,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-1",
         "term": "落（お）ちる",
         "meaning": "ကျရောက်သည် / ကြွေကျသည်",
         "context": "② 木（き）から種（たね）が落（お）ちる",
@@ -9886,6 +11362,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-1",
         "term": "トマト",
         "meaning": "ခရမ်းချဉ်သီး",
         "context": "③ トマトを植（う）える",
@@ -9894,6 +11371,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-1",
         "term": "植（う）える",
         "meaning": "စိုက်ပျိုးသည်",
         "context": "③ トマトを植（う）える",
@@ -9902,6 +11380,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-1",
         "term": "芽（め）",
         "meaning": "အညှောင့် / အပင်ပေါက်စ",
         "context": "④ 芽（め）が出（で）る",
@@ -9910,6 +11389,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-1",
         "term": "出（で）る",
         "meaning": "ထွက်လာသည်",
         "context": "④ 芽（め）が出（で）る",
@@ -9918,6 +11398,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-1",
         "term": "枝（えだ）",
         "meaning": "အကိုင်းအခက်",
         "context": "⑤ 枝（えだ）が伸（の）びる",
@@ -9926,6 +11407,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-1",
         "term": "伸（の）びる",
         "meaning": "ရှည်ထွက်လာသည် / ကြီးထွားလာသည်",
         "context": "⑤ 枝（えだ）が伸（の）びる",
@@ -9934,6 +11416,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-1",
         "term": "日（ひ）",
         "meaning": "နေရောင်ခြည်",
         "context": "⑥ 日（ひ）が当（あ）たる",
@@ -9942,6 +11425,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-1",
         "term": "当（あ）たる",
         "meaning": "ထိတွေ့သည် / ကျရောက်သည်",
         "context": "⑥ 日（ひ）が当（あ）たる",
@@ -9950,6 +11434,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-1",
         "term": "栄養（えいよう）",
         "meaning": "အာဟာရ",
         "context": "⑦ 栄養（えいよう）を与（あた）える",
@@ -9958,6 +11443,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-1",
         "term": "与（あた）える",
         "meaning": "ပေးအပ်သည် / ကျွေးမွေးသည်",
         "context": "⑦ 栄養（えいよう）を与（あた）える",
@@ -9966,6 +11452,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-1",
         "term": "成長（せいちょう）",
         "meaning": "ကြီးထွားမှု / ဖွံ့ဖြိုးမှု",
         "context": "⑧ 成長（せいちょう）が早（はや）い",
@@ -9974,6 +11461,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-1",
         "term": "早（はや）い",
         "meaning": "မြန်ဆန်သည်",
         "context": "⑧ 成長（せいちょう）が早（はや）い",
@@ -9982,6 +11470,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-1",
         "term": "咲（さき）（さ)く",
         "meaning": "ပွင့်သည်",
         "context": "⑨ 桜（さくら）の花（はな）が ______",
@@ -9990,6 +11479,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-1",
         "term": "散（ち）る",
         "meaning": "ကြွေကျသည်",
         "context": "⑨ 桜（さくら）の花（はな）が ______",
@@ -9998,6 +11488,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-1",
         "term": "果物（くだもの） / 果実（かじつ）",
         "meaning": "သစ်သီးဝလံ",
         "context": "⑩ ______ が出来（でき）る",
@@ -10006,6 +11497,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-1",
         "term": "ブドウ",
         "meaning": "စပျစ်သီး",
         "context": "⑪ ブドウを採（と）る",
@@ -10014,6 +11506,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-1",
         "term": "採（と）る",
         "meaning": "ခူးဆွတ်သည်",
         "context": "⑪ ブドウを採（と）る",
@@ -10022,6 +11515,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-1",
         "term": "新鮮（しんせん）な",
         "meaning": "လတ်ဆတ်သော",
         "context": "⑫ 新鮮（しんせん）な野菜（やさい）",
@@ -10030,6 +11524,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-1",
         "term": "野菜（やさい）",
         "meaning": "ဟင်းသီးဟင်းရွက်",
         "context": "⑫ 新鮮（しんせん）な野菜（やさい）",
@@ -10038,6 +11533,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-1",
         "term": "種類（しゅるい）",
         "meaning": "အမျိုးအစား",
         "context": "⑬ 種類（しゅるい）が豊富（ほうふ）だ",
@@ -10046,6 +11542,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-1",
         "term": "豊富（ほうふ）だ",
         "meaning": "ကြွယ်ဝစုံလင်သည်",
         "context": "⑬ 種類（しゅるい）が豊富（ほうふ）だ",
@@ -10054,6 +11551,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "生き（いき）物（いきもの）",
         "meaning": "သက်ရှိသတ္တဝါ",
         "context": "① ______ を飼（か）う",
@@ -10062,6 +11560,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "ペット",
         "meaning": "အိမ်မွေးတိရစ္ဆာန် (Pet)",
         "context": "① ______ を飼（か）う",
@@ -10070,6 +11569,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "飼（か）う",
         "meaning": "မွေးမြူသည်",
         "context": "① ______ を飼（か）う",
@@ -10078,6 +11578,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "1匹（いっぴき）",
         "meaning": "တိရစ္ဆာန်ရေတွက်သည့် ပမာဏ (၁ ကောင်)",
         "context": "② 1匹（いっぴき）の猿（さる）",
@@ -10086,6 +11587,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "猿（さる）",
         "meaning": "မျောက်",
         "context": "② 1匹（いっぴき）の猿（さる）",
@@ -10094,6 +11596,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "2羽（にわ）",
         "meaning": "ငှက်နှင့် ကြက်ရေတွက်သည့် ပမာဏ (၂ ကောင်)",
         "context": "③ 2羽（にわ）の鶏（にわとり）",
@@ -10102,6 +11605,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "鶏（にわとり）",
         "meaning": "ကြက်",
         "context": "③ 2羽（にわ）の鶏（にわとり）",
@@ -10110,6 +11614,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "3頭（さんとう）",
         "meaning": "နွားနှင့် ဆင်စသည့် တိရစ္ဆာန်ကြီးများကို ရေတွက်သည့် ပမာဏ (၃ ကောင်)",
         "context": "④ 3頭（さんとう）の牛（うし）",
@@ -10118,6 +11623,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "牛（うし）",
         "meaning": "နွား",
         "context": "④ 3頭（さんとう）の牛（うし）",
@@ -10126,6 +11632,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "えさ",
         "meaning": "တိရစ္ဆာန်စာ (Feed/Petfood)",
         "context": "⑤ えさをやる",
@@ -10134,6 +11641,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "やる",
         "meaning": "ကျွေးသည်",
         "context": "⑤ えさをやる",
@@ -10142,6 +11650,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "虫（むし）",
         "meaning": "အင်းဆက်ပိုးမွှား",
         "context": "⑥ 虫（むし）を観察（かんさつ）する",
@@ -10150,6 +11659,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "観察（かんさつ）する",
         "meaning": "လေ့လာစောင့်ကြည့်သည် (Observation)",
         "context": "⑥ 虫（むし）を観察（かんさつ）する",
@@ -10158,6 +11668,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "岩（いわ）",
         "meaning": "ကျောက်ဆောင် / ကျောက်တုံး",
         "context": "⑦ 岩（いわ）の下（した）に隠（かく）れる",
@@ -10166,6 +11677,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "下（した）",
         "meaning": "အောက်ဘက်",
         "context": "⑦ 岩（いわ）の下（した）に隠（かく）れる",
@@ -10174,6 +11686,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "隠（かく）れる",
         "meaning": "ပုန်းအောင်းသည်",
         "context": "⑦ 岩（いわ）の下（した）に隠（かく）れる",
@@ -10182,6 +11695,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "魚（さかな）",
         "meaning": "ငါး",
         "context": "⑧ 魚（さかな）を逃（にが）す",
@@ -10190,6 +11704,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "逃（にが）す",
         "meaning": "လွှတ်ပေးသည် / ထွက်ပြေးခွင့်ပေးသည်",
         "context": "⑧ 魚（さかな）を逃（にが）す",
@@ -10198,6 +11713,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "蚊（か）",
         "meaning": "ခြင်",
         "context": "⑨ 蚊（か）が刺（さ）す",
@@ -10206,6 +11722,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "刺（さ）す",
         "meaning": "ကိုက်သည် / ထိုးဆိတ်သည်",
         "context": "⑨ 蚊（か）が刺（さ）す",
@@ -10214,6 +11731,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "壊（こわ）す",
         "meaning": "ဖျက်ဆီးသည်",
         "context": "⑩ 自然（しぜん）を ______",
@@ -10222,6 +11740,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "守（まも）る",
         "meaning": "ကာကွယ်စောင့်ရှောက်သည်",
         "context": "⑩ 自然（しぜん）を ______",
@@ -10230,6 +11749,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "自然（しぜん）",
         "meaning": "သဘာဝတရား",
         "context": "⑩ 自然（しぜん）を ______",
@@ -10238,6 +11758,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "貴重（きちょう）な",
         "meaning": "တန်ဖိုးရှိသော / ရှားပါးသော",
         "context": "⑪ 貴重（きちょう）な植物（しょくぶつ）",
@@ -10246,6 +11767,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "植物（しょくぶつ）",
         "meaning": "အပင်",
         "context": "⑪ 貴重（きちょう）な植物（しょくぶつ）",
@@ -10254,6 +11776,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "数（かず）",
         "meaning": "အရေအတွက်",
         "context": "⑫ 数（かず）が減（へ）る",
@@ -10262,6 +11785,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "減（へ）る",
         "meaning": "လျော့နည်းသွားသည်",
         "context": "⑫ 数（かず）が減（へ）る",
@@ -10270,6 +11794,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "動物（どうぶつ）",
         "meaning": "တိရစ္ဆာန်",
         "context": "⑬ 動物（どうぶつ）を捕（と）ることを禁止（きんし）する",
@@ -10278,6 +11803,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "捕（と）る",
         "meaning": "ဖမ်းဆီးသည်",
         "context": "⑬ 動物（どうぶつ）を捕（と）ることを禁止（きんし）する",
@@ -10286,6 +11812,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-19-subchapter-2",
         "term": "禁止（きんし）する",
         "meaning": "တားမြစ်သည် (Prohibition)",
         "context": "⑬ 動物（どうぶつ）を捕（と）ることを禁止（きんし）する",
@@ -10320,10 +11847,30 @@ export const chapters = [
   },
   {
     "id": "part-1-chapter-20",
-    "number": "1.20",
-    "title": "数（かず）・量（りょう） / အရေအတွက်နှင့် ပမာဏဆိုင်ရာ စကားလုံးများ",
+    "number": "20",
+    "sourceNumber": "1.20",
+    "title": "20課（か）：数（かず）と量（りょう）",
+    "subchapters": [
+      {
+        "id": "part-1-chapter-20-subchapter-1",
+        "number": "1",
+        "title": "数（かず）と量（りょう）①",
+        "parentChapterId": "part-1-chapter-20",
+        "studyTab": "Vocab",
+        "sourcePage": 86
+      },
+      {
+        "id": "part-1-chapter-20-subchapter-2",
+        "number": "2",
+        "title": "数（かず）と量（りょう）②",
+        "parentChapterId": "part-1-chapter-20",
+        "studyTab": "Vocab",
+        "sourcePage": 87
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-1",
         "term": "増（ふ）やす",
         "meaning": "တိုးမြှင့်သည် (အရာဝတ္ထုကို ပိုများလာစေသည်)",
         "context": "① 数（かず）／量（りょう）を ______",
@@ -10332,6 +11879,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-1",
         "term": "増（ふ）す",
         "meaning": "တိုးသည် / တိုးပွားစေသည်",
         "context": "① 数（かず）／量（りょう）を ______",
@@ -10340,6 +11888,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-1",
         "term": "減（へ）らす",
         "meaning": "လျော့ကျစေသည် / လျှော့ချသည်",
         "context": "① 数（かず）／量（りょう）を ______",
@@ -10348,6 +11897,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-1",
         "term": "増（ふ）える",
         "meaning": "တိုးလာသည် (အရေအတွက် များလာသည်)",
         "context": "② 数（かず）／量（りょう）が ______",
@@ -10356,6 +11906,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-1",
         "term": "減（へ）る",
         "meaning": "လျော့နည်းသွားသည်",
         "context": "② 数（かず）／量（りょう）が ______",
@@ -10364,6 +11915,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-1",
         "term": "値段（ねだん）",
         "meaning": "ဈေးနှုန်း",
         "context": "③ 値段（ねだん）が3倍（ばい）になる",
@@ -10372,6 +11924,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-1",
         "term": "3倍（さんばい）",
         "meaning": "၃ ဆ",
         "context": "③ 値段（ねだん）が3倍（ばい）になる",
@@ -10380,6 +11933,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-1",
         "term": "なる",
         "meaning": "ဖြစ်လာသည်",
         "context": "③ 値段（ねだん）が3倍（ばい）になる",
@@ -10388,6 +11942,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-1",
         "term": "余（あま）る",
         "meaning": "ပိုလျှံသည် / ကျန်ရှိသည်",
         "context": "④ 食（た）べ物（もの）が ______",
@@ -10396,6 +11951,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-1",
         "term": "不足（ふそく）する",
         "meaning": "လိုအပ်သည် / အားနည်းသည် (မလုံလောက်ခြင်း)",
         "context": "④ 食（た）べ物（もの）が ______",
@@ -10404,6 +11960,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-1",
         "term": "数（かず）",
         "meaning": "အရေအတွက်",
         "context": "⑤ 数（かず）に余裕（よゆう）がない",
@@ -10412,6 +11969,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-1",
         "term": "余裕（よゆう）がない",
         "meaning": "ချောင်လည်မှု မရှိပါ / အလွန်အကျွံ မရှိပါ (မလောက်မငှဖြစ်ခြင်း)",
         "context": "⑤ 数（かず）に余裕（よゆう）がない",
@@ -10420,6 +11978,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-1",
         "term": "人数（にんずう）",
         "meaning": "လူဦးရေ",
         "context": "⑥ ______ を数（かぞ）える",
@@ -10428,6 +11987,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-1",
         "term": "個数（こすう）",
         "meaning": "အလုံးရေ / အရေအတွက်",
         "context": "⑥ ______ を数（かぞ）える",
@@ -10436,6 +11996,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-1",
         "term": "回数（かいすう）",
         "meaning": "အကြိမ်ရေ",
         "context": "⑥ ______ を数（かぞ）える",
@@ -10444,6 +12005,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-1",
         "term": "台数（だいすう）",
         "meaning": "စက်ယន្តတရားနှင့် ကားရေတွက်သည့် ပမာဏ",
         "context": "⑥ ______ を数（かぞ）える",
@@ -10452,6 +12014,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-1",
         "term": "数（かぞ）える",
         "meaning": "ရေတွက်သည်",
         "context": "⑥ ______ を数（かぞ）える",
@@ -10460,6 +12023,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-1",
         "term": "距離（きょり）",
         "meaning": "အကွာအဝေး",
         "context": "⑦ ______ を測（はか）る",
@@ -10468,6 +12032,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-1",
         "term": "面積（めんせき）",
         "meaning": "ဧရိယာ / အကျယ်အဝန်း",
         "context": "⑦ ______ を測（はか）る",
@@ -10476,6 +12041,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-1",
         "term": "時間（じかん）",
         "meaning": "အချိန်",
         "context": "⑦ ______ を測（はか）る",
@@ -10484,6 +12050,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-1",
         "term": "測（はか）る",
         "meaning": "တိုင်းတာသည်",
         "context": "⑦ ______ を測（はか）る",
@@ -10492,6 +12059,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-1",
         "term": "重（おも）さ",
         "meaning": "အလေးချိန်",
         "context": "⑧ 重（おも）さを量（はか）る",
@@ -10500,6 +12068,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-1",
         "term": "量（はか）る",
         "meaning": "ချိန်တွယ်သည် (အလေးချိန် တိုင်းသည်)",
         "context": "⑧ 重（おも）さを量（はか）る",
@@ -10508,6 +12077,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-1",
         "term": "記録（きろく）",
         "meaning": "မှတ်တမ်း",
         "context": "⑨ 記録（きろく）を取（と）る",
@@ -10516,6 +12086,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-1",
         "term": "取（と）る",
         "meaning": "ယူသည် / မှတ်တမ်းတင်သည်",
         "context": "⑨ 記録（きろく）を取（と）る",
@@ -10524,6 +12095,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "大量（たいりょう）",
         "meaning": "ပမာဏများစွာ / အမြောက်အမြား (Large amount)",
         "context": "① ______ の水（みず）を飲（の）む",
@@ -10532,6 +12104,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "少量（しょうりょう）",
         "meaning": "ပမာဏအနည်းငယ် (Small amount)",
         "context": "① ______ の水（みず）を飲（の）む",
@@ -10540,6 +12113,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "水（みず）",
         "meaning": "ရေ",
         "context": "① ______ の水（みず）を飲（の）む",
@@ -10548,6 +12122,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "飲（の）む",
         "meaning": "သောက်သည်",
         "context": "① ______ の水（みず）を飲（の）む",
@@ -10556,6 +12131,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "多数（たすう）",
         "meaning": "လူအများစု (Majority)",
         "context": "② ______ の人（ひと）が反対（はんたい）している",
@@ -10564,6 +12140,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "少数（しょうすう）",
         "meaning": "လူအနည်းစု (Minority)",
         "context": "② ______ の人（ひと）が反対（はんたい）している",
@@ -10572,6 +12149,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "人（ひと）",
         "meaning": "လူ",
         "context": "② ______ の人（ひと）が反対（はんたい）している",
@@ -10580,6 +12158,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "反対（はんたい）する",
         "meaning": "ဆန့်ကျင်သည်",
         "context": "② ______ の人（ひと）が反対（はんたい）している",
@@ -10588,6 +12167,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "マイナス",
         "meaning": "အနှုတ် (Below zero)",
         "context": "③ 気温（きおん）が ______ になる",
@@ -10596,6 +12176,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "プラス",
         "meaning": "အပေါင်း (Increase/Above zero)",
         "context": "③ 気温（きおん）が ______ になる",
@@ -10604,6 +12185,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "気温（きおん）",
         "meaning": "အပူချိန်",
         "context": "③ 気温（きおん）が ______ になる",
@@ -10612,6 +12194,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "レベル",
         "meaning": "အဆင့် (Level)",
         "context": "④ レベルが上（あ）がる",
@@ -10620,6 +12203,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "上（あ）がる",
         "meaning": "မြင့်တက်လာသည်",
         "context": "④ レベルが上（あ）がる",
@@ -10628,6 +12212,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "最大（さいだい）",
         "meaning": "အကြီးဆုံး / အများဆုံး (Maximum)",
         "context": "⑤ ______ のサイズのテレビ",
@@ -10636,6 +12221,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "最小（さいしょう）",
         "meaning": "အသေးဆုံး / အနည်းဆုံး (Minimum)",
         "context": "⑤ ______ のサイズのテレビ",
@@ -10644,6 +12230,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "サイズ",
         "meaning": "အရွယ်အစား (Size)",
         "context": "⑤ ______ のサイズのテレビ",
@@ -10652,6 +12239,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "テレビ",
         "meaning": "ရုပ်မြင်သံကြား (TV)",
         "context": "⑤ ______ のサイズのテレビ",
@@ -10660,6 +12248,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "最高（さいこう）",
         "meaning": "အမြင့်ဆုံး (Highest)",
         "context": "⑥ ______ の温度（おんど）",
@@ -10668,6 +12257,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "最低（さいてい）",
         "meaning": "အနိမ့်ဆုံး (Lowest)",
         "context": "⑥ ______ の温度（おんど）",
@@ -10676,6 +12266,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "平均（へいきん）",
         "meaning": "ပျမ်းမျှ (Average)",
         "context": "⑥ ______ の温度（おんど）",
@@ -10684,6 +12275,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "温度（おんど）",
         "meaning": "အပူချိန်",
         "context": "⑥ ______ の温度（おんど）",
@@ -10692,6 +12284,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "たっぷり",
         "meaning": "အများကြီး / အပြည့်အစုံ (Plenty of)",
         "context": "⑦ 砂糖（さとう）を ______ 入（い）れる",
@@ -10700,6 +12293,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "少々（しょうしょう）",
         "meaning": "အနည်းငယ် (A little)",
         "context": "⑦ 砂糖（さとう）を ______ 入（い）れる",
@@ -10708,6 +12302,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "砂糖（さとう）",
         "meaning": "သကြား",
         "context": "⑦ 砂糖（さとう）を ______ 入（い）れる",
@@ -10716,6 +12311,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "入（い）れる",
         "meaning": "ထည့်သည်",
         "context": "⑦ 砂糖（さとう）を ______ 入（い）れる",
@@ -10724,6 +12320,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "塩（しお）",
         "meaning": "ဆား",
         "context": "⑧ 塩（しお）を加（くわ）える",
@@ -10732,6 +12329,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "加（くわ）える",
         "meaning": "ပေါင်းထည့်သည် / ဖြည့်စွက်သည်",
         "context": "⑧ 塩（しお）を加（くわ）える",
@@ -10740,6 +12338,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "すべて",
         "meaning": "အားလုံး (All)",
         "context": "⑨ ______ を集（あつ）める",
@@ -10748,6 +12347,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "全員（ぜんいん）",
         "meaning": "အားလုံးသောလူ / လူတိုင်း (Everybody)",
         "context": "⑨ ______ を集（あつ）める",
@@ -10756,6 +12356,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "集（あつ）める",
         "meaning": "စုဆောင်းသည် / စုဝေးသည်",
         "context": "⑨ ______ を集（あつ）める",
@@ -10764,6 +12365,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "合計（ごうけい）",
         "meaning": "စုစုပေါင်း (Total)",
         "context": "⑩ 合計（ごうけい）を出（だ）す",
@@ -10772,6 +12374,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "出（だ）す",
         "meaning": "ထုတ်ယူသည် / တွက်ချက်ဖော်ပြသည်",
         "context": "⑩ 合計（ごうけい）を出（だ）す",
@@ -10780,6 +12383,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "計算（けいさん）",
         "meaning": "တွက်ချက်မှု (Calculation)",
         "context": "⑪ 計算（けいさん）を間違（まちが）える",
@@ -10788,6 +12392,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-20-subchapter-2",
         "term": "間違（まちが）える",
         "meaning": "မှားယွင်းသည်",
         "context": "⑪ 計算（けいさん）を間違（まちが）える",
@@ -10850,10 +12455,30 @@ export const chapters = [
   },
   {
     "id": "part-1-chapter-21",
-    "number": "1.21",
-    "title": "時間（じかん）・期間（きかん） / အချိန်နှင့် ကာလအပိုင်းအခြားဆိုင်ရာ စကားလုံးများ",
+    "number": "21",
+    "sourceNumber": "1.21",
+    "title": "21課（か）：時間（じかん）",
+    "subchapters": [
+      {
+        "id": "part-1-chapter-21-subchapter-1",
+        "number": "1",
+        "title": "時間（じかん）①",
+        "parentChapterId": "part-1-chapter-21",
+        "studyTab": "Vocab",
+        "sourcePage": 90
+      },
+      {
+        "id": "part-1-chapter-21-subchapter-2",
+        "number": "2",
+        "title": "時間（じかん）②",
+        "parentChapterId": "part-1-chapter-21",
+        "studyTab": "Vocab",
+        "sourcePage": 91
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "時間（じかん）",
         "meaning": "အချိန်",
         "context": "① 時間（じかん）が経（た）つ",
@@ -10862,6 +12487,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "経（た）つ",
         "meaning": "ကုန်လွန်သည် / ဖြတ်သန်းသွားသည်",
         "context": "① 時間（じかん）が経（た）つ",
@@ -10870,6 +12496,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "予定（よてい）",
         "meaning": "ခန့်မှန်းချက် / အစီအစဉ်",
         "context": "② 予定（よてい）の時刻（じこく）を過（す）ぎる",
@@ -10878,6 +12505,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "時刻（じこく）",
         "meaning": "အချိန်နာရီ",
         "context": "② 予定（よてい）の時刻（じこく）を過（す）ぎる",
@@ -10886,6 +12514,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "過（す）ぎる",
         "meaning": "ကျော်လွန်သွားသည်",
         "context": "② 予定（よてい）の時刻（じこく）を過（す）ぎる",
@@ -10894,6 +12523,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "花（はな）",
         "meaning": "ပန်း",
         "context": "③ 花（はな）の咲（さ）く時期（じき）になる",
@@ -10902,6 +12532,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "咲（さ）く",
         "meaning": "ပွင့်သည်",
         "context": "③ 花（はな）の咲（さ）く時期（じき）になる",
@@ -10910,6 +12541,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "時期（じき）",
         "meaning": "အချိန်အခါ / ရာသီ",
         "context": "③ 花（はな）の咲（さ）く時期（じき）になる",
@@ -10918,6 +12550,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "休み（やすみ）（やすみ）",
         "meaning": "အနားယူချိန် / ခွင့်",
         "context": "④ 休（やす）みの期間（きかん）が長（なが）い",
@@ -10926,6 +12559,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "期間（きかん）",
         "meaning": "ကာလ / အချိန်အပိုင်းအခြား",
         "context": "④ 休（やす）みの期間（きかん）が長（なが）い",
@@ -10934,6 +12568,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "長（なが）い",
         "meaning": "ရှည်လျားသည်",
         "context": "④ 休（やす）みの期間（きかん）が長（なが）い",
@@ -10942,6 +12577,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "ビザ",
         "meaning": "ဗီဇာ (Visa)",
         "context": "⑤ ビザの期限（きげん）が切（き）れる",
@@ -10950,6 +12586,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "期限（きげん）",
         "meaning": "သတ်မှတ်ရက် / ကာလစည်းကမ်း",
         "context": "⑤ ビザの期限（きげん）が切（き）れる",
@@ -10958,6 +12595,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "切（き）れる",
         "meaning": "ကုန်ဆုံးသည် / သက်တမ်းကုန်သည်",
         "context": "⑤ ビザの期限（きげん）が切（き）れる",
@@ -10966,6 +12604,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "短期（たんき）",
         "meaning": "ကာလတို (Short-term)",
         "context": "⑥ ______ の入院（にゅういん）",
@@ -10974,6 +12613,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "長期（ちょうき）",
         "meaning": "ကာလရှည် (Long-term)",
         "context": "⑥ ______ の入院（にゅういん）",
@@ -10982,6 +12622,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "入院（にゅういん）",
         "meaning": "ဆေးရုံတက်ခြင်း",
         "context": "⑥ ______ の入院（にゅういん）",
@@ -10990,6 +12631,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "日中（にっちゅう）",
         "meaning": "နေ့ဘက် (During the day)",
         "context": "⑦ ______ のアルバイト",
@@ -10998,6 +12640,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "夜間（やかん）",
         "meaning": "ညဘက် (Night-time)",
         "context": "⑦ ______ のアルバイト",
@@ -11006,6 +12649,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "アルバイト",
         "meaning": "အချိန်ပိုင်းအလုပ်",
         "context": "⑦ ______ のアルバイト",
@@ -11014,6 +12658,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "日時（にちじ）",
         "meaning": "နေ့စွဲနှင့် အချိန်",
         "context": "⑧ 会議（かいぎ）の ______ を決（き）める",
@@ -11022,6 +12667,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "日程（にってい）",
         "meaning": "အချိန်ဇယား / ရက်ချိန်း",
         "context": "⑧ 会議（かいぎ）の ______ を決（き）める",
@@ -11030,6 +12676,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "会議（かいぎ）",
         "meaning": "အစည်းအဝေး",
         "context": "⑧ 会議（かいぎ）の ______ を決（き）める",
@@ -11038,6 +12685,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "決（き）める",
         "meaning": "ဆုံးဖြတ်သည် / သတ်မှတ်သည်",
         "context": "⑧ 会議（かいぎ）の ______ を決（き）める",
@@ -11046,6 +12694,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "年間（ねんかん）",
         "meaning": "တစ်နှစ်တာ",
         "context": "⑨ 年間（ねんかん）の計画（けいかく）",
@@ -11054,6 +12703,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "計画（けいかく）",
         "meaning": "အစီအစဉ် / အနာဂတ်အစီအစဉ်",
         "context": "⑨ 年間（ねんかん）の計画（けいかく）",
@@ -11062,6 +12712,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "試合（しあい）",
         "meaning": "ပွဲစဉ် / အားကစားပွဲ",
         "context": "⑩ 試合（しあい）を延期（えんき）する",
@@ -11070,6 +12721,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "延期（えんき）する",
         "meaning": "ရွှေ့ဆိုင်းသည် (Postpone)",
         "context": "⑩ 試合（しあい）を延期（えんき）する",
@@ -11078,6 +12730,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "時計（とけい）",
         "meaning": "နာရီ",
         "context": "⑪ 時計（とけい）を合（あ）わせる",
@@ -11086,6 +12739,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "合（あ）わせる",
         "meaning": "ချိန်ညှိသည်",
         "context": "⑪ 時計（とけい）を合（あ）わせる",
@@ -11094,6 +12748,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "日付（ひづけ）",
         "meaning": "နေ့စွဲ (Date)",
         "context": "⑫ 日付（ひづけ）が変わ（かわ）（か）わる",
@@ -11102,6 +12757,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "変わる（かわる）",
         "meaning": "ပြောင်းလဲသည်",
         "context": "⑫ 日付（ひづけ）が変わ（かわ）（か）わる",
@@ -11110,6 +12766,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "アラーム",
         "meaning": "အလာမ် (Alarm)",
         "context": "⑬ ______ を8時（じ）にセットする",
@@ -11118,6 +12775,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "目覚まし（めざまし）時計（めざましどけい）",
         "meaning": "နှိုးစက်နာရီ (Alarm clock)",
         "context": "⑬ ______ を8時（じ）にセットする",
@@ -11126,6 +12784,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-1",
         "term": "セットする",
         "meaning": "ချိတ်ဆက်သတ်မှတ်သည် (Set)",
         "context": "⑬ ______ を8時（じ）にセットする",
@@ -11134,6 +12793,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-2",
         "term": "前回（ぜんかい）",
         "meaning": "အရင်တစ်ခေါက် (Previous time)",
         "context": "① ______ の試験（しけん）",
@@ -11142,6 +12802,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-2",
         "term": "今回（こんかい）",
         "meaning": "ဒီတစ်ခေါက် (This time)",
         "context": "① ______ の試験（しけん）",
@@ -11150,6 +12811,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-2",
         "term": "次回（じかい）",
         "meaning": "နောက်တစ်ခေါက် (Next time)",
         "context": "① ______ の試験（しけん）",
@@ -11158,6 +12820,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-2",
         "term": "以前（いぜん）",
         "meaning": "မတိုင်ခင်က / ရှေးက (Before)",
         "context": "② 1990年（ねん） ______ に生（う）まれた",
@@ -11166,6 +12829,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-2",
         "term": "以後（いご）",
         "meaning": "နောက်ပိုင်း / အတိတ်မှစ၍ (After)",
         "context": "② 1990年（ねん） ______ に生（う）まれた",
@@ -11174,6 +12838,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-2",
         "term": "前後（ぜんご）",
         "meaning": "ဝန်းကျင် / အနီးစပ်ဆုံး အချိန် (Approximately)",
         "context": "③ 1時間前後（じかんぜんご）で東京（とうきょう）に着（つ）く",
@@ -11182,6 +12847,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-2",
         "term": "前日（ぜんじつ）",
         "meaning": "ရက်အနည်းငယ်အလို / ယခင်နေ့ (Previous day)",
         "context": "④ 試験（しけん）の ______",
@@ -11190,6 +12856,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-2",
         "term": "当日（とうじつ）",
         "meaning": "ထိုနေ့ / တကယ်ကျင်းပသည့်နေ့ (Day in question)",
         "context": "④ 試験（しけん）の ______",
@@ -11198,6 +12865,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-2",
         "term": "翌日（よくじつ）",
         "meaning": "နောက်တစ်နေ့ (Following day)",
         "context": "④ 試験（しけん）の ______",
@@ -11206,6 +12874,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-2",
         "term": "平日（へいじつ）",
         "meaning": "ရုံးဖွင့်ရက် / အလုပ်ရက် (Weekday)",
         "context": "⑤ ______ は忙（いそが）しい",
@@ -11214,6 +12883,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-2",
         "term": "週末（しゅうまつ）",
         "meaning": "စနေ၊ တနင်္ဂနွေ ပိတ်ရက် (Weekend)",
         "context": "⑤ ______ は忙（いそが）しい",
@@ -11222,6 +12892,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-2",
         "term": "昨年（さくねん）",
         "meaning": "မနှစ်က (Last year)",
         "context": "⑥ ______ の11月（がつ）",
@@ -11230,6 +12901,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-2",
         "term": "翌年（よくねん）",
         "meaning": "နောက်တစ်နှစ် (Following year)",
         "context": "⑥ ______ の11月（がつ）",
@@ -11238,6 +12910,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-2",
         "term": "過去（かこ）",
         "meaning": "အတိတ် (The past)",
         "context": "⑦ ______ の自分（じぶん）",
@@ -11246,6 +12919,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-2",
         "term": "現在（げんざい）",
         "meaning": "ပစ္စုပ္ပန် (Currently)",
         "context": "⑦ ______ の自分（じぶん）",
@@ -11254,6 +12928,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-2",
         "term": "未来（みらい）",
         "meaning": "အနာဂတ် (The future)",
         "context": "⑦ ______ の自分（じぶん）",
@@ -11262,6 +12937,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-2",
         "term": "現代（げんだい）",
         "meaning": "ခေတ်သစ် / ယခုခေတ် (Contemporary)",
         "context": "⑧ 現代（げんだい）の日本（にほん）",
@@ -11270,6 +12946,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-2",
         "term": "間（ま）もなく",
         "meaning": "မကြာမီမှာပင် (Soon)",
         "context": "⑨ 間（ま）もなく終（お）わる",
@@ -11278,6 +12955,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-1-chapter-21-subchapter-2",
         "term": "突然（とつぜん）",
         "meaning": "ရုတ်တရက် / မထင်မှတ်ဘဲ (Suddenly)",
         "context": "⑩ 突然（とつぜん）家（いえ）に来（く）る",
@@ -11345,9 +13023,29 @@ export const chapters = [
   {
     "id": "part-2-chapter-22",
     "number": "2.1",
-    "title": "動詞（どうし）の表現（ひょうげん） / ကြိယာအသုံးအနှုန်းများ",
+    "sourceNumber": "2.1",
+    "title": "1課（か）：和語（わご）動詞（どうし）",
+    "subchapters": [
+      {
+        "id": "part-2-chapter-22-subchapter-1",
+        "number": "1",
+        "title": "自動詞（じどうし）",
+        "parentChapterId": "part-2-chapter-22",
+        "studyTab": "Vocab",
+        "sourcePage": 98
+      },
+      {
+        "id": "part-2-chapter-22-subchapter-2",
+        "number": "2",
+        "title": "他動詞（たどうし）",
+        "parentChapterId": "part-2-chapter-22",
+        "studyTab": "Vocab",
+        "sourcePage": 99
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "歯（は）",
         "meaning": "သွား",
         "context": "① 歯（は）が生（は）える",
@@ -11356,6 +13054,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "生（は）える",
         "meaning": "ထွက်လာသည် / ပေါက်လာသည်",
         "context": "① 歯（は）が生（は）える",
@@ -11364,6 +13063,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "スープ",
         "meaning": "စွပ်ပြုတ်",
         "context": "② スープが冷（さ）める",
@@ -11372,6 +13072,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "冷（さ）める",
         "meaning": "အအေးခံသည် / အေးသွားသည်",
         "context": "② スープが冷（さ）める",
@@ -11380,6 +13081,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "家（いえ）",
         "meaning": "အိမ်",
         "context": "③ 家（いえ）が燃（も）える",
@@ -11388,6 +13090,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "燃（も）える",
         "meaning": "မီးလောင်သည်",
         "context": "③ 家（いえ）が燃（も）える",
@@ -11396,6 +13099,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "服（ふく）",
         "meaning": "အဝတ်အစား",
         "context": "④ 服（ふく）が目立（めだ）つ",
@@ -11404,6 +13108,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "目立（めだ）つ",
         "meaning": "ထင်ရှားပေါ်လွင်သည်",
         "context": "④ 服（ふく）が目立（めだ）つ",
@@ -11412,6 +13117,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "星（ほし）",
         "meaning": "ကြယ်",
         "context": "⑤ 星（ほし）が輝（かがや）く",
@@ -11420,6 +13126,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "輝（かがや）く",
         "meaning": "တောက်ပသည်",
         "context": "⑤ 星（ほし）が輝（かがや）く",
@@ -11428,6 +13135,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "黙（だま）る",
         "meaning": "တိတ်ဆိတ်နေသည် / စကားမပြောဘဲနေသည်",
         "context": "⑥ 黙（だま）って、話（はなし）を聞（き）く",
@@ -11436,6 +13144,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "話（はなし）を聞（き）く",
         "meaning": "စကားနားထောင်သည်",
         "context": "⑥ 黙（だま）って、話（はなし）を聞（き）く",
@@ -11444,6 +13153,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "水（みず）",
         "meaning": "ရေ",
         "context": "⑦ 水（みず）がたまる",
@@ -11452,6 +13162,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "たまる",
         "meaning": "စုပုံသည် / ရေဝပ်သည်",
         "context": "⑦ 水（みず）がたまる",
@@ -11460,6 +13171,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "薬（くすり）",
         "meaning": "ဆေး",
         "context": "⑧ 薬（くすり）がよく効（き）く",
@@ -11468,6 +13180,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "効（き）く",
         "meaning": "အာနိသင်ပြသည် / ထိရောက်သည်",
         "context": "⑧ 薬（くすり）がよく効（き）く",
@@ -11476,6 +13189,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "社長（しゃちょう）",
         "meaning": "ကုမ္ပဏီဥက္ကဋ္ဌ / အကြီးအကဲ",
         "context": "⑨ 社長（しゃちょう）が代（か）わる",
@@ -11484,6 +13198,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "代（か）わる",
         "meaning": "ပြောင်းလဲသည် / အစားထိုးခံရသည်",
         "context": "⑨ 社長（しゃちょう）が代（か）わる",
@@ -11492,6 +13207,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "親（おや）",
         "meaning": "မိဘ",
         "context": "⑩ 親（おや）に頼（たよ）る",
@@ -11500,6 +13216,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "頼（たよ）る",
         "meaning": "အားကိုးသည်",
         "context": "⑩ 親（おや）に頼（たよ）る",
@@ -11508,6 +13225,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "彼（かれ）",
         "meaning": "သူ",
         "context": "⑪ 彼（かれ）の言葉（ことば）らうなずく (※ うなずく)",
@@ -11516,6 +13234,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "言葉（ことば）",
         "meaning": "စကား",
         "context": "⑪ 彼（かれ）の言葉（ことば）らうなずく (※ うなずく)",
@@ -11524,6 +13243,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "うなずく",
         "meaning": "ခေါင်းညိတ်သည်",
         "context": "⑪ 彼（かれ）の言葉（ことば）らうなずく (※ うなずく)",
@@ -11532,6 +13252,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "ゲーム",
         "meaning": "ဂိမ်း",
         "context": "⑫ ゲームに飽（あ）きる",
@@ -11540,6 +13261,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "飽（あ）きる",
         "meaning": "ငြီးငွေ့သည်",
         "context": "⑫ ゲームに飽（あ）きる",
@@ -11548,6 +13270,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "大（おお）きな声（こえ）",
         "meaning": "အသံကျယ်ကျယ်",
         "context": "⑬ 大（おお）きな声（こえ）で叫（さけ）ぶ",
@@ -11556,6 +13279,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "叫（さけ）ぶ",
         "meaning": "အော်ဟစ်သည်",
         "context": "⑬ 大（おお）きな声（こえ）で叫（さけ）ぶ",
@@ -11564,6 +13288,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "車（くるま）",
         "meaning": "ကား",
         "context": "⑭ 車（くるま）で空港（くうこう）に向（む）かう",
@@ -11572,6 +13297,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "空港（くうこう）",
         "meaning": "လေဆိပ်",
         "context": "⑭ 車（くるま）で空港（くうこう）に向（む）かう",
@@ -11580,6 +13306,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "向（む）かう",
         "meaning": "ဦးတည်သွားရောက်သည်",
         "context": "⑭ 車（くるま）で空港（くうこう）に向（む）かう",
@@ -11588,6 +13315,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "油（あぶら）",
         "meaning": "ဆီ",
         "context": "⑮ 油（あぶら）は水（みず）に浮（う）く",
@@ -11596,6 +13324,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "水（みず）",
         "meaning": "ရေ",
         "context": "⑮ 油（あぶら）は水（みず）に浮（う）く",
@@ -11604,6 +13333,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "浮（う）く",
         "meaning": "ပေါ်နေသည် / ပေါ်လာသည်",
         "context": "⑮ 油（あぶら）は水（みず）に浮（う）く",
@@ -11612,6 +13342,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "ガム",
         "meaning": "ပီကေ",
         "context": "⑯ ガムが靴（くつ）にくっつく",
@@ -11620,6 +13351,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "靴（くつ）",
         "meaning": "ဖိနပ်",
         "context": "⑯ ガムが靴（くつ）にくっつく",
@@ -11628,12 +13360,427 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-1",
         "term": "くっつく",
         "meaning": "ကပ်နေသည် / တွယ်ကပ်သည်",
         "context": "⑯ ガムが靴（くつ）にくっつく",
         "exampleJapanese": "夏（なつ）に運動（うんどう）をすると、汗（あせ）でシャツが体（からだ）に（くっつく）ので、嫌（いや）だ。",
         "exampleMyanmar": "နွေရာသီမှာ ကိုယ်လက်လှုပ်ရှားမှုလုပ်ရင် ချွေးတွေနဲ့ ရှပ်အင်္ကျီက ကိုယ်ခန္ဓာမှာ (ကပ်နေတာမို့) မကြိုက်ဘူး။",
         "generated": false
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "ボール",
+        "meaning": "ဘောလုံး",
+        "context": "① ボールを握（にぎ）る",
+        "exampleJapanese": "① ボールを握（にぎ）る",
+        "exampleMyanmar": "「ボール」 သည် “ဘောလုံး” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "握（にぎ）る",
+        "meaning": "ဆုပ်ကိုင်သည် (Grasp, hold onto)",
+        "context": "① ボールを握（にぎ）る",
+        "exampleJapanese": "① ボールを握（にぎ）る",
+        "exampleMyanmar": "「握（にぎ）る」 သည် “ဆုပ်ကိုင်သည် (Grasp, hold onto)” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "皿（さら）",
+        "meaning": "ပန်းကန်ပြား",
+        "context": "② 皿（さら）を重（かさ）ねる",
+        "exampleJapanese": "② 皿（さら）を重（かさ）ねる",
+        "exampleMyanmar": "「皿（さら）」 သည် “ပန်းကန်ပြား” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "重（かさ）ねる",
+        "meaning": "ထပ်သည် / အထပ်လိုက်တင်သည် (Pile, stack)",
+        "context": "② 皿（さら）を重（かさ）ねる",
+        "exampleJapanese": "② 皿（さら）を重（かさ）ねる",
+        "exampleMyanmar": "「重（かさ）ねる」 သည် “ထပ်သည် / အထပ်လိုက်တင်သည် (Pile, stack)” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "新聞（しんぶん）",
+        "meaning": "သတင်းစာ",
+        "context": "③ 新聞（しんぶん）をひもで縛（しば）る",
+        "exampleJapanese": "③ 新聞（しんぶん）をひもで縛（しば）る",
+        "exampleMyanmar": "「新聞（しんぶん）」 သည် “သတင်းစာ” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "ひも",
+        "meaning": "ကြိုး",
+        "context": "③ 新聞（しんぶん）をひもで縛（しば）る",
+        "exampleJapanese": "③ 新聞（しんぶん）をひもで縛（しば）る",
+        "exampleMyanmar": "「ひも」 သည် “ကြိုး” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "縛（しば）る",
+        "meaning": "ချည်နှောင်သည် (Tie, bind)",
+        "context": "③ 新聞（しんぶん）をひもで縛（しば）る",
+        "exampleJapanese": "③ 新聞（しんぶん）をひもで縛（しば）る",
+        "exampleMyanmar": "「縛（しば）る」 သည် “ချည်နှောင်သည် (Tie, bind)” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "池（いけ）",
+        "meaning": "ရေကန်",
+        "context": "④ 池（いけ）を石（いし）で囲（かこ）む",
+        "exampleJapanese": "④ 池（いけ）を石（いし）で囲（かこ）む",
+        "exampleMyanmar": "「池（いけ）」 သည် “ရေကန်” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "石（いし）",
+        "meaning": "ကျောက်တုံး",
+        "context": "④ 池（いけ）を石（いし）で囲（かこ）む",
+        "exampleJapanese": "④ 池（いけ）を石（いし）で囲（かこ）む",
+        "exampleMyanmar": "「石（いし）」 သည် “ကျောက်တုံး” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "囲（かこ）む",
+        "meaning": "ဝန်းရံသည် / ပတ်ရံသည် (Surround, ring)",
+        "context": "④ 池（いけ）を石（いし）で囲（かこ）む",
+        "exampleJapanese": "家族（かぞく）でテーブルを（囲（かこ）む）のは久しぶり（ひさしぶり）だ。",
+        "exampleMyanmar": "မိသားစုလိုက် စားပွဲဝိုင်းကို (ဝန်းရံထჯိုင်ပြီး စားသောက်ကြတာ) အတော်ကြာပြီဖြစ်ပါတယ်။",
+        "generated": false
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "犬（いぬ）",
+        "meaning": "ခွေး",
+        "context": "⑤ 犬（いぬ）がボールを追（お）う",
+        "exampleJapanese": "⑤ 犬（いぬ）がボールを追（お）う",
+        "exampleMyanmar": "「犬（いぬ）」 သည် “ခွေး” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "追（お）う",
+        "meaning": "ခြေရာခံလိုက်သည် / နောက်ကလိုက်သည် (Chase, pursue)",
+        "context": "⑤ 犬（いぬ）がボールを追（お）う",
+        "exampleJapanese": "⑤ 犬（いぬ）がボールを追（お）う",
+        "exampleMyanmar": "「追（お）う」 သည် “ခြေရာခံလိုက်သည် / နောက်ကလိုက်သည် (Chase, pursue)” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "物（もの）",
+        "meaning": "ပစ္စည်း",
+        "context": "⑥ 物（もの）を大切（たいせつ）に扱（あつ）う",
+        "exampleJapanese": "⑥ 物（もの）を大切（たいせつ）に扱（あつ）う",
+        "exampleMyanmar": "「物（もの）」 သည် “ပစ္စည်း” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "大切（たいせつ）に",
+        "meaning": "တန်ဖိုးထား၍",
+        "context": "⑥ 物（もの）を大切（たいせつ）に扱（あつ）う",
+        "exampleJapanese": "⑥ 物（もの）を大切（たいせつ）に扱（あつ）う",
+        "exampleMyanmar": "「大切（たいせつ）に」 သည် “တန်ဖိုးထား၍” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "扱（あつ）う",
+        "meaning": "ဆက်ဆံသည် / ကိုင်တွယ်သည် (Handle, treat)",
+        "context": "⑥ 物（もの）を大切（たいせつ）に扱（あつ）う",
+        "exampleJapanese": "⑥ 物（もの）を大切（たいせつ）に扱（あつ）う",
+        "exampleMyanmar": "「扱（あつ）う」 သည် “ဆက်ဆံသည် / ကိုင်တွယ်သည် (Handle, treat)” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "電話代（でんわだい）",
+        "meaning": "ဖုန်းဘေလ်",
+        "context": "⑦ 電話代（でんわだい）を支払（しはら）う",
+        "exampleJapanese": "⑦ 電話代（でんわだい）を支払（しはら）う",
+        "exampleMyanmar": "「電話代（でんわだい）」 သည် “ဖုန်းဘေလ်” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "支払（しはら）う",
+        "meaning": "ပေးချေသည် (Pay)",
+        "context": "⑦ 電話代（でんわだい）を支払（しはら）う",
+        "exampleJapanese": "⑦ 電話代（でんわだい）を支払（しはら）う",
+        "exampleMyanmar": "「支払（しはら）う」 သည် “ပေးချေသည် (Pay)” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "若い（わかい）人（わかいひと）",
+        "meaning": "လူငယ်",
+        "context": "⑧ 若（わか）い人（ひと）は肉料理（にくりょうり）を好（好）む (※ 好む（このむ） - このむ)",
+        "exampleJapanese": "⑧ 若（わか）い人（ひと）は肉料理（にくりょうり）を好（好）む (※ 好む（このむ） - このむ)",
+        "exampleMyanmar": "「若い人（わかいひと）」 သည် “လူငယ်” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "肉料理（にくりょうり）",
+        "meaning": "အသားဟင်းလျာ",
+        "context": "⑧ 若（わか）い人（ひと）は肉料理（にくりょうり）を好（好）む (※ 好む（このむ） - このむ)",
+        "exampleJapanese": "⑧ 若（わか）い人（ひと）は肉料理（にくりょうり）を好（好）む (※ 好む（このむ） - このむ)",
+        "exampleMyanmar": "「肉料理（にくりょうり）」 သည် “အသားဟင်းလျာ” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "好（この）む",
+        "meaning": "နှစ်သက်သည် (Like, be fond of)",
+        "context": "⑧ 若（わか）い人（ひと）は肉料理（にくりょうり）を好（好）む (※ 好む（このむ） - このむ)",
+        "exampleJapanese": "⑧ 若（わか）い人（ひと）は肉料理（にくりょうり）を好（好）む (※ 好む（このむ） - このむ)",
+        "exampleMyanmar": "「好（この）む」 သည် “နှစ်သက်သည် (Like, be fond of)” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "そば",
+        "meaning": "ဆိုဘခေါက်ဆွဲ",
+        "context": "⑨ そばを食（く）う",
+        "exampleJapanese": "⑨ そばを食（く）う",
+        "exampleMyanmar": "「そば」 သည် “ဆိုဘခေါက်ဆွဲ” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "食（く）う",
+        "meaning": "စားသည် (Eat – အဖိုသဘာဝ သို့မဟုတ် ရရင်းနှီးသူများသုံးသော စကား)",
+        "context": "⑨ そばを食（く）う",
+        "exampleJapanese": "⑨ そばを食（く）う",
+        "exampleMyanmar": "「食（く）う」 သည် “စားသည် (Eat – အဖိုသဘာဝ သို့မဟုတ် ရရင်းနှီးသူများသုံးသော စကား)” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "人（ひと）",
+        "meaning": "လူ",
+        "context": "⑩ 人（ひと）を指（ゆび）で指（さ）す",
+        "exampleJapanese": "⑩ 人（ひと）を指（ゆび）で指（さ）す",
+        "exampleMyanmar": "「人（ひと）」 သည် “လူ” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "指（ゆび）",
+        "meaning": "လက်ညှိုး / လက်ချောင်း",
+        "context": "⑩ 人（ひと）を指（ゆび）で指（さ）す",
+        "exampleJapanese": "⑩ 人（ひと）を指（ゆび）で指（さ）す",
+        "exampleMyanmar": "「指（ゆび）」 သည် “လက်ညှိုး / လက်ချောင်း” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "指（さ）す",
+        "meaning": "ညွှန်ပြသည် (Show, point)",
+        "context": "⑩ 人（ひと）を指（ゆび）で指（さ）す",
+        "exampleJapanese": "言葉（ことば）で説明（せつめい）してもわかりにくいので、絵（え）に描（か）いて（示（しめ）す）ことにした。",
+        "exampleMyanmar": "စကားနဲ့ ရှင်းပြရုံနဲ့ နားလည်ရခက်တာကြောင့် ပုံဆွဲပြပြီး (ဖော်ပြဖို့) ဆုံးဖြတ်ခဲ့တယ်။",
+        "generated": false
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "地図（ちず）",
+        "meaning": "မြေပုံ",
+        "context": "⑪ 地図（ちず）で場所（ばしょ）を示（しめ）す",
+        "exampleJapanese": "⑪ 地図（ちず）で場所（ばしょ）を示（しめ）す",
+        "exampleMyanmar": "「地図（ちず）」 သည် “မြေပုံ” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "場所（ばしょ）",
+        "meaning": "နေရာ",
+        "context": "⑪ 地図（ちず）で場所（ばしょ）を示（しめ）す",
+        "exampleJapanese": "⑪ 地図（ちず）で場所（ばしょ）を示（しめ）す",
+        "exampleMyanmar": "「場所（ばしょ）」 သည် “နေရာ” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "示（しめ）す",
+        "meaning": "ပြသသည် / ဖော်ပြသည် (Show, indicate)",
+        "context": "⑪ 地図（ちず）で場所（ばしょ）を示（しめ）す",
+        "exampleJapanese": "言葉（ことば）で説明（せつめい）してもわかりにくいので、絵（え）に描（か）いて（示（しめ）す）ことにした。",
+        "exampleMyanmar": "စကားနဲ့ ရှင်းပြရုံနဲ့ နားလည်ရခက်တာကြောင့် ပုံဆွဲပြပြီး (ဖော်ပြဖို့) ဆုံးဖြတ်ခဲ့တယ်။",
+        "generated": false
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "夢（ゆめ）",
+        "meaning": "အိပ်မက် / ရည်မှန်းချက်",
+        "context": "⑫ 夢（ゆめ）を語（かた）る",
+        "exampleJapanese": "⑫ 夢（ゆめ）を語（かた）る",
+        "exampleMyanmar": "「夢（ゆめ）」 သည် “အိပ်မက် / ရည်မှန်းချက်” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "語（かた）る",
+        "meaning": "ပြောပြသည် / ဖွဲ့နွဲ့ပြောဆိုသည် (Relate, talk about)",
+        "context": "⑫ 夢（ゆめ）を語（かた）る",
+        "exampleJapanese": "⑫ 夢（ゆめ）を語（かた）る",
+        "exampleMyanmar": "「語（かた）る」 သည် “ပြောပြသည် / ဖွဲ့နွဲ့ပြောဆိုသည် (Relate, talk about)” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "楽しい（たのしい）（たのしい）",
+        "meaning": "ပျော်စရာကောင်းသော",
+        "context": "⑬ 楽（たの）しい時間（じかん）を過（す）ごす",
+        "exampleJapanese": "⑬ 楽（たの）しい時間（じかん）を過（す）ごす",
+        "exampleMyanmar": "「楽しい（たのしい）」 သည် “ပျော်စရာကောင်းသော” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "時間（じかん）",
+        "meaning": "အချိန်",
+        "context": "⑬ 楽（たの）しい時間（じかん）を過（す）ごす",
+        "exampleJapanese": "試合（しがい）が近（ちか）いから、練習時間（れんしゅうじかん）を一日（いちじかん）(※ 1時間（じかん） - いちじかん)（延（の）ばす）ことにした。",
+        "exampleMyanmar": "ပွဲက နီးလာပြီဖြစ်လို့ လေ့ကျင့်ချိန်ကို တစ်နာရီ (တိုးမြှင့်ဖို့) ဆုံးဖြတ်ခဲ့တယ်။",
+        "generated": false
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "過（す）ごす",
+        "meaning": "ဖြတ်သန်းသည် (Spend, pass)",
+        "context": "⑬ 楽（たの）しい時間（じかん）を過（す）ごす",
+        "exampleJapanese": "最近（さいきん）、お正月（しょうがつ）を海外（かいがい）で（過（す）ごす）人（にん）が増（ふ）えている。",
+        "exampleMyanmar": "နောက်ပိုင်းမှာ နှစ်သစ်ကူးကို ပြည်ပမှာ (ဖြတ်သန်းကြတဲ့) လူတွေ တိုးပွားလာနေပါတယ်။",
+        "generated": false
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "出発（しゅっぱつ）",
+        "meaning": "ထွက်ခွာခြင်း",
+        "context": "⑭ 出発（しゅっぱつ）を1日（いちにち）延（の）ばす",
+        "exampleJapanese": "⑭ 出発（しゅっぱつ）を1日（いちにち）延（の）ばす",
+        "exampleMyanmar": "「出発（しゅっぱつ）」 သည် “ထွက်ခွာခြင်း” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "1日（いちにち）",
+        "meaning": "တစ်ရက်",
+        "context": "⑭ 出発（しゅっぱつ）を1日（いちにち）延（の）ばす",
+        "exampleJapanese": "⑭ 出発（しゅっぱつ）を1日（いちにち）延（の）ばす",
+        "exampleMyanmar": "「1日（いちにち）」 သည် “တစ်ရက်” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "延（の）ばす",
+        "meaning": "ဆိုင်းငံ့သည် / တိုးမြှင့်ရွှေ့ဆိုင်းသည် (Extend, draw out)",
+        "context": "⑭ 出発（しゅっぱつ）を1日（いちにち）延（の）ばす",
+        "exampleJapanese": "試合（しがい）が近（ちか）いから、練習時間（れんしゅうじかん）を一日（いちじかん）(※ 1時間（じかん） - いちじかん)（延（の）ばす）ことにした。",
+        "exampleMyanmar": "ပွဲက နီးလာပြီဖြစ်လို့ လေ့ကျင့်ချိန်ကို တစ်နာရီ (တိုးမြှင့်ဖို့) ဆုံးဖြတ်ခဲ့တယ်။",
+        "generated": false
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "優勝（ゆうしょう）",
+        "meaning": "ပြိုင်ပွဲတွင် ပထမရရှိခြင်း / အနိုင်ရခြင်း",
+        "context": "⑮ 優勝（ゆうしょう）を目指（めざ）す",
+        "exampleJapanese": "⑮ 優勝（ゆうしょう）を目指（めざ）す",
+        "exampleMyanmar": "「優勝（ゆうしょう）」 သည် “ပြိုင်ပွဲတွင် ပထမရရှိခြင်း / အနိုင်ရခြင်း” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "を目指す（めざす）（をめざす）",
+        "meaning": "ရည်မှန်းသည် / ပစ်မှတ်ထားသည် (Aim for)",
+        "context": "⑮ 優勝（ゆうしょう）を目指（めざ）す",
+        "exampleJapanese": "⑮ 優勝（ゆうしょう）を目指（めざ）す",
+        "exampleMyanmar": "「を目指す（をめざす）」 သည် “ရည်မှန်းသည် / ပစ်မှတ်ထားသည် (Aim for)” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "警察（けいさつ）",
+        "meaning": "ရဲ",
+        "context": "⑯ 警察（けいさつ）に助（たす）けを求（もと）める",
+        "exampleJapanese": "⑯ 警察（けいさつ）に助（たす）けを求（もと）める",
+        "exampleMyanmar": "「警察（けいさつ）」 သည် “ရဲ” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "助け（たすけ）（たすけ）",
+        "meaning": "အကူအညီ",
+        "context": "⑯ 警察（けいさつ）に助（たす）けを求（もと）める",
+        "exampleJapanese": "⑯ 警察（けいさつ）に助（たす）けを求（もと）める",
+        "exampleMyanmar": "「助け（たすけ）」 သည် “အကူအညီ” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "求（もと）める",
+        "meaning": "တောင်းခံသည် / ရှာဖွေသည် (Seek, ask for)",
+        "context": "⑯ 警察（けいさつ）に助（たす）けを求（もと）める",
+        "exampleJapanese": "東京（とうきょう）には、仕事（しこと）を（求（もと）める）人（にん）が大勢（おおぜい）集（あつ）まってくる。",
+        "exampleMyanmar": "တိုကျိုမြို့ကို အလုပ်အကိုင် (ရှာဖွေရန်) လူတွေ အများအပြား စုဝေးရောက်ရှိလာကြတယ်။",
+        "generated": false
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "子供（こども）",
+        "meaning": "ကလေးငယ်",
+        "context": "⑰ 子供（こども）を可愛（かわい）が る",
+        "exampleJapanese": "⑰ 子供（こども）を可愛（かわい）が る",
+        "exampleMyanmar": "「子供（こども）」 သည် “ကလေးငယ်” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "可愛（かわい）がる（かわいがる）",
+        "meaning": "ချစ်ခင်မြတ်နိုးသည် (Treat with affection)",
+        "context": "⑰ 子供（こども）を可愛（かわい）が る",
+        "exampleJapanese": "⑰ 子供（こども）を可愛（かわい）が る",
+        "exampleMyanmar": "「可愛がる（かわいがる）」 သည် “ချစ်ခင်မြတ်နိုးသည် (Treat with affection)” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "8 弟（おとう、）をいじめる (※ 弟（おとうと）",
+        "meaning": "おとうと)",
+        "context": "⑰ 子供（こども）を可愛（かわい）が る",
+        "exampleJapanese": "⑰ 子供（こども）を可愛（かわい）が る",
+        "exampleMyanmar": "「8 弟（おとう、）をいじめる (※ 弟」 သည် “おとうと)” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "弟（おとうと）",
+        "meaning": "ညီငယ်",
+        "context": "⑰ 子供（こども）を可愛（かわい）が る",
+        "exampleJapanese": "⑰ 子供（こども）を可愛（かわい）が る",
+        "exampleMyanmar": "「弟（おとうと）」 သည် “ညီငယ်” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
+      },
+      {
+        "sourceSubchapterId": "part-2-chapter-22-subchapter-2",
+        "term": "いじめる",
+        "meaning": "စနောက်နှိပ်စက်သည် / အနိုင်ကျင့်သည် (Bully, mistreat)",
+        "context": "⑰ 子供（こども）を可愛（かわい）が る",
+        "exampleJapanese": "⑰ 子供（こども）を可愛（かわい）が る",
+        "exampleMyanmar": "「いじめる」 သည် “စနောက်နှိပ်စက်သည် / အနိုင်ကျင့်သည် (Bully, mistreat)” ဟု အဓိပ္ပာယ်ရသည်။",
+        "generated": true
       }
     ],
     "sourceExercises": [
@@ -11662,178 +13809,6 @@ export const chapters = [
         "answer": "ရေကူးနေတဲ့အချိန်မှာ ကိုယ်ခန္ဓာက ရေပေါ်မှာ (ပေါ်နေတာ) ဘာကြောင့်ပါလိမ့်။"
       },
       {
-        "question": "① ボールを握（にぎ）る",
-        "answer": ""
-      },
-      {
-        "question": "ボール –",
-        "answer": "ဘောလုံး"
-      },
-      {
-        "question": "② 皿（さら）を重（かさ）ねる",
-        "answer": ""
-      },
-      {
-        "question": "皿（さら） –",
-        "answer": "ပန်းကန်ပြား"
-      },
-      {
-        "question": "③ 新聞（しんぶん）をひもで縛（しば）る",
-        "answer": ""
-      },
-      {
-        "question": "新聞（しんぶん） –",
-        "answer": "သတင်းစာ"
-      },
-      {
-        "question": "ひも –",
-        "answer": "ကြိုး"
-      },
-      {
-        "question": "④ 池（いけ）を石（いし）で囲（かこ）む",
-        "answer": ""
-      },
-      {
-        "question": "池（いけ） –",
-        "answer": "ရေကန်"
-      },
-      {
-        "question": "石（いし） –",
-        "answer": "ကျောက်တုံး"
-      },
-      {
-        "question": "⑤ 犬（いぬ）がボールを追（お）う",
-        "answer": ""
-      },
-      {
-        "question": "犬（いぬ） –",
-        "answer": "ခွေး"
-      },
-      {
-        "question": "⑥ 物（もの）を大切（たいせつ）に扱（あつ）う",
-        "answer": ""
-      },
-      {
-        "question": "物（もの） –",
-        "answer": "ပစ္စည်း"
-      },
-      {
-        "question": "大切（たいせつ）に –",
-        "answer": "တန်ဖိုးထား၍"
-      },
-      {
-        "question": "⑦ 電話代（でんわだい）を支払（しはら）う",
-        "answer": ""
-      },
-      {
-        "question": "電話代（でんわだい） –",
-        "answer": "ဖုန်းဘေလ်"
-      },
-      {
-        "question": "若い（わかい）人（わかいひと） –",
-        "answer": "လူငယ်"
-      },
-      {
-        "question": "肉料理（にくりょうり） –",
-        "answer": "အသားဟင်းလျာ"
-      },
-      {
-        "question": "⑨ そばを食（く）う",
-        "answer": ""
-      },
-      {
-        "question": "そば –",
-        "answer": "ဆိုဘခေါက်ဆွဲ"
-      },
-      {
-        "question": "⑩ 人（ひと）を指（ゆび）で指（さ）す",
-        "answer": ""
-      },
-      {
-        "question": "人（ひと） –",
-        "answer": "လူ"
-      },
-      {
-        "question": "指（ゆび） –",
-        "answer": "လက်ညှိုး / လက်ချောင်း"
-      },
-      {
-        "question": "⑪ 地図（ちず）で場所（ばしょ）を示（しめ）す",
-        "answer": ""
-      },
-      {
-        "question": "地図（ちず） –",
-        "answer": "မြေပုံ"
-      },
-      {
-        "question": "場所（ばしょ） –",
-        "answer": "နေရာ"
-      },
-      {
-        "question": "⑫ 夢（ゆめ）を語（かた）る",
-        "answer": ""
-      },
-      {
-        "question": "夢（ゆめ） –",
-        "answer": "အိပ်မက် / ရည်မှန်းချက်"
-      },
-      {
-        "question": "⑬ 楽（たの）しい時間（じかん）を過（す）ごす",
-        "answer": ""
-      },
-      {
-        "question": "楽しい（たのしい）（たのしい） –",
-        "answer": "ပျော်စရာကောင်းသော"
-      },
-      {
-        "question": "時間（じかん） –",
-        "answer": "အချိန်"
-      },
-      {
-        "question": "⑭ 出発（しゅっぱつ）を1日（いちにち）延（の）ばす",
-        "answer": ""
-      },
-      {
-        "question": "出発（しゅっぱつ） –",
-        "answer": "ထွက်ခွာခြင်း"
-      },
-      {
-        "question": "1日（いちにち） –",
-        "answer": "တစ်ရက်"
-      },
-      {
-        "question": "⑮ 優勝（ゆうしょう）を目指（めざ）す",
-        "answer": ""
-      },
-      {
-        "question": "優勝（ゆうしょう） –",
-        "answer": "ပြိုင်ပွဲတွင် ပထမရရှိခြင်း / အနိုင်ရခြင်း"
-      },
-      {
-        "question": "⑯ 警察（けいさつ）に助（たす）けを求（もと）める",
-        "answer": ""
-      },
-      {
-        "question": "警察（けいさつ） –",
-        "answer": "ရဲ"
-      },
-      {
-        "question": "助け（たすけ）（たすけ） –",
-        "answer": "အကူအညီ"
-      },
-      {
-        "question": "⑰ 子供（こども）を可愛（かわい）が る",
-        "answer": ""
-      },
-      {
-        "question": "子供（こども） –",
-        "answer": "ကလေးငယ်"
-      },
-      {
-        "question": "弟（おとうと） –",
-        "answer": "ညီငယ်"
-      },
-      {
         "question": "試合（しがい）が近（ちか）いから、練習時間（れんしゅうじかん）を一日（いちじかん）(※ 1時間（じかん） - いちじかん)（延（の）ばす）ことにした。",
         "answer": "ပွဲက နီးလာပြီဖြစ်လို့ လေ့ကျင့်ချိန်ကို တစ်နာရီ (တိုးမြှင့်ဖို့) ဆုံးဖြတ်ခဲ့တယ်။"
       },
@@ -11859,9 +13834,29 @@ export const chapters = [
   {
     "id": "part-2-chapter-23",
     "number": "2.2",
-    "title": "動詞（どうし）の表現（ひょうげん） / ကြိယာအသုံးအနှုန်းများ",
+    "sourceNumber": "2.2",
+    "title": "2課（か）：漢語（かんご）動詞（どうし）",
+    "subchapters": [
+      {
+        "id": "part-2-chapter-23-subchapter-1",
+        "number": "1",
+        "title": "漢語（かんご）動詞（どうし）① ～を＋動詞（どうし）",
+        "parentChapterId": "part-2-chapter-23",
+        "studyTab": "Vocab",
+        "sourcePage": 102
+      },
+      {
+        "id": "part-2-chapter-23-subchapter-2",
+        "number": "2",
+        "title": "漢語（かんご）動詞（どうし）② ～を／～に／～が＋動詞（どうし）",
+        "parentChapterId": "part-2-chapter-23",
+        "studyTab": "Vocab",
+        "sourcePage": 103
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "機械（きかい）",
         "meaning": "စက်ယន្តတရား",
         "context": "① 機械（きかい）を発明（はつめい）する",
@@ -11870,6 +13865,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "発明（はつめい）する",
         "meaning": "တီထွင်သည် (Invention; invent)",
         "context": "① 機械（きかい）を発明（はつめい）する",
@@ -11878,6 +13874,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "船（ふね）",
         "meaning": "သင်္ဘော",
         "context": "② 船（ふね）を製造（せいぞう）する",
@@ -11886,6 +13883,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "製造（せいぞう）する",
         "meaning": "ထုတ်လုပ်သည် / တည်ဆောက်သည် (Manufacturing; manufacture)",
         "context": "② 船（ふね）を製造（せいぞう）する",
@@ -11894,6 +13892,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "映画（えいが）",
         "meaning": "ရုပ်ရှင်",
         "context": "③ 映画（えいが）を制作（せいさく）する",
@@ -11902,6 +13901,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "制作（せいさく）する",
         "meaning": "ဖန်တီးထုတ်လုပ်သည် (Production; produce)",
         "context": "③ 映画（えいが）を制作（せいさく）する",
@@ -11910,6 +13910,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "写真（しゃしん）",
         "meaning": "ဓာတ်ပုံ",
         "context": "④ 写真（しゃしん）を印刷（いんさつ）する",
@@ -11918,6 +13919,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "印刷（いんさつ）する",
         "meaning": "ပုံနှိပ်သည် (Printing; print)",
         "context": "④ 写真（しゃしん）を印刷（いんさつ）する",
@@ -11926,6 +13928,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "本（ほん）",
         "meaning": "စာအုပ်",
         "context": "⑤ 本（ほん）を出版（しゅっぱん）する",
@@ -11934,6 +13937,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "出版（しゅっぱん）する",
         "meaning": "ထုတ်ဝေသည် (Publishing; publish)",
         "context": "⑤ 本（ほん）を出版（しゅっぱん）する",
@@ -11942,6 +13946,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "ゴミ",
         "meaning": "အမှိုက်",
         "context": "⑥ ゴミを回収（かいしゅう）する",
@@ -11950,6 +13955,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "回収（かいしゅう）する",
         "meaning": "ပြန်လည်သိမ်းဆည်းသည် / စုဆောင်းသည် (Collection; collect)",
         "context": "⑥ ゴミを回収（かいしゅう）する",
@@ -11958,6 +13964,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "将来（しょうらい）",
         "meaning": "အနာဂတ်",
         "context": "⑦ 将来（しょうらい）の自分（じぶん）を想像（そうぞう）する",
@@ -11966,6 +13973,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "自分（じぶん）",
         "meaning": "မိမိကိုယ်တိုင်",
         "context": "⑦ 将来（しょうらい）の自分（じぶん）を想像（そうぞう）する",
@@ -11974,6 +13982,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "想像（そうぞう）する",
         "meaning": "စိတ်ကူးယဉ်သည် / တွေးတောဆင်ခြင်သည် (Imagination; imagine)",
         "context": "⑦ 将来（しょうらい）の自分（じぶん）を想像（そうぞう）する",
@@ -11982,6 +13991,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "反省（はんせい）する",
         "meaning": "ပြန်လည်သုံးသပ်သည် / နောင်တရဆင်ခြင်သည် (Reflect ruefully on)",
         "context": "⑧ 自分（じぶん）がしたことを反省（はんせい）する",
@@ -11990,6 +14000,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "病院（びょういん）",
         "meaning": "ဆေးရုံ",
         "context": "⑨ 病院（びょういん）に行（い）くかを判断（はんだん）する",
@@ -11998,6 +14009,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "判断（はんだん）する",
         "meaning": "ဆုံးဖြတ်ချက်ချသည် / ဆင်ခြင်ပိုင်းခြားသည် (Judgment; judge)",
         "context": "⑨ 病院（びょういん）に行（い）くかを判断（はんだん）する",
@@ -12006,6 +14018,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "お客（きゃく）さん",
         "meaning": "ဧည့်သည် / ဖောက်သည်",
         "context": "⑩ お客（きゃく）さんを歓迎（かんげい）する",
@@ -12014,6 +14027,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "歓迎（かんげい）する",
         "meaning": "ကြိုဆိုသည် (Welcome)",
         "context": "⑩ お客（きゃく）さんを歓迎（かんげい）する",
@@ -12022,6 +14036,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "犬（いぬ）",
         "meaning": "ခွေး",
         "context": "⑪ 犬（いぬ）を訓練（くんれん）する",
@@ -12030,6 +14045,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "訓練（くんれん）する",
         "meaning": "လေ့ကျင့်သင်ကြားပေးသည် (Training; exercise)",
         "context": "⑪ 犬（いぬ）を訓練（くんれん）する",
@@ -12038,6 +14054,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "授業（じゅぎょう）",
         "meaning": "စာသင်ချိန် / အတန်း",
         "context": "⑫ 授業（じゅぎょう）を選択（せんたく）する",
@@ -12046,6 +14063,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "選択（せんたく）する",
         "meaning": "ရွေးချယ်သည် (Choice; choose)",
         "context": "⑫ 授業（じゅぎょう）を選択（せんたく）する",
@@ -12054,6 +14072,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "レポート",
         "meaning": "အစီရင်ခံစာ / လက်ရာ",
         "context": "⑬ レポートを評価（ひょうか）する",
@@ -12062,6 +14081,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "評価（ひょうか）する",
         "meaning": "အကဲဖြတ်သည် / သုံးသပ်သည် (Evaluation; assess)",
         "context": "⑬ レポートを評価（ひょうか）する",
@@ -12070,6 +14090,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "お金（かね）",
         "meaning": "ငွေကြေး",
         "context": "⑭ お金（かね）を管理（かんり）する",
@@ -12078,6 +14099,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "管理（かんり）する",
         "meaning": "ထိန်းသိမ်းကွပ်ကဲသည် / စီမံခန့်ခွဲသည် (Management; manage)",
         "context": "⑭ お金（かね）を管理（かんり）する",
@@ -12086,6 +14108,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "会社（かいしゃ）",
         "meaning": "ကုမ္ပဏီ",
         "context": "⑮ 会社（かいしゃ）を経営（けいえい）する",
@@ -12094,6 +14117,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "経営（けいえい）する",
         "meaning": "လုပ်ငန်းလည်ပတ်စီမံသည် (Run, manage)",
         "context": "⑮ 会社（かいしゃ）を経営（けいえい）する",
@@ -12102,6 +14126,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "問題（もんだい）",
         "meaning": "ပြဿနာ",
         "context": "⑯ 問題（もんだい）を解決（かいけつ）する",
@@ -12110,6 +14135,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "解決（かいけつ）する",
         "meaning": "ဖြေရှင်းသည် (Settlement, solve)",
         "context": "⑯ 問題（もんだい）を解決（かいけつ）する",
@@ -12118,6 +14144,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "事故（じこ）",
         "meaning": "မတော်တဆမှု / အነတ္တရာယ်",
         "context": "⑰ 事故（じこ）を防止（ぼうし）する",
@@ -12126,6 +14153,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "防止（ぼうし）する",
         "meaning": "တားဆီးကာကွယ်သည် (Prevention; prevent)",
         "context": "⑰ 事故（じこ）を防止（ぼうし）する",
@@ -12134,6 +14162,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "アメリカ",
         "meaning": "အမေရိကန်",
         "context": "⑰ 事故（じこ）を防止（ぼうし）する",
@@ -12142,6 +14171,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-1",
         "term": "訪問（ほうもん）する",
         "meaning": "သွားရောက်လည်ပတ်သည် / ဧည့်ခံတွေ့ဆုံသည် (Visit)",
         "context": "⑰ 事故（じこ）を防止（ぼうし）する",
@@ -12150,6 +14180,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "円（えん）",
         "meaning": "ဂျပန်ယန်းငွေ",
         "context": "① 円（えん）をドルに交換（こうかん）する",
@@ -12158,6 +14189,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "ドル",
         "meaning": "ဒေါ်လာ",
         "context": "① 円（えん）をドルに交換（こうかん）する",
@@ -12166,6 +14198,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "交換（こうかん）する",
         "meaning": "လဲလှယ်သည် (Exchange)",
         "context": "① 円（えん）をドルに交換（こうかん）する",
@@ -12174,6 +14207,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "英語（えいご）",
         "meaning": "အင်္ဂလိပ်စာ",
         "context": "② 英語（えいご）を日本語（にほんご）に翻訳（ほんやく）する",
@@ -12182,6 +14216,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "日本語（にほんご）",
         "meaning": "ဂျပန်စာ",
         "context": "② 英語（えいご）を日本語（にほんご）に翻訳（ほんやく）する",
@@ -12190,6 +14225,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "翻訳（ほんやく）する",
         "meaning": "ဘာသာပြန်သည် (Translate)",
         "context": "② 英語（えいご）を日本語（にほんご）に翻訳（ほんやく）する",
@@ -12198,6 +14234,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "悪（わる）いところ",
         "meaning": "နာကျင်နေသောနေရာ / မကောင်းသည့်နေရာ",
         "context": "③ 悪（わる）いところに薬（くすり）を使用（しよう）する",
@@ -12206,6 +14243,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "薬（くすり）",
         "meaning": "ဆေး",
         "context": "③ 悪（わる）いところに薬（くすり）を使用（しよう）する",
@@ -12214,6 +14252,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "使用（しよう）する",
         "meaning": "အသုံးပြုသည် (Use, apply)",
         "context": "③ 悪（わる）いところに薬（くすり）を使用（しよう）する",
@@ -12222,6 +14261,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "部長（ぶちょう）",
         "meaning": "ဌာနမှူး",
         "context": "④ 部長（ぶちょう）に問題（もんだい）を報告（ほうこく）する",
@@ -12230,6 +14270,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "問題（もんだい）",
         "meaning": "ပြဿနာ",
         "context": "④ 部長（ぶちょう）に問題（もんだい）を報告（ほうこく）する",
@@ -12238,6 +14279,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "報告（ほうこく）する",
         "meaning": "တင်ပြအစီရင်ခံသည် (Report)",
         "context": "④ 部長（ぶちょう）に問題（もんだい）を報告（ほうこく）する",
@@ -12246,6 +14288,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "相手（あいて）",
         "meaning": "တစ်ဖက်လူ / ဆက်ဆံဖော်",
         "context": "⑤ 相手（あいて）に自分（じぶん）の意見（いけん）を主張（しゅちょう）する",
@@ -12254,6 +14297,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "意見（いけん）",
         "meaning": "အမြင် / သဘောထား",
         "context": "⑤ 相手（あいて）に自分（じぶん）の意見（いけん）を主張（しゅちょう）する",
@@ -12262,6 +14306,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "主張（しゅちょう）する",
         "meaning": "တောင်းဆိုတင်ပြသည် / မိမိဘက်မှ ရပ်တည်ပြောဆိုသည် (Assert)",
         "context": "⑤ 相手（あいて）に自分（じぶん）の意見（いけん）を主張（しゅちょう）する",
@@ -12270,6 +14315,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "彼（かれ）",
         "meaning": "သူ",
         "context": "⑥ 彼（かれ）の意見（いけん）に賛成（さんせい）する",
@@ -12278,6 +14324,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "賛成（さんせい）する",
         "meaning": "ထောက်ခံသည် / သဘောတူသည် (Agree)",
         "context": "⑥ 彼（かれ）の意見（いけん）に賛成（さんせい）する",
@@ -12286,6 +14333,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "彼女（かのじょ）",
         "meaning": "သူမ",
         "context": "⑦ 彼女（かのじょ）に協力（きょうりょく）する",
@@ -12294,6 +14342,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "協力（きょうりょく）する",
         "meaning": "ပူးပေါင်းကူညီသည် (Cooperate)",
         "context": "⑦ 彼女（かのじょ）に協力（きょうりょく）する",
@@ -12302,6 +14351,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "中国（ちゅうごく）",
         "meaning": "တရုတ်နိုင်ငံ",
         "context": "⑧ 中国（ちゅうごく）の会社（かいしゃ）に注目（ちゅうもく）する",
@@ -12310,6 +14360,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "会社（かいしゃ）",
         "meaning": "ကုမ္ပဏီ",
         "context": "⑧ 中国（ちゅうごく）の会社（かいしゃ）に注目（ちゅうもく）する",
@@ -12318,6 +14369,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "注目（ちゅうもく）する",
         "meaning": "အာရုံစိုက်သည် (Focus)",
         "context": "⑧ 中国（ちゅうごく）の会社（かいしゃ）に注目（ちゅうもく）する",
@@ -12326,6 +14378,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "ルール",
         "meaning": "စည်းကမ်း",
         "context": "⑨ ルールに違反（いはん）する",
@@ -12334,6 +14387,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "違反（いはん）する",
         "meaning": "ဖောက်ဖျက်ကျူးလွန်သည် (Violate)",
         "context": "⑨ ルールに違反（いはん）する",
@@ -12342,6 +14396,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "大阪（おおさか）",
         "meaning": "အိုဆာကာမြို့",
         "context": "⑩ 大阪（おおさか）に出張（しゅっちょう）する",
@@ -12350,6 +14405,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "出張（しゅっちょう）する",
         "meaning": "ရုံးကိစ္စဖြင့် ခရီးထွက်သည် (Go on a business trip)",
         "context": "⑩ 大阪（おおさか）に出張（しゅっちょう）する",
@@ -12358,6 +14414,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "色（いろ）",
         "meaning": "အရောင်",
         "context": "⑪ 色（いろ）が変化（へんか）する",
@@ -12366,6 +14423,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "変化（へんか）する",
         "meaning": "ပြောင်းလဲသည် (Change)",
         "context": "⑪ 色（いろ）が変化（へんか）する",
@@ -12374,6 +14432,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "電車（でんしゃ）",
         "meaning": "ရထား",
         "context": "⑫ 電車（でんしゃ）が停（てい）止（し）する (※ 停止（ていし） - ていし)",
@@ -12382,6 +14441,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "停止（ていし）する",
         "meaning": "ရပ်တန့်သွားသည် (Stop)",
         "context": "⑫ 電車（でんしゃ）が停（てい）止（し）する (※ 停止（ていし） - ていし)",
@@ -12390,6 +14450,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "経済（けいざい）",
         "meaning": "စီးပွားရေး",
         "context": "⑬ 経済（けいざい）が発展（はってん）する",
@@ -12398,6 +14459,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "発展（はってん）する",
         "meaning": "ဖွံ့ဖြိုးတိုးတက်သည် (Develop)",
         "context": "⑬ 経済（けいざい）が発展（はってん）する",
@@ -12406,6 +14468,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "技術（ぎじゅつ）",
         "meaning": "နည်းပညာ",
         "context": "⑭ 技術（ぎじゅつ）が進歩（しんぽ）する",
@@ -12414,6 +14477,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "進歩（しんぽ）する",
         "meaning": "တိုးတက်ရှေ့ရောက်သည် (Make progress)",
         "context": "⑭ 技術（ぎじゅつ）が進歩（しんぽ）する",
@@ -12422,6 +14486,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "存在（そんざい）する",
         "meaning": "တည်ရှိနေသည် (Exist)",
         "context": "⑮ 大（おお）きな問題（もんだい）が存在（そんざい）する",
@@ -12430,6 +14495,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "引退（いんたい）する",
         "meaning": "အနားယူသည် / လုပ်ငန်းခွင်မှ ထွက်သည် (Retire)",
         "context": "⑯ 社長（しゃちょう）が引退（いんたい）する",
@@ -12438,6 +14504,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "行動（こうどう）する",
         "meaning": "လှုပ်ရှားဆောင်ရွက်သည် / ပြုမူသည် (Act, behave)",
         "context": "⑰ 良（よ）く考（かんが）えて行動（こうどう）する",
@@ -12446,6 +14513,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "活動（かつどう）する",
         "meaning": "လှုပ်ရှားဆောင်ရွက်သည် (Be active)",
         "context": "⑱ 夜（よる）に活動（かつどう）する動物（どうぶつ）",
@@ -12454,6 +14522,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-23-subchapter-2",
         "term": "動物（どうぶつ）",
         "meaning": "တိရစ္ဆာန်",
         "context": "⑱ 夜（よる）に活動（かつどう）する動物（どうぶつ）",
@@ -12501,9 +14570,29 @@ export const chapters = [
   {
     "id": "part-2-chapter-24",
     "number": "2.3",
-    "title": "形容詞（けいようし）・状態（じょうたい）の表現（ひょうげん） / အနေအထားနှင့် ဂုဏ်ပုဒ်ပြ ဝေါဟာရများ",
+    "sourceNumber": "2.3",
+    "title": "3課（か）：形容詞（けいようし）",
+    "subchapters": [
+      {
+        "id": "part-2-chapter-24-subchapter-1",
+        "number": "1",
+        "title": "い形容詞（けいようし）",
+        "parentChapterId": "part-2-chapter-24",
+        "studyTab": "Vocab",
+        "sourcePage": 106
+      },
+      {
+        "id": "part-2-chapter-24-subchapter-2",
+        "number": "2",
+        "title": "な形容詞（けいようし）",
+        "parentChapterId": "part-2-chapter-24",
+        "studyTab": "Vocab",
+        "sourcePage": 107
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "背中（せなか）",
         "meaning": "ကျောပြင်",
         "context": "① 背中（せなか）がかゆい",
@@ -12512,6 +14601,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "かゆい",
         "meaning": "ယားယံသည် (Itchy)",
         "context": "① 背中（せなか）がかゆい",
@@ -12520,6 +14610,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "太陽（たいよう）",
         "meaning": "နေ",
         "context": "② 太陽（たいよう）がまぶしい",
@@ -12528,6 +14619,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "まぶしい",
         "meaning": "မျက်စိစူးအောင် တောက်ပသည် / လက်ဖျတ်သည် ((Uncomfortably) bright)",
         "context": "② 太陽（たいよう）がまぶしい",
@@ -12536,6 +14628,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "スカート",
         "meaning": "စကတ်",
         "context": "③ スカートがきつい",
@@ -12544,6 +14637,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "きつい",
         "meaning": "ကျပ်သည် / တင်းသည် (Tight)",
         "context": "③ スカートがきつい",
@@ -12552,6 +14646,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "昔（むかし）",
         "meaning": "အတိတ် / ရှေးဟောင်းအချိန်",
         "context": "④ 昔（むかし）が懐（なつ）かしい",
@@ -12560,6 +14655,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "懐（なつ）かしい",
         "meaning": "လွမ်းဆွတ်ဖွယ်ကောင်းသည် (Nostalgic)",
         "context": "④ 昔（むかし）が懐（なつ）かしい",
@@ -12568,6 +14664,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "失敗（しっぱい）する",
         "meaning": "အမှားလုပ်မိသည် / ရှုံးနိမ့်သည်",
         "context": "⑤ 失敗（しっぱい）して、悔（く）しい",
@@ -12576,6 +14673,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "悔（く）しい",
         "meaning": "နောင်တရသည် / စိတ်နာသည် / နှမြောတသဖြစ်သည် (Regrettable)",
         "context": "⑤ 失敗（しっぱい）して、悔（く）しい",
@@ -12584,6 +14682,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "恐（おそ）ろしい",
         "meaning": "ကြောက်မက်ဖွယ်ကောင်းသော / ဆိုးရွားသော (Terrible)",
         "context": "⑥ 恐（おそ）ろしい事件（じけん）",
@@ -12592,6 +14691,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "事件（じけん）",
         "meaning": "ဖြစ်ရပ်ဆိုး / ရာဇဝတ်မှု",
         "context": "⑥ 恐（おそ）ろしい事件（じけん）",
@@ -12600,6 +14700,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "怪（あや）しい",
         "meaning": "သံသယဖြစ်ဖွယ်ကောင်းသော / ထူးဆန်းသော (Suspicious)",
         "context": "⑦ 怪（あや）しい男（おとこ）",
@@ -12608,6 +14709,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "男（おとこ）",
         "meaning": "ယောက်ျား",
         "context": "⑦ 怪（あや）しい男（おとこ）",
@@ -12616,6 +14718,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "親（した）しい",
         "meaning": "ရရင်းနှီးသော (Close, intimate)",
         "context": "⑧ 親（した）しい友人（ゆうじん）",
@@ -12624,6 +14727,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "友人（ゆうじん）",
         "meaning": "သူငယ်ချင်း",
         "context": "⑧ 親（した）しい友人（ゆうじん）",
@@ -12632,6 +14736,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "大人（おとな）しい",
         "meaning": "ငြိမ်သက်ယဉ်ကျေးသော / အေးဆေးသော (Meek, compliant)",
         "context": "⑨ 大人（おとな）しい子供（こども）",
@@ -12640,6 +14745,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "子供（こども）",
         "meaning": "ကလေး",
         "context": "⑨ 大人（おとな）しい子供（こども）",
@@ -12648,6 +14754,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "パソコン",
         "meaning": "ကိုယ်ပိုင်ကွန်ပျူတာ (PC)",
         "context": "⑩ パソコンに詳（くわ）しい人（ひと）",
@@ -12656,6 +14763,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "詳（くわ）しい",
         "meaning": "ကျွမ်းကျင်ပိုင်နိုင်သော / အသေးစိတ်သိရှိသော (Well versed in)",
         "context": "⑩ パソコンに詳（くわ）しい人（ひと）",
@@ -12664,6 +14772,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "味（あじ）",
         "meaning": "အရသာ",
         "context": "⑪ 味（あじ）がしつこい",
@@ -12672,6 +14781,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "しつこい",
         "meaning": "အီစက်နေသော / စေးပိုင်လေးလံသော (Too rich, cloying)",
         "context": "⑪ 味（あじ）がしつこい",
@@ -12680,6 +14790,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "鋭（するど）い",
         "meaning": "ထက်မြက်သော (Sharp)",
         "context": "⑫ 鋭（するど）いナイフ",
@@ -12688,6 +14799,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "ナイフ",
         "meaning": "ဓား",
         "context": "⑫ 鋭（するど）いナイフ",
@@ -12696,6 +14808,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "鈍（にぶ）い",
         "meaning": "ထုံထိုင်းသော / လှုပ်ရှားမှုနှေးကွေးသော (Slow-moving, dull-witted)",
         "context": "⑬ 鈍（にぶ）い人（ひと）",
@@ -12704,6 +14817,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "人（ひと）",
         "meaning": "လူ",
         "context": "⑬ 鈍（にぶ）い人（ひと）",
@@ -12712,6 +14826,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "貧（まず）しい",
         "meaning": "ဆင်းရဲနွမ်းပါးသော (Poor, impoverished)",
         "context": "⑭ 貧（まず）しい国（くに）",
@@ -12720,6 +14835,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "国（くに）",
         "meaning": "နိုင်ငံ",
         "context": "⑭ 貧（まず）しい国（くに）",
@@ -12728,6 +14844,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "激（はげ）しい",
         "meaning": "ပြင်းထန်သော (Hard, intense)",
         "context": "⑮ 激（はげ）しい雨（あめ）",
@@ -12736,6 +14853,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "雨（あめ）",
         "meaning": "မိုး",
         "context": "⑮ 激（はげ）しい雨（あめ）",
@@ -12744,6 +14862,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "お金（かね）",
         "meaning": "ပိုက်ဆံ / ငွေကြေး",
         "context": "⑯ お金（かね）がもったいない",
@@ -12752,6 +14871,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "もったいない",
         "meaning": "နှမြောစရာကောင်းသော / အလဟဿဖြစ်သော (A waste of money/time)",
         "context": "⑯ お金（かね）がもったいない",
@@ -12760,6 +14880,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "とんでもない",
         "meaning": "မယုံနိုင်စရာ / မဖြစ်သင့်သည် (Dreadful, awful)",
         "context": "⑰ とんでもない事件（じけん）",
@@ -12768,6 +14889,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "事件（じけん）",
         "meaning": "ဖြစ်ရပ်",
         "context": "⑰ とんでもない事件（じけん）",
@@ -12776,6 +14898,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "怒（おこ）る",
         "meaning": "စိတ်ဆိုးသည် / ဒေါသထွက်သည်",
         "context": "⑱ 怒（おこ）っても仕様（しよう）がない",
@@ -12784,6 +14907,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-1",
         "term": "仕様（しよう）がない",
         "meaning": "တတ်နိုင်စရာမရှိ / အလကားပဲဖြစ်သည် (Inevitable, cannot be helped)",
         "context": "⑱ 怒（おこ）っても仕様（しよう）がない",
@@ -12792,6 +14916,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-2",
         "term": "わがまま",
         "meaning": "အလိုလိုက်ခံရသော / တစ်ကိုယ်ကောင်းဆန်သော (Selfish)",
         "context": "① わがままな子供（こども）",
@@ -12800,6 +14925,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-2",
         "term": "子供（こども）",
         "meaning": "ကလေး",
         "context": "① わがままな子供（こども）",
@@ -12808,6 +14934,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-2",
         "term": "意地悪（いじわる）",
         "meaning": "စိတ်ထားမကောင်းသော / ညစ်ပတ်သော (Spiteful, ill-natured)",
         "context": "② 意地悪（いじわる）な姉（あね）",
@@ -12816,6 +14943,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-2",
         "term": "姉（あね）",
         "meaning": "အစ်မ",
         "context": "② 意地悪（いじわる）な姉（あね）",
@@ -12824,6 +14952,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-2",
         "term": "下品（げひん）",
         "meaning": "ယဉ်ကျေးမှုမရှိသော / ရိုင်းစိုင်းသော (Vulgar, coarse)",
         "context": "③ 下品（げひん）な男（おとこ）",
@@ -12832,6 +14961,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-2",
         "term": "男（おとこ）",
         "meaning": "ယောက်ျား",
         "context": "③ 下品（げひん）な男（おとこ）",
@@ -12840,6 +14970,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-2",
         "term": "乱暴（らんぼう）",
         "meaning": "ကြမ်းတမ်းသော / ဟောက်စားဆန်သော (Rough, rude, violent)",
         "context": "④ 乱暴（らんぼう）な運転（うんてん）",
@@ -12848,6 +14979,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-2",
         "term": "運転（うんてん）",
         "meaning": "မောင်းနှင်ခြင်း",
         "context": "④ 乱暴（らんぼう）な運転（うんてん）",
@@ -12856,6 +14988,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-2",
         "term": "派手（はで）",
         "meaning": "တောက်ပြောင်သော / ခမ်းနားထည်ဝါသော (Flashy, showy)",
         "context": "⑤ 派手（はで）な服（ふく）",
@@ -12864,6 +14997,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-2",
         "term": "服（ふく）",
         "meaning": "အဝတ်အစား",
         "context": "⑤ 派手（はで）な服（ふく）",
@@ -12872,6 +15006,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-2",
         "term": "地味（じみ）",
         "meaning": "ရိုးရှင်းသော / အရောင်မတောက်သော (Plain, drab)",
         "context": "⑥ 地味（じみ）な色（いろ）",
@@ -12880,6 +15015,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-2",
         "term": "色（いろ）",
         "meaning": "အရောင်",
         "context": "⑥ 地味（じみ）な色（いろ）",
@@ -12888,6 +15024,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-2",
         "term": "おしゃれ",
         "meaning": "ဖက်ရှင်ကျသော / ခေတ်မီဆန်းပြားသော (Fashionable, smart)",
         "context": "⑦ おしゃれなレストラン",
@@ -12896,6 +15033,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-2",
         "term": "素敵（すてき）",
         "meaning": "ကောင်းမွန်လှပသော / နှစ်လိုဖွယ်ကောင်းသော (Nice, pleasant)",
         "context": "⑧ 素敵（すてき）な結婚式（けっこんしき）",
@@ -12904,6 +15042,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-2",
         "term": "結婚式（けっこんしき）",
         "meaning": "မင်္ဂလာပွဲ",
         "context": "⑧ 素敵（すてき）な結婚式（けっこんしき）",
@@ -12912,6 +15051,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-2",
         "term": "楽（らく）",
         "meaning": "ပေါ့ပါးလွယ်ကူသော / ပင်ပန်းမှုမရှိသော (Easy)",
         "context": "⑨ 楽（らく）な仕事（しごと）",
@@ -12920,6 +15060,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-2",
         "term": "仕事（しごと）",
         "meaning": "အလုပ်",
         "context": "⑨ 楽（らく）な仕事（しごと）",
@@ -12928,6 +15069,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-2",
         "term": "豊（ゆた）か",
         "meaning": "ကြွယ်ဝချမ်းသာသော / ပြည့်စုံသော (Rich, affluent)",
         "context": "⑩ 豊（ゆた）かな生活（せいかつ）",
@@ -12936,6 +15078,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-2",
         "term": "生活（せいかつ）",
         "meaning": "နေထိုင်မှုဘဝ",
         "context": "⑩ 豊（ゆた）かな生活（せいかつ）",
@@ -12944,6 +15087,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-2",
         "term": "穏（おだ）やか",
         "meaning": "သာယာငြိမ်သက်သော / တည်ငြိမ်သော (Mild, gentle)",
         "context": "⑪ 穏（おだ）やかな天気（てんき）",
@@ -12952,6 +15096,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-2",
         "term": "天気（てんき）",
         "meaning": "ရာသီဥတု",
         "context": "⑪ 穏（おだ）やかな天気（てんき）",
@@ -12960,6 +15105,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-2",
         "term": "夢中（むちゅう）",
         "meaning": "စွဲလမ်းနှစ်မြောနေသော (Fully absorbed in, crazy about)",
         "context": "⑫ ゲームに夢中（むちゅう）だ",
@@ -12968,6 +15114,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-2",
         "term": "無事（ぶじ）",
         "meaning": "ဘေးကင်းလုံခြုံစွာ (Safely, without incident)",
         "context": "⑬ 飛行機（ひこうき）が無事（ぶじ）に着（つ）く",
@@ -12976,6 +15123,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-2",
         "term": "飛行機（ひこうき）",
         "meaning": "လေယာဉ်",
         "context": "⑬ 飛行機（ひこうき）が無事（ぶじ）に着（つ）く",
@@ -12984,6 +15132,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-2",
         "term": "平気（へいき）",
         "meaning": "ပုံမှန်အတိုင်း / ဇယားမရှုပ်ဘဲ အေးဆေးစွာ (Unconcerned, not worried)",
         "context": "⑭ 平気（へいき）で嘘（うそ）をつく",
@@ -12992,6 +15141,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-2",
         "term": "嘘（うそ）をつく",
         "meaning": "လိမ်ညာသည်",
         "context": "⑭ 平気（へいき）で嘘（うそ）をつく",
@@ -13000,6 +15150,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-24-subchapter-2",
         "term": "迷惑（めいわく）",
         "meaning": "အနှောင့်အယှက်ဖြစ်စေခြင်း (Annoyance, trouble)",
         "context": "⑮ 人（ひと）の迷惑（めいわく）になる",
@@ -13059,9 +15210,29 @@ export const chapters = [
   {
     "id": "part-2-chapter-25",
     "number": "2.4",
-    "title": "副詞（ふくし）・程度（ていど）の表現（ひょうげん） / ဝိဘတ်နှင့် အခြေအနေပြ ဝေါဟာရများ",
+    "sourceNumber": "2.4",
+    "title": "4課（か）：副詞（ふくし）",
+    "subchapters": [
+      {
+        "id": "part-2-chapter-25-subchapter-1",
+        "number": "1",
+        "title": "副詞（ふくし）①",
+        "parentChapterId": "part-2-chapter-25",
+        "studyTab": "Vocab",
+        "sourcePage": 110
+      },
+      {
+        "id": "part-2-chapter-25-subchapter-2",
+        "number": "2",
+        "title": "副詞（ふくし）②",
+        "parentChapterId": "part-2-chapter-25",
+        "studyTab": "Vocab",
+        "sourcePage": 111
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "およそ",
         "meaning": "ခန့်မှန်းခြေ / အတူတူလောက် (About, approximately)",
         "context": "① 東京（とうきょう）までおよそ50分（ごじゅっぷん）で着（つ）く",
@@ -13070,6 +15241,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "着（つ）く",
         "meaning": "ရောက်ရှိသည်",
         "context": "① 東京（とうきょう）までおよそ50分（ごじゅっぷん）で着（つ）く",
@@ -13078,6 +15250,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "かなり",
         "meaning": "အတော်လေး / အသင့်အတင့်ထက်ပို၍ (Rather, substantially)",
         "context": "② その時計（とけい）はかなり高（たか）そうだ",
@@ -13086,6 +15259,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "高（たか）そう",
         "meaning": "ဈေးကြီးပုံပေါက်သည်",
         "context": "② その時計（とけい）はかなり高（たか）そうだ",
@@ -13094,6 +15268,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "多少（たしょう）",
         "meaning": "အနည်းငယ် / အသင့်အတင့် (Somewhat)",
         "context": "③ 熱（ねつ）が多少（たしょう）下（さ）がった",
@@ -13102,6 +15277,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "下（さ）がる",
         "meaning": "ကျဆင်းသည်",
         "context": "③ 熱（ねつ）が多少（たしょう）下（さ）がった",
@@ -13110,6 +15286,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "すべて",
         "meaning": "အားလုံး (All)",
         "context": "④ 電気（でんき）がすべて消（き）えた",
@@ -13118,6 +15295,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "消（き）える",
         "meaning": "ငြိမ်းသွားသည် / ကွယ်ပျောက်သည်",
         "context": "④ 電気（でんき）がすべて消（き）えた",
@@ -13126,6 +15304,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "まったく",
         "meaning": "လုံးဝ (Absolutely, completely)",
         "context": "⑤ まったく日本語（にほんご）が話（はな）せない",
@@ -13134,6 +15313,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "話（はな）せない",
         "meaning": "စကားမပြောနိုင်ပါ",
         "context": "⑤ まったく日本語（にほんご）が話（はな）せない",
@@ -13142,6 +15322,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "一度（いちど）に",
         "meaning": "တစ်ပြိုင်နက်တည်း / တစ်ကြိမ်တည်းဖြင့် (At once, simultaneously)",
         "context": "⑥ 一度（いちど）にたくさん本（ほん）を運（はこ）ぶ",
@@ -13150,6 +15331,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "運（はこ）ぶ",
         "meaning": "သယ်ဆောင်သည်",
         "context": "⑥ 一度（いちど）にたくさん本（ほん）を運（はこ）ぶ",
@@ -13158,6 +15340,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "偶然（ぐうぜん）",
         "meaning": "မထင်မှတ်ဘဲ / တိုက်ဆိုင်စွာ (By chance, by accident)",
         "context": "⑦ 偶然（ぐうぜん）先生（せんせい）に会（あ）った",
@@ -13166,6 +15349,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "会（あ）う",
         "meaning": "တွေ့ဆုံသည်",
         "context": "⑦ 偶然（ぐうぜん）先生（せんせい）に会（あ）った",
@@ -13174,6 +15358,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "たまに",
         "meaning": "တစ်ခါတလေ (Occasionally, rarely)",
         "context": "⑧ たまにそばを食（た）べる",
@@ -13182,6 +15367,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "食（た）べる",
         "meaning": "စားသည်",
         "context": "⑧ たまにそばを食（た）べる",
@@ -13190,6 +15376,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "早速（さっそく）",
         "meaning": "ချက်ချင်းပင် / ပြီးတာနဲ့တစ်ပြိုင်နက် (Immediately, straightaway)",
         "context": "⑨ 新（あたら）しい服（ふく）を早速（さっそく）着（き）てみた",
@@ -13198,6 +15385,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "着（き）る",
         "meaning": "ဝတ်ဆင်သည်",
         "context": "⑨ 新（あたら）しい服（ふく）を早速（さっそく）着（き）てみた",
@@ -13206,6 +15394,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "実（じつ）は",
         "meaning": "အမှန်တော့ / တကယ်တော့ (In truth, in fact)",
         "context": "⑩ 実（じつ）はお金（かね）がない",
@@ -13214,6 +15403,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "お金（かね）",
         "meaning": "ပိုက်ဆံ",
         "context": "⑩ 実（じつ）はお金（かね）がない",
@@ -13222,6 +15412,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "実際（じっさい）に",
         "meaning": "တကယ်တမ်းမှာ (Actually, really)",
         "context": "⑪ 実際（じっさい）に料理（りょうり）を作（つく）ってみる",
@@ -13230,6 +15421,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "料理（りょうり）を作る（つくる）",
         "meaning": "ဟင်းချက်သည်",
         "context": "⑪ 実際（じっさい）に料理（りょうり）を作（つく）ってみる",
@@ -13238,6 +15430,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "意外（いがい）",
         "meaning": "ထင်မှတ်မထားဘဲ / မမျှော်လင့်ဘဲ (Unexpectedly)",
         "context": "⑫ 意外（いがい）レストランはすいていた (※ 意外（いがい）に - いがいに)",
@@ -13246,6 +15439,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "すいている",
         "meaning": "လူပါးသည် / နေရာလွတ်သည်",
         "context": "⑫ 意外（いがい）レストランはすいていた (※ 意外（いがい）に - いがいに)",
@@ -13254,6 +15448,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "少なくとも（すくなくとも）",
         "meaning": "အနည်းဆုံးတော့ (At least)",
         "context": "⑬ 少（すく）なくとも1時間（いちじかん）は勉強（べんきょう）している",
@@ -13262,6 +15457,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "勉強（べんきょう）する",
         "meaning": "စာကျက်သည်",
         "context": "⑬ 少（すく）なくとも1時間（いちじかん）は勉強（べんきょう）している",
@@ -13270,6 +15466,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "せっかく",
         "meaning": "အားစိုက်ထုတ်ပြီး / အခွင့်ကောင်းယူ၍ (Expressly, specially)",
         "context": "⑭ せっかく作（つく）ったのに、誰（だれ）も食（た）べない",
@@ -13278,6 +15475,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "誰（だれ）も",
         "meaning": "ဘယ်သူမှ",
         "context": "⑭ せっかく作（つく）ったのに、誰（だれ）も食（た）べない",
@@ -13286,6 +15484,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "確か（たしか）",
         "meaning": "သေချာပေါက်လိုလို / မှတ်မိသလောက်ကတော့ (Certainly, no doubt)",
         "context": "⑮ 確（たし）か森（もり）さんは39歳（さんじゅうきゅうさい）だったと思（おも）う",
@@ -13294,6 +15493,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "思う（おもう）",
         "meaning": "ထင်သည်",
         "context": "⑮ 確（たし）か森（もり）さんは39歳（さんじゅうきゅうさい）だったと思（おも）う",
@@ -13302,6 +15502,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "とにかく",
         "meaning": "ဘာပဲဖြစ်ဖြစ် / မည်သို့ပင်ဆိုစေ (Anyway, at any rate)",
         "context": "⑮ 確（たし）か森（もり）さんは39歳（さんじゅうきゅうさい）だったと思（おも）う",
@@ -13310,6 +15511,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "思い切り（おもいきり）",
         "meaning": "စိတ်ကြိုက် / အားကုန် (So much, to one's heart's content)",
         "context": "⑰ 思（おも）い切（き）り・思（おも）いっきり泳（およ）ぎたい",
@@ -13318,6 +15520,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "泳（およ）ぐ",
         "meaning": "ရေကူးသည်",
         "context": "⑰ 思（おも）い切（き）り・思（おも）いっきり泳（およ）ぎたい",
@@ -13326,6 +15529,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "わざと",
         "meaning": "ရည်ရွယ်ချက်ရှိရှိဖြင့် / တမင်တကာ (Deliberately, on purpose)",
         "context": "⑰ 思（おも）い切（き）り・思（おも）いっきり泳（およ）ぎたい",
@@ -13334,6 +15538,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-1",
         "term": "負（ま）ける",
         "meaning": "ရှုံးပေးသည်",
         "context": "⑰ 思（おも）い切（き）り・思（おも）いっきり泳（およ）ぎたい",
@@ -13342,6 +15547,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "まさか",
         "meaning": "လုံးဝ မထင်မှတ်ထားခဲ့မိပါ (That's exactly what I wasn't expecting)",
         "context": "① まさか雨（あめ）が降（ふ）るとは思（おも）わなかった",
@@ -13350,6 +15556,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "雨（あめ）が降る（ふる）",
         "meaning": "မိုးရွာသည်",
         "context": "① まさか雨（あめ）が降（ふ）るとは思（おも）わなかった",
@@ -13358,6 +15565,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "まるでおよそ",
         "meaning": "လုံးဝကို ... နဲ့တူနေတာပဲ / အတိအကျကို (Completely, just as if)",
         "context": "② まるできちんと子供（こども）みたいだ (※ まるで)",
@@ -13366,6 +15574,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "子供（こども）みたい",
         "meaning": "ကလေးလိုပဲ",
         "context": "② まるできちんと子供（こども）みたいだ (※ まるで)",
@@ -13374,6 +15583,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "もしかしたら",
         "meaning": "တစ်စုံတစ်ရာ ဖြစ်နိုင်ခြေရှိသည် / တော်ကြာနေ (Might well, very likely)",
         "context": "③ もしかしたら行（い）けないかもしれない",
@@ -13382,6 +15592,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "行け（いけ）ない",
         "meaning": "မသွားနိုင်ဘူး",
         "context": "③ もしかしたら行（い）けないかもしれない",
@@ -13390,6 +15601,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "もしも",
         "meaning": "အကယ်၍သာ (If)",
         "context": "④ もしも怪我（けが）をしたら、大変（たいへん）だ",
@@ -13398,6 +15610,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "怪我（けが）をする",
         "meaning": "ထိခိုက်ဒဏ်ရာရသည်",
         "context": "④ もしも怪我（けが）をしたら、大変（たいへん）だ",
@@ -13406,6 +15619,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "いくら",
         "meaning": "ဘယ်လောက်ပဲ ... သလို (However much, however many)",
         "context": "⑤ いくら探（さが）しても、見（み）つからない",
@@ -13414,6 +15628,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "見つから（みつから）ない",
         "meaning": "ရှာမတွေ့ဘူး",
         "context": "⑤ いくら探（さが）しても、見（み）つからない",
@@ -13422,6 +15637,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "どうしても",
         "meaning": "ဘယ်လိုမှကို ... မဖြစ်နိုင်ဘူး (I just cannot)",
         "context": "⑥ どうしても思（おも）い出（だ）せない",
@@ -13430,6 +15646,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "思い出せ（おもいだせ）ない",
         "meaning": "သတိရမရနိုင်ဘူး",
         "context": "⑥ どうしても思（おも）い出（だ）せない",
@@ -13438,6 +15655,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "別に（べつに）",
         "meaning": "အထူးတလည်တော့ဖြင့်မဟုတ်ပါ (Not particularly)",
         "context": "⑦ 別（べつ）に困（こま）っていない",
@@ -13446,6 +15664,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "困っ（こまっ）ていない",
         "meaning": "အခက်အခဲမရှိပါ",
         "context": "⑦ 別（べつ）に困（こま）っていない",
@@ -13454,6 +15673,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "何で（なんで）",
         "meaning": "ဘာကြောင့်လဲ (Why? What for?)",
         "context": "⑧ 何（なん）で怒（おこ）っているのか",
@@ -13462,6 +15682,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "怒っ（おこっ）ている",
         "meaning": "ဒေါသထွက်နေတာလဲ",
         "context": "⑧ 何（なん）で怒（おこ）っているのか",
@@ -13470,6 +15691,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "間もなく（まもなく）",
         "meaning": "မကြာခင်မှာတင် (Soon)",
         "context": "⑨ 間（ま）もなくバスが来（く）る",
@@ -13478,6 +15700,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "バスが来る（くる）",
         "meaning": "ဘတ်စ်ကားရောက်လာမည်",
         "context": "⑨ 間（ま）もなくバスが来（く）る",
@@ -13486,6 +15709,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "いよいよ",
         "meaning": "နောက်ဆုံးတော့ / အခုတော့ဖြင့် (At last, finally)",
         "context": "⑩ いよいよ試合（しはい）が始（はじ）まる",
@@ -13494,6 +15718,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "試合（しあい）が始まる（はじまる）",
         "meaning": "ပွဲစတင်တော့မည်",
         "context": "⑩ いよいよ試合（しはい）が始（はじ）まる",
@@ -13502,6 +15727,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "そろそろ",
         "meaning": "တဖြည်းဖြည်းချင်း / အချိန်ကျလာပြီ (Soon, about time)",
         "context": "⑪ そろそろ寝（ね）る時間（じかん）だ",
@@ -13510,6 +15736,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "寝る（ねる）時間（じかん）",
         "meaning": "အိပ်ရမည့်အချိန်",
         "context": "⑪ そろそろ寝（ね）る時間（じかん）だ",
@@ -13518,6 +15745,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "さっき",
         "meaning": "ခုနလေးတင်ကမှ (Just now, a few moments ago)",
         "context": "⑫ さっき食（た）えたばかりだ (※ 食（しょく）たべた - たべた)",
@@ -13526,6 +15754,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "食べ（たべ）たばかり",
         "meaning": "စားပြီးစပဲရှိသေးသည်",
         "context": "⑫ さっき食（た）えたばかりだ (※ 食（しょく）たべた - たべた)",
@@ -13534,6 +15763,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "しばらく",
         "meaning": "ခေတ္တခဏမျှ (For a while, for the moment)",
         "context": "⑬ しばらく駅（えき）で待（ま）っていた",
@@ -13542,6 +15772,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "駅（えき）で待っ（まっ）ていた",
         "meaning": "ဘူတာရုံမှာ စောင့်နေခဲ့သည်",
         "context": "⑬ しばらく駅（えき）で待（ま）っていた",
@@ -13550,6 +15781,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "今にも（いまにも）",
         "meaning": "ချက်ချင်းဆိုသလို / အချိန်မရွေး (At any moment, imminently)",
         "context": "⑭ 今（いま）にも雨（あめ）が降（ふ）りそうだ",
@@ -13558,6 +15790,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "降り（おり）そう",
         "meaning": "မိုးရွာတော့မလိုလို",
         "context": "⑭ 今（いま）にも雨（あめ）が降（ふ）りそうだ",
@@ -13566,6 +15799,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "結局（けっきょく）",
         "meaning": "နောက်ဆုံးတော့လည်း / အဆုံးသတ်မှာတော့ (In the end, as it turned out)",
         "context": "⑮ 頑張（がんば）ったが、結局（けっきょく）だめだった",
@@ -13574,6 +15808,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "だめだった",
         "meaning": "အလုပ်မဖြစ်ခဲ့ပါ",
         "context": "⑮ 頑張（がんば）ったが、結局（けっきょく）だめだった",
@@ -13582,6 +15817,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "とうとう",
         "meaning": "အဆုံးသတ်မှာတော့ / တကယ်တမ်းကျတော့ (Finally, at length)",
         "context": "⑯ 二人（ふたり）とはとうとう別（わか）れた",
@@ -13590,6 +15826,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "別れ（わかれ）た",
         "meaning": "လမ်းခွဲခဲ့ကြသည်",
         "context": "⑯ 二人（ふたり）とはとうとう別（わか）れた",
@@ -13598,6 +15835,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "ようやく",
         "meaning": "အခက်အခဲများစွာနဲ့ နောက်ဆုံးတော့ (Eventually, finally)",
         "context": "⑰ ようやく病気（びょうき）が治（なお）った",
@@ -13606,6 +15844,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "病気（びょうき）が治っ（なおっ）た",
         "meaning": "ရောဂါပျောက်ကင်းသွားသည်",
         "context": "⑰ ようやく病気（びょうき）が治（なお）った",
@@ -13614,6 +15853,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "ついに",
         "meaning": "နောက်ဆုံးတော့ဖြင့် (At long last, finally)",
         "context": "⑱ ついに答（こた）えが見（み）つかった",
@@ -13622,6 +15862,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-25-subchapter-2",
         "term": "答え（こたえ）が見つかっ（みつかっ）た",
         "meaning": "အဖြေကို တွေ့ရှိခဲ့ရသည်",
         "context": "⑱ ついに答（こた）えが見（み）つかった",
@@ -13665,9 +15906,29 @@ export const chapters = [
   {
     "id": "part-2-chapter-26",
     "number": "2.5",
-    "title": "擬音（ぎおん）語（ご）・擬態語（ぎたいご） / အသံတုနှင့် ပုံစံတုစကားများ",
+    "sourceNumber": "2.5",
+    "title": "5課（か）：オノマトペ",
+    "subchapters": [
+      {
+        "id": "part-2-chapter-26-subchapter-1",
+        "number": "1",
+        "title": "オノマトペ①",
+        "parentChapterId": "part-2-chapter-26",
+        "studyTab": "Vocab",
+        "sourcePage": 114
+      },
+      {
+        "id": "part-2-chapter-26-subchapter-2",
+        "number": "2",
+        "title": "オノマトペ②",
+        "parentChapterId": "part-2-chapter-26",
+        "studyTab": "Vocab",
+        "sourcePage": 115
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-1",
         "term": "ぐっすり",
         "meaning": "ခြုံခြုံစက်စက် / အိပ်မောကျစွာ (Soundly, fast asleep)",
         "context": "① ぐっすり寝（ね）る",
@@ -13676,6 +15937,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-1",
         "term": "寝る（ねる）",
         "meaning": "အိပ်သည်",
         "context": "① ぐっすり寝（ね）る",
@@ -13684,6 +15946,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-1",
         "term": "じっと",
         "meaning": "ငေးစိုက်၍ / တစိမ့်စိမ့်ဖြင့် (Expresses fixity of look, quiet endurance)",
         "context": "② じっと見（み）る／じっとする",
@@ -13692,6 +15955,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-1",
         "term": "見る（みる）",
         "meaning": "ကြည့်သည်",
         "context": "② じっと見（み）る／じっとする",
@@ -13700,6 +15964,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-1",
         "term": "じろじろ",
         "meaning": "စူးစူးစိုက်စိုက် (စပ်စုသလို) ဝေ့ကြည့်သည် (Staring intently)",
         "context": "③ じろじろ見（み）る",
@@ -13708,6 +15973,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-1",
         "term": "にっこり",
         "meaning": "ပြုံးပြုံးလေး (Smile)",
         "context": "④ にっこり笑（わら）う",
@@ -13716,6 +15982,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-1",
         "term": "笑う（わらう）",
         "meaning": "ရယ်သည်",
         "context": "④ にっこり笑（わら）う",
@@ -13724,6 +15991,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-1",
         "term": "のろのろ",
         "meaning": "နှေးကွေးလေးလံစွာ (Sluggish, slow)",
         "context": "⑤ のろのろ歩（ある）く",
@@ -13732,6 +16000,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-1",
         "term": "歩く（あるく）",
         "meaning": "လမ်းလျှောက်သည်",
         "context": "⑤ のろのろ歩（ある）く",
@@ -13740,6 +16009,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-1",
         "term": "うっかり",
         "meaning": "သတိလွတ်၍ / မှားယွင်းမေ့လျော့သွားသည် (Carelessly, forgetfully)",
         "context": "⑥ うっかり忘（わす）れる",
@@ -13748,6 +16018,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-1",
         "term": "忘れる（わすれる）",
         "meaning": "မေ့သည်",
         "context": "⑥ うっかり忘（わす）れる",
@@ -13756,6 +16027,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-1",
         "term": "こっそり",
         "meaning": "ခိုးကြောင်ခိုးဝှက်ဖြင့် (Secretly, stealthily)",
         "context": "⑦ こっそりお酒（さけ）を飲（の）む",
@@ -13764,6 +16036,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-1",
         "term": "お酒（さけ）を飲む（のむ）",
         "meaning": "အရက်သောက်သည်",
         "context": "⑦ こっそりお酒（さけ）を飲（の）む",
@@ -13772,6 +16045,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-1",
         "term": "そっと",
         "meaning": "ဖွဖွလေး / တိုးတိုးတိတ်တိတ်ဖြင့် (Softly, furtively)",
         "context": "⑧ そっとドアを閉（し）める",
@@ -13780,6 +16054,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-1",
         "term": "ドアを閉める（しめる）",
         "meaning": "တံခါးပိတ်သည်",
         "context": "⑧ そっとドアを閉（し）める",
@@ -13788,6 +16063,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-1",
         "term": "ごろごろ",
         "meaning": "လူးလွန့်လှဲလျောင်း၍ အလဟဿ အချိန်ကုန်သည် (Idling, lounging around)",
         "context": "⑨ 一日中（いちにちじゅう）ごろごろしている",
@@ -13796,6 +16072,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-1",
         "term": "にこにこ",
         "meaning": "အမြဲတမ်း ပြုံးရွှင်နေသည် (Smiling manner)",
         "context": "⑩ いつもにこにこしている",
@@ -13804,6 +16081,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-1",
         "term": "いらいら",
         "meaning": "စိတ်တိုဒေါသထွက်သည် / စိတ်မရှည်ဖြစ်သည် (Annoyance, frustration)",
         "context": "⑪ バスが来（こ）なくて、いらいらする",
@@ -13812,6 +16090,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-1",
         "term": "うきうき",
         "meaning": "ပျော်ရွှင်ပေါ့ပါးနေသည် (Cheerfulness, lightheartedness)",
         "context": "⑫ 恋人（こいびと）ができて、うきうきしている",
@@ -13820,6 +16099,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-1",
         "term": "どきどき",
         "meaning": "ရင်ခုန်လှုပ်ရှားနေသည် (Palpitation, throbbing)",
         "context": "⑬ 発表（はっぴょう）があるので、どきどきする",
@@ -13828,6 +16108,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-1",
         "term": "わくわく",
         "meaning": "စိတ်လှုပ်ရှားပျော်ရွှင်စရာကောင်းစွာ မျှော်လင့်နေသည် (Excitement, nervousness)",
         "context": "⑭ 明日（あす）から旅行（りょこう）で、わくわくしている",
@@ -13836,6 +16117,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-1",
         "term": "がっかり",
         "meaning": "စိတ်ပျက်အားငယ်သွားသည် (Disappointment)",
         "context": "⑮ 試合（しあい）に負（ま）けて、がっかりしている",
@@ -13844,6 +16126,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-1",
         "term": "ほっとして",
         "meaning": "စိတ်အေးလက်အေး သက်ပြင်းချနိုင်သွားသည် (Relief)",
         "context": "⑯ テストが終（お）わって、ほっとしている",
@@ -13852,6 +16135,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-1",
         "term": "ふらふら",
         "meaning": "ခေါင်းမူးဝေ၍ ယိုင်နဲ့နဲ့ဖြစ်နေသည် (Felt dizzy, unstable)",
         "context": "⑰ 熱（ねつ）が高（たか）くて、ふらふらする",
@@ -13860,6 +16144,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-1",
         "term": "ぺらぺら",
         "meaning": "ကျွမ်းကျင်ပိုင်နိုင်စွာ (တရစပ်) ပြောဆိုနိုင်သည် (Fluency in a language)",
         "context": "⑰ 熱（ねつ）が高（たか）くて、ふらふらする",
@@ -13868,6 +16153,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-2",
         "term": "ぐんぐん",
         "meaning": "တရှိန်ထိုး / လျင်မြန်စွာ (Expresses steady growth or improvement)",
         "context": "① ぐんぐん背（せ）が伸（の）びる",
@@ -13876,6 +16162,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-2",
         "term": "背（せ）が伸びる（のびる）",
         "meaning": "အရပ်ရှည်လာသည်",
         "context": "① ぐんぐん背（せ）が伸（の）びる",
@@ -13884,6 +16171,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-2",
         "term": "すっかり",
         "meaning": "အလုံးစုံ / လုံးဝကို (Expresses completeness, wholeness)",
         "context": "② 仕事（しごと）にすっかり慣（な）れる",
@@ -13892,6 +16180,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-2",
         "term": "仕事（しごと）に慣れる（なれる）",
         "meaning": "အလုပ်နှင့် ရင်းနှီးကျွမ်းဝင်လာသည်",
         "context": "② 仕事（しごと）にすっかり慣（な）れる",
@@ -13900,6 +16189,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-2",
         "term": "ぴったり",
         "meaning": "ကိုက်ညီကျပ်တည်းစွာ / အံဝင်ခွင်ကျ (Expresses exactness, perfection)",
         "context": "③ サイズがぴったり合（あ）う",
@@ -13908,6 +16198,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-2",
         "term": "サイズが合う（あう）",
         "meaning": "ဆိုဒ်ကိုက်ညီသည်",
         "context": "③ サイズがぴったり合（あ）う",
@@ -13916,6 +16207,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-2",
         "term": "ぎりぎり",
         "meaning": "အနိုင်နိုင် / ကပ်သီးကပ်ဖျား (Used for when a situation is touch-and-go)",
         "context": "④ 授業（じゅぎょう）にぎりぎり間（ま）に合（あ）う",
@@ -13924,6 +16216,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-2",
         "term": "間に合う（まにあう）",
         "meaning": "အချိန်မီသည်",
         "context": "④ 授業（じゅぎょう）にぎりぎり間（ま）に合（あ）う",
@@ -13932,6 +16225,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-2",
         "term": "しっかり",
         "meaning": "ပြည့်ဝစွာ / သေချာခိုင်မာစွာ (Properly, rigorously)",
         "context": "⑤ 朝御飯（あさごはん）をしっかり食（た）べる",
@@ -13940,6 +16234,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-2",
         "term": "朝（あさ）御飯（ごはん）を食べる（たべる）",
         "meaning": "မနက်စာစားသည်",
         "context": "⑤ 朝御飯（あさごはん）をしっかり食（た）べる",
@@ -13948,6 +16243,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-2",
         "term": "ぴかぴか",
         "meaning": "တလက်လက် တောက်ပြောင်အောင် (Expresses brightness, shininess)",
         "context": "⑥ 靴（くつ）をぴかぴかに磨（みが）く",
@@ -13956,6 +16252,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-2",
         "term": "靴（くつ）を磨く（みがく）",
         "meaning": "ဖိနပ်တိုက်သည်",
         "context": "⑥ 靴（くつ）をぴかぴかに磨（みが）く",
@@ -13964,6 +16261,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-2",
         "term": "ぎっしり",
         "meaning": "ကျပ်သိပ်နေအောင် / ပြည့်နှက်နေအောင် (Expresses tightness, closeness of packing)",
         "context": "⑦ お菓子（かし）がぎっしり入（はい）っている",
@@ -13972,6 +16270,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-2",
         "term": "入っ（はいっ）ている",
         "meaning": "ပါဝင်သည် / ထည့်ထားသည်",
         "context": "⑦ お菓子（かし）がぎっしり入（はい）っている",
@@ -13980,6 +16279,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-2",
         "term": "たっぷり",
         "meaning": "ပုံအော၍ / များပြားစွာ (Plenty of)",
         "context": "⑧ 野菜（やさい）がたっぷり入（はい）っている",
@@ -13988,6 +16288,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-2",
         "term": "さっぱり",
         "meaning": "အရသာ ပေါ့ပါးလန်းဆန်းသော (Expresses sense of refreshment or tidiness)",
         "context": "⑨ 味（あじ）がさっぱりしている",
@@ -13996,6 +16297,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-2",
         "term": "ごちゃごちゃ",
         "meaning": "ရှုပ်ပွယှက်တင်နေသော (Expresses messiness, confusion, disorder)",
         "context": "⑩ 机（つくえ）の上（うえ）がごちゃごちゃしている",
@@ -14004,6 +16306,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-2",
         "term": "めちゃくちゃ",
         "meaning": "အစအနမကျန်အောင် ပျက်စီးချို့ယွင်းသွားသော (Messiness, ruin)",
         "context": "⑪ 事故（じこ）で車（くるま）がめちゃくちゃになる",
@@ -14012,6 +16315,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-2",
         "term": "しんと / しいん",
         "meaning": "အသံတိတ်ဆိတ် ငြိမ်သက်သွားသော (Expresses silence, stillness)",
         "context": "⑫ 教室（きょうしつ）がしんと・しいんとなる",
@@ -14020,6 +16324,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-2",
         "term": "ぼろぼろ",
         "meaning": "စုတ်ပြဲဟောင်းနွမ်းနေသော (Expresses worn-out or tattered state)",
         "context": "⑬ 服（ふく）がぼろぼろだ",
@@ -14028,6 +16333,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-2",
         "term": "きらきら",
         "meaning": "တလက်လက် တောက်ပနေသော (Sparkling or twinkling quality)",
         "context": "⑭ 星（ほし）がきらきら光（ひか）る",
@@ -14036,6 +16342,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-2",
         "term": "からから / がらがら",
         "meaning": "လူသူကင်းမဲ့၍ ကျဲပါးနေသော (Expresses emptiness, lack of passengers)",
         "context": "⑮ 電車（でんしゃ）がからからだ (※ がらがら)",
@@ -14044,6 +16351,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-2",
         "term": "ぐらぐら",
         "meaning": "လှုပ်ရမ်း၍ တုန်ခါနေသော (Be wobbly, unsteady)",
         "context": "⑯ 歯（は）がぐらぐらする",
@@ -14052,6 +16360,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-2",
         "term": "ばらばら",
         "meaning": "ကွဲပြားခြားနားနေသော / စုစည်းမှုမရှိသော (Expresses diversity, disparity)",
         "context": "⑰ みんな意見（いけん）がばらばらだ",
@@ -14060,6 +16369,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-26-subchapter-2",
         "term": "そっくり",
         "meaning": "လုံးဝတူပွားနေသော (Expresses close resemblance)",
         "context": "⑰ みんな意見（いけん）がばらばらだ",
@@ -14111,9 +16421,29 @@ export const chapters = [
   {
     "id": "part-2-chapter-27",
     "number": "2.6",
-    "title": "文法（ぶんぽう）的（てき）な特徴（とくちょう）による分類（ぶんるい） / သဒ္ဒါပိုင်းဆိုင်ရာ လက္ခဏာအလိုက် အမျိုးအစားခွဲခြားခြင်း",
+    "sourceNumber": "2.6",
+    "title": "6課（か）：間違え（まちがえ）やすい漢語（かんご）",
+    "subchapters": [
+      {
+        "id": "part-2-chapter-27-subchapter-1",
+        "number": "1",
+        "title": "な形容詞（けいようし）と間違え（まちがえ）やすいもの",
+        "parentChapterId": "part-2-chapter-27",
+        "studyTab": "Vocab",
+        "sourcePage": 118
+      },
+      {
+        "id": "part-2-chapter-27-subchapter-2",
+        "number": "2",
+        "title": "する動詞（どうし）と間違え（まちがえ）やすいもの、「的（まと）」が付く（つく）もの",
+        "parentChapterId": "part-2-chapter-27",
+        "studyTab": "Vocab",
+        "sourcePage": 119
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-1",
         "term": "一流（いちりゅう）",
         "meaning": "ပထမတန်းစား / ထိပ်တန်း (First-rate)",
         "context": "① 一流（いちりゅう）の大学（だいがく）",
@@ -14122,6 +16452,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-1",
         "term": "大学（だいがく）",
         "meaning": "တက္ကသိုလ်",
         "context": "① 一流（いちりゅう）の大学（だいがく）",
@@ -14130,6 +16461,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-1",
         "term": "一部（いちぶ）",
         "meaning": "တစ်စိတ်တစ်ပိုင်း / အချို့ (Some of)",
         "context": "② 一部（いちぶ）の学生（がくせい）",
@@ -14138,6 +16470,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-1",
         "term": "学生（がくせい）",
         "meaning": "ကျောင်းသား",
         "context": "② 一部（いちぶ）の学生（がくせい）",
@@ -14146,6 +16479,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-1",
         "term": "最新（さいしん）",
         "meaning": "နောက်ဆုံးပေါ် / အခေတ်မီဆုံး (Latest)",
         "context": "③ 最新（さいしん）の研究（けんきゅう）",
@@ -14154,6 +16488,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-1",
         "term": "研究（けんきゅう）",
         "meaning": "သုတေသန",
         "context": "③ 最新（さいしん）の研究（けんきゅう）",
@@ -14162,6 +16497,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-1",
         "term": "最終（さいしゅう）",
         "meaning": "နောက်ဆုံး (Last, final)",
         "context": "④ 最終（さいしゅう）の飛行機（ひこうき）",
@@ -14170,6 +16506,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-1",
         "term": "飛行機（ひこうき）",
         "meaning": "လေယာဉ်",
         "context": "④ 最終（さいしゅう）の飛行機（ひこうき）",
@@ -14178,6 +16515,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-1",
         "term": "流行（りゅうこう）",
         "meaning": "ခေတ်စားနေခြင်း (Fashion, fad)",
         "context": "⑤ 流行（りゅうこう）の服（ふく）",
@@ -14186,6 +16524,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-1",
         "term": "服（ふく）",
         "meaning": "အဝတ်အစား",
         "context": "⑤ 流行（りゅうこう）の服（ふく）",
@@ -14194,6 +16533,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-1",
         "term": "実際（じっさい）",
         "meaning": "အမှန်တကယ် (Actual, real)",
         "context": "⑥ 実際（じっさい）の話（はなし）",
@@ -14202,6 +16542,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-1",
         "term": "話（はなし）",
         "meaning": "စကားပြောဆိုချက် / အကြောင်းအရာ",
         "context": "⑥ 実際（じっさい）の話（はなし）",
@@ -14210,6 +16551,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-1",
         "term": "頭痛（ずつう）",
         "meaning": "ခေါင်းကိုက်ခြင်း (Headache)",
         "context": "⑦ 頭痛（ずつう）がする",
@@ -14218,6 +16560,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-1",
         "term": "余裕（よゆう）",
         "meaning": "ပိုလျှံမှု / လွတ်လပ်သက်သာမှု (Leeway, scope, room for)",
         "context": "⑧ 余裕（よゆう）のある生活（せいかつ）",
@@ -14226,6 +16569,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-1",
         "term": "生活（せいかつ）",
         "meaning": "နေထိုင်မှုဘဝ",
         "context": "⑧ 余裕（よゆう）のある生活（せいかつ）",
@@ -14234,6 +16578,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-1",
         "term": "安定（あんてい）",
         "meaning": "တည်ငြိမ်ခိုင်မာခြင်း (Stability)",
         "context": "⑨ 安定（あんてい）した生活（せいかつ）",
@@ -14242,6 +16587,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-1",
         "term": "緊張（きんちょう）",
         "meaning": "တင်းမာစိတ်လှုပ်ရှားခြင်း (Tension)",
         "context": "⑩ 緊張（きんちょう）した声（こえ）",
@@ -14250,6 +16596,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-1",
         "term": "混雑（こんざつ）",
         "meaning": "လူစည်ကားကျပ်တည်းခြင်း (Congestion)",
         "context": "⑪ 混雑（こんざつ）したバス",
@@ -14258,6 +16605,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-1",
         "term": "発達（はったつ）",
         "meaning": "ဖွံ့ဖြိုးတိုးတက်ခြင်း (Development)",
         "context": "⑫ 科学（かがく）が発達（はったつ）した国（くに）",
@@ -14266,6 +16614,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-1",
         "term": "不足（ふそく）",
         "meaning": "လိုအပ်လျော့ပါးခြင်း (Shortage)",
         "context": "⑬ 水（みず）が不足（ふそく）する",
@@ -14274,6 +16623,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-1",
         "term": "一致（いっち）",
         "meaning": "တူညီကိုက်ညီခြင်း (Consistency, agreement)",
         "context": "⑭ 意見（いけん）が一致（いっち）する",
@@ -14282,6 +16632,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-1",
         "term": "混乱（こんらん）",
         "meaning": "ရှုပ်ထွေးဝေခွဲမရဖြစ်ခြင်း (Confusion)",
         "context": "⑮ 頭（あたま）が混乱（こんらん）する",
@@ -14290,6 +16641,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "関心（かんしん）",
         "meaning": "စိတ်ဝင်စားမှု (Interest)",
         "context": "① 日本（にほん）に関心（かんしん）がある",
@@ -14298,6 +16650,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "日本（にほん）",
         "meaning": "ဂျပန်နိုင်ငံ",
         "context": "① 日本（にほん）に関心（かんしん）がある",
@@ -14306,6 +16659,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "自信（じしん）",
         "meaning": "ယုံကြည်ချက် (Confidence)",
         "context": "② 勝（か）つ自信（じしん）がある",
@@ -14314,6 +16668,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "勝つ（かつ）",
         "meaning": "အနိုင်ရသည်",
         "context": "② 勝（か）つ自信（じしん）がある",
@@ -14322,6 +16677,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "感覚（かんかく）",
         "meaning": "ခံစားချက် / အာရုံခံစားမှု (Feeling, sensation)",
         "context": "③ 痛（いた）いという感覚（かんかく）はない",
@@ -14330,6 +16686,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "痛い（いたい）",
         "meaning": "နာကျင်သည်",
         "context": "③ 痛（いた）いという感覚（かんかく）はない",
@@ -14338,6 +16695,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "参考（さんこう）",
         "meaning": "ကိုးကားအသုံးပြုခြင်း (Reference)",
         "context": "④ 教科書（きょうかしょ）を参考（さんこう）にする",
@@ -14346,6 +16704,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "教科書（きょうかしょ）",
         "meaning": "ဖတ်စာအုပ်",
         "context": "④ 教科書（きょうかしょ）を参考（さんこう）にする",
@@ -14354,6 +16713,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "秘密（ひみつ）",
         "meaning": "လျှို့ဝှက်ချက် (Secret)",
         "context": "⑤ 結婚（けっこん）したことを秘密（ひみつ）にする",
@@ -14362,6 +16722,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "結婚（けっこん）する",
         "meaning": "လက်ထပ်သည်",
         "context": "⑤ 結婚（けっこん）したことを秘密（ひみつ）にする",
@@ -14370,6 +16731,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "評判（ひょうばん）",
         "meaning": "နာမည်ကျော်ကြားမှု / သတင်းကောင်း (Reputation)",
         "context": "⑥ 歌（うた）がうまいうえに評判（ひょうばん）だ (※ 評判（ひょうばん） - ひょうばん)",
@@ -14378,6 +16740,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "出身（しゅっしん）",
         "meaning": "မွေးရပ်ဇာတိ / ມາពីဒေသ (Place of origin)",
         "context": "⑦ 彼（かれ）は広島（ひろしま）の出身（しゅっしん）だ",
@@ -14386,6 +16749,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "広島（ひろしま）",
         "meaning": "ဟီရိုရှီးမား",
         "context": "⑦ 彼（かれ）は広島（ひろしま）の出身（しゅっしん）だ",
@@ -14394,6 +16758,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "夢中（むちゅう）",
         "meaning": "နှစ်မြောစွဲလမ်းနေခြင်း (Fully absorbed in)",
         "context": "⑧ 映画（えいが）に夢中（むちゅう）だ",
@@ -14402,6 +16767,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "面倒（めんどう）",
         "meaning": "လုပ်ရတာ ရှုပ်ထွေးပင်ပန်းစရာကောင်းခြင်း (Bother, trouble)",
         "context": "⑨ 掃除（そうじ）をするのが面倒（めんどう）だ",
@@ -14410,6 +16776,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "掃除（そうじ）をする",
         "meaning": "အမှိုက်သန့်ရှင်းရေးလုပ်သည်",
         "context": "⑨ 掃除（そうじ）をするのが面倒（めんどう）だ",
@@ -14418,6 +16785,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "被害（ひがい）",
         "meaning": "ထိခိုက်ဆုံးရှုံးမှု / ဒုက္ခ (Damage, harm)",
         "context": "⑩ 台風（たいふう）の被害（ひがい）を受（う）ける",
@@ -14426,6 +16794,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "台風（たいふう）",
         "meaning": "မုန်တိုင်း",
         "context": "⑩ 台風（たいふう）の被害（ひがい）を受（う）ける",
@@ -14434,6 +16803,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "感動的（かんどうてき）",
         "meaning": "စိတ်လှုပ်ရှားကြည်နူးဖွယ်ကောင်းသော (Be impressed, touched)",
         "context": "⑪ 感動的（かんどうてき）な話（はなし）",
@@ -14442,6 +16812,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "話（はなし）",
         "meaning": "စကား / အကြောင်းအရာ",
         "context": "⑪ 感動的（かんどうてき）な話（はなし）",
@@ -14450,6 +16821,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "基本的（きほんてき）",
         "meaning": "အခြေခံကျသော (Basic)",
         "context": "⑫ 基本的（きほんてき）な質問（しつもん）",
@@ -14458,6 +16830,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "質問（しつもん）",
         "meaning": "မေးခွန်း",
         "context": "⑫ 基本的（きほんてき）な質問（しつもん）",
@@ -14466,6 +16839,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "現実的（げんじてき）",
         "meaning": "လက်တွေ့ကျသော (Realistic)",
         "context": "⑬ 現実的（げんじてき）な計画（けいかく）",
@@ -14474,6 +16848,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "計画（けいかく）",
         "meaning": "အစီအစဉ်",
         "context": "⑬ 現実的（げんじてき）な計画（けいかく）",
@@ -14482,6 +16857,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "積極的（せっきょくてき）",
         "meaning": "တက်ကြွစွာ ပါဝင်ဆောင်ရွက်တတ်သော (Positive)",
         "context": "⑭ 積極的（せっきょくてき）な人（ひと）",
@@ -14490,6 +16866,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "人（ひと）",
         "meaning": "လူ",
         "context": "⑭ 積極的（せっきょくてき）な人（ひと）",
@@ -14498,6 +16875,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "伝統的（でんとうてき）",
         "meaning": "ရိုးရာဓလေ့ထقالလာနှင့်ဆိုင်သော (Traditional)",
         "context": "⑮ 伝統的（でんとうてき）な文化（ぶんか）",
@@ -14506,6 +16884,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "文化（ぶんか）",
         "meaning": "ယဉ်ကျေးမှု",
         "context": "⑮ 伝統的（でんとうてき）な文化（ぶんか）",
@@ -14514,6 +16893,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "平均的（へいきんてき）",
         "meaning": "ပုံမှန်ပျမ်းမျှဖြစ်သော (Average)",
         "context": "⑯ 平均的（へいきんてき）な値段（ねだん）",
@@ -14522,6 +16902,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "値段（ねだん）",
         "meaning": "ဈေးနှုန်း",
         "context": "⑯ 平均的（へいきんてき）な値段（ねだん）",
@@ -14530,6 +16911,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "理想的（りそうてき）",
         "meaning": "စံပြဖြစ်သော / စိတ်ကူးထဲကအတိုင်း ဖြစ်သော (Ideal, optimal)",
         "context": "⑰ 理想的（りそうてき）な相手（あいて）",
@@ -14538,6 +16920,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-27-subchapter-2",
         "term": "相手（あいて）",
         "meaning": "ဆက်ဆံဖော် / တစ်ဖက်လူ",
         "context": "⑰ 理想的（りそうてき）な相手（あいて）",
@@ -14585,9 +16968,29 @@ export const chapters = [
   {
     "id": "part-2-chapter-28",
     "number": "2.7",
-    "title": "類義語（るいぎご）・表現（ひょうげん）のペア / အနီးစပ်ဆုံး အဓိပ္ပာယ်တူ စကားစုများ",
+    "sourceNumber": "2.7",
+    "title": "7課（か）：言い換え（いいかえ）類（るい）義（よし）",
+    "subchapters": [
+      {
+        "id": "part-2-chapter-28-subchapter-1",
+        "number": "1",
+        "title": "動詞（どうし）、名詞（めいし）",
+        "parentChapterId": "part-2-chapter-28",
+        "studyTab": "Vocab",
+        "sourcePage": 122
+      },
+      {
+        "id": "part-2-chapter-28-subchapter-2",
+        "number": "2",
+        "title": "形容詞（けいようし）、副詞（ふくし）、オノマトペ",
+        "parentChapterId": "part-2-chapter-28",
+        "studyTab": "Vocab",
+        "sourcePage": 123
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "交換（こうかん）する / 取り替える（とりかえる）",
         "meaning": "လဲလှယ်သည် (Replace, replacement)",
         "context": "① 鍵（かぎ）を（交換（こうかん）する・取（と）り替（か）える）",
@@ -14596,6 +16999,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "鍵（かぎ）",
         "meaning": "သော့",
         "context": "① 鍵（かぎ）を（交換（こうかん）する・取（と）り替（か）える）",
@@ -14604,6 +17008,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "戻す（もどす） / 返す（かえす）",
         "meaning": "ပြန်ထားသည် / ပြန်ပေးသည် (Return, give back)",
         "context": "② 道具（どうぐ）を棚（たな）に（戻（もど）す・返（かえ）す）",
@@ -14612,6 +17017,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "道具（どうぐ）",
         "meaning": "ပစ္စည်းကိရိယာ / 棚 – ဗီရို၊ စင်",
         "context": "② 道具（どうぐ）を棚（たな）に（戻（もど）す・返（かえ）す）",
@@ -14620,6 +17026,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "気に入る（きにいる） / 好き（すき）になる",
         "meaning": "သဘောကျသည် / နှစ်သက်သည် (Like, be pleased with)",
         "context": "③ 絵（え）を（気（き）に入（い）る・好（す）きになる）",
@@ -14628,6 +17035,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "絵（え）",
         "meaning": "ပန်းချီကား",
         "context": "③ 絵（え）を（気（き）に入（い）る・好（す）きになる）",
@@ -14636,6 +17044,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "許可（きょか）する / 許す（ゆるす）",
         "meaning": "ခွင့်ပြုသည် (Permission, permit)",
         "context": "④ 入学（にゅうがく）を（許可（きょか）する・許（ゆる）す）",
@@ -14644,6 +17053,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "入学（にゅうがく）",
         "meaning": "ကျောင်းတက်ရောက်ခွင့်",
         "context": "④ 入学（にゅうがく）を（許可（きょか）する・許（ゆる）す）",
@@ -14652,6 +17062,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "あきらめる / やめる",
         "meaning": "လက်လျှော့သည် / စွန့်လွှတ်သည် (Give up, abandon)",
         "context": "⑤ 結婚（けっこん）を（あきらめる・やめる）",
@@ -14660,6 +17071,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "結婚（けっこん）",
         "meaning": "လက်ထပ်ခြင်း",
         "context": "⑤ 結婚（けっこん）を（あきらめる・やめる）",
@@ -14668,6 +17080,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "やり直す（やりなおす） / もう一度（もういちど）する",
         "meaning": "အစကနေ ပြန်လုပ်သည် (Rado, go over again)",
         "context": "⑥ 最初（さいしょ）から（やり直（なお）す・もう一度（いちど）する）",
@@ -14676,6 +17089,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "最初（さいしょ）",
         "meaning": "အစ",
         "context": "⑥ 最初（さいしょ）から（やり直（なお）す・もう一度（いちど）する）",
@@ -14684,6 +17098,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "気（き）を付ける（つける） / 注意（ちゅうい）する",
         "meaning": "သတိထားသည် (Be careful of)",
         "context": "⑦ 車（くるま）に（気（き）を付（つ）ける・注意（ちゅうい）する）",
@@ -14692,6 +17107,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "車（くるま）",
         "meaning": "ကား",
         "context": "⑦ 車（くるま）に（気（き）を付（つ）ける・注意（ちゅうい）する）",
@@ -14700,6 +17116,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "苦労（くろう）する / 大変（たいへん）だ",
         "meaning": "အပင်ပန်းခံရသည် / ခက်ခဲသည် (Hardship, difficulty)",
         "context": "⑧ 病気（びょうき）で（苦労（くろう）する・大変（たいへん）だ）",
@@ -14708,6 +17125,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "病気（びょうき）",
         "meaning": "ရောဂါ",
         "context": "⑧ 病気（びょうき）で（苦労（くろう）する・大変（たいへん）だ）",
@@ -14716,6 +17134,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "くたびれる / 疲れる（つかれる）",
         "meaning": "ပင်ပန်းနွမ်းနယ်သည် (Get tired, be tired)",
         "context": "⑨ 仕事（しごと）が多く（おおく）（おおく）て、（くたびれる・疲（つ）れる）",
@@ -14724,6 +17143,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "仕事（しごと）",
         "meaning": "အလုပ်",
         "context": "⑨ 仕事（しごと）が多く（おおく）（おおく）て、（くたびれる・疲（つ）れる）",
@@ -14732,6 +17152,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "決まり（きまり） / ルール / 規則（きそく）",
         "meaning": "စည်းကမ်း (Rule, regulation)",
         "context": "⑩ （決（き）まり・ルール・規則（きそく））を守（まも）る",
@@ -14740,6 +17161,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "守る（まもる）",
         "meaning": "လိုက်နာသည်",
         "context": "⑩ （決（き）まり・ルール・規則（きそく））を守（まも）る",
@@ -14748,6 +17170,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "プラン / 計画（けいかく）",
         "meaning": "အစီအစဉ် (Plan)",
         "context": "⑪ （プラン・計画（けいかく））を立（た）てる",
@@ -14756,6 +17179,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "立てる（たてる）",
         "meaning": "ရေးဆွဲသည် / ချမှတ်သည်",
         "context": "⑪ （プラン・計画（けいかく））を立（た）てる",
@@ -14764,6 +17188,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "わけ / 理由（りゆう）",
         "meaning": "အကြောင်းရင်း (Reason, ground)",
         "context": "⑫ （わけ・理由（りゆう））を聞（き）く",
@@ -14772,6 +17197,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "聞く（きく）",
         "meaning": "မေးမြန်းသည် / နားထောင်သည်",
         "context": "⑫ （わけ・理由（りゆう））を聞（き）く",
@@ -14780,6 +17206,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "長所（ちょうしょ） / よいところ",
         "meaning": "အားသာချက် / အကောင်းဆုံးအချက် (Merit, advantage)",
         "context": "⑬ （長所（ちょうしょ）・よいところ）を褒（ほ）める",
@@ -14788,6 +17215,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "褒める（ほめる）",
         "meaning": "ချီးကျူးသည်",
         "context": "⑬ （長所（ちょうしょ）・よいところ）を褒（ほ）める",
@@ -14796,6 +17224,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "短所（たんしょ） / 欠点（けってん） / 悪い（わるい）ところ",
         "meaning": "အားနည်းချက် / အပြစ်အနာအဆာ (Demerit, shortcoming)",
         "context": "⑭ （短所（たんしょ）・欠点（けってん）・悪（わる）いところ）がある",
@@ -14804,6 +17233,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "共通（きょうつう）点（てん） / 同じ（おなじ）ところ",
         "meaning": "တူညီသော အချက် (Shared characteristic)",
         "context": "⑮ （共通点（きょうつうてん）・同（おとな）じところ）がある (※ 同じ（おなじ）ところ - おなじところ)",
@@ -14812,6 +17242,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "アイデア / 考え（かんがえ）",
         "meaning": "အကြံဉာဏ် (Idea, thought)",
         "context": "⑯ （いいいい・アイデア・考（かんが）え）がある (※ いいえ → いいアイデア / 考え（かんがえ）)",
@@ -14820,6 +17251,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "イメージ / 印象（いんしょう）",
         "meaning": "အထင်အမြင် / ပုံရိပ် (Image, impression)",
         "context": "⑰ （イメージ・印象（いんしょう））がよくない",
@@ -14828,6 +17260,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "レベル / 程度（ていど）",
         "meaning": "အဆင့် (Level, degree)",
         "context": "⑱ （レベル・程度（ていど））が低（ひく）い",
@@ -14836,6 +17269,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "低い（ひくい）",
         "meaning": "နိမ့်ကျသည်",
         "context": "⑱ （レベル・程度（ていど））が低（ひく）い",
@@ -14844,6 +17278,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "暮らし（くらし） / 生活（せいかつ）",
         "meaning": "နေထိုင်မှုဘဝ (Livelihood, life)",
         "context": "⑲ 普通（ふつう）の（暮（く）らし・生活（せいかつ））",
@@ -14852,6 +17287,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "普通（ふつう）",
         "meaning": "ပုံမှန်",
         "context": "⑲ 普通（ふつう）の（暮（く）らし・生活（せいかつ））",
@@ -14860,6 +17296,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "誤り（あやまり） / 間違い（まちがい）",
         "meaning": "အမှား (Error, mistake)",
         "context": "⑳ 文法（ぶんぽう）の（誤（あやま）り・間（ま）ちがい）",
@@ -14868,6 +17305,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-1",
         "term": "文法（ぶんぽう）",
         "meaning": "သဒ္ဒါ",
         "context": "⑳ 文法（ぶんぽう）の（誤（あやま）り・間（ま）ちがい）",
@@ -14876,6 +17314,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "きつい / 大変（たいへん）だ",
         "meaning": "ပင်ပန်းသည် / ခက်ခဲသည် (Tough, demanding)",
         "context": "① 仕事（しごと）が（きつい・大変（たいへん）だ）",
@@ -14884,6 +17323,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "仕事（しごと）",
         "meaning": "အလုပ်",
         "context": "① 仕事（しごと）が（きつい・大変（たいへん）だ）",
@@ -14892,6 +17332,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "苦しい（くるしい） / 我慢（がまん）できない",
         "meaning": "နေရထိုင်ရ ခက်ခဲသည် / သည်းမခံနိုင်အောင် ဖြစ်သည် (Painful, in discomfort)",
         "context": "② 熱（ねつ）が高（たか）くて、（苦（く）しい・我慢（がまん）できない）",
@@ -14900,6 +17341,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "熱（ねつ）が高い（たかい）",
         "meaning": "ဖျားနာ၍ အပူချိန်ကြီးသည်",
         "context": "② 熱（ねつ）が高（たか）くて、（苦（く）しい・我慢（がまん）できない）",
@@ -14908,6 +17350,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "短気（たんき）な / すぐ怒る（おこる）",
         "meaning": "စိတ်တိုလွယ်သော / ဒေါသကြီးသော (Short-tempered)",
         "context": "③ （短気（たんき）な・すぐ怒（おこ）る）人（ひと）",
@@ -14916,6 +17359,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "人（ひと）",
         "meaning": "လူ",
         "context": "③ （短気（たんき）な・すぐ怒（おこ）る）人（ひと）",
@@ -14924,6 +17368,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "賢い（かしこい） / 頭（あたま）がいい",
         "meaning": "ထက်မြက်သော / ဉာဏ်ကောင်းသော (Intelligent)",
         "context": "④ （賢（かしこ）い・頭（あたま）がいい）子供（こども）",
@@ -14932,6 +17377,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "子供（こども）",
         "meaning": "ကလေး",
         "context": "④ （賢（かしこ）い・頭（あたま）がいい）子供（こども）",
@@ -14940,6 +17386,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "幼い（おさない） / 小さい（ちいさい）",
         "meaning": "ငယ်ရွယ်စဉ် / ငယ်စဉ်ကတည်းက (Little, very young)",
         "context": "⑤ （幼（おさな）い・小（小）さい）ころからの友達（ともだち） (※ 小さい（ちいさい） - ちいさい)",
@@ -14948,6 +17395,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "友達（ともだち）",
         "meaning": "သူငယ်ချင်း",
         "context": "⑤ （幼（おさな）い・小（小）さい）ころからの友達（ともだち） (※ 小さい（ちいさい） - ちいさい)",
@@ -14956,6 +17404,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "単純（たんじゅん）だ / シンプルだ",
         "meaning": "ရိုးရှင်းလွယ်ကူသော (Simple, basic)",
         "context": "⑥ 答（こた）えは（単純（たんじゅん）だ・シンプルだ）",
@@ -14964,6 +17413,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "答え（こたえ）",
         "meaning": "အဖြေ",
         "context": "⑥ 答（こた）えは（単純（たんじゅん）だ・シンプルだ）",
@@ -14972,6 +17422,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "当然（とうぜん）だ / 当たり前（あたりまえ）だ",
         "meaning": "သဘာဝကျသော / ထိုက်တန်သော (As a matter of course)",
         "context": "⑦ 叱（しか）れて、（当然（とうぜん）だ・当（あ）たり前（まえ）だ） (※ 叱ら（しから）れて - しかられて)",
@@ -14980,6 +17431,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "叱ら（しから）れる",
         "meaning": "ဆူပူကြိမ်းမောင်းခံရသည်",
         "context": "⑦ 叱（しか）れて、（当然（とうぜん）だ・当（あ）たり前（まえ）だ） (※ 叱ら（しから）れて - しかられて)",
@@ -14988,6 +17440,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "さっき / 少し（すこし）前（まえ）に",
         "meaning": "ခုနလေးတင်က / အနည်းငယ်ရှေ့ပိုင်းက (Just now, a few moments ago)",
         "context": "⑧ （さっき・少し（すこし）前（すこしまえ）に）聞（き）いた",
@@ -14996,6 +17449,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "聞く（きく）",
         "meaning": "ကြားသိသည် / မေးမြန်းသည်",
         "context": "⑧ （さっき・少し（すこし）前（すこしまえ）に）聞（き）いた",
@@ -15004,6 +17458,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "この頃（ころ） / 最近（さいきん）",
         "meaning": "ဒီတလော / မကြာသေးမီက (These days, nowadays)",
         "context": "⑨ （この頃（ごろ）・最近（さいきん））とても忙（いそが）しい",
@@ -15012,6 +17467,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "忙しい（いそがしい）",
         "meaning": "အလုပ်ရှုပ်သည်",
         "context": "⑨ （この頃（ごろ）・最近（さいきん））とても忙（いそが）しい",
@@ -15020,6 +17476,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "年中（ねんじゅう） / いつも",
         "meaning": "တစ်နှစ်ပတ်လုံး / အမြဲတမ်း (All year round, always)",
         "context": "⑩ （年中（ねんじゅう）いつも）けんかしている",
@@ -15028,6 +17485,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "けんかする",
         "meaning": "ရန်ဖြစ်သည်",
         "context": "⑩ （年中（ねんじゅう）いつも）けんかしている",
@@ -15036,6 +17494,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "突然（とつぜん） / 急（きゅう）に",
         "meaning": "ရုတ်တရက် / မထင်မှတ်ဘဲ (Suddenly)",
         "context": "⑪ （突然（とつぜん）・急（きゅう）に）雨（あめ）が降（ふ）ってきた",
@@ -15044,6 +17503,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "雨（あめ）が降る（ふる）",
         "meaning": "မိုးရွာသည်",
         "context": "⑪ （突然（とつぜん）・急（きゅう）に）雨（あめ）が降（ふ）ってきた",
@@ -15052,6 +17512,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "再び（ふたたび） / もう一度（もういちど）",
         "meaning": "ထပ်မံ၍ / တစ်ခေါက်ပြန်၍ (Once more, again)",
         "context": "⑫ （再（ふたた）び・もう一度（いちど））来（く）る",
@@ -15060,6 +17521,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "来る（くる）",
         "meaning": "လာသည်",
         "context": "⑫ （再（ふたた）び・もう一度（いちど））来（く）る",
@@ -15068,6 +17530,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "なるべく / できるだけ",
         "meaning": "တတ်နိုင်သမျှ (As ... as possible)",
         "context": "⑬ （なるべく・できるだけ）早（はや）くする",
@@ -15076,6 +17539,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "早く（はやく）する",
         "meaning": "အမြန်လုပ်သည်",
         "context": "⑬ （なるべく・できるだけ）早（はや）くする",
@@ -15084,6 +17548,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "絶対（ぜったい）に / 必ず（かならず）",
         "meaning": "သေချာပေါက် / မုချဧကန် (For sure, absolutely)",
         "context": "⑭ （絶対（ぜったい）に・必（かなら）ず）勝（か）つ",
@@ -15092,6 +17557,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "勝つ（かつ）",
         "meaning": "အနိုင်ရသည်",
         "context": "⑭ （絶対（ぜったい）に・必（かなら）ず）勝（か）つ",
@@ -15100,6 +17566,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "相当（そうとう） / かなり",
         "meaning": "အတော်လေး / တော်တော်တန်တန် (Somewhat, considerably)",
         "context": "⑮ 値段（ねだん）が（相当（そうとう）・かなり）違（ちが）う",
@@ -15108,6 +17575,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "値段（ねだん）が違う（ちがう）",
         "meaning": "ဈေးနှုန်းကွာခြားသည်",
         "context": "⑮ 値段（ねだん）が（相当（そうとう）・かなり）違（ちが）う",
@@ -15116,6 +17584,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "そっくりだ / よく似（に）ている",
         "meaning": "လုံးဝတူပွားနေသော / အလွန်တူသော (Expresses close resemblance)",
         "context": "⑯ あの兄弟（きょうだい）は（そっくりだ・よく似（に）ている）",
@@ -15124,6 +17593,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "兄弟（きょうだい）",
         "meaning": "ညီအစ်ကိုမောင်နှမ",
         "context": "⑯ あの兄弟（きょうだい）は（そっくりだ・よく似（に）ている）",
@@ -15132,6 +17602,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "ぼんやりする / はっきりしない",
         "meaning": "တွေဝေေ၀ါးနေသော / စိတ်မကြည်လင်သော (Vaguely, vacantly)",
         "context": "⑰ 頭（あたま）が（ぼんやりする・はっきりしない）",
@@ -15140,6 +17611,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-28-subchapter-2",
         "term": "にこにこしている / 楽し（たのし）そうに笑っ（わらっ）ている",
         "meaning": "အမြဲတမ်း ပြုံးရွှင်နေသော (Smiling manner)",
         "context": "⑰ 頭（あたま）が（ぼんやりする・はっきりしない）",
@@ -15191,9 +17663,29 @@ export const chapters = [
   {
     "id": "part-2-chapter-29",
     "number": "2.8",
-    "title": "接頭（せっとう）辞（じ）・接尾（せつび）辞（じ） / ရှေ့ဆက်နှင့် နောက်ဆက် စကားလုံးများ",
+    "sourceNumber": "2.8",
+    "title": "8課（か）：語（かたり）形成（けいせい）",
+    "subchapters": [
+      {
+        "id": "part-2-chapter-29-subchapter-1",
+        "number": "1",
+        "title": "複合語（ふくごうご）",
+        "parentChapterId": "part-2-chapter-29",
+        "studyTab": "Vocab",
+        "sourcePage": 126
+      },
+      {
+        "id": "part-2-chapter-29-subchapter-2",
+        "number": "2",
+        "title": "ほかの言葉（ことば）に付く（つく）もの",
+        "parentChapterId": "part-2-chapter-29",
+        "studyTab": "Vocab",
+        "sourcePage": 127
+      }
+    ],
     "cards": [
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "見送る（みおくる）",
         "meaning": "လိုက်လံပို့ဆောင်သည် (See off, give a send-off)",
         "context": "① 友達（ともだち）を見送（みお）る",
@@ -15202,6 +17694,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "友達（ともだち）",
         "meaning": "သူငယ်ချင်း",
         "context": "① 友達（ともだち）を見送（みお）る",
@@ -15210,6 +17703,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "見直す（みなおす）",
         "meaning": "ပြန်လည်စစ်ဆေးသည် / သုံးသပ်သည် (Review, revise)",
         "context": "② 計画（けいかく）を見直（みなお）す",
@@ -15218,6 +17712,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "計画（けいかく）",
         "meaning": "အစီအစဉ်",
         "context": "② 計画（けいかく）を見直（みなお）す",
@@ -15226,6 +17721,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "受け入れる（うけいれる）",
         "meaning": "လက်ခံသည် (Accept)",
         "context": "③ 反対意見（はんたいいけん）を受け（うけ）入（うけい）れる",
@@ -15234,6 +17730,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "反対（はんたい）意見（いけん）",
         "meaning": "ဆန့်ကျင်ဘက် အမြင်သဘောထား",
         "context": "③ 反対意見（はんたいいけん）を受け（うけ）入（うけい）れる",
@@ -15242,6 +17739,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "受け取る（うけとる）",
         "meaning": "လက်ခံရယူသည် (Receive)",
         "context": "④ 荷物（にもつ）を受（う）け取（と）る",
@@ -15250,6 +17748,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "荷物（にもつ）",
         "meaning": "ကုန်ပစ္စည်း / အထုပ်အပိုး",
         "context": "④ 荷物（にもつ）を受（う）け取（と）る",
@@ -15258,6 +17757,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "引き受ける（ひきうける）",
         "meaning": "တာဝန်ယူသည် / လက်ခံလုပ်ကိုင်သည် (Take on, accept)",
         "context": "⑤ 仕事（しごと）を引き（ひき）受（ひきう）ける",
@@ -15266,6 +17766,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "仕事（しごと）",
         "meaning": "အလုပ်",
         "context": "⑤ 仕事（しごと）を引き（ひき）受（ひきう）ける",
@@ -15274,6 +17775,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "申し込む（もうしこむ）",
         "meaning": "လျှောက်ထားသည် / လက်ထပ်ခွင့်တောင်းသည် (Apply for, propose)",
         "context": "⑥ 結婚（けっこん）を申（もう）し込（こ）む",
@@ -15282,6 +17784,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "結婚（けっこん）",
         "meaning": "လက်ထပ်ခြင်း",
         "context": "⑥ 結婚（けっこん）を申（もう）し込（こ）む",
@@ -15290,6 +17793,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "取り消す（とりけす）",
         "meaning": "ပယ်ဖျက်သည် / ဖျက်သိမ်းသည် (Cancel, annul)",
         "context": "⑦ ホテルの予約（よやく）を取（と）り消（け）す",
@@ -15298,6 +17802,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "予約（よやく）",
         "meaning": "ကြိုတင်စာရင်းပေးခြင်း",
         "context": "⑦ ホテルの予約（よやく）を取（と）り消（け）す",
@@ -15306,6 +17811,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "繰り返す（くりかえす）",
         "meaning": "ထပ်တလဲလဲ လုပ်သည် (Repeat)",
         "context": "⑧ 練習（れんしゅう）を繰（く）り返（かえ）す",
@@ -15314,6 +17820,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "練習（れんしゅう）",
         "meaning": "လေ့ကျင့်ခန်း",
         "context": "⑧ 練習（れんしゅう）を繰（く）り返（かえ）す",
@@ -15322,6 +17829,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "やり直す（やりなおす）",
         "meaning": "အစကနေ ပြန်လုပ်သည် (Redo, go over again)",
         "context": "⑨ 掃除（そうじ）をやリ直（なお）す",
@@ -15330,6 +17838,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "掃除（そうじ）",
         "meaning": "အမှိုက်သန့်ရှင်းရေး",
         "context": "⑨ 掃除（そうじ）をやリ直（なお）す",
@@ -15338,6 +17847,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "落ち着く（おちつく）",
         "meaning": "စိတ်တည်ငြိမ်သွားသည် (Calm, composed)",
         "context": "⑩ 気持（きも）ちが落（お）ち着（つく） (※ 落ち着く（おちつく）)",
@@ -15346,6 +17856,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "気持ち（きもち）",
         "meaning": "စိတ်ခံစားချက်",
         "context": "⑩ 気持（きも）ちが落（お）ち着（つく） (※ 落ち着く（おちつく）)",
@@ -15354,6 +17865,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "区切る（くぎる）",
         "meaning": "ပိုင်းခြားသည် / ခြားထားသည် (Demarcate, separate)",
         "context": "⑪ カーテンで部屋（へや）を区切（くぎ）る",
@@ -15362,6 +17874,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "カーテン",
         "meaning": "ကုလားကာ / 部屋 – အခန်း",
         "context": "⑪ カーテンで部屋（へや）を区切（くぎ）る",
@@ -15370,6 +17883,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "出会う（であう）",
         "meaning": "မထင်မှတ်ဘဲ ဆုံတွေ့သည် (Come across, meet)",
         "context": "⑫ 素晴（すば）らしい本（ほん）に出会（であ）う",
@@ -15378,6 +17892,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "素晴らしい（すばらしい）本（ほん）",
         "meaning": "အလွန်ကောင်းမွန်သော စာအုပ်",
         "context": "⑫ 素晴（すば）らしい本（ほん）に出会（であ）う",
@@ -15386,6 +17901,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "出来上がる（できあがる）",
         "meaning": "ပြီးစီးသွားသည် / ချက်ပြုတ်ပြီးစီးသည် (Complete, finish off)",
         "context": "⑬ 料理（りょうり）が出来（でき）上（あ）がる",
@@ -15394,6 +17910,7 @@ export const chapters = [
         "generated": false
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "料理（りょうり）",
         "meaning": "ဟင်းလျာ",
         "context": "⑬ 料理（りょうり）が出来（でき）上（あ）がる",
@@ -15402,6 +17919,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "通り過ぎる（とおりすぎる）",
         "meaning": "ဖြတ်ကျော်သွားသည် (Pass by, pass through)",
         "context": "⑭ 駅（えき）の前（まえ）を通（とお）り過（す）ぎる",
@@ -15410,6 +17928,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "駅（えき）の前（まえ）",
         "meaning": "ဘူတာရုံရှေ့",
         "context": "⑭ 駅（えき）の前（まえ）を通（とお）り過（す）ぎる",
@@ -15418,6 +17937,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "話し合う（はなしあう）",
         "meaning": "ဆွေးနွေးတိုင်ပင်သည် (Discuss, thrash out)",
         "context": "⑮ 二人（ふたり）で将来（しょうらい）について話（はな）し合（あ）う",
@@ -15426,6 +17946,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "将来（しょうらい）",
         "meaning": "အနာဂတ်",
         "context": "⑮ 二人（ふたり）で将来（しょうらい）について話（はな）し合（あ）う",
@@ -15434,6 +17955,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "打ち合わせ（うちあわせ）をする",
         "meaning": "လုပ်ငန်းညှိနှိုင်းဆွေးနွေးပွဲ လုပ်သည် (Preparatory meeting)",
         "context": "⑯ 仕事（しごと）の打（う）ち合（あ）わせをする",
@@ -15442,6 +17964,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "待ち合わせ（まちあわせ）をする",
         "meaning": "ချိန်းဆိုတွေ့ဆုံရန် စောင့်ဆိုင်းသည် (Rendezvous, appointment)",
         "context": "⑰ 先生（せんせい）と駅（えき）で待（ま）ち合（あ）わせをする",
@@ -15450,6 +17973,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "決める（きめる）",
         "meaning": "ဆုံးဖြတ်သည် (Destination)",
         "context": "⑱ 旅行（りょこう）の行（い）き先（さき）を決（き）める",
@@ -15458,6 +17982,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-1",
         "term": "旅行（りょこう）の行き先（ゆきさき）",
         "meaning": "ခရီးသွားမည့်နေရာ",
         "context": "⑱ 旅行（りょこう）の行（い）き先（さき）を決（き）める",
@@ -15466,6 +17991,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-2",
         "term": "大（だい）〜",
         "meaning": "ကြီးမားသော / အဓိကကျသော (Heavy, main, big, large, major)",
         "context": "① 大（だい）〜 (だい〜 / おお〜): 大雨（おおあめ）、大通り（おおどおり）、大（だい）掃除（そうじ）、大（だい）家族（かぞく）、大（だい）問題（もんだい）、大（だい）先輩（せんぱい）",
@@ -15474,6 +18000,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-2",
         "term": "各（かく）〜",
         "meaning": "တစ်ခုစီသော / အသီးသီးသော (Each)",
         "context": "② 各（かく）〜 (かく〜): 各（かく）部屋（へや）、各（かく）家庭（かてい）、各（かく）大学（だいがく）",
@@ -15482,6 +18009,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-2",
         "term": "片（かた）〜",
         "meaning": "တစ်ဖက်တည်းသော / တစ်ခြမ်းပါသော (Single)",
         "context": "③ 片（へん）〜 (かた〜): 片方（かたほう）、片足（かたあし）、片側（かたがわ）",
@@ -15490,6 +18018,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-2",
         "term": "全（ぜん）〜",
         "meaning": "အလုံးစုံ / အကုန်လုံးသော (The whole, all)",
         "context": "④ 全（ぜん）〜 (ぜん〜): 全（ぜん）世界（せかい）、全（ぜん）試合（しあい）、全（ぜん）生徒（せいと）",
@@ -15498,6 +18027,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-2",
         "term": "元（もと）〜",
         "meaning": "ရှေးဟောင်း / ယခင်က ဖြစ်ခဲ့ဖူးသော (Former)",
         "context": "⑤ 元（もと）〜 (もと〜): 元（もと）社長（しゃちょう）、元夫（もとお）、元（もと）大統領（だいとうりょう）",
@@ -15506,6 +18036,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-2",
         "term": "翌（よく）〜",
         "meaning": "နောက် (နှစ်/မနက်/နွေဦး) (Next, following)",
         "context": "⑥ 翌（よく）〜 (よく〜): 翌年（よくねん）、翌朝（よくあさ）、翌（よく）春（はる）",
@@ -15514,6 +18045,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-2",
         "term": "〜毎（ごと）",
         "meaning": "တိုင်း / စီ (Once every, by)",
         "context": "⑦ 〜毎（ごと） (〜ごと): 半年（はんとし）毎（ごと）、季節（きせつ）毎（ごと）、クラス毎（ごと）",
@@ -15522,6 +18054,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-2",
         "term": "〜差（さ）",
         "meaning": "ကွာခြားချက် (A difference of)",
         "context": "⑧ 〜差（さ） (〜さ): 3点（てん）差（さ）、1分（ふん）差（さ）、10円（えん）差（さ）",
@@ -15530,6 +18063,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-2",
         "term": "〜産（さん）",
         "meaning": "ထွက်ကုန် / ဒေသထွက် (Product of)",
         "context": "⑨ 〜産（さん） (〜さん): 北海道（ほっかいどう）産（さん）、中国（ちゅうごく）産（さん）、外国（がいこく）産（さん）",
@@ -15538,6 +18072,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-2",
         "term": "〜着（ちゃく）",
         "meaning": "ရောက်ရှိမည့်အချိန်/နေရာ (Arrival)",
         "context": "⑩ 〜着（き） (〜ちゃく): 東京（とうきょう）着（ぎ）、10時（じ）着（き）、4月（つき）7日（にち）着（ぎ）",
@@ -15546,6 +18081,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-2",
         "term": "〜発（はつ）",
         "meaning": "ထွက်ခွာမည့်အချိန်/နေရာ (Departing from)",
         "context": "⑪ 〜発（はつ） (〜はつ): 大阪（おおさか）発（はつ）、3時（じ）半（はん）発（はつ）、明後日（みょうごにち）発（はつ）",
@@ -15554,6 +18090,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-2",
         "term": "〜風（かぜ）",
         "meaning": "ပုံစံ / ဟန် (Style, like)",
         "context": "⑫ 〜風（かぜ） (〜ふう): 西洋（せいよう）風（ふう）、田舎（いなか）風（ふう）、学生（がくせい）風（ふう）",
@@ -15562,6 +18099,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-2",
         "term": "〜沿い（ぞい）",
         "meaning": "တလျှောက် / ဘေးတစ်ဖက်တစ်ချက် (Along the)",
         "context": "⑬ 〜沿い（ぞい） (〜ぞい): 川（かわ）沿い（ぞい）、通り（とおり）沿い（ぞい）、海岸（かいがん）沿い（ぞい）",
@@ -15570,6 +18108,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-2",
         "term": "〜付き（つき）",
         "meaning": "ပါဝင်သော / တွဲလျက်ပါသော (Equipped, furnished with)",
         "context": "⑭ 〜付き（つき） (〜つき): カメラ付き（つき）、家具（かぐ）付き（つき）、食事（しょくじ）付き（つき）",
@@ -15578,6 +18117,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-2",
         "term": "〜引き（ひき）",
         "meaning": "လျှော့ဈေး (Off)",
         "context": "⑮ 〜引き（ひき） (〜びき): 100円（えん）引き（ひき）、5%引き（びき）、2割（わり）引き（びき）",
@@ -15586,6 +18126,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-2",
         "term": "〜振り（ふり）",
         "meaning": "(ကြာမြင့်ပြီးနောက်) တစ်ဖန်ပြန်လုပ်ခြင်း (For the first time in)",
         "context": "⑯ 〜振り（ふり） (〜ぶり): 5年（ねん）振り（ふり）、1か月（かげつ）振り（ふり）、3日（にち）振り（ふり）",
@@ -15594,6 +18135,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-2",
         "term": "〜向き（むき）",
         "meaning": "မျက်နှာမူရာ / သင့်လျော်သော (Facing)",
         "context": "⑰ 〜向き（むき） (〜むき): 東（ひがし）向き（むき）、外（そと）向き（むき）、反対（はんたい）向き（むき）",
@@ -15602,6 +18144,7 @@ export const chapters = [
         "generated": true
       },
       {
+        "sourceSubchapterId": "part-2-chapter-29-subchapter-2",
         "term": "〜行き（いき）",
         "meaning": "သွားရာလမ်းကြောင်း / ဦးတည်ရာ (Bound for)",
         "context": "⑰ 〜向き（むき） (〜むき): 東（ひがし）向き（むき）、外（そと）向き（むき）、反対（はんたい）向き（むき）",

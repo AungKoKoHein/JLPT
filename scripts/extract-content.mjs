@@ -1,5 +1,8 @@
 import { readFile, mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
+import assert from "node:assert/strict";
+
+const structure = JSON.parse(await readFile("source/vocabulary-structure.json", "utf8"));
 
 const raw = await readFile(
   resolve(process.argv[2] ?? "source/n3-vocab.txt"),
@@ -20,7 +23,9 @@ const splitPractice = (value) => {
   };
 };
 const isContext = (line) => /^[①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳]/.test(line);
-const isHeading = (line) => /^\d+[-－]\d+\s*言葉/.test(line);
+// Some extracted headings say 言語, and Chapter 13 repeats 1-2 on page two.
+// Use heading order for section numbers, verified against the scanned book.
+const isHeading = (line) => /^\d+[-－]\d+\s*言[葉語]/.test(line);
 const isPracticeHeading = (line) => /やっ.*みよう/.test(line);
 
 function parseChapter(block, index, part, number) {
@@ -28,13 +33,27 @@ function parseChapter(block, index, part, number) {
     .split("\n")
     .map((line) => line.trim())
     .filter(Boolean);
-  const title = block.match(/言葉\s*\((.*?)\)/)?.[1] ?? "Vocabulary";
+  const id = `part-${part}-chapter-${index + 1}`;
+  const sourceNumber = `${part}.${number}`;
+  const documentChapter = structure.chapters.find((chapter) => chapter.key === sourceNumber);
+  assert(documentChapter, `Missing book structure for ${sourceNumber}`);
+  const subchapters = documentChapter.sections.map((title, sectionIndex) => ({
+    id: `${id}-subchapter-${sectionIndex + 1}`,
+    number: String(sectionIndex + 1),
+    title,
+    parentChapterId: id,
+    studyTab: "Vocab",
+    sourcePage: documentChapter.page + sectionIndex,
+  }));
   const cards = [],
     practiceLines = [];
   let context = "",
-    practiceMode = false;
+    practiceMode = false,
+    sectionIndex = -1;
   for (const line of lines.slice(1)) {
     if (isHeading(line)) {
+      sectionIndex += 1;
+      assert(subchapters[sectionIndex], `Unexpected vocabulary heading: ${sourceNumber}: ${line}`);
       practiceMode = false;
       context = "";
       continue;
@@ -57,6 +76,7 @@ function parseChapter(block, index, part, number) {
       meaning = split.join(" – ").trim();
     if (term && meaning)
       cards.push({
+        sourceSubchapterId: subchapters[sectionIndex].id,
         term,
         meaning,
         context,
@@ -64,6 +84,10 @@ function parseChapter(block, index, part, number) {
         exampleMyanmar: "",
         generated: false,
       });
+  }
+  assert.equal(sectionIndex + 1, subchapters.length, `Missing vocabulary section in ${sourceNumber}`);
+  for (const section of subchapters) {
+    assert(cards.some((card) => card.sourceSubchapterId === section.id), `Empty vocabulary section: ${section.id}`);
   }
   const sourceExercises = practiceLines
     .map(splitPractice)
@@ -97,9 +121,11 @@ function parseChapter(block, index, part, number) {
           },
         ];
   return {
-    id: `part-${part}-chapter-${index + 1}`,
-    number: `${part}.${number}`,
-    title,
+    id,
+    number: part === 1 ? String(number) : sourceNumber,
+    sourceNumber,
+    title: `${number}課：${documentChapter.title}`,
+    subchapters,
     cards,
     sourceExercises,
     generatedExercises,

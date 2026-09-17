@@ -1,0 +1,13 @@
+{
+  "source": "N3 Shinkanzen Vocab.docx, printed page 81, section 2-3. Original illustrations extracted from the supplied scan; these exercises were absent from the earlier text export.",
+  "chapters": {
+    "1.19": [
+      { "section": "2-3", "question": "3匹（びき）の（_______）", "answer": "猿（さる）", "imageSrc": "images/vocabulary/chapter-19-animals-1.jpg", "imageAlt": "Three monkeys" },
+      { "section": "2-3", "question": "2（_______）の（_______）", "answer": "羽（わ）・鶏（にわとり）", "imageSrc": "images/vocabulary/chapter-19-animals-2.jpg", "imageAlt": "Two chickens" },
+      { "section": "2-3", "question": "1（_______）の（_______）", "answer": "頭（とう）・牛（うし）", "imageSrc": "images/vocabulary/chapter-19-animals-3.jpg", "imageAlt": "One cow" },
+      { "section": "2-3", "question": "1（_______）の（_______）", "answer": "匹（ぴき）・猫（ねこ）", "imageSrc": "images/vocabulary/chapter-19-animals-4.jpg", "imageAlt": "One cat" },
+      { "section": "2-3", "question": "2（_______）の（_______）", "answer": "匹（ひき）・魚（さかな）", "imageSrc": "images/vocabulary/chapter-19-animals-5.jpg", "imageAlt": "Two fish" },
+      { "section": "2-3", "question": "3（_______）の（_______）", "answer": "匹（びき）・蚊（か）", "imageSrc": "images/vocabulary/chapter-19-animals-6.jpg", "imageAlt": "Three mosquitoes" }
+    ]
+  }
+}

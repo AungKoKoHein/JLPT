@@ -30,6 +30,7 @@ export function kanjiExercises(chapters) {
 // All views select from these same records. Assignment is a link, not a copy.
 export function resolveExercises(base, content, subchapters = []) {
   const sections = new Map(subchapters.map((item) => [item.id, item]));
+  const sourceSections = new Map(subchapters.filter((item) => item.sourceId).map((item) => [item.sourceId, item]));
   const records = new Map(
     [...base, ...content.exercises].map((item) => [item._id, item]),
   );
@@ -46,7 +47,8 @@ export function resolveExercises(base, content, subchapters = []) {
         record.parentChapterId ||
         legacySection?.parentChapterId ||
         record.chapterId;
-      const assignedId = record.subchapterId ?? legacySection?.id ?? "";
+      const requestedId = record.subchapterId ?? legacySection?.id ?? "";
+      const assignedId = sourceSections.get(requestedId)?.id ?? requestedId;
       const assigned = sections.get(assignedId);
       return {
         ...record,

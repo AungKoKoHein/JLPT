@@ -81,6 +81,9 @@ export default function Exercises({
               .filter((item) => item.section === section)
               .map((item) => (
                 <li key={item._id} data-exercise-id={item._id}>
+                  {item.imageSrc && (
+                    <img className="exercise-illustration" src={`${import.meta.env.BASE_URL}${item.imageSrc}`} alt={item.imageAlt ?? "Exercise illustration"} loading="lazy" />
+                  )}
                   <p className="exercise-question" lang="ja">
                     {question(item)}
                   </p>

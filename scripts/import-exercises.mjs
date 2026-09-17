@@ -57,22 +57,35 @@ assert.deepEqual(
 const data = Object.fromEntries(chapters.map((chapter) => [chapter.id, []]));
 for (const [key, sentences] of questions) {
   const [number, section] = key.split("/");
-  const chapter = chapters.find((item) => item.number === number);
+  const chapter = chapters.find((item) => (item.sourceNumber ?? item.number) === number);
   assert(chapter, `Unknown chapter ${number}`);
   const keys = answers.get(key);
+  const subchapter = chapter.subchapters.find((item) => item.number === section.split("-")[0]);
+  assert(subchapter, `Missing vocabulary subchapter for exercise section ${key}`);
   assert.equal(
     sentences.length,
     keys.length,
     `Answer count mismatch in ${key}`,
   );
   sentences.forEach((question, index) =>
-    data[chapter.id].push({ section, question, answer: keys[index] }),
+    data[chapter.id].push({ section, subchapterId: subchapter.id, question, answer: keys[index] }),
   );
 }
 assert(
   Object.values(data).every((items) => items.length),
   "Every chapter must have exercises",
 );
+const pictureExercises = JSON.parse(await readFile("source/vocabulary-picture-exercises.json", "utf8"));
+for (const [number, items] of Object.entries(pictureExercises.chapters)) {
+  const chapter = chapters.find((item) => item.sourceNumber === number);
+  assert(chapter, `Unknown picture-exercise chapter ${number}`);
+  for (const item of items) {
+    const section = chapter.subchapters.find((section) => section.number === item.section.split("-")[0]);
+    assert(section, `Unknown picture-exercise section ${number}/${item.section}`);
+    // Append to preserve all existing exercise IDs and owner edits.
+    data[chapter.id].push({ ...item, subchapterId: section.id });
+  }
+}
 await writeFile(
   "src/data/exercises.js",
   `// Imported from the exercise sentences and answer key Word documents.\nexport const exercisesByChapter = ${JSON.stringify(data, null, 2)};\n`,
