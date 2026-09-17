@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "test": "node --test scripts/*.test.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "dev": "npm run extract && npm run annotate && vite",
@@ -15,6 +16,7 @@
   "dependencies": {
     "@vitejs/plugin-react": "latest",
     "async": "^3.2.6",
+    "firebase": "^12.19.0",
     "kuromoji": "latest",
     "react": "latest",
     "react-dom": "latest",

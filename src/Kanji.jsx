@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Exercises from "./Exercises.jsx";
+import { kanjiExercises, exercisesForView } from "./exerciseContent.js";
 import { kanjiChapter1 } from "./data/kanjiChapter1.js";
 import { kanjiChapter2 } from "./data/kanjiChapter2.js";
 import { kanjiChapter3 } from "./data/kanjiChapter3.js";
@@ -16,6 +18,8 @@ const chapters = [
   kanjiChapter6,
   kanjiChapter7,
 ];
+
+export const baseKanjiExercises = kanjiExercises(chapters);
 
 export const kanjiChapterOptions = chapters.map(({ id, number, title, sections }) => ({
   id,
@@ -39,6 +43,20 @@ export const kanjiChapterOptions = chapters.map(({ id, number, title, sections }
     })),
 }));
 
+const normalizeSearchText = (value = "") =>
+  String(value)
+    .normalize("NFKC")
+    .replace(/[\u30A1-\u30F6]/g, (char) => String.fromCharCode(char.charCodeAt(0) - 0x60))
+    .replace(/[\uFF66-\uFF9D]/g, (char) => String.fromCharCode(char.charCodeAt(0) - 0xF6))
+    .replace(/[\u3000\s\n\r\t]+/g, " ")
+    .replace(/[（）()\[\]{}「」『』、。！？・!?.、]/g, " ")
+    .trim()
+    .toLocaleLowerCase();
+const matchesSearch = (value, query) => {
+  const q = normalizeSearchText(query);
+  if (!q) return true;
+  return normalizeSearchText(value).includes(q);
+};
 const displayText = (text, showReadings) =>
   showReadings ? text : text.replace(/（[^）]*）/g, "");
 
@@ -91,7 +109,7 @@ function KanjiCard({ card, showReadings, showKanjiReadings }) {
           {card.sentence && (
             <>
               <span className="label" data-japanese>
-                Japanese sentence
+                Japanese Sentence
               </span>
               <span className="example" lang="ja">
                 {displayText(card.sentence, showReadings)}
@@ -119,103 +137,15 @@ function KanjiCard({ card, showReadings, showKanjiReadings }) {
   );
 }
 
-function KanjiExercises({ chapter, showReadings, customExercises, manageMode, onEdit, onDelete }) {
-  const [showAnswers, setShowAnswers] = useState(false);
-  const sections = chapter.sections ?? [
-    {
-      title: chapter.title,
-      reading: chapter.reading,
-      writing: chapter.writing,
-    },
-  ];
-  const count = sections.reduce(
-    (sum, section) => sum + section.reading.length + section.writing.length,
-    0,
-  );
-  return (
-    <section className="exercises" aria-label="Kanji exercises">
-      <p className="note">
-        {count} sentences · Read the underlined kanji or write the matching
-        kanji.
-      </p>
-      <button
-        type="button"
-        className="reading-toggle answer-key-toggle"
-        aria-label="Show answer key"
-        aria-pressed={showAnswers}
-        onClick={() => setShowAnswers((value) => !value)}
-      >
-        Answer key: {showAnswers ? "ON" : "OFF"}
-      </button>
-      {sections
-        .flatMap((section) => [
-          [
-            `${displayText(section.title, showReadings)} · Read the kanji · 漢字を読みましょう`,
-            section.reading,
-          ],
-          [
-            `${displayText(section.title, showReadings)} · Write the kanji · 漢字を書きましょう`,
-            section.writing,
-          ],
-        ])
-        .map(([title, questions]) => (
-          <section className="exercise-section" key={title}>
-            <h3>{title}</h3>
-            <ol>
-              {questions.map(([before, target, after, answer], index) => (
-                <li key={index}>
-                  <p className="exercise-question">
-                    {displayText(before, showReadings)}
-                    <u>{target}</u>
-                    {displayText(after, showReadings)}
-                  </p>
-                  {showAnswers && (
-                    <p className="exercise-answer">
-                      <strong>Answer:</strong> {answer}
-                    </p>
-                  )}
-                </li>
-              ))}
-            </ol>
-          </section>
-        ))}
-      {customExercises?.length > 0 && (
-        <section className="exercise-section">
-          <h3>Added exercises</h3>
-          <ol>
-            {customExercises.map((item) => (
-              <li key={item._id}>
-                <p className="exercise-question">{displayText(item.question, showReadings)}</p>
-                {showAnswers && (
-                  <p className="exercise-answer">
-                    <strong>Answer:</strong> {displayText(item.answer, showReadings)}
-                  </p>
-                )}
-                {manageMode && (
-                  <div className="item-actions">
-                    <button type="button" onClick={() => onEdit(item)}>Edit</button>
-                    <button type="button" onClick={() => onDelete(item)}>Delete</button>
-                  </div>
-                )}
-              </li>
-            ))}
-          </ol>
-        </section>
-      )}
-      {chapter.extraWords?.map((word) => (
-        <p className="note" key={word.term}>
-          {displayText(word.term, showReadings)} ·{" "}
-          <span lang="my">{word.explanation}</span>
-        </p>
-      ))}
-    </section>
-  );
-}
-
 export default function Kanji({
+  allExercises,
+  showMyanmar,
+  setShowMyanmar,
   showReadings,
   showKanjiReadings,
   manageMode,
+  canEdit,
+  isEditor,
   content,
   openEditor,
   deleteRecord,
@@ -227,6 +157,7 @@ export default function Kanji({
   const [query, setQuery] = useState("");
   const [tab, setTab] = useState("kanji");
   const [active, setActive] = useState("kanji-1");
+  const [exerciseScope, setExerciseScope] = useState("");
   const allChapters = [
     ...chapters.map((chapter) => ({
       ...chapter,
@@ -235,7 +166,7 @@ export default function Kanji({
     ...(content.chapters ?? []).filter((chapter) => chapter.studyTab === "Kanji"),
   ];
   const filteredChapters = allChapters.filter((chapter) =>
-    `${chapter.number} ${chapter.title}`.includes(chapterQuery.trim()),
+    matchesSearch(`${chapter.number} ${chapter.title}`, chapterQuery),
   );
   const selected =
     filteredChapters.find((chapter) => chapter.id === active) ??
@@ -257,15 +188,12 @@ export default function Kanji({
       .map((card) => ({ ...card, ...(content.kanjiOverrides ?? {})[card._id] }))
       .filter((card) => card.chapterId === subchapterId || card.subchapterId === subchapterId)
       .filter((card) => !(content.deletedKanjiCards ?? []).includes(card._id));
-  const customExercises = (content.exercises ?? [])
-    .filter((item) => item.studyTab === "Kanji")
-    .filter((item) =>
-      item.chapterId === selected?.id ||
-      item.parentChapterId === selected?.id ||
-      customSubchapters.some((subchapter) => subchapter.id === item.chapterId),
-    )
-    .map((item) => ({ ...item, ...(content.exerciseOverrides ?? {})[item._id] }))
-    .filter((item) => !(content.deletedExercises ?? []).includes(item._id));
+  const exerciseSubchapters = [
+    ...(kanjiChapterOptions.find((chapter) => chapter.id === selected?.id)?.subchapters ?? []),
+    ...customSubchapters,
+  ].map((section) => ({ ...section, ...content.chapterOverrides[section.id] }));
+  const exerciseAssignment = exerciseSubchapters.find((section) => section.id === exerciseScope);
+  const exercises = exercisesForView(allExercises, "Kanji", selected?.id, exerciseAssignment?.id);
   const cards = [...baseCards, ...customCards]
     .filter((card) => !(content.deletedKanjiCards ?? []).includes(card._id))
     .filter((card) =>
@@ -281,14 +209,12 @@ export default function Kanji({
           word.explanation,
         ]),
       ]
-        .join(" ")
-        .toLocaleLowerCase()
-        .includes(query.trim().toLocaleLowerCase()),
+        .some((value) => matchesSearch(value, query)),
     );
   const renderCard = (card) => (
-      <div className={`managed-item card-layout-${card.layout || "standard"}`} key={card._id ?? card.id ?? card.kanji}>
+      <div className={`managed-item card-layout-${card.layout || "standard"} ${query.trim() ? "search-hit" : ""}`} key={card._id ?? card.id ?? card.kanji}>
         <KanjiCard card={card} showReadings={showReadings} showKanjiReadings={showKanjiReadings} />
-        {manageMode && (
+        {manageMode && isEditor && (
           <div className="item-actions">
             <button type="button" onClick={() => openEditor("kanji", "edit", card)}>Edit</button>
             <button type="button" onClick={() => deleteRecord("kanji", card)}>Delete</button>
@@ -300,18 +226,20 @@ export default function Kanji({
     <>
       <section className="search-grid">
         <label htmlFor="kanji-chapter-search">
-          Search chapters
+          Search Chapters
           <input
             id="kanji-chapter-search"
+            className={chapterQuery.trim() ? (filteredChapters.length ? "search-box has-results" : "search-box no-results") : "search-box"}
             value={chapterQuery}
             onChange={(event) => setChapterQuery(event.target.value)}
             placeholder="例：生活、せいかつ"
           />
         </label>
         <label htmlFor="kanji-search">
-          Search kanji
+          Search Kanji
           <input
             id="kanji-search"
+            className={query.trim() ? (cards.length ? "search-box has-results" : "search-box no-results") : "search-box"}
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="例：起、おきる、အိပ်"
@@ -328,6 +256,7 @@ export default function Kanji({
               className={selected?.id === chapter.id ? "active" : ""}
               onClick={() => {
                 setActive(chapter.id);
+                setExerciseScope("");
                 setQuery("");
                 onChapterChange?.();
               }}
@@ -359,26 +288,28 @@ export default function Kanji({
                   aria-pressed={tab === "exercises"}
                   onClick={() => {
                     setTab("exercises");
+                    setExerciseScope("");
                     setQuery("");
                   }}
                 >
                   Exercises
                 </button>
-                <button
+                {isEditor && (<button
                   type="button"
                   className={manageMode ? "selected" : ""}
                   aria-pressed={manageMode}
+                  disabled={!canEdit}
                   onClick={() => setManageMode((value) => !value)}
                 >
                   Manage: {manageMode ? "ON" : "OFF"}
-                </button>
-                {manageMode && (
+                </button>)}
+                {manageMode && isEditor && (
                   <>
                     <button type="button" onClick={() => openEditor("chapter", "edit", { ...selected, studyTab: "Kanji" })}>
-                      Edit chapter
+                      Edit Chapter
                     </button>
                     <button type="button" onClick={() => openEditor("subchapter", "add", { studyTab: "Kanji", chapterId: selected.id })}>
-                      + Subchapter
+                      + Sub Chapter
                     </button>
                     <button type="button" onClick={() => openEditor("exercise", "add", { studyTab: "Kanji", chapterId: selected.id })}>
                       + Exercise
@@ -393,10 +324,10 @@ export default function Kanji({
                     <section className="vocab-section kanji-subchapter-section">
                       <div className="vocab-section-heading">
                         <div>
-                          <p className="eyebrow">Subchapter 1l1</p>
+                          <p className="eyebrow">Sub Chapter 1l1</p>
                           <h3 lang="ja">1l1</h3>
                         </div>
-                        {manageMode && (
+                        {manageMode && isEditor && (
                           <button
                             type="button"
                             className="section-exercise-button"
@@ -460,10 +391,10 @@ export default function Kanji({
                       <section className="kanji-lesson-group vocab-section" key={subchapter.id}>
                         <div className="vocab-section-heading">
                           <div>
-                            <p className="eyebrow">Subchapter {subchapter.number}</p>
+                            <p className="eyebrow">Sub Chapter {subchapter.number}</p>
                             <h3 lang="ja">{displayText(subchapter.title, showReadings)}</h3>
                           </div>
-                          {manageMode && (
+                          {manageMode && isEditor && (
                             <div className="item-actions">
                               <button type="button" onClick={() => openEditor("subchapter", "edit", { ...subchapter, chapterId: selected.id })}>Edit</button>
                               <button type="button" onClick={() => deleteSubchapter(subchapter)}>Delete</button>
@@ -475,7 +406,11 @@ export default function Kanji({
                       </section>
                     );
                   })}
-                  {!cards.length && <p>No matching kanji found.</p>}
+                  {!cards.length && (
+                    <div className="empty search-empty">
+                      <p>No searched record found.</p>
+                    </div>
+                  )}
                   <p className="note">
                     Character readings:{" "}
                     <a href="https://www.edrdg.org/wiki/index.php/KANJIDIC_Project">
@@ -494,19 +429,36 @@ export default function Kanji({
                   </p>
                 </>
               ) : (
-                <KanjiExercises
-                  key={selected.id}
-                  chapter={selected}
-                  showReadings={showReadings}
-                  customExercises={customExercises}
-                  manageMode={manageMode}
-                  onEdit={(item) => openEditor("exercise", "edit", item)}
-                  onDelete={(item) => deleteRecord("exercise", item)}
-                />
+                <>
+                  <label className="exercise-scope">
+                    Show Exercises For
+                    <select value={exerciseAssignment?.id ?? ""} onChange={(event) => setExerciseScope(event.target.value)}>
+                      <option value="">Main Chapter - All Exercises</option>
+                      {exerciseSubchapters.map((section) => <option key={section.id} value={section.id}>Sub Chapter {section.number}: {section.title}</option>)}
+                    </select>
+                  </label>
+                  <Exercises
+                    key={`${selected.id}:${exerciseAssignment?.id ?? "all"}`}
+                    exercises={exercises}
+                    showReadings={showReadings}
+                    showMyanmar={showMyanmar}
+                    setShowMyanmar={setShowMyanmar}
+                    assignmentLabel={exerciseAssignment?.title}
+                    onAdd={canEdit ? () => openEditor("exercise", "add", { studyTab: "Kanji", chapterId: selected.id, subchapterId: exerciseAssignment?.id ?? "" }) : undefined}
+                    onEdit={manageMode && isEditor ? (item) => openEditor("exercise", "edit", item) : undefined}
+                    onDelete={manageMode && isEditor ? (item) => deleteRecord("exercise", item) : undefined}
+                  />
+                  {!exerciseAssignment && selected.extraWords?.map((word, index) => <p className="note" key={index}>
+                    <span lang="ja">{displayText(word.term, showReadings)}</span>{" "}
+                    {showMyanmar && <span lang="my">{word.explanation}</span>}
+                  </p>)}
+                </>
               )}
             </>
           ) : (
-            <p>No matching chapter found.</p>
+            <div className="empty search-empty">
+              <p>No searched record found.</p>
+            </div>
           )}
         </article>
       </div>

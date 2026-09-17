@@ -3,7 +3,11 @@ import { createRoot } from "react-dom/client";
 import { chapters } from "./data/n3Vocabulary.js";
 import { exercisesByChapter } from "./data/exercises.js";
 import { moveVocabularyCard, resolveVocabularyCards } from "./vocabularyContent.js";
-import Kanji, { kanjiChapterOptions } from "./Kanji.jsx";
+import Exercises from "./Exercises.jsx";
+import { vocabularyExercises, resolveExercises, exercisesForView, saveExercise, unassignExercises } from "./exerciseContent.js";
+import Kanji, { kanjiChapterOptions, baseKanjiExercises } from "./Kanji.jsx";
+import { useCloudContent } from "./useCloudContent.js";
+import CloudStatus from "./CloudStatus.jsx";
 import "./styles.css";
 import "./extras.css";
 
@@ -31,46 +35,21 @@ const chapterTitle = (
         .join(" / ");
   return showReadings ? text : hideReadings(text);
 };
-const contains = (value, query) =>
-  value.toLocaleLowerCase().includes(query.toLocaleLowerCase());
+const normalizeSearchText = (value = "") =>
+  String(value)
+    .normalize("NFKC")
+    .replace(/[\u30A1-\u30F6]/g, (char) => String.fromCharCode(char.charCodeAt(0) - 0x60))
+    .replace(/[\uFF66-\uFF9D]/g, (char) => String.fromCharCode(char.charCodeAt(0) - 0xF6))
+    .replace(/[\u3000\s\n\r\t]+/g, " ")
+    .replace(/[（）()\[\]{}「」『』、。！？・!?.、]/g, " ")
+    .trim()
+    .toLocaleLowerCase();
+const contains = (value, query) => {
+  const q = normalizeSearchText(query);
+  if (!q) return true;
+  return normalizeSearchText(value).includes(q);
+};
 const parentNumber = (number) => String(number).split(".")[0];
-const emptyContent = {
-  cards: [],
-  exercises: [],
-  subchapters: [],
-  cardOverrides: {},
-  exerciseOverrides: {},
-  deletedCards: [],
-  deletedExercises: [],
-  chapterOverrides: {},
-  chapters: [],
-  kanjiCards: [],
-  kanjiOverrides: {},
-  deletedKanjiCards: [],
-};
-const readContent = () => {
-  try {
-    const saved = JSON.parse(localStorage.getItem("jlpt-user-content") || "{}");
-    return {
-      ...emptyContent,
-      ...saved,
-      chapters: saved.chapters ?? [],
-      kanjiCards: saved.kanjiCards ?? [],
-      kanjiOverrides: saved.kanjiOverrides ?? {},
-      deletedKanjiCards: saved.deletedKanjiCards ?? [],
-      chapterOverrides: saved.chapterOverrides ?? {},
-      cardOverrides: saved.cardOverrides ?? {},
-      exerciseOverrides: saved.exerciseOverrides ?? {},
-      subchapters: saved.subchapters ?? [],
-      cards: saved.cards ?? [],
-      exercises: saved.exercises ?? [],
-      deletedCards: saved.deletedCards ?? [],
-      deletedExercises: saved.deletedExercises ?? [],
-    };
-  } catch {
-    return emptyContent;
-  }
-};
 
 function BackToTop() {
   const [visible, setVisible] = useState(false);
@@ -88,7 +67,7 @@ function BackToTop() {
     <button
       type="button"
       className="reading-toggle back-to-top"
-      aria-label="Back to top"
+      aria-label="Back to Top"
       onClick={() => {
         document
           .querySelector('.study-tabs [aria-selected="true"]')
@@ -145,7 +124,7 @@ function Flashcard({
         </span>
         <span className="face back">
           <span className="label" data-japanese>
-            Japanese example
+            Japanese Example
           </span>
           <span className="example" lang="ja">
             {display(card.exampleJapanese)}
@@ -153,7 +132,7 @@ function Flashcard({
           {showMyanmar && (
             <>
               <span className="label" data-myanmar>
-                Myanmar explanation
+                Myanmar Explanation
               </span>
               <span className="mm sentence" lang="my">
                 {display(card.exampleMyanmar) ||
@@ -172,59 +151,7 @@ function Flashcard({
   );
 }
 
-function Exercises({ exercises, showReadings, onEdit, onDelete }) {
-  const [showAnswers, setShowAnswers] = useState(false);
-  const display = (text) =>
-    showReadings
-      ? text
-      : text
-          .replace(/（[ぁ-ゖァ-ヶー]+）/g, "")
-          .replace(/\s*\([ぁ-ゖァ-ヶー]+\)/g, "");
-  return (
-    <section className="exercises" aria-label="Exercises">
-      <div className="tools exercise-toolbar">
-        <p>{exercises.length} sentences · Fill in the blanks</p>
-      </div>
-      <button
-        type="button"
-        className="reading-toggle answer-key-toggle"
-        aria-label="Show answer key"
-        aria-pressed={showAnswers}
-        onClick={() => setShowAnswers((value) => !value)}
-      >
-        Answer key: {showAnswers ? "ON" : "OFF"}
-      </button>
-      {[...new Set(exercises.map((item) => item.section))].map((section) => (
-        <section key={section} className="exercise-section">
-          <h3>Practice {section}</h3>
-          <ol>
-            {exercises
-              .filter((item) => item.section === section)
-              .map((item, index) => (
-                <li key={index}>
-                  <p className="exercise-question">{display(item.question)}</p>
-                  {showAnswers && (
-                    <p className="exercise-answer">
-                      <strong>Answer:</strong> {display(item.answer)}
-                    </p>
-                  )}
-                  {(onEdit || onDelete) && (
-                    <div className="item-actions">
-                      {onEdit && <button type="button" onClick={() => onEdit(item)}>Edit</button>}
-                      {onDelete && <button type="button" onClick={() => onDelete(item)}>Delete</button>}
-                    </div>
-                  )}
-                </li>
-              ))}
-          </ol>
-        </section>
-      ))}
-      {!exercises.length && <p>No exercises for this chapter yet.</p>}
-    </section>
-  );
-}
-
-function ContentEditor({ editor, setEditor, chapterOptions, studyTabs, onSave, onClose }) {
+function ContentEditor({ editor, setEditor, chapterOptions, studyTabs, onSave, onClose, saving, canSave, error }) {
   const set = (field, value) => setEditor((current) => ({ ...current, [field]: value }));
   const chapters = chapterOptions.filter((chapter) => chapter.studyTab === editor.studyTab);
   const selectedChapter = chapters.find((chapter) => chapter.id === editor.chapterId);
@@ -233,13 +160,29 @@ function ContentEditor({ editor, setEditor, chapterOptions, studyTabs, onSave, o
     event.preventDefault();
     onSave(editor);
   };
+  const editorTitle =
+    editor.mode === "edit"
+      ? {
+          card: "Edit Flashcard",
+          kanji: "Edit Kanji Card",
+          exercise: "Edit Exercise",
+          chapter: "Edit Chapter",
+          subchapter: "Edit Sub Chapter",
+        }[editor.type] ?? "Edit Item"
+      : {
+          card: "Add Flashcard",
+          kanji: "Add Kanji Card",
+          exercise: "Add Exercise",
+          chapter: "Add Chapter",
+          subchapter: "Add Sub Chapter",
+        }[editor.type] ?? "Add Item";
   return (
     <div className="editor-backdrop" role="presentation" onMouseDown={onClose}>
       <form className="editor" onSubmit={submit} onMouseDown={(event) => event.stopPropagation()}>
         <div className="editor-heading">
           <div>
-            <p className="eyebrow">Study content</p>
-            <h2>{editor.mode === "edit" ? "Edit item" : "Add item"}</h2>
+            <p className="eyebrow">Study Content</p>
+            <h2>{editorTitle}</h2>
           </div>
           <button type="button" className="icon-button" aria-label="Close editor" onClick={onClose}>
             ×
@@ -256,23 +199,28 @@ function ContentEditor({ editor, setEditor, chapterOptions, studyTabs, onSave, o
                 title: "",
               }))}
             >
-              New subchapter
+              New Sub Chapter
             </button>
           )}
         </div>
-        <div className="editor-grid">
+        <fieldset className="editor-grid" disabled={saving}>
           <label>
             Type
-            <select value={editor.type} onChange={(event) => set("type", event.target.value)} disabled={editor.mode === "edit"}>
+            <select value={editor.type} onChange={(event) => {
+              const type = event.target.value;
+              if (type === "exercise" && !["Vocab", "Kanji"].includes(editor.studyTab)) {
+                setEditor((current) => ({ ...current, type, studyTab: "Vocab", chapterId: chapterOptions.find((chapter) => chapter.studyTab === "Vocab")?.id ?? "", subchapterId: "" }));
+              } else set("type", type);
+            }} disabled={editor.mode === "edit"}>
               <option value="card">Flashcard</option>
-              <option value="kanji">Kanji card</option>
+              <option value="kanji">Kanji Card</option>
               <option value="exercise">Exercise</option>
               <option value="chapter">Chapter</option>
-              <option value="subchapter">Subchapter</option>
+              <option value="subchapter">Sub Chapter</option>
             </select>
           </label>
           <label>
-            Study tab
+            Study Tab
             <select value={editor.studyTab} onChange={(event) => {
               const studyTab = event.target.value;
               const firstChapter = chapterOptions.find((chapter) => chapter.studyTab === studyTab);
@@ -283,7 +231,7 @@ function ContentEditor({ editor, setEditor, chapterOptions, studyTabs, onSave, o
                 subchapterId: "",
               }));
             }}>
-              {studyTabs.filter((label) => editor.type !== "card" || label !== "Kanji").map((label) => (
+              {studyTabs.filter((label) => editor.type === "exercise" ? ["Vocab", "Kanji"].includes(label) : editor.type !== "card" || label !== "Kanji").map((label) => (
                 <option value={label} key={label}>{label}</option>
               ))}
             </select>
@@ -309,7 +257,7 @@ function ContentEditor({ editor, setEditor, chapterOptions, studyTabs, onSave, o
           </label>}
           {editor.type === "chapter" && editor.mode === "edit" && (
             <label>
-              Existing chapter
+              Existing Chapter
               <select value={editor.chapterId} onChange={(event) => {
                 const chapter = chapters.find((item) => item.id === event.target.value);
                 setEditor((current) => ({
@@ -327,11 +275,11 @@ function ContentEditor({ editor, setEditor, chapterOptions, studyTabs, onSave, o
           )}
           {editor.type !== "subchapter" && editor.type !== "chapter" && (
             <label>
-              Subchapter (optional)
+              {editor.type === "exercise" ? "Assign to Sub Chapter (Optional)" : "Sub Chapter (Optional)"}
               <select value={editor.subchapterId} onChange={(event) => set("subchapterId", event.target.value)}>
-                <option value="">Main chapter</option>
+                <option value="">{editor.type === "exercise" ? "Unassigned - Main Exercises Only" : "Main Chapter"}</option>
                 {subchapters.map((subchapter) => (
-                  <option value={subchapter.id} key={subchapter.id}>Subchapter {subchapter.number}: {subchapter.title}</option>
+                  <option value={subchapter.id} key={subchapter.id}>Sub Chapter {subchapter.number}: {subchapter.title}</option>
                 ))}
               </select>
             </label>
@@ -339,7 +287,7 @@ function ContentEditor({ editor, setEditor, chapterOptions, studyTabs, onSave, o
           {editor.type === "subchapter" && (
             <>
               <label>
-                Subchapter
+                Sub Chapter
                 <select value={editor.subchapterId} onChange={(event) => {
                   const subchapterId = event.target.value;
                   const subchapter = subchapters.find((item) => item.id === subchapterId);
@@ -350,67 +298,72 @@ function ContentEditor({ editor, setEditor, chapterOptions, studyTabs, onSave, o
                     title: subchapter?.title ?? "",
                   }));
                 }}>
-                  <option value="">New subchapter</option>
+                  <option value="">New Sub Chapter</option>
                   {subchapters.map((subchapter) => (
-                    <option value={subchapter.id} key={subchapter.id}>Subchapter {subchapter.number}: {subchapter.title}</option>
+                    <option value={subchapter.id} key={subchapter.id}>Sub Chapter {subchapter.number}: {subchapter.title}</option>
                   ))}
                 </select>
               </label>
-              <label>Subchapter number<input value={editor.number} onChange={(event) => set("number", event.target.value)} placeholder={`${selectedChapter?.number}.new`} required /></label>
-              <label>Subchapter title<input value={editor.title} onChange={(event) => set("title", event.target.value)} placeholder="家族と友達" required /></label>
+              <label>Sub Chapter Number<input value={editor.number} onChange={(event) => set("number", event.target.value)} placeholder={`${selectedChapter?.number}.new`} required /></label>
+              <label>Sub Chapter Title<input value={editor.title} onChange={(event) => set("title", event.target.value)} placeholder="家族と友達" required /></label>
             </>
           )}
           {editor.type === "chapter" && (
             <>
-              <label>Chapter number<input value={editor.number} onChange={(event) => set("number", event.target.value)} placeholder="new" required /></label>
-              <label>Chapter title<input value={editor.title} onChange={(event) => set("title", event.target.value)} placeholder="新しい章" required /></label>
+              <label>Chapter Number<input value={editor.number} onChange={(event) => set("number", event.target.value)} placeholder="new" required /></label>
+              <label>Chapter Title<input value={editor.title} onChange={(event) => set("title", event.target.value)} placeholder="新しい章" required /></label>
             </>
           )}
           {editor.type === "card" && (
             <>
               <label>
-                Flashcard layout
+                Flashcard Layout
                 <select value={editor.layout} onChange={(event) => set("layout", event.target.value)}>
                   <option value="standard">Standard</option>
                   <option value="double">Double width (2 cards)</option>
                   <option value="wide">Wide (3 cards)</option>
                 </select>
               </label>
-              <label>Flashcard front<input value={editor.term} onChange={(event) => set("term", event.target.value)} placeholder="Japanese word（reading）" required /></label>
-              <label>Myanmar meaning<input value={editor.meaning} onChange={(event) => set("meaning", event.target.value)} required /></label>
-              <label>Japanese example<textarea value={editor.exampleJapanese} onChange={(event) => set("exampleJapanese", event.target.value)} required /></label>
-              <label>Myanmar explanation<textarea value={editor.exampleMyanmar} onChange={(event) => set("exampleMyanmar", event.target.value)} /></label>
+              <label>Flashcard Front<input value={editor.term} onChange={(event) => set("term", event.target.value)} placeholder="Japanese word（reading）" required /></label>
+              <label>Myanmar Meaning<input value={editor.meaning} onChange={(event) => set("meaning", event.target.value)} required /></label>
+              <label>Japanese Example<textarea value={editor.exampleJapanese} onChange={(event) => set("exampleJapanese", event.target.value)} required /></label>
+              <label>Myanmar Explanation<textarea value={editor.exampleMyanmar} onChange={(event) => set("exampleMyanmar", event.target.value)} /></label>
             </>
           )}
           {editor.type === "kanji" && (
             <>
               <label>
-                Flashcard layout
+                Flashcard Layout
                 <select value={editor.layout} onChange={(event) => set("layout", event.target.value)}>
                   <option value="standard">Standard</option>
                   <option value="double">Double width (2 cards)</option>
                   <option value="wide">Wide (3 cards)</option>
                 </select>
               </label>
-              <label>Kanji front<input value={editor.kanji} onChange={(event) => set("kanji", event.target.value)} placeholder="漢字" required /></label>
-              <label>Myanmar meaning<input value={editor.meaning} onChange={(event) => set("meaning", event.target.value)} required /></label>
+              <label>Kanji Front<input value={editor.kanji} onChange={(event) => set("kanji", event.target.value)} placeholder="漢字" required /></label>
+              <label>Myanmar Meaning<input value={editor.meaning} onChange={(event) => set("meaning", event.target.value)} required /></label>
               <label>On’yomi (音読み)<input value={editor.on} onChange={(event) => set("on", event.target.value)} placeholder="オンヨミ" /></label>
               <label>Kun’yomi (訓読み)<input value={editor.kun} onChange={(event) => set("kun", event.target.value)} placeholder="くんよみ" /></label>
-              <label>Japanese sentence<textarea value={editor.sentence} onChange={(event) => set("sentence", event.target.value)} /></label>
-              <label>Myanmar explanation<textarea value={editor.exampleMyanmar} onChange={(event) => set("exampleMyanmar", event.target.value)} /></label>
+              <label>Japanese Sentence<textarea value={editor.sentence} onChange={(event) => set("sentence", event.target.value)} /></label>
+              <label>Myanmar Explanation<textarea value={editor.exampleMyanmar} onChange={(event) => set("exampleMyanmar", event.target.value)} /></label>
             </>
           )}
           {editor.type === "exercise" && (
             <>
-              <label>Exercise group<input value={editor.section} onChange={(event) => set("section", event.target.value)} placeholder="1-3" required /></label>
-              <label>Sentence / question<textarea value={editor.question} onChange={(event) => set("question", event.target.value)} required /></label>
-              <label>Answer key<textarea value={editor.answer} onChange={(event) => set("answer", event.target.value)} required /></label>
+              <p className="editor-help">Exercises always remain in the main chapter list. Assign a sub chapter to show the same exercise there too. Edits update both places. Clear the assignment to remove it from the sub chapter.</p>
+              <label>Exercise Group<input value={editor.section} onChange={(event) => set("section", event.target.value)} placeholder="1-3" required /></label>
+              <label>Sentence / Question<textarea value={editor.question} onChange={(event) => set("question", event.target.value)} required /></label>
+              <label>Myanmar Sentence / Question<textarea lang="my" value={editor.questionMyanmar} onChange={(event) => set("questionMyanmar", event.target.value)} /></label>
+              <label>Answer Key<textarea value={editor.answer} onChange={(event) => set("answer", event.target.value)} required /></label>
+              <label>Myanmar Answer / Explanation<textarea lang="my" value={editor.answerMyanmar} onChange={(event) => set("answerMyanmar", event.target.value)} /></label>
+              <p className="editor-help">Myanmar fields are optional. Use |text| in a Japanese question to underline it.</p>
             </>
           )}
-        </div>
+        </fieldset>
+        {error && <p className="cloud-error" role="alert">{error}</p>}
         <div className="editor-actions">
           <button type="button" className="secondary-button" onClick={onClose}>Cancel</button>
-          <button type="submit" className="primary-button">{editor.mode === "edit" ? "Save changes" : "Add"}</button>
+          <button type="submit" className="primary-button" disabled={saving || !canSave}>{saving ? "Saving..." : editor.mode === "edit" ? "Save Changes" : "Add"}</button>
         </div>
       </form>
     </div>
@@ -452,8 +405,16 @@ function App() {
   const [manageMode, setManageMode] = useState(false);
   const [positionMode, setPositionMode] = useState(false);
   const [exerciseSectionId, setExerciseSectionId] = useState(null);
-  const [content, setContent] = useState(readContent);
+  const cloud = useCloudContent();
+  const { content, updateContent: setContent } = cloud;
   const [editor, setEditor] = useState(null);
+  useEffect(() => {
+    if (!cloud.isEditor) {
+      setManageMode(false);
+      setPositionMode(false);
+      setEditor(null);
+    }
+  }, [cloud.isEditor]);
   const controlsRef = useRef(null);
   const exercisePageRef = useRef(null);
   const chapterContentRef = useRef(null);
@@ -484,6 +445,10 @@ function App() {
       return true;
     }
   });
+  const setExerciseMyanmar = (value) => {
+    setShowMyanmar(value);
+    if (!value) setShowJapanese(true);
+  };
   useEffect(() => {
     try {
       localStorage.setItem("jlpt-show-myanmar", String(showMyanmar));
@@ -491,11 +456,6 @@ function App() {
       // The toggle still works when browser storage is unavailable.
     }
   }, [showMyanmar]);
-  useEffect(() => {
-    try {
-      localStorage.setItem("jlpt-user-content", JSON.stringify(content));
-    } catch {}
-  }, [content]);
   useEffect(() => {
     if (!controlsOpen) return undefined;
     const closeOnOutsideClick = (event) => {
@@ -553,7 +513,9 @@ function App() {
           ),
         ],
       })),
-      ...(content.chapters ?? []).filter((chapter) => chapter.studyTab === "Kanji"),
+      ...(content.chapters ?? []).filter((chapter) => chapter.studyTab === "Kanji").map((chapter) => ({
+        ...chapter, subchapters: content.subchapters.filter((item) => item.parentChapterId === chapter.id),
+      })),
     ],
     [content, userChapters],
   );
@@ -603,34 +565,22 @@ function App() {
         })),
       ]
     : [];
-  const exercises = selected ? [
-    ...(exercisesByChapter[selected.id] ?? []).map((item, index) => ({
-      ...item,
-      _id: `${selected.id}:exercise:${index}`,
-      chapterId: selected.id,
-    })),
-    ...content.exercises.filter(
-      (item) => item.parentChapterId === selected.id ||
-        item.chapterId === selected.id ||
-        selected.subchapters.some((subchapter) => subchapter.id === item.chapterId),
-    ),
-  ].map((item) => ({ ...item, ...content.exerciseOverrides[item._id] }))
-    .filter((item) => !content.deletedExercises.includes(item._id)) : [];
-  const exercisesForSection = (section) => {
-    if (section.id === selected?.id) {
-      return exercises.filter((item) => item.chapterId === selected.id || item.parentChapterId === selected.id);
-    }
-    return content.exercises
-      .filter((item) => item.chapterId === section.id)
-      .map((item) => ({ ...item, ...content.exerciseOverrides[item._id] }))
-      .filter((item) => !content.deletedExercises.includes(item._id));
-  };
+  const allExercises = useMemo(() => resolveExercises(
+    [...vocabularyExercises(exercisesByChapter), ...baseKanjiExercises],
+    content,
+    chapterOptions.flatMap((chapter) => chapter.subchapters ?? []),
+  ), [content, chapterOptions]);
+  const exercises = selected ? exercisesForView(allExercises, "Vocab", selected.id) : [];
+  const exercisesForSection = (section) => exercisesForView(
+    allExercises, "Vocab", selected?.id, section.id === selected?.id ? "" : section.id,
+  );
   const exerciseSection = vocabSections.find(
     ({ chapter }) => chapter.id === exerciseSectionId,
   );
   const isGlobalSearch = Boolean(vocabQuery.trim());
 
   const openEditor = (type, mode = "add", record = {}) => {
+    if (!cloud.canEdit) return;
     const selectedTab = record.studyTab ?? (studyTab === "Vocab" ? "Vocab" : studyTab);
     const optionsForTab = chapterOptions.filter((item) => item.studyTab === selectedTab);
     const recordSubchapter = optionsForTab
@@ -655,6 +605,8 @@ function App() {
       section: "1-3",
       question: "",
       answer: "",
+      questionMyanmar: "",
+      answerMyanmar: "",
       kanji: "",
       on: "",
       kun: "",
@@ -666,7 +618,8 @@ function App() {
       id: record._id ?? record.id,
     });
   };
-  const saveContent = (draft) => {
+  const saveContent = async (draft) => {
+    if (!cloud.canEdit) return;
     if (draft.type === "card") {
       setStudyTab(draft.studyTab);
       setActive(draft.chapterId);
@@ -675,7 +628,7 @@ function App() {
       setExerciseSectionId(null);
       setTab("vocabulary");
     }
-    setContent((current) => {
+    const saved = await setContent((current) => {
       if (draft.type === "chapter") {
         const id = draft.id || `user-chapter-${Date.now()}`;
         const chapter = { id, number: draft.number, title: draft.title, studyTab: draft.studyTab, subchapters: [] };
@@ -723,28 +676,27 @@ function App() {
         if (draft.mode === "edit") return { ...current, cardOverrides: { ...current.cardOverrides, [draft.id]: item } };
         return { ...current, cards: [...current.cards, item] };
       }
-      const id = draft.id || `user-exercise-${Date.now()}`;
-      const item = { id, _id: id, chapterId: draft.subchapterId || draft.chapterId, parentChapterId: draft.chapterId, studyTab: draft.studyTab, section: draft.section, question: draft.question, answer: draft.answer };
-      if (draft.mode === "edit") return { ...current, exerciseOverrides: { ...current.exerciseOverrides, [draft.id]: item } };
-      return { ...current, exercises: [...current.exercises, item] };
+      return saveExercise(current, draft);
     });
-    setEditor(null);
+    if (saved) setEditor(null);
   };
   const deleteRecord = (type, record) => {
+    if (!cloud.canEdit) return;
     const label = type === "card" ? record.term : type === "kanji" ? record.kanji : record.question;
-    if (!window.confirm(`Are you sure you want to delete ${label}?`)) return;
+    if (!window.confirm(type === "exercise" ? `Delete this exercise from the main list and every assigned subchapter?\n${label}` : `Are you sure you want to delete ${label}?`)) return;
     setContent((current) => ({
       ...current,
       ...(type === "card" ? { deletedCards: [...new Set([...current.deletedCards, record._id])] } : type === "kanji" ? { deletedKanjiCards: [...new Set([...current.deletedKanjiCards, record._id])] } : { deletedExercises: [...new Set([...current.deletedExercises, record._id])] }),
     }));
   };
   const deleteSubchapter = (chapter) => {
-    if (!window.confirm(`Are you sure you want to delete ${chapter.title} and its related content?`)) return;
+    if (!cloud.canEdit) return;
+    if (!window.confirm(`Delete ${chapter.title} and its cards? Its exercises will remain in the main chapter list without this assignment.`)) return;
     setContent((current) => ({
       ...current,
+      ...unassignExercises(current, chapter.id, allExercises),
       subchapters: current.subchapters.filter((item) => item.id !== chapter.id),
       cards: current.cards.filter((item) => item.chapterId !== chapter.id),
-      exercises: current.exercises.filter((item) => item.chapterId !== chapter.id),
     }));
   };
   const customCardsByTab = useMemo(
@@ -773,17 +725,18 @@ function App() {
           <h1>JLPT N3</h1>
           <p className="subtitle">Japanese · Myanmar · flashcards by chapter</p>
         </div>
-        <div className="content-actions" aria-label="Manage study content">
+        {cloud.isEditor && <fieldset className="content-actions" aria-label="Manage study content" disabled={!cloud.canEdit}>
           <button type="button" onClick={() => openEditor(studyTab === "Kanji" ? "kanji" : "card", "add", { studyTab })}>+ Add {studyTab}</button>
           {studyTab !== "Kanji" && (
             <>
-              <button type="button" onClick={() => selected && openEditor("chapter", "edit", { ...selected, studyTab })} disabled={!selected}>Edit chapter</button>
-              <button type="button" onClick={() => selected && openEditor("subchapter", "edit", selected)} disabled={!selected}>Edit subchapter</button>
+              <button type="button" onClick={() => selected && openEditor("chapter", "edit", { ...selected, studyTab })} disabled={!selected}>Edit Chapter</button>
+              <button type="button" onClick={() => selected && openEditor("subchapter", "edit", selected)} disabled={!selected}>Edit Sub Chapter</button>
             </>
           )}
-          <button type="button" onClick={() => selected && content.subchapters.some((item) => item.id === selected.id) && deleteSubchapter(selected)} disabled={!selected || !content.subchapters.some((item) => item.id === selected.id)}>Delete subchapter</button>
-        </div>
+          <button type="button" onClick={() => selected && content.subchapters.some((item) => item.id === selected.id) && deleteSubchapter(selected)} disabled={!selected || !content.subchapters.some((item) => item.id === selected.id)}>Delete Sub Chapter</button>
+        </fieldset>}
       </header>
+      <CloudStatus cloud={cloud} />
       <div className="study-tabs" role="tablist" aria-label="Study topics">
         {studyTabs.map((label, index) => (
           <button
@@ -822,9 +775,10 @@ function App() {
       >
         <section className="search-grid">
           <label htmlFor="chapter-search">
-            Search chapters
+            Search Chapters
             <input
               id="chapter-search"
+              className={chapterQuery.trim() ? (filteredChapters.length ? "search-box has-results" : "search-box no-results") : "search-box"}
               value={chapterQuery}
               onChange={(e) => setChapterQuery(e.target.value)}
               placeholder="例：家族、性格"
@@ -834,6 +788,7 @@ function App() {
             Search every vocabulary card
             <input
               id="vocab-search"
+              className={vocabQuery.trim() ? (vocabResults.length ? "search-box has-results" : "search-box no-results") : "search-box"}
               value={vocabQuery}
               onChange={(e) => setVocabQuery(e.target.value)}
               placeholder="例：冷蔵庫、れいぞうこ、冷蔵庫の説明"
@@ -849,20 +804,26 @@ function App() {
               </button>
             </div>
             <div className="chapter-group">
-              {filteredChapters.map((chapter) => (
-                <button
-                  className={chapter.id === selected?.id ? "active" : ""}
-                  onClick={() => {
-                    setActive(chapter.id);
-                    setVocabQuery("");
-                    focusChapterContent();
-                  }}
-                  key={chapter.id}
-                >
-                  <span>Chapter {chapter.number}</span>
-                  <strong>{chapterTitle(chapter.title, showMyanmar, showReadings, showJapanese)}</strong>
-                </button>
-              ))}
+              {filteredChapters.length ? (
+                filteredChapters.map((chapter) => (
+                  <button
+                    className={chapter.id === selected?.id ? "active" : ""}
+                    onClick={() => {
+                      setActive(chapter.id);
+                      setVocabQuery("");
+                      focusChapterContent();
+                    }}
+                    key={chapter.id}
+                  >
+                    <span>Chapter {chapter.number}</span>
+                    <strong>{chapterTitle(chapter.title, showMyanmar, showReadings, showJapanese)}</strong>
+                  </button>
+                ))
+              ) : (
+                <div className="empty search-empty">
+                  <p>No searched record found.</p>
+                </div>
+              )}
             </div>
           </aside>
           <article ref={chapterContentRef}>
@@ -900,22 +861,24 @@ function App() {
                     >
                       Exercises
                     </button>
-                    <button
+                    {cloud.isEditor && (<button
                       type="button"
                       className={manageMode ? "selected manage-toggle" : "manage-toggle"}
                       aria-pressed={manageMode}
+                      disabled={!cloud.canEdit}
                       onClick={() => setManageMode((value) => !value)}
                     >
                       Manage: {manageMode ? "ON" : "OFF"}
-                    </button>
-                    <button
+                    </button>)}
+                    {cloud.isEditor && (<button
                       type="button"
                       className={positionMode ? "selected" : ""}
                       aria-pressed={positionMode}
+                      disabled={!cloud.canEdit}
                       onClick={() => setPositionMode((value) => !value)}
                     >
                       Positions: {positionMode ? "ON" : "OFF"}
-                    </button>
+                    </button>)}
                   </div>
                 )}
                 {isGlobalSearch || tab === "vocabulary" ? (
@@ -931,56 +894,67 @@ function App() {
                         className="back-to-vocabulary"
                         onClick={() => setExerciseSectionId(null)}
                       >
-                        ← Back to vocabulary
+                        ← Back to Vocabulary
                       </button>
                       <p className="eyebrow">
-                        {exerciseSection.isSubchapter ? "Subchapter" : "Chapter"} {exerciseSection.chapter.number}
+                        {exerciseSection.isSubchapter ? "Sub Chapter" : "Chapter"} {exerciseSection.chapter.number}
                       </p>
                       <h2 lang="ja">
                         {chapterTitle(exerciseSection.chapter.title, showMyanmar, showReadings, showJapanese)}
                       </h2>
                       <Exercises
+                        key={exerciseSection.chapter.id}
                         exercises={exercisesForSection(exerciseSection.chapter)}
                         showReadings={showReadings}
-                        onEdit={manageMode ? (item) => openEditor("exercise", "edit", { ...item, studyTab: "Vocab" }) : undefined}
-                        onDelete={manageMode ? (item) => deleteRecord("exercise", item) : undefined}
+                        showMyanmar={showMyanmar}
+                        setShowMyanmar={setExerciseMyanmar}
+                        assignmentLabel={exerciseSection.isSubchapter ? exerciseSection.chapter.title : undefined}
+                        onAdd={cloud.canEdit ? () => openEditor("exercise", "add", { studyTab: "Vocab", chapterId: selected.id, subchapterId: exerciseSection.isSubchapter ? exerciseSection.chapter.id : "" }) : undefined}
+                        onEdit={manageMode && cloud.isEditor ? (item) => openEditor("exercise", "edit", { ...item, studyTab: "Vocab" }) : undefined}
+                        onDelete={manageMode && cloud.isEditor ? (item) => deleteRecord("exercise", item) : undefined}
                       />
                     </section>
                   ) : isGlobalSearch ? (
-                    <section className="cards">
-                      {vocabResults.map(({ card, chapter }, i) => (
-                        <div className={`managed-item card-layout-${card.layout || "standard"}`} key={`${chapter.id}-${card._id ?? card.term}-${i}`}>
-                          <Flashcard card={card} showReadings={showReadings} showMyanmar={showMyanmar} showJapanese={showJapanese} chapterLabel={chapter.title} />
-                          {manageMode && (
-                            <div className="item-actions">
-                              <button type="button" onClick={() => openEditor("card", "edit", card)}>Edit</button>
-                              <button type="button" onClick={() => deleteRecord("card", card)}>Delete</button>
-                            </div>
-                          )}
-                        </div>
-                      ))}
-                    </section>
+                    vocabResults.length ? (
+                      <section className="cards">
+                        {vocabResults.map(({ card, chapter }, i) => (
+                          <div className={`managed-item card-layout-${card.layout || "standard"} search-hit`} key={`${chapter.id}-${card._id ?? card.term}-${i}`}>
+                            <Flashcard card={card} showReadings={showReadings} showMyanmar={showMyanmar} showJapanese={showJapanese} chapterLabel={chapter.title} />
+                            {manageMode && cloud.isEditor && (
+                              <div className="item-actions">
+                                <button type="button" onClick={() => openEditor("card", "edit", card)}>Edit</button>
+                                <button type="button" onClick={() => deleteRecord("card", card)}>Delete</button>
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                      </section>
+                    ) : (
+                      <div className="empty search-empty">
+                        <p>No searched record found.</p>
+                      </div>
+                    )
                   ) : (
                     <div className="vocab-sections">
                       {vocabSections.map(({ chapter, isSubchapter, cards: sectionCards }) => (
                         <section className="vocab-section" key={chapter.id}>
                           <div className="vocab-section-heading">
                             <div>
-                              <p className="eyebrow">{isSubchapter ? `Subchapter ${chapter.number}` : `Chapter ${chapter.number}`}</p>
+                              <p className="eyebrow">{isSubchapter ? `Sub Chapter ${chapter.number}` : `Chapter ${chapter.number}`}</p>
                               <h3 lang="ja">{chapterTitle(chapter.title, showMyanmar, showReadings, showJapanese)}</h3>
                             </div>
                             <div className="vocab-section-actions">
                               <button
                                 type="button"
                                 className={`section-exercise-button ${exerciseSectionId === chapter.id ? "active" : ""}`}
-                                aria-label={`Show exercises for ${chapter.title}`}
+                                aria-label={`Show Exercises For ${chapter.title}`}
                                 aria-pressed={exerciseSectionId === chapter.id}
                                 onClick={() => setExerciseSectionId((current) => current === chapter.id ? null : chapter.id)}
                               >
                                 <span aria-hidden="true">▤</span>
                                 <span className="sr-only">Exercises</span>
                               </button>
-                              {isSubchapter && manageMode && (
+                              {isSubchapter && manageMode && cloud.isEditor && (
                                 <div className="item-actions">
                                 <button type="button" onClick={() => openEditor("subchapter", "edit", { ...chapter, chapterId: chapter.parentChapterId })}>Edit</button>
                                 <button type="button" onClick={() => deleteSubchapter(chapter)}>Delete</button>
@@ -993,7 +967,7 @@ function App() {
                             {sectionCards.map(({ card }, i) => (
                               <div className={`managed-item card-layout-${card.layout || "standard"}`} key={card._id}>
                                 <Flashcard card={card} showReadings={showReadings} showMyanmar={showMyanmar} showJapanese={showJapanese} />
-                                {positionMode && (
+                                {positionMode && cloud.isEditor && (
                                   <div className="card-position-actions" role="group" aria-label={`Position of ${card.term}`}>
                                     <button type="button" disabled={i === 0} onClick={() => moveCard(card._id, -1)} aria-label={`Move ${card.term} backward`}>
                                       ← Backward
@@ -1004,7 +978,7 @@ function App() {
                                     </button>
                                   </div>
                                 )}
-                                {manageMode && (
+                                {manageMode && cloud.isEditor && (
                                   <div className="item-actions">
                                     <button type="button" onClick={() => openEditor("card", "edit", card)}>Edit</button>
                                     <button type="button" onClick={() => deleteRecord("card", card)}>Delete</button>
@@ -1022,13 +996,18 @@ function App() {
                     key={selected.id}
                     exercises={exercises}
                     showReadings={showReadings}
-                    onEdit={manageMode ? (item) => openEditor("exercise", "edit", item) : undefined}
-                    onDelete={manageMode ? (item) => deleteRecord("exercise", item) : undefined}
+                    showMyanmar={showMyanmar}
+                    setShowMyanmar={setExerciseMyanmar}
+                    onAdd={cloud.canEdit ? () => openEditor("exercise", "add", { studyTab: "Vocab", chapterId: selected.id }) : undefined}
+                    onEdit={manageMode && cloud.isEditor ? (item) => openEditor("exercise", "edit", item) : undefined}
+                    onDelete={manageMode && cloud.isEditor ? (item) => deleteRecord("exercise", item) : undefined}
                   />
                 )}
               </>
             ) : (
-              <p>No matching chapter found.</p>
+              <div className="empty search-empty">
+                <p>No searched record found.</p>
+              </div>
             )}
           </article>
         </div>
@@ -1044,9 +1023,14 @@ function App() {
         >
           {label === "Kanji" ? (
             <Kanji
+              allExercises={allExercises}
+              showMyanmar={showMyanmar}
+              setShowMyanmar={setExerciseMyanmar}
               showReadings={showReadings}
               showKanjiReadings={showKanjiReadings}
-              manageMode={manageMode}
+              manageMode={manageMode && cloud.isEditor}
+              canEdit={cloud.canEdit}
+              isEditor={cloud.isEditor}
               setManageMode={setManageMode}
               content={content}
               openEditor={openEditor}
@@ -1059,21 +1043,22 @@ function App() {
               <p className="eyebrow">{label}</p>
               <h2>{label} study cards</h2>
               <div className="tools">
-                <button
+                {cloud.isEditor && (<button
                   type="button"
                   className={manageMode ? "selected" : ""}
                   aria-pressed={manageMode}
-                  onClick={() => setManageMode((value) => !value)}
+                  disabled={!cloud.canEdit}
+                      onClick={() => setManageMode((value) => !value)}
                 >
                   Manage: {manageMode ? "ON" : "OFF"}
-                </button>
+                </button>)}
               </div>
               {customCardsByTab[label]?.length ? (
                 <section className="cards">
                   {customCardsByTab[label].map((card) => (
                     <div className={`managed-item card-layout-${card.layout || "standard"}`} key={card._id}>
                       <Flashcard card={card} showReadings={showReadings} showMyanmar={showMyanmar} showJapanese={showJapanese} />
-                      {manageMode && (
+                      {manageMode && cloud.isEditor && (
                         <div className="item-actions">
                           <button type="button" onClick={() => openEditor("card", "edit", card)}>Edit</button>
                           <button type="button" onClick={() => deleteRecord("card", card)}>Delete</button>
@@ -1091,11 +1076,11 @@ function App() {
           )}
         </section>
       ))}
-      {editor && <ContentEditor editor={editor} setEditor={setEditor} chapterOptions={chapterOptions} studyTabs={studyTabs} onSave={saveContent} onClose={() => setEditor(null)} />}
+      {editor && cloud.isEditor && <ContentEditor saving={cloud.saving} canSave={cloud.canEdit} error={cloud.error || (!cloud.connected ? "Connection lost. Keep this form open and reconnect to save." : "")} editor={editor} setEditor={setEditor} chapterOptions={chapterOptions} studyTabs={studyTabs} onSave={saveContent} onClose={() => setEditor(null)} />}
       <div className="study-controls" ref={controlsRef}>
         {controlsOpen && (
           <div className="controls-panel" id="study-controls-panel">
-            <p className="controls-title">Study view</p>
+            <p className="controls-title">Study View</p>
             <button
               type="button"
               aria-pressed={showJapanese}
@@ -1136,7 +1121,7 @@ function App() {
               aria-pressed={showSidebar}
               onClick={() => setShowSidebar(!showSidebar)}
             >
-              Chapter sidebar <span>{showSidebar ? "Shown" : "Hidden"}</span>
+              Chapter Sidebar <span>{showSidebar ? "Shown" : "Hidden"}</span>
             </button>
           </div>
         )}
@@ -1150,7 +1135,7 @@ function App() {
             onClick={() => setControlsOpen(!controlsOpen)}
           >
             {" "}
-            {controlsOpen ? "Close controls" : "? Study controls"}{" "}
+            {controlsOpen ? "Close Controls" : "? Study Controls"}{" "}
           </button>
         </div>
       </div>
