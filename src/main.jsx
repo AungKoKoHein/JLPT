@@ -152,6 +152,32 @@ function Flashcard({
   );
 }
 
+function VocabularyBook({ entries, showReadings, showMyanmar, showJapanese, showChapterLabels = false }) {
+  const display = (value = "") => showReadings ? value : hideReadings(value);
+  return (
+    <ol className="vocabulary-book">
+      {entries.map(({ card, chapter }) => (
+        <li key={card._id} className="book-entry">
+          {showChapterLabels && chapter && (
+            <p className="book-chapter-label">{chapterTitle(chapter.title, showMyanmar, showReadings, showJapanese)}</p>
+          )}
+          <p className="book-term">
+            {showJapanese && <strong lang="ja">{display(card.term)}</strong>}
+            {showJapanese && showMyanmar && card.meaning && " — "}
+            {showMyanmar && <span lang="my">{card.meaning}</span>}
+          </p>
+          {showJapanese && card.exampleJapanese && (
+            <p className="book-example" lang="ja">e.g. {display(card.exampleJapanese)}</p>
+          )}
+          {showMyanmar && card.exampleMyanmar && (
+            <p className="book-translation" lang="my">{display(card.exampleMyanmar)}</p>
+          )}
+        </li>
+      ))}
+    </ol>
+  );
+}
+
 function ContentEditor({ editor, setEditor, chapterOptions, studyTabs, onSave, onClose, saving, canSave, error }) {
   const set = (field, value) => setEditor((current) => ({ ...current, [field]: value }));
   const chapters = chapterOptions.filter((chapter) => chapter.studyTab === editor.studyTab);
@@ -386,6 +412,19 @@ function App() {
   const [vocabQuery, setVocabQuery] = useState("");
   const [active, setActive] = useState(chapters[0]?.id ?? "");
   const [tab, setTab] = useState("vocabulary");
+  const [vocabMode, setVocabMode] = useState(() => {
+    try {
+      return localStorage.getItem("jlpt-vocab-mode") === "book" ? "book" : "card";
+    } catch {
+      return "card";
+    }
+  });
+  const bookMode = vocabMode === "book";
+  useEffect(() => {
+    try {
+      localStorage.setItem("jlpt-vocab-mode", vocabMode);
+    } catch {}
+  }, [vocabMode]);
   const [showReadings, setShowReadings] = useState(true);
   const [showKanjiReadings, setShowKanjiReadings] = useState(() => {
     try {
@@ -734,7 +773,7 @@ function App() {
           <h1>JLPT N3</h1>
           <p className="subtitle">Japanese · Myanmar · flashcards by chapter</p>
         </div>
-        {cloud.isEditor && <fieldset className="content-actions" aria-label="Manage study content" disabled={!cloud.canEdit}>
+        {cloud.isEditor && !(studyTab === "Vocab" && bookMode) && <fieldset className="content-actions" aria-label="Manage study content" disabled={!cloud.canEdit}>
           <button type="button" onClick={() => openEditor(studyTab === "Kanji" ? "kanji" : "card", "add", { studyTab })}>+ Add {studyTab}</button>
           {studyTab !== "Kanji" && (
             <>
@@ -853,8 +892,8 @@ function App() {
                     ? vocabResults.length
                     : vocabSections.reduce((total, section) => total + section.cards.length, 0)}{" "}
                   {isGlobalSearch
-                    ? "matching cards across all chapters"
-                    : "flashcards"}
+                    ? `matching ${bookMode ? "entries" : "cards"} across all chapters`
+                    : bookMode ? "vocabulary entries" : "flashcards"}
                 </p>
                 {!isGlobalSearch && (
                   <div className="tools">
@@ -870,7 +909,7 @@ function App() {
                     >
                       Exercises
                     </button>
-                    {cloud.isEditor && (<button
+                    {!bookMode && cloud.isEditor && (<button
                       type="button"
                       className={manageMode ? "selected manage-toggle" : "manage-toggle"}
                       aria-pressed={manageMode}
@@ -879,7 +918,7 @@ function App() {
                     >
                       Manage: {manageMode ? "ON" : "OFF"}
                     </button>)}
-                    {cloud.isEditor && (<button
+                    {!bookMode && cloud.isEditor && (<button
                       type="button"
                       className={positionMode ? "selected" : ""}
                       aria-pressed={positionMode}
@@ -918,13 +957,16 @@ function App() {
                         showMyanmar={showMyanmar}
                         setShowMyanmar={setExerciseMyanmar}
                         assignmentLabel={exerciseSection.isSubchapter ? exerciseSection.chapter.title : undefined}
-                        onAdd={cloud.canEdit ? () => openEditor("exercise", "add", { studyTab: "Vocab", chapterId: selected.id, subchapterId: exerciseSection.isSubchapter ? exerciseSection.chapter.id : "" }) : undefined}
-                        onEdit={manageMode && cloud.isEditor ? (item) => openEditor("exercise", "edit", { ...item, studyTab: "Vocab" }) : undefined}
-                        onDelete={manageMode && cloud.isEditor ? (item) => deleteRecord("exercise", item) : undefined}
+                        onAdd={!bookMode && cloud.canEdit ? () => openEditor("exercise", "add", { studyTab: "Vocab", chapterId: selected.id, subchapterId: exerciseSection.isSubchapter ? exerciseSection.chapter.id : "" }) : undefined}
+                        onEdit={!bookMode && manageMode && cloud.isEditor ? (item) => openEditor("exercise", "edit", { ...item, studyTab: "Vocab" }) : undefined}
+                        onDelete={!bookMode && manageMode && cloud.isEditor ? (item) => deleteRecord("exercise", item) : undefined}
                       />
                     </section>
                   ) : isGlobalSearch ? (
                     vocabResults.length ? (
+                      bookMode ? (
+                        <VocabularyBook entries={vocabResults} showReadings={showReadings} showMyanmar={showMyanmar} showJapanese={showJapanese} showChapterLabels />
+                      ) : (
                       <section className="cards">
                         {vocabResults.map(({ card, chapter }, i) => (
                           <div className={`managed-item card-layout-${card.layout || "standard"} search-hit`} key={`${chapter.id}-${card._id ?? card.term}-${i}`}>
@@ -938,6 +980,7 @@ function App() {
                           </div>
                         ))}
                       </section>
+                      )
                     ) : (
                       <div className="empty search-empty">
                         <p>No searched record found.</p>
@@ -964,7 +1007,7 @@ function App() {
                                 <span aria-hidden="true">▤</span>
                                 <span className="sr-only">Exercises</span>
                               </button>
-                              {isSubchapter && manageMode && cloud.isEditor && (
+                              {!bookMode && isSubchapter && manageMode && cloud.isEditor && (
                                 <div className="item-actions">
                                 <button type="button" onClick={() => openEditor("subchapter", "edit", { ...chapter, chapterId: chapter.parentChapterId })}>Edit</button>
                                 <button type="button" onClick={() => deleteSubchapter(chapter)}>Delete</button>
@@ -972,7 +1015,10 @@ function App() {
                               )}
                             </div>
                           </div>
-                          <p className="note">{sectionCards.length} flashcards</p>
+                          <p className="note">{sectionCards.length} {bookMode ? "vocabulary entries" : "flashcards"}</p>
+                          {bookMode ? (
+                            <VocabularyBook entries={sectionCards} showReadings={showReadings} showMyanmar={showMyanmar} showJapanese={showJapanese} />
+                          ) : (
                           <section className="cards">
                             {sectionCards.map(({ card }, i) => (
                               <div className={`managed-item card-layout-${card.layout || "standard"}`} key={card._id}>
@@ -997,6 +1043,7 @@ function App() {
                               </div>
                             ))}
                           </section>
+                          )}
                         </section>
                       ))}
                     </div>
@@ -1008,9 +1055,9 @@ function App() {
                     showReadings={showReadings}
                     showMyanmar={showMyanmar}
                     setShowMyanmar={setExerciseMyanmar}
-                    onAdd={cloud.canEdit ? () => openEditor("exercise", "add", { studyTab: "Vocab", chapterId: selected.id }) : undefined}
-                    onEdit={manageMode && cloud.isEditor ? (item) => openEditor("exercise", "edit", item) : undefined}
-                    onDelete={manageMode && cloud.isEditor ? (item) => deleteRecord("exercise", item) : undefined}
+                    onAdd={!bookMode && cloud.canEdit ? () => openEditor("exercise", "add", { studyTab: "Vocab", chapterId: selected.id }) : undefined}
+                    onEdit={!bookMode && manageMode && cloud.isEditor ? (item) => openEditor("exercise", "edit", item) : undefined}
+                    onDelete={!bookMode && manageMode && cloud.isEditor ? (item) => deleteRecord("exercise", item) : undefined}
                   />
                 )}
               </>
@@ -1091,6 +1138,12 @@ function App() {
         {controlsOpen && (
           <div className="controls-panel" id="study-controls-panel">
             <p className="controls-title">Study View</p>
+            {studyTab === "Vocab" && (
+              <div className="vocab-mode-switch" role="group" aria-label="Vocabulary display mode">
+                <button type="button" aria-pressed={!bookMode} onClick={() => setVocabMode("card")}>Card mode</button>
+                <button type="button" aria-pressed={bookMode} onClick={() => setVocabMode("book")}>Book mode</button>
+              </div>
+            )}
             <button
               type="button"
               aria-pressed={showJapanese}
