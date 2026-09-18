@@ -82,9 +82,7 @@ function BackToTop() {
         });
       }}
     >
-      <span aria-hidden="true" width="1em" height="1em">
-        ▲
-      </span>
+      <span className="back-to-top-icon" aria-hidden="true" />
     </button>
   );
 }
@@ -858,7 +856,7 @@ function App() {
             <div className="sidebar-heading">
               <p className="count">{filteredChapters.length} chapters</p>
               <button type="button" className="sidebar-toggle" onClick={() => setShowSidebar(!showSidebar)} aria-label={showSidebar ? "Hide chapter sidebar" : "Show chapter sidebar"}>
-                {showSidebar ? "＜" : "＞"}
+                <span className={`sidebar-toggle-icon ${showSidebar ? "collapse" : "expand"}`} aria-hidden="true" />
               </button>
             </div>
             <div className="chapter-group">

@@ -435,15 +435,41 @@ aside button.sidebar-toggle {
   color: #3730a3;
   padding: 0;
   text-align: center;
-  font-size: 1.65rem;
-  font-weight: 900;
   line-height: 1;
   cursor: pointer;
+}
+aside button.sidebar-toggle .sidebar-toggle-icon {
+  display: block;
+  width: 25px;
+  height: 25px;
+  background: #9b9b9b;
+  filter: drop-shadow(0 0 0 #2b2421) drop-shadow(1px 0 0 #2b2421) drop-shadow(-1px 0 0 #2b2421) drop-shadow(0 1px 0 #2b2421) drop-shadow(0 -1px 0 #2b2421);
+}
+aside button.sidebar-toggle .sidebar-toggle-icon.collapse {
+  clip-path: polygon(78% 3%, 91% 8%, 97% 19%, 97% 81%, 91% 92%, 78% 97%, 12% 59%, 4% 50%, 12% 41%);
+}
+aside button.sidebar-toggle .sidebar-toggle-icon.expand {
+  clip-path: polygon(22% 3%, 9% 8%, 3% 19%, 3% 81%, 9% 92%, 22% 97%, 88% 59%, 96% 50%, 88% 41%);
 }
 aside button.sidebar-toggle:hover {
   background: #e0e7ff;
   border-color: #818cf8;
   color: #312e81;
+}
+.layout > aside {
+  position: sticky;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  height: calc(100dvh - 40px);
+  max-height: 850px;
+  min-height: 0;
+  overflow: hidden;
+}
+.layout > aside .chapter-group {
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
 }
 .chapter-group h3 {
   margin: 16px 8px 4px;
@@ -618,6 +644,14 @@ main {
   color: #fff;
   background: #4f46e5;
   border-color: #4f46e5;
+}
+.back-to-top-icon {
+  display: block;
+  width: 25px;
+  height: 25px;
+  background: #9b9b9b;
+  filter: drop-shadow(0 0 0 #2b2421) drop-shadow(1px 0 0 #2b2421) drop-shadow(-1px 0 0 #2b2421) drop-shadow(0 1px 0 #2b2421) drop-shadow(0 -1px 0 #2b2421);
+  clip-path: polygon(50% 3%, 61% 8%, 96% 76%, 97% 88%, 90% 97%, 10% 97%, 3% 88%, 4% 76%);
 }
 .back-to-top:hover {
   background: #4338ca;
@@ -813,6 +847,8 @@ main[data-show-sidebar="false"] .sidebar-heading .count {
     grid-template-columns: 38px minmax(0, 1fr);
   }
   .layout > aside {
+    position: static;
+    height: auto;
     display: block;
     max-height: 310px;
     overflow-y: auto;
