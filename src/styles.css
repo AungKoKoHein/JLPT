@@ -91,6 +91,33 @@ article {
   color: #64748b;
   font-size: 1rem;
 }
+.chapter-group {
+  display: block;
+}
+.chapter-group-block + .chapter-group-block {
+  margin-top: 18px;
+}
+.chapter-group-label {
+  margin: 0 0 8px;
+  padding: 0 8px;
+  color: #312e81;
+}
+.chapter-group-title {
+  display: block;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.45;
+  color: #312e81;
+}
+.chapter-group-range {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  color: #6366f1;
+}
 aside button {
   display: block;
   width: 100%;

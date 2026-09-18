@@ -579,6 +579,30 @@ function App() {
         : userChapters,
     [chapterQuery, userChapters],
   );
+  const chapterGroups = useMemo(() => {
+    const groups = [
+      {
+        id: "topics",
+        label: "実力養成編 (じつりょくようせいへん) : 第1部 : 話題別に言葉を学ぼう (わだいべつにことばをまなぼう)",
+        range: "chapter 1 - 21",
+        chapters: [],
+      },
+      {
+        id: "strengthening",
+        label: "実力養成編 (じつりょくようせいへん) : 第2部 : (だいにぶ) 性質別に言葉を学ぼう (せいしつべつにことばをまなぼう)",
+        range: "chapter 1 - 8",
+        chapters: [],
+      },
+    ];
+
+    for (const chapter of filteredChapters) {
+      const isPartTwo = String(chapter.number).includes(".");
+      const group = isPartTwo ? groups[1] : groups[0];
+      group.chapters.push(chapter);
+    }
+
+    return groups.filter((group) => group.chapters.length > 0);
+  }, [filteredChapters]);
   const selected =
     userChapters.find((c) => c.id === active) ?? filteredChapters[0] ?? userChapters[0];
   const vocabResults = useMemo(() => {
@@ -861,19 +885,27 @@ function App() {
             </div>
             <div className="chapter-group">
               {filteredChapters.length ? (
-                filteredChapters.map((chapter) => (
-                  <button
-                    className={chapter.id === selected?.id ? "active" : ""}
-                    onClick={() => {
-                      setActive(chapter.id);
-                      setVocabQuery("");
-                      focusChapterContent();
-                    }}
-                    key={chapter.id}
-                  >
-                    <span>Chapter {chapter.number}</span>
-                    <strong>{chapterTitle(chapter.title, showMyanmar, showReadings, showJapanese)}</strong>
-                  </button>
+                chapterGroups.map((group) => (
+                  <div className="chapter-group-block" key={group.id}>
+                    <p className="chapter-group-label">
+                      <span className="chapter-group-title">{chapterTitle(group.label, showMyanmar, showReadings, showJapanese)}</span>
+                      <span className="chapter-group-range">{showReadings ? group.range : hideReadings(group.range)}</span>
+                    </p>
+                    {group.chapters.map((chapter) => (
+                      <button
+                        className={chapter.id === selected?.id ? "active" : ""}
+                        onClick={() => {
+                          setActive(chapter.id);
+                          setVocabQuery("");
+                          focusChapterContent();
+                        }}
+                        key={chapter.id}
+                      >
+                        <span>Chapter {chapter.number}</span>
+                        <strong>{chapterTitle(chapter.title, showMyanmar, showReadings, showJapanese)}</strong>
+                      </button>
+                    ))}
+                  </div>
                 ))
               ) : (
                 <div className="empty search-empty">
