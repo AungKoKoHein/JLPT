@@ -1,0 +1,818 @@
+﻿/* Presentation layer: interaction, visibility and card transforms stay in the base styles. */
+:root {
+  --canvas: #f3f5f5;
+  --surface: #fff;
+  --surface-muted: #f7f9f9;
+  --ink: #202d32;
+  --muted: #5e7077;
+  --line: #dce4e5;
+  --accent: #18685f;
+  --accent-hover: #10554e;
+  --accent-soft: #edf5f2;
+  --focus: #338b80;
+  --shadow: 0 3px 12px #20343806;
+  color: var(--ink);
+  background: var(--canvas);
+  font-family:
+    Inter, "Segoe UI", "Noto Sans JP", "Pyidaungsu", "Myanmar Text", system-ui,
+    sans-serif;
+  font-synthesis: none;
+}
+body {
+  overscroll-behavior-y: none;
+}
+main {
+  max-width: 1480px;
+  --page-bottom-space: calc(20px + env(safe-area-inset-bottom, 0px));
+  padding: 24px 32px var(--page-bottom-space);
+}
+main > header {
+  padding: 24px 28px;
+  gap: 24px;
+  border: 1px solid #263b41;
+  border-radius: 16px;
+  background: #203238;
+  box-shadow: var(--shadow);
+}
+header .eyebrow {
+  color: #b5cec9;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+}
+h1 {
+  margin: 4px 0 6px;
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  letter-spacing: -0.045em;
+  font-weight: 650;
+}
+header .subtitle {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #c7d5d8;
+}
+h2 {
+  color: var(--ink);
+  font-weight: 650;
+  letter-spacing: -0.025em;
+}
+.eyebrow {
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.09em;
+}
+.note,
+.count,
+.hint,
+.source-note {
+  color: var(--muted);
+}
+main button:not(.flashcard) {
+  font-weight: 600;
+}
+button,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+main button:focus-visible,
+main input:focus-visible,
+main select:focus-visible,
+main textarea:focus-visible,
+[role="tabpanel"]:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+main button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* The account strip is secondary to the study navigation. */
+.cloud-status {
+  margin: 12px 0 20px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  gap: 10px;
+}
+.cloud-status strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+.cloud-status p {
+  margin-top: 3px;
+}
+.cloud-status [role="alert"],
+.cloud-error {
+  color: #a32c32;
+}
+.cloud-actions button {
+  padding: 7px 11px;
+  font-size: 0.8rem;
+}
+.study-tabs {
+  gap: 4px;
+  margin: 0 0 20px;
+  padding: 0 0 8px;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+}
+.study-tabs button {
+  flex: 0 0 auto;
+  min-width: 112px;
+  min-height: 44px;
+  padding: 10px 24px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.study-tabs button[aria-selected="true"] {
+  border-color: #cdded8;
+  background: var(--accent-soft);
+  color: var(--accent);
+  box-shadow: none;
+}
+.study-tabs button:hover {
+  background: #e7eded;
+}
+
+/* Search columns line up with the navigation and reading surfaces. */
+.search-grid {
+  grid-template-columns: 280px minmax(0, 1fr);
+  margin: 0 0 20px;
+  gap: 20px;
+}
+.search-grid label,
+.mobile-vocab-search {
+  gap: 7px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.search-grid input,
+.mobile-vocab-search input,
+.search input,
+.search-box {
+  min-height: 46px;
+  padding: 11px 14px;
+  border: 1px solid #cbd7d9;
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 400;
+  box-shadow: var(--shadow);
+}
+input::placeholder,
+textarea::placeholder {
+  color: #738389;
+  opacity: 1;
+}
+.search-grid input:focus,
+.mobile-vocab-search input:focus,
+.search input:focus,
+.search-box:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px #18685f14;
+}
+.search-grid input.has-results,
+.mobile-vocab-search input.has-results {
+  border-color: #6c9c8d;
+  background: #f5faf7;
+  box-shadow: none;
+}
+.search-grid input.no-results,
+.mobile-vocab-search input.no-results {
+  border-color: #b89555;
+  background: #fffbf2;
+}
+.layout {
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+aside,
+article {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+.layout > aside {
+  padding: 14px;
+  overscroll-behavior: contain;
+}
+/* At the document end, the sidebar must fit above the page's bottom gap
+   without its sticky header being pushed beyond the viewport. */
+@media (min-width: 801px) {
+  .layout > aside {
+    height: calc(100dvh - 20px - var(--page-bottom-space));
+  }
+}
+.layout > article {
+  min-width: 0;
+  padding: 24px;
+}
+.sidebar-heading {
+  flex-shrink: 0;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+.sidebar-heading .count,
+aside > .count {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin: 4px 8px;
+}
+.layout > aside .chapter-group {
+  overscroll-behavior-y: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #bac9ca transparent;
+}
+aside button {
+  border-radius: 8px;
+  padding: 11px 12px;
+  color: #42565e;
+  font-size: 0.9rem;
+}
+aside button + button {
+  margin-top: 3px;
+}
+aside button span {
+  color: var(--muted);
+  font-size: 0.7rem;
+}
+aside button strong {
+  font-weight: 550;
+  line-height: 1.65;
+}
+aside button:hover {
+  background: var(--surface-muted);
+  color: var(--ink);
+}
+aside button.active {
+  background: var(--accent-soft);
+  color: var(--accent);
+  box-shadow: inset 3px 0 var(--accent);
+}
+aside button.active span {
+  color: var(--accent);
+}
+.chapter-group-title,
+.chapter-group h3 {
+  color: var(--ink);
+  font-size: 0.85rem;
+}
+.chapter-group-range {
+  color: var(--muted);
+  font-size: 0.7rem;
+}
+aside button.sidebar-toggle {
+  background: var(--surface-muted);
+  border-color: var(--line);
+}
+aside button.sidebar-toggle:hover {
+  background: var(--accent-soft);
+  border-color: #a6c6bc;
+}
+aside button.sidebar-toggle .sidebar-toggle-icon {
+  width: 14px;
+  height: 14px;
+  background: var(--muted);
+  filter: none;
+}
+main[data-show-sidebar="false"] .sidebar-heading {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+/* Kanji has chapter buttons directly inside its navigation panel. */
+.layout > aside:not(:has(.chapter-group)) {
+  overflow-y: auto;
+}
+.layout > aside > button {
+  flex-shrink: 0;
+}
+
+/* Compact hierarchy: overview, actions, then learning material. */
+.layout > article > .eyebrow {
+  font-size: 0.7rem;
+}
+.layout > article > h2 {
+  font-size: clamp(1.35rem, 2.3vw, 1.8rem);
+  margin: 3px 0 6px;
+  line-height: 1.45;
+}
+.layout > article > .note {
+  margin-bottom: 10px;
+  font-size: 0.8rem;
+}
+.tools {
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.layout > article > .tools {
+  margin: 12px 0 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.tools button {
+  font-size: 0.8rem;
+  padding: 8px 12px;
+  min-height: 38px;
+}
+.content-actions button,
+.item-actions button,
+.secondary-button,
+.tools button,
+.back-to-vocabulary,
+.reading-toggle,
+.cloud-actions button,
+.card-position-actions button {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: #42565e;
+  box-shadow: none;
+}
+.tools .selected,
+.primary-button,
+.content-actions button:first-child,
+.more {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+.content-actions {
+  max-width: 600px;
+}
+.content-actions button {
+  font-size: 0.78rem;
+  padding: 8px 11px;
+}
+.content-actions button:not(:first-child) {
+  background: #2b4249;
+  border-color: #506269;
+  color: #e8eeee;
+}
+.tools button:hover:not(:disabled):not(.selected),
+.secondary-button:hover:not(:disabled),
+.cloud-actions button:hover:not(:disabled),
+.back-to-vocabulary:hover,
+.card-position-actions button:hover:not(:disabled) {
+  background: var(--accent-soft);
+  border-color: #a6c6bc;
+  color: var(--accent);
+}
+.primary-button:hover:not(:disabled),
+.more:hover,
+.content-actions button:first-child:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+.item-actions button:last-child {
+  border-color: #e5c5c5;
+  color: #a32c32;
+}
+.vocab-section {
+  border-color: var(--line);
+  margin-top: 18px;
+  padding-top: 16px;
+}
+.vocab-sections > .vocab-section:first-of-type {
+  border-top: 0;
+  margin-top: 0;
+  padding-top: 0;
+}
+.vocab-section-heading {
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.vocab-section-heading > div:first-child {
+  min-width: 0;
+}
+.vocab-section-heading .eyebrow {
+  font-size: 0.68rem;
+  color: var(--muted);
+  letter-spacing: 0.07em;
+}
+.vocab-section-heading h3 {
+  margin: 3px 0 0;
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+.vocab-section > .note {
+  margin-bottom: 12px;
+  font-size: 0.78rem;
+}
+.section-exercise-button {
+  width: 40px;
+  height: 40px;
+  border-color: var(--line);
+  border-radius: 8px;
+  background: var(--surface-muted);
+  color: var(--accent);
+}
+.section-exercise-button:hover,
+.section-exercise-button.active {
+  background: var(--accent-soft);
+  border-color: #a6c6bc;
+  color: var(--accent);
+}
+
+/* Neutral card faces preserve the flip interaction and scrollable content. */
+.cards {
+  gap: 14px;
+}
+.flashcard {
+  height: 300px;
+}
+.managed-item {
+  grid-template-rows: 300px auto;
+}
+.managed-item .flashcard {
+  min-height: 300px;
+}
+.face {
+  border-color: var(--line);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+.front {
+  background: #fcfdfc;
+  border-top: 3px solid #b3ccc4;
+}
+.back {
+  background: #f5f8f7;
+}
+.front strong,
+.jp,
+.book-term {
+  color: var(--ink);
+}
+.vocab-card .front strong {
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+  font-weight: 600;
+  line-height: 1.7;
+}
+.front .meaning {
+  color: #50666e;
+}
+.label {
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.075em;
+}
+.chapter-tag {
+  color: var(--accent);
+  font-weight: 600;
+}
+.source-note {
+  font-size: 0.72rem;
+}
+.managed-item.search-hit {
+  border-color: #b6cfc5;
+  background: var(--accent-soft);
+  box-shadow: none;
+}
+.kanji-reading-summary,
+.kanji-reading-summary .label:nth-child(3),
+.kanji-word {
+  border-color: var(--line);
+}
+.vocabulary-book {
+  padding-right: 36px;
+  font-size: 1.4rem;
+  line-height: 1.8;
+}
+.book-entry {
+  padding: 12px 0 14px 8px;
+  margin-bottom: 0;
+  border-color: var(--line);
+}
+.book-entry::marker {
+  color: var(--muted);
+  font-size: 1rem;
+  font-weight: 500;
+}
+.book-term strong {
+  font-weight: 600;
+}
+.book-example,
+.book-translation {
+  font-size: 1.25rem;
+}
+.book-entry .book-chapter-label {
+  font-size: 1rem;
+}
+.vocabulary-book .item-actions button {
+  font-size: 1rem;
+}
+.book-translation {
+  color: var(--muted);
+}
+.card,
+pre,
+.practice {
+  background: var(--surface-muted);
+  border-color: var(--line);
+  border-radius: 10px;
+  box-shadow: none;
+}
+.dedicated-exercise-page .exercises {
+  background: var(--surface-muted);
+  border-color: var(--line);
+}
+.back-to-vocabulary {
+  margin-bottom: 16px;
+  font-size: 0.85rem;
+}
+.exercise-section h3 {
+  color: var(--ink);
+  font-weight: 600;
+}
+.exercise-section li {
+  border-color: var(--line);
+}
+.exercise-answer {
+  background: var(--accent-soft);
+  color: #225c50;
+  border-left: 3px solid #8fb5a5;
+  border-radius: 6px;
+}
+.exercise-scope {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.empty {
+  min-height: 260px;
+  padding: 24px;
+  border: 1px dashed #b9c9cc;
+  border-radius: 12px;
+  background: var(--surface-muted);
+}
+.empty h3 {
+  color: var(--ink);
+}
+.empty p {
+  font-size: 0.95rem;
+}
+
+/* Floating utilities and edit forms use the same surface and accent system. */
+.controls-launcher,
+.study-controls .back-to-top {
+  background: #203238;
+  border: 1px solid #203238;
+  color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px #20343820;
+}
+.controls-launcher {
+  padding: 12px 16px;
+  font-size: 0.85rem;
+  min-height: 46px;
+}
+.controls-launcher:hover,
+.study-controls .back-to-top:hover {
+  background: #314c53;
+}
+.back-to-top-icon {
+  width: 17px;
+  height: 17px;
+  background: #fff;
+  filter: none;
+}
+.controls-panel {
+  padding: 14px;
+  border-color: var(--line);
+  border-radius: 12px;
+  background: #fffffffa;
+  box-shadow: 0 12px 40px #20343820;
+}
+.controls-title {
+  color: var(--ink);
+  font-size: 0.8rem;
+}
+main .controls-panel button {
+  justify-content: space-between;
+  border-color: var(--line);
+  border-radius: 8px;
+  background: var(--surface-muted);
+  color: var(--ink);
+  font-size: 0.85rem;
+}
+main .controls-panel .vocab-mode-switch button {
+  justify-content: center;
+}
+.controls-panel button[aria-pressed="true"] {
+  background: var(--accent-soft);
+  border-color: #a6c6bc;
+}
+.controls-panel button[aria-pressed="true"] span {
+  color: var(--accent);
+}
+.subchapter-nav {
+  border-color: var(--line);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  opacity: 0.8;
+  padding: 4px;
+}
+.subchapter-nav button {
+  background: var(--surface-muted);
+  color: var(--accent);
+  border-radius: 6px;
+}
+.subchapter-nav button:hover {
+  background: #dcece5;
+}
+.editor-backdrop {
+  background: #12272eb3;
+  backdrop-filter: blur(4px);
+}
+.editor {
+  border-color: var(--line);
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 24px 80px #12272e40;
+}
+.editor-heading {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 16px;
+}
+.editor-heading h2 {
+  font-size: 1.5rem;
+}
+.editor-grid label {
+  color: #42565e;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.editor-grid input,
+.editor-grid select,
+.editor-grid textarea,
+.exercise-scope select {
+  border-color: #cbd7d9;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: var(--ink);
+  min-height: 44px;
+}
+.editor-help {
+  font-size: 0.8rem;
+}
+.editor-actions {
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+.icon-button {
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 8px;
+}
+
+@media (hover: hover) {
+  .flashcard:hover .face {
+    border-color: #8eb2a7;
+    box-shadow: 0 6px 20px #2034380d;
+  }
+}
+@media (min-width: 801px) and (max-width: 1100px) {
+  main {
+    padding-inline: 20px;
+  }
+  .layout,
+  .search-grid {
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 16px;
+  }
+  .layout > article {
+    padding: 20px;
+  }
+  .face {
+    padding: 18px;
+  }
+}
+@media (max-width: 800px) {
+  main {
+    /* Reserve only the space needed by the floating study controls. */
+    padding: 14px 12px calc(72px + env(safe-area-inset-bottom, 0px));
+  }
+  main > header {
+    padding: 20px;
+    gap: 16px;
+    border-radius: 12px;
+  }
+  header .subtitle {
+    font-size: 0.8rem;
+  }
+  .content-actions {
+    gap: 6px;
+  }
+  .cloud-status {
+    padding: 10px 12px;
+    margin-bottom: 16px;
+  }
+  .study-tabs {
+    margin-bottom: 16px;
+  }
+  .study-tabs button {
+    min-width: 88px;
+    padding-inline: 18px;
+  }
+  .search-grid {
+    grid-template-columns: 1fr;
+    margin-bottom: 14px;
+    gap: 12px;
+  }
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .layout > aside {
+    padding: 12px;
+  }
+  .sidebar-heading {
+    margin-bottom: 8px;
+    background: var(--surface);
+  }
+  .layout > aside,
+  main[data-show-sidebar="false"] .layout > aside {
+    overscroll-behavior-y: contain;
+  }
+  aside .chapter-group button {
+    background: var(--surface-muted);
+    border-color: var(--line);
+  }
+  aside .chapter-group button.active {
+    background: var(--accent-soft);
+    border-color: #a6c6bc;
+  }
+  .layout > article {
+    padding: 18px 16px;
+  }
+  .mobile-vocab-search {
+    color: var(--muted);
+  }
+  .vocab-section-heading {
+    flex-wrap: wrap;
+  }
+  .vocab-section-actions {
+    flex-wrap: wrap;
+  }
+  .vocab-section-heading h3 {
+    font-size: 1.1rem;
+  }
+  .tools button {
+    min-height: 44px;
+  }
+  .vocabulary-book {
+    padding-left: 24px;
+    padding-right: 18px;
+  }
+  .book-entry {
+    padding-left: 4px;
+  }
+  .face {
+    padding: 22px;
+  }
+  .editor {
+    padding: 20px;
+  }
+  .editor-heading {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .subchapter-nav {
+    right: 4px;
+    padding: 3px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  button,
+  .flash-inner,
+  .managed-item,
+  .subchapter-nav,
+  input {
+    transition: none;
+  }
+}
