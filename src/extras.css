@@ -92,28 +92,10 @@
   padding-top: 0;
   border-top: 0;
 }
-.vocab-section:first-of-type > .vocab-section-heading {
-  display: none;
-}
 .vocab-section > h3 {
   margin: 0 0 6px;
   color: #3730a3;
   font-size: clamp(1.45rem, 2.5vw, 2.1rem);
-}
-.chapter-header {
-  margin-bottom: 10px;
-}
-.chapter-header .eyebrow {
-  color: #6366f1;
-  font-size: 0.82rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-.chapter-header h2 {
-  margin: 4px 0 0;
-  font-size: clamp(2rem, 3vw, 2.9rem);
-  line-height: 1.2;
-  color: #1e1b4b;
 }
 .vocab-section-heading {
   display: flex;
@@ -124,9 +106,8 @@
 }
 .vocab-section-heading .eyebrow {
   color: #818cf8;
-  font-size: 0.8rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
 }
 .vocab-section-heading h3 {
   font-size: clamp(1.3rem, 2vw, 1.9rem);
