@@ -2,8 +2,8 @@ const cardGroup = (card) => JSON.stringify([card.studyTab || "Vocab", card.chapt
 
 // Reuse manually created sections (including the owner's Chapter 1) by number.
 // sourceId keeps the book assignment stable when a saved section has its own ID.
-export function resolveVocabularySubchapters(chapters, content) {
-  const custom = (content.subchapters ?? []).filter((section) => (section.studyTab ?? "Vocab") === "Vocab");
+export function resolveVocabularySubchapters(chapters, content, studyTab = "Vocab") {
+  const custom = (content.subchapters ?? []).filter((section) => (section.studyTab ?? "Vocab") === studyTab);
   const used = new Set();
   const deleted = new Set(content.deletedSubchapters ?? []);
   const sections = chapters.flatMap((chapter) => (chapter.subchapters ?? []).map((section) => {

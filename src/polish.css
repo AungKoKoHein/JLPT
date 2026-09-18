@@ -141,10 +141,11 @@ main button:disabled {
   font-size: 0.9rem;
 }
 .study-tabs button[aria-selected="true"] {
-  border-color: #cdded8;
+  border-color: var(--accent);
   background: var(--accent-soft);
   color: var(--accent);
-  box-shadow: none;
+  box-shadow: inset 0 -3px 0 var(--accent), 0 2px 0 #18685f24;
+  font-weight: 750;
 }
 .study-tabs button:hover {
   background: #e7eded;
@@ -199,6 +200,12 @@ textarea::placeholder {
 .mobile-vocab-search input.no-results {
   border-color: #b89555;
   background: #fffbf2;
+}
+.search-box-readonly {
+  cursor: not-allowed;
+  background: #eef2f2 !important;
+  color: var(--muted) !important;
+  border-color: #bdc9ca !important;
 }
 .layout {
   grid-template-columns: 280px minmax(0, 1fr);

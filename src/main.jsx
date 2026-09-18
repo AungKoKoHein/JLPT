@@ -247,12 +247,10 @@ function ContentEditor({ editor, setEditor, chapterOptions, studyTabs, onSave, o
             Type
             <select value={editor.type} onChange={(event) => {
               const type = event.target.value;
-              if (type === "exercise" && !["Vocab", "Kanji"].includes(editor.studyTab)) {
-                setEditor((current) => ({ ...current, type, studyTab: "Vocab", chapterId: chapterOptions.find((chapter) => chapter.studyTab === "Vocab")?.id ?? "", subchapterId: "" }));
-              } else set("type", type);
+              set("type", type);
             }} disabled={editor.mode === "edit"}>
-              <option value="card">Flashcard</option>
-              <option value="kanji">Kanji Card</option>
+              {editor.studyTab !== "Kanji" && <option value="card">Flashcard</option>}
+              {editor.studyTab === "Kanji" && <option value="kanji">Kanji Card</option>}
               <option value="exercise">Exercise</option>
               <option value="chapter">Chapter</option>
               <option value="subchapter">Sub Chapter</option>
@@ -260,7 +258,7 @@ function ContentEditor({ editor, setEditor, chapterOptions, studyTabs, onSave, o
           </label>
           <label>
             Study Tab
-            <select value={editor.studyTab} onChange={(event) => {
+            <select disabled value={editor.studyTab} onChange={(event) => {
               const studyTab = event.target.value;
               const firstChapter = chapterOptions.find((chapter) => chapter.studyTab === studyTab);
               setEditor((current) => ({
@@ -270,7 +268,7 @@ function ContentEditor({ editor, setEditor, chapterOptions, studyTabs, onSave, o
                 subchapterId: "",
               }));
             }}>
-              {studyTabs.filter((label) => editor.type === "exercise" ? ["Vocab", "Kanji"].includes(label) : editor.type !== "card" || label !== "Kanji").map((label) => (
+              {studyTabs.filter((label) => editor.type === "exercise" ? ["Vocab", "Kanji", "Grammar"].includes(label) : editor.type !== "card" || label !== "Kanji").map((label) => (
                 <option value={label} key={label}>{label}</option>
               ))}
             </select>
@@ -425,6 +423,16 @@ const studyTabs = [
 
 function App() {
   const [studyTab, setStudyTab] = useState("Vocab");
+  const isChapterStudy = ["Vocab", "Grammar"].includes(studyTab);
+  const studyLabel = studyTab === "Grammar" ? "grammar" : "vocabulary";
+  useEffect(() => {
+    setChapterQuery("");
+    setVocabQuery("");
+    setActive("");
+    setExerciseSectionId(null);
+    setTab("vocabulary");
+    setEditor(null);
+  }, [studyTab]);
   const [chapterQuery, setChapterQuery] = useState("");
   const [vocabQuery, setVocabQuery] = useState("");
   const [active, setActive] = useState(chapters[0]?.id ?? "");
@@ -550,10 +558,14 @@ function App() {
     () => resolveVocabularySubchapters(chapters, content),
     [content],
   );
+  const grammarSubchapters = useMemo(
+    () => resolveVocabularySubchapters([], content, "Grammar"),
+    [content],
+  );
   const moveCard = (cardId, direction) => {
     setContent((current) => moveVocabularyCard(chapters, current, cardId, direction));
   };
-  const userChapters = useMemo(
+  const vocabularyChapters = useMemo(
     () => [
       ...chapters.map((chapter) => ({
         ...chapter,
@@ -576,7 +588,7 @@ function App() {
   );
   const chapterOptions = useMemo(
     () => [
-      ...userChapters.map((chapter) => ({ ...chapter, studyTab: "Vocab" })),
+      ...vocabularyChapters.map((chapter) => ({ ...chapter, studyTab: "Vocab" })),
       ...kanjiChapterOptions.map((chapter) => ({
         ...chapter,
         subchapters: [
@@ -586,12 +598,19 @@ function App() {
           ),
         ],
       })),
-      ...(content.chapters ?? []).filter((chapter) => chapter.studyTab === "Kanji").map((chapter) => ({
-        ...chapter, subchapters: content.subchapters.filter((item) => item.parentChapterId === chapter.id),
+      ...(content.chapters ?? []).filter((chapter) => chapter.studyTab !== "Vocab" && chapter.studyTab != null).map((chapter) => ({
+        ...chapter,
+        subchapters: (chapter.studyTab === "Grammar" ? grammarSubchapters : content.subchapters.filter((item) => item.studyTab === chapter.studyTab))
+          .filter((item) => item.parentChapterId === chapter.id && !content.deletedSubchapters.includes(item.id)),
       })),
     ],
-    [content, userChapters],
+    [content, vocabularyChapters, grammarSubchapters],
   );
+
+  const userChapters = useMemo(() => chapterOptions
+    .filter((chapter) => chapter.studyTab === studyTab)
+    .map((chapter) => ({ ...chapter, cards: allVocabularyCards.filter((card) => card.chapterId === chapter.id && (card.studyTab ?? "Vocab") === studyTab) })),
+    [chapterOptions, allVocabularyCards, studyTab]);
 
   const filteredChapters = useMemo(
     () =>
@@ -601,6 +620,7 @@ function App() {
     [chapterQuery, userChapters],
   );
   const chapterGroups = useMemo(() => {
+    if (studyTab !== "Vocab") return [{ id: studyTab, label: `${studyTab} chapters`, range: "", chapters: filteredChapters }];
     const groups = [
       {
         id: "topics",
@@ -623,7 +643,7 @@ function App() {
     }
 
     return groups.filter((group) => group.chapters.length > 0);
-  }, [filteredChapters]);
+  }, [filteredChapters, studyTab]);
   const selected =
     userChapters.find((c) => c.id === active) ?? filteredChapters[0] ?? userChapters[0];
   const vocabResults = useMemo(() => {
@@ -634,11 +654,11 @@ function App() {
       .flatMap((chapter) => [
         ...chapter.cards.map((card) => ({ card, chapter })),
         ...chapter.subchapters.flatMap((subchapter) => allVocabularyCards
-          .filter((card) => card.chapterId === subchapter.id && (!card.studyTab || card.studyTab === "Vocab"))
+          .filter((card) => card.chapterId === subchapter.id && (card.studyTab ?? "Vocab") === studyTab)
           .map((card) => ({ card, chapter: subchapter }))),
       ])
       .filter(({ card }) => matchesVocabulary(card, q));
-  }, [vocabQuery, selected, userChapters, allVocabularyCards]);
+  }, [vocabQuery, selected, userChapters, allVocabularyCards, studyTab]);
   const vocabSections = selected
     ? [
         { chapter: selected, isSubchapter: false, cards: selected.cards.map((card) => ({ card, chapter: selected })) },
@@ -646,7 +666,7 @@ function App() {
           chapter: subchapter,
           isSubchapter: true,
           cards: allVocabularyCards
-            .filter((card) => card.chapterId === subchapter.id && (!card.studyTab || card.studyTab === "Vocab"))
+            .filter((card) => card.chapterId === subchapter.id && (card.studyTab ?? "Vocab") === studyTab)
             .map((card) => ({ card, chapter: subchapter })),
         })),
       ]
@@ -656,9 +676,9 @@ function App() {
     content,
     chapterOptions.flatMap((chapter) => chapter.subchapters ?? []),
   ), [content, chapterOptions]);
-  const exercises = selected ? exercisesForView(allExercises, "Vocab", selected.id) : [];
+  const exercises = selected ? exercisesForView(allExercises, studyTab, selected.id) : [];
   const exercisesForSection = (section) => exercisesForView(
-    allExercises, "Vocab", selected?.id, section.id === selected?.id ? "" : section.id,
+    allExercises, studyTab, selected?.id, section.id === selected?.id ? "" : section.id,
   );
   const exerciseSection = vocabSections.find(
     ({ chapter }) => chapter.id === exerciseSectionId,
@@ -667,7 +687,8 @@ function App() {
 
   const openEditor = (type, mode = "add", record = {}) => {
     if (!cloud.canEdit) return;
-    const selectedTab = record.studyTab ?? (studyTab === "Vocab" ? "Vocab" : studyTab);
+    const selectedTab = studyTab;
+    if (record.studyTab && record.studyTab !== selectedTab) return;
     const optionsForTab = chapterOptions.filter((item) => item.studyTab === selectedTab);
     const recordSubchapter = optionsForTab
       .flatMap((chapter) => chapter.subchapters ?? [])
@@ -706,7 +727,8 @@ function App() {
     });
   };
   const saveContent = async (draft) => {
-    if (!cloud.canEdit) return;
+    if (!cloud.canEdit || draft.studyTab !== studyTab) return;
+    if (draft.type !== "chapter" && !chapterOptions.some((chapter) => chapter.id === draft.chapterId && chapter.studyTab === studyTab)) return;
     if (draft.type === "card") {
       setStudyTab(draft.studyTab);
       setActive(draft.chapterId);
@@ -737,7 +759,7 @@ function App() {
       }
       if (draft.type === "subchapter") {
         const id = `user-${Date.now()}`;
-        setActive(id);
+        setActive(draft.chapterId);
         return { ...current, subchapters: [...current.subchapters, { id, parentChapterId: draft.chapterId, studyTab: draft.studyTab, number: draft.number, title: draft.title, titleMyanmar: draft.titleMyanmar, cards: [] }] };
       }
       if (draft.type === "kanji") {
@@ -768,7 +790,7 @@ function App() {
     if (saved) setEditor(null);
   };
   const deleteRecord = (type, record) => {
-    if (!cloud.canEdit) return;
+    if (!cloud.canEdit || (record.studyTab ?? "Vocab") !== studyTab) return;
     const label = type === "card" ? record.term : type === "kanji" ? record.kanji : record.question;
     if (!window.confirm(type === "exercise" ? `Delete this exercise from the main list and every assigned subchapter?\n${label}` : `Are you sure you want to delete ${label}?`)) return;
     setContent((current) => ({
@@ -777,12 +799,12 @@ function App() {
     }));
   };
   const deleteSubchapter = (chapter) => {
-    if (!cloud.canEdit) return;
+    if (!cloud.canEdit || (chapter.studyTab ?? "Vocab") !== studyTab) return;
     if (!window.confirm(`Delete ${chapter.title} and its cards? Its exercises will remain in the main chapter list without this assignment.`)) return;
     setContent((current) => ({
       ...current,
       ...unassignExercises(current, chapter.id, allExercises),
-      ...(chapter.studyTab === "Vocab" ? {
+      ...(["Vocab", "Grammar"].includes(chapter.studyTab ?? "Vocab") ? {
         deletedSubchapters: [...new Set([...(current.deletedSubchapters ?? []), chapter.id, ...(chapter.sourceId ? [chapter.sourceId] : [])])],
         deletedCards: [...new Set([...current.deletedCards, ...resolveVocabularyCards(chapters, current).filter((card) => card.chapterId === chapter.id).map((card) => card._id)])],
       } : {}),
@@ -817,7 +839,7 @@ function App() {
           <p className="subtitle">Japanese · Myanmar · flashcards by chapter</p>
         </div>
         {cloud.isEditor && <fieldset className="content-actions" aria-label="Manage study content" disabled={!cloud.canEdit}>
-          <button type="button" onClick={() => openEditor(studyTab === "Kanji" ? "kanji" : "card", "add", { studyTab })}>+ Add {studyTab}</button>
+          <button type="button" onClick={() => openEditor(!chapterOptions.some((chapter) => chapter.studyTab === studyTab) ? "chapter" : studyTab === "Kanji" ? "kanji" : "card", "add", { studyTab })}>+ Add {studyTab}</button>
           {studyTab !== "Kanji" && (
             <>
               <button type="button" onClick={() => selected && openEditor("chapter", "edit", { ...selected, studyTab })} disabled={!selected}>Edit Chapter</button>
@@ -858,9 +880,9 @@ function App() {
       </div>
       <section
         role="tabpanel"
-        id="study-panel-0"
-        aria-labelledby="study-tab-0"
-        hidden={studyTab !== "Vocab"}
+        id={`study-panel-${studyTab === "Grammar" ? studyTabs.indexOf("Grammar") : 0}`}
+        aria-labelledby={`study-tab-${studyTab === "Grammar" ? studyTabs.indexOf("Grammar") : 0}`}
+        hidden={!isChapterStudy}
         tabIndex={0}
       >
         <section className="search-grid">
@@ -875,13 +897,15 @@ function App() {
             />
           </label>
           <label htmlFor="vocab-search" className="desktop-vocab-search">
-            Search every vocabulary card
+            Search every {studyLabel} card
             <input
               id="vocab-search"
-              className={vocabQuery.trim() ? (vocabResults.length ? "search-box has-results" : "search-box no-results") : "search-box"}
+              className={`${vocabQuery.trim() ? (vocabResults.length ? "search-box has-results" : "search-box no-results") : "search-box"}${tab === "exercises" ? " search-box-readonly" : ""}`}
               value={vocabQuery}
               onChange={(e) => setVocabQuery(e.target.value)}
               placeholder="例：冷蔵庫、れいぞうこ、冷蔵庫の説明"
+              readOnly={tab === "exercises"}
+              aria-readonly={tab === "exercises"}
             />
           </label>
         </section>
@@ -925,13 +949,15 @@ function App() {
             </div>
           </aside>
           <label htmlFor="mobile-vocab-search" className="mobile-vocab-search">
-            Search every vocabulary card
+            Search every {studyLabel} card
             <input
               id="mobile-vocab-search"
-              className={vocabQuery.trim() ? (vocabResults.length ? "search-box has-results" : "search-box no-results") : "search-box"}
+              className={`${vocabQuery.trim() ? (vocabResults.length ? "search-box has-results" : "search-box no-results") : "search-box"}${tab === "exercises" ? " search-box-readonly" : ""}`}
               value={vocabQuery}
               onChange={(e) => setVocabQuery(e.target.value)}
               placeholder={vocabularySearchPlaceholder}
+              readOnly={tab === "exercises"}
+              aria-readonly={tab === "exercises"}
             />
           </label>
           <article ref={chapterContentRef}>
@@ -939,13 +965,13 @@ function App() {
               <>
                 <p className="eyebrow">
                   {isGlobalSearch
-                    ? "Vocabulary search"
+                    ? `${studyLabel} search`
                     : `Chapter ${selected.number}`}
                 </p>
                 <h2>
                   {isGlobalSearch
                     ? `Results for “${vocabQuery}”`
-                    : `Chapter ${selected.number} vocabulary`}
+                    : `Chapter ${selected.number} ${studyLabel}`}
                 </h2>
                 <p className="note">
                   {isGlobalSearch
@@ -953,7 +979,7 @@ function App() {
                     : vocabSections.reduce((total, section) => total + section.cards.length, 0)}{" "}
                   {isGlobalSearch
                     ? `matching ${bookMode ? "entries" : "cards"} across all chapters`
-                    : bookMode ? "vocabulary entries" : "flashcards"}
+                    : bookMode ? `${studyLabel} entries` : "flashcards"}
                 </p>
                 {!isGlobalSearch && (
                   <div className="tools">
@@ -961,7 +987,7 @@ function App() {
                       className={tab === "vocabulary" ? "selected" : ""}
                       onClick={() => setTab("vocabulary")}
                     >
-                      Vocabulary
+                      {studyTab === "Grammar" ? "Grammar" : "Vocabulary"}
                     </button>
                     <button
                       className={tab === "exercises" ? "selected" : ""}
@@ -1017,8 +1043,8 @@ function App() {
                         showMyanmar={showMyanmar}
                         setShowMyanmar={setExerciseMyanmar}
                         assignmentLabel={exerciseSection.isSubchapter ? localizedChapterTitle(exerciseSection.chapter, showMyanmar, showReadings, showJapanese) : undefined}
-                        onAdd={!bookMode && cloud.canEdit ? () => openEditor("exercise", "add", { studyTab: "Vocab", chapterId: selected.id, subchapterId: exerciseSection.isSubchapter ? exerciseSection.chapter.id : "" }) : undefined}
-                        onEdit={!bookMode && manageMode && cloud.isEditor ? (item) => openEditor("exercise", "edit", { ...item, studyTab: "Vocab" }) : undefined}
+                        onAdd={!bookMode && cloud.canEdit ? () => openEditor("exercise", "add", { studyTab, chapterId: selected.id, subchapterId: exerciseSection.isSubchapter ? exerciseSection.chapter.id : "" }) : undefined}
+                        onEdit={!bookMode && manageMode && cloud.isEditor ? (item) => openEditor("exercise", "edit", { ...item, studyTab }) : undefined}
                         onDelete={!bookMode && manageMode && cloud.isEditor ? (item) => deleteRecord("exercise", item) : undefined}
                       />
                     </section>
@@ -1075,7 +1101,7 @@ function App() {
                               )}
                             </div>
                           </div>
-                          {sectionCards.length > 0 && <p className="note">{sectionCards.length} {bookMode ? "vocabulary entries" : "flashcards"}</p>}
+                          {sectionCards.length > 0 && <p className="note">{sectionCards.length} {bookMode ? `${studyLabel} entries` : "flashcards"}</p>}
                           {bookMode ? (
                             <VocabularyBook entries={sectionCards} showReadings={showReadings} showMyanmar={showMyanmar} showJapanese={showJapanese} showExamples={showBookExamples} manageMode={manageMode} isEditor={cloud.isEditor} onEdit={(card) => openEditor("card", "edit", card)} onDelete={(card) => deleteRecord("card", card)} />
                           ) : (
@@ -1115,7 +1141,7 @@ function App() {
                     showReadings={showReadings}
                     showMyanmar={showMyanmar}
                     setShowMyanmar={setExerciseMyanmar}
-                    onAdd={!bookMode && cloud.canEdit ? () => openEditor("exercise", "add", { studyTab: "Vocab", chapterId: selected.id }) : undefined}
+                    onAdd={!bookMode && cloud.canEdit ? () => openEditor("exercise", "add", { studyTab, chapterId: selected.id }) : undefined}
                     onEdit={!bookMode && manageMode && cloud.isEditor ? (item) => openEditor("exercise", "edit", item) : undefined}
                     onDelete={!bookMode && manageMode && cloud.isEditor ? (item) => deleteRecord("exercise", item) : undefined}
                   />
@@ -1123,13 +1149,13 @@ function App() {
               </>
             ) : (
               <div className="empty search-empty">
-                <p>No searched record found.</p>
+                <p>{studyTab === "Grammar" && !userChapters.length ? "No grammar chapters yet. An owner can use + Add Grammar to create the first chapter." : "No searched record found."}</p>
               </div>
             )}
           </article>
         </div>
       </section>
-      {studyTabs.slice(1).map((label, index) => (
+      {studyTabs.slice(1).map((label, index) => label === "Grammar" ? null : (
         <section
           key={label}
           role="tabpanel"
@@ -1198,7 +1224,7 @@ function App() {
         {controlsOpen && (
           <div className="controls-panel" id="study-controls-panel">
             <p className="controls-title">Study View</p>
-            {studyTab === "Vocab" && (
+            {isChapterStudy && (
               <div className="vocab-mode-switch" role="group" aria-label="Vocabulary display mode">
                 <button type="button" aria-pressed={!bookMode} onClick={() => setVocabMode("card")}>Card mode</button>
                 <button type="button" aria-pressed={bookMode} onClick={() => setVocabMode("book")}>Book mode</button>
@@ -1232,7 +1258,7 @@ function App() {
             >
               Readings <span>{showReadings ? "ON" : "OFF"}</span>
             </button>
-            {studyTab === "Vocab" && bookMode && (
+            {isChapterStudy && bookMode && (
               <button
                 type="button"
                 aria-pressed={showBookExamples}
