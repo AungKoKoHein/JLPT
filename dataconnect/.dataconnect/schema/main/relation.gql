@@ -1,0 +1,749 @@
+extend type Sentence {
+  """
+  ✨ List `SentenceTag` objects in a one-to-many relationship (where `SentenceTag`.`sentence` is this object).
+  """
+  sentenceTags_on_sentence(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: SentenceTag_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [SentenceTag_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: SentenceTag_Having
+  ): [SentenceTag!]! @fdc_generated(from: "SentenceTag.sentence", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `Translation` objects in a one-to-many relationship (where `Translation`.`sentence` is this object).
+  """
+  translations_on_sentence(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Translation_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Translation_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Translation_Having
+  ): [Translation!]! @fdc_generated(from: "Translation.sentence", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `UserCollection` objects in a one-to-many relationship (where `UserCollection`.`sentence` is this object).
+  """
+  userCollections_on_sentence(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: UserCollection_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [UserCollection_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: UserCollection_Having
+  ): [UserCollection!]! @fdc_generated(from: "UserCollection.sentence", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `Tag` objects using `SentenceTag` as the join table (a `SentenceTag` object exists where its `sentence` is this and its `tag` is that).
+  """
+  tags_via_SentenceTag(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: SentenceTag_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [SentenceTag_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: SentenceTag_Having
+  ): [Tag!]! @fdc_generated(from: "SentenceTag", purpose: QUERY_MULTIPLE_MANY_TO_MANY)
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "Sentence", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `Sentence` table.
+  """
+  _count: Int! @fdc_generated(from: "Sentence.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Sentence` table where the `contextDescription` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  contextDescription_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Sentence.contextDescription", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Sentence` table where the `createdAt` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  createdAt_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Sentence.createdAt", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Sentence` table where the `creatorId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  creatorId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Sentence.creatorId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Sentence` table where the `englishText` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  englishText_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Sentence.englishText", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Sentence` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Sentence.id", purpose: QUERY_COUNT)
+  """
+  ✨ Minimum of the `createdAt` field in the `Sentence` table.
+  """
+  createdAt_min: Timestamp @fdc_generated(from: "Sentence.createdAt", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `createdAt` field in the `Sentence` table.
+  """
+  createdAt_max: Timestamp @fdc_generated(from: "Sentence.createdAt", purpose: QUERY_MAX)
+  """
+  A generated field that is used for caching results in SDKs.
+  """
+  _id: ID! @fdc_generated(from: "Sentence.id", purpose: ENTITY_ID)
+}
+extend type SentenceTag {
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "SentenceTag", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `SentenceTag` table.
+  """
+  _count: Int! @fdc_generated(from: "SentenceTag.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `SentenceTag` table where the `sentenceId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  sentenceId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "SentenceTag.sentenceId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `SentenceTag` table where the `tagId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  tagId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "SentenceTag.tagId", purpose: QUERY_COUNT)
+  """
+  A generated field that is used for caching results in SDKs.
+  """
+  _id: ID! @fdc_generated(from: "SentenceTag.sentenceId,tagId", purpose: ENTITY_ID)
+}
+extend type Tag {
+  """
+  ✨ List `SentenceTag` objects in a one-to-many relationship (where `SentenceTag`.`tag` is this object).
+  """
+  sentenceTags_on_tag(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: SentenceTag_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [SentenceTag_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: SentenceTag_Having
+  ): [SentenceTag!]! @fdc_generated(from: "SentenceTag.tag", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `Sentence` objects using `SentenceTag` as the join table (a `SentenceTag` object exists where its `tag` is this and its `sentence` is that).
+  """
+  sentences_via_SentenceTag(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: SentenceTag_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [SentenceTag_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: SentenceTag_Having
+  ): [Sentence!]! @fdc_generated(from: "SentenceTag", purpose: QUERY_MULTIPLE_MANY_TO_MANY)
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "Tag", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `Tag` table.
+  """
+  _count: Int! @fdc_generated(from: "Tag.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Tag` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Tag.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Tag` table where the `name` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  name_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Tag.name", purpose: QUERY_COUNT)
+  """
+  A generated field that is used for caching results in SDKs.
+  """
+  _id: ID! @fdc_generated(from: "Tag.id", purpose: ENTITY_ID)
+}
+extend type Translation {
+  """
+  ✨ List `Vote` objects in a one-to-many relationship (where `Vote`.`translation` is this object).
+  """
+  votes_on_translation(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Vote_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Vote_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Vote_Having
+  ): [Vote!]! @fdc_generated(from: "Vote.translation", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "Translation", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `Translation` table.
+  """
+  _count: Int! @fdc_generated(from: "Translation.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Translation` table where the `contributorId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  contributorId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Translation.contributorId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Translation` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Translation.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Translation` table where the `myanmarText` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  myanmarText_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Translation.myanmarText", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Translation` table where the `phoneticTransliteration` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  phoneticTransliteration_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Translation.phoneticTransliteration", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Translation` table where the `scriptType` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  scriptType_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Translation.scriptType", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Translation` table where the `sentenceId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  sentenceId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Translation.sentenceId", purpose: QUERY_COUNT)
+  """
+  A generated field that is used for caching results in SDKs.
+  """
+  _id: ID! @fdc_generated(from: "Translation.id", purpose: ENTITY_ID)
+}
+extend type User {
+  """
+  ✨ List `Sentence` objects in a one-to-many relationship (where `Sentence`.`creator` is this object).
+  """
+  sentences_on_creator(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Sentence_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Sentence_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Sentence_Having
+  ): [Sentence!]! @fdc_generated(from: "Sentence.creator", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `Translation` objects in a one-to-many relationship (where `Translation`.`contributor` is this object).
+  """
+  translations_on_contributor(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Translation_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Translation_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Translation_Having
+  ): [Translation!]! @fdc_generated(from: "Translation.contributor", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `UserCollection` objects in a one-to-many relationship (where `UserCollection`.`user` is this object).
+  """
+  userCollections_on_user(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: UserCollection_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [UserCollection_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: UserCollection_Having
+  ): [UserCollection!]! @fdc_generated(from: "UserCollection.user", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  ✨ List `Vote` objects in a one-to-many relationship (where `Vote`.`user` is this object).
+  """
+  votes_on_user(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Vote_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Vote_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Vote_Having
+  ): [Vote!]! @fdc_generated(from: "Vote.user", purpose: QUERY_MULTIPLE_ONE_TO_MANY)
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "User", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `User` table.
+  """
+  _count: Int! @fdc_generated(from: "User.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `User` table where the `bio` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  bio_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "User.bio", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `User` table where the `email` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  email_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "User.email", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `User` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "User.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `User` table where the `profilePictureUrl` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  profilePictureUrl_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "User.profilePictureUrl", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `User` table where the `username` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  username_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "User.username", purpose: QUERY_COUNT)
+  """
+  A generated field that is used for caching results in SDKs.
+  """
+  _id: ID! @fdc_generated(from: "User.id", purpose: ENTITY_ID)
+}
+extend type UserCollection {
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "UserCollection", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `UserCollection` table.
+  """
+  _count: Int! @fdc_generated(from: "UserCollection.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `UserCollection` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "UserCollection.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `UserCollection` table where the `sentenceId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  sentenceId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "UserCollection.sentenceId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `UserCollection` table where the `userId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  userId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "UserCollection.userId", purpose: QUERY_COUNT)
+  """
+  A generated field that is used for caching results in SDKs.
+  """
+  _id: ID! @fdc_generated(from: "UserCollection.id", purpose: ENTITY_ID)
+}
+extend type Vote {
+  """
+  Implicit metadata field that cannot be written. It provides extra information about query results.
+  """
+  _metadata: _Metadata @fdc_generated(from: "Vote", purpose: METADATA_FIELD)
+  """
+  ✨ Count the number of rows in the `Vote` table.
+  """
+  _count: Int! @fdc_generated(from: "Vote.", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Vote` table where the `id` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  id_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Vote.id", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Vote` table where the `translationId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  translationId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Vote.translationId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Vote` table where the `userId` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  userId_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Vote.userId", purpose: QUERY_COUNT)
+  """
+  ✨ Count the number of rows in the `Vote` table where the `value` field is non-null. Pass the `distinct` argument to instead count the number of distinct values.
+  """
+  value_count(
+    """
+    Set to true to count the number of distinct values.
+    """
+    distinct: Boolean = false
+  ): Int! @fdc_generated(from: "Vote.value", purpose: QUERY_COUNT)
+  """
+  ✨ Sum the `value` field in the `Vote` table.
+  """
+  value_sum(
+    """
+    Set to true to sum the distinct values.
+    """
+    distinct: Boolean = false
+  ): Int @fdc_generated(from: "Vote.value", purpose: QUERY_SUM)
+  """
+  ✨ Average the `value` field in the `Vote` table.
+  """
+  value_avg(
+    """
+    Set to true to average the distinct values.
+    """
+    distinct: Boolean = false
+  ): Float @fdc_generated(from: "Vote.value", purpose: QUERY_AVG)
+  """
+  ✨ Minimum of the `value` field in the `Vote` table.
+  """
+  value_min: Int @fdc_generated(from: "Vote.value", purpose: QUERY_MIN)
+  """
+  ✨ Maximum of the `value` field in the `Vote` table.
+  """
+  value_max: Int @fdc_generated(from: "Vote.value", purpose: QUERY_MAX)
+  """
+  A generated field that is used for caching results in SDKs.
+  """
+  _id: ID! @fdc_generated(from: "Vote.id", purpose: ENTITY_ID)
+}

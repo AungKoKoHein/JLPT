@@ -1,0 +1,74 @@
+extend type Sentence {
+  """
+  ✨ Implicit primary key field. It's a UUID column default to a generated new value. See `@table` for how to customize it.
+  """
+  id: UUID! @default(expr: "uuidV4()") @fdc_generated(from: "Sentence", purpose: IMPLICIT_KEY_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Sentence`.`creator`. It must match the value of `User`.`id`. See `@ref` for how to customize it.
+  """
+  creatorId: UUID! @fdc_generated(from: "Sentence.creator", purpose: IMPLICIT_REF_FIELD)
+}
+extend type SentenceTag {
+  """
+  ✨ Implicit foreign key field based on `SentenceTag`.`sentence`. It must match the value of `Sentence`.`id`. See `@ref` for how to customize it.
+  """
+  sentenceId: UUID! @fdc_generated(from: "SentenceTag.sentence", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `SentenceTag`.`tag`. It must match the value of `Tag`.`id`. See `@ref` for how to customize it.
+  """
+  tagId: UUID! @fdc_generated(from: "SentenceTag.tag", purpose: IMPLICIT_REF_FIELD)
+}
+extend type Tag {
+  """
+  ✨ Implicit primary key field. It's a UUID column default to a generated new value. See `@table` for how to customize it.
+  """
+  id: UUID! @default(expr: "uuidV4()") @fdc_generated(from: "Tag", purpose: IMPLICIT_KEY_FIELD)
+}
+extend type Translation {
+  """
+  ✨ Implicit primary key field. It's a UUID column default to a generated new value. See `@table` for how to customize it.
+  """
+  id: UUID! @default(expr: "uuidV4()") @fdc_generated(from: "Translation", purpose: IMPLICIT_KEY_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Translation`.`contributor`. It must match the value of `User`.`id`. See `@ref` for how to customize it.
+  """
+  contributorId: UUID! @fdc_generated(from: "Translation.contributor", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Translation`.`sentence`. It must match the value of `Sentence`.`id`. See `@ref` for how to customize it.
+  """
+  sentenceId: UUID! @fdc_generated(from: "Translation.sentence", purpose: IMPLICIT_REF_FIELD)
+}
+extend type User {
+  """
+  ✨ Implicit primary key field. It's a UUID column default to a generated new value. See `@table` for how to customize it.
+  """
+  id: UUID! @default(expr: "uuidV4()") @fdc_generated(from: "User", purpose: IMPLICIT_KEY_FIELD)
+}
+extend type UserCollection {
+  """
+  ✨ Implicit primary key field. It's a UUID column default to a generated new value. See `@table` for how to customize it.
+  """
+  id: UUID! @default(expr: "uuidV4()") @fdc_generated(from: "UserCollection", purpose: IMPLICIT_KEY_FIELD)
+  """
+  ✨ Implicit foreign key field based on `UserCollection`.`sentence`. It must match the value of `Sentence`.`id`. See `@ref` for how to customize it.
+  """
+  sentenceId: UUID! @fdc_generated(from: "UserCollection.sentence", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `UserCollection`.`user`. It must match the value of `User`.`id`. See `@ref` for how to customize it.
+  """
+  userId: UUID! @fdc_generated(from: "UserCollection.user", purpose: IMPLICIT_REF_FIELD)
+}
+extend type Vote {
+  """
+  ✨ Implicit primary key field. It's a UUID column default to a generated new value. See `@table` for how to customize it.
+  """
+  id: UUID! @default(expr: "uuidV4()") @fdc_generated(from: "Vote", purpose: IMPLICIT_KEY_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Vote`.`translation`. It must match the value of `Translation`.`id`. See `@ref` for how to customize it.
+  """
+  translationId: UUID! @fdc_generated(from: "Vote.translation", purpose: IMPLICIT_REF_FIELD)
+  """
+  ✨ Implicit foreign key field based on `Vote`.`user`. It must match the value of `User`.`id`. See `@ref` for how to customize it.
+  """
+  userId: UUID! @fdc_generated(from: "Vote.user", purpose: IMPLICIT_REF_FIELD)
+}

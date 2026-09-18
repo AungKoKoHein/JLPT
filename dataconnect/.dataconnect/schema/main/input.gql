@@ -1,0 +1,1611 @@
+"""
+✨ `Sentence_KeyOutput` returns the primary key fields of table type `Sentence`.
+
+It has the same format as `Sentence_Key`, but is only used as mutation return value.
+"""
+scalar Sentence_KeyOutput
+"""
+✨ `SentenceTag_KeyOutput` returns the primary key fields of table type `SentenceTag`.
+
+It has the same format as `SentenceTag_Key`, but is only used as mutation return value.
+"""
+scalar SentenceTag_KeyOutput
+"""
+✨ `Tag_KeyOutput` returns the primary key fields of table type `Tag`.
+
+It has the same format as `Tag_Key`, but is only used as mutation return value.
+"""
+scalar Tag_KeyOutput
+"""
+✨ `Translation_KeyOutput` returns the primary key fields of table type `Translation`.
+
+It has the same format as `Translation_Key`, but is only used as mutation return value.
+"""
+scalar Translation_KeyOutput
+"""
+✨ `User_KeyOutput` returns the primary key fields of table type `User`.
+
+It has the same format as `User_Key`, but is only used as mutation return value.
+"""
+scalar User_KeyOutput
+"""
+✨ `UserCollection_KeyOutput` returns the primary key fields of table type `UserCollection`.
+
+It has the same format as `UserCollection_Key`, but is only used as mutation return value.
+"""
+scalar UserCollection_KeyOutput
+"""
+✨ `Vote_KeyOutput` returns the primary key fields of table type `Vote`.
+
+It has the same format as `Vote_Key`, but is only used as mutation return value.
+"""
+scalar Vote_KeyOutput
+"""
+✨ Generated data input type for table 'Sentence'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input Sentence_Data {
+  """
+  ✨ Generated from Field `Sentence`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Sentence`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Sentence`.`creatorId` of type `UUID!`
+  """
+  creatorId: UUID
+  """
+  ✨ `_expr` server value variant of `creatorId` (✨ Generated from Field `Sentence`.`creatorId` of type `UUID!`)
+  """
+  creatorId_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Sentence`.`creator` of type `User!`
+  """
+  creator: User_Key @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Sentence`.`contextDescription` of type `String`
+  """
+  contextDescription: String
+  """
+  ✨ `_expr` server value variant of `contextDescription` (✨ Generated from Field `Sentence`.`contextDescription` of type `String`)
+  """
+  contextDescription_expr: String_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Sentence`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: Timestamp
+  """
+  ✨ `_expr` server value variant of `createdAt` (✨ Generated from Field `Sentence`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_expr: Timestamp_Expr @fdc_forbiddenInVariables
+  """
+  ✨ `_time` server value variant of `createdAt` (✨ Generated from Field `Sentence`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_time: Timestamp_Relative @fdc_forbiddenInVariables
+  """
+  ✨ `_update` server value variant of `createdAt` (✨ Generated from Field `Sentence`.`createdAt` of type `Timestamp!`)
+  """
+  createdAt_update: [Timestamp_Update!] @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Sentence`.`englishText` of type `String!`
+  """
+  englishText: String
+  """
+  ✨ `_expr` server value variant of `englishText` (✨ Generated from Field `Sentence`.`englishText` of type `String!`)
+  """
+  englishText_expr: String_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Sentence`.`sentenceTags_on_sentence` of type `[SentenceTag!]!`
+  """
+  sentenceTags_on_sentence: [SentenceTag_Data!]
+  """
+  ✨ Generated from Field `Sentence`.`translations_on_sentence` of type `[Translation!]!`
+  """
+  translations_on_sentence: [Translation_Data!]
+  """
+  ✨ Generated from Field `Sentence`.`userCollections_on_sentence` of type `[UserCollection!]!`
+  """
+  userCollections_on_sentence: [UserCollection_Data!]
+}
+"""
+✨ Generated filter input type for table 'Sentence'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Sentence_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [Sentence_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: Sentence_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [Sentence_Filter!]
+  """
+  ✨ Generated from Field `Sentence`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `Sentence`.`creatorId` of type `UUID!`
+  """
+  creatorId: UUID_Filter
+  """
+  ✨ Generated from Field `Sentence`.`creator` of type `User!`
+  """
+  creator: User_Filter
+  """
+  ✨ Generated from Field `Sentence`.`contextDescription` of type `String`
+  """
+  contextDescription: String_Filter
+  """
+  ✨ Generated from Field `Sentence`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: Timestamp_Filter
+  """
+  ✨ Generated from Field `Sentence`.`englishText` of type `String!`
+  """
+  englishText: String_Filter
+  """
+  ✨ Generated from Field `Sentence`.`sentenceTags_on_sentence` of type `[SentenceTag!]!`
+  """
+  sentenceTags_on_sentence: SentenceTag_ListFilter
+  """
+  ✨ Generated from Field `Sentence`.`translations_on_sentence` of type `[Translation!]!`
+  """
+  translations_on_sentence: Translation_ListFilter
+  """
+  ✨ Generated from Field `Sentence`.`userCollections_on_sentence` of type `[UserCollection!]!`
+  """
+  userCollections_on_sentence: UserCollection_ListFilter
+  """
+  ✨ Generated from Field `Sentence`.`tags_via_SentenceTag` of type `[Tag!]!`
+  """
+  tags_via_SentenceTag: Tag_ListFilter
+}
+"""
+✨ Generated first-row input type for table 'Sentence'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input Sentence_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [Sentence_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: Sentence_Filter
+}
+"""
+✨ Generated having input type for table 'Sentence'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Sentence_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [Sentence_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: Sentence_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [Sentence_Having!]
+  """
+  ✨ Generated from Field `Sentence`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `Sentence`.`contextDescription_count` of type `Int!`
+  """
+  contextDescription_count: Int_Filter
+  """
+  ✨ Generated from Field `Sentence`.`createdAt_count` of type `Int!`
+  """
+  createdAt_count: Int_Filter
+  """
+  ✨ Generated from Field `Sentence`.`creatorId_count` of type `Int!`
+  """
+  creatorId_count: Int_Filter
+  """
+  ✨ Generated from Field `Sentence`.`englishText_count` of type `Int!`
+  """
+  englishText_count: Int_Filter
+  """
+  ✨ Generated from Field `Sentence`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `Sentence`.`createdAt_min` of type `Timestamp`
+  """
+  createdAt_min: Timestamp_Filter
+  """
+  ✨ Generated from Field `Sentence`.`createdAt_max` of type `Timestamp`
+  """
+  createdAt_max: Timestamp_Filter
+}
+"""
+✨ Generated key input type for table 'Sentence'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input Sentence_Key {
+  """
+  ✨ Generated from Field `Sentence`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Sentence`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr @fdc_forbiddenInVariables
+}
+"""
+✨ Generated list filter input type for table 'Sentence'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input Sentence_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: Sentence_Filter
+}
+"""
+✨ Generated order input type for table 'Sentence'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input Sentence_Order {
+  """
+  ✨ Generated from Field `Sentence`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `Sentence`.`creatorId` of type `UUID!`
+  """
+  creatorId: OrderDirection
+  """
+  ✨ Generated from Field `Sentence`.`creator` of type `User!`
+  """
+  creator: User_Order
+  """
+  ✨ Generated from Field `Sentence`.`contextDescription` of type `String`
+  """
+  contextDescription: OrderDirection
+  """
+  ✨ Generated from Field `Sentence`.`createdAt` of type `Timestamp!`
+  """
+  createdAt: OrderDirection
+  """
+  ✨ Generated from Field `Sentence`.`englishText` of type `String!`
+  """
+  englishText: OrderDirection
+  """
+  ✨ Generated from Field `Sentence`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `Sentence`.`contextDescription_count` of type `Int!`
+  """
+  contextDescription_count: OrderDirection
+  """
+  ✨ Generated from Field `Sentence`.`createdAt_count` of type `Int!`
+  """
+  createdAt_count: OrderDirection
+  """
+  ✨ Generated from Field `Sentence`.`creatorId_count` of type `Int!`
+  """
+  creatorId_count: OrderDirection
+  """
+  ✨ Generated from Field `Sentence`.`englishText_count` of type `Int!`
+  """
+  englishText_count: OrderDirection
+  """
+  ✨ Generated from Field `Sentence`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `Sentence`.`createdAt_min` of type `Timestamp`
+  """
+  createdAt_min: OrderDirection
+  """
+  ✨ Generated from Field `Sentence`.`createdAt_max` of type `Timestamp`
+  """
+  createdAt_max: OrderDirection
+}
+"""
+✨ Generated data input type for table 'SentenceTag'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input SentenceTag_Data {
+  """
+  ✨ Generated from Field `SentenceTag`.`sentenceId` of type `UUID!`
+  """
+  sentenceId: UUID
+  """
+  ✨ `_expr` server value variant of `sentenceId` (✨ Generated from Field `SentenceTag`.`sentenceId` of type `UUID!`)
+  """
+  sentenceId_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `SentenceTag`.`tagId` of type `UUID!`
+  """
+  tagId: UUID
+  """
+  ✨ `_expr` server value variant of `tagId` (✨ Generated from Field `SentenceTag`.`tagId` of type `UUID!`)
+  """
+  tagId_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `SentenceTag`.`sentence` of type `Sentence!`
+  """
+  sentence: Sentence_Key @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `SentenceTag`.`tag` of type `Tag!`
+  """
+  tag: Tag_Key @fdc_forbiddenInVariables
+}
+"""
+✨ Generated filter input type for table 'SentenceTag'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input SentenceTag_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [SentenceTag_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: SentenceTag_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [SentenceTag_Filter!]
+  """
+  ✨ Generated from Field `SentenceTag`.`sentenceId` of type `UUID!`
+  """
+  sentenceId: UUID_Filter
+  """
+  ✨ Generated from Field `SentenceTag`.`tagId` of type `UUID!`
+  """
+  tagId: UUID_Filter
+  """
+  ✨ Generated from Field `SentenceTag`.`sentence` of type `Sentence!`
+  """
+  sentence: Sentence_Filter
+  """
+  ✨ Generated from Field `SentenceTag`.`tag` of type `Tag!`
+  """
+  tag: Tag_Filter
+}
+"""
+✨ Generated first-row input type for table 'SentenceTag'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input SentenceTag_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [SentenceTag_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: SentenceTag_Filter
+}
+"""
+✨ Generated having input type for table 'SentenceTag'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input SentenceTag_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [SentenceTag_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: SentenceTag_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [SentenceTag_Having!]
+  """
+  ✨ Generated from Field `SentenceTag`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `SentenceTag`.`sentenceId_count` of type `Int!`
+  """
+  sentenceId_count: Int_Filter
+  """
+  ✨ Generated from Field `SentenceTag`.`tagId_count` of type `Int!`
+  """
+  tagId_count: Int_Filter
+}
+"""
+✨ Generated key input type for table 'SentenceTag'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input SentenceTag_Key {
+  """
+  ✨ Generated from Field `SentenceTag`.`sentenceId` of type `UUID!`
+  """
+  sentenceId: UUID
+  """
+  ✨ `_expr` server value variant of `sentenceId` (✨ Generated from Field `SentenceTag`.`sentenceId` of type `UUID!`)
+  """
+  sentenceId_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `SentenceTag`.`tagId` of type `UUID!`
+  """
+  tagId: UUID
+  """
+  ✨ `_expr` server value variant of `tagId` (✨ Generated from Field `SentenceTag`.`tagId` of type `UUID!`)
+  """
+  tagId_expr: UUID_Expr @fdc_forbiddenInVariables
+}
+"""
+✨ Generated list filter input type for table 'SentenceTag'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input SentenceTag_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: SentenceTag_Filter
+}
+"""
+✨ Generated order input type for table 'SentenceTag'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input SentenceTag_Order {
+  """
+  ✨ Generated from Field `SentenceTag`.`sentenceId` of type `UUID!`
+  """
+  sentenceId: OrderDirection
+  """
+  ✨ Generated from Field `SentenceTag`.`tagId` of type `UUID!`
+  """
+  tagId: OrderDirection
+  """
+  ✨ Generated from Field `SentenceTag`.`sentence` of type `Sentence!`
+  """
+  sentence: Sentence_Order
+  """
+  ✨ Generated from Field `SentenceTag`.`tag` of type `Tag!`
+  """
+  tag: Tag_Order
+  """
+  ✨ Generated from Field `SentenceTag`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `SentenceTag`.`sentenceId_count` of type `Int!`
+  """
+  sentenceId_count: OrderDirection
+  """
+  ✨ Generated from Field `SentenceTag`.`tagId_count` of type `Int!`
+  """
+  tagId_count: OrderDirection
+}
+"""
+✨ Generated data input type for table 'Tag'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input Tag_Data {
+  """
+  ✨ Generated from Field `Tag`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Tag`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Tag`.`name` of type `String!`
+  """
+  name: String
+  """
+  ✨ `_expr` server value variant of `name` (✨ Generated from Field `Tag`.`name` of type `String!`)
+  """
+  name_expr: String_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Tag`.`sentenceTags_on_tag` of type `[SentenceTag!]!`
+  """
+  sentenceTags_on_tag: [SentenceTag_Data!]
+}
+"""
+✨ Generated filter input type for table 'Tag'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Tag_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [Tag_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: Tag_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [Tag_Filter!]
+  """
+  ✨ Generated from Field `Tag`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `Tag`.`name` of type `String!`
+  """
+  name: String_Filter
+  """
+  ✨ Generated from Field `Tag`.`sentenceTags_on_tag` of type `[SentenceTag!]!`
+  """
+  sentenceTags_on_tag: SentenceTag_ListFilter
+  """
+  ✨ Generated from Field `Tag`.`sentences_via_SentenceTag` of type `[Sentence!]!`
+  """
+  sentences_via_SentenceTag: Sentence_ListFilter
+}
+"""
+✨ Generated first-row input type for table 'Tag'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input Tag_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [Tag_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: Tag_Filter
+}
+"""
+✨ Generated having input type for table 'Tag'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Tag_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [Tag_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: Tag_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [Tag_Having!]
+  """
+  ✨ Generated from Field `Tag`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `Tag`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `Tag`.`name_count` of type `Int!`
+  """
+  name_count: Int_Filter
+}
+"""
+✨ Generated key input type for table 'Tag'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input Tag_Key {
+  """
+  ✨ Generated from Field `Tag`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Tag`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr @fdc_forbiddenInVariables
+}
+"""
+✨ Generated list filter input type for table 'Tag'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input Tag_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: Tag_Filter
+}
+"""
+✨ Generated order input type for table 'Tag'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input Tag_Order {
+  """
+  ✨ Generated from Field `Tag`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `Tag`.`name` of type `String!`
+  """
+  name: OrderDirection
+  """
+  ✨ Generated from Field `Tag`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `Tag`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `Tag`.`name_count` of type `Int!`
+  """
+  name_count: OrderDirection
+}
+"""
+✨ Generated data input type for table 'Translation'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input Translation_Data {
+  """
+  ✨ Generated from Field `Translation`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Translation`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Translation`.`contributorId` of type `UUID!`
+  """
+  contributorId: UUID
+  """
+  ✨ `_expr` server value variant of `contributorId` (✨ Generated from Field `Translation`.`contributorId` of type `UUID!`)
+  """
+  contributorId_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Translation`.`sentenceId` of type `UUID!`
+  """
+  sentenceId: UUID
+  """
+  ✨ `_expr` server value variant of `sentenceId` (✨ Generated from Field `Translation`.`sentenceId` of type `UUID!`)
+  """
+  sentenceId_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Translation`.`contributor` of type `User!`
+  """
+  contributor: User_Key @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Translation`.`sentence` of type `Sentence!`
+  """
+  sentence: Sentence_Key @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Translation`.`myanmarText` of type `String!`
+  """
+  myanmarText: String
+  """
+  ✨ `_expr` server value variant of `myanmarText` (✨ Generated from Field `Translation`.`myanmarText` of type `String!`)
+  """
+  myanmarText_expr: String_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Translation`.`phoneticTransliteration` of type `String`
+  """
+  phoneticTransliteration: String
+  """
+  ✨ `_expr` server value variant of `phoneticTransliteration` (✨ Generated from Field `Translation`.`phoneticTransliteration` of type `String`)
+  """
+  phoneticTransliteration_expr: String_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Translation`.`scriptType` of type `String!`
+  """
+  scriptType: String
+  """
+  ✨ `_expr` server value variant of `scriptType` (✨ Generated from Field `Translation`.`scriptType` of type `String!`)
+  """
+  scriptType_expr: String_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Translation`.`votes_on_translation` of type `[Vote!]!`
+  """
+  votes_on_translation: [Vote_Data!]
+}
+"""
+✨ Generated filter input type for table 'Translation'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Translation_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [Translation_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: Translation_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [Translation_Filter!]
+  """
+  ✨ Generated from Field `Translation`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `Translation`.`contributorId` of type `UUID!`
+  """
+  contributorId: UUID_Filter
+  """
+  ✨ Generated from Field `Translation`.`sentenceId` of type `UUID!`
+  """
+  sentenceId: UUID_Filter
+  """
+  ✨ Generated from Field `Translation`.`contributor` of type `User!`
+  """
+  contributor: User_Filter
+  """
+  ✨ Generated from Field `Translation`.`sentence` of type `Sentence!`
+  """
+  sentence: Sentence_Filter
+  """
+  ✨ Generated from Field `Translation`.`myanmarText` of type `String!`
+  """
+  myanmarText: String_Filter
+  """
+  ✨ Generated from Field `Translation`.`phoneticTransliteration` of type `String`
+  """
+  phoneticTransliteration: String_Filter
+  """
+  ✨ Generated from Field `Translation`.`scriptType` of type `String!`
+  """
+  scriptType: String_Filter
+  """
+  ✨ Generated from Field `Translation`.`votes_on_translation` of type `[Vote!]!`
+  """
+  votes_on_translation: Vote_ListFilter
+}
+"""
+✨ Generated first-row input type for table 'Translation'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input Translation_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [Translation_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: Translation_Filter
+}
+"""
+✨ Generated having input type for table 'Translation'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Translation_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [Translation_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: Translation_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [Translation_Having!]
+  """
+  ✨ Generated from Field `Translation`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `Translation`.`contributorId_count` of type `Int!`
+  """
+  contributorId_count: Int_Filter
+  """
+  ✨ Generated from Field `Translation`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `Translation`.`myanmarText_count` of type `Int!`
+  """
+  myanmarText_count: Int_Filter
+  """
+  ✨ Generated from Field `Translation`.`phoneticTransliteration_count` of type `Int!`
+  """
+  phoneticTransliteration_count: Int_Filter
+  """
+  ✨ Generated from Field `Translation`.`scriptType_count` of type `Int!`
+  """
+  scriptType_count: Int_Filter
+  """
+  ✨ Generated from Field `Translation`.`sentenceId_count` of type `Int!`
+  """
+  sentenceId_count: Int_Filter
+}
+"""
+✨ Generated key input type for table 'Translation'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input Translation_Key {
+  """
+  ✨ Generated from Field `Translation`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Translation`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr @fdc_forbiddenInVariables
+}
+"""
+✨ Generated list filter input type for table 'Translation'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input Translation_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: Translation_Filter
+}
+"""
+✨ Generated order input type for table 'Translation'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input Translation_Order {
+  """
+  ✨ Generated from Field `Translation`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `Translation`.`contributorId` of type `UUID!`
+  """
+  contributorId: OrderDirection
+  """
+  ✨ Generated from Field `Translation`.`sentenceId` of type `UUID!`
+  """
+  sentenceId: OrderDirection
+  """
+  ✨ Generated from Field `Translation`.`contributor` of type `User!`
+  """
+  contributor: User_Order
+  """
+  ✨ Generated from Field `Translation`.`sentence` of type `Sentence!`
+  """
+  sentence: Sentence_Order
+  """
+  ✨ Generated from Field `Translation`.`myanmarText` of type `String!`
+  """
+  myanmarText: OrderDirection
+  """
+  ✨ Generated from Field `Translation`.`phoneticTransliteration` of type `String`
+  """
+  phoneticTransliteration: OrderDirection
+  """
+  ✨ Generated from Field `Translation`.`scriptType` of type `String!`
+  """
+  scriptType: OrderDirection
+  """
+  ✨ Generated from Field `Translation`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `Translation`.`contributorId_count` of type `Int!`
+  """
+  contributorId_count: OrderDirection
+  """
+  ✨ Generated from Field `Translation`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `Translation`.`myanmarText_count` of type `Int!`
+  """
+  myanmarText_count: OrderDirection
+  """
+  ✨ Generated from Field `Translation`.`phoneticTransliteration_count` of type `Int!`
+  """
+  phoneticTransliteration_count: OrderDirection
+  """
+  ✨ Generated from Field `Translation`.`scriptType_count` of type `Int!`
+  """
+  scriptType_count: OrderDirection
+  """
+  ✨ Generated from Field `Translation`.`sentenceId_count` of type `Int!`
+  """
+  sentenceId_count: OrderDirection
+}
+"""
+✨ Generated data input type for table 'User'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input User_Data {
+  """
+  ✨ Generated from Field `User`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `User`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `User`.`bio` of type `String`
+  """
+  bio: String
+  """
+  ✨ `_expr` server value variant of `bio` (✨ Generated from Field `User`.`bio` of type `String`)
+  """
+  bio_expr: String_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `User`.`email` of type `String!`
+  """
+  email: String
+  """
+  ✨ `_expr` server value variant of `email` (✨ Generated from Field `User`.`email` of type `String!`)
+  """
+  email_expr: String_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `User`.`profilePictureUrl` of type `String`
+  """
+  profilePictureUrl: String
+  """
+  ✨ `_expr` server value variant of `profilePictureUrl` (✨ Generated from Field `User`.`profilePictureUrl` of type `String`)
+  """
+  profilePictureUrl_expr: String_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `User`.`username` of type `String!`
+  """
+  username: String
+  """
+  ✨ `_expr` server value variant of `username` (✨ Generated from Field `User`.`username` of type `String!`)
+  """
+  username_expr: String_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `User`.`sentences_on_creator` of type `[Sentence!]!`
+  """
+  sentences_on_creator: [Sentence_Data!]
+  """
+  ✨ Generated from Field `User`.`translations_on_contributor` of type `[Translation!]!`
+  """
+  translations_on_contributor: [Translation_Data!]
+  """
+  ✨ Generated from Field `User`.`userCollections_on_user` of type `[UserCollection!]!`
+  """
+  userCollections_on_user: [UserCollection_Data!]
+  """
+  ✨ Generated from Field `User`.`votes_on_user` of type `[Vote!]!`
+  """
+  votes_on_user: [Vote_Data!]
+}
+"""
+✨ Generated filter input type for table 'User'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input User_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [User_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: User_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [User_Filter!]
+  """
+  ✨ Generated from Field `User`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `User`.`bio` of type `String`
+  """
+  bio: String_Filter
+  """
+  ✨ Generated from Field `User`.`email` of type `String!`
+  """
+  email: String_Filter
+  """
+  ✨ Generated from Field `User`.`profilePictureUrl` of type `String`
+  """
+  profilePictureUrl: String_Filter
+  """
+  ✨ Generated from Field `User`.`username` of type `String!`
+  """
+  username: String_Filter
+  """
+  ✨ Generated from Field `User`.`sentences_on_creator` of type `[Sentence!]!`
+  """
+  sentences_on_creator: Sentence_ListFilter
+  """
+  ✨ Generated from Field `User`.`translations_on_contributor` of type `[Translation!]!`
+  """
+  translations_on_contributor: Translation_ListFilter
+  """
+  ✨ Generated from Field `User`.`userCollections_on_user` of type `[UserCollection!]!`
+  """
+  userCollections_on_user: UserCollection_ListFilter
+  """
+  ✨ Generated from Field `User`.`votes_on_user` of type `[Vote!]!`
+  """
+  votes_on_user: Vote_ListFilter
+}
+"""
+✨ Generated first-row input type for table 'User'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input User_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [User_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: User_Filter
+}
+"""
+✨ Generated having input type for table 'User'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input User_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [User_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: User_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [User_Having!]
+  """
+  ✨ Generated from Field `User`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`bio_count` of type `Int!`
+  """
+  bio_count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`email_count` of type `Int!`
+  """
+  email_count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`profilePictureUrl_count` of type `Int!`
+  """
+  profilePictureUrl_count: Int_Filter
+  """
+  ✨ Generated from Field `User`.`username_count` of type `Int!`
+  """
+  username_count: Int_Filter
+}
+"""
+✨ Generated key input type for table 'User'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input User_Key {
+  """
+  ✨ Generated from Field `User`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `User`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr @fdc_forbiddenInVariables
+}
+"""
+✨ Generated list filter input type for table 'User'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input User_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: User_Filter
+}
+"""
+✨ Generated order input type for table 'User'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input User_Order {
+  """
+  ✨ Generated from Field `User`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `User`.`bio` of type `String`
+  """
+  bio: OrderDirection
+  """
+  ✨ Generated from Field `User`.`email` of type `String!`
+  """
+  email: OrderDirection
+  """
+  ✨ Generated from Field `User`.`profilePictureUrl` of type `String`
+  """
+  profilePictureUrl: OrderDirection
+  """
+  ✨ Generated from Field `User`.`username` of type `String!`
+  """
+  username: OrderDirection
+  """
+  ✨ Generated from Field `User`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`bio_count` of type `Int!`
+  """
+  bio_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`email_count` of type `Int!`
+  """
+  email_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`profilePictureUrl_count` of type `Int!`
+  """
+  profilePictureUrl_count: OrderDirection
+  """
+  ✨ Generated from Field `User`.`username_count` of type `Int!`
+  """
+  username_count: OrderDirection
+}
+"""
+✨ Generated data input type for table 'UserCollection'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input UserCollection_Data {
+  """
+  ✨ Generated from Field `UserCollection`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `UserCollection`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `UserCollection`.`sentenceId` of type `UUID!`
+  """
+  sentenceId: UUID
+  """
+  ✨ `_expr` server value variant of `sentenceId` (✨ Generated from Field `UserCollection`.`sentenceId` of type `UUID!`)
+  """
+  sentenceId_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `UserCollection`.`userId` of type `UUID!`
+  """
+  userId: UUID
+  """
+  ✨ `_expr` server value variant of `userId` (✨ Generated from Field `UserCollection`.`userId` of type `UUID!`)
+  """
+  userId_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `UserCollection`.`sentence` of type `Sentence!`
+  """
+  sentence: Sentence_Key @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `UserCollection`.`user` of type `User!`
+  """
+  user: User_Key @fdc_forbiddenInVariables
+}
+"""
+✨ Generated filter input type for table 'UserCollection'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input UserCollection_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [UserCollection_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: UserCollection_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [UserCollection_Filter!]
+  """
+  ✨ Generated from Field `UserCollection`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `UserCollection`.`sentenceId` of type `UUID!`
+  """
+  sentenceId: UUID_Filter
+  """
+  ✨ Generated from Field `UserCollection`.`userId` of type `UUID!`
+  """
+  userId: UUID_Filter
+  """
+  ✨ Generated from Field `UserCollection`.`sentence` of type `Sentence!`
+  """
+  sentence: Sentence_Filter
+  """
+  ✨ Generated from Field `UserCollection`.`user` of type `User!`
+  """
+  user: User_Filter
+}
+"""
+✨ Generated first-row input type for table 'UserCollection'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input UserCollection_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [UserCollection_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: UserCollection_Filter
+}
+"""
+✨ Generated having input type for table 'UserCollection'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input UserCollection_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [UserCollection_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: UserCollection_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [UserCollection_Having!]
+  """
+  ✨ Generated from Field `UserCollection`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `UserCollection`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `UserCollection`.`sentenceId_count` of type `Int!`
+  """
+  sentenceId_count: Int_Filter
+  """
+  ✨ Generated from Field `UserCollection`.`userId_count` of type `Int!`
+  """
+  userId_count: Int_Filter
+}
+"""
+✨ Generated key input type for table 'UserCollection'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input UserCollection_Key {
+  """
+  ✨ Generated from Field `UserCollection`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `UserCollection`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr @fdc_forbiddenInVariables
+}
+"""
+✨ Generated list filter input type for table 'UserCollection'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input UserCollection_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: UserCollection_Filter
+}
+"""
+✨ Generated order input type for table 'UserCollection'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input UserCollection_Order {
+  """
+  ✨ Generated from Field `UserCollection`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `UserCollection`.`sentenceId` of type `UUID!`
+  """
+  sentenceId: OrderDirection
+  """
+  ✨ Generated from Field `UserCollection`.`userId` of type `UUID!`
+  """
+  userId: OrderDirection
+  """
+  ✨ Generated from Field `UserCollection`.`sentence` of type `Sentence!`
+  """
+  sentence: Sentence_Order
+  """
+  ✨ Generated from Field `UserCollection`.`user` of type `User!`
+  """
+  user: User_Order
+  """
+  ✨ Generated from Field `UserCollection`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `UserCollection`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `UserCollection`.`sentenceId_count` of type `Int!`
+  """
+  sentenceId_count: OrderDirection
+  """
+  ✨ Generated from Field `UserCollection`.`userId_count` of type `Int!`
+  """
+  userId_count: OrderDirection
+}
+"""
+✨ Generated data input type for table 'Vote'. It includes all necessary fields for creating or upserting rows into table.
+"""
+input Vote_Data {
+  """
+  ✨ Generated from Field `Vote`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Vote`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Vote`.`translationId` of type `UUID!`
+  """
+  translationId: UUID
+  """
+  ✨ `_expr` server value variant of `translationId` (✨ Generated from Field `Vote`.`translationId` of type `UUID!`)
+  """
+  translationId_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Vote`.`userId` of type `UUID!`
+  """
+  userId: UUID
+  """
+  ✨ `_expr` server value variant of `userId` (✨ Generated from Field `Vote`.`userId` of type `UUID!`)
+  """
+  userId_expr: UUID_Expr @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Vote`.`translation` of type `Translation!`
+  """
+  translation: Translation_Key @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Vote`.`user` of type `User!`
+  """
+  user: User_Key @fdc_forbiddenInVariables
+  """
+  ✨ Generated from Field `Vote`.`value` of type `Int!`
+  """
+  value: Int
+  """
+  ✨ `_expr` server value variant of `value` (✨ Generated from Field `Vote`.`value` of type `Int!`)
+  """
+  value_expr: Int_Expr @fdc_forbiddenInVariables
+  """
+  ✨ `_update` server value variant of `value` (✨ Generated from Field `Vote`.`value` of type `Int!`)
+  """
+  value_update: [Int_Update!] @fdc_forbiddenInVariables
+}
+"""
+✨ Generated filter input type for table 'Vote'. This input allows filtering objects using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Vote_Filter {
+  """
+  Apply multiple filter conditions using `AND` logic.
+  """
+  _and: [Vote_Filter!]
+  """
+  Negate the result of the provided filter condition.
+  """
+  _not: Vote_Filter
+  """
+  Apply multiple filter conditions using `OR` logic.
+  """
+  _or: [Vote_Filter!]
+  """
+  ✨ Generated from Field `Vote`.`id` of type `UUID!`
+  """
+  id: UUID_Filter
+  """
+  ✨ Generated from Field `Vote`.`translationId` of type `UUID!`
+  """
+  translationId: UUID_Filter
+  """
+  ✨ Generated from Field `Vote`.`userId` of type `UUID!`
+  """
+  userId: UUID_Filter
+  """
+  ✨ Generated from Field `Vote`.`translation` of type `Translation!`
+  """
+  translation: Translation_Filter
+  """
+  ✨ Generated from Field `Vote`.`user` of type `User!`
+  """
+  user: User_Filter
+  """
+  ✨ Generated from Field `Vote`.`value` of type `Int!`
+  """
+  value: Int_Filter
+}
+"""
+✨ Generated first-row input type for table 'Vote'. This input selects the first row matching the filter criteria, ordered according to the specified conditions.
+"""
+input Vote_FirstRow {
+  """
+  Order the result by the specified fields.
+  """
+  orderBy: [Vote_Order!]
+  """
+  Filters rows based on the specified conditions.
+  """
+  where: Vote_Filter
+}
+"""
+✨ Generated having input type for table 'Vote'. This input allows you to filter groups during aggregate queries using various conditions. Use `_or`, `_and`, and `_not` to compose complex filters.
+"""
+input Vote_Having {
+  """
+  Apply multiple Having conditions using `AND` logic.
+  """
+  _and: [Vote_Having!]
+  """
+  Whether to apply DISTINCT to the aggregate function.
+  """
+  _distinct: Boolean
+  """
+  Negate the result of the provided Having condition.
+  """
+  _not: Vote_Having
+  """
+  Apply multiple Having conditions using `OR` logic.
+  """
+  _or: [Vote_Having!]
+  """
+  ✨ Generated from Field `Vote`.`_count` of type `Int!`
+  """
+  _count: Int_Filter
+  """
+  ✨ Generated from Field `Vote`.`id_count` of type `Int!`
+  """
+  id_count: Int_Filter
+  """
+  ✨ Generated from Field `Vote`.`translationId_count` of type `Int!`
+  """
+  translationId_count: Int_Filter
+  """
+  ✨ Generated from Field `Vote`.`userId_count` of type `Int!`
+  """
+  userId_count: Int_Filter
+  """
+  ✨ Generated from Field `Vote`.`value_count` of type `Int!`
+  """
+  value_count: Int_Filter
+  """
+  ✨ Generated from Field `Vote`.`value_sum` of type `Int`
+  """
+  value_sum: Int_Filter
+  """
+  ✨ Generated from Field `Vote`.`value_avg` of type `Float`
+  """
+  value_avg: Float_Filter
+  """
+  ✨ Generated from Field `Vote`.`value_min` of type `Int`
+  """
+  value_min: Int_Filter
+  """
+  ✨ Generated from Field `Vote`.`value_max` of type `Int`
+  """
+  value_max: Int_Filter
+}
+"""
+✨ Generated key input type for table 'Vote'. It represents the primary key fields used to uniquely identify a row in the table.
+"""
+input Vote_Key {
+  """
+  ✨ Generated from Field `Vote`.`id` of type `UUID!`
+  """
+  id: UUID
+  """
+  ✨ `_expr` server value variant of `id` (✨ Generated from Field `Vote`.`id` of type `UUID!`)
+  """
+  id_expr: UUID_Expr @fdc_forbiddenInVariables
+}
+"""
+✨ Generated list filter input type for table 'Vote'. This input applies filtering logic based on the count or existence of related objects that matches certain criteria.
+"""
+input Vote_ListFilter {
+  """
+  The desired number of objects that match the condition (defaults to at least one).
+  """
+  count: Int_Filter = {gt:0}
+  """
+  Condition of the related objects to filter for.
+  """
+  exist: Vote_Filter
+}
+"""
+✨ Generated order input type for table 'Vote'. This input defines the sorting order of rows in query results based on one or more fields.
+"""
+input Vote_Order {
+  """
+  ✨ Generated from Field `Vote`.`id` of type `UUID!`
+  """
+  id: OrderDirection
+  """
+  ✨ Generated from Field `Vote`.`translationId` of type `UUID!`
+  """
+  translationId: OrderDirection
+  """
+  ✨ Generated from Field `Vote`.`userId` of type `UUID!`
+  """
+  userId: OrderDirection
+  """
+  ✨ Generated from Field `Vote`.`translation` of type `Translation!`
+  """
+  translation: Translation_Order
+  """
+  ✨ Generated from Field `Vote`.`user` of type `User!`
+  """
+  user: User_Order
+  """
+  ✨ Generated from Field `Vote`.`value` of type `Int!`
+  """
+  value: OrderDirection
+  """
+  ✨ Generated from Field `Vote`.`_count` of type `Int!`
+  """
+  _count: OrderDirection
+  """
+  ✨ Generated from Field `Vote`.`id_count` of type `Int!`
+  """
+  id_count: OrderDirection
+  """
+  ✨ Generated from Field `Vote`.`translationId_count` of type `Int!`
+  """
+  translationId_count: OrderDirection
+  """
+  ✨ Generated from Field `Vote`.`userId_count` of type `Int!`
+  """
+  userId_count: OrderDirection
+  """
+  ✨ Generated from Field `Vote`.`value_count` of type `Int!`
+  """
+  value_count: OrderDirection
+  """
+  ✨ Generated from Field `Vote`.`value_sum` of type `Int`
+  """
+  value_sum: OrderDirection
+  """
+  ✨ Generated from Field `Vote`.`value_avg` of type `Float`
+  """
+  value_avg: OrderDirection
+  """
+  ✨ Generated from Field `Vote`.`value_min` of type `Int`
+  """
+  value_min: OrderDirection
+  """
+  ✨ Generated from Field `Vote`.`value_max` of type `Int`
+  """
+  value_max: OrderDirection
+}

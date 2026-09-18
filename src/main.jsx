@@ -141,11 +141,9 @@ function Flashcard({
               </span>
             </>
           )}
-          <span className="source-note">
-            {card.generated
-              ? "Study explanation added for this card"
-              : "Example from your Word study file"}
-          </span>
+          {!card.generated && (
+            <span className="source-note">Example from your Word study file</span>
+          )}
         </span>
       </span>
     </button>
@@ -832,7 +830,7 @@ function App() {
               placeholder="例：家族、性格"
             />
           </label>
-          <label htmlFor="vocab-search">
+          <label htmlFor="vocab-search" className="desktop-vocab-search">
             Search every vocabulary card
             <input
               id="vocab-search"
@@ -874,6 +872,16 @@ function App() {
               )}
             </div>
           </aside>
+          <label htmlFor="mobile-vocab-search" className="mobile-vocab-search">
+            Search every vocabulary card
+            <input
+              id="mobile-vocab-search"
+              className={vocabQuery.trim() ? (vocabResults.length ? "search-box has-results" : "search-box no-results") : "search-box"}
+              value={vocabQuery}
+              onChange={(e) => setVocabQuery(e.target.value)}
+              placeholder="Search vocabulary"
+            />
+          </label>
           <article ref={chapterContentRef}>
             {selected ? (
               <>

@@ -1,0 +1,368 @@
+extend type Query {
+  """
+  ✨ Look up a single `Sentence` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  sentence(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Sentence_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Sentence_FirstRow
+  ): Sentence @fdc_generated(from: "Sentence", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `SentenceTag` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  sentenceTag(
+    """
+    The key used to identify the object.
+    """
+    key: SentenceTag_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: SentenceTag_FirstRow
+  ): SentenceTag @fdc_generated(from: "SentenceTag", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `Tag` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  tag(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Tag_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Tag_FirstRow
+  ): Tag @fdc_generated(from: "Tag", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `Translation` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  translation(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Translation_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Translation_FirstRow
+  ): Translation @fdc_generated(from: "Translation", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `User` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  user(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: User_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: User_FirstRow
+  ): User @fdc_generated(from: "User", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `UserCollection` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  userCollection(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: UserCollection_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: UserCollection_FirstRow
+  ): UserCollection @fdc_generated(from: "UserCollection", purpose: QUERY_SINGLE)
+  """
+  ✨ Look up a single `Vote` based on `id`, `key` or `first` and return selected fields (or `null` if not found).
+  """
+  vote(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Vote_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Vote_FirstRow
+  ): Vote @fdc_generated(from: "Vote", purpose: QUERY_SINGLE)
+  """
+  ✨ List `Sentence` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  sentences(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Sentence_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Sentence_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Sentence_Having
+  ): [Sentence!]! @fdc_generated(from: "Sentence", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `SentenceTag` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  sentenceTags(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: SentenceTag_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [SentenceTag_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: SentenceTag_Having
+  ): [SentenceTag!]! @fdc_generated(from: "SentenceTag", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `Tag` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  tags(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Tag_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Tag_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Tag_Having
+  ): [Tag!]! @fdc_generated(from: "Tag", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `Translation` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  translations(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Translation_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Translation_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Translation_Having
+  ): [Translation!]! @fdc_generated(from: "Translation", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `User` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  users(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: User_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [User_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: User_Having
+  ): [User!]! @fdc_generated(from: "User", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `UserCollection` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  userCollections(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: UserCollection_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [UserCollection_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: UserCollection_Having
+  ): [UserCollection!]! @fdc_generated(from: "UserCollection", purpose: QUERY_MULTIPLE)
+  """
+  ✨ List `Vote` objects in the table and return selected fields, optionally filtered by `where` conditions
+  """
+  votes(
+    """
+    Filter condition to narrow down the query results.
+    """
+    where: Vote_Filter
+
+    """
+    Order the query results by specific fields.
+    """
+    orderBy: [Vote_Order!]
+
+    """
+    Number of rows to skip before starting to return the results.
+    """
+    offset: Int
+
+    """
+    Maximum number of rows to return (defaults to 100 rows).
+    """
+    limit: Int = 100
+
+    """
+    Set to true to return distinct results.
+    """
+    distinct: Boolean = false
+
+    """
+    Filter condition to apply to the groups of aggregate queries.
+    """
+    having: Vote_Having
+  ): [Vote!]! @fdc_generated(from: "Vote", purpose: QUERY_MULTIPLE)
+}

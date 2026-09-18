@@ -662,6 +662,8 @@ main[data-show-sidebar="false"] .sidebar-heading .count {
   display: none;
 }
 .subchapter-nav {
+  opacity: 0.4;
+  transition: opacity 160ms ease;
   position: fixed;
   right: max(16px, env(safe-area-inset-right));
   bottom: max(96px, 50dvh);
@@ -688,6 +690,13 @@ main[data-show-sidebar="false"] .sidebar-heading .count {
   font: inherit;
   font-weight: 700;
   cursor: pointer;
+}
+.subchapter-nav[hidden] {
+  display: none;
+}
+.subchapter-nav:hover,
+.subchapter-nav:focus-within {
+  opacity: 1;
 }
 .subchapter-nav button:hover {
   background: #c7d2fe;
@@ -867,13 +876,15 @@ main[data-show-sidebar="false"] .sidebar-heading .count {
     grid-column: span 2;
   }
 }
-.search-grid label {
+.search-grid label,
+.mobile-vocab-search {
   display: grid;
   gap: 9px;
   font-size: 1.05rem;
   font-weight: 800;
 }
-.search-grid input {
+.search-grid input,
+.mobile-vocab-search input {
   width: 100%;
   border: 1px solid #c7d2fe;
   border-radius: 15px;
@@ -882,7 +893,8 @@ main[data-show-sidebar="false"] .sidebar-heading .count {
   font-size: 1.05rem;
   outline: none;
 }
-.search-grid input:focus {
+.search-grid input:focus,
+.mobile-vocab-search input:focus {
   box-shadow: 0 0 0 4px #c7d2fe;
 }
 .chapter-tag {
@@ -1024,6 +1036,41 @@ main button:not(.flashcard) {
 
 main aside button:not(.sidebar-toggle) {
   flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.mobile-vocab-search {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .search-grid .desktop-vocab-search,
+  main aside button.sidebar-toggle {
+    display: none;
+  }
+  .mobile-vocab-search {
+    display: grid;
+  }
+  main[data-show-sidebar="false"] .layout {
+    grid-template-columns: 1fr;
+  }
+  main[data-show-sidebar="false"] .layout > aside {
+    max-height: 310px;
+    overflow-y: auto;
+    padding: 12px;
+  }
+  main[data-show-sidebar="false"] .layout > aside > .chapter-group {
+    display: grid;
+  }
+  main[data-show-sidebar="false"] .sidebar-heading {
+    justify-content: flex-start;
+    margin: -12px -12px 8px;
+    padding: 12px;
+  }
+  main[data-show-sidebar="false"] .sidebar-heading .count {
+    display: block;
+  }
 }
 
 main .controls-panel button {

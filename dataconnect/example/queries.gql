@@ -1,0 +1,132 @@
+mutation CreateSentence($englishText: String!, $contextDescription: String) @auth(level: USER) {
+  sentence_insert(data: {
+    englishText: $englishText,
+    contextDescription: $contextDescription,
+    creatorId_expr: "auth.uid",
+    createdAt_expr: "request.time"
+  })
+}
+
+mutation DeleteSentence($id: UUID!) @auth(level: USER) {
+  sentence_delete(id: $id)
+}
+
+mutation UpdateSentence($id: UUID!, $contextDescription: String) @auth(level: USER) {
+  sentence_update(id: $id, data: { contextDescription: $contextDescription })
+}
+
+query GetSentence($id: UUID!) @auth(level: PUBLIC, insecureReason: "Publicly readable sentences.") {
+  sentence(id: $id) {
+    englishText
+    createdAt
+    creator { username }
+  }
+}
+
+query ListSentences @auth(level: PUBLIC, insecureReason: "Publicly readable sentences.") {
+  sentences {
+    englishText
+    createdAt
+  }
+}
+
+mutation CreateTranslation($myanmarText: String!, $scriptType: String!, $sentenceId: UUID!) @auth(level: USER) {
+  translation_insert(data: {
+    myanmarText: $myanmarText,
+    scriptType: $scriptType,
+    sentenceId: $sentenceId,
+    contributorId_expr: "auth.uid"
+  })
+}
+
+mutation DeleteTranslation($id: UUID!) @auth(level: USER) {
+  translation_delete(id: $id)
+}
+
+mutation UpdateTranslation($id: UUID!, $phoneticTransliteration: String) @auth(level: USER) {
+  translation_update(id: $id, data: { phoneticTransliteration: $phoneticTransliteration })
+}
+
+query GetTranslation($id: UUID!) @auth(level: PUBLIC, insecureReason: "Publicly readable translations.") {
+  translation(id: $id) {
+    myanmarText
+    phoneticTransliteration
+  }
+}
+
+query ListTranslations @auth(level: PUBLIC, insecureReason: "Publicly readable translations.") {
+  translations {
+    myanmarText
+  }
+}
+
+mutation CreateTag($name: String!) @auth(level: USER) {
+  tag_insert(data: { name: $name })
+}
+
+mutation DeleteTag($id: UUID!) @auth(level: USER) {
+  tag_delete(id: $id)
+}
+
+mutation UpdateTag($id: UUID!, $name: String!) @auth(level: USER) {
+  tag_update(id: $id, data: { name: $name })
+}
+
+query GetTag($id: UUID!) @auth(level: PUBLIC, insecureReason: "Publicly readable tags.") {
+  tag(id: $id) {
+    name
+  }
+}
+
+query ListTags @auth(level: PUBLIC, insecureReason: "Publicly readable tags.") {
+  tags {
+    name
+  }
+}
+
+mutation CreateVote($value: Int!, $translationId: UUID!) @auth(level: USER) {
+  vote_insert(data: {
+    value: $value,
+    translationId: $translationId,
+    userId_expr: "auth.uid"
+  })
+}
+
+mutation DeleteVote($id: UUID!) @auth(level: USER) {
+  vote_delete(id: $id)
+}
+
+mutation UpdateVote($id: UUID!, $value: Int!) @auth(level: USER) {
+  vote_update(id: $id, data: { value: $value })
+}
+
+query GetVote($id: UUID!) @auth(level: USER) {
+  vote(id: $id) {
+    value
+    translation { myanmarText }
+  }
+}
+
+query ListMyVotes @auth(level: USER) {
+  votes(where: { userId: { eq_expr: "auth.uid" } }) {
+    value
+    translation { myanmarText }
+  }
+}
+
+mutation CreateUserCollection($sentenceId: UUID!) @auth(level: USER) {
+  userCollection_insert(data: {
+    sentenceId: $sentenceId,
+    userId_expr: "auth.uid"
+  })
+}
+
+mutation DeleteUserCollection($id: UUID!) @auth(level: USER) {
+  userCollection_delete(id: $id)
+}
+
+query ListMyCollection @auth(level: USER) {
+  userCollections(where: { userId: { eq_expr: "auth.uid" } }) {
+    sentence { englishText }
+  }
+}

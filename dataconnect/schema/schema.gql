@@ -1,0 +1,42 @@
+type User @table {
+  username: String!
+  email: String!
+  bio: String
+  profilePictureUrl: String
+}
+
+type Sentence @table {
+  englishText: String!
+  createdAt: Timestamp!
+  contextDescription: String
+  creator: User!
+}
+
+type Translation @table {
+  myanmarText: String!
+  scriptType: String!
+  phoneticTransliteration: String
+  sentence: Sentence!
+  contributor: User!
+}
+
+type Tag @table {
+  name: String!
+}
+
+# Many-to-many relationship table for Sentences and Tags
+type SentenceTag @table(key: ["sentence", "tag"]) {
+  sentence: Sentence!
+  tag: Tag!
+}
+
+type Vote @table {
+  value: Int!
+  user: User!
+  translation: Translation!
+}
+
+type UserCollection @table {
+  user: User!
+  sentence: Sentence!
+}

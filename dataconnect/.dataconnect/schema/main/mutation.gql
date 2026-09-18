@@ -1,0 +1,776 @@
+extend type Mutation {
+  """
+  ✨ Insert a single `Sentence` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  sentence_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Sentence_Data!
+  ): Sentence_KeyOutput! @fdc_generated(from: "Sentence", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `SentenceTag` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  sentenceTag_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: SentenceTag_Data!
+  ): SentenceTag_KeyOutput! @fdc_generated(from: "SentenceTag", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `Tag` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  tag_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Tag_Data!
+  ): Tag_KeyOutput! @fdc_generated(from: "Tag", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `Translation` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  translation_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Translation_Data!
+  ): Translation_KeyOutput! @fdc_generated(from: "Translation", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `User` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  user_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: User_Data!
+  ): User_KeyOutput! @fdc_generated(from: "User", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `UserCollection` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  userCollection_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: UserCollection_Data!
+  ): UserCollection_KeyOutput! @fdc_generated(from: "UserCollection", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert a single `Vote` into the table and return its key. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  vote_insert(
+    """
+    Data object to insert into the table.
+    """
+    data: Vote_Data!
+  ): Vote_KeyOutput! @fdc_generated(from: "Vote", purpose: INSERT_SINGLE)
+  """
+  ✨ Insert `Sentence` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  sentence_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Sentence_Data!]!
+  ): [Sentence_KeyOutput!]! @fdc_generated(from: "Sentence", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `SentenceTag` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  sentenceTag_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [SentenceTag_Data!]!
+  ): [SentenceTag_KeyOutput!]! @fdc_generated(from: "SentenceTag", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `Tag` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  tag_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Tag_Data!]!
+  ): [Tag_KeyOutput!]! @fdc_generated(from: "Tag", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `Translation` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  translation_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Translation_Data!]!
+  ): [Translation_KeyOutput!]! @fdc_generated(from: "Translation", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `User` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  user_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [User_Data!]!
+  ): [User_KeyOutput!]! @fdc_generated(from: "User", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `UserCollection` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  userCollection_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [UserCollection_Data!]!
+  ): [UserCollection_KeyOutput!]! @fdc_generated(from: "UserCollection", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert `Vote` objects into the table and return their keys. Columns not specified in `data` will receive defaults (e.g. `null`).
+  """
+  vote_insertMany(
+    """
+    List of data objects to insert into the table.
+    """
+    data: [Vote_Data!]!
+  ): [Vote_KeyOutput!]! @fdc_generated(from: "Vote", purpose: INSERT_MULTIPLE)
+  """
+  ✨ Insert or update a single `Sentence` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Sentence`.
+  """
+  sentence_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Sentence_Data!
+  ): Sentence_KeyOutput! @fdc_generated(from: "Sentence", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `SentenceTag` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `SentenceTag`.
+  """
+  sentenceTag_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: SentenceTag_Data!
+  ): SentenceTag_KeyOutput! @fdc_generated(from: "SentenceTag", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `Tag` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Tag`.
+  """
+  tag_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Tag_Data!
+  ): Tag_KeyOutput! @fdc_generated(from: "Tag", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `Translation` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Translation`.
+  """
+  translation_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Translation_Data!
+  ): Translation_KeyOutput! @fdc_generated(from: "Translation", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `User` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `User`.
+  """
+  user_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: User_Data!
+  ): User_KeyOutput! @fdc_generated(from: "User", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `UserCollection` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `UserCollection`.
+  """
+  userCollection_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: UserCollection_Data!
+  ): UserCollection_KeyOutput! @fdc_generated(from: "UserCollection", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update a single `Vote` into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Vote`.
+  """
+  vote_upsert(
+    """
+    Data object to insert or update if it already exists.
+    """
+    data: Vote_Data!
+  ): Vote_KeyOutput! @fdc_generated(from: "Vote", purpose: UPSERT_SINGLE)
+  """
+  ✨ Insert or update `Sentence` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Sentence`.
+  """
+  sentence_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Sentence_Data!]!
+  ): [Sentence_KeyOutput!]! @fdc_generated(from: "Sentence", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `SentenceTag` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `SentenceTag`.
+  """
+  sentenceTag_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [SentenceTag_Data!]!
+  ): [SentenceTag_KeyOutput!]! @fdc_generated(from: "SentenceTag", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `Tag` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Tag`.
+  """
+  tag_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Tag_Data!]!
+  ): [Tag_KeyOutput!]! @fdc_generated(from: "Tag", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `Translation` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Translation`.
+  """
+  translation_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Translation_Data!]!
+  ): [Translation_KeyOutput!]! @fdc_generated(from: "Translation", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `User` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `User`.
+  """
+  user_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [User_Data!]!
+  ): [User_KeyOutput!]! @fdc_generated(from: "User", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `UserCollection` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `UserCollection`.
+  """
+  userCollection_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [UserCollection_Data!]!
+  ): [UserCollection_KeyOutput!]! @fdc_generated(from: "UserCollection", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Insert or update `Vote` objects into the table, based on the primary key. Returns the key of the newly inserted or existing updated `Vote`.
+  """
+  vote_upsertMany(
+    """
+    List of data objects to insert or update if it already exists.
+    """
+    data: [Vote_Data!]!
+  ): [Vote_KeyOutput!]! @fdc_generated(from: "Vote", purpose: UPSERT_MULTIPLE)
+  """
+  ✨ Update a single `Sentence` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Sentence` or `null` if not found.
+  """
+  sentence_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Sentence_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Sentence_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Sentence_Data!
+  ): Sentence_KeyOutput @fdc_generated(from: "Sentence", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `SentenceTag` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `SentenceTag` or `null` if not found.
+  """
+  sentenceTag_update(
+    """
+    The key used to identify the object.
+    """
+    key: SentenceTag_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: SentenceTag_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: SentenceTag_Data!
+  ): SentenceTag_KeyOutput @fdc_generated(from: "SentenceTag", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `Tag` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Tag` or `null` if not found.
+  """
+  tag_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Tag_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Tag_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Tag_Data!
+  ): Tag_KeyOutput @fdc_generated(from: "Tag", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `Translation` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Translation` or `null` if not found.
+  """
+  translation_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Translation_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Translation_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Translation_Data!
+  ): Translation_KeyOutput @fdc_generated(from: "Translation", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `User` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `User` or `null` if not found.
+  """
+  user_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: User_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: User_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: User_Data!
+  ): User_KeyOutput @fdc_generated(from: "User", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `UserCollection` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `UserCollection` or `null` if not found.
+  """
+  userCollection_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: UserCollection_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: UserCollection_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: UserCollection_Data!
+  ): UserCollection_KeyOutput @fdc_generated(from: "UserCollection", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update a single `Vote` based on `id`, `key` or `first`, setting columns specified in `data`. Returns the key of the updated `Vote` or `null` if not found.
+  """
+  vote_update(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Vote_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Vote_FirstRow
+
+    """
+    Data object containing fields to be updated.
+    """
+    data: Vote_Data!
+  ): Vote_KeyOutput @fdc_generated(from: "Vote", purpose: UPDATE_SINGLE)
+  """
+  ✨ Update `Sentence` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  sentence_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Sentence_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Sentence_Data!
+  ): Int! @fdc_generated(from: "Sentence", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `SentenceTag` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  sentenceTag_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: SentenceTag_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: SentenceTag_Data!
+  ): Int! @fdc_generated(from: "SentenceTag", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `Tag` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  tag_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Tag_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Tag_Data!
+  ): Int! @fdc_generated(from: "Tag", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `Translation` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  translation_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Translation_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Translation_Data!
+  ): Int! @fdc_generated(from: "Translation", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `User` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  user_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: User_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: User_Data!
+  ): Int! @fdc_generated(from: "User", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `UserCollection` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  userCollection_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: UserCollection_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: UserCollection_Data!
+  ): Int! @fdc_generated(from: "UserCollection", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Update `Vote` objects matching `where` conditions (or `all`, if true) according to `data`. Returns the number of rows updated.
+  """
+  vote_updateMany(
+    """
+    Filter condition to specify which rows to update.
+    """
+    where: Vote_Filter
+
+    """
+    Set to true to update all rows.
+    """
+    all: Boolean = false
+
+    """
+    Data object containing fields to update.
+    """
+    data: Vote_Data!
+  ): Int! @fdc_generated(from: "Vote", purpose: UPDATE_MULTIPLE)
+  """
+  ✨ Delete a single `Sentence` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  sentence_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Sentence_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Sentence_FirstRow
+  ): Sentence_KeyOutput @fdc_generated(from: "Sentence", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `SentenceTag` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  sentenceTag_delete(
+    """
+    The key used to identify the object.
+    """
+    key: SentenceTag_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: SentenceTag_FirstRow
+  ): SentenceTag_KeyOutput @fdc_generated(from: "SentenceTag", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `Tag` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  tag_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Tag_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Tag_FirstRow
+  ): Tag_KeyOutput @fdc_generated(from: "Tag", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `Translation` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  translation_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Translation_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Translation_FirstRow
+  ): Translation_KeyOutput @fdc_generated(from: "Translation", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `User` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  user_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: User_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: User_FirstRow
+  ): User_KeyOutput @fdc_generated(from: "User", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `UserCollection` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  userCollection_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: UserCollection_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: UserCollection_FirstRow
+  ): UserCollection_KeyOutput @fdc_generated(from: "UserCollection", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete a single `Vote` based on `id`, `key` or `first` and return its key (or `null` if not found).
+  """
+  vote_delete(
+    """
+    The unique ID of the object.
+    """
+    id: UUID
+
+    """
+    The key used to identify the object.
+    """
+    key: Vote_Key
+
+    """
+    Fetch the first row based on the filters and ordering.
+    """
+    first: Vote_FirstRow
+  ): Vote_KeyOutput @fdc_generated(from: "Vote", purpose: DELETE_SINGLE)
+  """
+  ✨ Delete `Sentence` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  sentence_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Sentence_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Sentence", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `SentenceTag` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  sentenceTag_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: SentenceTag_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "SentenceTag", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `Tag` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  tag_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Tag_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Tag", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `Translation` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  translation_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Translation_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Translation", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `User` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  user_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: User_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "User", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `UserCollection` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  userCollection_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: UserCollection_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "UserCollection", purpose: DELETE_MULTIPLE)
+  """
+  ✨ Delete `Vote` objects matching `where` conditions (or `all`, if true). Returns the number of rows deleted.
+  """
+  vote_deleteMany(
+    """
+    Filter condition to specify which rows to delete.
+    """
+    where: Vote_Filter
+
+    """
+    Set to true to delete all rows.
+    """
+    all: Boolean = false
+  ): Int! @fdc_generated(from: "Vote", purpose: DELETE_MULTIPLE)
+}
