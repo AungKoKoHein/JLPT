@@ -439,9 +439,9 @@ function App() {
   const [tab, setTab] = useState("vocabulary");
   const [vocabMode, setVocabMode] = useState(() => {
     try {
-      return localStorage.getItem("jlpt-vocab-mode") === "book" ? "book" : "card";
+      return localStorage.getItem("jlpt-vocab-mode") === "card" ? "card" : "book";
     } catch {
-      return "card";
+      return "book";
     }
   });
   const bookMode = vocabMode === "book";
