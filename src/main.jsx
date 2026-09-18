@@ -450,7 +450,7 @@ function App() {
       localStorage.setItem("jlpt-vocab-mode", vocabMode);
     } catch {}
   }, [vocabMode]);
-  const [showReadings, setShowReadings] = useState(false);
+  const [showReadings, setShowReadings] = useState(true);
   const [showKanjiReadings, setShowKanjiReadings] = useState(() => {
     try {
       return localStorage.getItem("jlpt-show-kanji-readings") !== "false";
