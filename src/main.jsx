@@ -963,16 +963,16 @@ function App() {
           <article ref={chapterContentRef}>
             {selected ? (
               <>
-                <p className="eyebrow">
-                  {isGlobalSearch
-                    ? `${studyLabel} search`
-                    : `Chapter ${selected.number}`}
-                </p>
-                <h2>
-                  {isGlobalSearch
-                    ? `Results for “${vocabQuery}”`
-                    : `Chapter ${selected.number} ${studyLabel}`}
-                </h2>
+                {!isGlobalSearch ? (
+                  <div className="chapter-header">
+                    <p className="eyebrow">Chapter {selected.number}</p>
+                    <h2 lang="ja">{localizedChapterTitle(selected, showMyanmar, showReadings, showJapanese)}</h2>
+                  </div>
+                ) : (
+                  <h2>
+                    Results for “{vocabQuery}”
+                  </h2>
+                )}
                 <p className="note">
                   {isGlobalSearch
                     ? vocabResults.length
@@ -1079,7 +1079,7 @@ function App() {
                         <section className="vocab-section" key={chapter.id}>
                           <div className="vocab-section-heading">
                             <div>
-                              <p className="eyebrow">{isSubchapter ? `Sub Chapter ${chapter.number}` : `Chapter ${chapter.number}`}</p>
+                              {isSubchapter && <p className="eyebrow">Sub Chapter {chapter.number}</p>}
                               <h3 lang="ja" id={isSubchapter ? subchapterTargetId(chapter.id) : undefined} tabIndex={isSubchapter ? -1 : undefined}>{localizedChapterTitle(chapter, showMyanmar, showReadings, showJapanese)}</h3>
                             </div>
                             <div className="vocab-section-actions">
