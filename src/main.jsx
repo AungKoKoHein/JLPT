@@ -150,7 +150,7 @@ function Flashcard({
   );
 }
 
-function VocabularyBook({ entries, showReadings, showMyanmar, showJapanese, showChapterLabels = false }) {
+function VocabularyBook({ entries, showReadings, showMyanmar, showJapanese, showExamples = true, showChapterLabels = false }) {
   const display = (value = "") => showReadings ? value : hideReadings(value);
   return (
     <ol className="vocabulary-book">
@@ -164,10 +164,10 @@ function VocabularyBook({ entries, showReadings, showMyanmar, showJapanese, show
             {showJapanese && showMyanmar && card.meaning && " — "}
             {showMyanmar && <span lang="my">{card.meaning}</span>}
           </p>
-          {showJapanese && card.exampleJapanese && (
+          {showExamples && showJapanese && card.exampleJapanese && (
             <p className="book-example" lang="ja">e.g. {display(card.exampleJapanese)}</p>
           )}
-          {showMyanmar && card.exampleMyanmar && (
+          {showExamples && showMyanmar && card.exampleMyanmar && (
             <p className="book-translation" lang="my">{display(card.exampleMyanmar)}</p>
           )}
         </li>
@@ -438,6 +438,13 @@ function App() {
       return true;
     }
   });
+  const [showBookExamples, setShowBookExamples] = useState(() => {
+    try {
+      return localStorage.getItem("jlpt-show-book-examples") !== "false";
+    } catch {
+      return true;
+    }
+  });
   const [showSidebar, setShowSidebar] = useState(true);
   const [controlsOpen, setControlsOpen] = useState(false);
   const [manageMode, setManageMode] = useState(false);
@@ -471,6 +478,11 @@ function App() {
       localStorage.setItem("jlpt-show-japanese", String(showJapanese));
     } catch {}
   }, [showJapanese]);
+  useEffect(() => {
+    try {
+      localStorage.setItem("jlpt-show-book-examples", String(showBookExamples));
+    } catch {}
+  }, [showBookExamples]);
   useEffect(() => {
     try {
       localStorage.setItem("jlpt-show-kanji-readings", String(showKanjiReadings));
@@ -973,7 +985,7 @@ function App() {
                   ) : isGlobalSearch ? (
                     vocabResults.length ? (
                       bookMode ? (
-                        <VocabularyBook entries={vocabResults} showReadings={showReadings} showMyanmar={showMyanmar} showJapanese={showJapanese} showChapterLabels />
+                        <VocabularyBook entries={vocabResults} showReadings={showReadings} showMyanmar={showMyanmar} showJapanese={showJapanese} showExamples={showBookExamples} showChapterLabels />
                       ) : (
                       <section className="cards">
                         {vocabResults.map(({ card, chapter }, i) => (
@@ -1025,7 +1037,7 @@ function App() {
                           </div>
                           <p className="note">{sectionCards.length} {bookMode ? "vocabulary entries" : "flashcards"}</p>
                           {bookMode ? (
-                            <VocabularyBook entries={sectionCards} showReadings={showReadings} showMyanmar={showMyanmar} showJapanese={showJapanese} />
+                            <VocabularyBook entries={sectionCards} showReadings={showReadings} showMyanmar={showMyanmar} showJapanese={showJapanese} showExamples={showBookExamples} />
                           ) : (
                           <section className="cards">
                             {sectionCards.map(({ card }, i) => (
@@ -1180,20 +1192,24 @@ function App() {
             >
               Readings <span>{showReadings ? "ON" : "OFF"}</span>
             </button>
-            <button
-              type="button"
-              aria-pressed={showKanjiReadings}
-              onClick={() => setShowKanjiReadings(!showKanjiReadings)}
-            >
-              Kanji On/Kun <span>{showKanjiReadings ? "Shown" : "Hidden"}</span>
-            </button>
-            <button
-              type="button"
-              aria-pressed={showSidebar}
-              onClick={() => setShowSidebar(!showSidebar)}
-            >
-              Chapter Sidebar <span>{showSidebar ? "Shown" : "Hidden"}</span>
-            </button>
+            {studyTab === "Vocab" && bookMode && (
+              <button
+                type="button"
+                aria-pressed={showBookExamples}
+                onClick={() => setShowBookExamples(!showBookExamples)}
+              >
+                Example sentences <span>{showBookExamples ? "Shown" : "Hidden"}</span>
+              </button>
+            )}
+            {studyTab === "Kanji" && (
+              <button
+                type="button"
+                aria-pressed={showKanjiReadings}
+                onClick={() => setShowKanjiReadings(!showKanjiReadings)}
+              >
+                Kanji On/Kun <span>{showKanjiReadings ? "Shown" : "Hidden"}</span>
+              </button>
+            )}
           </div>
         )}
         <div className="controls-actions">
