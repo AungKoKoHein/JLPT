@@ -41,6 +41,7 @@ function parseChapter(block, index, part, number) {
     id: `${id}-subchapter-${sectionIndex + 1}`,
     number: String(sectionIndex + 1),
     title,
+    titleMyanmar: documentChapter.sectionTranslations?.[sectionIndex] ?? "",
     parentChapterId: id,
     studyTab: "Vocab",
     sourcePage: documentChapter.page + sectionIndex,

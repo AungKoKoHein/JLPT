@@ -10,6 +10,7 @@ export const chapters = [
         "id": "part-1-chapter-1-subchapter-1",
         "number": "1",
         "title": "家族（かぞく）と友達（ともだち）",
+        "titleMyanmar": "မိသားစုနှင့် သူငယ်ချင်းများ",
         "parentChapterId": "part-1-chapter-1",
         "studyTab": "Vocab",
         "sourcePage": 2
@@ -18,6 +19,7 @@ export const chapters = [
         "id": "part-1-chapter-1-subchapter-2",
         "number": "2",
         "title": "性格（せいかく）",
+        "titleMyanmar": "ကိုယ်ရည်ကိုယ်သွေး",
         "parentChapterId": "part-1-chapter-1",
         "studyTab": "Vocab",
         "sourcePage": 3
@@ -465,6 +467,7 @@ export const chapters = [
         "id": "part-1-chapter-2-subchapter-1",
         "number": "1",
         "title": "付き合い（つきあい）",
+        "titleMyanmar": "ပေါင်းသင်းဆက်ဆံရေး",
         "parentChapterId": "part-1-chapter-2",
         "studyTab": "Vocab",
         "sourcePage": 6
@@ -473,6 +476,7 @@ export const chapters = [
         "id": "part-1-chapter-2-subchapter-2",
         "number": "2",
         "title": "気持ち（きもち）",
+        "titleMyanmar": "စိတ်ခံစားချက်",
         "parentChapterId": "part-1-chapter-2",
         "studyTab": "Vocab",
         "sourcePage": 7
@@ -921,6 +925,7 @@ export const chapters = [
         "id": "part-1-chapter-3-subchapter-1",
         "number": "1",
         "title": "家事（かじ）",
+        "titleMyanmar": "အိမ်မှုကိစ္စ",
         "parentChapterId": "part-1-chapter-3",
         "studyTab": "Vocab",
         "sourcePage": 10
@@ -929,6 +934,7 @@ export const chapters = [
         "id": "part-1-chapter-3-subchapter-2",
         "number": "2",
         "title": "起き（おき）てから寝る（ねる）まで",
+        "titleMyanmar": "အိပ်ရာထချိန်မှ အိပ်ရာဝင်ချိန်အထိ",
         "parentChapterId": "part-1-chapter-3",
         "studyTab": "Vocab",
         "sourcePage": 11
@@ -1543,6 +1549,7 @@ export const chapters = [
         "id": "part-1-chapter-4-subchapter-1",
         "number": "1",
         "title": "料理（りょうり）",
+        "titleMyanmar": "ဟင်းချက်ခြင်း",
         "parentChapterId": "part-1-chapter-4",
         "studyTab": "Vocab",
         "sourcePage": 14
@@ -1551,6 +1558,7 @@ export const chapters = [
         "id": "part-1-chapter-4-subchapter-2",
         "number": "2",
         "title": "食事（しょくじ）",
+        "titleMyanmar": "စားသောက်ခြင်း",
         "parentChapterId": "part-1-chapter-4",
         "studyTab": "Vocab",
         "sourcePage": 15
@@ -2215,6 +2223,7 @@ export const chapters = [
         "id": "part-1-chapter-5-subchapter-1",
         "number": "1",
         "title": "家（いえ）",
+        "titleMyanmar": "အိမ်",
         "parentChapterId": "part-1-chapter-5",
         "studyTab": "Vocab",
         "sourcePage": 18
@@ -2223,6 +2232,7 @@ export const chapters = [
         "id": "part-1-chapter-5-subchapter-2",
         "number": "2",
         "title": "引っ越し（ひっこし）",
+        "titleMyanmar": "အိမ်ပြောင်းခြင်း",
         "parentChapterId": "part-1-chapter-5",
         "studyTab": "Vocab",
         "sourcePage": 19
@@ -2877,6 +2887,7 @@ export const chapters = [
         "id": "part-1-chapter-6-subchapter-1",
         "number": "1",
         "title": "美容（びよう）",
+        "titleMyanmar": "အလှအပ",
         "parentChapterId": "part-1-chapter-6",
         "studyTab": "Vocab",
         "sourcePage": 24
@@ -2885,6 +2896,7 @@ export const chapters = [
         "id": "part-1-chapter-6-subchapter-2",
         "number": "2",
         "title": "健康（けんこう）",
+        "titleMyanmar": "ကျန်းမာရေး",
         "parentChapterId": "part-1-chapter-6",
         "studyTab": "Vocab",
         "sourcePage": 25
@@ -3504,6 +3516,7 @@ export const chapters = [
         "id": "part-1-chapter-7-subchapter-1",
         "number": "1",
         "title": "病気（びょうき）と怪我（けが）",
+        "titleMyanmar": "ဖျားနာခြင်းနှင့် ထိခိုက်ဒဏ်ရာရခြင်း",
         "parentChapterId": "part-1-chapter-7",
         "studyTab": "Vocab",
         "sourcePage": 28
@@ -3512,6 +3525,7 @@ export const chapters = [
         "id": "part-1-chapter-7-subchapter-2",
         "number": "2",
         "title": "入院（にゅういん）",
+        "titleMyanmar": "ဆေးရုံတက်ခြင်း",
         "parentChapterId": "part-1-chapter-7",
         "studyTab": "Vocab",
         "sourcePage": 29
@@ -4167,6 +4181,7 @@ export const chapters = [
         "id": "part-1-chapter-8-subchapter-1",
         "number": "1",
         "title": "スポーツ",
+        "titleMyanmar": "အားကစား",
         "parentChapterId": "part-1-chapter-8",
         "studyTab": "Vocab",
         "sourcePage": 32
@@ -4175,6 +4190,7 @@ export const chapters = [
         "id": "part-1-chapter-8-subchapter-2",
         "number": "2",
         "title": "芸術（げいじゅつ）",
+        "titleMyanmar": "အနုပညာ",
         "parentChapterId": "part-1-chapter-8",
         "studyTab": "Vocab",
         "sourcePage": 33
@@ -4820,6 +4836,7 @@ export const chapters = [
         "id": "part-1-chapter-9-subchapter-1",
         "number": "1",
         "title": "ファッション①",
+        "titleMyanmar": "ဖက်ရှင် ၁",
         "parentChapterId": "part-1-chapter-9",
         "studyTab": "Vocab",
         "sourcePage": 36
@@ -4828,6 +4845,7 @@ export const chapters = [
         "id": "part-1-chapter-9-subchapter-2",
         "number": "2",
         "title": "ファッション②",
+        "titleMyanmar": "ဖက်ရှင် ၂",
         "parentChapterId": "part-1-chapter-9",
         "studyTab": "Vocab",
         "sourcePage": 37
@@ -5533,6 +5551,7 @@ export const chapters = [
         "id": "part-1-chapter-10-subchapter-1",
         "number": "1",
         "title": "旅行（りょこう）",
+        "titleMyanmar": "ခရီးသွားခြင်း",
         "parentChapterId": "part-1-chapter-10",
         "studyTab": "Vocab",
         "sourcePage": 40
@@ -5541,6 +5560,7 @@ export const chapters = [
         "id": "part-1-chapter-10-subchapter-2",
         "number": "2",
         "title": "移動（いどう）",
+        "titleMyanmar": "သွားလာရွှေ့ပြောင်းခြင်း",
         "parentChapterId": "part-1-chapter-10",
         "studyTab": "Vocab",
         "sourcePage": 41
@@ -6238,6 +6258,7 @@ export const chapters = [
         "id": "part-1-chapter-11-subchapter-1",
         "number": "1",
         "title": "学校（がっこう）生活（せいかつ）",
+        "titleMyanmar": "ကျောင်းဘဝ",
         "parentChapterId": "part-1-chapter-11",
         "studyTab": "Vocab",
         "sourcePage": 46
@@ -6246,6 +6267,7 @@ export const chapters = [
         "id": "part-1-chapter-11-subchapter-2",
         "number": "2",
         "title": "勉強（べんきょう）",
+        "titleMyanmar": "စာလေ့လာခြင်း",
         "parentChapterId": "part-1-chapter-11",
         "studyTab": "Vocab",
         "sourcePage": 47
@@ -6915,6 +6937,7 @@ export const chapters = [
         "id": "part-1-chapter-12-subchapter-1",
         "number": "1",
         "title": "受験（じゅけん）勉強（べんきょう）・試験（しけん）",
+        "titleMyanmar": "ဝင်ခွင့်စာမေးပွဲအတွက် စာလေ့လာခြင်းနှင့် စာမေးပွဲ",
         "parentChapterId": "part-1-chapter-12",
         "studyTab": "Vocab",
         "sourcePage": 50
@@ -6923,6 +6946,7 @@ export const chapters = [
         "id": "part-1-chapter-12-subchapter-2",
         "number": "2",
         "title": "大学（だいがく）生活（せいかつ）",
+        "titleMyanmar": "တက္ကသိုလ်ဘဝ",
         "parentChapterId": "part-1-chapter-12",
         "studyTab": "Vocab",
         "sourcePage": 51
@@ -7637,6 +7661,7 @@ export const chapters = [
         "id": "part-1-chapter-13-subchapter-1",
         "number": "1",
         "title": "就職（しゅうしょく）する",
+        "titleMyanmar": "အလုပ်ရရှိခြင်း",
         "parentChapterId": "part-1-chapter-13",
         "studyTab": "Vocab",
         "sourcePage": 54
@@ -7645,6 +7670,7 @@ export const chapters = [
         "id": "part-1-chapter-13-subchapter-2",
         "number": "2",
         "title": "仕事（しごと）をする",
+        "titleMyanmar": "အလုပ်လုပ်ခြင်း",
         "parentChapterId": "part-1-chapter-13",
         "studyTab": "Vocab",
         "sourcePage": 55
@@ -8381,6 +8407,7 @@ export const chapters = [
         "id": "part-1-chapter-14-subchapter-1",
         "number": "1",
         "title": "コンピューター",
+        "titleMyanmar": "ကွန်ပျူတာ",
         "parentChapterId": "part-1-chapter-14",
         "studyTab": "Vocab",
         "sourcePage": 58
@@ -8389,6 +8416,7 @@ export const chapters = [
         "id": "part-1-chapter-14-subchapter-2",
         "number": "2",
         "title": "郵便（ゆうびん）、電話（でんわ）など",
+        "titleMyanmar": "စာတိုက်၊ ဖုန်း စသည်တို့",
         "parentChapterId": "part-1-chapter-14",
         "studyTab": "Vocab",
         "sourcePage": 59
@@ -9052,6 +9080,7 @@ export const chapters = [
         "id": "part-1-chapter-15-subchapter-1",
         "number": "1",
         "title": "事件（じけん）",
+        "titleMyanmar": "ဖြစ်ရပ်များ",
         "parentChapterId": "part-1-chapter-15",
         "studyTab": "Vocab",
         "sourcePage": 64
@@ -9060,6 +9089,7 @@ export const chapters = [
         "id": "part-1-chapter-15-subchapter-2",
         "number": "2",
         "title": "事故（じこ）",
+        "titleMyanmar": "မတော်တဆမှုများ",
         "parentChapterId": "part-1-chapter-15",
         "studyTab": "Vocab",
         "sourcePage": 65
@@ -9612,6 +9642,7 @@ export const chapters = [
         "id": "part-1-chapter-16-subchapter-1",
         "number": "1",
         "title": "政治（せいじ）",
+        "titleMyanmar": "နိုင်ငံရေး",
         "parentChapterId": "part-1-chapter-16",
         "studyTab": "Vocab",
         "sourcePage": 68
@@ -9620,6 +9651,7 @@ export const chapters = [
         "id": "part-1-chapter-16-subchapter-2",
         "number": "2",
         "title": "経済（けいざい）",
+        "titleMyanmar": "စီးပွားရေး",
         "parentChapterId": "part-1-chapter-16",
         "studyTab": "Vocab",
         "sourcePage": 69
@@ -10216,6 +10248,7 @@ export const chapters = [
         "id": "part-1-chapter-17-subchapter-1",
         "number": "1",
         "title": "行事（ぎょうじ）",
+        "titleMyanmar": "အခမ်းအနားများ",
         "parentChapterId": "part-1-chapter-17",
         "studyTab": "Vocab",
         "sourcePage": 72
@@ -10224,6 +10257,7 @@ export const chapters = [
         "id": "part-1-chapter-17-subchapter-2",
         "number": "2",
         "title": "宗教（しゅうきょう）",
+        "titleMyanmar": "ဘာသာရေး",
         "parentChapterId": "part-1-chapter-17",
         "studyTab": "Vocab",
         "sourcePage": 73
@@ -10743,6 +10777,7 @@ export const chapters = [
         "id": "part-1-chapter-18-subchapter-1",
         "number": "1",
         "title": "季節（きせつ）と天気（てんき）",
+        "titleMyanmar": "ရာသီနှင့် ရာသီဥတု",
         "parentChapterId": "part-1-chapter-18",
         "studyTab": "Vocab",
         "sourcePage": 76
@@ -10751,6 +10786,7 @@ export const chapters = [
         "id": "part-1-chapter-18-subchapter-2",
         "number": "2",
         "title": "地理（ちり）",
+        "titleMyanmar": "ပထဝီဝင်",
         "parentChapterId": "part-1-chapter-18",
         "studyTab": "Vocab",
         "sourcePage": 77
@@ -11302,6 +11338,7 @@ export const chapters = [
         "id": "part-1-chapter-19-subchapter-1",
         "number": "1",
         "title": "植物（しょくぶつ）",
+        "titleMyanmar": "အပင်များ",
         "parentChapterId": "part-1-chapter-19",
         "studyTab": "Vocab",
         "sourcePage": 80
@@ -11310,6 +11347,7 @@ export const chapters = [
         "id": "part-1-chapter-19-subchapter-2",
         "number": "2",
         "title": "動物（どうぶつ）など",
+        "titleMyanmar": "တိရစ္ဆာန်များ စသည်တို့",
         "parentChapterId": "part-1-chapter-19",
         "studyTab": "Vocab",
         "sourcePage": 81
@@ -11855,6 +11893,7 @@ export const chapters = [
         "id": "part-1-chapter-20-subchapter-1",
         "number": "1",
         "title": "数（かず）と量（りょう）①",
+        "titleMyanmar": "အရေအတွက်နှင့် ပမာဏ ၁",
         "parentChapterId": "part-1-chapter-20",
         "studyTab": "Vocab",
         "sourcePage": 86
@@ -11863,6 +11902,7 @@ export const chapters = [
         "id": "part-1-chapter-20-subchapter-2",
         "number": "2",
         "title": "数（かず）と量（りょう）②",
+        "titleMyanmar": "အရေအတွက်နှင့် ပမာဏ ၂",
         "parentChapterId": "part-1-chapter-20",
         "studyTab": "Vocab",
         "sourcePage": 87
@@ -12463,6 +12503,7 @@ export const chapters = [
         "id": "part-1-chapter-21-subchapter-1",
         "number": "1",
         "title": "時間（じかん）①",
+        "titleMyanmar": "အချိန် ၁",
         "parentChapterId": "part-1-chapter-21",
         "studyTab": "Vocab",
         "sourcePage": 90
@@ -12471,6 +12512,7 @@ export const chapters = [
         "id": "part-1-chapter-21-subchapter-2",
         "number": "2",
         "title": "時間（じかん）②",
+        "titleMyanmar": "အချိန် ၂",
         "parentChapterId": "part-1-chapter-21",
         "studyTab": "Vocab",
         "sourcePage": 91
@@ -13030,6 +13072,7 @@ export const chapters = [
         "id": "part-2-chapter-22-subchapter-1",
         "number": "1",
         "title": "自動詞（じどうし）",
+        "titleMyanmar": "အလိုအလျောက်ကြိယာ",
         "parentChapterId": "part-2-chapter-22",
         "studyTab": "Vocab",
         "sourcePage": 98
@@ -13038,6 +13081,7 @@ export const chapters = [
         "id": "part-2-chapter-22-subchapter-2",
         "number": "2",
         "title": "他動詞（たどうし）",
+        "titleMyanmar": "အပြုကြိယာ",
         "parentChapterId": "part-2-chapter-22",
         "studyTab": "Vocab",
         "sourcePage": 99
@@ -13841,6 +13885,7 @@ export const chapters = [
         "id": "part-2-chapter-23-subchapter-1",
         "number": "1",
         "title": "漢語（かんご）動詞（どうし）① ～を＋動詞（どうし）",
+        "titleMyanmar": "တရုတ်မူရင်းကြိယာ ၁ ～ကို + ကြိယာ",
         "parentChapterId": "part-2-chapter-23",
         "studyTab": "Vocab",
         "sourcePage": 102
@@ -13849,6 +13894,7 @@ export const chapters = [
         "id": "part-2-chapter-23-subchapter-2",
         "number": "2",
         "title": "漢語（かんご）動詞（どうし）② ～を／～に／～が＋動詞（どうし）",
+        "titleMyanmar": "တရုတ်မူရင်းကြိယာ ၂ ～ကို／～သို့／～က + ကြိယာ",
         "parentChapterId": "part-2-chapter-23",
         "studyTab": "Vocab",
         "sourcePage": 103
@@ -14577,6 +14623,7 @@ export const chapters = [
         "id": "part-2-chapter-24-subchapter-1",
         "number": "1",
         "title": "い形容詞（けいようし）",
+        "titleMyanmar": "い-နာမဝိသေသန",
         "parentChapterId": "part-2-chapter-24",
         "studyTab": "Vocab",
         "sourcePage": 106
@@ -14585,6 +14632,7 @@ export const chapters = [
         "id": "part-2-chapter-24-subchapter-2",
         "number": "2",
         "title": "な形容詞（けいようし）",
+        "titleMyanmar": "な-နာမဝိသေသန",
         "parentChapterId": "part-2-chapter-24",
         "studyTab": "Vocab",
         "sourcePage": 107
@@ -15217,6 +15265,7 @@ export const chapters = [
         "id": "part-2-chapter-25-subchapter-1",
         "number": "1",
         "title": "副詞（ふくし）①",
+        "titleMyanmar": "ကြိယာဝိသေသန ၁",
         "parentChapterId": "part-2-chapter-25",
         "studyTab": "Vocab",
         "sourcePage": 110
@@ -15225,6 +15274,7 @@ export const chapters = [
         "id": "part-2-chapter-25-subchapter-2",
         "number": "2",
         "title": "副詞（ふくし）②",
+        "titleMyanmar": "ကြိယာဝိသေသန ၂",
         "parentChapterId": "part-2-chapter-25",
         "studyTab": "Vocab",
         "sourcePage": 111
@@ -15913,6 +15963,7 @@ export const chapters = [
         "id": "part-2-chapter-26-subchapter-1",
         "number": "1",
         "title": "オノマトペ①",
+        "titleMyanmar": "အသံတုပစကား ၁",
         "parentChapterId": "part-2-chapter-26",
         "studyTab": "Vocab",
         "sourcePage": 114
@@ -15921,6 +15972,7 @@ export const chapters = [
         "id": "part-2-chapter-26-subchapter-2",
         "number": "2",
         "title": "オノマトペ②",
+        "titleMyanmar": "အသံတုပစကား ၂",
         "parentChapterId": "part-2-chapter-26",
         "studyTab": "Vocab",
         "sourcePage": 115
@@ -16428,6 +16480,7 @@ export const chapters = [
         "id": "part-2-chapter-27-subchapter-1",
         "number": "1",
         "title": "な形容詞（けいようし）と間違え（まちがえ）やすいもの",
+        "titleMyanmar": "な-နာမဝိသေသနနှင့် မှားလွယ်သော စကားလုံးများ",
         "parentChapterId": "part-2-chapter-27",
         "studyTab": "Vocab",
         "sourcePage": 118
@@ -16436,6 +16489,7 @@ export const chapters = [
         "id": "part-2-chapter-27-subchapter-2",
         "number": "2",
         "title": "する動詞（どうし）と間違え（まちがえ）やすいもの、「的（まと）」が付く（つく）もの",
+        "titleMyanmar": "する-ကြိယာနှင့် မှားလွယ်သော စကားလုံးများ၊ 「的」 ပါသော စကားလုံးများ",
         "parentChapterId": "part-2-chapter-27",
         "studyTab": "Vocab",
         "sourcePage": 119
@@ -16975,6 +17029,7 @@ export const chapters = [
         "id": "part-2-chapter-28-subchapter-1",
         "number": "1",
         "title": "動詞（どうし）、名詞（めいし）",
+        "titleMyanmar": "ကြိယာ၊ နာမ်",
         "parentChapterId": "part-2-chapter-28",
         "studyTab": "Vocab",
         "sourcePage": 122
@@ -16983,6 +17038,7 @@ export const chapters = [
         "id": "part-2-chapter-28-subchapter-2",
         "number": "2",
         "title": "形容詞（けいようし）、副詞（ふくし）、オノマトペ",
+        "titleMyanmar": "နာမဝိသေသန၊ ကြိယာဝိသေသန၊ အသံတုပစကား",
         "parentChapterId": "part-2-chapter-28",
         "studyTab": "Vocab",
         "sourcePage": 123
@@ -17670,6 +17726,7 @@ export const chapters = [
         "id": "part-2-chapter-29-subchapter-1",
         "number": "1",
         "title": "複合語（ふくごうご）",
+        "titleMyanmar": "ပေါင်းစပ်စကားလုံးများ",
         "parentChapterId": "part-2-chapter-29",
         "studyTab": "Vocab",
         "sourcePage": 126
@@ -17678,6 +17735,7 @@ export const chapters = [
         "id": "part-2-chapter-29-subchapter-2",
         "number": "2",
         "title": "ほかの言葉（ことば）に付く（つく）もの",
+        "titleMyanmar": "အခြားစကားလုံးများနှင့် တွဲသုံးသော စကားလုံးများ",
         "parentChapterId": "part-2-chapter-29",
         "studyTab": "Vocab",
         "sourcePage": 127

@@ -194,12 +194,12 @@
   margin: 0;
   padding-left: 2rem;
   padding-right: 48px;
-  font-size: 1.08rem;
-  line-height: 1.8;
+  font-size: 1.25rem;
+  line-height: 1.5;
 }
 .book-entry {
-  padding: 0 0 20px 4px;
-  margin-bottom: 20px;
+  padding: 0 0 10px 4px;
+  margin-bottom: 10px;
   border-bottom: 1px solid #e0e7ff;
   overflow-wrap: anywhere;
 }
