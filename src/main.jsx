@@ -475,32 +475,21 @@ function App() {
     setExerciseSectionId(null);
     setTab("vocabulary");
     setEditor(null);
+    setShowReadings(false);
+    setShowKanjiReadings(false);
+    if (studyTab === "Grammar") setGrammarMode("card");
+    if (studyTab === "Vocab") setVocabMode("book");
   }, [studyTab]);
   const [chapterQuery, setChapterQuery] = useState("");
   const [vocabQuery, setVocabQuery] = useState("");
   const [active, setActive] = useState(chapters[0]?.id ?? "");
   const [tab, setTab] = useState("vocabulary");
-  const [vocabMode, setVocabMode] = useState(() => {
-    try {
-      return localStorage.getItem("jlpt-vocab-mode") === "card" ? "card" : "book";
-    } catch {
-      return "book";
-    }
-  });
-  const bookMode = vocabMode === "book";
-  useEffect(() => {
-    try {
-      localStorage.setItem("jlpt-vocab-mode", vocabMode);
-    } catch {}
-  }, [vocabMode]);
-  const [showReadings, setShowReadings] = useState(true);
-  const [showKanjiReadings, setShowKanjiReadings] = useState(() => {
-    try {
-      return localStorage.getItem("jlpt-show-kanji-readings") !== "false";
-    } catch {
-      return true;
-    }
-  });
+  const [vocabMode, setVocabMode] = useState("book");
+  const [grammarMode, setGrammarMode] = useState("card");
+  const bookMode = (studyTab === "Grammar" ? grammarMode : vocabMode) === "book";
+  const setStudyMode = studyTab === "Grammar" ? setGrammarMode : setVocabMode;
+  const [showReadings, setShowReadings] = useState(false);
+  const [showKanjiReadings, setShowKanjiReadings] = useState(false);
   const [showJapanese, setShowJapanese] = useState(() => {
     try {
       return localStorage.getItem("jlpt-show-japanese") !== "false";
@@ -553,11 +542,6 @@ function App() {
       localStorage.setItem("jlpt-show-book-examples", String(showBookExamples));
     } catch {}
   }, [showBookExamples]);
-  useEffect(() => {
-    try {
-      localStorage.setItem("jlpt-show-kanji-readings", String(showKanjiReadings));
-    } catch {}
-  }, [showKanjiReadings]);
   const [showMyanmar, setShowMyanmar] = useState(() => {
     try {
       return localStorage.getItem("jlpt-show-myanmar") !== "false";
@@ -1269,8 +1253,8 @@ function App() {
             <p className="controls-title">Study View</p>
             {isChapterStudy && (
               <div className="vocab-mode-switch" role="group" aria-label="Vocabulary display mode">
-                <button type="button" aria-pressed={!bookMode} onClick={() => setVocabMode("card")}>Card mode</button>
-                <button type="button" aria-pressed={bookMode} onClick={() => setVocabMode("book")}>Book mode</button>
+                <button type="button" aria-pressed={!bookMode} onClick={() => setStudyMode("card")}>Card mode</button>
+                <button type="button" aria-pressed={bookMode} onClick={() => setStudyMode("book")}>Book mode</button>
               </div>
             )}
             <button
