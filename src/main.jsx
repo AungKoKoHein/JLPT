@@ -866,10 +866,24 @@ function App() {
   };
   const deletionChapters = chapterOptions.filter((chapter) => chapter.studyTab === studyTab);
   const deletionGroups = groupChapters(deletionChapters, (content.groups || []).filter((group) => group.studyTab === studyTab));
+  const deletionChapterById = new Map(deletionChapters.map((chapter) => [chapter.id, chapter]));
+  const deletionSubchapterById = new Map(deletionChapters.flatMap((chapter) => (chapter.subchapters || []).map((subchapter) => [subchapter.id, { ...subchapter, chapter }])));
   const deletionOptions = deleteType === "group" ? deletionGroups.filter((group) => group.label !== "Not grouped").map((group) => ({ id: group.label, label: group.label }))
     : deleteType === "chapter" ? sortChapters(deletionChapters).filter((chapter) => chapter.id !== `ungrouped-${studyTab}`).map((chapter) => ({ id: chapter.id, label: `${chapter.number}: ${chapter.title}`, record: chapter }))
     : deleteType === "subchapter" ? deletionChapters.flatMap((chapter) => sortChapters(chapter.subchapters || []).map((section) => ({ id: section.id, label: `${chapter.title} / ${section.number}: ${section.title}`, record: section })))
-    : (deleteType === "exercise" ? allExercises : deleteType === "kanji" ? allKanjiCards : allVocabularyCards).filter((record) => (record.studyTab || "Vocab") === studyTab).map((record) => ({ id: record._id, label: `${deletionChapters.find((chapter) => chapter.id === (record.parentChapterId || record.chapterId))?.title || ""} / ${record.term || record.kanji || record.question}`, record }));
+    : (deleteType === "exercise" ? allExercises : deleteType === "kanji" ? allKanjiCards : allVocabularyCards).filter((record) => (record.studyTab || "Vocab") === studyTab).map((record) => {
+      const subchapter = deletionSubchapterById.get(record.subchapterId);
+      const chapter = deletionChapterById.get(record.parentChapterId || subchapter?.chapter?.id || record.chapterId);
+      return {
+        id: record._id,
+        label: `${chapter?.title || ""} / ${record.term || record.kanji || record.question}`,
+        chapterId: chapter?.id,
+        chapterLabel: chapter ? `${chapter.number}: ${chapter.title}` : "",
+        subchapterId: subchapter?.id,
+        subchapterLabel: subchapter ? `${subchapter.number}: ${subchapter.title}` : "",
+        record,
+      };
+    });
   const deleteSelected = async () => {
     if (!cloud.canEdit) return;
     const option = deletionOptions.find((item) => item.id === deleteId);

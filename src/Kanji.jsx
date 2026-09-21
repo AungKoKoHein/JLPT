@@ -242,7 +242,7 @@ export default function Kanji({
             className={query.trim() ? (cards.length ? "search-box has-results" : "search-box no-results") : "search-box"}
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search by kanji, reading, or meaning"
+            placeholder="例：起きる、おきる、起きるの説明"
           />
         </label>
       </section>

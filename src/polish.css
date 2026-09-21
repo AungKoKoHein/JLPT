@@ -895,6 +895,9 @@ main .controls-panel .vocab-mode-switch button {
 .delete-body > p:first-child { margin-top: 0; color: var(--muted); }
 .delete-search { display: grid; gap: 8px; font-size: .9rem; font-weight: 600; }
 .delete-search input { box-sizing: border-box; width: 100%; min-width: 0; padding: 12px; border: 1px solid #afc0c3; border-radius: 9px; background: white; color: var(--ink); font: inherit; }
+.delete-filters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+.delete-filters label { display: grid; gap: 8px; font-size: .9rem; font-weight: 600; }
+.delete-filters select { box-sizing: border-box; width: 100%; min-width: 0; padding: 12px; border: 1px solid #afc0c3; border-radius: 9px; background: white; color: var(--ink); font: inherit; }
 .delete-options { display: grid; gap: 8px; max-height: 240px; overflow-y: auto; margin: 14px 0; }
 .delete-option { display: flex; align-items: flex-start; gap: 12px; padding: 12px; border: 1px solid var(--line); border-radius: 9px; cursor: pointer; line-height: 1.7; }
 .delete-option input { flex: 0 0 auto; margin-top: 6px; accent-color: var(--accent); }
@@ -906,4 +909,4 @@ main .controls-panel .vocab-mode-switch button {
 .delete-footer { display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap; padding: 16px 24px; border-top: 1px solid var(--line); background: var(--surface); position: sticky; bottom: 0; }
 .delete-dialog .delete-confirm { color: white; background: #b42332; border-color: #b42332; }
 .delete-dialog :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
-@media (max-width: 480px) { .delete-heading, .delete-body, .delete-footer { padding: 16px; } .delete-footer button { flex: 1; } }
+@media (max-width: 480px) { .delete-heading, .delete-body, .delete-footer { padding: 16px; } .delete-footer button { flex: 1; } .delete-filters { grid-template-columns: 1fr; } }

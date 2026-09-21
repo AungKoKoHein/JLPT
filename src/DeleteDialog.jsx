@@ -3,9 +3,16 @@ import React, { useEffect, useRef, useState } from "react";
 export default function DeleteDialog({ type, options, selectedId, onSelect, onClose, onDelete, saving, canDelete, error }) {
   const dialog = useRef(null);
   const [query, setQuery] = useState("");
+  const [chapterFilter, setChapterFilter] = useState("");
+  const [subchapterFilter, setSubchapterFilter] = useState("");
   const title = ({ group: "group title", chapter: "chapter", subchapter: "subchapter", card: "flashcard", kanji: "kanji card", exercise: "exercise" })[type];
   const selected = options.find((option) => option.id === selectedId);
-  const filtered = options.filter((option) => option.label.toLocaleLowerCase().includes(query.toLocaleLowerCase()));
+  const hasLocationFilters = type === "card" || type === "kanji" || type === "exercise";
+  const chapters = [...new Map(options.filter((option) => option.chapterId).map((option) => [option.chapterId, { id: option.chapterId, label: option.chapterLabel }])).values()];
+  const subchapters = [...new Map(options.filter((option) => option.subchapterId && (!chapterFilter || option.chapterId === chapterFilter)).map((option) => [option.subchapterId, { id: option.subchapterId, label: option.subchapterLabel }])).values()];
+  const filtered = options.filter((option) => option.label.toLocaleLowerCase().includes(query.toLocaleLowerCase())
+    && (!chapterFilter || option.chapterId === chapterFilter)
+    && (!subchapterFilter || option.subchapterId === subchapterFilter));
   useEffect(() => {
     const previous = document.activeElement;
     dialog.current.showModal();
@@ -19,6 +26,16 @@ export default function DeleteDialog({ type, options, selectedId, onSelect, onCl
       <div className="delete-body">
         <p id="delete-description">Choose the {title} you want to remove.</p>
         <label className="delete-search">Find an item<input autoFocus type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder={`Search ${title}s`} /></label>
+        {hasLocationFilters && <div className="delete-filters">
+          <label>Chapter<select value={chapterFilter} onChange={(event) => { setChapterFilter(event.target.value); setSubchapterFilter(""); }}>
+            <option value="">All chapters</option>
+            {chapters.map((chapter) => <option value={chapter.id} key={chapter.id}>{chapter.label}</option>)}
+          </select></label>
+          <label>Subchapter<select value={subchapterFilter} onChange={(event) => setSubchapterFilter(event.target.value)}>
+            <option value="">All subchapters</option>
+            {subchapters.map((subchapter) => <option value={subchapter.id} key={subchapter.id}>{subchapter.label}</option>)}
+          </select></label>
+        </div>}
         <div className="delete-options" role="radiogroup" aria-label={`Select ${title}`}>
           {filtered.map((option) => <label className={`delete-option ${selectedId === option.id ? "is-selected" : ""}`} key={option.id}><input type="radio" name="delete-item" value={option.id} checked={selectedId === option.id} onChange={() => onSelect(option.id)} disabled={saving} /><span>{option.label}</span></label>)}
           {!filtered.length && <p className="delete-empty">{options.length ? "No matching items." : "No items available to delete."}</p>}
