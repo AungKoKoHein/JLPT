@@ -96,6 +96,23 @@ function BackToTop() {
   );
 }
 
+const grammarExamples = (card) => card.examples?.length
+  ? card.examples
+  : [{ japanese: card.exampleJapanese || "", myanmar: card.exampleMyanmar || "" }];
+
+function GrammarDetails({ card, showReadings, showMyanmar, showJapanese, showExamples = true }) {
+  const display = (value) => showReadings ? value : hideReadings(value);
+  return <>
+    {showExamples && grammarExamples(card).map((example, index) => (
+      <div className="grammar-example" key={index}>
+        {showJapanese && example.japanese && <p lang="ja">{display(example.japanese)}</p>}
+        {showMyanmar && example.myanmar && <p lang="my">{display(example.myanmar)}</p>}
+      </div>
+    ))}
+    {showMyanmar && card.grammarExplanation && <p className="grammar-explanation" lang="my">{card.grammarExplanation}</p>}
+  </>;
+}
+
 function Flashcard({
   card,
   showReadings,
@@ -105,6 +122,17 @@ function Flashcard({
 }) {
   const [flipped, setFlipped] = useState(false);
   const display = (value) => (showReadings ? value : hideReadings(value));
+  if (card.studyTab === "Grammar") return (
+    <div className="grammar-card">
+      {chapterLabel && <p className="chapter-tag">{chapterTitle(chapterLabel, showMyanmar, showReadings, showJapanese)}</p>}
+      <p className="grammar-heading">
+        {showJapanese && <strong className="grammar-pattern" lang="ja">{display(card.term)}</strong>}
+        {showJapanese && showMyanmar && card.meaning && " - "}
+        {showMyanmar && <span lang="my">{card.meaning}</span>}
+      </p>
+      <GrammarDetails card={card} showReadings={showReadings} showMyanmar={showMyanmar} showJapanese={showJapanese} />
+    </div>
+  );
   return (
     <button
       className={`flashcard vocab-card ${flipped ? "flipped" : ""}`}
@@ -171,12 +199,14 @@ function VocabularyBook({ entries, showReadings, showMyanmar, showJapanese, show
             {showJapanese && showMyanmar && card.meaning && " — "}
             {showMyanmar && <span lang="my">{card.meaning}</span>}
           </p>
+          {card.studyTab === "Grammar" ? <GrammarDetails card={card} showReadings={showReadings} showMyanmar={showMyanmar} showJapanese={showJapanese} showExamples={showExamples} /> : <>
           {showExamples && showJapanese && card.exampleJapanese && (
             <p className="book-example" lang="ja">e.g. {display(card.exampleJapanese)}</p>
           )}
           {showExamples && showMyanmar && card.exampleMyanmar && (
             <p className="book-translation" lang="my">{display(card.exampleMyanmar)}</p>
           )}
+          </>}
           {manageMode && isEditor && (
             <div className="item-actions">
               <button type="button" onClick={() => onEdit?.(card)}>Edit</button>
@@ -359,17 +389,30 @@ function ContentEditor({ editor, setEditor, chapterOptions, studyTabs, onSave, o
           {editor.type === "card" && (
             <>
               <label>
-                Flashcard Layout
+                {editor.studyTab === "Grammar" ? "Card Layout" : "Flashcard Layout"}
                 <select value={editor.layout} onChange={(event) => set("layout", event.target.value)}>
                   <option value="standard">Standard</option>
                   <option value="double">Double width (2 cards)</option>
                   <option value="wide">Wide (3 cards)</option>
                 </select>
               </label>
-              <label>Flashcard Front<input value={editor.term} onChange={(event) => set("term", event.target.value)} placeholder="Japanese word（reading）" required /></label>
+              <label>{editor.studyTab === "Grammar" ? "Grammar Pattern" : "Flashcard Front"}<input value={editor.term} onChange={(event) => set("term", event.target.value)} placeholder="Japanese word（reading）" required /></label>
               <label>Myanmar Meaning<input value={editor.meaning} onChange={(event) => set("meaning", event.target.value)} required /></label>
-              <label>Japanese Example<textarea value={editor.exampleJapanese} onChange={(event) => set("exampleJapanese", event.target.value)} required /></label>
-              <label>Myanmar Explanation<textarea value={editor.exampleMyanmar} onChange={(event) => set("exampleMyanmar", event.target.value)} /></label>
+              {editor.studyTab === "Grammar" ? <>
+                <div className="grammar-example-editor">
+                  {(editor.examples || grammarExamples(editor)).map((example, index, examples) => <fieldset key={index}>
+                    <legend>Example {index + 1}</legend>
+                    <label>Japanese Sentence<textarea value={example.japanese} onChange={(event) => set("examples", examples.map((item, i) => i === index ? { ...item, japanese: event.target.value } : item))} required /></label>
+                    <label>Myanmar Translation<textarea lang="my" value={example.myanmar} onChange={(event) => set("examples", examples.map((item, i) => i === index ? { ...item, myanmar: event.target.value } : item))} /></label>
+                    {examples.length > 1 && <button type="button" onClick={() => set("examples", examples.filter((_, i) => i !== index))}>Remove Example</button>}
+                  </fieldset>)}
+                  <button type="button" onClick={() => set("examples", [...(editor.examples || grammarExamples(editor)), { japanese: "", myanmar: "" }])}>+ Add Example</button>
+                </div>
+                <label className="grammar-explanation-editor">Myanmar Grammar Explanation<textarea lang="my" value={editor.grammarExplanation || ""} onChange={(event) => set("grammarExplanation", event.target.value)} placeholder="Explain the grammar pattern in Myanmar" /></label>
+              </> : <>
+                <label>Japanese Example<textarea value={editor.exampleJapanese} onChange={(event) => set("exampleJapanese", event.target.value)} required /></label>
+                <label>Myanmar Explanation<textarea value={editor.exampleMyanmar} onChange={(event) => set("exampleMyanmar", event.target.value)} /></label>
+              </>}
             </>
           )}
           {editor.type === "kanji" && (
@@ -781,7 +824,7 @@ function App() {
       }
       if (draft.type === "card") {
         const id = draft.id || `user-card-${Date.now()}`;
-        const item = { id, _id: id, chapterId: draft.subchapterId || draft.chapterId, subchapterId: draft.subchapterId || "", parentChapterId: draft.chapterId, studyTab: draft.studyTab, layout: draft.layout, term: draft.term, meaning: draft.meaning, exampleJapanese: draft.exampleJapanese, exampleMyanmar: draft.exampleMyanmar, generated: true };
+        const item = { id, _id: id, chapterId: draft.subchapterId || draft.chapterId, subchapterId: draft.subchapterId || "", parentChapterId: draft.chapterId, studyTab: draft.studyTab, layout: draft.layout, term: draft.term, meaning: draft.meaning, exampleJapanese: draft.exampleJapanese, exampleMyanmar: draft.exampleMyanmar, ...(draft.studyTab === "Grammar" ? { examples: grammarExamples(draft), grammarExplanation: draft.grammarExplanation || "" } : {}), generated: true };
         if (draft.mode === "edit") return { ...current, cardOverrides: { ...current.cardOverrides, [draft.id]: item } };
         return { ...current, cards: [...current.cards, item] };
       }

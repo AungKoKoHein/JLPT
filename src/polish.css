@@ -23,7 +23,7 @@ body {
 }
 main {
   max-width: 1480px;
-  --page-bottom-space: calc(20px + env(safe-area-inset-bottom, 0px));
+  --page-bottom-space: calc(100px + env(safe-area-inset-bottom, 0px));
   padding: 24px 32px var(--page-bottom-space);
 }
 main > header {
@@ -822,4 +822,57 @@ main .controls-panel .vocab-mode-switch button {
   input {
     transition: none;
   }
+}
+
+
+/* Grammar is a reading card: content stays visible at its natural height. */
+.managed-item:has(> .grammar-card) {
+  grid-template-rows: auto;
+}
+.grammar-card {
+  height: 100%;
+  padding: 24px;
+  border: 2px solid #9bb8b1;
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+  line-height: 1.9;
+}
+.grammar-heading { margin: 0; font-size: 1.5rem; font-weight: 700; line-height: 1.9; }
+.grammar-heading .grammar-pattern { font-size: inherit; font-weight: inherit; }
+.item-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.item-actions button { min-height: 44px; min-width: 44px; }
+.grammar-example { margin-top: 20px; }
+.grammar-example p { margin: 4px 0; white-space: pre-wrap; }
+.grammar-explanation {
+  color: #000;
+  background: #fff0ad;
+  border-left: 4px solid #e6b93d;
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin: 18px 0 0;
+  white-space: pre-wrap;
+  line-height: 2;
+}
+.grammar-example-editor, .grammar-explanation-editor { grid-column: 1 / -1; }
+.grammar-example-editor fieldset { min-width: 0; border: 1px solid var(--line); border-radius: 8px; padding: 12px; margin-bottom: 12px; }
+.grammar-example-editor label { display: grid; gap: 6px; margin-bottom: 12px; }
+
+@media (max-width: 800px) {
+  .layout > aside,
+  main[data-show-sidebar="false"] .layout > aside {
+    max-height: min(440px, 55dvh);
+    overflow-y: auto;
+    overscroll-behavior-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .layout > aside .chapter-group {
+    display: block;
+    max-height: none;
+    overflow: visible;
+    overscroll-behavior-y: auto;
+  }
+  aside .chapter-group button { width: 100%; min-height: 72px; }
+  .grammar-card { padding: 18px; }
 }
