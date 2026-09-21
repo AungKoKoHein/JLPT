@@ -222,6 +222,18 @@ article {
 .layout > aside {
   padding: 14px;
   overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(186, 201, 202, 0.55) transparent;
+}
+.layout > aside::-webkit-scrollbar {
+  width: 8px;
+}
+.layout > aside::-webkit-scrollbar-thumb {
+  background: rgba(186, 201, 202, 0.55);
+  border-radius: 999px;
+}
+.layout > aside::-webkit-scrollbar-track {
+  background: transparent;
 }
 /* At the document end, the sidebar must fit above the page's bottom gap
    without its sticky header being pushed beyond the viewport. */
@@ -248,8 +260,6 @@ aside > .count {
 }
 .layout > aside .chapter-group {
   overscroll-behavior-y: contain;
-  scrollbar-width: thin;
-  scrollbar-color: #bac9ca transparent;
 }
 aside button {
   border-radius: 8px;
@@ -648,6 +658,10 @@ main .controls-panel .vocab-mode-switch button {
   background: var(--surface-muted);
   color: var(--accent);
   border-radius: 6px;
+}
+.subchapter-nav button.active {
+  background: var(--accent);
+  color: #fff;
 }
 .subchapter-nav button:hover {
   background: #dcece5;

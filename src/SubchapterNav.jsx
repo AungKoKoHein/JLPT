@@ -5,6 +5,7 @@ export const subchapterTargetId = (id) => `subchapter-title-${id}`;
 export default function SubchapterNav({ sections }) {
   const navRef = useRef(null);
   const [visible, setVisible] = useState(false);
+  const [activeId, setActiveId] = useState(sections[0]?.id ?? "");
   const sectionKey = sections.map((section) => section.id).join(",");
 
   useEffect(() => {
@@ -32,6 +33,30 @@ export default function SubchapterNav({ sections }) {
     };
   }, [sectionKey]);
 
+  useEffect(() => {
+    if (!sections.length) return undefined;
+    let frame;
+    const updateActiveSection = () => {
+      const current = sections.reduce((active, section) => {
+        const target = document.getElementById(subchapterTargetId(section.id));
+        return target && target.getBoundingClientRect().top <= 140 ? section.id : active;
+      }, sections[0].id);
+      setActiveId(current);
+    };
+    const schedule = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(updateActiveSection);
+    };
+    updateActiveSection();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+    };
+  }, [sectionKey]);
+
   if (!sections.length) return null;
 
   return (
@@ -40,6 +65,8 @@ export default function SubchapterNav({ sections }) {
         <button
           type="button"
           key={section.id}
+          className={section.id === activeId ? "active" : ""}
+          aria-current={section.id === activeId ? "location" : undefined}
           title={`Subchapter ${index + 1}: ${section.title}`}
           aria-label={`Jump to subchapter ${index + 1}: ${section.title}`}
           onClick={() => {

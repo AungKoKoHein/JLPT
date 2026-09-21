@@ -570,6 +570,13 @@ function App() {
   const chapterContentRef = useRef(null);
   const focusChapterContent = () => {
     window.requestAnimationFrame(() => {
+      if (window.innerWidth <= 800) {
+        chapterContentRef.current?.scrollIntoView({
+          behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+          block: "start",
+        });
+        return;
+      }
       const visiblePanel = [...document.querySelectorAll('[role="tabpanel"]')]
         .find((panel) => !panel.hidden);
       (visiblePanel ?? chapterContentRef.current)?.scrollIntoView({
