@@ -1,3 +1,4 @@
+import { sortChapters, groupChapters } from "./chapterGroups.js";
 import React, { useState } from "react";
 import Exercises from "./Exercises.jsx";
 import SubchapterNav, { subchapterTargetId } from "./SubchapterNav.jsx";
@@ -44,6 +45,12 @@ export const kanjiChapterOptions = chapters.map(({ id, number, title, sections }
     })),
 }));
 
+export function resolveKanjiCards(content) {
+  return [...chapters.flatMap((chapter) => chapter.cards.map((card, index) => ({ ...card, _id: `${chapter.id}:kanji:${index}`, chapterId: chapter.id, studyTab: "Kanji" }))), ...(content.kanjiCards || [])]
+    .map((card) => ({ ...card, ...content.kanjiOverrides[card._id], studyTab: "Kanji" }))
+    .filter((card) => !content.deletedKanjiCards.includes(card._id));
+}
+
 const normalizeSearchText = (value = "") =>
   String(value)
     .normalize("NFKC")
@@ -82,8 +89,8 @@ function KanjiCard({ card, showReadings, showKanjiReadings }) {
             {card.meaning}
           </span>
           {showKanjiReadings &&
-            card.readings?.map((reading) => (
-              <span className="kanji-reading-summary" key={reading.kanji}>
+            card.readings?.map((reading, index) => (
+              <span className="kanji-reading-summary" key={`${reading.kanji}-${index}`}>
                 <span className="label" data-japanese>
                   On’yomi (音読み)
                 </span>
@@ -122,8 +129,8 @@ function KanjiCard({ card, showReadings, showKanjiReadings }) {
               ? "Example sentences"
               : "စကားလုံးများနှင့် အဓိပ္ပာယ်ရှင်းလင်းချက်"}
           </span>
-          {card.words.map((word) => (
-            <span className="kanji-word" key={word.term}>
+          {card.words.map((word, index) => (
+            <span className="kanji-word" key={`${word.term}-${index}`}>
               <span className="example" lang="ja">
                 {displayText(word.sentence ?? word.term, showReadings)}
               </span>
@@ -159,40 +166,30 @@ export default function Kanji({
   const [tab, setTab] = useState("kanji");
   const [active, setActive] = useState("kanji-1");
   const [exerciseScope, setExerciseScope] = useState("");
-  const allChapters = [
+  const allChapters = sortChapters([
     ...chapters.map((chapter) => ({
       ...chapter,
       ...(content.chapterOverrides ?? {})[chapter.id],
     })),
     ...(content.chapters ?? []).filter((chapter) => chapter.studyTab === "Kanji"),
-  ];
+  ].filter((chapter) => !(content.deletedChapters || []).includes(chapter.id)));
   const filteredChapters = allChapters.filter((chapter) =>
     matchesSearch(`${chapter.number} ${chapter.title}`, chapterQuery),
   );
   const selected =
     filteredChapters.find((chapter) => chapter.id === active) ??
     filteredChapters[0];
-  const baseCards = (selected?.cards ?? []).map((card, index) => ({
-    ...card,
-    _id: `${selected.id}:kanji:${index}`,
-    ...(content.kanjiOverrides ?? {})[`${selected.id}:kanji:${index}`],
-    chapterId: (content.kanjiOverrides ?? {})[`${selected.id}:kanji:${index}`]?.chapterId ?? selected.id,
-  })).filter((card) => card.chapterId === selected?.id && !card.subchapterId);
-  const customCards = (content.kanjiCards ?? [])
-    .map((card) => ({ ...card, ...(content.kanjiOverrides ?? {})[card._id] }))
-    .filter((card) => card.chapterId === selected?.id && !card.subchapterId);
+  const resolvedCards = resolveKanjiCards(content);
+  const baseCards = [];
+  const customCards = resolvedCards.filter((card) => card.chapterId === selected?.id && !card.subchapterId);
   const customSubchapters = (content.subchapters ?? []).filter(
-    (subchapter) => subchapter.parentChapterId === selected?.id && subchapter.studyTab === "Kanji",
+    (subchapter) => subchapter.parentChapterId === selected?.id && subchapter.studyTab === "Kanji" && !content.deletedSubchapters.includes(subchapter.id),
   );
-  const customCardsForSubchapter = (subchapterId) =>
-    (content.kanjiCards ?? [])
-      .map((card) => ({ ...card, ...(content.kanjiOverrides ?? {})[card._id] }))
-      .filter((card) => card.chapterId === subchapterId || card.subchapterId === subchapterId)
-      .filter((card) => !(content.deletedKanjiCards ?? []).includes(card._id));
+  const customCardsForSubchapter = (subchapterId) => resolvedCards.filter((card) => card.chapterId === subchapterId || card.subchapterId === subchapterId);
   const exerciseSubchapters = [
     ...(kanjiChapterOptions.find((chapter) => chapter.id === selected?.id)?.subchapters ?? []),
     ...customSubchapters,
-  ].map((section) => ({ ...section, ...content.chapterOverrides[section.id] }));
+  ].filter((section) => !content.deletedSubchapters.includes(section.id)).map((section) => ({ ...section, ...content.chapterOverrides[section.id] }));
   const exerciseAssignment = exerciseSubchapters.find((section) => section.id === exerciseScope);
   const exercises = exercisesForView(allExercises, "Kanji", selected?.id, exerciseAssignment?.id);
   const cards = [...baseCards, ...customCards]
@@ -250,7 +247,9 @@ export default function Kanji({
       <div className="layout">
         <aside>
           <p className="count">{filteredChapters.length} chapters</p>
-          {filteredChapters.map((chapter) => (
+          <div className="chapter-group">{groupChapters(allChapters.map((chapter) => ({ ...chapter, studyTab: "Kanji" })), (content.groups || []).filter((group) => group.studyTab === "Kanji")).map((group) => <div className="chapter-group-block" key={group.id}>
+          <p className="chapter-group-label"><span className="chapter-group-title">{displayText(group.label, showReadings)}</span><span className="chapter-group-range">{group.range}</span></p>
+          {group.chapters.filter((chapter) => filteredChapters.some((item) => item.id === chapter.id)).map((chapter) => (
             <button
               key={chapter.id}
               type="button"
@@ -268,6 +267,7 @@ export default function Kanji({
               </strong>
             </button>
           ))}
+          </div>)}</div>
         </aside>
         <article>
           {selected ? (
@@ -322,14 +322,14 @@ export default function Kanji({
                 <>
                   <p className="note">{cards.length} kanji cards</p>
                   <SubchapterNav sections={[
-                    ...(selected.id === "kanji-1"
+                    ...(selected.id === "kanji-1" && !content.deletedSubchapters.includes("kanji-1-subchapter-1l1")
                       ? [{ id: "kanji-1-subchapter-1l1", title: "1l1" }]
                       : selected.groupCardsByLesson
                         ? selected.sections.filter((section) => !section.review && cards.some((card) => card.page === section.page)).map((section) => ({ id: `${selected.id}-section-${section.page}`, title: section.title }))
                         : []),
                     ...customSubchapters,
                   ]} />
-                  {selected.id === "kanji-1" ? (
+                  {selected.id === "kanji-1" && !content.deletedSubchapters.includes("kanji-1-subchapter-1l1") ? (
                     <section className="vocab-section kanji-subchapter-section">
                       <div className="vocab-section-heading">
                         <div>
@@ -359,7 +359,7 @@ export default function Kanji({
                     </section>
                   ) : selected.groupCardsByLesson ? (
                     selected.sections
-                      .filter((section) => !section.review)
+                      .filter((section) => !section.review && !content.deletedSubchapters.includes(`${selected.id}-section-${section.page}`))
                       .map((section) => {
                         const lessonCards = cards.filter(
                           (card) => card.page === section.page,
@@ -387,6 +387,7 @@ export default function Kanji({
                       {cards.map(renderCard)}
                     </section>
                   )}
+                  {selected.groupCardsByLesson && <section className="cards">{cards.filter((card) => content.deletedSubchapters.includes(`${selected.id}-section-${card.page}`)).map(renderCard)}</section>}
                   {customSubchapters.map((subchapter) => {
                     const subchapterCards = customCardsForSubchapter(subchapter.id).filter((card) =>
                       [

@@ -876,3 +876,34 @@ main .controls-panel .vocab-mode-switch button {
   aside .chapter-group button { width: 100%; min-height: 72px; }
   .grammar-card { padding: 18px; }
 }
+
+.content-edit-menu { position: relative; }
+.content-edit-menu summary { cursor: pointer; padding: 10px 16px; border: 1px solid #b9c9cc; border-radius: 8px; }
+.content-edit-options { position: absolute; right: 0; top: calc(100% + 8px); z-index: 120; min-width: 200px; display: grid; gap: 8px; padding: 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); box-shadow: 0 6px 20px #20343820; }
+
+/* Shared deletion dialog, including mobile and long Japanese/Myanmar titles. */
+.delete-dialog { width: min(580px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: 0; border: 1px solid var(--line); border-radius: 18px; color: var(--ink); background: var(--surface); box-shadow: 0 24px 80px #102a3a40; overflow: auto; }
+.delete-dialog::backdrop { background: #152b3b80; backdrop-filter: blur(3px); }
+.delete-dialog form { min-width: 0; }
+.delete-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 24px 24px 18px; border-bottom: 1px solid var(--line); }
+.delete-heading h2 { font-size: 1.4rem; margin: 4px 0 0; text-transform: capitalize; }
+.delete-heading .eyebrow { margin: 0; }
+.delete-dialog button { font: inherit; cursor: pointer; min-height: 44px; border-radius: 9px; border: 1px solid var(--line); padding: 10px 18px; background: var(--surface); color: var(--ink); }
+.delete-dialog button:disabled { opacity: .5; cursor: not-allowed; }
+.delete-dialog .delete-close { padding: 4px; min-width: 44px; font-size: 1.5rem; }
+.delete-body { padding: 18px 24px; min-width: 0; }
+.delete-body > p:first-child { margin-top: 0; color: var(--muted); }
+.delete-search { display: grid; gap: 8px; font-size: .9rem; font-weight: 600; }
+.delete-search input { box-sizing: border-box; width: 100%; min-width: 0; padding: 12px; border: 1px solid #afc0c3; border-radius: 9px; background: white; color: var(--ink); font: inherit; }
+.delete-options { display: grid; gap: 8px; max-height: 240px; overflow-y: auto; margin: 14px 0; }
+.delete-option { display: flex; align-items: flex-start; gap: 12px; padding: 12px; border: 1px solid var(--line); border-radius: 9px; cursor: pointer; line-height: 1.7; }
+.delete-option input { flex: 0 0 auto; margin-top: 6px; accent-color: var(--accent); }
+.delete-option span, .delete-selection { min-width: 0; overflow-wrap: anywhere; white-space: normal; }
+.delete-option.is-selected { border-color: var(--accent); background: var(--accent-soft); }
+.delete-selection { font-size: .9rem; }
+.delete-notice { padding: 12px 14px; border-radius: 9px; background: #f3f6f7; color: #42565e; font-size: .9rem; line-height: 1.7; }
+.delete-empty { padding: 16px; text-align: center; color: var(--muted); }
+.delete-footer { display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap; padding: 16px 24px; border-top: 1px solid var(--line); background: var(--surface); position: sticky; bottom: 0; }
+.delete-dialog .delete-confirm { color: white; background: #b42332; border-color: #b42332; }
+.delete-dialog :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+@media (max-width: 480px) { .delete-heading, .delete-body, .delete-footer { padding: 16px; } .delete-footer button { flex: 1; } }

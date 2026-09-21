@@ -1,12 +1,16 @@
+import DeleteDialog from "./DeleteDialog.jsx";
+import { removeChapter, removeSubchapter } from "./deleteContainers.js";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
+import { chapterGroup, groupChapters, sortChapters, renameChapterGroup } from "./chapterGroups.js";
+import { studyRoutes, studyTabFromPath } from "./studyRoutes.js";
 import { chapters } from "./data/n3Vocabulary.js";
 import { exercisesByChapter } from "./data/exercises.js";
 import { moveVocabularyCard, resolveVocabularyCards, resolveVocabularySubchapters } from "./vocabularyContent.js";
 import Exercises from "./Exercises.jsx";
 import SubchapterNav, { subchapterTargetId } from "./SubchapterNav.jsx";
 import { vocabularyExercises, resolveExercises, exercisesForView, saveExercise, unassignExercises } from "./exerciseContent.js";
-import Kanji, { kanjiChapterOptions, baseKanjiExercises } from "./Kanji.jsx";
+import Kanji, { kanjiChapterOptions, baseKanjiExercises, resolveKanjiCards } from "./Kanji.jsx";
 import { useCloudContent } from "./useCloudContent.js";
 import CloudStatus from "./CloudStatus.jsx";
 import "./styles.css";
@@ -219,11 +223,12 @@ function VocabularyBook({ entries, showReadings, showMyanmar, showJapanese, show
   );
 }
 
-function ContentEditor({ editor, setEditor, chapterOptions, studyTabs, onSave, onClose, saving, canSave, error }) {
+function ContentEditor({ editor, setEditor, chapterOptions, groups, studyTabs, onSave, onClose, saving, canSave, error }) {
   const set = (field, value) => setEditor((current) => ({ ...current, [field]: value }));
-  const chapters = chapterOptions.filter((chapter) => chapter.studyTab === editor.studyTab);
+  const chapters = sortChapters(chapterOptions.filter((chapter) => chapter.studyTab === editor.studyTab));
+  const availableGroups = groupChapters(chapters, groups.filter((group) => group.studyTab === editor.studyTab));
   const selectedChapter = chapters.find((chapter) => chapter.id === editor.chapterId);
-  const subchapters = selectedChapter?.subchapters ?? [];
+  const subchapters = sortChapters(selectedChapter?.subchapters ?? []);
   const submit = (event) => {
     event.preventDefault();
     onSave(editor);
@@ -234,6 +239,7 @@ function ContentEditor({ editor, setEditor, chapterOptions, studyTabs, onSave, o
           card: "Edit Flashcard",
           kanji: "Edit Kanji Card",
           exercise: "Edit Exercise",
+          group: "Edit Group Title",
           chapter: "Edit Chapter",
           subchapter: "Edit Sub Chapter",
         }[editor.type] ?? "Edit Item"
@@ -241,6 +247,7 @@ function ContentEditor({ editor, setEditor, chapterOptions, studyTabs, onSave, o
           card: "Add Flashcard",
           kanji: "Add Kanji Card",
           exercise: "Add Exercise",
+          group: "Add Group",
           chapter: "Add Chapter",
           subchapter: "Add Sub Chapter",
         }[editor.type] ?? "Add Item";
@@ -255,33 +262,19 @@ function ContentEditor({ editor, setEditor, chapterOptions, studyTabs, onSave, o
           <button type="button" className="icon-button" aria-label="Close editor" onClick={onClose}>
             ×
           </button>
-          {editor.type === "subchapter" && editor.mode === "edit" && (
-            <button
-              type="button"
-              className="secondary-button"
-              onClick={() => setEditor((current) => ({
-                ...current,
-                mode: "add",
-                id: undefined,
-                number: `${selectedChapter?.number ?? ""}.new`,
-                title: "",
-                titleMyanmar: "",
-              }))}
-            >
-              New Sub Chapter
-            </button>
-          )}
+
         </div>
         <fieldset className="editor-grid" disabled={saving}>
           <label>
             Type
             <select value={editor.type} onChange={(event) => {
               const type = event.target.value;
-              set("type", type);
+              setEditor((current) => ({ ...current, type, ...(type === "group" ? { title: "" } : {}) }));
             }} disabled={editor.mode === "edit"}>
               {editor.studyTab !== "Kanji" && <option value="card">Flashcard</option>}
               {editor.studyTab === "Kanji" && <option value="kanji">Kanji Card</option>}
               <option value="exercise">Exercise</option>
+              <option value="group">Group Title</option>
               <option value="chapter">Chapter</option>
               <option value="subchapter">Sub Chapter</option>
             </select>
@@ -298,12 +291,12 @@ function ContentEditor({ editor, setEditor, chapterOptions, studyTabs, onSave, o
                 subchapterId: "",
               }));
             }}>
-              {studyTabs.filter((label) => editor.type === "exercise" ? ["Vocab", "Kanji", "Grammar"].includes(label) : editor.type !== "card" || label !== "Kanji").map((label) => (
+              {studyTabs.filter((label) => editor.type !== "card" || label !== "Kanji").map((label) => (
                 <option value={label} key={label}>{label}</option>
               ))}
             </select>
           </label>
-          {editor.type !== "chapter" && <label>
+          {!["chapter", "group"].includes(editor.type) && <label>
             Chapter
             <select value={editor.chapterId} disabled={!chapters.length} onChange={(event) => {
               const chapterId = event.target.value;
@@ -312,6 +305,7 @@ function ContentEditor({ editor, setEditor, chapterOptions, studyTabs, onSave, o
                 ...current,
                 chapterId,
                 subchapterId: "",
+                ...(current.type === "subchapter" ? { mode: "add", id: undefined, sourceId: undefined } : {}),
                 number: current.type === "subchapter" ? `${chapter?.number ?? ""}.new` : current.number,
                 title: current.type === "subchapter" ? "" : current.title,
                 titleMyanmar: current.type === "subchapter" ? "" : current.titleMyanmar,
@@ -331,6 +325,9 @@ function ContentEditor({ editor, setEditor, chapterOptions, studyTabs, onSave, o
                 setEditor((current) => ({
                   ...current,
                   chapterId: event.target.value,
+                  id: event.target.value,
+                  groupTitle: chapter ? chapterGroup(chapter).label : "",
+                  groupRange: chapter ? chapterGroup(chapter).range : "",
                   number: chapter?.number ?? current.number,
                   title: chapter?.title ?? current.title,
                   titleMyanmar: chapter?.titleMyanmar ?? current.titleMyanmar,
@@ -342,7 +339,7 @@ function ContentEditor({ editor, setEditor, chapterOptions, studyTabs, onSave, o
               </select>
             </label>
           )}
-          {editor.type !== "subchapter" && editor.type !== "chapter" && (
+          {!["subchapter", "chapter", "group"].includes(editor.type) && (
             <label>
               {editor.type === "exercise" ? "Assign to Sub Chapter (Optional)" : "Sub Chapter (Optional)"}
               <select value={editor.subchapterId} onChange={(event) => set("subchapterId", event.target.value)}>
@@ -363,6 +360,9 @@ function ContentEditor({ editor, setEditor, chapterOptions, studyTabs, onSave, o
                   setEditor((current) => ({
                     ...current,
                     subchapterId,
+                    id: subchapterId || undefined,
+                    sourceId: subchapter?.sourceId,
+                    mode: subchapterId ? "edit" : "add",
                     number: subchapter?.number ?? `${selectedChapter?.number ?? ""}.new`,
                     title: subchapter?.title ?? "",
                     titleMyanmar: subchapter?.titleMyanmar ?? "",
@@ -374,14 +374,26 @@ function ContentEditor({ editor, setEditor, chapterOptions, studyTabs, onSave, o
                   ))}
                 </select>
               </label>
-              <label>Sub Chapter Number<input value={editor.number} onChange={(event) => set("number", event.target.value)} placeholder={`${selectedChapter?.number}.new`} required /></label>
+              <label>Sub Chapter Number<input value={editor.number} onChange={(event) => set("number", event.target.value)} placeholder="Optional" /></label>
               <label>Sub Chapter Title<input value={editor.title} onChange={(event) => set("title", event.target.value)} placeholder="家族と友達" required /></label>
               <label>Myanmar Translation<input lang="my" value={editor.titleMyanmar} onChange={(event) => set("titleMyanmar", event.target.value)} placeholder="မိသားစုနှင့် သူငယ်ချင်းများ" /></label>
             </>
           )}
+          {editor.type === "group" && <>
+            {editor.mode === "edit" && <label>Existing Group<select value={editor.originalGroupTitle || ""} onChange={(event) => setEditor((current) => ({ ...current, originalGroupTitle: event.target.value, title: event.target.value }))}>
+              {availableGroups.map((group) => <option key={group.id} value={group.label}>{group.label}</option>)}
+            </select></label>}
+            <label>Group Title<input value={editor.title} onChange={(event) => set("title", event.target.value)} required /></label>
+            <p className="editor-help">After saving, choose this group when adding or editing chapters. The chapter range updates automatically.</p>
+          </>}
           {editor.type === "chapter" && (
             <>
-              <label>Chapter Number<input value={editor.number} onChange={(event) => set("number", event.target.value)} placeholder="new" required /></label>
+              <label>Group Title<select value={editor.groupTitle || ""} onChange={(event) => set("groupTitle", event.target.value)}>
+                <option value="">Default group</option>
+                {availableGroups.map((group) => <option value={group.label} key={group.id}>{group.label}</option>)}
+              </select></label>
+              <p className="editor-help">All groups are listed above. To create a group, choose Group Title in Type when adding a new item. Chapter ranges are counted automatically from the chapters in each group.</p>
+              <label>Chapter Number<input value={editor.number} onChange={(event) => set("number", event.target.value)} placeholder="Optional" /></label>
               <label>Chapter Title<input value={editor.title} onChange={(event) => set("title", event.target.value)} placeholder="新しい章" required /></label>
               <label>Myanmar Translation<input lang="my" value={editor.titleMyanmar} onChange={(event) => set("titleMyanmar", event.target.value)} placeholder="အခန်း၏ မြန်မာဘာသာပြန်" /></label>
             </>
@@ -465,9 +477,40 @@ const studyTabs = [
 ];
 
 function App() {
-  const [studyTab, setStudyTab] = useState("Vocab");
-  const isChapterStudy = ["Vocab", "Grammar"].includes(studyTab);
-  const studyLabel = studyTab === "Grammar" ? "grammar" : "vocabulary";
+  useEffect(() => {
+    const closeMenusOutside = (event) => {
+      document.querySelectorAll("details.content-edit-menu[open]").forEach((menu) => {
+        if (!menu.contains(event.target)) menu.removeAttribute("open");
+      });
+    };
+    document.addEventListener("pointerdown", closeMenusOutside);
+    return () => document.removeEventListener("pointerdown", closeMenusOutside);
+  }, []);
+  const [deleteType, setDeleteType] = useState(null);
+  const [deleteId, setDeleteId] = useState("");
+  const [studyTab, updateStudyTab] = useState(() => studyTabFromPath(window.location.pathname));
+  const setStudyTab = (label) => {
+    if (window.location.pathname !== studyRoutes[label]) {
+      window.history.pushState(null, "", studyRoutes[label] + window.location.search);
+    }
+    updateStudyTab(label);
+    window.requestAnimationFrame(() => {
+      document.getElementById(`study-panel-${studyTabs.indexOf(label)}`)?.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+        block: "start",
+      });
+    });
+  };
+  useEffect(() => {
+    const onPopState = () => updateStudyTab(studyTabFromPath(window.location.pathname));
+    window.addEventListener("popstate", onPopState);
+    if (window.location.pathname === "/") {
+      window.history.replaceState(null, "", studyRoutes.Vocab + window.location.search + window.location.hash);
+    }
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
+  const isChapterStudy = studyTab !== "Kanji";
+  const studyLabel = studyTab === "Vocab" ? "vocabulary" : studyTab.toLowerCase();
   useEffect(() => {
     setChapterQuery("");
     setVocabQuery("");
@@ -475,6 +518,7 @@ function App() {
     setExerciseSectionId(null);
     setTab("vocabulary");
     setEditor(null);
+    setDeleteType(null);
     setShowReadings(false);
     setShowKanjiReadings(false);
     if (studyTab === "Grammar") setGrammarMode("card");
@@ -578,7 +622,7 @@ function App() {
   }, [exerciseSectionId]);
 
   const allVocabularyCards = useMemo(
-    () => resolveVocabularyCards(chapters, content),
+    () => resolveVocabularyCards(chapters, content).filter((card) => !(content.deletedChapters || []).includes(card.parentChapterId || card.chapterId)),
     [content],
   );
   const vocabularySubchapters = useMemo(
@@ -618,8 +662,9 @@ function App() {
       ...vocabularyChapters.map((chapter) => ({ ...chapter, studyTab: "Vocab" })),
       ...kanjiChapterOptions.map((chapter) => ({
         ...chapter,
+        ...content.chapterOverrides[chapter.id],
         subchapters: [
-          ...chapter.subchapters,
+          ...chapter.subchapters.filter((section) => !content.deletedSubchapters.includes(section.id) && !content.subchapters.some((item) => item.id === section.id)),
           ...content.subchapters.filter(
             (subchapter) => subchapter.parentChapterId === chapter.id && subchapter.studyTab === "Kanji",
           ),
@@ -630,7 +675,7 @@ function App() {
         subchapters: (chapter.studyTab === "Grammar" ? grammarSubchapters : content.subchapters.filter((item) => item.studyTab === chapter.studyTab))
           .filter((item) => item.parentChapterId === chapter.id && !content.deletedSubchapters.includes(item.id)),
       })),
-    ],
+    ].filter((chapter) => !(content.deletedChapters || []).includes(chapter.id)),
     [content, vocabularyChapters, grammarSubchapters],
   );
 
@@ -646,31 +691,9 @@ function App() {
         : userChapters,
     [chapterQuery, userChapters],
   );
-  const chapterGroups = useMemo(() => {
-    if (studyTab !== "Vocab") return [{ id: studyTab, label: `${studyTab} chapters`, range: "", chapters: filteredChapters }];
-    const groups = [
-      {
-        id: "topics",
-        label: "実力養成編 (じつりょくようせいへん) : 第1部 : 話題別に言葉を学ぼう (わだいべつにことばをまなぼう)",
-        range: "chapter 1 - 21",
-        chapters: [],
-      },
-      {
-        id: "strengthening",
-        label: "実力養成編 (じつりょくようせいへん) : 第2部 : (だいにぶ) 性質別に言葉を学ぼう (せいしつべつにことばをまなぼう)",
-        range: "chapter 1 - 8",
-        chapters: [],
-      },
-    ];
-
-    for (const chapter of filteredChapters) {
-      const isPartTwo = String(chapter.number).includes(".");
-      const group = isPartTwo ? groups[1] : groups[0];
-      group.chapters.push(chapter);
-    }
-
-    return groups.filter((group) => group.chapters.length > 0);
-  }, [filteredChapters, studyTab]);
+  const chapterGroups = useMemo(() => groupChapters(userChapters, (content.groups || []).filter((group) => group.studyTab === studyTab))
+    .map((group) => ({ ...group, chapters: group.chapters.filter((chapter) => filteredChapters.some((item) => item.id === chapter.id)) }))
+    .filter((group) => !chapterQuery.trim() || group.chapters.length), [userChapters, content.groups, studyTab, filteredChapters, chapterQuery]);
   const selected =
     userChapters.find((c) => c.id === active) ?? filteredChapters[0] ?? userChapters[0];
   const vocabResults = useMemo(() => {
@@ -689,7 +712,7 @@ function App() {
   const vocabSections = selected
     ? [
         { chapter: selected, isSubchapter: false, cards: selected.cards.map((card) => ({ card, chapter: selected })) },
-        ...selected.subchapters.map((subchapter) => ({
+        ...sortChapters(selected.subchapters).map((subchapter) => ({
           chapter: subchapter,
           isSubchapter: true,
           cards: allVocabularyCards
@@ -729,6 +752,8 @@ function App() {
       subchapterId,
       id: record._id ?? record.id,
       studyTab: selectedTab,
+      groupTitle: chapter ? chapterGroup(chapter).label : "",
+      groupRange: chapter ? chapterGroup(chapter).range : "",
       layout: "standard",
       number: `${chapter?.number ?? "1"}.${(chapter?.subchapters?.length ?? 0) + 1}`,
       title: "",
@@ -755,7 +780,7 @@ function App() {
   };
   const saveContent = async (draft) => {
     if (!cloud.canEdit || draft.studyTab !== studyTab) return;
-    if (draft.type !== "chapter" && !chapterOptions.some((chapter) => chapter.id === draft.chapterId && chapter.studyTab === studyTab)) return;
+    if (!["chapter", "group"].includes(draft.type) && !chapterOptions.some((chapter) => chapter.id === draft.chapterId && chapter.studyTab === studyTab)) return;
     if (draft.type === "card") {
       setStudyTab(draft.studyTab);
       setActive(draft.chapterId);
@@ -765,15 +790,22 @@ function App() {
       setTab("vocabulary");
     }
     const saved = await setContent((current) => {
+      if (draft.type === "group") {
+        const title = draft.title.trim();
+        if (draft.mode === "edit") return renameChapterGroup(current, chapterOptions, draft.studyTab, draft.originalGroupTitle, title);
+        if (!title || (current.groups || []).some((group) => group.studyTab === draft.studyTab && group.title === title)) return current;
+        return { ...current, groups: [...(current.groups || []), { id: `group-${Date.now()}`, title, studyTab: draft.studyTab }] };
+      }
       if (draft.type === "chapter") {
-        const id = draft.id || `user-chapter-${Date.now()}`;
-        const chapter = { id, number: draft.number, title: draft.title, titleMyanmar: draft.titleMyanmar, studyTab: draft.studyTab, subchapters: [] };
+        const id = draft.mode === "edit" ? draft.chapterId : `user-chapter-${Date.now()}`;
+        const fields = { number: draft.number, title: draft.title, titleMyanmar: draft.titleMyanmar, groupTitle: (draft.groupTitle || "").trim() };
+        const chapter = { id, ...fields, studyTab: draft.studyTab, subchapters: [] };
         setActive(id);
         if (draft.mode === "edit") {
           if ((current.chapters ?? []).some((item) => item.id === id)) {
-            return { ...current, chapters: current.chapters.map((item) => item.id === id ? { ...item, number: draft.number, title: draft.title, titleMyanmar: draft.titleMyanmar } : item) };
+            return { ...current, chapters: current.chapters.map((item) => item.id === id ? { ...item, ...fields } : item) };
           }
-          return { ...current, chapterOverrides: { ...current.chapterOverrides, [id]: { number: draft.number, title: draft.title, titleMyanmar: draft.titleMyanmar } } };
+          return { ...current, chapterOverrides: { ...current.chapterOverrides, [id]: { ...current.chapterOverrides[id], ...fields } } };
         }
         return { ...current, chapters: [...(current.chapters ?? []), chapter] };
       }
@@ -816,28 +848,42 @@ function App() {
     });
     if (saved) setEditor(null);
   };
+  const allKanjiCards = resolveKanjiCards(content);
   const deleteRecord = (type, record) => {
-    if (!cloud.canEdit || (record.studyTab ?? "Vocab") !== studyTab) return;
-    const label = type === "card" ? record.term : type === "kanji" ? record.kanji : record.question;
-    if (!window.confirm(type === "exercise" ? `Delete this exercise from the main list and every assigned subchapter?\n${label}` : `Are you sure you want to delete ${label}?`)) return;
-    setContent((current) => ({
-      ...current,
-      ...(type === "card" ? { deletedCards: [...new Set([...current.deletedCards, record._id])] } : type === "kanji" ? { deletedKanjiCards: [...new Set([...current.deletedKanjiCards, record._id])] } : { deletedExercises: [...new Set([...current.deletedExercises, record._id])] }),
-    }));
+    if (!cloud.canEdit) return;
+    setDeleteType(type); setDeleteId(record._id);
   };
   const deleteSubchapter = (chapter) => {
-    if (!cloud.canEdit || (chapter.studyTab ?? "Vocab") !== studyTab) return;
-    if (!window.confirm(`Delete ${chapter.title} and its cards? Its exercises will remain in the main chapter list without this assignment.`)) return;
-    setContent((current) => ({
-      ...current,
-      ...unassignExercises(current, chapter.id, allExercises),
-      ...(["Vocab", "Grammar"].includes(chapter.studyTab ?? "Vocab") ? {
-        deletedSubchapters: [...new Set([...(current.deletedSubchapters ?? []), chapter.id, ...(chapter.sourceId ? [chapter.sourceId] : [])])],
-        deletedCards: [...new Set([...current.deletedCards, ...resolveVocabularyCards(chapters, current).filter((card) => card.chapterId === chapter.id).map((card) => card._id)])],
-      } : {}),
-      subchapters: current.subchapters.filter((item) => item.id !== chapter.id),
-      cards: current.cards.filter((item) => item.chapterId !== chapter.id),
-    }));
+    if (!cloud.canEdit) return;
+    setDeleteType("subchapter"); setDeleteId(chapter.id);
+  };
+  const deletionChapters = chapterOptions.filter((chapter) => chapter.studyTab === studyTab);
+  const deletionGroups = groupChapters(deletionChapters, (content.groups || []).filter((group) => group.studyTab === studyTab));
+  const deletionOptions = deleteType === "group" ? deletionGroups.filter((group) => group.label !== "Not grouped").map((group) => ({ id: group.label, label: group.label }))
+    : deleteType === "chapter" ? sortChapters(deletionChapters).filter((chapter) => chapter.id !== `ungrouped-${studyTab}`).map((chapter) => ({ id: chapter.id, label: `${chapter.number}: ${chapter.title}`, record: chapter }))
+    : deleteType === "subchapter" ? deletionChapters.flatMap((chapter) => sortChapters(chapter.subchapters || []).map((section) => ({ id: section.id, label: `${chapter.title} / ${section.number}: ${section.title}`, record: section })))
+    : (deleteType === "exercise" ? allExercises : deleteType === "kanji" ? allKanjiCards : allVocabularyCards).filter((record) => (record.studyTab || "Vocab") === studyTab).map((record) => ({ id: record._id, label: `${deletionChapters.find((chapter) => chapter.id === (record.parentChapterId || record.chapterId))?.title || ""} / ${record.term || record.kanji || record.question}`, record }));
+  const deleteSelected = async () => {
+    if (!cloud.canEdit) return;
+    const option = deletionOptions.find((item) => item.id === deleteId);
+    if (!option) return;
+    if (deleteType === "group") {
+      const saved = await setContent((current) => {
+        const next = renameChapterGroup(current, chapterOptions, studyTab, option.id, "Not grouped");
+        return { ...next, groups: next.groups.filter((group) => !(group.studyTab === studyTab && group.title === option.id)) };
+      });
+      if (saved) setDeleteType(null);
+    } else if (deleteType === "chapter") {
+      const saved = await setContent((current) => removeChapter(current, option.record, studyTab === "Kanji" ? allKanjiCards : allVocabularyCards, allExercises));
+      if (saved) { setDeleteType(null); setActive(""); setExerciseSectionId(null); }
+    } else {
+      const saved = await setContent((current) => {
+        if (deleteType === "subchapter") return removeSubchapter(current, option.record, studyTab === "Kanji" ? allKanjiCards : allVocabularyCards, allExercises);
+        const key = deleteType === "exercise" ? "deletedExercises" : deleteType === "kanji" ? "deletedKanjiCards" : "deletedCards";
+        return { ...current, [key]: [...new Set([...current[key], option.id])] };
+      });
+      if (saved) setDeleteType(null);
+    }
   };
   const customCardsByTab = useMemo(
     () => Object.fromEntries(
@@ -866,13 +912,21 @@ function App() {
           <p className="subtitle">Japanese · Myanmar · flashcards by chapter</p>
         </div>
         {cloud.isEditor && <fieldset className="content-actions" aria-label="Manage study content" disabled={!cloud.canEdit}>
-          <button type="button" onClick={() => openEditor(!chapterOptions.some((chapter) => chapter.studyTab === studyTab) ? "chapter" : studyTab === "Kanji" ? "kanji" : "card", "add", { studyTab })}>+ Add {studyTab}</button>
-          {studyTab !== "Kanji" && (
-            <>
+          <button type="button" onClick={() => openEditor(!chapterOptions.some((chapter) => chapter.studyTab === studyTab) ? "chapter" : studyTab === "Kanji" ? "kanji" : "subchapter", "add", { studyTab })}>New</button>
+          {<details className="content-edit-menu" name="study-content-actions">
+            <summary>Edit</summary>
+            <div className="content-edit-options" onClick={(event) => { if (event.target.closest("button")) event.currentTarget.parentElement.removeAttribute("open"); }}>
+              <button type="button" disabled={!chapterGroups.length} onClick={() => openEditor("group", "edit", { title: chapterGroups[0]?.label || "", originalGroupTitle: chapterGroups[0]?.label || "", studyTab })}>Edit Group Title</button>
               <button type="button" onClick={() => selected && openEditor("chapter", "edit", { ...selected, studyTab })} disabled={!selected}>Edit Chapter</button>
-              <button type="button" onClick={() => selected && openEditor("subchapter", "edit", { studyTab, chapterId: selected.id })} disabled={!selected}>Edit Sub Chapter</button>
-            </>
-          )}
+              <button type="button" onClick={() => selected && openEditor("subchapter", "edit", { studyTab, chapterId: selected.id, ...(selected.subchapters[0] || {}) })} disabled={!selected}>Edit Subchapter</button>
+            </div>
+          </details>}
+          {<details className="content-edit-menu" name="study-content-actions">
+            <summary>Delete</summary>
+            <div className="content-edit-options">
+              {[["group", "Group Title"], ["chapter", "Chapter"], ["subchapter", "Subchapter"], [studyTab === "Kanji" ? "kanji" : "card", "Flashcard"], ["exercise", "Exercise"]].map(([type, label]) => <button key={type} type="button" onClick={(event) => { setDeleteType(type); setDeleteId(""); event.currentTarget.closest("details").removeAttribute("open"); }}>Delete {label}</button>)}
+            </div>
+          </details>}
         </fieldset>}
       </header>
       <CloudStatus cloud={cloud} />
@@ -907,8 +961,8 @@ function App() {
       </div>
       <section
         role="tabpanel"
-        id={`study-panel-${studyTab === "Grammar" ? studyTabs.indexOf("Grammar") : 0}`}
-        aria-labelledby={`study-tab-${studyTab === "Grammar" ? studyTabs.indexOf("Grammar") : 0}`}
+        id={`study-panel-${isChapterStudy ? studyTabs.indexOf(studyTab) : 0}`}
+        aria-labelledby={`study-tab-${isChapterStudy ? studyTabs.indexOf(studyTab) : 0}`}
         hidden={!isChapterStudy}
         tabIndex={0}
       >
@@ -945,7 +999,7 @@ function App() {
               </button>
             </div>
             <div className="chapter-group">
-              {filteredChapters.length ? (
+              {chapterGroups.length ? (
                 chapterGroups.map((group) => (
                   <div className="chapter-group-block" key={group.id}>
                     <p className="chapter-group-label">
@@ -998,7 +1052,7 @@ function App() {
                 <h2>
                   {isGlobalSearch
                     ? `Results for “${vocabQuery}”`
-                    : `Chapter ${selected.number} ${studyLabel}`}
+                    : localizedChapterTitle(selected, showMyanmar, showReadings, showJapanese)}
                 </h2>
                 <p className="note">
                   {isGlobalSearch
@@ -1104,7 +1158,7 @@ function App() {
                       <SubchapterNav sections={vocabSections.filter((section) => section.isSubchapter).map((section) => section.chapter)} />
                       {vocabSections.map(({ chapter, isSubchapter, cards: sectionCards }) => (
                         <section className="vocab-section" key={chapter.id}>
-                          <div className="vocab-section-heading">
+                          {isSubchapter && <div className="vocab-section-heading">
                             <div>
                               <p className="eyebrow">{isSubchapter ? `Sub Chapter ${chapter.number}` : `Chapter ${chapter.number}`}</p>
                               <h3 lang="ja" id={isSubchapter ? subchapterTargetId(chapter.id) : undefined} tabIndex={isSubchapter ? -1 : undefined}>{localizedChapterTitle(chapter, showMyanmar, showReadings, showJapanese)}</h3>
@@ -1127,8 +1181,8 @@ function App() {
                                 </div>
                               )}
                             </div>
-                          </div>
-                          {sectionCards.length > 0 && <p className="note">{sectionCards.length} {bookMode ? `${studyLabel} entries` : "flashcards"}</p>}
+                          </div>}
+                          {sectionCards.length > 0 && isSubchapter && <p className="note">{sectionCards.length} {bookMode ? `${studyLabel} entries` : "flashcards"}</p>}
                           {bookMode ? (
                             <VocabularyBook entries={sectionCards} showReadings={showReadings} showMyanmar={showMyanmar} showJapanese={showJapanese} showExamples={showBookExamples} manageMode={manageMode} isEditor={cloud.isEditor} onEdit={(card) => openEditor("card", "edit", card)} onDelete={(card) => deleteRecord("card", card)} />
                           ) : (
@@ -1182,7 +1236,7 @@ function App() {
           </article>
         </div>
       </section>
-      {studyTabs.slice(1).map((label, index) => label === "Grammar" ? null : (
+      {studyTabs.slice(1).map((label, index) => label !== "Kanji" ? null : (
         <section
           key={label}
           role="tabpanel"
@@ -1246,7 +1300,8 @@ function App() {
           )}
         </section>
       ))}
-      {editor && cloud.isEditor && <ContentEditor saving={cloud.saving} canSave={cloud.canEdit} error={cloud.error || (!cloud.connected ? "Connection lost. Keep this form open and reconnect to save." : "")} editor={editor} setEditor={setEditor} chapterOptions={chapterOptions} studyTabs={studyTabs} onSave={saveContent} onClose={() => setEditor(null)} />}
+      {deleteType && cloud.isEditor && <DeleteDialog key={`${studyTab}-${deleteType}`} type={deleteType} options={deletionOptions} selectedId={deleteId} onSelect={setDeleteId} onClose={() => setDeleteType(null)} onDelete={deleteSelected} saving={cloud.saving} canDelete={cloud.canEdit} error={cloud.error} />}
+      {editor && cloud.isEditor && <ContentEditor saving={cloud.saving} canSave={cloud.canEdit} error={cloud.error || (!cloud.connected ? "Connection lost. Keep this form open and reconnect to save." : "")} editor={editor} setEditor={setEditor} chapterOptions={chapterOptions} groups={content.groups || []} studyTabs={studyTabs} onSave={saveContent} onClose={() => setEditor(null)} />}
       <div className="study-controls" ref={controlsRef}>
         {controlsOpen && (
           <div className="controls-panel" id="study-controls-panel">

@@ -1,0 +1,10 @@
+{
+  "rewrites": [
+    { "source": "/vocab", "destination": "/index.html" },
+    { "source": "/grammar", "destination": "/index.html" },
+    { "source": "/kanji", "destination": "/index.html" },
+    { "source": "/listening", "destination": "/index.html" },
+    { "source": "/reading", "destination": "/index.html" },
+    { "source": "/mock-exam", "destination": "/index.html" }
+  ]
+}
