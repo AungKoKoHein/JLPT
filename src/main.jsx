@@ -1,3 +1,4 @@
+import useShuffledCards from "./useShuffledCards.js";
 import DeleteDialog from "./DeleteDialog.jsx";
 import { removeChapter, removeSubchapter } from "./deleteContainers.js";
 import React, { useEffect, useMemo, useRef, useState } from "react";
@@ -551,6 +552,7 @@ function App() {
   const [showSidebar, setShowSidebar] = useState(true);
   const [controlsOpen, setControlsOpen] = useState(false);
   const [manageMode, setManageMode] = useState(false);
+  const [shuffleMode, setShuffleMode] = useState(false);
   const [positionMode, setPositionMode] = useState(false);
   const [exerciseSectionId, setExerciseSectionId] = useState(null);
   const cloud = useCloudContent();
@@ -721,6 +723,11 @@ function App() {
         })),
       ]
     : [];
+  const shuffleVocabulary = shuffleMode && studyTab === "Vocab";
+  const shuffledVocabulary = useShuffledCards(vocabSections.flatMap((section) => section.cards), shuffleVocabulary, (entry) => entry.card._id);
+  const displayedVocabSections = shuffleVocabulary && selected
+    ? [{ chapter: selected, isSubchapter: false, cards: shuffledVocabulary }]
+    : vocabSections;
   const allExercises = useMemo(() => resolveExercises(
     [...vocabularyExercises(exercisesByChapter), ...baseKanjiExercises],
     content,
@@ -1076,9 +1083,17 @@ function App() {
                     >
                       Exercises
                     </button>
+                    {studyTab === "Vocab" && <button
+                      type="button"
+                      className={shuffleMode ? "selected manage-toggle" : "manage-toggle"}
+                      aria-pressed={shuffleMode}
+                      onClick={() => { setShuffleMode((value) => !value); setExerciseSectionId(null); }}
+                    >
+                      Shuffle: {shuffleMode ? "ON" : "OFF"}
+                    </button>}
                     {cloud.isEditor && (<button
                       type="button"
-                      className={manageMode ? "selected manage-toggle" : "manage-toggle"}
+                      className={`${manageMode ? "selected " : ""}${studyTab === "Vocab" ? "" : "manage-toggle"}`}
                       aria-pressed={manageMode}
                       disabled={!cloud.canEdit}
                       onClick={() => setManageMode((value) => !value)}
@@ -1155,8 +1170,8 @@ function App() {
                     )
                   ) : (
                     <div className="vocab-sections">
-                      <SubchapterNav sections={vocabSections.filter((section) => section.isSubchapter).map((section) => section.chapter)} />
-                      {vocabSections.map(({ chapter, isSubchapter, cards: sectionCards }) => (
+                      {!shuffleVocabulary && <SubchapterNav sections={vocabSections.filter((section) => section.isSubchapter).map((section) => section.chapter)} />}
+                      {displayedVocabSections.map(({ chapter, isSubchapter, cards: sectionCards }) => (
                         <section className="vocab-section" key={chapter.id}>
                           {isSubchapter && <div className="vocab-section-heading">
                             <div>
@@ -1190,7 +1205,7 @@ function App() {
                             {sectionCards.map(({ card }, i) => (
                               <div className={`managed-item card-layout-${card.layout || "standard"}`} key={card._id}>
                                 <Flashcard card={card} showReadings={showReadings} showMyanmar={showMyanmar} showJapanese={showJapanese} />
-                                {positionMode && cloud.isEditor && (
+                                {positionMode && !shuffleVocabulary && cloud.isEditor && (
                                   <div className="card-position-actions" role="group" aria-label={`Position of ${card.term}`}>
                                     <button type="button" disabled={i === 0} onClick={() => moveCard(card._id, -1)} aria-label={`Move ${card.term} backward`}>
                                       ← Backward

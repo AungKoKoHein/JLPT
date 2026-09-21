@@ -1,3 +1,4 @@
+import useShuffledCards from "./useShuffledCards.js";
 import { sortChapters, groupChapters } from "./chapterGroups.js";
 import React, { useState } from "react";
 import Exercises from "./Exercises.jsx";
@@ -105,9 +106,7 @@ function KanjiCard({ card, showReadings, showKanjiReadings }) {
                 </span>
               </span>
             ))}
-          <span className="hint">
-            {card.strokes ? `${card.strokes} strokes` : `Page ${card.page}`}
-          </span>
+          {card.strokes && <span className="hint">{card.strokes} strokes</span>}
         </span>
         <span className="face back" aria-hidden={!flipped}>
           <strong className="jp" lang="ja">
@@ -161,6 +160,7 @@ export default function Kanji({
   onChapterChange,
   setManageMode,
 }) {
+  const [shuffleMode, setShuffleMode] = useState(false);
   const [chapterQuery, setChapterQuery] = useState("");
   const [query, setQuery] = useState("");
   const [tab, setTab] = useState("kanji");
@@ -192,7 +192,7 @@ export default function Kanji({
   ].filter((section) => !content.deletedSubchapters.includes(section.id)).map((section) => ({ ...section, ...content.chapterOverrides[section.id] }));
   const exerciseAssignment = exerciseSubchapters.find((section) => section.id === exerciseScope);
   const exercises = exercisesForView(allExercises, "Kanji", selected?.id, exerciseAssignment?.id);
-  const cards = [...baseCards, ...customCards]
+  const cards = [...baseCards, ...customCards, ...customSubchapters.flatMap((section) => customCardsForSubchapter(section.id))]
     .filter((card) => !(content.deletedKanjiCards ?? []).includes(card._id))
     .filter((card) =>
       [
@@ -209,6 +209,8 @@ export default function Kanji({
       ]
         .some((value) => matchesSearch(value, query)),
     );
+  const chapterCards = cards.filter((card) => customCards.some((item) => item._id === card._id));
+  const shuffledCards = useShuffledCards(cards, shuffleMode);
   const renderCard = (card) => (
       <div className={`managed-item card-layout-${card.layout || "standard"} ${query.trim() ? "search-hit" : ""}`} key={card._id ?? card.id ?? card.kanji}>
         <KanjiCard card={card} showReadings={showReadings} showKanjiReadings={showKanjiReadings} />
@@ -240,7 +242,7 @@ export default function Kanji({
             className={query.trim() ? (cards.length ? "search-box has-results" : "search-box no-results") : "search-box"}
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="例：起、おきる、အိပ်"
+            placeholder="Search by kanji, reading, or meaning"
           />
         </label>
       </section>
@@ -295,6 +297,14 @@ export default function Kanji({
                 >
                   Exercises
                 </button>
+                <button
+                  type="button"
+                  className={shuffleMode ? "selected manage-toggle" : "manage-toggle"}
+                  aria-pressed={shuffleMode}
+                  onClick={() => setShuffleMode((value) => !value)}
+                >
+                  Shuffle: {shuffleMode ? "ON" : "OFF"}
+                </button>
                 {isEditor && (<button
                   type="button"
                   className={manageMode ? "selected" : ""}
@@ -321,6 +331,7 @@ export default function Kanji({
               {query.trim() || tab === "kanji" ? (
                 <>
                   <p className="note">{cards.length} kanji cards</p>
+                  {shuffleMode ? <section className="cards">{shuffledCards.map(renderCard)}</section> : <>
                   <SubchapterNav sections={[
                     ...(selected.id === "kanji-1" && !content.deletedSubchapters.includes("kanji-1-subchapter-1l1")
                       ? [{ id: "kanji-1-subchapter-1l1", title: "1l1" }]
@@ -354,14 +365,14 @@ export default function Kanji({
                       </div>
                       <p className="note">{cards.length} kanji cards</p>
                       <section className="cards">
-                        {cards.map(renderCard)}
+                        {chapterCards.map(renderCard)}
                       </section>
                     </section>
                   ) : selected.groupCardsByLesson ? (
                     selected.sections
                       .filter((section) => !section.review && !content.deletedSubchapters.includes(`${selected.id}-section-${section.page}`))
                       .map((section) => {
-                        const lessonCards = cards.filter(
+                        const lessonCards = chapterCards.filter(
                           (card) => card.page === section.page,
                         );
                         if (!lessonCards.length) return null;
@@ -384,19 +395,12 @@ export default function Kanji({
                       })
                   ) : (
                     <section className="cards">
-                      {cards.map(renderCard)}
+                      {chapterCards.map(renderCard)}
                     </section>
                   )}
-                  {selected.groupCardsByLesson && <section className="cards">{cards.filter((card) => content.deletedSubchapters.includes(`${selected.id}-section-${card.page}`)).map(renderCard)}</section>}
+                  {selected.groupCardsByLesson && <section className="cards">{chapterCards.filter((card) => content.deletedSubchapters.includes(`${selected.id}-section-${card.page}`)).map(renderCard)}</section>}
                   {customSubchapters.map((subchapter) => {
-                    const subchapterCards = customCardsForSubchapter(subchapter.id).filter((card) =>
-                      [
-                        card.kanji,
-                        ...(card.readings ?? []).flatMap(({ kanji, on, kun }) => [kanji, on, kun]),
-                        card.meaning,
-                        card.sentence,
-                      ].join(" ").toLocaleLowerCase().includes(query.trim().toLocaleLowerCase()),
-                    );
+                    const subchapterCards = cards.filter((card) => card.chapterId === subchapter.id || card.subchapterId === subchapter.id);
                     return (
                       <section className="kanji-lesson-group vocab-section" key={subchapter.id}>
                         <div className="vocab-section-heading">
@@ -416,6 +420,7 @@ export default function Kanji({
                       </section>
                     );
                   })}
+                  </>}
                   {!cards.length && (
                     <div className="empty search-empty">
                       <p>No searched record found.</p>
