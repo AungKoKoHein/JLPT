@@ -7,7 +7,7 @@ import {
   normalizeContent,
 } from "../src/cloudContent.js";
 
-test("an empty database loads the bundled site without creating cloud data", () => {
+test("an empty database returns empty content without creating cloud data", () => {
   assert.deepEqual(decodeSnapshot(null), {
     content: emptyContent,
     revision: 0,

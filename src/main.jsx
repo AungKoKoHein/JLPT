@@ -4,19 +4,17 @@ import { removeChapter, removeSubchapter } from "./deleteContainers.js";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { chapterGroup, groupChapters, sortChapters, renameChapterGroup } from "./chapterGroups.js";
-import { studyRoutes, studyTabFromPath } from "./studyRoutes.js";
-import { chapters } from "./data/n3Vocabulary.js";
-import { exercisesByChapter } from "./data/exercises.js";
+import { routesForLevel, levelFromPath, studyTabFromPath } from "./studyRoutes.js";
 import { moveVocabularyCard, resolveVocabularyCards, resolveVocabularySubchapters } from "./vocabularyContent.js";
 import Exercises from "./Exercises.jsx";
 import SubchapterNav, { subchapterTargetId } from "./SubchapterNav.jsx";
-import { vocabularyExercises, resolveExercises, exercisesForView, saveExercise, unassignExercises } from "./exerciseContent.js";
-import Kanji, { kanjiChapterOptions, baseKanjiExercises, resolveKanjiCards } from "./Kanji.jsx";
+import { resolveExercises, exercisesForView, saveExercise, unassignExercises } from "./exerciseContent.js";
+import Kanji, { getKanjiChapterOptions, resolveKanjiCards } from "./Kanji.jsx";
 import { useCloudContent } from "./useCloudContent.js";
 import CloudStatus from "./CloudStatus.jsx";
-import "./styles.css";
-import "./extras.css";
-import "./polish.css";
+import "./app.css";
+import TextField from "./TextField.jsx";
+import { kanjiExamples } from "./kanjiContent.js";
 import { matchesVocabulary, vocabularySearchPlaceholder } from "./vocabularySearch.js";
 
 const hideReadings = (value = "") =>
@@ -375,16 +373,16 @@ function ContentEditor({ editor, setEditor, chapterOptions, groups, studyTabs, o
                   ))}
                 </select>
               </label>
-              <label>Sub Chapter Number<input value={editor.number} onChange={(event) => set("number", event.target.value)} placeholder="Optional" /></label>
-              <label>Sub Chapter Title<input value={editor.title} onChange={(event) => set("title", event.target.value)} placeholder="家族と友達" required /></label>
-              <label>Myanmar Translation<input lang="my" value={editor.titleMyanmar} onChange={(event) => set("titleMyanmar", event.target.value)} placeholder="မိသားစုနှင့် သူငယ်ချင်းများ" /></label>
+              <label>Sub Chapter Number<TextField fullWidth variant="outlined" size="small" value={editor.number} onChange={(event) => set("number", event.target.value)} placeholder="Optional" /></label>
+              <label>Sub Chapter Title<TextField fullWidth variant="outlined" size="small" value={editor.title} onChange={(event) => set("title", event.target.value)} placeholder="家族と友達" required /></label>
+              <label>Myanmar Translation<TextField fullWidth variant="outlined" size="small" lang="my" value={editor.titleMyanmar} onChange={(event) => set("titleMyanmar", event.target.value)} placeholder="မိသားစုနှင့် သူငယ်ချင်းများ" /></label>
             </>
           )}
           {editor.type === "group" && <>
             {editor.mode === "edit" && <label>Existing Group<select value={editor.originalGroupTitle || ""} onChange={(event) => setEditor((current) => ({ ...current, originalGroupTitle: event.target.value, title: event.target.value }))}>
               {availableGroups.map((group) => <option key={group.id} value={group.label}>{group.label}</option>)}
             </select></label>}
-            <label>Group Title<input value={editor.title} onChange={(event) => set("title", event.target.value)} required /></label>
+            <label>Group Title<TextField fullWidth variant="outlined" size="small" value={editor.title} onChange={(event) => set("title", event.target.value)} required /></label>
             <p className="editor-help">After saving, choose this group when adding or editing chapters. The chapter range updates automatically.</p>
           </>}
           {editor.type === "chapter" && (
@@ -394,9 +392,9 @@ function ContentEditor({ editor, setEditor, chapterOptions, groups, studyTabs, o
                 {availableGroups.map((group) => <option value={group.label} key={group.id}>{group.label}</option>)}
               </select></label>
               <p className="editor-help">All groups are listed above. To create a group, choose Group Title in Type when adding a new item. Chapter ranges are counted automatically from the chapters in each group.</p>
-              <label>Chapter Number<input value={editor.number} onChange={(event) => set("number", event.target.value)} placeholder="Optional" /></label>
-              <label>Chapter Title<input value={editor.title} onChange={(event) => set("title", event.target.value)} placeholder="新しい章" required /></label>
-              <label>Myanmar Translation<input lang="my" value={editor.titleMyanmar} onChange={(event) => set("titleMyanmar", event.target.value)} placeholder="အခန်း၏ မြန်မာဘာသာပြန်" /></label>
+              <label>Chapter Number<TextField fullWidth variant="outlined" size="small" value={editor.number} onChange={(event) => set("number", event.target.value)} placeholder="Optional" /></label>
+              <label>Chapter Title<TextField fullWidth variant="outlined" size="small" value={editor.title} onChange={(event) => set("title", event.target.value)} placeholder="新しい章" required /></label>
+              <label>Myanmar Translation<TextField fullWidth variant="outlined" size="small" lang="my" value={editor.titleMyanmar} onChange={(event) => set("titleMyanmar", event.target.value)} placeholder="အခန်း၏ မြန်မာဘာသာပြန်" /></label>
             </>
           )}
           {editor.type === "card" && (
@@ -409,51 +407,50 @@ function ContentEditor({ editor, setEditor, chapterOptions, groups, studyTabs, o
                   <option value="wide">Wide (3 cards)</option>
                 </select>
               </label>
-              <label>{editor.studyTab === "Grammar" ? "Grammar Pattern" : "Flashcard Front"}<input value={editor.term} onChange={(event) => set("term", event.target.value)} placeholder="Japanese word（reading）" required /></label>
-              <label>Myanmar Meaning<input value={editor.meaning} onChange={(event) => set("meaning", event.target.value)} required /></label>
+              <label>{editor.studyTab === "Grammar" ? "Grammar Pattern" : "Flashcard Front"}<TextField fullWidth variant="outlined" size="small" value={editor.term} onChange={(event) => set("term", event.target.value)} placeholder="Japanese word（reading）" required /></label>
+              <label>Myanmar Meaning<TextField fullWidth variant="outlined" size="small" value={editor.meaning} onChange={(event) => set("meaning", event.target.value)} required /></label>
               {editor.studyTab === "Grammar" ? <>
                 <div className="grammar-example-editor">
                   {(editor.examples || grammarExamples(editor)).map((example, index, examples) => <fieldset key={index}>
                     <legend>Example {index + 1}</legend>
-                    <label>Japanese Sentence<textarea value={example.japanese} onChange={(event) => set("examples", examples.map((item, i) => i === index ? { ...item, japanese: event.target.value } : item))} required /></label>
-                    <label>Myanmar Translation<textarea lang="my" value={example.myanmar} onChange={(event) => set("examples", examples.map((item, i) => i === index ? { ...item, myanmar: event.target.value } : item))} /></label>
+                    <label>Japanese Sentence<TextField fullWidth variant="outlined" size="small" multiline value={example.japanese} onChange={(event) => set("examples", examples.map((item, i) => i === index ? { ...item, japanese: event.target.value } : item))} required /></label>
+                    <label>Myanmar Translation<TextField fullWidth variant="outlined" size="small" multiline lang="my" value={example.myanmar} onChange={(event) => set("examples", examples.map((item, i) => i === index ? { ...item, myanmar: event.target.value } : item))} /></label>
                     {examples.length > 1 && <button type="button" onClick={() => set("examples", examples.filter((_, i) => i !== index))}>Remove Example</button>}
                   </fieldset>)}
                   <button type="button" onClick={() => set("examples", [...(editor.examples || grammarExamples(editor)), { japanese: "", myanmar: "" }])}>+ Add Example</button>
                 </div>
-                <label className="grammar-explanation-editor">Myanmar Grammar Explanation<textarea lang="my" value={editor.grammarExplanation || ""} onChange={(event) => set("grammarExplanation", event.target.value)} placeholder="Explain the grammar pattern in Myanmar" /></label>
+                <label className="grammar-explanation-editor">Myanmar Grammar Explanation<TextField fullWidth variant="outlined" size="small" multiline lang="my" value={editor.grammarExplanation || ""} onChange={(event) => set("grammarExplanation", event.target.value)} placeholder="Explain the grammar pattern in Myanmar" /></label>
               </> : <>
-                <label>Japanese Example<textarea value={editor.exampleJapanese} onChange={(event) => set("exampleJapanese", event.target.value)} required /></label>
-                <label>Myanmar Explanation<textarea value={editor.exampleMyanmar} onChange={(event) => set("exampleMyanmar", event.target.value)} /></label>
+                <label>Japanese Example<TextField fullWidth variant="outlined" size="small" multiline value={editor.exampleJapanese} onChange={(event) => set("exampleJapanese", event.target.value)} required /></label>
+                <label>Myanmar Explanation<TextField fullWidth variant="outlined" size="small" multiline value={editor.exampleMyanmar} onChange={(event) => set("exampleMyanmar", event.target.value)} /></label>
               </>}
             </>
           )}
           {editor.type === "kanji" && (
             <>
-              <label>
-                Flashcard Layout
-                <select value={editor.layout} onChange={(event) => set("layout", event.target.value)}>
-                  <option value="standard">Standard</option>
-                  <option value="double">Double width (2 cards)</option>
-                  <option value="wide">Wide (3 cards)</option>
-                </select>
-              </label>
-              <label>Kanji Front<input value={editor.kanji} onChange={(event) => set("kanji", event.target.value)} placeholder="漢字" required /></label>
-              <label>Myanmar Meaning<input value={editor.meaning} onChange={(event) => set("meaning", event.target.value)} required /></label>
-              <label>On’yomi (音読み)<input value={editor.on} onChange={(event) => set("on", event.target.value)} placeholder="オンヨミ" /></label>
-              <label>Kun’yomi (訓読み)<input value={editor.kun} onChange={(event) => set("kun", event.target.value)} placeholder="くんよみ" /></label>
-              <label>Japanese Sentence<textarea value={editor.sentence} onChange={(event) => set("sentence", event.target.value)} /></label>
-              <label>Myanmar Explanation<textarea value={editor.exampleMyanmar} onChange={(event) => set("exampleMyanmar", event.target.value)} /></label>
+              <label>Kanji Front<TextField fullWidth variant="outlined" size="small" value={editor.kanji} onChange={(event) => set("kanji", event.target.value)} placeholder="漢字" required /></label>
+              <label>Myanmar Meaning<TextField fullWidth variant="outlined" size="small" value={editor.meaning} onChange={(event) => set("meaning", event.target.value)} required /></label>
+              <label>On’yomi (音読み)<TextField fullWidth variant="outlined" size="small" value={editor.on} onChange={(event) => set("on", event.target.value)} placeholder="オンヨミ" /></label>
+              <label>Kun’yomi (訓読み)<TextField fullWidth variant="outlined" size="small" value={editor.kun} onChange={(event) => set("kun", event.target.value)} placeholder="くんよみ" /></label>
+              <div className="grammar-example-editor">
+                {kanjiExamples(editor).map((example, index, examples) => <fieldset key={index}>
+                  <legend>Example {index + 1}</legend>
+                  <label>Japanese Sentence<TextField fullWidth variant="outlined" size="small" value={example.japanese} onChange={(event) => set("examples", examples.map((item, i) => i === index ? { ...item, japanese: event.target.value } : item))} required /></label>
+                  <label>Myanmar Translation<TextField fullWidth variant="outlined" size="small" lang="my" value={example.myanmar} onChange={(event) => set("examples", examples.map((item, i) => i === index ? { ...item, myanmar: event.target.value } : item))} /></label>
+                  <button type="button" disabled={examples.length === 1} onClick={() => set("examples", examples.filter((_, i) => i !== index))}>Remove Example</button>
+                </fieldset>)}
+                <button type="button" onClick={() => set("examples", [...kanjiExamples(editor), { japanese: "", myanmar: "" }])}>+ Add Example</button>
+              </div>
             </>
           )}
           {editor.type === "exercise" && (
             <>
               <p className="editor-help">Exercises always remain in the main chapter list. Assign a sub chapter to show the same exercise there too. Edits update both places. Clear the assignment to remove it from the sub chapter.</p>
-              <label>Exercise Group<input value={editor.section} onChange={(event) => set("section", event.target.value)} placeholder="1-3" required /></label>
-              <label>Sentence / Question<textarea value={editor.question} onChange={(event) => set("question", event.target.value)} required /></label>
-              <label>Myanmar Sentence / Question<textarea lang="my" value={editor.questionMyanmar} onChange={(event) => set("questionMyanmar", event.target.value)} /></label>
-              <label>Answer Key<textarea value={editor.answer} onChange={(event) => set("answer", event.target.value)} required /></label>
-              <label>Myanmar Answer / Explanation<textarea lang="my" value={editor.answerMyanmar} onChange={(event) => set("answerMyanmar", event.target.value)} /></label>
+              <label>Exercise Group<TextField fullWidth variant="outlined" size="small" value={editor.section} onChange={(event) => set("section", event.target.value)} placeholder="1-3" required /></label>
+              <label>Sentence / Question<TextField fullWidth variant="outlined" size="small" multiline value={editor.question} onChange={(event) => set("question", event.target.value)} required /></label>
+              <label>Myanmar Sentence / Question<TextField fullWidth variant="outlined" size="small" multiline lang="my" value={editor.questionMyanmar} onChange={(event) => set("questionMyanmar", event.target.value)} /></label>
+              <label>Answer Key<TextField fullWidth variant="outlined" size="small" multiline value={editor.answer} onChange={(event) => set("answer", event.target.value)} required /></label>
+              <label>Myanmar Answer / Explanation<TextField fullWidth variant="outlined" size="small" multiline lang="my" value={editor.answerMyanmar} onChange={(event) => set("answerMyanmar", event.target.value)} /></label>
               <p className="editor-help">Myanmar fields are optional. Use |text| in a Japanese question to underline it.</p>
             </>
           )}
@@ -477,7 +474,9 @@ const studyTabs = [
   "Mock exam",
 ];
 
-function App() {
+function App({ level }) {
+  const studyRoutes = routesForLevel(level);
+  useEffect(() => { document.title = `JLPT ${level.toUpperCase()}`; }, [level]);
   useEffect(() => {
     const closeMenusOutside = (event) => {
       document.querySelectorAll("details.content-edit-menu[open]").forEach((menu) => {
@@ -521,20 +520,22 @@ function App() {
     setEditor(null);
     setDeleteType(null);
     setShowReadings(false);
-    setShowKanjiReadings(false);
+    setShowKanjiReadings(studyTab === "Kanji");
     if (studyTab === "Grammar") setGrammarMode("card");
     if (studyTab === "Vocab") setVocabMode("book");
+    if (studyTab === "Kanji") setKanjiMode("book");
   }, [studyTab]);
   const [chapterQuery, setChapterQuery] = useState("");
   const [vocabQuery, setVocabQuery] = useState("");
-  const [active, setActive] = useState(chapters[0]?.id ?? "");
+  const [active, setActive] = useState("");
   const [tab, setTab] = useState("vocabulary");
   const [vocabMode, setVocabMode] = useState("book");
   const [grammarMode, setGrammarMode] = useState("card");
-  const bookMode = (studyTab === "Grammar" ? grammarMode : vocabMode) === "book";
-  const setStudyMode = studyTab === "Grammar" ? setGrammarMode : setVocabMode;
+  const [kanjiMode, setKanjiMode] = useState("book");
+  const bookMode = (studyTab === "Kanji" ? kanjiMode : studyTab === "Grammar" ? grammarMode : vocabMode) === "book";
+  const setStudyMode = studyTab === "Kanji" ? setKanjiMode : studyTab === "Grammar" ? setGrammarMode : setVocabMode;
   const [showReadings, setShowReadings] = useState(false);
-  const [showKanjiReadings, setShowKanjiReadings] = useState(false);
+  const [showKanjiReadings, setShowKanjiReadings] = useState(true);
   const [showJapanese, setShowJapanese] = useState(() => {
     try {
       return localStorage.getItem("jlpt-show-japanese") !== "false";
@@ -555,8 +556,10 @@ function App() {
   const [shuffleMode, setShuffleMode] = useState(false);
   const [positionMode, setPositionMode] = useState(false);
   const [exerciseSectionId, setExerciseSectionId] = useState(null);
-  const cloud = useCloudContent();
+  const cloud = useCloudContent(level);
   const { content, updateContent: setContent } = cloud;
+  const chapters = content.baselineChapters;
+  const kanjiChapterOptions = getKanjiChapterOptions(content.baselineKanjiChapters);
   const [editor, setEditor] = useState(null);
   useEffect(() => {
     if (!cloud.isEditor) {
@@ -602,10 +605,6 @@ function App() {
       return true;
     }
   });
-  const setExerciseMyanmar = (value) => {
-    setShowMyanmar(value);
-    if (!value) setShowJapanese(true);
-  };
   useEffect(() => {
     try {
       localStorage.setItem("jlpt-show-myanmar", String(showMyanmar));
@@ -736,7 +735,7 @@ function App() {
     ? [{ chapter: selected, isSubchapter: false, cards: shuffledVocabulary }]
     : vocabSections;
   const allExercises = useMemo(() => resolveExercises(
-    [...vocabularyExercises(exercisesByChapter), ...baseKanjiExercises],
+    content.baselineExercises,
     content,
     chapterOptions.flatMap((chapter) => chapter.subchapters ?? []),
   ), [content, chapterOptions]);
@@ -786,6 +785,7 @@ function App() {
       kun: "",
       sentence: "",
       ...record,
+      ...(type === "kanji" ? { examples: kanjiExamples(record), on: record.readings?.map((r) => r.on).filter(Boolean).join("・") || record.on || "", kun: record.readings?.map((r) => r.kun).filter(Boolean).join("・") || record.kun || "" } : {}),
       studyTab: selectedTab,
       chapterId: recordSubchapter?.parentChapterId ?? chapter?.id ?? "",
       subchapterId,
@@ -846,8 +846,11 @@ function App() {
           kanji: draft.kanji,
           meaning: draft.meaning,
           readings: [{ kanji: draft.kanji, on: draft.on, kun: draft.kun }],
-          sentence: draft.sentence,
-          words: draft.exampleMyanmar ? [{ term: draft.kanji, explanation: draft.exampleMyanmar }] : [],
+          examples: kanjiExamples(draft),
+          term: draft.kanji,
+          layout: draft.layout,
+          sentence: kanjiExamples(draft)[0].japanese,
+          words: kanjiExamples(draft).map((example) => ({ sentence: example.japanese, explanation: example.myanmar })),
         };
         if (draft.mode === "edit") return { ...current, kanjiOverrides: { ...current.kanjiOverrides, [draft.id]: item } };
         return { ...current, kanjiCards: [...current.kanjiCards, item] };
@@ -936,7 +939,10 @@ function App() {
           <p className="eyebrow" lang="ja">
             自分用学習ノート
           </p>
-          <h1>JLPT N3</h1>
+          <h1>JLPT {level.toUpperCase()}</h1>
+          <nav className="level-switch" aria-label="JLPT level">
+            {["n3", "n2"].map((item) => <a key={item} href={routesForLevel(item)[studyTab]} aria-current={item === level ? "page" : undefined}>JLPT {item.toUpperCase()}</a>)}
+          </nav>
           <p className="subtitle">Japanese · Myanmar · flashcards by chapter</p>
         </div>
         {cloud.isEditor && <fieldset className="content-actions" aria-label="Manage study content" disabled={!cloud.canEdit}>
@@ -1031,7 +1037,7 @@ function App() {
                 chapterGroups.map((group) => (
                   <div className="chapter-group-block" key={group.id}>
                     <p className="chapter-group-label">
-                      <span className="chapter-group-title">{chapterTitle(group.label, showMyanmar, showReadings, showJapanese)}</span>
+                      <span className="chapter-group-title">{chapterTitle(group.label, false, showReadings, true)}</span>
                       <span className="chapter-group-range">{showReadings ? group.range : hideReadings(group.range)}</span>
                     </p>
                     {group.chapters.map((chapter) => (
@@ -1045,7 +1051,7 @@ function App() {
                         key={chapter.id}
                       >
                         <span>Chapter {chapter.number}</span>
-                        <strong>{localizedChapterTitle(chapter, showMyanmar, showReadings, showJapanese)}</strong>
+                        <strong>{localizedChapterTitle(chapter, false, showReadings, true)}</strong>
                       </button>
                     ))}
                   </div>
@@ -1140,13 +1146,6 @@ function App() {
                       tabIndex={-1}
                       aria-label="Dedicated exercises"
                     >
-                      <button
-                        type="button"
-                        className="back-to-vocabulary"
-                        onClick={() => setExerciseSectionId(null)}
-                      >
-                        ← Back to Vocabulary
-                      </button>
                       <p className="eyebrow">
                         {exerciseSection.isSubchapter ? "Sub Chapter" : "Chapter"} {exerciseSection.chapter.number}
                       </p>
@@ -1158,7 +1157,6 @@ function App() {
                         exercises={exercisesForSection(exerciseSection.chapter)}
                         showReadings={showReadings}
                         showMyanmar={showMyanmar}
-                        setShowMyanmar={setExerciseMyanmar}
                         assignmentLabel={exerciseSection.isSubchapter ? localizedChapterTitle(exerciseSection.chapter, showMyanmar, showReadings, showJapanese) : undefined}
                         onAdd={!bookMode && cloud.canEdit ? () => openEditor("exercise", "add", { studyTab, chapterId: selected.id, subchapterId: exerciseSection.isSubchapter ? exerciseSection.chapter.id : "" }) : undefined}
                         onEdit={!bookMode && manageMode && cloud.isEditor ? (item) => openEditor("exercise", "edit", { ...item, studyTab }) : undefined}
@@ -1257,7 +1255,6 @@ function App() {
                     exercises={exercises}
                     showReadings={showReadings}
                     showMyanmar={showMyanmar}
-                    setShowMyanmar={setExerciseMyanmar}
                     onAdd={!bookMode && cloud.canEdit ? () => openEditor("exercise", "add", { studyTab, chapterId: selected.id }) : undefined}
                     onEdit={!bookMode && manageMode && cloud.isEditor ? (item) => openEditor("exercise", "edit", item) : undefined}
                     onDelete={!bookMode && manageMode && cloud.isEditor ? (item) => deleteRecord("exercise", item) : undefined}
@@ -1266,7 +1263,7 @@ function App() {
               </>
             ) : (
               <div className="empty search-empty">
-                <p>{studyTab === "Grammar" && !userChapters.length ? "No grammar chapters yet. An owner can use + Add Grammar to create the first chapter." : "No searched record found."}</p>
+                <p>{studyTab === "Grammar" && !userChapters.length ? "No grammar chapters yet. An owner can use + Add Grammar to create the first chapter." : !userChapters.length ? `No ${studyLabel} chapters yet. The owner can use New to add the first chapter.` : "No searched record found."}</p>
               </div>
             )}
           </article>
@@ -1283,9 +1280,10 @@ function App() {
         >
           {label === "Kanji" ? (
             <Kanji
+              isActive={studyTab === "Kanji"}
+              mode={kanjiMode}
               allExercises={allExercises}
               showMyanmar={showMyanmar}
-              setShowMyanmar={setExerciseMyanmar}
               showReadings={showReadings}
               showKanjiReadings={showKanjiReadings}
               manageMode={manageMode && cloud.isEditor}
@@ -1338,16 +1336,18 @@ function App() {
       ))}
       {deleteType && cloud.isEditor && <DeleteDialog key={`${studyTab}-${deleteType}`} type={deleteType} options={deletionOptions} selectedId={deleteId} onSelect={setDeleteId} onClose={() => setDeleteType(null)} onDelete={deleteSelected} saving={cloud.saving} canDelete={cloud.canEdit} error={cloud.error} />}
       {editor && cloud.isEditor && <ContentEditor saving={cloud.saving} canSave={cloud.canEdit} error={cloud.error || (!cloud.connected ? "Connection lost. Keep this form open and reconnect to save." : "")} editor={editor} setEditor={setEditor} chapterOptions={chapterOptions} groups={content.groups || []} studyTabs={studyTabs} onSave={saveContent} onClose={() => setEditor(null)} />}
+      {studyTab === "Vocab" && selected && !isGlobalSearch && (tab === "exercises" || exerciseSection) && <button
+        type="button" className="back-to-vocabulary"
+        onClick={() => { setTab("vocabulary"); setExerciseSectionId(null); focusChapterContent(); }}
+      >← Back to Vocabulary</button>}
       <div className="study-controls" ref={controlsRef}>
         {controlsOpen && (
           <div className="controls-panel" id="study-controls-panel">
             <p className="controls-title">Study View</p>
-            {isChapterStudy && (
-              <div className="vocab-mode-switch" role="group" aria-label="Vocabulary display mode">
+              <div className="vocab-mode-switch" role="group" aria-label={`${studyTab} display mode`}>
                 <button type="button" aria-pressed={!bookMode} onClick={() => setStudyMode("card")}>Card mode</button>
                 <button type="button" aria-pressed={bookMode} onClick={() => setStudyMode("book")}>Book mode</button>
               </div>
-            )}
             <button
               type="button"
               aria-pressed={showJapanese}
@@ -1415,6 +1415,6 @@ function App() {
 }
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <App level={levelFromPath(window.location.pathname)} />
   </React.StrictMode>,
 );

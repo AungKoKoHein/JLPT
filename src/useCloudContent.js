@@ -8,19 +8,18 @@ import {
 } from "firebase/database";
 import { auth, database, googleProvider } from "./firebase.js";
 import {
-  CONTENT_PATH,
   createCloudUpdate,
   decodeSnapshot,
   emptyContent,
   normalizeContent,
 } from "./cloudContent.js";
 
-const CACHE_KEY = "jlpt-public-cloud-cache";
+import { contentPathForLevel } from "./studyRoutes.js";
 
-function readCache() {
+function readCache(cacheKey) {
   try {
     return normalizeContent(
-      JSON.parse(localStorage.getItem(CACHE_KEY) || "{}"),
+      JSON.parse(localStorage.getItem(cacheKey) || "{}"),
     );
   } catch {
     return structuredClone(emptyContent);
@@ -48,8 +47,10 @@ function explainError(error) {
   );
 }
 
-export function useCloudContent() {
-  const [content, setContent] = useState(readCache);
+export function useCloudContent(level = "n3") {
+  const contentPath = contentPathForLevel(level);
+  const cacheKey = `jlpt-${level}-cloud-cache`;
+  const [content, setContent] = useState(() => readCache(cacheKey));
   const [user, setUser] = useState(null);
   const [editorUid, setEditorUid] = useState(null);
   const [loaded, setLoaded] = useState(false);
@@ -97,7 +98,7 @@ export function useCloudContent() {
     setLoaded(false);
     setLoadError("");
     return onValue(
-      ref(database, CONTENT_PATH),
+      ref(database, contentPath),
       (snapshot) => {
         try {
           const next = decodeSnapshot(snapshot.val());
@@ -107,7 +108,7 @@ export function useCloudContent() {
           setLoaded(true);
           setLoadError("");
           try {
-            localStorage.setItem(CACHE_KEY, JSON.stringify(next.content));
+            localStorage.setItem(cacheKey, JSON.stringify(next.content));
           } catch {
             /* Cloud remains the source of truth. */
           }
@@ -121,7 +122,7 @@ export function useCloudContent() {
         setLoadError(explainError(error));
       },
     );
-  }, [subscription]);
+  }, [subscription, contentPath, cacheKey]);
 
   useEffect(() => {
     if (!saving) return;
@@ -152,7 +153,7 @@ export function useCloudContent() {
       const next = typeof update === "function" ? update(base.content) : update;
       if (next === base.content) return true;
       const result = await runTransaction(
-        ref(database, CONTENT_PATH),
+        ref(database, contentPath),
         (current) =>
           createCloudUpdate(
             current,
@@ -209,7 +210,7 @@ export function useCloudContent() {
     }
   };
   const importBrowserEdits = async () => {
-    if (!canEdit || revision !== 0) return;
+    if (level !== "n3" || !canEdit || revision !== 0) return;
     try {
       const legacy = localStorage.getItem("jlpt-user-content");
       if (!legacy) {
@@ -230,6 +231,7 @@ export function useCloudContent() {
   };
 
   return {
+    level,
     content,
     updateContent,
     user,

@@ -46,7 +46,7 @@ export default function CloudStatus({ cloud }) {
             Retry Connection
           </button>
         )}
-        {cloud.isEditor && cloud.loaded && cloud.revision === 0 && (
+        {cloud.level === "n3" && cloud.isEditor && cloud.loaded && cloud.revision === 0 && (
           <button
             type="button"
             onClick={cloud.importBrowserEdits}

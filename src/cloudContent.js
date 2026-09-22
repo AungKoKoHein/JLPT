@@ -1,5 +1,8 @@
 export const CONTENT_PATH = "jlpt/content";
 export const emptyContent = {
+  baselineChapters: [],
+  baselineKanjiChapters: [],
+  baselineExercises: [],
   cards: [],
   exercises: [],
   subchapters: [],

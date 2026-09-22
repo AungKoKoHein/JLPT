@@ -1,5 +1,7 @@
 {
   "rewrites": [
+    { "source": "/n2/:path*", "destination": "/index.html" },
+    { "source": "/n3/:path*", "destination": "/index.html" },
     { "source": "/vocab", "destination": "/index.html" },
     { "source": "/grammar", "destination": "/index.html" },
     { "source": "/kanji", "destination": "/index.html" },

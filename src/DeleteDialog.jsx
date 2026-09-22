@@ -1,3 +1,4 @@
+import TextField from "./TextField.jsx";
 import React, { useEffect, useRef, useState } from "react";
 
 export default function DeleteDialog({ type, options, selectedId, onSelect, onClose, onDelete, saving, canDelete, error }) {
@@ -25,7 +26,7 @@ export default function DeleteDialog({ type, options, selectedId, onSelect, onCl
       <header className="delete-heading"><div><p className="eyebrow">Manage study content</p><h2 id="delete-title">Delete {title}</h2></div><button type="button" className="delete-close" aria-label="Close delete dialog" onClick={onClose} disabled={saving}>?</button></header>
       <div className="delete-body">
         <p id="delete-description">Choose the {title} you want to remove.</p>
-        <label className="delete-search">Find an item<input autoFocus type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder={`Search ${title}s`} /></label>
+        <label className="delete-search">Find an item<TextField fullWidth variant="outlined" size="small" autoFocus type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder={`Search ${title}s`} /></label>
         {hasLocationFilters && <div className="delete-filters">
           <label>Chapter<select value={chapterFilter} onChange={(event) => { setChapterFilter(event.target.value); setSubchapterFilter(""); }}>
             <option value="">All chapters</option>

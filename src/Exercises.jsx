@@ -4,7 +4,6 @@ export default function Exercises({
   exercises,
   showReadings,
   showMyanmar,
-  setShowMyanmar,
   onEdit,
   onDelete,
   onAdd,
@@ -62,15 +61,6 @@ export default function Exercises({
           onClick={() => setShowAnswers((value) => !value)}
         >
           Answer Key: {showAnswers ? "ON" : "OFF"}
-        </button>
-        <button
-          type="button"
-          className="reading-toggle"
-          aria-label="Show Myanmar exercise text"
-          aria-pressed={showMyanmar}
-          onClick={() => setShowMyanmar(!showMyanmar)}
-        >
-          Myanmar: {showMyanmar ? "ON" : "OFF"}
         </button>
       </div>
       {[...new Set(exercises.map((item) => item.section))].map((section) => (

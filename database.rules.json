@@ -13,16 +13,49 @@
         ".read": true,
         ".write": "auth != null && root.child('editors').child(auth.uid).val() === true && newData.exists()",
         ".validate": "newData.hasChildren(['schemaVersion', 'revision', 'payload', 'updatedBy', 'updatedAt'])",
-        "schemaVersion": { ".validate": "newData.val() === 1" },
+        "schemaVersion": {
+          ".validate": "newData.val() === 1"
+        },
         "revision": {
           ".validate": "newData.isNumber() && ((!data.exists() && newData.val() === 1) || (data.exists() && newData.val() === data.val() + 1))"
         },
-        "payload": { ".validate": "newData.isString()" },
-        "updatedBy": { ".validate": "newData.val() === auth.uid" },
+        "payload": {
+          ".validate": "newData.isString()"
+        },
+        "updatedBy": {
+          ".validate": "newData.val() === auth.uid"
+        },
         "updatedAt": {
           ".validate": "newData.isNumber() && newData.val() === now"
         },
-        "$other": { ".validate": false }
+        "$other": {
+          ".validate": false
+        }
+      },
+      "n2": {
+        "content": {
+          ".read": true,
+          ".write": "auth != null && root.child('editors').child(auth.uid).val() === true && newData.exists()",
+          ".validate": "newData.hasChildren(['schemaVersion', 'revision', 'payload', 'updatedBy', 'updatedAt'])",
+          "schemaVersion": {
+            ".validate": "newData.val() === 1"
+          },
+          "revision": {
+            ".validate": "newData.isNumber() && ((!data.exists() && newData.val() === 1) || (data.exists() && newData.val() === data.val() + 1))"
+          },
+          "payload": {
+            ".validate": "newData.isString()"
+          },
+          "updatedBy": {
+            ".validate": "newData.val() === auth.uid"
+          },
+          "updatedAt": {
+            ".validate": "newData.isNumber() && newData.val() === now"
+          },
+          "$other": {
+            ".validate": false
+          }
+        }
       }
     }
   }

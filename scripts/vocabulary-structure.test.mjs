@@ -1,14 +1,14 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { readFile } from "node:fs/promises";
-import { chapters } from "../src/data/n3Vocabulary.js";
-import { exercisesByChapter } from "../src/data/exercises.js";
+import catalog from "../migrations/n3-catalog.json" with { type: "json" };
+const chapters = catalog.baselineChapters;
 import { emptyContent, normalizeContent } from "../src/cloudContent.js";
 import { resolveVocabularyCards, resolveVocabularySubchapters } from "../src/vocabularyContent.js";
 import { exercisesForView, resolveExercises, unassignExercises, vocabularyExercises } from "../src/exerciseContent.js";
 
 const structure = JSON.parse(await readFile(new URL("../source/vocabulary-structure.json", import.meta.url), "utf8"));
-const baseExercises = vocabularyExercises(exercisesByChapter);
+const baseExercises = catalog.baselineExercises.filter(item => item.studyTab === "Vocab");
 const withoutReadings = (text) => text.replace(/（[ぁ-ゖー]+）/g, "");
 
 test("all book chapters retain both numbered sections, card order, and matching exercises", () => {
@@ -71,7 +71,7 @@ test("explicit card moves and exercise unassignment override book defaults", () 
   assert.equal(resolveVocabularyCards(chapters, content).find((card) => card._id === `${chapter.id}:card:0`).chapterId, chapter.id);
   const exercises = resolveExercises(baseExercises, content, sections);
   assert.equal(exercises.find((item) => item._id === `${chapter.id}:exercise:0`).subchapterId, "");
-  assert.equal(exercisesForView(exercises, "Vocab", chapter.id).length, exercisesByChapter[chapter.id].length);
+  assert.equal(exercisesForView(exercises, "Vocab", chapter.id).length, baseExercises.filter(item => item.chapterId === chapter.id).length);
 });
 
 test("book section edits and deletion persist without losing its main-list exercises", () => {
@@ -89,7 +89,7 @@ test("book section edits and deletion persist without losing its main-list exerc
   assert(!sections.some((item) => item.id === section.id));
   assert(!resolveVocabularyCards(chapters, restored).some((card) => card.sourceSubchapterId === section.id));
   const remaining = resolveExercises(baseExercises, restored, sections);
-  assert.equal(exercisesForView(remaining, "Vocab", chapter.id).length, exercisesByChapter[chapter.id].length);
+  assert.equal(exercisesForView(remaining, "Vocab", chapter.id).length, baseExercises.filter(item => item.chapterId === chapter.id).length);
   assert(remaining.filter((item) => item.chapterId === chapter.id && item.section.startsWith("1-")).every((item) => item.subchapterId === ""));
 });
 

@@ -1,30 +1,11 @@
+import { kanjiExamples } from "./kanjiContent.js";
 import useShuffledCards from "./useShuffledCards.js";
 import { sortChapters, groupChapters } from "./chapterGroups.js";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Exercises from "./Exercises.jsx";
 import SubchapterNav, { subchapterTargetId } from "./SubchapterNav.jsx";
-import { kanjiExercises, exercisesForView } from "./exerciseContent.js";
-import { kanjiChapter1 } from "./data/kanjiChapter1.js";
-import { kanjiChapter2 } from "./data/kanjiChapter2.js";
-import { kanjiChapter3 } from "./data/kanjiChapter3.js";
-import { kanjiChapter4 } from "./data/kanjiChapter4.js";
-import { kanjiChapter5 } from "./data/kanjiChapter5.js";
-import { kanjiChapter6 } from "./data/kanjiChapter6.js";
-import { kanjiChapter7 } from "./data/kanjiChapter7.js";
-
-const chapters = [
-  kanjiChapter1,
-  kanjiChapter2,
-  kanjiChapter3,
-  kanjiChapter4,
-  kanjiChapter5,
-  kanjiChapter6,
-  kanjiChapter7,
-];
-
-export const baseKanjiExercises = kanjiExercises(chapters);
-
-export const kanjiChapterOptions = chapters.map(({ id, number, title, sections }) => ({
+import { exercisesForView } from "./exerciseContent.js";
+export const getKanjiChapterOptions = (chapters) => chapters.map(({ id, number, title, sections }) => ({
   id,
   number,
   title,
@@ -47,9 +28,10 @@ export const kanjiChapterOptions = chapters.map(({ id, number, title, sections }
 }));
 
 export function resolveKanjiCards(content) {
-  return [...chapters.flatMap((chapter) => chapter.cards.map((card, index) => ({ ...card, _id: `${chapter.id}:kanji:${index}`, chapterId: chapter.id, studyTab: "Kanji" }))), ...(content.kanjiCards || [])]
+  return [...(content.baselineKanjiChapters ?? []).flatMap((chapter) => chapter.cards.map((card, index) => ({ ...card, _id: `${chapter.id}:kanji:${index}`, chapterId: chapter.id, studyTab: "Kanji" }))), ...(content.kanjiCards || [])]
     .map((card) => ({ ...card, ...content.kanjiOverrides[card._id], studyTab: "Kanji" }))
-    .filter((card) => !content.deletedKanjiCards.includes(card._id));
+    .filter((card) => !content.deletedKanjiCards.includes(card._id))
+    .map((card) => ({ ...card, examples: kanjiExamples(card) }));
 }
 
 const normalizeSearchText = (value = "") =>
@@ -69,73 +51,55 @@ const matchesSearch = (value, query) => {
 const displayText = (text, showReadings) =>
   showReadings ? text : text.replace(/（[^）]*）/g, "");
 
-function KanjiCard({ card, showReadings, showKanjiReadings }) {
+function KanjiBookEntry({ card, showReadings, showKanjiReadings, showMyanmar }) {
+  const readings = card.readings?.length ? card.readings : [{ on: card.on, kun: card.kun }];
+  return <div className="kanji-study-card">
+    <p className="kanji-study-heading"><strong lang="ja">{displayText(card.kanji, showReadings)}</strong>{showMyanmar && <span lang="my"> - {card.meaning}</span>}</p>
+    {showKanjiReadings && <div lang="ja" className="kanji-study-readings">
+      <p>音読み - {readings.map((reading) => reading.on).filter(Boolean).join("・") || "—"}</p>
+      <p>訓読み - {readings.map((reading) => reading.kun).filter(Boolean).join("・") || "—"}</p>
+    </div>}
+    <ol className="kanji-examples">
+      {kanjiExamples(card).filter((example) => example.japanese || example.myanmar).map((example, index) => <li key={index}>
+        <p lang="ja">{displayText(example.japanese, showReadings)}</p>
+        {showMyanmar && example.myanmar && <p lang="my">{example.myanmar}</p>}
+      </li>)}
+    </ol>
+  </div>;
+}
+
+function KanjiFlashcard({ card, showReadings, showKanjiReadings, showMyanmar }) {
   const [flipped, setFlipped] = useState(false);
+  const readings = card.readings?.length ? card.readings : [{ on: card.on, kun: card.kun }];
   return (
     <button
       type="button"
       className={`flashcard kanji-card ${flipped ? "flipped" : ""}`}
       onClick={() => setFlipped((value) => !value)}
       aria-label={`${card.kanji}: ${flipped ? "show kanji" : "show readings and examples"}`}
+      aria-pressed={flipped}
     >
       <span className="flash-inner">
         <span className="face front" aria-hidden={flipped}>
-          <strong
-            lang="ja"
-            className={card.term ? "kanji-word-title" : "kanji-character"}
-          >
-            {displayText(card.term ?? card.kanji, showReadings)}
-          </strong>
-          <span className="meaning" lang="my">
-            {card.meaning}
-          </span>
-          {showKanjiReadings &&
-            card.readings?.map((reading, index) => (
-              <span className="kanji-reading-summary" key={`${reading.kanji}-${index}`}>
-                <span className="label" data-japanese>
-                  On’yomi (音読み)
-                </span>
-                <span className="example" lang="ja" data-japanese>
-                  {reading.on || "None listed"}
-                </span>
-                <span className="label" data-japanese>
-                  Kun’yomi (訓読み)
-                </span>
-                <span className="example" lang="ja" data-japanese>
-                  {reading.kun || "None listed"}
-                </span>
-              </span>
-            ))}
+          <strong lang="ja" className="kanji-character">{displayText(card.kanji, showReadings)}</strong>
+          {showMyanmar && <span className="meaning" lang="my">{card.meaning}</span>}
           {card.strokes && <span className="hint">{card.strokes} strokes</span>}
+          <span className="hint">Click to show readings and examples</span>
         </span>
         <span className="face back" aria-hidden={!flipped}>
-          <strong className="jp" lang="ja">
-            {displayText(card.term ?? card.kanji, showReadings)}
-            {card.strokes ? ` · ${card.strokes} strokes` : ""}
-          </strong>
-          {card.sentence && (
-            <>
-              <span className="label" data-japanese>
-                Japanese Sentence
-              </span>
-              <span className="example" lang="ja">
-                {displayText(card.sentence, showReadings)}
-              </span>
-            </>
-          )}
-          <span className="label" lang={card.examples ? "en" : "my"}>
-            {card.examples
-              ? "Example sentences"
-              : "စကားလုံးများနှင့် အဓိပ္ပာယ်ရှင်းလင်းချက်"}
-          </span>
-          {card.words.map((word, index) => (
-            <span className="kanji-word" key={`${word.term}-${index}`}>
-              <span className="example" lang="ja">
-                {displayText(word.sentence ?? word.term, showReadings)}
-              </span>
-              <span className="kanji-word-explanation" lang="my">
-                {word.explanation}
-              </span>
+          <strong lang="ja">{displayText(card.kanji, showReadings)}</strong>
+          {showKanjiReadings && readings.map((reading, index) => (
+            <span className="kanji-reading-summary" key={index}>
+              <span className="label" data-japanese>On’yomi (音読み)</span>
+              <span className="example" lang="ja">{reading.on || "—"}</span>
+              <span className="label" data-japanese>Kun’yomi (訓読み)</span>
+              <span className="example" lang="ja">{reading.kun || "—"}</span>
+            </span>
+          ))}
+          {kanjiExamples(card).map((example, index) => (
+            <span className="kanji-word" key={index}>
+              {example.japanese && <span className="example" lang="ja">{displayText(example.japanese, showReadings)}</span>}
+              {showMyanmar && example.myanmar && <span className="kanji-word-explanation" lang="my">{example.myanmar}</span>}
             </span>
           ))}
         </span>
@@ -145,9 +109,10 @@ function KanjiCard({ card, showReadings, showKanjiReadings }) {
 }
 
 export default function Kanji({
+  isActive,
+  mode = "book",
   allExercises,
   showMyanmar,
-  setShowMyanmar,
   showReadings,
   showKanjiReadings,
   manageMode,
@@ -160,12 +125,21 @@ export default function Kanji({
   onChapterChange,
   setManageMode,
 }) {
+  const chapters = content.baselineKanjiChapters ?? [];
+  const kanjiChapterOptions = getKanjiChapterOptions(chapters);
   const [shuffleMode, setShuffleMode] = useState(false);
   const [chapterQuery, setChapterQuery] = useState("");
   const [query, setQuery] = useState("");
   const [tab, setTab] = useState("kanji");
   const [active, setActive] = useState("kanji-1");
   const [exerciseScope, setExerciseScope] = useState("");
+  useEffect(() => {
+    if (isActive) {
+      setTab("kanji");
+      setQuery("");
+      setExerciseScope("");
+    }
+  }, [isActive]);
   const allChapters = sortChapters([
     ...chapters.map((chapter) => ({
       ...chapter,
@@ -200,6 +174,7 @@ export default function Kanji({
         ...(card.readings ?? []).flatMap(({ kanji, on, kun }) => [kanji, on, kun]),
         card.meaning,
         card.sentence,
+        ...kanjiExamples(card).flatMap((example) => [example.japanese, example.myanmar]),
         card.lesson,
         ...(card.words ?? []).flatMap((word) => [
           word.term,
@@ -211,9 +186,10 @@ export default function Kanji({
     );
   const chapterCards = cards.filter((card) => customCards.some((item) => item._id === card._id));
   const shuffledCards = useShuffledCards(cards, shuffleMode);
+  const CardView = mode === "book" ? KanjiBookEntry : KanjiFlashcard;
   const renderCard = (card) => (
-      <div className={`managed-item card-layout-${card.layout || "standard"} ${query.trim() ? "search-hit" : ""}`} key={card._id ?? card.id ?? card.kanji}>
-        <KanjiCard card={card} showReadings={showReadings} showKanjiReadings={showKanjiReadings} />
+      <div className={`managed-item kanji-study-item ${query.trim() ? "search-hit" : ""}`} key={card._id ?? card.id ?? card.kanji}>
+        <CardView card={card} showReadings={showReadings} showKanjiReadings={showKanjiReadings} showMyanmar={showMyanmar} />
         {manageMode && isEditor && (
           <div className="item-actions">
             <button type="button" onClick={() => openEditor("kanji", "edit", card)}>Edit</button>
@@ -264,18 +240,18 @@ export default function Kanji({
               }}
             >
               <span>Chapter {chapter.number}</span>
-              <strong lang="ja">
-                {displayText(chapter.title, showReadings)}
+              <strong>
+                {displayText(chapter.title.split(" / ").filter((part) => !/\p{Script=Myanmar}/u.test(part)).join(" / "), showReadings)}
               </strong>
             </button>
           ))}
           </div>)}</div>
         </aside>
-        <article>
+        <article className="kanji-study">
           {selected ? (
             <>
               <p className="eyebrow">Chapter {selected.number} · Kanji</p>
-              <h2 lang="ja">{displayText(selected.title, showReadings)}</h2>
+              <h2>{displayText([selected.title, showMyanmar ? selected.titleMyanmar : ""].filter(Boolean).join(" / ").split(" / ").filter((part) => showMyanmar || !/\p{Script=Myanmar}/u.test(part)).join(" / "), showReadings)}</h2>
               <div className="tools">
                 <button
                   type="button"
@@ -457,7 +433,6 @@ export default function Kanji({
                     exercises={exercises}
                     showReadings={showReadings}
                     showMyanmar={showMyanmar}
-                    setShowMyanmar={setShowMyanmar}
                     assignmentLabel={exerciseAssignment?.title}
                     onAdd={canEdit ? () => openEditor("exercise", "add", { studyTab: "Kanji", chapterId: selected.id, subchapterId: exerciseAssignment?.id ?? "" }) : undefined}
                     onEdit={manageMode && isEditor ? (item) => openEditor("exercise", "edit", item) : undefined}
@@ -472,7 +447,7 @@ export default function Kanji({
             </>
           ) : (
             <div className="empty search-empty">
-              <p>No searched record found.</p>
+              <p>{allChapters.length ? "No searched record found." : "No Kanji chapters yet. The owner can use New to add the first chapter."}</p>
             </div>
           )}
         </article>

@@ -1,68 +1,35 @@
-# Firebase setup for JLPT
+# Firebase setup
 
-The app uses your `akkh-jlpt` project, Firebase Authentication (Google), and **Realtime Database**. It continues to run on GitHub Pages. No custom server is needed.
+The app uses the existing `akkh-jlpt` project, Google sign-in, and Firebase Realtime Database. N2 is a separate section of the same database, not a new database or project.
 
-Everyone can read the published study content. Only the account you grant access to can add, edit, delete, or reorder it. Signing in alone does not grant edit access.
+## Paths and access
 
-## 1. Enable Google sign-in
+- N3 content: `/jlpt/content`
+- N2 content: `/jlpt/n2/content`
+- Authorized owners: `/editors/<Firebase UID> = true`
 
-In [Firebase Authentication](https://console.firebase.google.com/project/akkh-jlpt/authentication/providers), enable the **Google** provider and select your project support email.
+Both content paths allow public reads. Writes require an authorized owner, valid record fields, and an incremented revision. The browser cannot grant editor access. Both levels share the same owner permissions.
 
-In **Authentication → Settings → Authorized domains**, add:
+Enable Google as a sign-in provider and authorize the site's domain and localhost in Firebase Authentication. Use Owner Sign In with Google in the app; signing in alone does not grant editor access.
 
-- `aungkokohein.github.io` (your GitHub Pages hostname, without a repository path)
-- `localhost` and `127.0.0.1` if you will edit while running the app locally
-- Your custom hostname, if you use one
+The rules are in [database.rules.json](database.rules.json). Deploy updates using:
 
-## 2. Publish the database rules
+```sh
+npx --yes firebase-tools@latest deploy --only database --project akkh-jlpt
+```
 
-Open [Realtime Database](https://console.firebase.google.com/project/akkh-jlpt/database), select the `akkh-jlpt-default-rtdb` instance, and open **Rules**. Copy the contents of [database.rules.json](database.rules.json) and click **Publish**. If this project also serves other apps, merge their existing rules rather than removing them.
+## Content storage
 
-The rules allow public reads only at `/jlpt/content`. Writes require `/editors/<your Firebase UID>` to be the boolean `true`. Browser clients cannot grant themselves editor access.
+Each level stores a schema-versioned record with a revision, JSON payload, updater, and timestamp. JSON preserves IDs containing periods and empty arrays. Revision-checked transactions prevent stale saves from overwriting newer edits.
 
-Alternatively, with an authenticated Firebase CLI, run `firebase deploy --only database --project akkh-jlpt`. The included `firebase.json` and `.firebaserc` select the rules and project. No rules have been deployed by this code change.
+The complete N3 catalog is stored in the payload alongside owner additions and overrides. The app does not load source-file study data. N2 starts with empty arrays and has all the same study and editing controls.
 
-## 3. Grant your account edit access
+Caches are level-specific. Editing requires loaded data, owner permission, and a live connection. Keep the page open while a save is pending. Failed saves retain the open editor and show an error.
 
-1. Run `npm run dev`, open the site, and click **Owner sign in with Google**. Choose your Google account.
-2. Copy the Firebase user ID shown on the page. You can also find it under **Authentication → Users** in the Firebase console.
-3. In **Realtime Database → Data**, add an `editors` child at the root. Under it, add your UID as the key and boolean `true` as the value. For example:
+## One-time N3 migration
 
-   ```json
-   {
-     "editors": {
-       "YOUR_FIREBASE_USER_ID": true
-     }
-   }
-   ```
+`migrations/upload-catalog.mjs` reads credentials from an existing Firebase CLI login, backs up the current records and rules, and merges `migrations/n3-catalog.json` without replacing owner edits. It uses conditional ETag writes, verifies saved content, initializes N2 only if absent, and adds N2 rules while preserving existing rules.
 
-   Add this child to the database; do not import this example over existing database data. Use a boolean, not the string `"true"`.
+Run it with the installed firebase-tools package directory as its first argument. Without `--apply` it performs a read-only check; with `--apply` it uploads. Backups are stored locally in ignored `.migration-backups/`. The migration snapshot is retained for regression tests and is excluded from the frontend bundle.
 
-4. The site should show **Owner editing enabled**. Existing Add/Edit/Delete and position controls now save to Firebase.
-
-Do not add other UIDs unless you want those accounts to edit too. Removing your editor entry revokes edit permission.
-
-## 4. Publish the app and verify
-
-Push these source changes and the updated npm lockfile to `main` for the existing GitHub Pages workflow to rebuild the site. The Firebase web configuration is already in `src/firebase.js`; no GitHub secret is needed for it. Access is enforced by database rules.
-
-Add a test card while signed in, wait for **Saved to Firebase**, then open the site in a signed-out browser. It should show the same card with editing disabled. Edit and delete the test card to verify that both views update.
-
-The baseline vocabulary, Kanji, and exercises remain bundled in the app. Firebase stores additions, overrides, deletions, and card positions. It does not rewrite the source files in the GitHub repository.
-
-## Existing browser edits and offline behavior
-
-Your previous `jlpt-user-content` local storage is left intact. When the cloud content is empty, the authorized owner can click **Publish previous browser edits** to publish that browser's old changes. This is explicit; opening the page never uploads or overwrites the database automatically.
-
-Shared data is cached separately for reading. Editing requires a connection and loaded cloud data. A save started just before disconnection can remain pending; keep the page open until Firebase confirms it. Permission failures are shown on screen, and a failed form save keeps the editor open. Changes made simultaneously on another device cause a conflict message instead of silently overwriting that device's work.
-
-The database record uses a versioned JSON `payload` because the app's existing ordering keys contain characters that are invalid as Realtime Database child keys, and Firebase otherwise removes empty arrays. A revision-checked transaction protects the shared record against concurrent overwrites.
-
-## Checks
-
-- `npm test` tests the content format, deletion/order round trips, and stale-save protection.
-- `npm run build` builds the GitHub Pages site. This restored project still regenerates its document-derived source data during the build.
-
-Google sign-in and owner writes must be verified after the console steps above; they cannot be enabled using the public web configuration alone.
-
-References: [Google sign-in](https://firebase.google.com/docs/auth/web/google-signin), [Realtime Database reads and writes](https://firebase.google.com/docs/database/web/read-and-write), [Database security rules](https://firebase.google.com/docs/database/security/core-syntax).
+Reference: [Firebase conditional writes](https://firebase.google.com/docs/database/rest/save-data).

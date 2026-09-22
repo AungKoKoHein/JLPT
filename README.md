@@ -1,33 +1,40 @@
-# JLPT N3 Vocabulary - static site
+# JLPT N3 and N2
 
-This frontend uses Firebase Realtime Database for shared edits and Google sign-in for owner-only editing. Its baseline chapter data is bundled into `src/data/n3Vocabulary.js`; the site still runs on GitHub Pages without a custom server.
+Both levels use the same study and editing features, with independent content in the existing Firebase Realtime Database.
 
-Follow [FIREBASE_SETUP.md](FIREBASE_SETUP.md) to enable Google sign-in, publish the database rules, and grant your account editing access. Everyone else can read the shared content.
+- N3: /n3/vocab (legacy /vocab, /grammar, and other topic links still work).
+- N2: /n2/vocab, initially empty.
+- Each level includes vocabulary, grammar, Kanji, listening, reading, and mock exams.
+- Use the level links in the header to switch levels. Only the authorized owner can edit.
 
-## Run locally
+## Development
 
-The vocabulary Exercises tab uses 385 sentences and matching answer keys imported from the supplied Word documents, plus the six illustrated animal-counting questions on printed page 81. Vocabulary and Kanji exercise views support **Answer key: OFF / ON** and **Myanmar: OFF / ON**. Myanmar question text appears with the question; Myanmar answer text appears only while the answer key is on. The existing readings toggle still controls Japanese readings.
-
-While signed in as the owner, turn **Manage: ON**, then **Edit** an exercise to add its optional **Myanmar sentence / question** and **Myanmar answer / explanation**. Built-in Kanji exercises can also be edited. Use **+ Exercise** to add one.
-
-**Assign to subchapter** links the same exercise to that subchapter; it always remains in its main chapter's Exercises tab. Both views share the same question, answer, and translations. Unassigned exercises appear only in the main list. Select **Unassigned - main exercises only** to remove the link. **Delete everywhere** removes an exercise from both views; deleting a subchapter only removes its assignment and keeps the exercise in the main list.
-
-For vocabulary, open a subchapter's exercise button. All 29 vocabulary chapters use the book's two numbered subchapters, with cards in source order and exercises assigned by their section number. `source/vocabulary-structure.json` records the headings and printed page numbers checked against `N3 Shinkanzen Vocab.docx`. Manually created sections with matching numbers are reused, so Chapter 1 keeps its saved titles, card edits, translations, layouts, and exercise assignments. Owner edits and explicit unassignments take precedence over book defaults. For Kanji, use **Exercises → Show exercises for** to choose the main list or an assigned subchapter. Kanji exercises are not automatically assigned. Translations are entered by the owner, not generated automatically.
-
-The importer accepts both 言葉 and 言語 headings in the old text export, restoring the 46 previously skipped transitive-verb cards in Part 2 Chapter 1. Existing card and exercise IDs remain stable. The six picture exercises and original illustrations are stored in `source/vocabulary-picture-exercises.json` and `public/images/vocabulary/`.
-
-Extracted document text is stored in `source/exercise-sentences.txt` and `source/exercise-answers.txt`. `scripts/import-exercises.mjs` validates chapter/section counts and rebuilds `src/data/exercises.js` during development and production builds.
-
-```bash
+```sh
 npm install
 npm run dev
 ```
 
-## GitHub Pages
+Development starts Vite directly. Production builds use `npm run build`. Neither command imports documents, adds readings, or generates study data. All study content comes from Firebase; a separate cache for each level supports previously loaded content offline.
 
-1. Create a **private** GitHub repository and upload this folder.
-2. Push it to the `main` branch.
-3. In GitHub: **Settings -> Pages -> Build and deployment -> Source**, choose **GitHub Actions**.
-4. After the workflow completes, open the URL shown in the Actions deployment.
+## Database
 
-The PDF-derived content is stored locally in the project. Before making the repository public, confirm that you have copyright permission to redistribute the source material.
+The existing `akkh-jlpt` project and database are used:
+
+| Level | Content path |
+| --- | --- |
+| N3 | /jlpt/content |
+| N2 | /jlpt/n2/content |
+
+Chapters, cards, exercises, edits, deletions, assignments, and ordering are stored in each level's versioned content record. N3's migrated catalog preserves original IDs and owner edits. N2 has no initial study data. Create its first chapter using New while signed in as the owner.
+
+See [FIREBASE_SETUP.md](FIREBASE_SETUP.md) for authentication and access rules.
+
+## Migration and source archive
+
+`migrations/n3-catalog.json` is a one-time migration snapshot and regression-test fixture. It is not imported by the app or included in the site build. Original source documents remain in `source/` for reference. Content is maintained through the site's owner controls.
+
+The migration utility preserves existing content, checks revisions with Firebase ETags, and creates local backups under ignored `.migration-backups/`. Re-running it does not reseed an existing catalog or overwrite N2 data.
+
+## Validation and hosting
+
+Run `npm test`, `npm run typecheck`, and `npm run build`. The build emits entry pages for both levels and all study tabs so direct links and refreshes work on static hosting. Vercel rewrites are also configured.
