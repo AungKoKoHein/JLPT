@@ -324,7 +324,6 @@ export default function Kanji({
                     <section className="vocab-section kanji-subchapter-section">
                       <div className="vocab-section-heading">
                         <div>
-                          <p className="eyebrow">Sub Chapter 1l1</p>
                           <h3 lang="ja" id={subchapterTargetId("kanji-1-subchapter-1l1")} tabIndex={-1}>1l1</h3>
                         </div>
                         {manageMode && isEditor && (
@@ -385,7 +384,6 @@ export default function Kanji({
                       <section className="kanji-lesson-group vocab-section" key={subchapter.id}>
                         <div className="vocab-section-heading">
                           <div>
-                            <p className="eyebrow">Sub Chapter {subchapter.number}</p>
                             <h3 lang="ja" id={subchapterTargetId(subchapter.id)} tabIndex={-1}>{displayText(subchapter.title, showReadings)}</h3>
                           </div>
                           {manageMode && isEditor && (

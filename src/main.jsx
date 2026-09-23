@@ -741,7 +741,7 @@ function App({ level }) {
   const shuffledVocabulary = useShuffledCards(vocabSections.flatMap((section) => section.cards), shuffleVocabulary, (entry) => entry.card._id);
   const displayedVocabSections = shuffleVocabulary && selected
     ? [{ chapter: selected, isSubchapter: false, cards: shuffledVocabulary }]
-    : vocabSections;
+    : vocabSections.filter((section) => section.isSubchapter || section.cards.length > 0);
   const exercises = selected ? exercisesForView(allExercises, studyTab, selected.id) : [];
   const exercisesForSection = (section) => exercisesForView(
     allExercises, studyTab, selected?.id, section.id === selected?.id ? "" : section.id,
@@ -1157,9 +1157,9 @@ function App({ level }) {
                       tabIndex={-1}
                       aria-label="Dedicated exercises"
                     >
-                      <p className="eyebrow">
-                        {exerciseSection.isSubchapter ? "Sub Chapter" : "Chapter"} {exerciseSection.chapter.number}
-                      </p>
+                      {!exerciseSection.isSubchapter && <p className="eyebrow">
+                        Chapter {exerciseSection.chapter.number}
+                      </p>}
                       <h2 lang="ja">
                         {localizedChapterTitle(exerciseSection.chapter, showMyanmar, showReadings, showJapanese)}
                       </h2>
@@ -1205,7 +1205,6 @@ function App({ level }) {
                         <section className="vocab-section" key={chapter.id}>
                           {isSubchapter && <div className="vocab-section-heading">
                             <div>
-                              <p className="eyebrow">{isSubchapter ? `Sub Chapter ${chapter.number}` : `Chapter ${chapter.number}`}</p>
                               <h3 lang="ja" id={isSubchapter ? subchapterTargetId(chapter.id) : undefined} tabIndex={isSubchapter ? -1 : undefined}>{localizedChapterTitle(chapter, showMyanmar, showReadings, showJapanese)}</h3>
                             </div>
                             <div className="vocab-section-actions">
