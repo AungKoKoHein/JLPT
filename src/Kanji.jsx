@@ -76,7 +76,7 @@ function KanjiFlashcard({ card, showReadings, showKanjiReadings, showMyanmar }) 
       type="button"
       className={`flashcard kanji-card ${flipped ? "flipped" : ""}`}
       onClick={() => setFlipped((value) => !value)}
-      aria-label={`${card.kanji}: ${flipped ? "show kanji" : "show readings and examples"}`}
+      aria-label={`${card.kanji}: ${flipped ? "show kanji and readings" : "show examples"}`}
       aria-pressed={flipped}
     >
       <span className="flash-inner">
@@ -84,10 +84,6 @@ function KanjiFlashcard({ card, showReadings, showKanjiReadings, showMyanmar }) 
           <strong lang="ja" className="kanji-character">{displayText(card.kanji, showReadings)}</strong>
           {showMyanmar && <span className="meaning" lang="my">{card.meaning}</span>}
           {card.strokes && <span className="hint">{card.strokes} strokes</span>}
-          <span className="hint">Click to show readings and examples</span>
-        </span>
-        <span className="face back" aria-hidden={!flipped}>
-          <strong lang="ja">{displayText(card.kanji, showReadings)}</strong>
           {showKanjiReadings && readings.map((reading, index) => (
             <span className="kanji-reading-summary" key={index}>
               <span className="label" data-japanese>On’yomi (音読み)</span>
@@ -96,6 +92,8 @@ function KanjiFlashcard({ card, showReadings, showKanjiReadings, showMyanmar }) 
               <span className="example" lang="ja">{reading.kun || "—"}</span>
             </span>
           ))}
+        </span>
+        <span className="face back" aria-hidden={!flipped}>
           {kanjiExamples(card).map((example, index) => (
             <span className="kanji-word" key={index}>
               {example.japanese && <span className="example" lang="ja">{displayText(example.japanese, showReadings)}</span>}
