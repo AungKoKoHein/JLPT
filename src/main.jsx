@@ -1,6 +1,7 @@
 import useShuffledCards from "./useShuffledCards.js";
 import DeleteDialog from "./DeleteDialog.jsx";
 import { removeChapter, removeSubchapter } from "./deleteContainers.js";
+import { hasVisibleChapterContent } from "./chapterVisibility.js";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { chapterGroup, groupChapters, sortChapters, renameChapterGroup } from "./chapterGroups.js";
@@ -14,6 +15,7 @@ import { useCloudContent } from "./useCloudContent.js";
 import CloudStatus from "./CloudStatus.jsx";
 import "./app.css";
 import TextField from "./TextField.jsx";
+import SearchFeedback from "./SearchFeedback.jsx";
 import { kanjiExamples } from "./kanjiContent.js";
 import { matchesVocabulary, vocabularySearchPlaceholder } from "./vocabularySearch.js";
 
@@ -687,10 +689,16 @@ function App({ level }) {
     [content, vocabularyChapters, grammarSubchapters],
   );
 
+  const allExercises = useMemo(() => resolveExercises(
+    content.baselineExercises,
+    content,
+    chapterOptions.flatMap((chapter) => chapter.subchapters ?? []),
+  ), [content, chapterOptions]);
   const userChapters = useMemo(() => chapterOptions
     .filter((chapter) => chapter.studyTab === studyTab)
+    .filter((chapter) => hasVisibleChapterContent(chapter, allVocabularyCards, allExercises))
     .map((chapter) => ({ ...chapter, cards: allVocabularyCards.filter((card) => card.chapterId === chapter.id && (card.studyTab ?? "Vocab") === studyTab) })),
-    [chapterOptions, allVocabularyCards, studyTab]);
+    [chapterOptions, allVocabularyCards, allExercises, studyTab]);
 
   const filteredChapters = useMemo(
     () =>
@@ -734,11 +742,6 @@ function App({ level }) {
   const displayedVocabSections = shuffleVocabulary && selected
     ? [{ chapter: selected, isSubchapter: false, cards: shuffledVocabulary }]
     : vocabSections;
-  const allExercises = useMemo(() => resolveExercises(
-    content.baselineExercises,
-    content,
-    chapterOptions.flatMap((chapter) => chapter.subchapters ?? []),
-  ), [content, chapterOptions]);
   const exercises = selected ? exercisesForView(allExercises, studyTab, selected.id) : [];
   const exercisesForSection = (section) => exercisesForView(
     allExercises, studyTab, selected?.id, section.id === selected?.id ? "" : section.id,
@@ -894,22 +897,24 @@ function App({ level }) {
         record,
       };
     });
-  const deleteSelected = async () => {
+  const deleteSelected = async (deleteContents = false) => {
     if (!cloud.canEdit) return;
     const option = deletionOptions.find((item) => item.id === deleteId);
     if (!option) return;
     if (deleteType === "group") {
       const saved = await setContent((current) => {
-        const next = renameChapterGroup(current, chapterOptions, studyTab, option.id, "Not grouped");
+        const groupedChapters = deletionGroups.find((group) => group.label === option.id)?.chapters || [];
+        const removed = deleteContents ? groupedChapters.reduce((next, chapter) => removeChapter(next, chapter, studyTab === "Kanji" ? allKanjiCards : allVocabularyCards, allExercises, true), current) : current;
+        const next = deleteContents ? removed : renameChapterGroup(removed, chapterOptions, studyTab, option.id, "Not grouped");
         return { ...next, groups: next.groups.filter((group) => !(group.studyTab === studyTab && group.title === option.id)) };
       });
       if (saved) setDeleteType(null);
     } else if (deleteType === "chapter") {
-      const saved = await setContent((current) => removeChapter(current, option.record, studyTab === "Kanji" ? allKanjiCards : allVocabularyCards, allExercises));
+      const saved = await setContent((current) => removeChapter(current, option.record, studyTab === "Kanji" ? allKanjiCards : allVocabularyCards, allExercises, deleteContents));
       if (saved) { setDeleteType(null); setActive(""); setExerciseSectionId(null); }
     } else {
       const saved = await setContent((current) => {
-        if (deleteType === "subchapter") return removeSubchapter(current, option.record, studyTab === "Kanji" ? allKanjiCards : allVocabularyCards, allExercises);
+        if (deleteType === "subchapter") return removeSubchapter(current, { ...option.record, studyTab }, studyTab === "Kanji" ? allKanjiCards : allVocabularyCards, allExercises, deleteContents);
         const key = deleteType === "exercise" ? "deletedExercises" : deleteType === "kanji" ? "deletedKanjiCards" : "deletedCards";
         return { ...current, [key]: [...new Set([...current[key], option.id])] };
       });
@@ -1010,6 +1015,7 @@ function App({ level }) {
               onChange={(e) => setChapterQuery(e.target.value)}
               placeholder="例：家族、性格"
             />
+            <SearchFeedback query={chapterQuery} count={filteredChapters.length} noun="chapter" />
           </label>
           <label htmlFor="vocab-search" className="desktop-vocab-search">
             Search every {studyLabel} card
@@ -1022,6 +1028,7 @@ function App({ level }) {
               readOnly={tab === "exercises"}
               aria-readonly={tab === "exercises"}
             />
+            <SearchFeedback query={tab === "exercises" ? "" : vocabQuery} count={vocabResults.length} />
           </label>
         </section>
         <div className="layout">
@@ -1040,6 +1047,7 @@ function App({ level }) {
                       <span className="chapter-group-title">{chapterTitle(group.label, false, showReadings, true)}</span>
                       <span className="chapter-group-range">{showReadings ? group.range : hideReadings(group.range)}</span>
                     </p>
+                    <div className="chapter-group-cards">
                     {group.chapters.map((chapter) => (
                       <button
                         className={chapter.id === selected?.id ? "active" : ""}
@@ -1054,6 +1062,7 @@ function App({ level }) {
                         <strong>{localizedChapterTitle(chapter, false, showReadings, true)}</strong>
                       </button>
                     ))}
+                    </div>
                   </div>
                 ))
               ) : (
@@ -1074,6 +1083,7 @@ function App({ level }) {
               readOnly={tab === "exercises"}
               aria-readonly={tab === "exercises"}
             />
+            <SearchFeedback query={tab === "exercises" ? "" : vocabQuery} count={vocabResults.length} />
           </label>
           <article ref={chapterContentRef}>
             {selected ? (

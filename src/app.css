@@ -56,7 +56,7 @@ h1 {
   border-radius: 15px;
   padding: 17px 18px;
   font-size: 1.1rem;
-  background: #fff;
+  background: var(--surface);
   outline: none;
   transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -81,7 +81,7 @@ h1 {
 aside,
 article {
   border: 1px solid #e0e7ff;
-  background: #fff;
+  background: var(--surface);
   border-radius: 22px;
   padding: 16px;
   box-shadow: 0 8px 25px #3730a10c;
@@ -93,6 +93,10 @@ article {
 }
 .chapter-group {
   display: block;
+}
+.chapter-group-cards {
+  display: grid;
+  gap: 8px;
 }
 .chapter-group-block + .chapter-group-block {
   margin-top: 18px;
@@ -171,7 +175,7 @@ h2 {
   justify-content: center;
   text-align: center;
   border: 1px solid #c7d2fe;
-  background: #fff;
+  background: var(--surface);
   padding: 10px 14px;
   border-radius: 10px;
   cursor: pointer;
@@ -333,7 +337,7 @@ pre {
 }
 .study-placeholder {
   padding: 24px;
-  background: #fff;
+  background: var(--surface);
 }
 .empty {
   display: grid;
@@ -443,7 +447,7 @@ pre {
   border: 1px solid #c7d2fe;
   border-radius: 10px;
   padding: 9px 12px;
-  background: #fff;
+  background: var(--surface);
   color: #4338ca;
   font: inherit;
   font-weight: 800;
@@ -647,7 +651,7 @@ pre {
   margin: 12px;
   padding: 15px;
   border-radius: 12px;
-  background: #fff;
+  background: var(--surface);
   text-align: left;
 }
 .empty summary {
@@ -683,7 +687,7 @@ header {
   border: 1px solid #c7d2fe;
   border-radius: 10px;
   padding: 9px 12px;
-  background: #fff;
+  background: var(--surface);
   color: #312e81;
   font: inherit;
   font-weight: 800;
@@ -824,7 +828,7 @@ aside button.sidebar-toggle:hover {
   padding: 24px;
   border: 1px solid #c7d2fe;
   border-radius: 20px;
-  background: #fff;
+  background: var(--surface);
   box-shadow: 0 24px 80px #11182755;
 }
 .editor-heading {
@@ -866,7 +870,7 @@ aside button.sidebar-toggle:hover {
   border: 1px solid #cbd5e1;
   border-radius: 9px;
   padding: 10px 11px;
-  background: #fff;
+  background: var(--surface);
   color: #1e293b;
   font: inherit;
   font-weight: 400;
@@ -898,7 +902,7 @@ main {
   border-radius: 999px;
   padding: 12px 18px;
   color: #312e81;
-  background: #fff;
+  background: var(--surface);
   box-shadow: 0 6px 24px #312e8133;
   font-weight: 800;
   cursor: pointer;
@@ -994,7 +998,7 @@ main[data-show-sidebar="false"] .sidebar-heading .count {
   padding: 6px;
   border: 1px solid #c7d2fe;
   border-radius: 16px;
-  background: #fffffff5;
+  background: var(--surface);
   box-shadow: 0 6px 24px #312e8133;
 }
 .subchapter-nav button {
@@ -1040,7 +1044,7 @@ main[data-show-sidebar="false"] .sidebar-heading .count {
   margin-bottom: 10px;
   border: 1px solid #c7d2fe;
   border-radius: 20px;
-  background: #fffffff5;
+  background: var(--surface);
   box-shadow: 0 12px 40px #312e8126;
   backdrop-filter: blur(12px);
 }
@@ -1145,7 +1149,7 @@ main[data-show-sidebar="false"] .sidebar-heading .count {
     z-index: 2;
     margin: -12px -12px 8px;
     padding: 12px;
-    background: #fff;
+    background: var(--surface);
   }
   .chapter-group {
     display: grid;
@@ -1328,7 +1332,7 @@ main[data-show-sidebar="false"] .sidebar-heading .count {
   padding: 10px 14px;
   border: 1px solid #c4b5fd;
   border-radius: 10px;
-  background: white;
+  background: var(--surface);
   color: #312e81;
   cursor: pointer;
 }
@@ -1340,7 +1344,7 @@ button:disabled { cursor: not-allowed; }
 .exercise-answer-translation { color: #166534; }
 .editor-help { grid-column: 1 / -1; margin: 0; line-height: 1.6; color: #475569; }
 .exercise-scope { display: grid; gap: 8px; margin: 16px 0; }
-.exercise-scope select { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 10px; background: white; color: #18213a; }
+.exercise-scope select { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 10px; background: var(--surface); color: #18213a; }
 main[data-show-myanmar="false"] .editor textarea[lang="my"] { display: block; }
 
 /* Use consistent label metrics and centering across all action buttons. */
@@ -1406,12 +1410,13 @@ main button.section-exercise-button {
 
 /* Presentation layer: interaction, visibility and card transforms stay in the base styles. */
 :root {
-  --canvas: #f3f5f5;
-  --surface: #fff;
-  --surface-muted: #f7f9f9;
+  --canvas: #eaf2ee;
+  /* Warm washi and pale flax surfaces against the soft sage canvas. */
+  --surface: #f7f2e7;
+  --surface-muted: #eee9dc;
   --ink: #202d32;
-  --muted: #5e7077;
-  --line: #dce4e5;
+  --muted: #52646a;
+  --line: #d4d5c5;
   --accent: #18685f;
   --accent-hover: #10554e;
   --accent-soft: #edf5f2;
@@ -1426,6 +1431,7 @@ main button.section-exercise-button {
 }
 body {
   overscroll-behavior-y: none;
+  background: var(--canvas);
 }
 main {
   max-width: 1480px;
@@ -1880,11 +1886,11 @@ main[data-show-sidebar="false"] .sidebar-heading {
   box-shadow: var(--shadow);
 }
 .front {
-  background: #fcfdfc;
+  background: var(--surface);
   border-top: 3px solid #b3ccc4;
 }
 .back {
-  background: #f5f8f7;
+  background: #e8eee3;
 }
 .front strong,
 .jp,
@@ -2021,14 +2027,14 @@ pre,
 .back-to-top-icon {
   width: 17px;
   height: 17px;
-  background: #fff;
+  background: currentColor;
   filter: none;
 }
 .controls-panel {
   padding: 14px;
   border-color: var(--line);
   border-radius: 12px;
-  background: #fffffffa;
+  background: var(--surface);
   box-shadow: 0 12px 40px #20343820;
 }
 .controls-title {
@@ -2282,18 +2288,33 @@ main .controls-panel .vocab-mode-switch button {
 @media (max-width: 800px) {
   .layout > aside,
   main[data-show-sidebar="false"] .layout > aside {
-    max-height: min(440px, 55dvh);
-    overflow-y: auto;
-    overscroll-behavior-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  .layout > aside .chapter-group {
-    display: block;
+    min-width: 0;
     max-height: none;
     overflow: visible;
     overscroll-behavior-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
-  aside .chapter-group button { width: 100%; min-height: 72px; }
+  .layout > aside .chapter-group,
+  main[data-show-sidebar="false"] .layout > aside > .chapter-group {
+    display: flex;
+    gap: 16px;
+    max-height: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 8px;
+    scrollbar-gutter: auto;
+    overscroll-behavior-y: auto;
+  }
+  .chapter-group-block { flex: 0 0 auto; min-width: 0; }
+  .chapter-group-block + .chapter-group-block { margin-top: 0; }
+  .chapter-group-cards { display: flex; gap: 8px; }
+  aside .chapter-group button {
+    flex: 0 0 auto;
+    width: min(220px, 65vw);
+    min-height: 72px;
+    margin-top: 0;
+  }
+  .sidebar-heading { position: static; }
   .grammar-card { padding: 18px; }
 }
 
@@ -2314,10 +2335,10 @@ main .controls-panel .vocab-mode-switch button {
 .delete-body { padding: 18px 24px; min-width: 0; }
 .delete-body > p:first-child { margin-top: 0; color: var(--muted); }
 .delete-search { display: grid; gap: 8px; font-size: .9rem; font-weight: 600; }
-.delete-search input { box-sizing: border-box; width: 100%; min-width: 0; padding: 12px; border: 1px solid #afc0c3; border-radius: 9px; background: white; color: var(--ink); font: inherit; }
+.delete-search input { box-sizing: border-box; width: 100%; min-width: 0; padding: 12px; border: 1px solid #afc0c3; border-radius: 9px; background: var(--surface); color: var(--ink); font: inherit; }
 .delete-filters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
 .delete-filters label { display: grid; gap: 8px; font-size: .9rem; font-weight: 600; }
-.delete-filters select { box-sizing: border-box; width: 100%; min-width: 0; padding: 12px; border: 1px solid #afc0c3; border-radius: 9px; background: white; color: var(--ink); font: inherit; }
+.delete-filters select { box-sizing: border-box; width: 100%; min-width: 0; padding: 12px; border: 1px solid #afc0c3; border-radius: 9px; background: var(--surface); color: var(--ink); font: inherit; }
 .delete-options { display: grid; gap: 8px; max-height: 240px; overflow-y: auto; margin: 14px 0; }
 .delete-option { display: flex; align-items: flex-start; gap: 12px; padding: 12px; border: 1px solid var(--line); border-radius: 9px; cursor: pointer; line-height: 1.7; }
 .delete-option input { flex: 0 0 auto; margin-top: 6px; accent-color: var(--accent); }
@@ -2325,6 +2346,8 @@ main .controls-panel .vocab-mode-switch button {
 .delete-option.is-selected { border-color: var(--accent); background: var(--accent-soft); }
 .delete-selection { font-size: .9rem; }
 .delete-notice { padding: 12px 14px; border-radius: 9px; background: #f3f6f7; color: #42565e; font-size: .9rem; line-height: 1.7; }
+.delete-contents { display: flex; align-items: flex-start; gap: 10px; padding: 12px; border: 1px solid #e5c5c5; border-radius: 9px; color: #8b2430; line-height: 1.6; }
+.delete-contents input { flex: 0 0 auto; width: 20px; height: 20px; margin: 3px 0 0; accent-color: #b42332; }
 .delete-empty { padding: 16px; text-align: center; color: var(--muted); }
 .delete-footer { display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap; padding: 16px 24px; border-top: 1px solid var(--line); background: var(--surface); position: sticky; bottom: 0; }
 .delete-dialog .delete-confirm { color: white; background: #b42332; border-color: #b42332; }
@@ -2369,6 +2392,9 @@ main[data-show-myanmar="false"] .editor [lang="my"] { display: block; }
 }
 .back-to-vocabulary {
   position: fixed;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
   right: max(24px, env(safe-area-inset-right));
   bottom: calc(88px + env(safe-area-inset-bottom));
   z-index: 109;
@@ -2377,6 +2403,32 @@ main[data-show-myanmar="false"] .editor [lang="my"] { display: block; }
   box-shadow: 0 4px 16px #20343820;
 }
 .study-controls { right: max(24px, env(safe-area-inset-right)); }
+.back-to-vocabulary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: #fff;
+}
+.back-to-vocabulary:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+.search-feedback {
+  display: block;
+  padding: 9px 12px;
+  border-radius: 8px;
+  border-left: 4px solid var(--accent);
+  background: #dceee4;
+  color: #174f45;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.search-feedback.empty {
+  border-color: #9a6016;
+  background: #fff0d7;
+  color: #76470c;
+}
+.search-feedback-idle { display: block; height: 0; }
 /* Wide study mode: one, two, and three equal columns at xs/sm/md. */
 .kanji-study .cards { grid-template-columns: minmax(0, 1fr); align-items: stretch; }
 .kanji-study .kanji-study-item { grid-column: auto; grid-template-rows: 1fr auto; min-width: 0; }
@@ -2419,3 +2471,27 @@ main[data-show-myanmar="false"] .editor [lang="my"] { display: block; }
 .level-switch a { color: #fff; border: 1px solid #b5cec9; border-radius: 8px; padding: 8px 14px; text-decoration: none; }
 .level-switch a[aria-current="page"] { background: #edf5f2; color: #18685f; font-weight: 700; }
 .level-switch a:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+
+/* Give every chapter a defined paper tile, with a stronger teal selection. */
+.layout > aside .chapter-group-cards > button {
+  margin: 0;
+  border: 1px solid #d5d4c4;
+  border-radius: 10px;
+  background: #eee9dc;
+  color: var(--ink);
+  box-shadow: 0 1px 2px #20343808;
+}
+.layout > aside .chapter-group-cards > button:hover {
+  background: #e3e9dc;
+  border-color: #9aafa1;
+}
+.layout > aside .chapter-group-cards > button.active {
+  background: #dcece3;
+  border-color: #729d8e;
+  color: var(--accent-hover);
+  box-shadow: inset 3px 0 var(--accent);
+}
+.layout > aside .chapter-group-cards > button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -3px;
+}

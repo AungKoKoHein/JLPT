@@ -1,4 +1,23 @@
-export function removeSubchapter(content, section, cards, exercises) {
+function removeContents(content, container, sections, cards, exercises, isChapter) {
+  const studyTab = container.studyTab || "Vocab";
+  const sectionIds = new Set(sections.flatMap((section) => [section.id, section.sourceId].filter(Boolean)));
+  const belongs = (item) => (item.studyTab || "Vocab") === studyTab && (
+    sectionIds.has(item.chapterId) || sectionIds.has(item.subchapterId) ||
+    (isChapter && (item.chapterId === container.id || item.parentChapterId === container.id))
+  );
+  const cardKey = studyTab === "Kanji" ? "deletedKanjiCards" : "deletedCards";
+  return {
+    ...content,
+    [cardKey]: [...new Set([...content[cardKey], ...cards.filter(belongs).map((item) => item._id)])],
+    deletedExercises: [...new Set([...content.deletedExercises, ...exercises.filter(belongs).map((item) => item._id)])],
+    deletedSubchapters: [...new Set([...content.deletedSubchapters, ...sectionIds])],
+    subchapters: content.subchapters.filter((item) => !sectionIds.has(item.id)),
+    ...(isChapter ? { deletedChapters: [...new Set([...content.deletedChapters, container.id])] } : {}),
+  };
+}
+
+export function removeSubchapter(content, section, cards, exercises, deleteContents = false) {
+  if (deleteContents) return removeContents(content, section, [section], cards, exercises, false);
   const cardKey = section.studyTab === "Kanji" ? "kanjiOverrides" : "cardOverrides";
   const cardOverrides = { ...content[cardKey] };
   const exerciseOverrides = { ...content.exerciseOverrides };
@@ -14,7 +33,8 @@ export function removeSubchapter(content, section, cards, exercises) {
   };
 }
 
-export function removeChapter(content, chapter, cards, exercises) {
+export function removeChapter(content, chapter, cards, exercises, deleteContents = false) {
+  if (deleteContents) return removeContents(content, chapter, chapter.subchapters || [], cards, exercises, true);
   const destination = `ungrouped-${chapter.studyTab}`;
   const sections = chapter.subchapters || [];
   const sectionIds = new Set(sections.map((section) => section.id));

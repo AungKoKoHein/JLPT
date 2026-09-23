@@ -16,7 +16,7 @@ export default function TextField({
   ...props
 }) {
   const classes = `text-field ${fullWidth ? "field-full-width" : ""} field-${variant} field-${size} ${className}`;
-  if (props.multiline) {
+  if (props.multiline === true) {
     const { multiline, ...fieldProps } = props;
     return <textarea {...fieldProps} className={classes} />;
   }

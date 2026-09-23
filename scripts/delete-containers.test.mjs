@@ -5,6 +5,39 @@ import { removeChapter, removeSubchapter } from "../src/deleteContainers.js";
 import { resolveVocabularyCards, resolveVocabularySubchapters } from "../src/vocabularyContent.js";
 import { resolveExercises } from "../src/exerciseContent.js";
 
+for (const studyTab of ["Vocab", "Grammar", "Kanji", "Listening", "Reading", "Mock exam"]) {
+  test(`${studyTab}: whole-folder deletion removes descendants and preserves unrelated records after reload`, () => {
+    const original = structuredClone(emptyContent);
+    const section = { id: "s", sourceId: "legacy-s", parentChapterId: "c", studyTab };
+    original.subchapters = [section, { id: "other-s", parentChapterId: "other", studyTab }];
+    const cards = [
+      { _id: "direct", chapterId: "c", studyTab },
+      { _id: "nested", chapterId: "s", parentChapterId: "c", studyTab },
+      { _id: "outside", chapterId: "other", studyTab },
+      { _id: "other-tab", chapterId: "c", studyTab: "Different" },
+    ];
+    const exercises = [
+      { _id: "assigned", chapterId: "c", subchapterId: "s", studyTab },
+      { _id: "main", chapterId: "c", studyTab },
+      { _id: "unrelated", chapterId: "other", studyTab },
+    ];
+    const key = studyTab === "Kanji" ? "deletedKanjiCards" : "deletedCards";
+    const next = normalizeContent(removeChapter(original, { id: "c", studyTab, subchapters: [section] }, cards, exercises, true));
+    assert.deepEqual(next[key], ["direct", "nested"]);
+    assert.deepEqual(next.deletedExercises, ["assigned", "main"]);
+    assert.deepEqual(next.deletedChapters, ["c"]);
+    assert.deepEqual(next.deletedSubchapters, ["s", "legacy-s"]);
+    assert.equal(next.subchapters[0].id, "other-s");
+    assert.equal(next.chapters.length, 0);
+    assert.deepEqual(original.deletedExercises, []);
+    const subOnly = normalizeContent(removeSubchapter(original, section, cards, exercises, true));
+    assert.deepEqual(subOnly[key], ["nested"]);
+    assert.deepEqual(subOnly.deletedExercises, ["assigned"]);
+    assert.deepEqual(subOnly.deletedChapters, []);
+    assert.deepEqual(removeChapter(next, { id: "c", studyTab, subchapters: [section] }, cards, exercises, true), next);
+  });
+}
+
 test("deleting a bundled chapter preserves sections, cards, and exercise assignments after reload", () => {
   const section = { id: "s", sourceId: "s", parentChapterId: "c", title: "Section" };
   const base = [{ id: "c", subchapters: [section], cards: [{ term: "Term", sourceSubchapterId: "s" }] }];

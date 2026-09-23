@@ -1,8 +1,10 @@
 import { kanjiExamples } from "./kanjiContent.js";
+import { hasVisibleChapterContent } from "./chapterVisibility.js";
 import useShuffledCards from "./useShuffledCards.js";
 import { sortChapters, groupChapters } from "./chapterGroups.js";
 import React, { useEffect, useState } from "react";
 import Exercises from "./Exercises.jsx";
+import SearchFeedback from "./SearchFeedback.jsx";
 import SubchapterNav, { subchapterTargetId } from "./SubchapterNav.jsx";
 import { exercisesForView } from "./exerciseContent.js";
 export const getKanjiChapterOptions = (chapters) => chapters.map(({ id, number, title, sections }) => ({
@@ -138,20 +140,21 @@ export default function Kanji({
       setExerciseScope("");
     }
   }, [isActive]);
+  const resolvedCards = resolveKanjiCards(content);
   const allChapters = sortChapters([
     ...chapters.map((chapter) => ({
       ...chapter,
       ...(content.chapterOverrides ?? {})[chapter.id],
     })),
     ...(content.chapters ?? []).filter((chapter) => chapter.studyTab === "Kanji"),
-  ].filter((chapter) => !(content.deletedChapters || []).includes(chapter.id)));
+  ].filter((chapter) => !(content.deletedChapters || []).includes(chapter.id))
+    .filter((chapter) => hasVisibleChapterContent({ ...chapter, studyTab: "Kanji" }, resolvedCards, allExercises, content.subchapters)));
   const filteredChapters = allChapters.filter((chapter) =>
     matchesSearch(`${chapter.number} ${chapter.title}`, chapterQuery),
   );
   const selected =
     filteredChapters.find((chapter) => chapter.id === active) ??
     filteredChapters[0];
-  const resolvedCards = resolveKanjiCards(content);
   const baseCards = [];
   const customCards = resolvedCards.filter((card) => card.chapterId === selected?.id && !card.subchapterId);
   const customSubchapters = (content.subchapters ?? []).filter(
@@ -208,6 +211,7 @@ export default function Kanji({
             onChange={(event) => setChapterQuery(event.target.value)}
             placeholder="例：生活、せいかつ"
           />
+          <SearchFeedback query={chapterQuery} count={filteredChapters.length} noun="chapter" />
         </label>
         <label htmlFor="kanji-search">
           Search Kanji
@@ -218,6 +222,7 @@ export default function Kanji({
             onChange={(event) => setQuery(event.target.value)}
             placeholder="例：起きる、おきる、起きるの説明"
           />
+          <SearchFeedback query={query} count={cards.length} />
         </label>
       </section>
       <div className="layout">
@@ -225,6 +230,7 @@ export default function Kanji({
           <p className="count">{filteredChapters.length} chapters</p>
           <div className="chapter-group">{groupChapters(allChapters.map((chapter) => ({ ...chapter, studyTab: "Kanji" })), (content.groups || []).filter((group) => group.studyTab === "Kanji")).map((group) => <div className="chapter-group-block" key={group.id}>
           <p className="chapter-group-label"><span className="chapter-group-title">{displayText(group.label, showReadings)}</span><span className="chapter-group-range">{group.range}</span></p>
+          <div className="chapter-group-cards">
           {group.chapters.filter((chapter) => filteredChapters.some((item) => item.id === chapter.id)).map((chapter) => (
             <button
               key={chapter.id}
@@ -243,7 +249,7 @@ export default function Kanji({
               </strong>
             </button>
           ))}
-          </div>)}</div>
+          </div></div>)}</div>
         </aside>
         <article className="kanji-study">
           {selected ? (
