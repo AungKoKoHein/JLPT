@@ -96,29 +96,35 @@ article {
 }
 .chapter-group-cards {
   display: grid;
-  gap: 8px;
+  gap: 2px;
+}
+.chapter-group-block {
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--line);
 }
 .chapter-group-block + .chapter-group-block {
-  margin-top: 18px;
+  margin-top: 12px;
 }
 .chapter-group-label {
   margin: 0 0 8px;
-  padding: 0 8px;
+  padding: 2px 8px 2px 10px;
+  border-left: 3px solid var(--accent);
   color: #312e81;
 }
 .chapter-group-title {
   display: block;
   font-size: 1rem;
-  font-weight: 800;
-  line-height: 1.45;
+  font-weight: 600;
+  line-height: 1.65;
+  text-wrap: pretty;
   color: #312e81;
 }
 .chapter-group-range {
   display: block;
-  margin-top: 2px;
+  margin-top: 4px;
   font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-weight: 500;
+  letter-spacing: 0.02em;
   text-transform: lowercase;
   color: #6366f1;
 }
@@ -1675,7 +1681,7 @@ aside > .count {
 }
 aside button {
   border-radius: 8px;
-  padding: 11px 12px;
+  padding: 5px 12px;
   color: #42565e;
   font-size: 0.9rem;
 }
@@ -2305,9 +2311,16 @@ main .controls-panel .vocab-mode-switch button {
     scrollbar-gutter: auto;
     overscroll-behavior-y: auto;
   }
-  .chapter-group-block { flex: 0 0 auto; min-width: 0; }
+  .chapter-group-block {
+    flex: 0 0 auto;
+    min-width: 0;
+    padding-bottom: 0;
+    padding-right: 8px;
+    border-bottom: 0;
+    border-right: 1px solid var(--line);
+  }
   .chapter-group-block + .chapter-group-block { margin-top: 0; }
-  .chapter-group-cards { display: flex; gap: 8px; }
+  .chapter-group-cards { display: flex; gap: 2px; }
   aside .chapter-group button {
     flex: 0 0 auto;
     width: min(220px, 65vw);
