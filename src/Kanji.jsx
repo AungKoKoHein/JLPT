@@ -227,7 +227,7 @@ export default function Kanji({
       </section>
       <div className="layout">
         <aside>
-          <p className="count">{filteredChapters.length} chapters</p>
+          <p className="count">Total {filteredChapters.length} chapters</p>
           <div className="chapter-group">{groupChapters(allChapters.map((chapter) => ({ ...chapter, studyTab: "Kanji" })), (content.groups || []).filter((group) => group.studyTab === "Kanji")).map((group) => <div className="chapter-group-block" key={group.id}>
           <p className="chapter-group-label"><span className="chapter-group-title">{displayText(group.label, showReadings)}</span><span className="chapter-group-range">{group.range}</span></p>
           <div className="chapter-group-cards">
@@ -310,7 +310,7 @@ export default function Kanji({
               </div>
               {query.trim() || tab === "kanji" ? (
                 <>
-                  <p className="note">{cards.length} kanji cards</p>
+                  <p className="note">Total {cards.length} kanji cards</p>
                   {shuffleMode ? <section className="cards">{shuffledCards.map(renderCard)}</section> : <>
                   <SubchapterNav sections={[
                     ...(selected.id === "kanji-1" && !content.deletedSubchapters.includes("kanji-1-subchapter-1l1")
@@ -406,22 +406,6 @@ export default function Kanji({
                       <p>No searched record found.</p>
                     </div>
                   )}
-                  <p className="note">
-                    Character readings:{" "}
-                    <a href="https://www.edrdg.org/wiki/index.php/KANJIDIC_Project">
-                      KANJIDIC / EDRDG
-                    </a>{" "}
-                    via{" "}
-                    <a href="https://github.com/davidluzgouveia/kanji-data">
-                      kanji-data
-                    </a>{" "}
-                    (
-                    <a href="https://www.edrdg.org/edrdg/licence.html">
-                      CC BY-SA 4.0
-                    </a>
-                    ). Includes uncommon readings; word readings appear above
-                    each card’s examples.
-                  </p>
                 </>
               ) : (
                 <>

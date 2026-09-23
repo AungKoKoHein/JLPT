@@ -1034,7 +1034,7 @@ function App({ level }) {
         <div className="layout">
           <aside>
             <div className="sidebar-heading">
-              <p className="count">{filteredChapters.length} chapters</p>
+              <p className="count">Total {filteredChapters.length} chapters</p>
               <button type="button" className="sidebar-toggle" onClick={() => setShowSidebar(!showSidebar)} aria-label={showSidebar ? "Hide chapter sidebar" : "Show chapter sidebar"}>
                 <span className={`sidebar-toggle-icon ${showSidebar ? "collapse" : "expand"}`} aria-hidden="true" />
               </button>
@@ -1099,6 +1099,7 @@ function App({ level }) {
                     : localizedChapterTitle(selected, showMyanmar, showReadings, showJapanese)}
                 </h2>
                 <p className="note">
+                  Total {" "}
                   {isGlobalSearch
                     ? vocabResults.length
                     : vocabSections.reduce((total, section) => total + section.cards.length, 0)}{" "}
