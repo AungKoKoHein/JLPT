@@ -2284,6 +2284,28 @@ main .controls-panel .vocab-mode-switch button {
 .grammar-heading .grammar-pattern { font-size: inherit; font-weight: inherit; }
 .item-actions { display: flex; flex-wrap: wrap; gap: 8px; }
 .item-actions button { min-height: 44px; min-width: 44px; }
+
+.subchapter-title-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.kanji-study .vocab-section-heading {
+  justify-content: flex-start;
+}
+.vocab-section-heading .item-actions {
+  gap: 4px;
+  margin: 0;
+}
+.vocab-section-heading .item-actions button {
+  min-width: 0;
+  min-height: 28px;
+  padding: 3px 7px;
+  font-size: 0.7rem;
+  line-height: 1.2;
+  border-radius: 5px;
+}
 .grammar-example { margin-top: 20px; }
 .grammar-example p { margin: 4px 0; white-space: pre-wrap; }
 .grammar-explanation {

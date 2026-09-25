@@ -1,3 +1,4 @@
+import { displayKanji } from "./studyText.js";
 import useShuffledCards from "./useShuffledCards.js";
 import DeleteDialog from "./DeleteDialog.jsx";
 import { removeChapter, removeSubchapter } from "./deleteContainers.js";
@@ -28,6 +29,7 @@ const chapterTitle = (
   showMyanmar,
   showReadings,
   showJapanese = true,
+  showKanji = true,
 ) => {
   const visible = showMyanmar
     ? title
@@ -41,14 +43,15 @@ const chapterTitle = (
         .split(" / ")
         .filter((part) => /\p{Script=Myanmar}/u.test(part))
         .join(" / ");
-  return showReadings ? text : hideReadings(text);
+  return displayKanji(showReadings ? text : hideReadings(text), showKanji);
 };
-const localizedChapterTitle = (chapter, showMyanmar, showReadings, showJapanese = true) =>
+const localizedChapterTitle = (chapter, showMyanmar, showReadings, showJapanese = true, showKanji = true) =>
   chapterTitle(
     [chapter.title, chapter.titleMyanmar].filter(Boolean).join(" / "),
     showMyanmar,
     showReadings,
     showJapanese,
+    showKanji,
   );
 const normalizeSearchText = (value = "") =>
   String(value)
@@ -105,8 +108,8 @@ const grammarExamples = (card) => card.examples?.length
   ? card.examples
   : [{ japanese: card.exampleJapanese || "", myanmar: card.exampleMyanmar || "" }];
 
-function GrammarDetails({ card, showReadings, showMyanmar, showJapanese, showExamples = true }) {
-  const display = (value) => showReadings ? value : hideReadings(value);
+function GrammarDetails({ card, showReadings, showKanji, showMyanmar, showJapanese, showExamples = true }) {
+  const display = (value) => displayKanji(showReadings ? value : hideReadings(value), showKanji);
   return <>
     {showExamples && grammarExamples(card).map((example, index) => (
       <div className="grammar-example" key={index}>
@@ -121,21 +124,22 @@ function GrammarDetails({ card, showReadings, showMyanmar, showJapanese, showExa
 function Flashcard({
   card,
   showReadings,
+  showKanji,
   showMyanmar,
   showJapanese,
   chapterLabel,
 }) {
   const [flipped, setFlipped] = useState(false);
-  const display = (value) => (showReadings ? value : hideReadings(value));
+  const display = (value) => displayKanji(showReadings ? value : hideReadings(value), showKanji);
   if (card.studyTab === "Grammar") return (
     <div className="grammar-card">
-      {chapterLabel && <p className="chapter-tag">{chapterTitle(chapterLabel, showMyanmar, showReadings, showJapanese)}</p>}
+      {chapterLabel && <p className="chapter-tag">{chapterTitle(chapterLabel, showMyanmar, showReadings, showJapanese, showKanji)}</p>}
       <p className="grammar-heading">
         {showJapanese && <strong className="grammar-pattern" lang="ja">{display(card.term)}</strong>}
         {showJapanese && showMyanmar && card.meaning && " - "}
         {showMyanmar && <span lang="my">{card.meaning}</span>}
       </p>
-      <GrammarDetails card={card} showReadings={showReadings} showMyanmar={showMyanmar} showJapanese={showJapanese} />
+      <GrammarDetails card={card} showReadings={showReadings} showKanji={showKanji} showMyanmar={showMyanmar} showJapanese={showJapanese} />
     </div>
   );
   return (
@@ -153,6 +157,7 @@ function Flashcard({
                 showMyanmar,
                 showReadings,
                 showJapanese,
+                showKanji,
               )}
             </span>
           )}
@@ -190,21 +195,21 @@ function Flashcard({
   );
 }
 
-function VocabularyBook({ entries, showReadings, showMyanmar, showJapanese, showExamples = true, showChapterLabels = false, manageMode = false, isEditor = false, onEdit, onDelete }) {
-  const display = (value = "") => showReadings ? value : hideReadings(value);
+function VocabularyBook({ entries, showReadings, showKanji, showMyanmar, showJapanese, showExamples = true, showChapterLabels = false, manageMode = false, isEditor = false, onEdit, onDelete }) {
+  const display = (value = "") => displayKanji(showReadings ? value : hideReadings(value), showKanji);
   return (
     <ol className="vocabulary-book">
       {entries.map(({ card, chapter }) => (
         <li key={card._id} className="book-entry">
           {showChapterLabels && chapter && (
-            <p className="book-chapter-label">{localizedChapterTitle(chapter, showMyanmar, showReadings, showJapanese)}</p>
+            <p className="book-chapter-label">{localizedChapterTitle(chapter, showMyanmar, showReadings, showJapanese, showKanji)}</p>
           )}
           <p className="book-term">
             {showJapanese && <strong lang="ja">{display(card.term)}</strong>}
             {showJapanese && showMyanmar && card.meaning && " — "}
             {showMyanmar && <span lang="my">{card.meaning}</span>}
           </p>
-          {card.studyTab === "Grammar" ? <GrammarDetails card={card} showReadings={showReadings} showMyanmar={showMyanmar} showJapanese={showJapanese} showExamples={showExamples} /> : <>
+          {card.studyTab === "Grammar" ? <GrammarDetails card={card} showReadings={showReadings} showKanji={showKanji} showMyanmar={showMyanmar} showJapanese={showJapanese} showExamples={showExamples} /> : <>
           {showExamples && showJapanese && card.exampleJapanese && (
             <p className="book-example" lang="ja">e.g. {display(card.exampleJapanese)}</p>
           )}
@@ -522,6 +527,7 @@ function App({ level }) {
     setEditor(null);
     setDeleteType(null);
     setShowReadings(false);
+    setShowKanji(true);
     setShowKanjiReadings(studyTab === "Kanji");
     if (studyTab === "Grammar") setGrammarMode("card");
     if (studyTab === "Vocab") setVocabMode("book");
@@ -536,6 +542,7 @@ function App({ level }) {
   const [kanjiMode, setKanjiMode] = useState("book");
   const bookMode = (studyTab === "Kanji" ? kanjiMode : studyTab === "Grammar" ? grammarMode : vocabMode) === "book";
   const setStudyMode = studyTab === "Kanji" ? setKanjiMode : studyTab === "Grammar" ? setGrammarMode : setVocabMode;
+  const [showKanji, setShowKanji] = useState(true);
   const [showReadings, setShowReadings] = useState(false);
   const [showKanjiReadings, setShowKanjiReadings] = useState(true);
   const [showJapanese, setShowJapanese] = useState(() => {
@@ -1044,8 +1051,8 @@ function App({ level }) {
                 chapterGroups.map((group) => (
                   <div className="chapter-group-block" key={group.id}>
                     <p className="chapter-group-label">
-                      <span className="chapter-group-title">{chapterTitle(group.label, false, showReadings, true)}</span>
-                      <span className="chapter-group-range">{showReadings ? group.range : hideReadings(group.range)}</span>
+                      <span className="chapter-group-title">{chapterTitle(group.label, false, showReadings, true, showKanji)}</span>
+                      <span className="chapter-group-range">{displayKanji(showReadings ? group.range : hideReadings(group.range), showKanji)}</span>
                     </p>
                     <div className="chapter-group-cards">
                     {group.chapters.map((chapter) => (
@@ -1059,7 +1066,7 @@ function App({ level }) {
                         key={chapter.id}
                       >
                         <span>Chapter {chapter.number}</span>
-                        <strong>{localizedChapterTitle(chapter, false, showReadings, true)}</strong>
+                        <strong>{localizedChapterTitle(chapter, false, showReadings, true, showKanji)}</strong>
                       </button>
                     ))}
                     </div>
@@ -1096,7 +1103,7 @@ function App({ level }) {
                 <h2>
                   {isGlobalSearch
                     ? `Results for “${vocabQuery}”`
-                    : localizedChapterTitle(selected, showMyanmar, showReadings, showJapanese)}
+                    : localizedChapterTitle(selected, showMyanmar, showReadings, showJapanese, showKanji)}
                 </h2>
                 <p className="note">
                   Total {" "}
@@ -1161,14 +1168,14 @@ function App({ level }) {
                         Chapter {exerciseSection.chapter.number}
                       </p>}
                       <h2 lang="ja">
-                        {localizedChapterTitle(exerciseSection.chapter, showMyanmar, showReadings, showJapanese)}
+                        {localizedChapterTitle(exerciseSection.chapter, showMyanmar, showReadings, showJapanese, showKanji)}
                       </h2>
                       <Exercises
                         key={exerciseSection.chapter.id}
                         exercises={exercisesForSection(exerciseSection.chapter)}
-                        showReadings={showReadings}
+                        showReadings={showReadings} showKanji={showKanji}
                         showMyanmar={showMyanmar}
-                        assignmentLabel={exerciseSection.isSubchapter ? localizedChapterTitle(exerciseSection.chapter, showMyanmar, showReadings, showJapanese) : undefined}
+                        assignmentLabel={exerciseSection.isSubchapter ? localizedChapterTitle(exerciseSection.chapter, showMyanmar, showReadings, showJapanese, showKanji) : undefined}
                         onAdd={!bookMode && cloud.canEdit ? () => openEditor("exercise", "add", { studyTab, chapterId: selected.id, subchapterId: exerciseSection.isSubchapter ? exerciseSection.chapter.id : "" }) : undefined}
                         onEdit={!bookMode && manageMode && cloud.isEditor ? (item) => openEditor("exercise", "edit", { ...item, studyTab }) : undefined}
                         onDelete={!bookMode && manageMode && cloud.isEditor ? (item) => deleteRecord("exercise", item) : undefined}
@@ -1177,12 +1184,12 @@ function App({ level }) {
                   ) : isGlobalSearch ? (
                     vocabResults.length ? (
                       bookMode ? (
-                        <VocabularyBook entries={vocabResults} showReadings={showReadings} showMyanmar={showMyanmar} showJapanese={showJapanese} showExamples showChapterLabels manageMode={manageMode} isEditor={cloud.isEditor} onEdit={(card) => openEditor("card", "edit", card)} onDelete={(card) => deleteRecord("card", card)} />
+                        <VocabularyBook entries={vocabResults} showReadings={showReadings} showKanji={showKanji} showMyanmar={showMyanmar} showJapanese={showJapanese} showExamples showChapterLabels manageMode={manageMode} isEditor={cloud.isEditor} onEdit={(card) => openEditor("card", "edit", card)} onDelete={(card) => deleteRecord("card", card)} />
                       ) : (
                       <section className="cards">
                         {vocabResults.map(({ card, chapter }, i) => (
                           <div className={`managed-item card-layout-${card.layout || "standard"} search-hit`} key={`${chapter.id}-${card._id ?? card.term}-${i}`}>
-                            <Flashcard card={card} showReadings={showReadings} showMyanmar={showMyanmar} showJapanese={showJapanese} chapterLabel={chapter.title} />
+                            <Flashcard card={card} showReadings={showReadings} showKanji={showKanji} showMyanmar={showMyanmar} showJapanese={showJapanese} chapterLabel={chapter.title} />
                             {manageMode && cloud.isEditor && (
                               <div className="item-actions">
                                 <button type="button" onClick={() => openEditor("card", "edit", card)}>Edit</button>
@@ -1204,8 +1211,14 @@ function App({ level }) {
                       {displayedVocabSections.map(({ chapter, isSubchapter, cards: sectionCards }) => (
                         <section className="vocab-section" key={chapter.id}>
                           {isSubchapter && <div className="vocab-section-heading">
-                            <div>
-                              <h3 lang="ja" id={isSubchapter ? subchapterTargetId(chapter.id) : undefined} tabIndex={isSubchapter ? -1 : undefined}>{localizedChapterTitle(chapter, showMyanmar, showReadings, showJapanese)}</h3>
+                            <div className="subchapter-title-actions">
+                              <h3 lang="ja" id={isSubchapter ? subchapterTargetId(chapter.id) : undefined} tabIndex={isSubchapter ? -1 : undefined}>{localizedChapterTitle(chapter, showMyanmar, showReadings, showJapanese, showKanji)}</h3>
+                              {isSubchapter && manageMode && cloud.isEditor && (
+                                <div className="item-actions">
+                                <button type="button" onClick={() => openEditor("subchapter", "edit", { ...chapter, chapterId: chapter.parentChapterId })}>Edit</button>
+                                <button type="button" onClick={() => deleteSubchapter(chapter)}>Delete</button>
+                                </div>
+                              )}
                             </div>
                             <div className="vocab-section-actions">
                               {isSubchapter && <button
@@ -1218,22 +1231,17 @@ function App({ level }) {
                                 <span aria-hidden="true">▤</span>
                                 <span className="sr-only">Exercises</span>
                               </button>}
-                              {!bookMode && isSubchapter && manageMode && cloud.isEditor && (
-                                <div className="item-actions">
-                                <button type="button" onClick={() => openEditor("subchapter", "edit", { ...chapter, chapterId: chapter.parentChapterId })}>Edit</button>
-                                <button type="button" onClick={() => deleteSubchapter(chapter)}>Delete</button>
-                                </div>
-                              )}
+
                             </div>
                           </div>}
                           {sectionCards.length > 0 && isSubchapter && <p className="note">{sectionCards.length} {bookMode ? `${studyLabel} entries` : "flashcards"}</p>}
                           {bookMode ? (
-                            <VocabularyBook entries={sectionCards} showReadings={showReadings} showMyanmar={showMyanmar} showJapanese={showJapanese} showExamples={showBookExamples} manageMode={manageMode} isEditor={cloud.isEditor} onEdit={(card) => openEditor("card", "edit", card)} onDelete={(card) => deleteRecord("card", card)} />
+                            <VocabularyBook entries={sectionCards} showReadings={showReadings} showKanji={showKanji} showMyanmar={showMyanmar} showJapanese={showJapanese} showExamples={showBookExamples} manageMode={manageMode} isEditor={cloud.isEditor} onEdit={(card) => openEditor("card", "edit", card)} onDelete={(card) => deleteRecord("card", card)} />
                           ) : (
                           <section className="cards">
                             {sectionCards.map(({ card }, i) => (
                               <div className={`managed-item card-layout-${card.layout || "standard"}`} key={card._id}>
-                                <Flashcard card={card} showReadings={showReadings} showMyanmar={showMyanmar} showJapanese={showJapanese} />
+                                <Flashcard card={card} showReadings={showReadings} showKanji={showKanji} showMyanmar={showMyanmar} showJapanese={showJapanese} />
                                 {positionMode && !shuffleVocabulary && cloud.isEditor && (
                                   <div className="card-position-actions" role="group" aria-label={`Position of ${card.term}`}>
                                     <button type="button" disabled={i === 0} onClick={() => moveCard(card._id, -1)} aria-label={`Move ${card.term} backward`}>
@@ -1263,7 +1271,7 @@ function App({ level }) {
                   <Exercises
                     key={selected.id}
                     exercises={exercises}
-                    showReadings={showReadings}
+                    showReadings={showReadings} showKanji={showKanji}
                     showMyanmar={showMyanmar}
                     onAdd={!bookMode && cloud.canEdit ? () => openEditor("exercise", "add", { studyTab, chapterId: selected.id }) : undefined}
                     onEdit={!bookMode && manageMode && cloud.isEditor ? (item) => openEditor("exercise", "edit", item) : undefined}
@@ -1294,7 +1302,7 @@ function App({ level }) {
               mode={kanjiMode}
               allExercises={allExercises}
               showMyanmar={showMyanmar}
-              showReadings={showReadings}
+              showReadings={showReadings} showKanji={showKanji}
               showKanjiReadings={showKanjiReadings}
               manageMode={manageMode && cloud.isEditor}
               canEdit={cloud.canEdit}
@@ -1325,7 +1333,7 @@ function App({ level }) {
                 <section className="cards">
                   {customCardsByTab[label].map((card) => (
                     <div className={`managed-item card-layout-${card.layout || "standard"}`} key={card._id}>
-                      <Flashcard card={card} showReadings={showReadings} showMyanmar={showMyanmar} showJapanese={showJapanese} />
+                      <Flashcard card={card} showReadings={showReadings} showKanji={showKanji} showMyanmar={showMyanmar} showJapanese={showJapanese} />
                       {manageMode && cloud.isEditor && (
                         <div className="item-actions">
                           <button type="button" onClick={() => openEditor("card", "edit", card)}>Edit</button>
@@ -1380,9 +1388,23 @@ function App({ level }) {
             </button>
             <button
               type="button"
+              aria-pressed={showKanji}
+              disabled={!showJapanese}
+              onClick={() => {
+                setShowKanji(!showKanji);
+                if (showKanji) setShowReadings(true);
+              }}
+            >
+              Kanji <span>{showKanji ? "ON" : "OFF"}</span>
+            </button>
+            <button
+              type="button"
               aria-pressed={showReadings}
               disabled={!showJapanese}
-              onClick={() => setShowReadings(!showReadings)}
+              onClick={() => {
+                setShowReadings(!showReadings);
+                if (showReadings) setShowKanji(true);
+              }}
             >
               Readings <span>{showReadings ? "ON" : "OFF"}</span>
             </button>

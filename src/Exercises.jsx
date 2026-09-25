@@ -1,8 +1,10 @@
+import { displayKanji } from "./studyText.js";
 import React, { useState } from "react";
 
 export default function Exercises({
   exercises,
   showReadings,
+  showKanji = true,
   showMyanmar,
   onEdit,
   onDelete,
@@ -11,11 +13,11 @@ export default function Exercises({
 }) {
   const [showAnswers, setShowAnswers] = useState(false);
   const display = (text = "") =>
-    showReadings
+    displayKanji(showReadings
       ? text
       : text
           .replace(/（[ぁ-ゖァ-ヶー]+）/g, "")
-          .replace(/\s*\([ぁ-ゖァ-ヶー]+\)/g, "");
+          .replace(/\s*\([ぁ-ゖァ-ヶー]+\)/g, ""), showKanji);
   const question = (item) => {
     if (item.questionParts?.join("") === item.question) {
       const [before, target, after] = item.questionParts;
