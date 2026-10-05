@@ -3,3 +3,4 @@ dist/
 
 .migration-backups/
 firebase-debug.log
+.tmp-python/
