@@ -1432,7 +1432,7 @@ function App({ level }) {
                 if (showReadings) setShowKanji(true);
               }}
             >
-              Readings <span>{showReadings ? "ON" : "OFF"}</span>
+              Furigana <span>{showReadings ? "ON" : "OFF"}</span>
             </button>
             {isChapterStudy && bookMode && (
               <button
