@@ -2271,7 +2271,9 @@ main .controls-panel .vocab-mode-switch button {
   grid-template-rows: auto;
 }
 .grammar-card {
+  position: relative;
   height: 100%;
+  padding-top: 58px;
   padding: 24px;
   border: 2px solid #9bb8b1;
   border-radius: 12px;
@@ -2280,6 +2282,23 @@ main .controls-panel .vocab-mode-switch button {
   overflow-wrap: anywhere;
   line-height: 1.9;
 }
+.grammar-more-toggle {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  min-height: 36px;
+  padding: 6px 12px;
+  border: 1px solid #8ebbb2;
+  border-radius: 999px;
+  background: #e8f4f0;
+  color: #075f58;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.grammar-more-toggle:hover:not(:disabled) { background: #d7ebe5; }
+.grammar-more-toggle:focus-visible { outline: 3px solid #16877b; outline-offset: 2px; }
+.grammar-more-toggle:disabled { color: #647875; opacity: 0.78; cursor: default; }
 .grammar-heading { margin: 0; font-size: 1.5rem; font-weight: 700; line-height: 1.9; }
 .grammar-heading .grammar-pattern { font-size: inherit; font-weight: inherit; }
 .item-actions { display: flex; flex-wrap: wrap; gap: 8px; }
