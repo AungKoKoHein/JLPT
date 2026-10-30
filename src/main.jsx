@@ -19,6 +19,7 @@ import TextField from "./TextField.jsx";
 import SearchFeedback from "./SearchFeedback.jsx";
 import { kanjiExamples } from "./kanjiContent.js";
 import { matchesVocabulary, vocabularySearchPlaceholder } from "./vocabularySearch.js";
+import supplementalGrammarExamples from "./grammarSupplementalExamples.js";
 
 const hideReadings = (value = "") =>
   value
@@ -104,9 +105,13 @@ function BackToTop() {
   );
 }
 
-const grammarExamples = (card) => card.examples?.length
-  ? card.examples
-  : [{ japanese: card.exampleJapanese || "", myanmar: card.exampleMyanmar || "" }];
+const grammarExamples = (card) => {
+  const saved = card.examples?.length
+    ? card.examples
+    : [{ japanese: card.exampleJapanese || "", myanmar: card.exampleMyanmar || "" }];
+  const supplemental = supplementalGrammarExamples[card.term] ?? [];
+  return [...saved, ...supplemental.filter((example) => !saved.some((item) => item.japanese === example.japanese))];
+};
 
 function GrammarDetails({ card, showReadings, showKanji, showMyanmar, showJapanese, showExamples = true, showMoreButton = false }) {
   const display = (value) => displayKanji(showReadings ? value : hideReadings(value), showKanji);
