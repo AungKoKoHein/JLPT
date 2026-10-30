@@ -184,11 +184,10 @@ if (answer !== "REPLACE GRAMMAR") {
   console.log("Stopped without changing Firebase.");
   process.exit(0);
 }
-if ((await request()).status !== 200) throw new Error("Could not re-read Firebase before the write.");
-const latest = await (await request({ headers: { "X-Firebase-ETag": "true" } })).json();
-const latestEtagResponse = await request({ headers: { "X-Firebase-ETag": "true" } });
-const latestEtag = latestEtagResponse.headers.get("etag");
-const latestValue = await latestEtagResponse.json();
+const latestResponse = await request({ headers: { "X-Firebase-ETag": "true" } });
+const latestEtag = latestResponse.headers.get("etag");
+if (!latestEtag) throw new Error("Firebase returned no ETag before the write.");
+const latestValue = await latestResponse.json();
 if (JSON.stringify(latestValue) !== JSON.stringify(before)) {
   throw new Error(`Firebase changed after preview; stopped without writing. Backup: ${backup}`);
 }
