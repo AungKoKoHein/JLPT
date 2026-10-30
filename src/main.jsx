@@ -108,10 +108,27 @@ const grammarExamples = (card) => card.examples?.length
   ? card.examples
   : [{ japanese: card.exampleJapanese || "", myanmar: card.exampleMyanmar || "" }];
 
-function GrammarDetails({ card, showReadings, showKanji, showMyanmar, showJapanese, showExamples = true }) {
+function GrammarDetails({ card, showReadings, showKanji, showMyanmar, showJapanese, showExamples = true, showMoreButton = false }) {
   const display = (value) => displayKanji(showReadings ? value : hideReadings(value), showKanji);
+  const [expanded, setExpanded] = useState(false);
+  const examples = grammarExamples(card);
+  const hasMoreExamples = examples.length > 1;
+  const visibleExamples = expanded ? examples : examples.slice(0, 1);
   return <>
-    {showExamples && grammarExamples(card).map((example, index) => (
+    {showMoreButton && (
+      <button
+        type="button"
+        className="grammar-more-toggle"
+        aria-expanded={expanded}
+        disabled={!hasMoreExamples}
+        title={hasMoreExamples ? undefined : "The current example is shown; no additional examples are available yet."}
+        onClick={() => setExpanded((value) => !value)}
+      >
+        {expanded ? "Show less" : "Show more"}
+        {hasMoreExamples && <span aria-hidden="true"> · {examples.length - 1}</span>}
+      </button>
+    )}
+    {showExamples && visibleExamples.map((example, index) => (
       <div className="grammar-example" key={index}>
         {showJapanese && example.japanese && <p lang="ja">{display(example.japanese)}</p>}
         {showMyanmar && example.myanmar && <p lang="my">{display(example.myanmar)}</p>}
@@ -139,7 +156,7 @@ function Flashcard({
         {showJapanese && showMyanmar && card.meaning && " - "}
         {showMyanmar && <span lang="my">{card.meaning}</span>}
       </p>
-      <GrammarDetails card={card} showReadings={showReadings} showKanji={showKanji} showMyanmar={showMyanmar} showJapanese={showJapanese} />
+      <GrammarDetails card={card} showReadings={showReadings} showKanji={showKanji} showMyanmar={showMyanmar} showJapanese={showJapanese} showMoreButton />
     </div>
   );
   return (
