@@ -958,7 +958,11 @@ function App({ level }) {
           <p className="subtitle">Japanese · Myanmar · flashcards by chapter</p>
         </div>
         {cloud.isEditor && <fieldset className="content-actions" aria-label="Manage study content" disabled={!cloud.canEdit}>
-          <button type="button" onClick={() => openEditor(!chapterOptions.some((chapter) => chapter.studyTab === studyTab) ? "chapter" : studyTab === "Kanji" ? "kanji" : "subchapter", "add", { studyTab })}>New</button>
+          {["Vocab", "Grammar", "Kanji"].includes(studyTab) ? <>
+            <button type="button" aria-label="Add chapter" onClick={() => openEditor("chapter", "add", { studyTab })}><span aria-hidden="true">＋</span> Chapter</button>
+            <button type="button" aria-label="Add subchapter" disabled={!selected} onClick={() => selected && openEditor("subchapter", "add", { studyTab, chapterId: selected.id })}><span aria-hidden="true">＋</span> Subchapter</button>
+            <button type="button" aria-label={studyTab === "Grammar" ? "Add grammar" : studyTab === "Kanji" ? "Add kanji" : "Add vocabulary"} disabled={!selected} onClick={() => selected && openEditor(studyTab === "Kanji" ? "kanji" : "card", "add", { studyTab, chapterId: selected.id })}><span aria-hidden="true">＋</span> {studyTab === "Grammar" ? "Grammar" : studyTab === "Kanji" ? "Kanji" : "Vocabulary"}</button>
+          </> : <button type="button" onClick={() => openEditor(!chapterOptions.some((chapter) => chapter.studyTab === studyTab) ? "chapter" : studyTab === "Kanji" ? "kanji" : "subchapter", "add", { studyTab })}>New</button>}
           {<details className="content-edit-menu" name="study-content-actions">
             <summary>Edit</summary>
             <div className="content-edit-options" onClick={(event) => { if (event.target.closest("button")) event.currentTarget.parentElement.removeAttribute("open"); }}>
