@@ -777,7 +777,7 @@ function App({ level }) {
       studyTab: selectedTab,
       groupTitle: chapter ? chapterGroup(chapter).label : "",
       groupRange: chapter ? chapterGroup(chapter).range : "",
-      layout: "standard",
+      layout: type === "card" && selectedTab === "Grammar" ? "wide" : "standard",
       number: `${chapter?.number ?? "1"}.${(chapter?.subchapters?.length ?? 0) + 1}`,
       title: "",
       titleMyanmar: "",
@@ -1354,10 +1354,10 @@ function App({ level }) {
       ))}
       {deleteType && cloud.isEditor && <DeleteDialog key={`${studyTab}-${deleteType}`} type={deleteType} options={deletionOptions} selectedId={deleteId} onSelect={setDeleteId} onClose={() => setDeleteType(null)} onDelete={deleteSelected} saving={cloud.saving} canDelete={cloud.canEdit} error={cloud.error} />}
       {editor && cloud.isEditor && <ContentEditor saving={cloud.saving} canSave={cloud.canEdit} error={cloud.error || (!cloud.connected ? "Connection lost. Keep this form open and reconnect to save." : "")} editor={editor} setEditor={setEditor} chapterOptions={chapterOptions} groups={content.groups || []} studyTabs={studyTabs} onSave={saveContent} onClose={() => setEditor(null)} />}
-      {studyTab === "Vocab" && selected && !isGlobalSearch && (tab === "exercises" || exerciseSection) && <button
+      {["Vocab", "Grammar"].includes(studyTab) && selected && !isGlobalSearch && (tab === "exercises" || exerciseSection) && <button
         type="button" className="back-to-vocabulary"
         onClick={() => { setTab("vocabulary"); setExerciseSectionId(null); focusChapterContent(); }}
-      >← Back to Vocabulary</button>}
+      >← Back to {studyTab === "Grammar" ? "Grammar" : "Vocabulary"}</button>}
       <div className="study-controls" ref={controlsRef}>
         {controlsOpen && (
           <div className="controls-panel" id="study-controls-panel">
