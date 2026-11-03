@@ -2,8 +2,6 @@ import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { createRequire } from "node:module";
-import readline from "node:readline/promises";
-import { stdin as input, stdout as output } from "node:process";
 import {
   createCloudUpdate,
   decodeSnapshot,
@@ -23,7 +21,7 @@ const origin = "https://akkh-jlpt-default-rtdb.asia-southeast1.firebasedatabase.
 
 const kanjiLessons = [
   { number: 8, title: "関係（かんけい）", titleMyanmar: "လူမှုဆက်ဆံရေး", words: [["関係", "かんけい"], ["仲間", "なかま"], ["他人", "たにん"], ["意見", "いけん"], ["仲裁", "ちゅうさい"]] },
-  { number: 9, title: "単位（たんい）", titleMyanmar: "ယူနစ်နှင့် အရေအတွက်", words: [["単位", "たんい"], ["匹", "ひき"], ["平均", "へいきん"], ["個人", "こじん"], ["合計", "ごうけい"]] },
+  { number: 9, title: "単位（たんい）", titleMyanmar: "ယူနစ်နှင့် အရေအတွက်", words: [["単独", "たんどく"], ["簡単", "かんたん"], ["複数", "ふくすう"], ["重複", "ちょうふく"], ["平均", "へいきん"]] },
   { number: 10, title: "学校（がっこう）", titleMyanmar: "ကျောင်း", words: [["児童", "じどう"], ["教師", "きょうし"], ["教室", "きょうしつ"], ["担任", "たんにん"], ["学級", "がっきゅう"]] },
   { number: 11, title: "受験（じゅけん）", titleMyanmar: "ဝင်ခွင့်စာမေးပွဲ", words: [["受験", "じゅけん"], ["希望", "きぼう"], ["面接", "めんせつ"], ["合格", "ごうかく"], ["成績", "せいせき"]] },
   { number: 12, title: "授業（じゅぎょう）", titleMyanmar: "သင်ခန်းစာ", words: [["授業", "じゅぎょう"], ["欠席", "けっせき"], ["復習", "ふくしゅう"], ["解説", "かいせつ"], ["卒業", "そつぎょう"]] },
