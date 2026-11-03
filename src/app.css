@@ -2377,7 +2377,7 @@ main .controls-panel .vocab-mode-switch button {
     margin-top: 0;
   }
   .sidebar-heading { position: static; }
-  .grammar-card { padding: 18px; }
+  .grammar-card { padding: 58px 18px 18px; }
 }
 
 .content-edit-menu { position: relative; }
