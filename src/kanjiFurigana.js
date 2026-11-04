@@ -1314,7 +1314,6 @@ const readings = {
   "必要": "ひつよう",
   "調べる": "しらべる",
   "三種類": "さんしゅるい",
-  "同じ質問": "おなじしつもん"
 };
 
 const trie = {};
@@ -1324,7 +1323,7 @@ for (const [word, reading] of Object.entries(readings)) {
   node.$reading = reading;
 }
 
-const isHan = (character) => /[\\p{Script=Han}々〆ヶ]/u.test(character);
+const isHan = (character) => /[\\u3400-\\u9FFF\\uF900-\\uFAFF々〆ヶ]/u.test(character);
 
 export function annotateKanjiFurigana(value = "") {
   const text = String(value);
@@ -1357,7 +1356,7 @@ export function annotateKanjiFurigana(value = "") {
     const word = text.slice(index, best.end);
     output += word;
     index = best.end;
-    const existing = text.slice(index).match(/^[（(]([\\p{Script=Hiragana}\\p{Script=Katakana}ー]+)[）)]/u);
+    const existing = text.slice(index).match(/^[（(][ぁ-ゖァ-ヶー]+[）)]/u);
     if (existing) {
       output += existing[0];
       index += existing[0].length;
