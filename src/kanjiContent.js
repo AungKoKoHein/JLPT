@@ -1,17 +1,15 @@
 // @ts-check
 /** @typedef {{ japanese: string, myanmar: string }} KanjiExample */
+
 const toHiragana = (value = "") => String(value).replace(/[ァ-ヶ]/g, (character) =>
   String.fromCharCode(character.charCodeAt(0) - 0x60),
 );
-const firstReading = (value = "") => toHiragana(String(value).split(/[・、,／/]/)[0].trim());
-const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\
-/**
- * Normalize saved examples and the original sentence/words format");
+const firstReading = (value = "") =>
+  toHiragana(String(value).split(/[・、,／\/]/)[0].trim());
 
 /**
- * Add the active card's reading to its word in an example when the source
- * sentence does not already include furigana. The UI can then show or hide
- * the parenthesized reading with the existing reading toggle.
+ * Add a card's reading to its target word in an example when furigana is not
+ * already present. The existing reading toggle can then show or hide it.
  */
 export function kanjiExampleText(card, example) {
   let text = String(example?.japanese ?? "");
@@ -33,29 +31,42 @@ export function kanjiExampleText(card, example) {
   const matchingReading = (card.readings ?? []).find(
     (reading) => !reading.kanji || reading.kanji === primaryTerm,
   ) ?? card.readings?.[0];
-  const primaryReading = String(
-    matchingReading?.kun || matchingReading?.on || card.kun || card.on || "",
-  ).split(/[・、,／/]/)[0].trim();
+  const primaryReading =
+    matchingReading?.kun || matchingReading?.on || card.kun || card.on || "";
   addCandidate(primaryTerm, primaryReading);
 
   for (const { term, reading } of candidates) {
-    const matcher = new RegExp(escapeRegExp(term), "gu");
-    text = text.replace(matcher, (match, offset, whole) => {
-      const after = whole.slice(offset + match.length);
-      if (/^[（(][^）)]*[）)]/.test(after)) return match;
+    let cursor = 0;
+    let result = "";
+    while (cursor < text.length) {
+      const index = text.indexOf(term, cursor);
+      if (index < 0) break;
+
+      result += text.slice(cursor, index);
+      const after = text.slice(index + term.length);
+      if (/^[（(][^）)]*[）)]/.test(after)) {
+        result += term;
+        cursor = index + term.length;
+        continue;
+      }
 
       let inlineReading = reading;
       let okurigana = "";
       if (/^\p{Script=Han}$/u.test(term)) {
-        okurigana = after.match(/^[\p{Script=Hiragana}]+/u)?.[0] ?? "";
-        if (okurigana && reading.endsWith(okurigana) && reading.length > okurigana.length) {
-          inlineReading = reading.slice(0, -okurigana.length);
-        } else {
-          okurigana = "";
+        const kanaRun = after.match(/^[\p{Script=Hiragana}]+/u)?.[0] ?? "";
+        for (let length = kanaRun.length; length > 0; length -= 1) {
+          const suffix = kanaRun.slice(0, length);
+          if (reading.endsWith(suffix) && reading.length > suffix.length) {
+            inlineReading = reading.slice(0, -suffix.length);
+            okurigana = suffix;
+            break;
+          }
         }
       }
-      return `${match}（${inlineReading}）${okurigana}`;
-    });
+      result += `${term}（${inlineReading}）${okurigana}`;
+      cursor = index + term.length + okurigana.length;
+    }
+    text = result + text.slice(cursor);
   }
   return text;
 }
@@ -63,7 +74,7 @@ export function kanjiExampleText(card, example) {
 /**
  * Normalize saved examples and the original sentence/words format without
  * dropping any examples when an existing card is opened in the editor.
- * @param {{ examples?: (KanjiExample | string[])[] | boolean, sentence?: string, exampleMyanmar?: string, words?: { sentence?: string, term?: string, explanation?: string }[] }} card
+ * @param {{ examples?: (KanjiExample | string[])[] | boolean, sentence?: string, exampleMyanmar?: string, words?: { sentence?: string, term?: string, explanation?: string, reading?: string, furigana?: string, kana?: string }[] }} card
  * @returns {KanjiExample[]}
  */
 export function kanjiExamples(card) {
