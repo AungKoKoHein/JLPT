@@ -1,3 +1,5 @@
+import { annotateKanjiFurigana } from "./kanjiFurigana.js";
+
 // @ts-check
 /** @typedef {{ japanese: string, myanmar: string }} KanjiExample */
 
@@ -68,7 +70,7 @@ export function kanjiExampleText(card, example) {
     }
     text = result + text.slice(cursor);
   }
-  return text;
+  return annotateKanjiFurigana(text);
 }
 
 /**
