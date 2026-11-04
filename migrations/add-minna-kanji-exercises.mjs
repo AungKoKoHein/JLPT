@@ -121,7 +121,6 @@ for (const lesson of kanjiLessons) {
       number: String(lesson.number),
       title: lesson.title,
       titleMyanmar: lesson.titleMyanmar,
-      groupTitle: "漢字マスター N3",
       studyTab: "Kanji",
       subchapters: [],
     });
