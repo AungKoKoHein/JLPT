@@ -1323,7 +1323,7 @@ for (const [word, reading] of Object.entries(readings)) {
   node.$reading = reading;
 }
 
-const isHan = (character) => /[\\u3400-\\u9FFF\\uF900-\\uFAFF々〆ヶ]/u.test(character);
+const isHan = (character) => /[一-龯々〆ヶ]/u.test(character);
 
 export function annotateKanjiFurigana(value = "") {
   const text = String(value);
