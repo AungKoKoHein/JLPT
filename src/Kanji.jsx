@@ -1,5 +1,5 @@
 import { displayKanji } from "./studyText.js";
-import { kanjiExamples } from "./kanjiContent.js";
+import { kanjiExamples, kanjiExampleText } from "./kanjiContent.js";
 import { hasVisibleChapterContent } from "./chapterVisibility.js";
 import useShuffledCards from "./useShuffledCards.js";
 import { sortChapters, groupChapters } from "./chapterGroups.js";
@@ -64,7 +64,7 @@ function KanjiBookEntry({ card, showReadings, showKanji, showKanjiReadings, show
     </div>}
     <ol className="kanji-examples">
       {kanjiExamples(card).filter((example) => example.japanese || example.myanmar).map((example, index) => <li key={index}>
-        <p lang="ja">{displayText(example.japanese, showReadings, showKanji)}</p>
+        <p lang="ja">{displayText(kanjiExampleText(card, example), showReadings, showKanji)}</p>
         {showMyanmar && example.myanmar && <p lang="my">{example.myanmar}</p>}
       </li>)}
     </ol>
@@ -99,7 +99,7 @@ function KanjiFlashcard({ card, showReadings, showKanji, showKanjiReadings, show
         <span className="face back" aria-hidden={!flipped}>
           {kanjiExamples(card).map((example, index) => (
             <span className="kanji-word" key={index}>
-              {example.japanese && <span className="example" lang="ja">{displayText(example.japanese, showReadings, showKanji)}</span>}
+              {example.japanese && <span className="example" lang="ja">{displayText(kanjiExampleText(card, example), showReadings, showKanji)}</span>}
               {showMyanmar && example.myanmar && <span className="kanji-word-explanation" lang="my">{example.myanmar}</span>}
             </span>
           ))}
