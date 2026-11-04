@@ -148,7 +148,11 @@ export default function Kanji({
       ...chapter,
       ...(content.chapterOverrides ?? {})[chapter.id],
     })),
-    ...(content.chapters ?? []).filter((chapter) => chapter.studyTab === "Kanji"),
+    ...(content.chapters ?? [])
+      .filter((chapter) => chapter.studyTab === "Kanji")
+      .map((chapter) => chapter.id?.startsWith("n3-kanji-master-chapter-")
+        ? { ...chapter, groupTitle: "" }
+        : chapter),
   ].filter((chapter) => !(content.deletedChapters || []).includes(chapter.id))
     .filter((chapter) => hasVisibleChapterContent({ ...chapter, studyTab: "Kanji" }, resolvedCards, allExercises, content.subchapters)));
   const filteredChapters = allChapters.filter((chapter) =>
