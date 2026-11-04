@@ -46,7 +46,7 @@ export function kanjiExampleText(card, example) {
 
       result += text.slice(cursor, index);
       const after = text.slice(index + term.length);
-      if (/^[（(][^）)]*[）)]/.test(after)) {
+      if (/^[（(][ぁ-ゖァ-ヶー]+[）)]/.test(after) || /^[ぁ-ゖ]+[（(][ぁ-ゖァ-ヶー]+[）)]/.test(after)) {
         result += term;
         cursor = index + term.length;
         continue;
