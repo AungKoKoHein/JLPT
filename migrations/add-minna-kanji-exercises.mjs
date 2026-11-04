@@ -497,7 +497,7 @@ for (const lesson of kanjiLessons) {
       const currentExamples = existingCard?.examples ?? [];
       const hasOnlyPlaceholderExamples = currentExamples.length === 0
         || currentExamples.every((example) =>
-          example.japanese === `${term}（${reading}）` || example.japanese === term,
+          example.japanese === `${card.kanji}（${word[1]}）` || example.japanese === card.kanji,
         );
       if (existingCard && hasOnlyPlaceholderExamples) {
         kanjiCardsToUpdate.push({ ...existingCard, examples: card.examples });
