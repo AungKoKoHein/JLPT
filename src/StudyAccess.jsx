@@ -34,9 +34,6 @@ function PracticeUserManager() {
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
-  const [sessionStatus, setSessionStatus] = useState("checking");
-  const allowed = Boolean(claims?.profile?.active || claims?.editor || claims?.admin);
-  const canManageUsers = Boolean(claims?.editor || claims?.admin);
   const [message, setMessage] = useState("");
 
   useEffect(() => onValue(ref(database, "practiceUsers"), (snapshot) => setUsers(snapshot.val() || {}), (reason) => setError(explainAuthError(reason))), []);
@@ -141,6 +138,9 @@ export default function StudyAccess({ children }) {
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [sessionStatus, setSessionStatus] = useState("checking");
+  const allowed = Boolean(claims?.profile?.active || claims?.editor || claims?.admin);
+  const canManageUsers = Boolean(claims?.editor || claims?.admin);
 
   useEffect(() => onAuthStateChanged(auth, (nextUser) => {
     setUser(nextUser);
