@@ -20,6 +20,7 @@ import SearchFeedback from "./SearchFeedback.jsx";
 import { kanjiExamples } from "./kanjiContent.js";
 import { matchesVocabulary, vocabularySearchPlaceholder } from "./vocabularySearch.js";
 import supplementalGrammarExamples from "./grammarSupplementalExamples.js";
+import MockExam from "./MockExam.jsx";
 
 const hideReadings = (value = "") =>
   value
@@ -1378,6 +1379,12 @@ function App({ level }) {
           )}
         </section>
       ))}
+      {level === "n3" && studyTab === "Mock exam" && <section
+        role="tabpanel"
+        id={`study-panel-${studyTabs.indexOf("Mock exam")}`}
+        aria-labelledby={`study-tab-${studyTabs.indexOf("Mock exam")}`}
+        tabIndex={0}
+      ><MockExam /></section>}
       {deleteType && cloud.isEditor && <DeleteDialog key={`${studyTab}-${deleteType}`} type={deleteType} options={deletionOptions} selectedId={deleteId} onSelect={setDeleteId} onClose={() => setDeleteType(null)} onDelete={deleteSelected} saving={cloud.saving} canDelete={cloud.canEdit} error={cloud.error} />}
       {editor && cloud.isEditor && <ContentEditor saving={cloud.saving} canSave={cloud.canEdit} error={cloud.error || (!cloud.connected ? "Connection lost. Keep this form open and reconnect to save." : "")} editor={editor} setEditor={setEditor} chapterOptions={chapterOptions} groups={content.groups || []} studyTabs={studyTabs} onSave={saveContent} onClose={() => setEditor(null)} />}
       {["Vocab", "Grammar"].includes(studyTab) && selected && !isGlobalSearch && (tab === "exercises" || exerciseSection) && <button
