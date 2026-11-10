@@ -9,7 +9,7 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import { onValue, ref, runTransaction, set, update } from "firebase/database";
+import { get, onValue, ref, runTransaction, set, update } from "firebase/database";
 import { auth, database, googleProvider, practiceProvisioningAuth } from "./firebase.js";
 
 const explainAuthError = (error) => ({
@@ -24,7 +24,7 @@ const explainAuthError = (error) => ({
 }[error?.code] || error?.message || "Authentication could not be completed.");
 
 const SESSION_MILLISECONDS = 7 * 24 * 60 * 60 * 1000;
-const MAX_DEVICE_SESSIONS = 5;
+const DEVICE_SLOTS = ["0", "1", "2", "3", "4"];
 const authEmailForUsername = (username) => `${username.trim().toLowerCase()}@users.akkh-jlpt.invalid`;
 
 function PracticeUserManager() {
@@ -186,15 +186,23 @@ export default function StudyAccess({ children }) {
           sessionId = globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`;
           window.localStorage.setItem(key, sessionId);
         }
-        const sessionsRef = ref(database, `practiceSessions/${user.uid}`);
+        const slotsPath = `practiceSessions/${user.uid}/slots`;
+        const slotsSnapshot = await get(ref(database, slotsPath));
+        const slots = slotsSnapshot.val() || {};
         const now = Date.now();
-        const result = await runTransaction(sessionsRef, (sessions) => {
-          const active = Object.fromEntries(Object.entries(sessions || {}).filter(([, value]) => value?.startedAt > now - SESSION_MILLISECONDS));
-          if (!active[sessionId] && Object.keys(active).length >= MAX_DEVICE_SESSIONS) return;
-          active[sessionId] = { startedAt: active[sessionId]?.startedAt || now, device: "browser" };
-          return active;
-        });
-        if (!result.committed) throw new Error("This account already has five active devices. Sign out on another device and try again.");
+        const currentSlot = Object.keys(slots).find((slot) => slots[slot]?.sessionId === sessionId);
+        const candidates = currentSlot ? [currentSlot] : DEVICE_SLOTS.filter((slot) => !slots[slot] || slots[slot].startedAt <= now - SESSION_MILLISECONDS);
+        let registered = false;
+        for (const slot of candidates) {
+          const slotRef = ref(database, `${slotsPath}/${slot}`);
+          const result = await runTransaction(slotRef, (current) => {
+            const active = current?.startedAt > now - SESSION_MILLISECONDS;
+            if (active && current.sessionId !== sessionId) return;
+            return { sessionId, startedAt: active ? current.startedAt : now, device: "browser" };
+          });
+          if (result.committed) { registered = true; break; }
+        }
+        if (!registered) throw new Error("This account already has five active devices. Sign out on another device and try again.");
         if (!stopped) setSessionStatus("ready");
       } catch (reason) {
         if (!stopped) {
@@ -224,14 +232,15 @@ export default function StudyAccess({ children }) {
     setBusy(true); setError("");
     try {
       const sessionId = window.localStorage.getItem(`study-session:${user?.uid}`);
-      if (user && sessionId) await runTransaction(ref(database, `practiceSessions/${user.uid}`), (sessions) => {
-        if (!sessions || !sessions[sessionId]) return sessions;
-        const next = { ...sessions };
-        delete next[sessionId];
-        return next;
-      });
-      await signOut(auth);
+      if (user && sessionId) {
+        const slotsPath = `practiceSessions/${user.uid}/slots`;
+        const snapshot = await get(ref(database, slotsPath));
+        const slot = Object.keys(snapshot.val() || {}).find((key) => snapshot.val()[key]?.sessionId === sessionId);
+        if (slot) await runTransaction(ref(database, `${slotsPath}/${slot}`), (current) => current?.sessionId === sessionId ? null : undefined);
+      }
     } catch (reason) { setError(explainAuthError(reason)); }
+    try { await signOut(auth); }
+    catch (reason) { setError(explainAuthError(reason)); }
     finally { setBusy(false); }
   };
 

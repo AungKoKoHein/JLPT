@@ -96,15 +96,72 @@
     "practiceSessions": {
       "$uid": {
         ".read": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && auth.uid === $uid",
-        ".write": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && auth.uid === $uid",
-        ".validate": "newData.numChildren() <= 5",
-        "$sessionId": {
-          ".validate": "newData.hasChildren(['startedAt', 'device'])",
-          "startedAt": {
-            ".validate": "newData.isNumber()"
+        "slots": {
+          ".read": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && auth.uid === $uid",
+          "0": {
+            ".write": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && auth.uid === $uid && (!data.exists() || !newData.exists() || data.child('sessionId').val() === newData.child('sessionId').val())",
+            ".validate": "newData.hasChildren(['sessionId', 'startedAt', 'device'])",
+            "sessionId": {
+              ".validate": "newData.isString()"
+            },
+            "startedAt": {
+              ".validate": "newData.isNumber()"
+            },
+            "device": {
+              ".validate": "newData.val() === 'browser'"
+            }
           },
-          "device": {
-            ".validate": "newData.val() === 'browser'"
+          "1": {
+            ".write": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && auth.uid === $uid && (!data.exists() || !newData.exists() || data.child('sessionId').val() === newData.child('sessionId').val())",
+            ".validate": "newData.hasChildren(['sessionId', 'startedAt', 'device'])",
+            "sessionId": {
+              ".validate": "newData.isString()"
+            },
+            "startedAt": {
+              ".validate": "newData.isNumber()"
+            },
+            "device": {
+              ".validate": "newData.val() === 'browser'"
+            }
+          },
+          "2": {
+            ".write": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && auth.uid === $uid && (!data.exists() || !newData.exists() || data.child('sessionId').val() === newData.child('sessionId').val())",
+            ".validate": "newData.hasChildren(['sessionId', 'startedAt', 'device'])",
+            "sessionId": {
+              ".validate": "newData.isString()"
+            },
+            "startedAt": {
+              ".validate": "newData.isNumber()"
+            },
+            "device": {
+              ".validate": "newData.val() === 'browser'"
+            }
+          },
+          "3": {
+            ".write": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && auth.uid === $uid && (!data.exists() || !newData.exists() || data.child('sessionId').val() === newData.child('sessionId').val())",
+            ".validate": "newData.hasChildren(['sessionId', 'startedAt', 'device'])",
+            "sessionId": {
+              ".validate": "newData.isString()"
+            },
+            "startedAt": {
+              ".validate": "newData.isNumber()"
+            },
+            "device": {
+              ".validate": "newData.val() === 'browser'"
+            }
+          },
+          "4": {
+            ".write": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && auth.uid === $uid && (!data.exists() || !newData.exists() || data.child('sessionId').val() === newData.child('sessionId').val())",
+            ".validate": "newData.hasChildren(['sessionId', 'startedAt', 'device'])",
+            "sessionId": {
+              ".validate": "newData.isString()"
+            },
+            "startedAt": {
+              ".validate": "newData.isNumber()"
+            },
+            "device": {
+              ".validate": "newData.val() === 'browser'"
+            }
           }
         }
       }
