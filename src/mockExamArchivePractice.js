@@ -99,7 +99,55 @@ const sets = [
   },
 ];
 
-export const archivePracticeSets = sets.map((set) => {
+const vocabularyDetails = {
+  "連絡": ["れんらく", "必要な情報を相手に知らせること", "会議の時間が変わったので、参加者にメールで（　　　）しました。"],
+  "危険な": ["きけんな", "事故やけがが起こる可能性がある", "車が多い道は（　　　）ので、気をつけてください。"],
+  "つめて": ["つめて", "物を箱や袋の中に入れる", "旅行の服をかばんに（　　　）から出発した。"],
+  "便利": ["べんり", "使いやすく、都合がよい", "駅の近くに店があるので、とても（　　　）です。"],
+  "理解": ["りかい", "内容や意味が分かること", "説明を聞いて、内容を（　　　）できました。"],
+  "確認": ["かくにん", "間違いがないか確かめること", "予約した日時をもう一度（　　　）してください。"],
+  "上手に": ["じょうずに", "技術よく、うまく", "練習して、ピアノを（　　　）ひけるようになった。"],
+  "薄い": ["うすい", "味や色があまり強くない", "スープの味が（　　　）ので、塩を足した。"],
+  "遅れて": ["おくれて", "決めた時刻よりあとになって", "電車が（　　　）、約束の時間に間に合わなかった。"],
+  "満開": ["まんかい", "花がすべて咲いている状態", "公園の桜が（　　　）になった。"],
+  "習慣": ["しゅうかん", "いつも繰り返して行うこと", "寝る前に本を読むのが私の（　　　）です。"],
+  "重い": ["おもい", "持ち上げるのに力が必要な状態", "この箱は（　　　）ので、一緒に運んでください。"],
+  "慣れて": ["なれて", "何度も経験して自然にできるようになって", "新しい仕事に少しずつ（　　　）きました。"],
+  "忘れ": ["わすれ", "覚えていたことが思い出せなくなって", "電気を消すのを（　　　）ないでください。"],
+  "説明": ["せつめい", "分かるように内容を話すこと", "機械の使い方を店員に（　　　）してもらった。"],
+  "遅く": ["おそく", "いつもより時間がかかって", "道が混んでいて、家に着くのが（　　　）なった。"],
+  "楽に": ["らくに", "苦労や負担が少ない状態に", "道具を使うと、荷物を（　　　）運べます。"],
+  "開店": ["かいてん", "店が営業を始めること", "駅前に新しいパン屋が（　　　）しました。"],
+  "安心": ["あんしん", "心配がなくなって落ち着くこと", "無事に着いたと聞いて、家族は（　　　）しました。"],
+};
+
+const grammarVariants = {
+  "ように": ["忘れない（　　　）、予定を手帳に書いてください。", "毎日歩く（　　　）、少し早く起きています。", "風邪をひかない（　　　）、よく寝ています。"],
+  "ので": ["今日は雨な（　　　）、家で勉強します。", "道が混んでいた（　　　）、到着が遅れました。", "この店は静かな（　　　）、よく利用します。"],
+  "ところ": ["駅に着いた（　　　）、友達から電話が来ました。", "食事を始める（　　　）に、客が来ました。", "家を出た（　　　）、雨が降り始めました。"],
+  "ほうが": ["熱があるなら、今日は早く帰った（　　　）いいです。", "道が分からないときは、駅員に聞いた（　　　）がいいです。", "明日は寒いので、上着を持って行った（　　　）いいでしょう。"],
+  "こと": ["ここで写真を撮る（　　　）はできません。", "毎朝歩く（　　　）を日課にしています。", "日本語を勉強する（　　　）が好きです。"],
+  "ながら": ["音楽を聞き（　　　）、部屋を掃除しました。", "母は料理をし（　　　）、私の話を聞いてくれました。", "歩き（　　　）、友達と話しました。"],
+  "ため": ["病気の（　　　）、会社を休みました。", "電車が遅れた（　　　）、授業に間に合いませんでした。", "大雨の（　　　）、試合は中止になりました。"],
+  "きれません": ["料理が多すぎて、一人では食べ（　　　）。", "説明が長くて、全部は覚え（　　　）。", "時間が足りず、最後まで読み（　　　）。"],
+  "おく": ["会議の前に、資料を読んで（　　　）ください。", "旅行に行く前に、ホテルを予約して（　　　）ました。", "忘れないように、住所を書いて（　　　）ます。"],
+  "のに": ["彼は疲れている（　　　）、まだ仕事を続けています。", "薬を飲んだ（　　　）、熱が下がりません。", "早く出発した（　　　）、電車に乗れませんでした。"],
+  "と": ["春になる（　　　）、この公園に花が咲きます。", "このボタンを押す（　　　）、ドアが開きます。", "駅を出てまっすぐ行く（　　　）、右に銀行があります。"],
+  "うちに": ["明るい（　　　）、家に帰りましょう。", "温かい（　　　）に、スープを飲んでください。", "忘れない（　　　）に、メモをしてください。"],
+  "うえに": ["この店は安い（　　　）、駅にも近いです。", "彼女は親切な（　　　）、仕事もとても速いです。", "今日は寒い（　　　）、風も強いです。"],
+  "まで": ["先生が来る（　　　）、ここで待っていてください。", "料理ができる（　　　）、少し休みましょう。", "電車が出る（　　　）、あと5分あります。"],
+  "みる": ["食べたことがない料理を、一度食べて（　　　）ください。", "この漢字の書き方を自分で調べて（　　　）ます。", "新しい道を通って（　　　）ことにしました。"],
+};
+
+const rotateChoices = (choices, answer, offset) => {
+  const distractors = choices.filter((_, index) => index !== answer);
+  const answerIndex = offset % choices.length;
+  const result = [...distractors];
+  result.splice(answerIndex, 0, choices[answer]);
+  return { choices: result, answer: answerIndex };
+};
+
+export const archivePracticeSets = sets.map((set, setIndex) => {
   const questions = [];
   const add = (section, type, rows) => rows.forEach((row, index) => {
     if (section === "Reading") {
@@ -113,6 +161,42 @@ export const archivePracticeSets = sets.map((set) => {
   add("Vocabulary", "Word usage", set.vocabulary);
   add("Grammar", "Grammar in context", set.grammar);
   add("Reading", "Short passage", set.reading);
+  const originalVocabulary = questions.filter((item) => item.section === "Vocabulary");
+  const allWordDetails = Object.entries(vocabularyDetails);
+  originalVocabulary.forEach((item, index) => {
+    const target = item.choices[item.answer];
+    const [reading, meaning, context] = vocabularyDetails[target];
+    const alternatives = allWordDetails.map(([word, details]) => ({ word, ...details }));
+    const distractors = alternatives.filter((entry) => entry.word !== target);
+    const readingChoices = [reading, ...distractors.slice((setIndex + index * 3) % distractors.length).map((entry) => entry[0]).filter((_, choiceIndex, arr) => choiceIndex < 3)];
+    const meanings = [meaning, ...distractors.slice((setIndex * 3 + index) % distractors.length).map((entry) => entry[1])].slice(0, 4);
+    const contextChoices = [target, ...distractors.slice((setIndex + index) % distractors.length).map((entry) => entry.word)].slice(0, 4);
+    [
+      { type: "Kanji reading", prompt: `「${target}」の読み方として正しいものはどれですか。`, choices: readingChoices, answer: 0, explanation: `「${target}」は「${reading}」と読みます。` },
+      { type: "Word meaning", prompt: `「${target}」の意味として最も近いものはどれですか。`, choices: meanings, answer: 0, explanation: `「${target}」は「${meaning}」という意味です。` },
+      { type: "Context vocabulary", prompt: context, choices: contextChoices, answer: 0, explanation: `文の意味に合う言葉は「${target}」です。` },
+    ].forEach((variant, variantIndex) => {
+      const ordered = rotateChoices(variant.choices, variant.answer, setIndex + index + variantIndex);
+      questions.push({ ...variant, ...ordered, section: "Vocabulary", id: `${set.id}-Vocabulary-extra-${index * 3 + variantIndex + 1}` });
+    });
+  });
+  const originalGrammar = questions.filter((item) => item.section === "Grammar");
+  originalGrammar.forEach((item, index) => {
+    const pattern = item.choices[item.answer];
+    grammarVariants[pattern].forEach((prompt, variantIndex) => {
+      const ordered = rotateChoices(item.choices, item.answer, setIndex + index + variantIndex + 1);
+      questions.push({ ...item, ...ordered, prompt, type: "Grammar in context", id: `${set.id}-Grammar-extra-${index * 3 + variantIndex + 1}` });
+    });
+  });
+  const originalReading = questions.filter((item) => item.section === "Reading");
+  originalReading.forEach((item, index) => [
+    "本文の内容として正しいものはどれですか。",
+    "文章に書かれていることと合っているものを選んでください。",
+    "この文章から分かることは何ですか。",
+  ].forEach((prompt, variantIndex) => {
+    const ordered = rotateChoices(item.choices, item.answer, setIndex + index + variantIndex + 1);
+    questions.push({ ...item, ...ordered, prompt, type: "Reading comprehension", id: `${set.id}-Reading-extra-${index * 3 + variantIndex + 1}` });
+  }));
   return { id: set.id, title: set.title, sourceNote: set.sourceNote, questions };
 });
 
