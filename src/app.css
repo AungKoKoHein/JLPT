@@ -2519,6 +2519,12 @@ main[data-show-myanmar="false"] .editor [lang="my"] { display: block; }
 .mock-exam-lead { margin: 0; color: var(--mock-muted); font-size: 1.08rem; }
 .mock-exam-overview { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 26px 0; }
 .mock-exam-overview > div { display: grid; gap: 4px; padding: 18px; border: 1px solid var(--mock-line); border-radius: 14px; background: color-mix(in srgb, var(--surface) 78%, white); }
+.mock-exam-set-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 22px 0; }
+.mock-exam-set-card { display: grid; gap: 7px; padding: 16px; text-align: left; color: var(--mock-ink); border: 1px solid var(--mock-line); border-radius: 14px; background: color-mix(in srgb, var(--surface) 78%, white); cursor: pointer; }
+.mock-exam-set-card strong { font-size: 1rem; }
+.mock-exam-set-card span, .mock-exam-set-card small { color: var(--mock-muted); line-height: 1.45; }
+.mock-exam-set-card.selected { border-color: var(--mock-accent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--mock-accent) 18%, transparent); }
+.mock-exam-selected-title { margin: 24px 0 0; }
 .mock-exam-overview strong { font-size: 1.4rem; }
 .mock-exam-overview span { color: var(--mock-muted); font-size: .9rem; }
 .mock-exam-notes { padding-left: 22px; color: var(--mock-muted); line-height: 1.75; }
@@ -2603,6 +2609,7 @@ main[data-show-myanmar="false"] .editor [lang="my"] { display: block; }
 .mock-review-controls { margin-top: 16px; }
 @media (max-width: 760px) {
   .mock-exam-overview { grid-template-columns: 1fr; }
+  .mock-exam-set-grid { grid-template-columns: 1fr; }
   .mock-attempt-grid { grid-template-columns: minmax(0, 1fr); }
   .mock-question-nav { position: static; }
   .mock-question-palette { grid-template-columns: repeat(8, minmax(0, 1fr)); }
