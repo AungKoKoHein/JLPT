@@ -3,7 +3,7 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 
 // Firebase web configuration is public. Database rules enforce write access.
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyDU1Zx_6JMz0XkX5jfGKc-Uy-704erM4zw",
   authDomain: "akkh-jlpt.firebaseapp.com",
   databaseURL:
@@ -20,3 +20,8 @@ export const auth = getAuth(firebaseApp);
 export const database = getDatabase(firebaseApp);
 export const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: "select_account" });
+
+// Account creation runs in an isolated Auth instance so adding a viewer does not
+// sign the current Google editor out of the main app.
+export const practiceProvisioningApp = initializeApp(firebaseConfig, "practice-user-provisioning");
+export const practiceProvisioningAuth = getAuth(practiceProvisioningApp);

@@ -1,1492 +1,28 @@
-import { displayKanji } from "./studyText.js";
-import useShuffledCards from "./useShuffledCards.js";
-import DeleteDialog from "./DeleteDialog.jsx";
-import { removeChapter, removeSubchapter } from "./deleteContainers.js";
-import { hasVisibleChapterContent } from "./chapterVisibility.js";
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { createRoot } from "react-dom/client";
-import { chapterGroup, groupChapters, sortChapters, renameChapterGroup } from "./chapterGroups.js";
-import { routesForLevel, levelFromPath, studyTabFromPath } from "./studyRoutes.js";
-import { moveVocabularyCard, resolveVocabularyCards, resolveVocabularySubchapters } from "./vocabularyContent.js";
-import Exercises from "./Exercises.jsx";
-import SubchapterNav, { subchapterTargetId } from "./SubchapterNav.jsx";
-import { resolveExercises, exercisesForView, saveExercise, unassignExercises } from "./exerciseContent.js";
-import Kanji, { getKanjiChapterOptions, resolveKanjiCards } from "./Kanji.jsx";
-import { useCloudContent } from "./useCloudContent.js";
-import CloudStatus from "./CloudStatus.jsx";
-import "./app.css";
-import TextField from "./TextField.jsx";
-import SearchFeedback from "./SearchFeedback.jsx";
-import { kanjiExamples } from "./kanjiContent.js";
-import { matchesVocabulary, vocabularySearchPlaceholder } from "./vocabularySearch.js";
-import supplementalGrammarExamples from "./grammarSupplementalExamples.js";
-import MockExam from "./MockExam.jsx";
-import ReadingPractice from "./ReadingPractice.jsx";
-
-const hideReadings = (value = "") =>
-  value
-    .replace(/ï¼ˆ[^ï¼‰]*ï¼‰/g, "")
-    .replace(/\([^)]*\)/g, "");
-const chapterTitle = (
-  title,
-  showMyanmar,
-  showReadings,
-  showJapanese = true,
-  showKanji = true,
-) => {
-  const visible = showMyanmar
-    ? title
-    : title
-        .split(" / ")
-        .filter((part) => !/\p{Script=Myanmar}/u.test(part))
-        .join(" / ");
-  const text = showJapanese
-    ? visible
-    : visible
-        .split(" / ")
-        .filter((part) => /\p{Script=Myanmar}/u.test(part))
-        .join(" / ");
-  return displayKanji(showReadings ? text : hideReadings(text), showKanji);
-};
-const localizedChapterTitle = (chapter, showMyanmar, showReadings, showJapanese = true, showKanji = true) =>
-  chapterTitle(
-    [chapter.title, chapter.titleMyanmar].filter(Boolean).join(" / "),
-    showMyanmar,
-    showReadings,
-    showJapanese,
-    showKanji,
-  );
-const normalizeSearchText = (value = "") =>
-  String(value)
-    .normalize("NFKC")
-    .replace(/[\u30A1-\u30F6]/g, (char) => String.fromCharCode(char.charCodeAt(0) - 0x60))
-    .replace(/[\uFF66-\uFF9D]/g, (char) => String.fromCharCode(char.charCodeAt(0) - 0xF6))
-    .replace(/[\u3000\s\n\r\t]+/g, " ")
-    .replace(/[ï¼ˆï¼‰()\[\]{}ã€Œã€ã€Žã€ã€ã€‚ï¼ï¼Ÿãƒ»!?.ã€]/g, " ")
-    .trim()
-    .toLocaleLowerCase();
-const contains = (value, query) => {
-  const q = normalizeSearchText(query);
-  if (!q) return true;
-  return normalizeSearchText(value).includes(q);
-};
-const parentNumber = (number) => String(number).split(".")[0];
-
-function BackToTop() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const updateVisibility = () => setVisible(window.scrollY > 300);
-    updateVisibility();
-    window.addEventListener("scroll", updateVisibility, { passive: true });
-    return () => window.removeEventListener("scroll", updateVisibility);
-  }, []);
-
-  if (!visible) return null;
-
-  return (
-    <button
-      type="button"
-      className="reading-toggle back-to-top"
-      aria-label="Back to Top"
-      onClick={() => {
-        document
-          .querySelector('.study-tabs [aria-selected="true"]')
-          ?.focus({ preventScroll: true });
-        window.scrollTo({
-          top: 0,
-          behavior: window.matchMedia("(prefers-reduced-motion: reduce)")
-            .matches
-            ? "instant"
-            : "smooth",
-        });
-      }}
-    >
-      <span className="back-to-top-icon" aria-hidden="true" />
-    </button>
-  );
-}
-
-const grammarExamples = (card) => {
-  const saved = card.examples?.length
-    ? card.examples
-    : [{ japanese: card.exampleJapanese || "", myanmar: card.exampleMyanmar || "" }];
-  const supplemental = supplementalGrammarExamples[card.term] ?? [];
-  return [...saved, ...supplemental.filter((example) => !saved.some((item) => item.japanese === example.japanese))];
-};
-
-function GrammarDetails({ card, showReadings, showKanji, showMyanmar, showJapanese, showExamples = true, showMoreButton = false }) {
-  const display = (value) => displayKanji(showReadings ? value : hideReadings(value), showKanji);
-  const [expanded, setExpanded] = useState(false);
-  const examples = grammarExamples(card);
-  const hasMoreExamples = examples.length > 1;
-  const visibleExamples = expanded ? examples : examples.slice(0, 1);
-  return <>
-    {showMoreButton && (
-      <button
-        type="button"
-        className="grammar-more-toggle"
-        aria-expanded={expanded}
-        disabled={!hasMoreExamples}
-        title={hasMoreExamples ? undefined : "The current example is shown; no additional examples are available yet."}
-        onClick={() => setExpanded((value) => !value)}
-      >
-        {expanded ? "Show less" : "Show more"}
-        {hasMoreExamples && <span aria-hidden="true"> Â· {examples.length - 1}</span>}
-      </button>
-    )}
-    {showExamples && visibleExamples.map((example, index) => (
-      <div className="grammar-example" key={index}>
-        {showJapanese && example.japanese && <p lang="ja">{display(example.japanese)}</p>}
-        {showMyanmar && example.myanmar && <p lang="my">{display(example.myanmar)}</p>}
-      </div>
-    ))}
-    {showMyanmar && card.grammarExplanation && <p className="grammar-explanation" lang="my">{card.grammarExplanation}</p>}
-  </>;
-}
-
-function Flashcard({
-  card,
-  showReadings,
-  showKanji,
-  showMyanmar,
-  showJapanese,
-  chapterLabel,
-}) {
-  const [flipped, setFlipped] = useState(false);
-  const display = (value) => displayKanji(showReadings ? value : hideReadings(value), showKanji);
-  if (card.studyTab === "Grammar") return (
-    <div className="grammar-card">
-      {chapterLabel && <p className="chapter-tag">{chapterTitle(chapterLabel, showMyanmar, showReadings, showJapanese, showKanji)}</p>}
-      <p className="grammar-heading">
-        {showJapanese && <strong className="grammar-pattern" lang="ja">{display(card.term)}</strong>}
-        {showJapanese && showMyanmar && card.meaning && " - "}
-        {showMyanmar && <span lang="my">{card.meaning}</span>}
-      </p>
-      <GrammarDetails card={card} showReadings={showReadings} showKanji={showKanji} showMyanmar={showMyanmar} showJapanese={showJapanese} showMoreButton />
-    </div>
-  );
-  return (
-    <button
-      className={`flashcard vocab-card ${flipped ? "flipped" : ""}`}
-      onClick={() => setFlipped((v) => !v)}
-      aria-label={`${card.term} flashcard`}
-    >
-      <span className="flash-inner">
-        <span className="face front">
-          {chapterLabel && (
-            <span className="chapter-tag">
-              {chapterTitle(
-                chapterLabel,
-                showMyanmar,
-                showReadings,
-                showJapanese,
-                showKanji,
-              )}
-            </span>
-          )}
-          <strong lang="ja">{display(card.term)}</strong>
-          {showMyanmar && (
-            <span className="meaning" lang="my">
-              {card.meaning}
-            </span>
-          )}
-        </span>
-        <span className="face back">
-          <span className="label" data-japanese>
-            Japanese Example
-          </span>
-          <span className="example" lang="ja">
-            {display(card.exampleJapanese)}
-          </span>
-          {showMyanmar && (
-            <>
-              <span className="label" data-myanmar>
-                Myanmar Explanation
-              </span>
-              <span className="mm sentence" lang="my">
-                {display(card.exampleMyanmar) ||
-                  "á€¡á€‘á€€á€ºá€•á€« á€á€«á€€á€»á€á€½á€„á€º á€…á€€á€¬á€¸á€œá€¯á€¶á€¸á á€¡á€“á€­á€•á€¹á€•á€¬á€šá€ºá€”á€¾á€„á€·á€º á€¡á€žá€¯á€¶á€¸á€•á€¼á€¯á€•á€¯á€¶á€€á€­á€¯ á€œá€±á€·á€œá€¬á€•á€«á‹"}
-              </span>
-            </>
-          )}
-          {!card.generated && (
-            <span className="source-note">Example from your Word study file</span>
-          )}
-        </span>
-      </span>
-    </button>
-  );
-}
-
-function VocabularyBook({ entries, showReadings, showKanji, showMyanmar, showJapanese, showExamples = true, showChapterLabels = false, manageMode = false, isEditor = false, onEdit, onDelete }) {
-  const display = (value = "") => displayKanji(showReadings ? value : hideReadings(value), showKanji);
-  return (
-    <ol className="vocabulary-book">
-      {entries.map(({ card, chapter }) => (
-        <li key={card._id} className="book-entry">
-          {showChapterLabels && chapter && (
-            <p className="book-chapter-label">{localizedChapterTitle(chapter, showMyanmar, showReadings, showJapanese, showKanji)}</p>
-          )}
-          <p className="book-term">
-            {showJapanese && <strong lang="ja">{display(card.term)}</strong>}
-            {showJapanese && showMyanmar && card.meaning && " â€” "}
-            {showMyanmar && <span lang="my">{card.meaning}</span>}
-          </p>
-          {card.studyTab === "Grammar" ? <GrammarDetails card={card} showReadings={showReadings} showKanji={showKanji} showMyanmar={showMyanmar} showJapanese={showJapanese} showExamples={showExamples} /> : <>
-          {showExamples && showJapanese && card.exampleJapanese && (
-            <p className="book-example" lang="ja">e.g. {display(card.exampleJapanese)}</p>
-          )}
-          {showExamples && showMyanmar && card.exampleMyanmar && (
-            <p className="book-translation" lang="my">{display(card.exampleMyanmar)}</p>
-          )}
-          </>}
-          {manageMode && isEditor && (
-            <div className="item-actions">
-              <button type="button" onClick={() => onEdit?.(card)}>Edit</button>
-              <button type="button" onClick={() => onDelete?.(card)}>Delete</button>
-            </div>
-          )}
-        </li>
-      ))}
-    </ol>
-  );
-}
-
-function ContentEditor({ editor, setEditor, chapterOptions, groups, studyTabs, onSave, onClose, saving, canSave, error }) {
-  const set = (field, value) => setEditor((current) => ({ ...current, [field]: value }));
-  const chapters = sortChapters(chapterOptions.filter((chapter) => chapter.studyTab === editor.studyTab));
-  const availableGroups = groupChapters(chapters, groups.filter((group) => group.studyTab === editor.studyTab));
-  const selectedChapter = chapters.find((chapter) => chapter.id === editor.chapterId);
-  const subchapters = sortChapters(selectedChapter?.subchapters ?? []);
-  const submit = (event) => {
-    event.preventDefault();
-    onSave(editor);
-  };
-  const editorTitle =
-    editor.mode === "edit"
-      ? {
-          card: "Edit Flashcard",
-          kanji: "Edit Kanji Card",
-          exercise: "Edit Exercise",
-          group: "Edit Group Title",
-          chapter: "Edit Chapter",
-          subchapter: "Edit Sub Chapter",
-        }[editor.type] ?? "Edit Item"
-      : {
-          card: "Add Flashcard",
-          kanji: "Add Kanji Card",
-          exercise: "Add Exercise",
-          group: "Add Group",
-          chapter: "Add Chapter",
-          subchapter: "Add Sub Chapter",
-        }[editor.type] ?? "Add Item";
-  return (
-    <div className="editor-backdrop" role="presentation" onMouseDown={onClose}>
-      <form className="editor" onSubmit={submit} onMouseDown={(event) => event.stopPropagation()}>
-        <div className="editor-heading">
-          <div>
-            <p className="eyebrow">Study Content</p>
-            <h2>{editorTitle}</h2>
-          </div>
-          <button type="button" className="icon-button" aria-label="Close editor" onClick={onClose}>
-            Ã—
-          </button>
-
-        </div>
-        <fieldset className="editor-grid" disabled={saving}>
-          <label>
-            Type
-            <select value={editor.type} onChange={(event) => {
-              const type = event.target.value;
-              setEditor((current) => ({ ...current, type, ...(type === "group" ? { title: "" } : {}) }));
-            }} disabled={editor.mode === "edit"}>
-              {editor.studyTab !== "Kanji" && <option value="card">Flashcard</option>}
-              {editor.studyTab === "Kanji" && <option value="kanji">Kanji Card</option>}
-              <option value="exercise">Exercise</option>
-              <option value="group">Group Title</option>
-              <option value="chapter">Chapter</option>
-              <option value="subchapter">Sub Chapter</option>
-            </select>
-          </label>
-          <label>
-            Study Tab
-            <select disabled value={editor.studyTab} onChange={(event) => {
-              const studyTab = event.target.value;
-              const firstChapter = chapterOptions.find((chapter) => chapter.studyTab === studyTab);
-              setEditor((current) => ({
-                ...current,
-                studyTab,
-                chapterId: firstChapter?.id ?? "",
-                subchapterId: "",
-              }));
-            }}>
-              {studyTabs.filter((label) => editor.type !== "card" || label !== "Kanji").map((label) => (
-                <option value={label} key={label}>{label}</option>
-              ))}
-            </select>
-          </label>
-          {!["chapter", "group"].includes(editor.type) && <label>
-            Chapter
-            <select value={editor.chapterId} disabled={!chapters.length} onChange={(event) => {
-              const chapterId = event.target.value;
-              const chapter = chapters.find((item) => item.id === chapterId);
-              setEditor((current) => ({
-                ...current,
-                chapterId,
-                subchapterId: "",
-                ...(current.type === "subchapter" ? { mode: "add", id: undefined, sourceId: undefined } : {}),
-                number: current.type === "subchapter" ? `${chapter?.number ?? ""}.new` : current.number,
-                title: current.type === "subchapter" ? "" : current.title,
-                titleMyanmar: current.type === "subchapter" ? "" : current.titleMyanmar,
-              }));
-            }}>
-              {!chapters.length && <option value="">No chapters in this tab</option>}
-              {chapters.map((chapter) => (
-                <option value={chapter.id} key={chapter.id}>Chapter {chapter.number}: {chapter.title}</option>
-              ))}
-            </select>
-          </label>}
-          {editor.type === "chapter" && editor.mode === "edit" && (
-            <label>
-              Existing Chapter
-              <select value={editor.chapterId} onChange={(event) => {
-                const chapter = chapters.find((item) => item.id === event.target.value);
-                setEditor((current) => ({
-                  ...current,
-                  chapterId: event.target.value,
-                  id: event.target.value,
-                  groupTitle: chapter ? chapterGroup(chapter).label : "",
-                  groupRange: chapter ? chapterGroup(chapter).range : "",
-                  number: chapter?.number ?? current.number,
-                  title: chapter?.title ?? current.title,
-                  titleMyanmar: chapter?.titleMyanmar ?? current.titleMyanmar,
-                }));
-              }}>
-                {chapters.map((chapter) => (
-                  <option value={chapter.id} key={chapter.id}>Chapter {chapter.number}: {chapter.title}</option>
-                ))}
-              </select>
-            </label>
-          )}
-          {!["subchapter", "chapter", "group"].includes(editor.type) && (
-            <label>
-              {editor.type === "exercise" ? "Assign to Sub Chapter (Optional)" : "Sub Chapter (Optional)"}
-              <select value={editor.subchapterId} onChange={(event) => set("subchapterId", event.target.value)}>
-                <option value="">{editor.type === "exercise" ? "Unassigned - Main Exercises Only" : "Main Chapter"}</option>
-                {subchapters.map((subchapter) => (
-                  <option value={subchapter.id} key={subchapter.id}>Sub Chapter {subchapter.number}: {subchapter.title}</option>
-                ))}
-              </select>
-            </label>
-          )}
-          {editor.type === "subchapter" && (
-            <>
-              <label>
-                Sub Chapter
-                <select value={editor.subchapterId} onChange={(event) => {
-                  const subchapterId = event.target.value;
-                  const subchapter = subchapters.find((item) => item.id === subchapterId);
-                  setEditor((current) => ({
-                    ...current,
-                    subchapterId,
-                    id: subchapterId || undefined,
-                    sourceId: subchapter?.sourceId,
-                    mode: subchapterId ? "edit" : "add",
-                    number: subchapter?.number ?? `${selectedChapter?.number ?? ""}.new`,
-                    title: subchapter?.title ?? "",
-                    titleMyanmar: subchapter?.titleMyanmar ?? "",
-                  }));
-                }}>
-                  <option value="">New Sub Chapter</option>
-                  {subchapters.map((subchapter) => (
-                    <option value={subchapter.id} key={subchapter.id}>Sub Chapter {subchapter.number}: {subchapter.title}</option>
-                  ))}
-                </select>
-              </label>
-              <label>Sub Chapter Number<TextField fullWidth variant="outlined" size="small" value={editor.number} onChange={(event) => set("number", event.target.value)} placeholder="Optional" /></label>
-              <label>Sub Chapter Title<TextField fullWidth variant="outlined" size="small" value={editor.title} onChange={(event) => set("title", event.target.value)} placeholder="å®¶æ—ã¨å‹é”" required /></label>
-              <label>Myanmar Translation<TextField fullWidth variant="outlined" size="small" lang="my" value={editor.titleMyanmar} onChange={(event) => set("titleMyanmar", event.target.value)} placeholder="á€™á€­á€žá€¬á€¸á€…á€¯á€”á€¾á€„á€·á€º á€žá€°á€„á€šá€ºá€á€»á€„á€ºá€¸á€™á€»á€¬á€¸" /></label>
-            </>
-          )}
-          {editor.type === "group" && <>
-            {editor.mode === "edit" && <label>Existing Group<select value={editor.originalGroupTitle || ""} onChange={(event) => setEditor((current) => ({ ...current, originalGroupTitle: event.target.value, title: event.target.value }))}>
-              {availableGroups.map((group) => <option key={group.id} value={group.label}>{group.label}</option>)}
-            </select></label>}
-            <label>Group Title<TextField fullWidth variant="outlined" size="small" value={editor.title} onChange={(event) => set("title", event.target.value)} required /></label>
-            <p className="editor-help">After saving, choose this group when adding or editing chapters. The chapter range updates automatically.</p>
-          </>}
-          {editor.type === "chapter" && (
-            <>
-              <label>Group Title<select value={editor.groupTitle || ""} onChange={(event) => set("groupTitle", event.target.value)}>
-                <option value="">Default group</option>
-                {availableGroups.map((group) => <option value={group.label} key={group.id}>{group.label}</option>)}
-              </select></label>
-              <p className="editor-help">All groups are listed above. To create a group, choose Group Title in Type when adding a new item. Chapter ranges are counted automatically from the chapters in each group.</p>
-              <label>Chapter Number<TextField fullWidth variant="outlined" size="small" value={editor.number} onChange={(event) => set("number", event.target.value)} placeholder="Optional" /></label>
-              <label>Chapter Title<TextField fullWidth variant="outlined" size="small" value={editor.title} onChange={(event) => set("title", event.target.value)} placeholder="æ–°ã—ã„ç« " required /></label>
-              <label>Myanmar Translation<TextField fullWidth variant="outlined" size="small" lang="my" value={editor.titleMyanmar} onChange={(event) => set("titleMyanmar", event.target.value)} placeholder="á€¡á€á€”á€ºá€¸á á€™á€¼á€”á€ºá€™á€¬á€˜á€¬á€žá€¬á€•á€¼á€”á€º" /></label>
-            </>
-          )}
-          {editor.type === "card" && (
-            <>
-              <label>
-                {editor.studyTab === "Grammar" ? "Card Layout" : "Flashcard Layout"}
-                <select value={editor.layout} onChange={(event) => set("layout", event.target.value)}>
-                  <option value="standard">Standard</option>
-                  <option value="double">Double width (2 cards)</option>
-                  <option value="wide">Wide (3 cards)</option>
-                </select>
-              </label>
-              <label>{editor.studyTab === "Grammar" ? "Grammar Pattern" : "Flashcard Front"}<TextField fullWidth variant="outlined" size="small" value={editor.term} onChange={(event) => set("term", event.target.value)} placeholder="Japanese wordï¼ˆreadingï¼‰" required /></label>
-              <label>Myanmar Meaning<TextField fullWidth variant="outlined" size="small" value={editor.meaning} onChange={(event) => set("meaning", event.target.value)} required /></label>
-              {editor.studyTab === "Grammar" ? <>
-                <div className="grammar-example-editor">
-                  {(editor.examples || grammarExamples(editor)).map((example, index, examples) => <fieldset key={index}>
-                    <legend>Example {index + 1}</legend>
-                    <label>Japanese Sentence<TextField fullWidth variant="outlined" size="small" multiline value={example.japanese} onChange={(event) => set("examples", examples.map((item, i) => i === index ? { ...item, japanese: event.target.value } : item))} required /></label>
-                    <label>Myanmar Translation<TextField fullWidth variant="outlined" size="small" multiline lang="my" value={example.myanmar} onChange={(event) => set("examples", examples.map((item, i) => i === index ? { ...item, myanmar: event.target.value } : item))} /></label>
-                    {examples.length > 1 && <button type="button" onClick={() => set("examples", examples.filter((_, i) => i !== index))}>Remove Example</button>}
-                  </fieldset>)}
-                  <button type="button" onClick={() => set("examples", [...(editor.examples || grammarExamples(editor)), { japanese: "", myanmar: "" }])}>+ Add Example</button>
-                </div>
-                <label className="grammar-explanation-editor">Myanmar Grammar Explanation<TextField fullWidth variant="outlined" size="small" multiline lang="my" value={editor.grammarExplanation || ""} onChange={(event) => set("grammarExplanation", event.target.value)} placeholder="Explain the grammar pattern in Myanmar" /></label>
-              </> : <>
-                <label>Japanese Example<TextField fullWidth variant="outlined" size="small" multiline value={editor.exampleJapanese} onChange={(event) => set("exampleJapanese", event.target.value)} required /></label>
-                <label>Myanmar Explanation<TextField fullWidth variant="outlined" size="small" multiline value={editor.exampleMyanmar} onChange={(event) => set("exampleMyanmar", event.target.value)} /></label>
-              </>}
-            </>
-          )}
-          {editor.type === "kanji" && (
-            <>
-              <label>Kanji Front<TextField fullWidth variant="outlined" size="small" value={editor.kanji} onChange={(event) => set("kanji", event.target.value)} placeholder="æ¼¢å­—" required /></label>
-              <label>Myanmar Meaning<TextField fullWidth variant="outlined" size="small" value={editor.meaning} onChange={(event) => set("meaning", event.target.value)} required /></label>
-              <label>Onâ€™yomi (éŸ³èª­ã¿)<TextField fullWidth variant="outlined" size="small" value={editor.on} onChange={(event) => set("on", event.target.value)} placeholder="ã‚ªãƒ³ãƒ¨ãƒŸ" /></label>
-              <label>Kunâ€™yomi (è¨“èª­ã¿)<TextField fullWidth variant="outlined" size="small" value={editor.kun} onChange={(event) => set("kun", event.target.value)} placeholder="ãã‚“ã‚ˆã¿" /></label>
-              <div className="grammar-example-editor">
-                {kanjiExamples(editor).map((example, index, examples) => <fieldset key={index}>
-                  <legend>Example {index + 1}</legend>
-                  <label>Japanese Sentence<TextField fullWidth variant="outlined" size="small" value={example.japanese} onChange={(event) => set("examples", examples.map((item, i) => i === index ? { ...item, japanese: event.target.value } : item))} required /></label>
-                  <label>Myanmar Translation<TextField fullWidth variant="outlined" size="small" lang="my" value={example.myanmar} onChange={(event) => set("examples", examples.map((item, i) => i === index ? { ...item, myanmar: event.target.value } : item))} /></label>
-                  <button type="button" disabled={examples.length === 1} onClick={() => set("examples", examples.filter((_, i) => i !== index))}>Remove Example</button>
-                </fieldset>)}
-                <button type="button" onClick={() => set("examples", [...kanjiExamples(editor), { japanese: "", myanmar: "" }])}>+ Add Example</button>
-              </div>
-            </>
-          )}
-          {editor.type === "exercise" && (
-            <>
-              <p className="editor-help">Exercises always remain in the main chapter list. Assign a sub chapter to show the same exercise there too. Edits update both places. Clear the assignment to remove it from the sub chapter.</p>
-              <label>Exercise Group<TextField fullWidth variant="outlined" size="small" value={editor.section} onChange={(event) => set("section", event.target.value)} placeholder="1-3" required /></label>
-              <label>Sentence / Question<TextField fullWidth variant="outlined" size="small" multiline value={editor.question} onChange={(event) => set("question", event.target.value)} required /></label>
-              <label>Myanmar Sentence / Question<TextField fullWidth variant="outlined" size="small" multiline lang="my" value={editor.questionMyanmar} onChange={(event) => set("questionMyanmar", event.target.value)} /></label>
-              <label>Answer Key<TextField fullWidth variant="outlined" size="small" multiline value={editor.answer} onChange={(event) => set("answer", event.target.value)} required /></label>
-              <label>Myanmar Answer / Explanation<TextField fullWidth variant="outlined" size="small" multiline lang="my" value={editor.answerMyanmar} onChange={(event) => set("answerMyanmar", event.target.value)} /></label>
-              <p className="editor-help">Myanmar fields are optional. Use |text| in a Japanese question to underline it.</p>
-            </>
-          )}
-        </fieldset>
-        {error && <p className="cloud-error" role="alert">{error}</p>}
-        <div className="editor-actions">
-          <button type="button" className="secondary-button" onClick={onClose}>Cancel</button>
-          <button type="submit" className="primary-button" disabled={saving || !canSave}>{saving ? "Saving..." : editor.mode === "edit" ? "Save Changes" : "Add"}</button>
-        </div>
-      </form>
-    </div>
-  );
-}
-
-const studyTabs = [
-  "Vocab",
-  "Grammar",
-  "Kanji",
-  "Listening",
-  "Reading",
-  "Mock exam",
-];
-
-function App({ level }) {
-  const studyRoutes = routesForLevel(level);
-  useEffect(() => { document.title = `JLPT ${level.toUpperCase()}`; }, [level]);
-  useEffect(() => {
-    const closeMenusOutside = (event) => {
-      document.querySelectorAll("details.content-edit-menu[open]").forEach((menu) => {
-        if (!menu.contains(event.target)) menu.removeAttribute("open");
-      });
-    };
-    document.addEventListener("pointerdown", closeMenusOutside);
-    return () => document.removeEventListener("pointerdown", closeMenusOutside);
-  }, []);
-  const [deleteType, setDeleteType] = useState(null);
-  const [deleteId, setDeleteId] = useState("");
-  const [studyTab, updateStudyTab] = useState(() => studyTabFromPath(window.location.pathname));
-  const setStudyTab = (label) => {
-    if (window.location.pathname !== studyRoutes[label]) {
-      window.history.pushState(null, "", studyRoutes[label] + window.location.search);
-    }
-    updateStudyTab(label);
-    window.requestAnimationFrame(() => {
-      document.getElementById(`study-panel-${studyTabs.indexOf(label)}`)?.scrollIntoView({
-        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
-        block: "start",
-      });
-    });
-  };
-  useEffect(() => {
-    const onPopState = () => updateStudyTab(studyTabFromPath(window.location.pathname));
-    window.addEventListener("popstate", onPopState);
-    if (window.location.pathname === "/") {
-      window.history.replaceState(null, "", studyRoutes.Vocab + window.location.search + window.location.hash);
-    }
-    return () => window.removeEventListener("popstate", onPopState);
-  }, []);
-  const isChapterStudy = !["Kanji", "Mock exam"].includes(studyTab) && !(level === "n3" && studyTab === "Reading");
-  const studyLabel = studyTab === "Vocab" ? "vocabulary" : studyTab.toLowerCase();
-  useEffect(() => {
-    setChapterQuery("");
-    setVocabQuery("");
-    setActive("");
-    setExerciseSectionId(null);
-    setTab("vocabulary");
-    setEditor(null);
-    setDeleteType(null);
-    setShowReadings(false);
-    setShowKanji(true);
-    setShowKanjiReadings(studyTab === "Kanji");
-    if (studyTab === "Grammar") setGrammarMode("card");
-    if (studyTab === "Vocab") setVocabMode("book");
-    if (studyTab === "Kanji") setKanjiMode("book");
-  }, [studyTab]);
-  const [chapterQuery, setChapterQuery] = useState("");
-  const [vocabQuery, setVocabQuery] = useState("");
-  const [active, setActive] = useState("");
-  const [tab, setTab] = useState("vocabulary");
-  const [vocabMode, setVocabMode] = useState("book");
-  const [grammarMode, setGrammarMode] = useState("card");
-  const [kanjiMode, setKanjiMode] = useState("book");
-  const bookMode = (studyTab === "Kanji" ? kanjiMode : studyTab === "Grammar" ? grammarMode : vocabMode) === "book";
-  const setStudyMode = studyTab === "Kanji" ? setKanjiMode : studyTab === "Grammar" ? setGrammarMode : setVocabMode;
-  const [showKanji, setShowKanji] = useState(true);
-  const [showReadings, setShowReadings] = useState(false);
-  const [showKanjiReadings, setShowKanjiReadings] = useState(true);
-  const [showJapanese, setShowJapanese] = useState(() => {
-    try {
-      return localStorage.getItem("jlpt-show-japanese") !== "false";
-    } catch {
-      return true;
-    }
-  });
-  const [showBookExamples, setShowBookExamples] = useState(() => {
-    try {
-      return localStorage.getItem("jlpt-show-book-examples") !== "false";
-    } catch {
-      return true;
-    }
-  });
-  const [showSidebar, setShowSidebar] = useState(true);
-  const [controlsOpen, setControlsOpen] = useState(false);
-  const [manageMode, setManageMode] = useState(false);
-  const [shuffleMode, setShuffleMode] = useState(false);
-  const [positionMode, setPositionMode] = useState(false);
-  const [exerciseSectionId, setExerciseSectionId] = useState(null);
-  const cloud = useCloudContent(level);
-  const { content, updateContent: setContent } = cloud;
-  const chapters = content.baselineChapters;
-  const kanjiChapterOptions = getKanjiChapterOptions(content.baselineKanjiChapters);
-  const [editor, setEditor] = useState(null);
-  useEffect(() => {
-    if (!cloud.isEditor) {
-      setManageMode(false);
-      setPositionMode(false);
-      setEditor(null);
-    }
-  }, [cloud.isEditor]);
-  const controlsRef = useRef(null);
-  const exercisePageRef = useRef(null);
-  const chapterContentRef = useRef(null);
-  const focusChapterContent = () => {
-    window.requestAnimationFrame(() => {
-      if (window.innerWidth <= 800) {
-        chapterContentRef.current?.scrollIntoView({
-          behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
-          block: "start",
-        });
-        return;
-      }
-      const visiblePanel = [...document.querySelectorAll('[role="tabpanel"]')]
-        .find((panel) => !panel.hidden);
-      (visiblePanel ?? chapterContentRef.current)?.scrollIntoView({
-        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
-        block: "start",
-      });
-    });
-  };
-  useEffect(() => {
-    try {
-      localStorage.setItem("jlpt-show-japanese", String(showJapanese));
-    } catch {}
-  }, [showJapanese]);
-  useEffect(() => {
-    try {
-      localStorage.setItem("jlpt-show-book-examples", String(showBookExamples));
-    } catch {}
-  }, [showBookExamples]);
-  const [showMyanmar, setShowMyanmar] = useState(() => {
-    try {
-      return localStorage.getItem("jlpt-show-myanmar") !== "false";
-    } catch {
-      return true;
-    }
-  });
-  useEffect(() => {
-    try {
-      localStorage.setItem("jlpt-show-myanmar", String(showMyanmar));
-    } catch {
-      // The toggle still works when browser storage is unavailable.
-    }
-  }, [showMyanmar]);
-  useEffect(() => {
-    if (!controlsOpen) return undefined;
-    const closeOnOutsideClick = (event) => {
-      if (!controlsRef.current?.contains(event.target)) setControlsOpen(false);
-    };
-    document.addEventListener("pointerdown", closeOnOutsideClick);
-    return () => document.removeEventListener("pointerdown", closeOnOutsideClick);
-  }, [controlsOpen]);
-  useEffect(() => {
-    if (!exerciseSectionId || window.innerWidth <= 800) return undefined;
-    const frame = window.requestAnimationFrame(() => {
-      exercisePageRef.current?.focus({ preventScroll: true });
-      exercisePageRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-    return () => window.cancelAnimationFrame(frame);
-  }, [exerciseSectionId]);
-
-  const allVocabularyCards = useMemo(
-    () => resolveVocabularyCards(chapters, content).filter((card) => !(content.deletedChapters || []).includes(card.parentChapterId || card.chapterId)),
-    [content],
-  );
-  const vocabularySubchapters = useMemo(
-    () => resolveVocabularySubchapters(chapters, content),
-    [content],
-  );
-  const grammarSubchapters = useMemo(
-    () => resolveVocabularySubchapters([], content, "Grammar"),
-    [content],
-  );
-  const moveCard = (cardId, direction) => {
-    setContent((current) => moveVocabularyCard(chapters, current, cardId, direction));
-  };
-  const vocabularyChapters = useMemo(
-    () => [
-      ...chapters.map((chapter) => ({
-        ...chapter,
-        ...content.chapterOverrides[chapter.id],
-        subchapters: vocabularySubchapters.filter(
-          (subchapter) => subchapter.parentChapterId === chapter.id &&
-            (subchapter.studyTab ?? "Vocab") === "Vocab",
-        ),
-        cards: allVocabularyCards.filter((card) => card.chapterId === chapter.id && (!card.studyTab || card.studyTab === "Vocab")),
-      })),
-      ...(content.chapters ?? []).filter((chapter) => (chapter.studyTab ?? "Vocab") === "Vocab").map((chapter) => ({
-        ...chapter,
-        subchapters: vocabularySubchapters.filter(
-          (subchapter) => subchapter.parentChapterId === chapter.id && (subchapter.studyTab ?? "Vocab") === "Vocab",
-        ),
-        cards: allVocabularyCards.filter((card) => card.chapterId === chapter.id && (!card.studyTab || card.studyTab === "Vocab")),
-      })),
-    ],
-    [content, allVocabularyCards, vocabularySubchapters],
-  );
-  const chapterOptions = useMemo(
-    () => [
-      ...vocabularyChapters.map((chapter) => ({ ...chapter, studyTab: "Vocab" })),
-      ...kanjiChapterOptions.map((chapter) => ({
-        ...chapter,
-        ...content.chapterOverrides[chapter.id],
-        subchapters: [
-          ...chapter.subchapters.filter((section) => !content.deletedSubchapters.includes(section.id) && !content.subchapters.some((item) => item.id === section.id)),
-          ...content.subchapters.filter(
-            (subchapter) => subchapter.parentChapterId === chapter.id && subchapter.studyTab === "Kanji",
-          ),
-        ],
-      })),
-      ...(content.chapters ?? []).filter((chapter) => chapter.studyTab !== "Vocab" && chapter.studyTab != null).map((chapter) => ({
-        ...chapter,
-        subchapters: (chapter.studyTab === "Grammar" ? grammarSubchapters : content.subchapters.filter((item) => item.studyTab === chapter.studyTab))
-          .filter((item) => item.parentChapterId === chapter.id && !content.deletedSubchapters.includes(item.id)),
-      })),
-    ].filter((chapter) => !(content.deletedChapters || []).includes(chapter.id)),
-    [content, vocabularyChapters, grammarSubchapters],
-  );
-
-  const allExercises = useMemo(() => resolveExercises(
-    content.baselineExercises,
-    content,
-    chapterOptions.flatMap((chapter) => chapter.subchapters ?? []),
-  ), [content, chapterOptions]);
-  const userChapters = useMemo(() => chapterOptions
-    .filter((chapter) => chapter.studyTab === studyTab)
-    .filter((chapter) => hasVisibleChapterContent(chapter, allVocabularyCards, allExercises))
-    .map((chapter) => ({ ...chapter, cards: allVocabularyCards.filter((card) => card.chapterId === chapter.id && (card.studyTab ?? "Vocab") === studyTab) })),
-    [chapterOptions, allVocabularyCards, allExercises, studyTab]);
-
-  const filteredChapters = useMemo(
-    () =>
-      chapterQuery.trim()
-        ? userChapters.filter((c) => contains(c.title, chapterQuery))
-        : userChapters,
-    [chapterQuery, userChapters],
-  );
-  const chapterGroups = useMemo(() => groupChapters(userChapters, (content.groups || []).filter((group) => group.studyTab === studyTab))
-    .map((group) => ({ ...group, chapters: group.chapters.filter((chapter) => filteredChapters.some((item) => item.id === chapter.id)) }))
-    .filter((group) => !chapterQuery.trim() || group.chapters.length), [userChapters, content.groups, studyTab, filteredChapters, chapterQuery]);
-  const selected =
-    userChapters.find((c) => c.id === active) ?? filteredChapters[0] ?? userChapters[0];
-  const vocabResults = useMemo(() => {
-    const q = vocabQuery.trim();
-    if (!q)
-      return selected?.cards.map((card) => ({ card, chapter: selected })) ?? [];
-    return userChapters
-      .flatMap((chapter) => [
-        ...chapter.cards.map((card) => ({ card, chapter })),
-        ...chapter.subchapters.flatMap((subchapter) => allVocabularyCards
-          .filter((card) => card.chapterId === subchapter.id && (card.studyTab ?? "Vocab") === studyTab)
-          .map((card) => ({ card, chapter: subchapter }))),
-      ])
-      .filter(({ card }) => matchesVocabulary(card, q));
-  }, [vocabQuery, selected, userChapters, allVocabularyCards, studyTab]);
-  const vocabSections = selected
-    ? [
-        { chapter: selected, isSubchapter: false, cards: selected.cards.map((card) => ({ card, chapter: selected })) },
-        ...sortChapters(selected.subchapters).map((subchapter) => ({
-          chapter: subchapter,
-          isSubchapter: true,
-          cards: allVocabularyCards
-            .filter((card) => card.chapterId === subchapter.id && (card.studyTab ?? "Vocab") === studyTab)
-            .map((card) => ({ card, chapter: subchapter })),
-        })),
-      ]
-    : [];
-  const shuffleVocabulary = shuffleMode && studyTab === "Vocab";
-  const shuffledVocabulary = useShuffledCards(vocabSections.flatMap((section) => section.cards), shuffleVocabulary, (entry) => entry.card._id);
-  const displayedVocabSections = shuffleVocabulary && selected
-    ? [{ chapter: selected, isSubchapter: false, cards: shuffledVocabulary }]
-    : vocabSections.filter((section) => section.isSubchapter || section.cards.length > 0);
-  const exercises = selected ? exercisesForView(allExercises, studyTab, selected.id) : [];
-  const exercisesForSection = (section) => exercisesForView(
-    allExercises, studyTab, selected?.id, section.id === selected?.id ? "" : section.id,
-  );
-  const exerciseSection = vocabSections.find(
-    ({ chapter }) => chapter.id === exerciseSectionId,
-  );
-  const isGlobalSearch = Boolean(vocabQuery.trim());
-
-  const openEditor = (type, mode = "add", record = {}) => {
-    if (!cloud.canEdit) return;
-    const selectedTab = studyTab;
-    if (record.studyTab && record.studyTab !== selectedTab) return;
-    const optionsForTab = chapterOptions.filter((item) => item.studyTab === selectedTab);
-    const recordSubchapter = optionsForTab
-      .flatMap((chapter) => chapter.subchapters ?? [])
-      .find((subchapter) => subchapter.id === record.subchapterId || subchapter.id === record.chapterId);
-    const chapter = optionsForTab.find((item) => item.id === (recordSubchapter?.parentChapterId ?? record.parentChapterId ?? record.chapterId ?? selected?.id)) ?? optionsForTab[0];
-    const subchapterId = record.subchapterId ?? recordSubchapter?.id ?? (type === "subchapter" ? record.id : "");
-    setEditor({
-      mode,
-      type,
-      chapterId: chapter?.id ?? "",
-      subchapterId,
-      id: record._id ?? record.id,
-      studyTab: selectedTab,
-      groupTitle: chapter ? chapterGroup(chapter).label : "",
-      groupRange: chapter ? chapterGroup(chapter).range : "",
-      layout: type === "card" && selectedTab === "Grammar" ? "wide" : "standard",
-      number: `${chapter?.number ?? "1"}.${(chapter?.subchapters?.length ?? 0) + 1}`,
-      title: "",
-      titleMyanmar: "",
-      term: "",
-      meaning: "",
-      exampleJapanese: "",
-      exampleMyanmar: "",
-      section: "1-3",
-      question: "",
-      answer: "",
-      questionMyanmar: "",
-      answerMyanmar: "",
-      kanji: "",
-      on: "",
-      kun: "",
-      sentence: "",
-      ...record,
-      ...(type === "kanji" ? { examples: kanjiExamples(record), on: record.readings?.map((r) => r.on).filter(Boolean).join("ãƒ»") || record.on || "", kun: record.readings?.map((r) => r.kun).filter(Boolean).join("ãƒ»") || record.kun || "" } : {}),
-      studyTab: selectedTab,
-      chapterId: recordSubchapter?.parentChapterId ?? chapter?.id ?? "",
-      subchapterId,
-      id: record._id ?? record.id,
-    });
-  };
-  const saveContent = async (draft) => {
-    if (!cloud.canEdit || draft.studyTab !== studyTab) return;
-    if (!["chapter", "group"].includes(draft.type) && !chapterOptions.some((chapter) => chapter.id === draft.chapterId && chapter.studyTab === studyTab)) return;
-    if (draft.type === "card") {
-      setStudyTab(draft.studyTab);
-      setActive(draft.chapterId);
-      setChapterQuery("");
-      setVocabQuery("");
-      setExerciseSectionId(null);
-      setTab("vocabulary");
-    }
-    const saved = await setContent((current) => {
-      if (draft.type === "group") {
-        const title = draft.title.trim();
-        if (draft.mode === "edit") return renameChapterGroup(current, chapterOptions, draft.studyTab, draft.originalGroupTitle, title);
-        if (!title || (current.groups || []).some((group) => group.studyTab === draft.studyTab && group.title === title)) return current;
-        return { ...current, groups: [...(current.groups || []), { id: `group-${Date.now()}`, title, studyTab: draft.studyTab }] };
-      }
-      if (draft.type === "chapter") {
-        const id = draft.mode === "edit" ? draft.chapterId : `user-chapter-${Date.now()}`;
-        const fields = { number: draft.number, title: draft.title, titleMyanmar: draft.titleMyanmar, groupTitle: (draft.groupTitle || "").trim() };
-        const chapter = { id, ...fields, studyTab: draft.studyTab, subchapters: [] };
-        setActive(id);
-        if (draft.mode === "edit") {
-          if ((current.chapters ?? []).some((item) => item.id === id)) {
-            return { ...current, chapters: current.chapters.map((item) => item.id === id ? { ...item, ...fields } : item) };
-          }
-          return { ...current, chapterOverrides: { ...current.chapterOverrides, [id]: { ...current.chapterOverrides[id], ...fields } } };
-        }
-        return { ...current, chapters: [...(current.chapters ?? []), chapter] };
-      }
-      if (draft.type === "subchapter" && draft.mode === "edit") {
-        const subchapterId = draft.subchapterId || draft.id;
-        if (current.subchapters.some((item) => item.id === subchapterId)) {
-          return { ...current, subchapters: current.subchapters.map((item) => item.id === subchapterId ? { ...item, ...(draft.sourceId ? { sourceId: draft.sourceId } : {}), parentChapterId: draft.chapterId, studyTab: draft.studyTab, number: draft.number, title: draft.title, titleMyanmar: draft.titleMyanmar } : item) };
-        }
-        return { ...current, chapterOverrides: { ...current.chapterOverrides, [subchapterId]: { number: draft.number, title: draft.title, titleMyanmar: draft.titleMyanmar } } };
-      }
-      if (draft.type === "subchapter") {
-        const id = `user-${Date.now()}`;
-        setActive(draft.chapterId);
-        return { ...current, subchapters: [...current.subchapters, { id, parentChapterId: draft.chapterId, studyTab: draft.studyTab, number: draft.number, title: draft.title, titleMyanmar: draft.titleMyanmar, cards: [] }] };
-      }
-      if (draft.type === "kanji") {
-        const id = draft.id || `user-kanji-${Date.now()}`;
-        const item = {
-          id,
-          _id: id,
-          chapterId: draft.chapterId,
-          subchapterId: draft.subchapterId,
-          studyTab: "Kanji",
-          kanji: draft.kanji,
-          meaning: draft.meaning,
-          readings: [{ kanji: draft.kanji, on: draft.on, kun: draft.kun }],
-          examples: kanjiExamples(draft),
-          term: draft.kanji,
-          layout: draft.layout,
-          sentence: kanjiExamples(draft)[0].japanese,
-          words: kanjiExamples(draft).map((example) => ({ sentence: example.japanese, explanation: example.myanmar })),
-        };
-        if (draft.mode === "edit") return { ...current, kanjiOverrides: { ...current.kanjiOverrides, [draft.id]: item } };
-        return { ...current, kanjiCards: [...current.kanjiCards, item] };
-      }
-      if (draft.type === "card") {
-        const id = draft.id || `user-card-${Date.now()}`;
-        const item = { id, _id: id, chapterId: draft.subchapterId || draft.chapterId, subchapterId: draft.subchapterId || "", parentChapterId: draft.chapterId, studyTab: draft.studyTab, layout: draft.layout, term: draft.term, meaning: draft.meaning, exampleJapanese: draft.exampleJapanese, exampleMyanmar: draft.exampleMyanmar, ...(draft.studyTab === "Grammar" ? { examples: grammarExamples(draft), grammarExplanation: draft.grammarExplanation || "" } : {}), generated: true };
-        if (draft.mode === "edit") return { ...current, cardOverrides: { ...current.cardOverrides, [draft.id]: item } };
-        return { ...current, cards: [...current.cards, item] };
-      }
-      return saveExercise(current, draft);
-    });
-    if (saved) setEditor(null);
-  };
-  const allKanjiCards = resolveKanjiCards(content);
-  const deleteRecord = (type, record) => {
-    if (!cloud.canEdit) return;
-    setDeleteType(type); setDeleteId(record._id);
-  };
-  const deleteSubchapter = (chapter) => {
-    if (!cloud.canEdit) return;
-    setDeleteType("subchapter"); setDeleteId(chapter.id);
-  };
-  const deletionChapters = chapterOptions.filter((chapter) => chapter.studyTab === studyTab);
-  const deletionGroups = groupChapters(deletionChapters, (content.groups || []).filter((group) => group.studyTab === studyTab));
-  const deletionChapterById = new Map(deletionChapters.map((chapter) => [chapter.id, chapter]));
-  const deletionSubchapterById = new Map(deletionChapters.flatMap((chapter) => (chapter.subchapters || []).map((subchapter) => [subchapter.id, { ...subchapter, chapter }])));
-  const deletionOptions = deleteType === "group" ? deletionGroups.filter((group) => group.label !== "Not grouped").map((group) => ({ id: group.label, label: group.label }))
-    : deleteType === "chapter" ? sortChapters(deletionChapters).filter((chapter) => chapter.id !== `ungrouped-${studyTab}`).map((chapter) => ({ id: chapter.id, label: `${chapter.number}: ${chapter.title}`, record: chapter }))
-    : deleteType === "subchapter" ? deletionChapters.flatMap((chapter) => sortChapters(chapter.subchapters || []).map((section) => ({ id: section.id, label: `${chapter.title} / ${section.number}: ${section.title}`, record: section })))
-    : (deleteType === "exercise" ? allExercises : deleteType === "kanji" ? allKanjiCards : allVocabularyCards).filter((record) => (record.studyTab || "Vocab") === studyTab).map((record) => {
-      const subchapter = deletionSubchapterById.get(record.subchapterId);
-      const chapter = deletionChapterById.get(record.parentChapterId || subchapter?.chapter?.id || record.chapterId);
-      return {
-        id: record._id,
-        label: `${chapter?.title || ""} / ${record.term || record.kanji || record.question}`,
-        chapterId: chapter?.id,
-        chapterLabel: chapter ? `${chapter.number}: ${chapter.title}` : "",
-        subchapterId: subchapter?.id,
-        subchapterLabel: subchapter ? `${subchapter.number}: ${subchapter.title}` : "",
-        record,
-      };
-    });
-  const deleteSelected = async (deleteContents = false) => {
-    if (!cloud.canEdit) return;
-    const option = deletionOptions.find((item) => item.id === deleteId);
-    if (!option) return;
-    if (deleteType === "group") {
-      const saved = await setContent((current) => {
-        const groupedChapters = deletionGroups.find((group) => group.label === option.id)?.chapters || [];
-        const removed = deleteContents ? groupedChapters.reduce((next, chapter) => removeChapter(next, chapter, studyTab === "Kanji" ? allKanjiCards : allVocabularyCards, allExercises, true), current) : current;
-        const next = deleteContents ? removed : renameChapterGroup(removed, chapterOptions, studyTab, option.id, "Not grouped");
-        return { ...next, groups: next.groups.filter((group) => !(group.studyTab === studyTab && group.title === option.id)) };
-      });
-      if (saved) setDeleteType(null);
-    } else if (deleteType === "chapter") {
-      const saved = await setContent((current) => removeChapter(current, option.record, studyTab === "Kanji" ? allKanjiCards : allVocabularyCards, allExercises, deleteContents));
-      if (saved) { setDeleteType(null); setActive(""); setExerciseSectionId(null); }
-    } else {
-      const saved = await setContent((current) => {
-        if (deleteType === "subchapter") return removeSubchapter(current, { ...option.record, studyTab }, studyTab === "Kanji" ? allKanjiCards : allVocabularyCards, allExercises, deleteContents);
-        const key = deleteType === "exercise" ? "deletedExercises" : deleteType === "kanji" ? "deletedKanjiCards" : "deletedCards";
-        return { ...current, [key]: [...new Set([...current[key], option.id])] };
-      });
-      if (saved) setDeleteType(null);
-    }
-  };
-  const customCardsByTab = useMemo(
-    () => Object.fromEntries(
-      studyTabs
-        .filter((label) => label !== "Vocab" && label !== "Kanji")
-        .map((label) => [
-          label,
-          allVocabularyCards.filter((card) => card.studyTab === label),
-        ]),
-    ),
-    [allVocabularyCards],
-  );
-
-  return (
-    <main
-      data-show-myanmar={showMyanmar}
-      data-show-japanese={showJapanese}
-      data-show-sidebar={showSidebar}
-    >
-      <header>
-        <div>
-          <p className="eyebrow" lang="ja">
-            è‡ªåˆ†ç”¨å­¦ç¿’ãƒŽãƒ¼ãƒˆ
-          </p>
-          <h1>JLPT {level.toUpperCase()}</h1>
-          <nav className="level-switch" aria-label="JLPT level">
-            {["n3", "n2"].map((item) => <a key={item} href={routesForLevel(item)[studyTab]} aria-current={item === level ? "page" : undefined}>JLPT {item.toUpperCase()}</a>)}
-          </nav>
-          <p className="subtitle">Japanese Â· Myanmar Â· flashcards by chapter</p>
-        </div>
-        {cloud.isEditor && <fieldset className="content-actions" aria-label="Manage study content" disabled={!cloud.canEdit}>
-          {["Vocab", "Grammar", "Kanji"].includes(studyTab) ? <>
-            <button type="button" aria-label="Add chapter" onClick={() => openEditor("chapter", "add", { studyTab })}><span aria-hidden="true">ï¼‹</span> Chapter</button>
-            <button type="button" aria-label="Add subchapter" disabled={!selected} onClick={() => selected && openEditor("subchapter", "add", { studyTab, chapterId: selected.id })}><span aria-hidden="true">ï¼‹</span> Subchapter</button>
-            <button type="button" aria-label={studyTab === "Grammar" ? "Add grammar" : studyTab === "Kanji" ? "Add kanji" : "Add vocabulary"} disabled={!selected} onClick={() => selected && openEditor(studyTab === "Kanji" ? "kanji" : "card", "add", { studyTab, chapterId: selected.id })}><span aria-hidden="true">ï¼‹</span> {studyTab === "Grammar" ? "Grammar" : studyTab === "Kanji" ? "Kanji" : "Vocabulary"}</button>
-          </> : <button type="button" onClick={() => openEditor(!chapterOptions.some((chapter) => chapter.studyTab === studyTab) ? "chapter" : studyTab === "Kanji" ? "kanji" : "subchapter", "add", { studyTab })}>New</button>}
-          {<details className="content-edit-menu" name="study-content-actions">
-            <summary>Edit</summary>
-            <div className="content-edit-options" onClick={(event) => { if (event.target.closest("button")) event.currentTarget.parentElement.removeAttribute("open"); }}>
-              <button type="button" disabled={!chapterGroups.length} onClick={() => openEditor("group", "edit", { title: chapterGroups[0]?.label || "", originalGroupTitle: chapterGroups[0]?.label || "", studyTab })}>Edit Group Title</button>
-              <button type="button" onClick={() => selected && openEditor("chapter", "edit", { ...selected, studyTab })} disabled={!selected}>Edit Chapter</button>
-              <button type="button" onClick={() => selected && openEditor("subchapter", "edit", { studyTab, chapterId: selected.id, ...(selected.subchapters[0] || {}) })} disabled={!selected}>Edit Subchapter</button>
-            </div>
-          </details>}
-          {<details className="content-edit-menu" name="study-content-actions">
-            <summary>Delete</summary>
-            <div className="content-edit-options">
-              {[["group", "Group Title"], ["chapter", "Chapter"], ["subchapter", "Subchapter"], [studyTab === "Kanji" ? "kanji" : "card", "Flashcard"], ["exercise", "Exercise"]].map(([type, label]) => <button key={type} type="button" onClick={(event) => { setDeleteType(type); setDeleteId(""); event.currentTarget.closest("details").removeAttribute("open"); }}>Delete {label}</button>)}
-            </div>
-          </details>}
-        </fieldset>}
-      </header>
-      <CloudStatus cloud={cloud} />
-      <div className="study-tabs" role="tablist" aria-label="Study topics">
-        {studyTabs.map((label, index) => (
-          <button
-            key={label}
-            type="button"
-            role="tab"
-            id={`study-tab-${index}`}
-            aria-controls={`study-panel-${index}`}
-            aria-selected={studyTab === label}
-            tabIndex={studyTab === label ? 0 : -1}
-            onClick={() => setStudyTab(label)}
-            onKeyDown={(event) => {
-              let next;
-              if (event.key === "ArrowRight")
-                next = (index + 1) % studyTabs.length;
-              else if (event.key === "ArrowLeft")
-                next = (index + studyTabs.length - 1) % studyTabs.length;
-              else if (event.key === "Home") next = 0;
-              else if (event.key === "End") next = studyTabs.length - 1;
-              else return;
-              event.preventDefault();
-              setStudyTab(studyTabs[next]);
-              document.getElementById(`study-tab-${next}`).focus();
-            }}
-          >
-            {label}
-          </button>
-        ))}
-      </div>
-      <section
-        role="tabpanel"
-        id={`study-panel-${isChapterStudy ? studyTabs.indexOf(studyTab) : 0}`}
-        aria-labelledby={`study-tab-${isChapterStudy ? studyTabs.indexOf(studyTab) : 0}`}
-        hidden={!isChapterStudy}
-        tabIndex={0}
-      >
-        <section className="search-grid">
-          <label htmlFor="chapter-search">
-            Search Chapters
-            <input
-              id="chapter-search"
-              className={chapterQuery.trim() ? (filteredChapters.length ? "search-box has-results" : "search-box no-results") : "search-box"}
-              value={chapterQuery}
-              onChange={(e) => setChapterQuery(e.target.value)}
-              placeholder="ä¾‹ï¼šå®¶æ—ã€æ€§æ ¼"
-            />
-            <SearchFeedback query={chapterQuery} count={filteredChapters.length} noun="chapter" />
-          </label>
-          <label htmlFor="vocab-search" className="desktop-vocab-search">
-            Search every {studyLabel} card
-            <input
-              id="vocab-search"
-              className={`${vocabQuery.trim() ? (vocabResults.length ? "search-box has-results" : "search-box no-results") : "search-box"}${tab === "exercises" ? " search-box-readonly" : ""}`}
-              value={vocabQuery}
-              onChange={(e) => setVocabQuery(e.target.value)}
-              placeholder="ä¾‹ï¼šå†·è”µåº«ã€ã‚Œã„ãžã†ã“ã€å†·è”µåº«ã®èª¬æ˜Ž"
-              readOnly={tab === "exercises"}
-              aria-readonly={tab === "exercises"}
-            />
-            <SearchFeedback query={tab === "exercises" ? "" : vocabQuery} count={vocabResults.length} />
-          </label>
-        </section>
-        <div className="layout">
-          <aside>
-            <div className="sidebar-heading">
-              <p className="count">Total {filteredChapters.length} chapters</p>
-              <button type="button" className="sidebar-toggle" onClick={() => setShowSidebar(!showSidebar)} aria-label={showSidebar ? "Hide chapter sidebar" : "Show chapter sidebar"}>
-                <span className={`sidebar-toggle-icon ${showSidebar ? "collapse" : "expand"}`} aria-hidden="true" />
-              </button>
-            </div>
-            <div className="chapter-group">
-              {chapterGroups.length ? (
-                chapterGroups.map((group) => (
-                  <div className="chapter-group-block" key={group.id}>
-                    <p className="chapter-group-label">
-                      <span className="chapter-group-title">{chapterTitle(group.label, false, showReadings, true, showKanji)}</span>
-                      <span className="chapter-group-range">{displayKanji(showReadings ? group.range : hideReadings(group.range), showKanji)}</span>
-                    </p>
-                    <div className="chapter-group-cards">
-                    {group.chapters.map((chapter) => (
-                      <button
-                        className={chapter.id === selected?.id ? "active" : ""}
-                        onClick={() => {
-                          setActive(chapter.id);
-                          setVocabQuery("");
-                          focusChapterContent();
-                        }}
-                        key={chapter.id}
-                      >
-                        <span>Chapter {chapter.number}</span>
-                        <strong>{localizedChapterTitle(chapter, false, showReadings, true, showKanji)}</strong>
-                      </button>
-                    ))}
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <div className="empty search-empty">
-                  <p>No searched record found.</p>
-                </div>
-              )}
-            </div>
-          </aside>
-          <label htmlFor="mobile-vocab-search" className="mobile-vocab-search">
-            Search every {studyLabel} card
-            <input
-              id="mobile-vocab-search"
-              className={`${vocabQuery.trim() ? (vocabResults.length ? "search-box has-results" : "search-box no-results") : "search-box"}${tab === "exercises" ? " search-box-readonly" : ""}`}
-              value={vocabQuery}
-              onChange={(e) => setVocabQuery(e.target.value)}
-              placeholder={vocabularySearchPlaceholder}
-              readOnly={tab === "exercises"}
-              aria-readonly={tab === "exercises"}
-            />
-            <SearchFeedback query={tab === "exercises" ? "" : vocabQuery} count={vocabResults.length} />
-          </label>
-          <article ref={chapterContentRef}>
-            {selected ? (
-              <>
-                <p className="eyebrow">
-                  {isGlobalSearch
-                    ? `${studyLabel} search`
-                    : `Chapter ${selected.number}`}
-                </p>
-                <h2>
-                  {isGlobalSearch
-                    ? `Results for â€œ${vocabQuery}â€`
-                    : localizedChapterTitle(selected, showMyanmar, showReadings, showJapanese, showKanji)}
-                </h2>
-                <p className="note">
-                  Total {" "}
-                  {isGlobalSearch
-                    ? vocabResults.length
-                    : vocabSections.reduce((total, section) => total + section.cards.length, 0)}{" "}
-                  {isGlobalSearch
-                    ? `matching ${bookMode ? "entries" : "cards"} across all chapters`
-                    : bookMode ? `${studyLabel} entries` : "flashcards"}
-                </p>
-                {!isGlobalSearch && (
-                  <div className="tools">
-                    <button
-                      className={tab === "vocabulary" ? "selected" : ""}
-                      onClick={() => setTab("vocabulary")}
-                    >
-                      {studyTab === "Grammar" ? "Grammar" : "Vocabulary"}
-                    </button>
-                    <button
-                      className={tab === "exercises" ? "selected" : ""}
-                      onClick={() => setTab("exercises")}
-                    >
-                      Exercises
-                    </button>
-                    {studyTab === "Vocab" && <button
-                      type="button"
-                      className={shuffleMode ? "selected manage-toggle" : "manage-toggle"}
-                      aria-pressed={shuffleMode}
-                      onClick={() => { setShuffleMode((value) => !value); setExerciseSectionId(null); }}
-                    >
-                      Shuffle: {shuffleMode ? "ON" : "OFF"}
-                    </button>}
-                    {cloud.isEditor && (<button
-                      type="button"
-                      className={`${manageMode ? "selected " : ""}${studyTab === "Vocab" ? "" : "manage-toggle"}`}
-                      aria-pressed={manageMode}
-                      disabled={!cloud.canEdit}
-                      onClick={() => setManageMode((value) => !value)}
-                    >
-                      Manage: {manageMode ? "ON" : "OFF"}
-                    </button>)}
-                    {!bookMode && cloud.isEditor && (<button
-                      type="button"
-                      className={positionMode ? "selected" : ""}
-                      aria-pressed={positionMode}
-                      disabled={!cloud.canEdit}
-                      onClick={() => setPositionMode((value) => !value)}
-                    >
-                      Positions: {positionMode ? "ON" : "OFF"}
-                    </button>)}
-                  </div>
-                )}
-                {isGlobalSearch || tab === "vocabulary" ? (
-                  exerciseSection ? (
-                    <section
-                      className="dedicated-exercise-page"
-                      ref={exercisePageRef}
-                      tabIndex={-1}
-                      aria-label="Dedicated exercises"
-                    >
-                      {!exerciseSection.isSubchapter && <p className="eyebrow">
-                        Chapter {exerciseSection.chapter.number}
-                      </p>}
-                      <h2 lang="ja">
-                        {localizedChapterTitle(exerciseSection.chapter, showMyanmar, showReadings, showJapanese, showKanji)}
-                      </h2>
-                      <Exercises
-                        key={exerciseSection.chapter.id}
-                        exercises={exercisesForSection(exerciseSection.chapter)}
-                        showReadings={showReadings} showKanji={showKanji}
-                        showMyanmar={showMyanmar}
-                        assignmentLabel={exerciseSection.isSubchapter ? localizedChapterTitle(exerciseSection.chapter, showMyanmar, showReadings, showJapanese, showKanji) : undefined}
-                        onAdd={!bookMode && cloud.canEdit ? () => openEditor("exercise", "add", { studyTab, chapterId: selected.id, subchapterId: exerciseSection.isSubchapter ? exerciseSection.chapter.id : "" }) : undefined}
-                        onEdit={!bookMode && manageMode && cloud.isEditor ? (item) => openEditor("exercise", "edit", { ...item, studyTab }) : undefined}
-                        onDelete={!bookMode && manageMode && cloud.isEditor ? (item) => deleteRecord("exercise", item) : undefined}
-                      />
-                    </section>
-                  ) : isGlobalSearch ? (
-                    vocabResults.length ? (
-                      bookMode ? (
-                        <VocabularyBook entries={vocabResults} showReadings={showReadings} showKanji={showKanji} showMyanmar={showMyanmar} showJapanese={showJapanese} showExamples showChapterLabels manageMode={manageMode} isEditor={cloud.isEditor} onEdit={(card) => openEditor("card", "edit", card)} onDelete={(card) => deleteRecord("card", card)} />
-                      ) : (
-                      <section className="cards">
-                        {vocabResults.map(({ card, chapter }, i) => (
-                          <div className={`managed-item card-layout-${card.layout || "standard"} search-hit`} key={`${chapter.id}-${card._id ?? card.term}-${i}`}>
-                            <Flashcard card={card} showReadings={showReadings} showKanji={showKanji} showMyanmar={showMyanmar} showJapanese={showJapanese} chapterLabel={chapter.title} />
-                            {manageMode && cloud.isEditor && (
-                              <div className="item-actions">
-                                <button type="button" onClick={() => openEditor("card", "edit", card)}>Edit</button>
-                                <button type="button" onClick={() => deleteRecord("card", card)}>Delete</button>
-                              </div>
-                            )}
-                          </div>
-                        ))}
-                      </section>
-                      )
-                    ) : (
-                      <div className="empty search-empty">
-                        <p>No searched record found.</p>
-                      </div>
-                    )
-                  ) : (
-                    <div className="vocab-sections">
-                      {!shuffleVocabulary && <SubchapterNav sections={vocabSections.filter((section) => section.isSubchapter).map((section) => section.chapter)} />}
-                      {displayedVocabSections.map(({ chapter, isSubchapter, cards: sectionCards }) => (
-                        <section className="vocab-section" key={chapter.id}>
-                          {isSubchapter && <div className="vocab-section-heading">
-                            <div className="subchapter-title-actions">
-                              <h3 lang="ja" id={isSubchapter ? subchapterTargetId(chapter.id) : undefined} tabIndex={isSubchapter ? -1 : undefined}>{localizedChapterTitle(chapter, showMyanmar, showReadings, showJapanese, showKanji)}</h3>
-                              {isSubchapter && manageMode && cloud.isEditor && (
-                                <div className="item-actions">
-                                <button type="button" onClick={() => openEditor("subchapter", "edit", { ...chapter, chapterId: chapter.parentChapterId })}>Edit</button>
-                                <button type="button" onClick={() => deleteSubchapter(chapter)}>Delete</button>
-                                </div>
-                              )}
-                            </div>
-                            <div className="vocab-section-actions">
-                              {isSubchapter && <button
-                                type="button"
-                                className={`section-exercise-button ${exerciseSectionId === chapter.id ? "active" : ""}`}
-                                aria-label={`Show Exercises For ${chapter.title}`}
-                                aria-pressed={exerciseSectionId === chapter.id}
-                                onClick={() => setExerciseSectionId((current) => current === chapter.id ? null : chapter.id)}
-                              >
-                                <span aria-hidden="true">â–¤</span>
-                                <span className="sr-only">Exercises</span>
-                              </button>}
-
-                            </div>
-                          </div>}
-                          {sectionCards.length > 0 && isSubchapter && <p className="note">{sectionCards.length} {bookMode ? `${studyLabel} entries` : "flashcards"}</p>}
-                          {bookMode ? (
-                            <VocabularyBook entries={sectionCards} showReadings={showReadings} showKanji={showKanji} showMyanmar={showMyanmar} showJapanese={showJapanese} showExamples={showBookExamples} manageMode={manageMode} isEditor={cloud.isEditor} onEdit={(card) => openEditor("card", "edit", card)} onDelete={(card) => deleteRecord("card", card)} />
-                          ) : (
-                          <section className="cards">
-                            {sectionCards.map(({ card }, i) => (
-                              <div className={`managed-item card-layout-${card.layout || "standard"}`} key={card._id}>
-                                <Flashcard card={card} showReadings={showReadings} showKanji={showKanji} showMyanmar={showMyanmar} showJapanese={showJapanese} />
-                                {positionMode && !shuffleVocabulary && cloud.isEditor && (
-                                  <div className="card-position-actions" role="group" aria-label={`Position of ${card.term}`}>
-                                    <button type="button" disabled={i === 0} onClick={() => moveCard(card._id, -1)} aria-label={`Move ${card.term} backward`}>
-                                      â† Backward
-                                    </button>
-                                    <span aria-live="polite">{i + 1} / {sectionCards.length}</span>
-                                    <button type="button" disabled={i === sectionCards.length - 1} onClick={() => moveCard(card._id, 1)} aria-label={`Move ${card.term} forward`}>
-                                      Forward â†’
-                                    </button>
-                                  </div>
-                                )}
-                                {manageMode && cloud.isEditor && (
-                                  <div className="item-actions">
-                                    <button type="button" onClick={() => openEditor("card", "edit", card)}>Edit</button>
-                                    <button type="button" onClick={() => deleteRecord("card", card)}>Delete</button>
-                                  </div>
-                                )}
-                              </div>
-                            ))}
-                          </section>
-                          )}
-                        </section>
-                      ))}
-                    </div>
-                  )
-                ) : (
-                  <Exercises
-                    key={selected.id}
-                    exercises={exercises}
-                    showReadings={showReadings} showKanji={showKanji}
-                    showMyanmar={showMyanmar}
-                    onAdd={!bookMode && cloud.canEdit ? () => openEditor("exercise", "add", { studyTab, chapterId: selected.id }) : undefined}
-                    onEdit={!bookMode && manageMode && cloud.isEditor ? (item) => openEditor("exercise", "edit", item) : undefined}
-                    onDelete={!bookMode && manageMode && cloud.isEditor ? (item) => deleteRecord("exercise", item) : undefined}
-                  />
-                )}
-              </>
-            ) : (
-              <div className="empty search-empty">
-                <p>{studyTab === "Grammar" && !userChapters.length ? "No grammar chapters yet. An owner can use + Add Grammar to create the first chapter." : !userChapters.length ? `No ${studyLabel} chapters yet. The owner can use New to add the first chapter.` : "No searched record found."}</p>
-              </div>
-            )}
-          </article>
-        </div>
-      </section>
-      {studyTabs.slice(1).map((label, index) => label !== "Kanji" ? null : (
-        <section
-          key={label}
-          role="tabpanel"
-          id={`study-panel-${index + 1}`}
-          aria-labelledby={`study-tab-${index + 1}`}
-          hidden={studyTab !== label}
-          tabIndex={0}
-        >
-          {label === "Kanji" ? (
-            <Kanji
-              isActive={studyTab === "Kanji"}
-              mode={kanjiMode}
-              allExercises={allExercises}
-              showMyanmar={showMyanmar}
-              showReadings={showReadings} showKanji={showKanji}
-              showKanjiReadings={showKanjiReadings}
-              manageMode={manageMode && cloud.isEditor}
-              canEdit={cloud.canEdit}
-              isEditor={cloud.isEditor}
-              setManageMode={setManageMode}
-              content={content}
-              openEditor={openEditor}
-              deleteRecord={deleteRecord}
-              deleteSubchapter={deleteSubchapter}
-              onChapterChange={focusChapterContent}
-            />
-          ) : (
-            <article className="custom-study-panel">
-              <p className="eyebrow">{label}</p>
-              <h2>{label} study cards</h2>
-              <div className="tools">
-                {cloud.isEditor && (<button
-                  type="button"
-                  className={manageMode ? "selected" : ""}
-                  aria-pressed={manageMode}
-                  disabled={!cloud.canEdit}
-                      onClick={() => setManageMode((value) => !value)}
-                >
-                  Manage: {manageMode ? "ON" : "OFF"}
-                </button>)}
-              </div>
-              {customCardsByTab[label]?.length ? (
-                <section className="cards">
-                  {customCardsByTab[label].map((card) => (
-                    <div className={`managed-item card-layout-${card.layout || "standard"}`} key={card._id}>
-                      <Flashcard card={card} showReadings={showReadings} showKanji={showKanji} showMyanmar={showMyanmar} showJapanese={showJapanese} />
-                      {manageMode && cloud.isEditor && (
-                        <div className="item-actions">
-                          <button type="button" onClick={() => openEditor("card", "edit", card)}>Edit</button>
-                          <button type="button" onClick={() => deleteRecord("card", card)}>Delete</button>
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </section>
-              ) : (
-                <div className="empty study-placeholder">
-                  <p>No {label.toLowerCase()} cards yet. Use â€œ+ Add {label}â€ above to create one.</p>
-                </div>
-              )}
-            </article>
-          )}
-        </section>
-      ))}
-      {level === "n3" && studyTab === "Mock exam" && <section
-        role="tabpanel"
-        id={`study-panel-${studyTabs.indexOf("Mock exam")}`}
-        aria-labelledby={`study-tab-${studyTabs.indexOf("Mock exam")}`}
-        tabIndex={0}
-      ><MockExam /></section>}
-      {level === "n3" && studyTab === "Reading" && <section
-        role="tabpanel"
-        id={`study-panel-${studyTabs.indexOf("Reading")}`}
-        aria-labelledby={`study-tab-${studyTabs.indexOf("Reading")}`}
-        tabIndex={0}
-      ><ReadingPractice /></section>}
-      {deleteType && cloud.isEditor && <DeleteDialog key={`${studyTab}-${deleteType}`} type={deleteType} options={deletionOptions} selectedId={deleteId} onSelect={setDeleteId} onClose={() => setDeleteType(null)} onDelete={deleteSelected} saving={cloud.saving} canDelete={cloud.canEdit} error={cloud.error} />}
-      {editor && cloud.isEditor && <ContentEditor saving={cloud.saving} canSave={cloud.canEdit} error={cloud.error || (!cloud.connected ? "Connection lost. Keep this form open and reconnect to save." : "")} editor={editor} setEditor={setEditor} chapterOptions={chapterOptions} groups={content.groups || []} studyTabs={studyTabs} onSave={saveContent} onClose={() => setEditor(null)} />}
-      {["Vocab", "Grammar"].includes(studyTab) && selected && !isGlobalSearch && (tab === "exercises" || exerciseSection) && <button
-        type="button" className="back-to-vocabulary"
-        onClick={() => { setTab("vocabulary"); setExerciseSectionId(null); focusChapterContent(); }}
-      >â† Back to {studyTab === "Grammar" ? "Grammar" : "Vocabulary"}</button>}
-      <div className="study-controls" ref={controlsRef}>
-        {controlsOpen && (
-          <div className="controls-panel" id="study-controls-panel">
-            <p className="controls-title">Study View</p>
-              <div className="vocab-mode-switch" role="group" aria-label={`${studyTab} display mode`}>
-                <button type="button" aria-pressed={!bookMode} onClick={() => setStudyMode("card")}>Card mode</button>
-                <button type="button" aria-pressed={bookMode} onClick={() => setStudyMode("book")}>Book mode</button>
-              </div>
-            <button
-              type="button"
-              aria-pressed={showJapanese}
-              onClick={() => {
-                setShowJapanese(!showJapanese);
-                if (showJapanese) setShowMyanmar(true);
-              }}
-            >
-              Japanese <span>{showJapanese ? "ON" : "OFF"}</span>
-            </button>
-            <button
-              type="button"
-              aria-pressed={showMyanmar}
-              onClick={() => {
-                setShowMyanmar(!showMyanmar);
-                if (showMyanmar) setShowJapanese(true);
-              }}
-            >
-              Myanmar <span>{showMyanmar ? "ON" : "OFF"}</span>
-            </button>
-            <button
-              type="button"
-              aria-pressed={showKanji}
-              disabled={!showJapanese}
-              onClick={() => {
-                setShowKanji(!showKanji);
-                if (showKanji) setShowReadings(true);
-              }}
-            >
-              Kanji <span>{showKanji ? "ON" : "OFF"}</span>
-            </button>
-            <button
-              type="button"
-              aria-pressed={showReadings}
-              disabled={!showJapanese}
-              onClick={() => {
-                setShowReadings(!showReadings);
-                if (showReadings) setShowKanji(true);
-              }}
-            >
-              Furigana <span>{showReadings ? "ON" : "OFF"}</span>
-            </button>
-            {isChapterStudy && bookMode && (
-              <button
-                type="button"
-                aria-pressed={showBookExamples}
-                onClick={() => setShowBookExamples(!showBookExamples)}
-              >
-                Example sentences <span>{showBookExamples ? "Shown" : "Hidden"}</span>
-              </button>
-            )}
-            {studyTab === "Kanji" && (
-              <button
-                type="button"
-                aria-pressed={showKanjiReadings}
-                onClick={() => setShowKanjiReadings(!showKanjiReadings)}
-              >
-                Kanji On/Kun <span>{showKanjiReadings ? "Shown" : "Hidden"}</span>
-              </button>
-            )}
-          </div>
-        )}
-        <div className="controls-actions">
-          <BackToTop />
-          <button
-            type="button"
-            className="controls-launcher"
-            aria-expanded={controlsOpen}
-            aria-controls="study-controls-panel"
-            onClick={() => setControlsOpen(!controlsOpen)}
-          >
-            {" "}
-            {controlsOpen ? "Close Controls" : "? Study Controls"}{" "}
-          </button>
-        </div>
-      </div>
-    </main>
-  );
-}
-createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App level={levelFromPath(window.location.pathname)} />
-  </React.StrictMode>,
-);
+YªçŠx-®éÜj×¢ëiºÚ+Š§j[h‘éÜ¢éíÛ½7á:-jZ.¶›­–)Þ³V–×÷'B²F—7Æ”¶æ¦’Òg&öÒ"â÷7GVG•FW‡Bæ§2#°¦–×÷'BW6U6‡VffÆVD6&G2g&öÒ"â÷W6U6‡VffÆVD6&G2æ§2#°¦–×÷'BFVÆWFTF–Æörg&öÒ"âôFVÆWFTF–Æöræ§7‚#°¦–×÷'B²&VÖ÷fT6†FW"Â&VÖ÷fU7V&6†FW"Òg&öÒ"âöFVÆWFT6öçF–æW'2æ§2#°¦–×÷'B²†5f—6–&ÆT6†FW$6öçFVçBÒg&öÒ"âö6†FW%f—6–&–Æ—G’æ§2#°¦–×÷'B&V7BÂ²W6TVffV7BÂW6TÖVÖòÂW6U&VbÂW6U7FFRÒg&öÒ'&V7B#°¦–×÷'B²7&VFU&ö÷BÒg&öÒ'&V7BÖFöÒö6Æ–VçB#°¦–×÷'B²6†FW$w&÷WÂw&÷W6†FW'2Â6÷'D6†FW'2Â&VæÖT6†FW$w&÷WÒg&öÒ"âö6†FW$w&÷W2æ§2#°¦–×÷'B²&÷WFW4f÷$ÆWfVÂÂÆWfVÄg&öÕF‚Â7GVG•F$g&öÕF‚Òg&öÒ"â÷7GVG•&÷WFW2æ§2#°¦–×÷'B²Ö÷fUfö6'VÆ'”6&BÂ&W6öÇfUfö6'VÆ'”6&G2Â&W6öÇfUfö6'VÆ'•7V&6†FW'2Òg&öÒ"â÷fö6'VÆ'”6öçFVçBæ§2#°¦–×÷'BW†W&6—6W2g&öÒ"âôW†W&6—6W2æ§7‚#°¦–×÷'B7V&6†FW$æbÂ²7V&6†FW%F&vWD–BÒg&öÒ"âõ7V&6†FW$æbæ§7‚#°¦–×÷'B²&W6öÇfTW†W&6—6W2ÂW†W&6—6W4f÷%f–WrÂ6fTW†W&6—6RÂVæ76–väW†W&6—6W2Òg&öÒ"âöW†W&6—6T6öçFVçBæ§2#°¦–×÷'B¶æ¦’Â²vWD¶æ¦”6†FW$÷F–öç2Â&W6öÇfT¶æ¦”6&G2Òg&öÒ"âô¶æ¦’æ§7‚#°¦–×÷'B²W6T6Æ÷VD6öçFVçBÒg&öÒ"â÷W6T6Æ÷VD6öçFVçBæ§2#°¦–×÷'B6Æ÷VE7FGW2g&öÒ"âô6Æ÷VE7FGW2æ§7‚#°¦–×÷'B"âöæ772#°¦–×÷'BFW‡Df–VÆBg&öÒ"âõFW‡Df–VÆBæ§7‚#°¦–×÷'B6V&6„fVVF&6²g&öÒ"âõ6V&6„fVVF&6²æ§7‚#°¦–×÷'B²¶æ¦”W†×ÆW2Òg&öÒ"âö¶æ¦”6öçFVçBæ§2#°¦–×÷'B²ÖF6†W5fö6'VÆ'’Âfö6'VÆ'•6V&6…Æ6V†öÆFW"Òg&öÒ"â÷fö6'VÆ'•6V&6‚æ§2#°¦–×÷'B7WÆVÖVçFÄw&ÖÖ$W†×ÆW2g&öÒ"âöw&ÖÖ%7WÆVÖVçFÄW†×ÆW2æ§2#°¦–×÷'BÖö6´W†Òg&öÒ"âôÖö6´W†Òæ§7‚#°¦–×÷'B&VF–æu&7F–6Rg&öÒ"âõ&VF–æu&7F–6Ræ§7‚#°¦–×÷'B&7F–6Rg&öÒ"âõ&7F–6Ræ§7‚#°¦–×÷'B7GVG”66W72g&öÒ"âõ7GVG”66W72æ§7‚#° ¦6öç7B†–FU&VF–æw2Ò‡fÇVRÒ""’Óà¢fÇVP¢ç&WÆ6R‚þûÈ…µîûÈ•Ò®ûÈ’örÂ""¢ç&WÆ6R‚õÂ…µâ•Ò¥Â’örÂ""“°¦6öç7B6†FW%F—FÆRÒ€¢F—FÆRÀ¢6†÷t×–æÖ"À¢6†÷u&VF–æw2À¢6†÷t¦æW6RÒG'VRÀ¢6†÷t¶æ¦’ÒG'VRÀ¢’Óâ°¢6öç7Bf—6–&ÆRÒ6†÷t×–æÖ ¢òF—FÆP¢¢F—FÆP¢ç7Æ—B‚"ò"¢æf–ÇFW"‚‡'B’ÓâõÇµ67&—CÔ×–æÖ'Ò÷RçFW7B‡'B’¢æ¦ö–â‚"ò"“°¢6öç7BFW‡BÒ6†÷t¦æW6P¢òf—6–&ÆP¢¢f—6–&ÆP¢ç7Æ—B‚"ò"¢æf–ÇFW"‚‡'B’ÓâõÇµ67&—CÔ×–æÖ'Ò÷RçFW7B‡'B’¢æ¦ö–â‚"ò"“°¢&WGW&âF—7Æ”¶æ¦’‡6†÷u&VF–æw2òFW‡B¢†–FU&VF–æw2‡FW‡B’Â6†÷t¶æ¦’“°§Ó°¦6öç7BÆö6Æ—¦VD6†FW%F—FÆRÒ†6†FW"Â6†÷t×–æÖ"Â6†÷u&VF–æw2Â6†÷t¦æW6RÒG'VRÂ6†÷t¶æ¦’ÒG'VR’Óà¢6†FW%F—FÆR€¢¶6†FW"çF—FÆRÂ6†FW"çF—FÆT×–æÖ%Òæf–ÇFW"„&ööÆVâ’æ¦ö–â‚"ò"’À¢6†÷t×–æÖ"À¢6†÷u&VF–æw2À¢6†÷t¦æW6RÀ¢6†÷t¶æ¦’À¢“°¦6öç7Bæ÷&ÖÆ—¦U6V&6…FW‡BÒ‡fÇVRÒ""’Óà¢7G&–ær‡fÇVR¢ææ÷&ÖÆ—¦R‚$äd´2"¢ç&WÆ6R‚õµÇS3ÕÇS3ceÒörÂ†6†"’Óâ7G&–æræg&öÔ6†$6öFR†6†"æ6†$6öFTBƒ’Òƒc’¢ç&WÆ6R‚õµÇTdccbÕÇTdc”EÒörÂ†6†"’Óâ7G&–æræg&öÔ6†$6öFR†6†"æ6†$6öFTBƒ’Ò„cb’¢ç&WÆ6R‚õµÇS3Ç5ÆåÇ%ÇEÒ²örÂ""¢ç&WÆ6R‚õ¾ûÈŽûÈ’‚•ÅµÅ×·Þ8Î8Þ8î8þ88.ûÈûÉþ8;²òî8ÒörÂ""¢çG&–Ò‚¢çFôÆö6ÆTÆ÷vW$66R‚“°¦6öç7B6öçF–ç2Ò‡fÇVRÂVW'’’Óâ°¢6öç7BÒæ÷&ÖÆ—¦U6V&6…FW‡B‡VW'’“°¢–b‚’&WGW&âG'VS°¢&WGW&âæ÷&ÖÆ—¦U6V&6…FW‡B‡fÇVR’æ–æ6ÇVFW2‡“°§Ó°¦6öç7B&VçDçVÖ&W"Ò†çVÖ&W"’Óâ7G&–ær†çVÖ&W"’ç7Æ—B‚"â"•³Ó° ¦gVæ7F–öâ&6µFõF÷‚’°¢6öç7B·f—6–&ÆRÂ6WEf—6–&ÆUÒÒW6U7FFR†fÇ6R“° ¢W6TVffV7B‚‚’Óâ°¢6öç7BWFFUf—6–&–Æ—G’Ò‚’Óâ6WEf—6–&ÆR‡v–æF÷rç67&öÆÅ’â3“°¢WFFUf—6–&–Æ—G’‚“°¢v–æF÷ræFDWfVçDÆ—7FVæW"‚'67&öÆÂ"ÂWFFUf—6–&–Æ—G’Â²76—fS¢G'VRÒ“°¢&WGW&â‚’Óâv–æF÷rç&VÖ÷fTWfVçDÆ—7FVæW"‚'67&öÆÂ"ÂWFFUf—6–&–Æ—G’“°¢ÒÂµÒ“° ¢–b‚f—6–&ÆR’&WGW&âçVÆÃ° ¢&WGW&â€¢Æ'WGFöà¢G—SÒ&'WGFöâ ¢6Æ74æÖSÒ'&VF–ær×FövvÆR&6²×Fò×F÷ ¢&–ÖÆ&VÃÒ$&6²FòF÷ ¢öä6Æ–6³×²‚’Óâ°¢Fö7VÖVç@¢çVW'•6VÆV7F÷"‚rç7GVG’×F'2¶&–×6VÆV7FVCÒ'G'VR%Òr¢òæfö7W2‡²&WfVçE67&öÆÃ¢G'VRÒ“°¢v–æF÷rç67&öÆÅFò‡°¢F÷¢À¢&V†f–÷#¢v–æF÷ræÖF6„ÖVF–‚"‡&VfW'2×&VGV6VBÖÖ÷F–öã¢&VGV6R’"¢æÖF6†W0¢ò&–ç7FçB ¢¢'6Öö÷F‚"À¢Ò“°¢×Ð¢à¢Ç7â6Æ74æÖSÒ&&6²×Fò×F÷Ö–6öâ"&–Ö†–FFVãÒ'G'VR"óà¢Âö'WGFöãà¢“°§Ð ¦6öç7Bw&ÖÖ$W†×ÆW2Ò†6&B’Óâ°¢6öç7B6fVBÒ6&BæW†×ÆW3òæÆVæwF€¢ò6&BæW†×ÆW0¢¢·²¦æW6S¢6&BæW†×ÆT¦æW6RÇÂ""Â×–æÖ#¢6&BæW†×ÆT×–æÖ"ÇÂ""ÕÓ°¢6öç7B7WÆVÖVçFÂÒ7WÆVÖVçFÄw&ÖÖ$W†×ÆW5¶6&BçFW&ÕÒóòµÓ°¢&WGW&â²ââç6fVBÂââç7WÆVÖVçFÂæf–ÇFW"‚†W†×ÆR’Óâ6fVBç6öÖR‚†—FVÒ’Óâ—FVÒæ¦æW6RÓÓÒW†×ÆRæ¦æW6R’•Ó°§Ó° ¦gVæ7F–öâw&ÖÖ$FWF–Ç2‡²6&BÂ6†÷u&VF–æw2Â6†÷t¶æ¦’Â6†÷t×–æÖ"Â6†÷t¦æW6RÂ6†÷tW†×ÆW2ÒG'VRÂ6†÷tÖ÷&T'WGFöâÒfÇ6RÒ’°¢6öç7BF—7Æ’Ò‡fÇVR’ÓâF—7Æ”¶æ¦’‡6†÷u&VF–æw2òfÇVR¢†–FU&VF–æw2‡fÇVR’Â6†÷t¶æ¦’“°¢6öç7B¶W‡æFVBÂ6WDW‡æFVEÒÒW6U7FFR†fÇ6R“°¢6öç7BW†×ÆW2Òw&ÖÖ$W†×ÆW2†6&B“°¢6öç7B†4Ö÷&TW†×ÆW2ÒW†×ÆW2æÆVæwF‚â°¢6öç7Bf—6–&ÆTW†×ÆW2ÒW‡æFVBòW†×ÆW2¢W†×ÆW2ç6Æ–6RƒÂ“°¢&WGW&âÃà¢·6†÷tÖ÷&T'WGFöâbb€¢Æ'WGFöà¢G—SÒ&'WGFöâ ¢6Æ74æÖSÒ&w&ÖÖ"ÖÖ÷&R×FövvÆR ¢&–ÖW‡æFVC×¶W‡æFVGÐ¢F—6&ÆVC×²†4Ö÷&TW†×ÆW7Ð¢F—FÆS×¶†4Ö÷&TW†×ÆW2òVæFVf–æVB¢%F†R7W'&VçBW†×ÆR—26†÷vã²æòFF—F–öæÂW†×ÆW2&Rf–Æ&ÆR–WBâ'Ð¢öä6Æ–6³×²‚’Óâ6WDW‡æFVB‚‡fÇVR’ÓâfÇVR—Ð¢à¢¶W‡æFVBò%6†÷rÆW72"¢%6†÷rÖ÷&R'Ð¢¶†4Ö÷&TW†×ÆW2bbÇ7â&–Ö†–FFVãÒ'G'VR#â+r¶W†×ÆW2æÆVæwF‚ÒÓÂ÷7ãçÐ¢Âö'WGFöãà¢—Ð¢·6†÷tW†×ÆW2bbf—6–&ÆTW†×ÆW2æÖ‚†W†×ÆRÂ–æFW‚’Óâ€¢ÆF—b6Æ74æÖSÒ&w&ÖÖ"ÖW†×ÆR"¶W“×¶–æFW‡Óà¢·6†÷t¦æW6RbbW†×ÆRæ¦æW6RbbÇÆæsÒ&¦#ç¶F—7Æ’†W†×ÆRæ¦æW6R—ÓÂ÷çÐ¢·6†÷t×–æÖ"bbW†×ÆRæ×–æÖ"bbÇÆæsÒ&×’#ç¶F—7Æ’†W†×ÆRæ×–æÖ"—ÓÂ÷çÐ¢ÂöF—cà¢’—Ð¢·6†÷t×–æÖ"bb6&Bæw&ÖÖ$W‡ÆæF–öâbbÇ6Æ74æÖSÒ&w&ÖÖ"ÖW‡ÆæF–öâ"ÆæsÒ&×’#ç¶6&Bæw&ÖÖ$W‡ÆæF–öçÓÂ÷çÐ¢Âóã°§Ð ¦gVæ7F–öâfÆ6†6&B‡°¢6&BÀ¢6†÷u&VF–æw2À¢6†÷t¶æ¦’À¢6†÷t×–æÖ"À¢6†÷t¦æW6RÀ¢6†FW$Æ&VÂÀ§Ò’°¢6öç7B¶fÆ—VBÂ6WDfÆ—VEÒÒW6U7FFR†fÇ6R“°¢6öç7BF—7Æ’Ò‡fÇVR’ÓâF—7Æ”¶æ¦’‡6†÷u&VF–æw2òfÇVR¢†–FU&VF–æw2‡fÇVR’Â6†÷t¶æ¦’“°¢–b†6&Bç7GVG•F"ÓÓÒ$w&ÖÖ""’&WGW&â€¢ÆF—b6Æ74æÖSÒ&w&ÖÖ"Ö6&B#à¢¶6†FW$Æ&VÂbbÇ6Æ74æÖSÒ&6†FW"×Fr#ç¶6†FW%F—FÆR†6†FW$Æ&VÂÂ6†÷t×–æÖ"Â6†÷u&VF–æw2Â6†÷t¦æW6RÂ6†÷t¶æ¦’—ÓÂ÷çÐ¢Ç6Æ74æÖSÒ&w&ÖÖ"Ö†VF–ær#à¢·6†÷t¦æW6RbbÇ7G&öær6Æ74æÖSÒ&w&ÖÖ"×GFW&â"ÆæsÒ&¦#ç¶F—7Æ’†6&BçFW&Ò—ÓÂ÷7G&öæsçÐ¢·6†÷t¦æW6Rbb6†÷t×–æÖ"bb6&BæÖVæ–ærbb"Ò'Ð¢·6†÷t×–æÖ"bbÇ7âÆæsÒ&×’#ç¶6&BæÖVæ–æwÓÂ÷7ãçÐ¢Â÷à¢Äw&ÖÖ$FWF–Ç26&C×¶6&GÒ6†÷u&VF–æw3×·6†÷u&VF–æw7Ò6†÷t¶æ¦“×·6†÷t¶æ¦—Ò6†÷t×–æÖ#×·6†÷t×–æÖ'Ò6†÷t¦æW6S×·6†÷t¦æW6WÒ6†÷tÖ÷&T'WGFöâóà¢ÂöF—cà¢“°¢&WGW&â€¢Æ'WGFöà¢6Æ74æÖS×¶fÆ6†6&Bfö6"Ö6&BG¶fÆ—VBò&fÆ—VB"¢"'ÖÐ¢öä6Æ–6³×²‚’Óâ6WDfÆ—VB‚‡b’Óâb—Ð¢&–ÖÆ&VÃ×¶G¶6&BçFW&×ÒfÆ6†6&FÐ¢à¢Ç7â6Æ74æÖSÒ&fÆ6‚Ö–ææW"#à¢Ç7â6Æ74æÖSÒ&f6Rg&öçB#à¢¶6†FW$Æ&VÂbb€¢Ç7â6Æ74æÖSÒ&6†FW"×Fr#à¢¶6†FW%F—FÆR€¢6†FW$Æ&VÂÀ¢6†÷t×–æÖ"À¢6†÷u&VF–æw2À¢6†÷t¦æW6RÀ¢6†÷t¶æ¦’À¢—Ð¢Â÷7ãà¢—Ð¢Ç7G&öærÆæsÒ&¦#ç¶F—7Æ’†6&BçFW&Ò—ÓÂ÷7G&öæsà¢·6†÷t×–æÖ"bb€¢Ç7â6Æ74æÖSÒ&ÖVæ–ær"ÆæsÒ&×’#à¢¶6&BæÖVæ–æwÐ¢Â÷7ãà¢—Ð¢Â÷7ãà¢Ç7â6Æ74æÖSÒ&f6R&6²#à¢Ç7â6Æ74æÖSÒ&Æ&VÂ"FFÖ¦æW6Sà¢¦æW6RW†×ÆP¢Â÷7ãà¢Ç7â6Æ74æÖSÒ&W†×ÆR"ÆæsÒ&¦#à¢¶F—7Æ’†6&BæW†×ÆT¦æW6R—Ð¢Â÷7ãà¢·6†÷t×–æÖ"bb€¢Ãà¢Ç7â6Æ74æÖSÒ&Æ&VÂ"FFÖ×–æÖ#à¢×–æÖ"W‡ÆæF–öà¢Â÷7ãà¢Ç7â6Æ74æÖSÒ&ÖÒ6VçFVæ6R"ÆæsÒ&×’#à¢¶F—7Æ’†6&BæW†×ÆT×–æÖ"’ÇÀ¢.
+	®	^
+²	Þ
+¾¾	ÞN¢^
+ÎŽ	Î
+þnŽò
+	>
+Þ	^ž	^
+Î	®®	NîN~¢
+	î
+þnŽ	^Î
+þ	^
+þn
+Þ
+ò	Î~	Î
+Î	^
+¾²'Ð¢Â÷7ãà¢Âóà¢—Ð¢²6&BævVæW&FVBbb€¢Ç7â6Æ74æÖSÒ'6÷W&6RÖæ÷FR#äW†×ÆRg&öÒ–÷W"v÷&B7GVG’f–ÆSÂ÷7ãà¢—Ð¢Â÷7ãà¢Â÷7ãà¢Âö'WGFöãà¢“°§Ð ¦gVæ7F–öâfö6'VÆ'”&öö²‡²VçG&–W2Â6†÷u&VF–æw2Â6†÷t¶æ¦’Â6†÷t×–æÖ"Â6†÷t¦æW6RÂ6†÷tW†×ÆW2ÒG'VRÂ6†÷t6†FW$Æ&VÇ2ÒfÇ6RÂÖævTÖöFRÒfÇ6RÂ—4VF—F÷"ÒfÇ6RÂöäVF—BÂöäFVÆWFRÒ’°¢6öç7BF—7Æ’Ò‡fÇVRÒ""’ÓâF—7Æ”¶æ¦’‡6†÷u&VF–æw2òfÇVR¢†–FU&VF–æw2‡fÇVR’Â6†÷t¶æ¦’“°¢&WGW&â€¢ÆöÂ6Æ74æÖSÒ'fö6'VÆ'’Ö&öö²#à¢¶VçG&–W2æÖ‚‡²6&BÂ6†FW"Ò’Óâ€¢ÆÆ’¶W“×¶6&Båö–GÒ6Æ74æÖSÒ&&öö²ÖVçG'’#à¢·6†÷t6†FW$Æ&VÇ2bb6†FW"bb€¢Ç6Æ74æÖSÒ&&öö²Ö6†FW"ÖÆ&VÂ#ç¶Æö6Æ—¦VD6†FW%F—FÆR†6†FW"Â6†÷t×–æÖ"Â6†÷u&VF–æw2Â6†÷t¦æW6RÂ6†÷t¶æ¦’—ÓÂ÷à¢—Ð¢Ç6Æ74æÖSÒ&&öö²×FW&Ò#à¢·6†÷t¦æW6RbbÇ7G&öærÆæsÒ&¦#ç¶F—7Æ’†6&BçFW&Ò—ÓÂ÷7G&öæsçÐ¢·6†÷t¦æW6Rbb6†÷t×–æÖ"bb6&BæÖVæ–ærbb"(	B'Ð¢·6†÷t×–æÖ"bbÇ7âÆæsÒ&×’#ç¶6&BæÖVæ–æwÓÂ÷7ãçÐ¢Â÷à¢¶6&Bç7GVG•F"ÓÓÒ$w&ÖÖ""òÄw&ÖÖ$FWF–Ç26&C×¶6&GÒ6†÷u&VF–æw3×·6†÷u&VF–æw7Ò6†÷t¶æ¦“×·6†÷t¶æ¦—Ò6†÷t×–æÖ#×·6†÷t×–æÖ'Ò6†÷t¦æW6S×·6†÷t¦æW6WÒ6†÷tW†×ÆW3×·6†÷tW†×ÆW7Òóâ¢Ãà¢·6†÷tW†×ÆW2bb6†÷t¦æW6Rbb6&BæW†×ÆT¦æW6Rbb€¢Ç6Æ74æÖSÒ&&öö²ÖW†×ÆR"ÆæsÒ&¦#æRærâ¶F—7Æ’†6&BæW†×ÆT¦æW6R—ÓÂ÷à¢—Ð¢·6†÷tW†×ÆW2bb6†÷t×–æÖ"bb6&BæW†×ÆT×–æÖ"bb€¢Ç6Æ74æÖSÒ&&öö²×G&ç6ÆF–öâ"ÆæsÒ&×’#ç¶F—7Æ’†6&BæW†×ÆT×–æÖ"—ÓÂ÷à¢—Ð¢ÂóçÐ¢¶ÖævTÖöFRbb—4VF—F÷"bb€¢ÆF—b6Æ74æÖSÒ&—FVÒÖ7F–öç2#à¢Æ'WGFöâG—SÒ&'WGFöâ"öä6Æ–6³×²‚’ÓâöäVF—Còâ†6&B—ÓäVF—CÂö'WGFöãà¢Æ'WGFöâG—SÒ&'WGFöâ"öä6Æ–6³×²‚’ÓâöäFVÆWFSòâ†6&B—ÓäFVÆWFSÂö'WGFöãà¢ÂöF—cà¢—Ð¢ÂöÆ“à¢’—Ð¢ÂööÃà¢“°§Ð ¦gVæ7F–öâ6öçFVçDVF—F÷"‡²VF—F÷"Â6WDVF—F÷"Â6†FW$÷F–öç2Âw&÷W2Â7GVG•F'2Âöå6fRÂöä6Æ÷6RÂ6f–ærÂ6å6fRÂW'&÷"Ò’°¢6öç7B6WBÒ†f–VÆBÂfÇVR’Óâ6WDVF—F÷"‚†7W'&VçB’Óâ‡²ââæ7W'&VçBÂ¶f–VÆEÓ¢fÇVRÒ’“°¢6öç7B6†FW'2Ò6÷'D6†FW'2†6†FW$÷F–öç2æf–ÇFW"‚†6†FW"’Óâ6†FW"ç7GVG•F"ÓÓÒVF—F÷"ç7GVG•F"’“°¢6öç7Bf–Æ&ÆTw&÷W2Òw&÷W6†FW'2†6†FW'2Âw&÷W2æf–ÇFW"‚†w&÷W’Óâw&÷Wç7GVG•F"ÓÓÒVF—F÷"ç7GVG•F"’“°¢6öç7B6VÆV7FVD6†FW"Ò6†FW'2æf–æB‚†6†FW"’Óâ6†FW"æ–BÓÓÒVF—F÷"æ6†FW$–B“°¢6öç7B7V&6†FW'2Ò6÷'D6†FW'2‡6VÆV7FVD6†FW#òç7V&6†FW'2óòµÒ“°¢6öç7B7V&Ö—BÒ†WfVçB’Óâ°¢WfVçBç&WfVçDFVfVÇB‚“°¢öå6fR†VF—F÷"“°¢Ó°¢6öç7BVF—F÷%F—FÆRÐ¢VF—F÷"æÖöFRÓÓÒ&VF—B ¢ò°¢6&C¢$VF—BfÆ6†6&B"À¢¶æ¦“¢$VF—B¶æ¦’6&B"À¢W†W&6—6S¢$VF—BW†W&6—6R"À¢w&÷W¢$VF—Bw&÷WF—FÆR"À¢6†FW#¢$VF—B6†FW""À¢7V&6†FW#¢$VF—B7V"6†FW""À¢Õ¶VF—F÷"çG—UÒóò$VF—B—FVÒ ¢¢°¢6&C¢$FBfÆ6†6&B"À¢¶æ¦“¢$FB¶æ¦’6&B"À¢W†W&6—6S¢$FBW†W&6—6R"À¢w&÷W¢$FBw&÷W"À¢6†FW#¢$FB6†FW""À¢7V&6†FW#¢$FB7V"6†FW""À¢Õ¶VF—F÷"çG—UÒóò$FB—FVÒ#°¢&WGW&â€¢ÆF—b6Æ74æÖSÒ&VF—F÷"Ö&6¶G&÷"&öÆSÒ'&W6VçFF–öâ"öäÖ÷W6TF÷vã×¶öä6Æ÷6WÓà¢Æf÷&Ò6Æ74æÖSÒ&VF—F÷""öå7V&Ö—C×·7V&Ö—GÒöäÖ÷W6TF÷vã×²†WfVçB’ÓâWfVçBç7F÷&÷vF–öâ‚—Óà¢ÆF—b6Æ74æÖSÒ&VF—F÷"Ö†VF–ær#à¢ÆF—cà¢Ç6Æ74æÖSÒ&W–V'&÷r#å7GVG’6öçFVçCÂ÷à¢Æƒ#ç¶VF—F÷%F—FÆWÓÂöƒ#à¢ÂöF—cà¢Æ'WGFöâG—SÒ&'WGFöâ"6Æ74æÖSÒ&–6öâÖ'WGFöâ"&–ÖÆ&VÃÒ$6Æ÷6RVF—F÷""öä6Æ–6³×¶öä6Æ÷6WÓà¢9p¢Âö'WGFöãà ¢ÂöF—cà¢Æf–VÆG6WB6Æ74æÖSÒ&VF—F÷"Öw&–B"F—6&ÆVC×·6f–æwÓà¢ÆÆ&VÃà¢G—P¢Ç6VÆV7BfÇVS×¶VF—F÷"çG—WÒöä6†ævS×²†WfVçB’Óâ°¢6öç7BG—RÒWfVçBçF&vWBçfÇVS°¢6WDVF—F÷"‚†7W'&VçB’Óâ‡²ââæ7W'&VçBÂG—RÂâââ‡G—RÓÓÒ&w&÷W"ò²F—FÆS¢""Ò¢·Ò’Ò’“°¢×ÒF—6&ÆVC×¶VF—F÷"æÖöFRÓÓÒ&VF—B'Óà¢¶VF—F÷"ç7GVG•F"ÓÒ$¶æ¦’"bbÆ÷F–öâfÇVSÒ&6&B#äfÆ6†6&CÂö÷F–öãçÐ¢¶VF—F÷"ç7GVG•F"ÓÓÒ$¶æ¦’"bbÆ÷F–öâfÇVSÒ&¶æ¦’#ä¶æ¦’6&CÂö÷F–öãçÐ¢Æ÷F–öâfÇVSÒ&W†W&6—6R#äW†W&6—6SÂö÷F–öãà¢Æ÷F–öâfÇVSÒ&w&÷W#äw&÷WF—FÆSÂö÷F–öãà¢Æ÷F–öâfÇVSÒ&6†FW"#ä6†FW#Âö÷F–öãà¢Æ÷F–öâfÇVSÒ'7V&6†FW"#å7V"6†FW#Âö÷F–öãà¢Â÷6VÆV7Cà¢ÂöÆ&VÃà¢ÆÆ&VÃà¢7GVG’F ¢Ç6VÆV7BF—6&ÆVBfÇVS×¶VF—F÷"ç7GVG•F'Òöä6†ævS×²†WfVçB’Óâ°¢6öç7B7GVG•F"ÒWfVçBçF&vWBçfÇVS°¢6öç7Bf—'7D6†FW"Ò6†FW$÷F–öç2æf–æB‚†6†FW"’Óâ6†FW"ç7GVG•F"ÓÓÒ7GVG•F"“°¢6WDVF—F÷"‚†7W'&VçB’Óâ‡°¢ââæ7W'&VçBÀ¢7GVG•F"À¢6†FW$–C¢f—'7D6†FW#òæ–Bóò""À¢7V&6†FW$–C¢""À¢Ò’“°¢×Óà¢·7GVG•F'2æf–ÇFW"‚†Æ&VÂ’ÓâVF—F÷"çG—RÓÒ&6&B"ÇÂÆ&VÂÓÒ$¶æ¦’"’æÖ‚†Æ&VÂ’Óâ€¢Æ÷F–öâfÇVS×¶Æ&VÇÒ¶W“×¶Æ&VÇÓç¶Æ&VÇÓÂö÷F–öãà¢’—Ð¢Â÷6VÆV7Cà¢ÂöÆ&VÃà¢²²&6†FW""Â&w&÷W%Òæ–æ6ÇVFW2†VF—F÷"çG—R’bbÆÆ&VÃà¢6†FW ¢Ç6VÆV7BfÇVS×¶VF—F÷"æ6†FW$–GÒF—6&ÆVC×²6†FW'2æÆVæwF‡Òöä6†ævS×²†WfVçB’Óâ°¢6öç7B6†FW$–BÒWfVçBçF&vWBçfÇVS°¢6öç7B6†FW"Ò6†FW'2æf–æB‚†—FVÒ’Óâ—FVÒæ–BÓÓÒ6†FW$–B“°¢6WDVF—F÷"‚†7W'&VçB’Óâ‡°¢ââæ7W'&VçBÀ¢6†FW$–BÀ¢7V&6†FW$–C¢""À¢âââ†7W'&VçBçG—RÓÓÒ'7V&6†FW""ò²ÖöFS¢&FB"Â–C¢VæFVf–æVBÂ6÷W&6T–C¢VæFVf–æVBÒ¢·Ò’À¢çVÖ&W#¢7W'&VçBçG—RÓÓÒ'7V&6†FW""òG¶6†FW#òæçVÖ&W"óò"'ÒææWv¢7W'&VçBæçVÖ&W"À¢F—FÆS¢7W'&VçBçG—RÓÓÒ'7V&6†FW""ò""¢7W'&VçBçF—FÆRÀ¢F—FÆT×–æÖ#¢7W'&VçBçG—RÓÓÒ'7V&6†FW""ò""¢7W'&VçBçF—FÆT×–æÖ"À¢Ò’“°¢×Óà¢²6†FW'2æÆVæwF‚bbÆ÷F–öâfÇVSÒ"#äæò6†FW'2–âF†—2F#Âö÷F–öãçÐ¢¶6†FW'2æÖ‚†6†FW"’Óâ€¢Æ÷F–öâfÇVS×¶6†FW"æ–GÒ¶W“×¶6†FW"æ–GÓä6†FW"¶6†FW"æçVÖ&W'Ó¢¶6†FW"çF—FÆWÓÂö÷F–öãà¢’—Ð¢Â÷6VÆV7Cà¢ÂöÆ&VÃçÐ¢¶VF—F÷"çG—RÓÓÒ&6†FW""bbVF—F÷"æÖöFRÓÓÒ&VF—B"bb€¢ÆÆ&VÃà¢W†—7F–ær6†FW ¢Ç6VÆV7BfÇVS×¶VF—F÷"æ6†FW$–GÒöä6†ævS×²†WfVçB’Óâ°¢6öç7B6†FW"Ò6†FW'2æf–æB‚†—FVÒ’Óâ—FVÒæ–BÓÓÒWfVçBçF&vWBçfÇVR“°¢6WDVF—F÷"‚†7W'&VçB’Óâ‡°¢ââæ7W'&VçBÀ¢6†FW$–C¢WfVçBçF&vWBçfÇVRÀ¢–C¢WfVçBçF&vWBçfÇVRÀ¢w&÷WF—FÆS¢6†FW"ò6†FW$w&÷W†6†FW"’æÆ&VÂ¢""À¢w&÷W&ævS¢6†FW"ò6†FW$w&÷W†6†FW"’ç&ævR¢""À¢çVÖ&W#¢6†FW#òæçVÖ&W"óò7W'&VçBæçVÖ&W"À¢F—FÆS¢6†FW#òçF—FÆRóò7W'&VçBçF—FÆRÀ¢F—FÆT×–æÖ#¢6†FW#òçF—FÆT×–æÖ"óò7W'&VçBçF—FÆT×–æÖ"À¢Ò’“°¢×Óà¢¶6†FW'2æÖ‚†6†FW"’Óâ€¢Æ÷F–öâfÇVS×¶6†FW"æ–GÒ¶W“×¶6†FW"æ–GÓä6†FW"¶6†FW"æçVÖ&W'Ó¢¶6†FW"çF—FÆWÓÂö÷F–öãà¢’—Ð¢Â÷6VÆV7Cà¢ÂöÆ&VÃà¢—Ð¢²²'7V&6†FW""Â&6†FW""Â&w&÷W%Òæ–æ6ÇVFW2†VF—F÷"çG—R’bb€¢ÆÆ&VÃà¢¶VF—F÷"çG—RÓÓÒ&W†W&6—6R"ò$76–vâFò7V"6†FW"„÷F–öæÂ’"¢%7V"6†FW"„÷F–öæÂ’'Ð¢Ç6VÆV7BfÇVS×¶VF—F÷"ç7V&6†FW$–GÒöä6†ævS×²†WfVçB’Óâ6WB‚'7V&6†FW$–B"ÂWfVçBçF&vWBçfÇVR—Óà¢Æ÷F–öâfÇVSÒ"#ç¶VF—F÷"çG—RÓÓÒ&W†W&6—6R"ò%Væ76–væVBÒÖ–âW†W&6—6W2öæÇ’"¢$Ö–â6†FW"'ÓÂö÷F–öãà¢·7V&6†FW'2æÖ‚‡7V&6†FW"’Óâ€¢Æ÷F–öâfÇVS×·7V&6†FW"æ–GÒ¶W“×·7V&6†FW"æ–GÓå7V"6†FW"·7V&6†FW"æçVÖ&W'Ó¢·7V&6†FW"çF—FÆWÓÂö÷F–öãà¢’—Ð¢Â÷6VÆV7Cà¢ÂöÆ&VÃà¢—Ð¢¶VF—F÷"çG—RÓÓÒ'7V&6†FW""bb€¢Ãà¢ÆÆ&VÃà¢7V"6†FW ¢Ç6VÆV7BfÇVS×¶VF—F÷"ç7V&6†FW$–GÒöä6†ævS×²†WfVçB’Óâ°¢6öç7B7V&6†FW$–BÒWfVçBçF&vWBçfÇVS°¢6öç7B7V&6†FW"Ò7V&6†FW'2æf–æB‚†—FVÒ’Óâ—FVÒæ–BÓÓÒ7V&6†FW$–B“°¢6WDVF—F÷"‚†7W'&VçB’Óâ‡°¢ââæ7W'&VçBÀ¢7V&6†FW$–BÀ¢–C¢7V&6†FW$–BÇÂVæFVf–æVBÀ¢6÷W&6T–C¢7V&6†FW#òç6÷W&6T–BÀ¢ÖöFS¢7V&6†FW$–Bò&VF—B"¢&FB"À¢çVÖ&W#¢7V&6†FW#òæçVÖ&W"óòG·6VÆV7FVD6†FW#òæçVÖ&W"óò"'ÒææWvÀ¢F—FÆS¢7V&6†FW#òçF—FÆRóò""À¢F—FÆT×–æÖ#¢7V&6†FW#òçF—FÆT×–æÖ"óò""À¢Ò’“°¢×Óà¢Æ÷F–öâfÇVSÒ"#äæWr7V"6†FW#Âö÷F–öãà¢·7V&6†FW'2æÖ‚‡7V&6†FW"’Óâ€¢Æ÷F–öâfÇVS×·7V&6†FW"æ–GÒ¶W“×·7V&6†FW"æ–GÓå7V"6†FW"·7V&6†FW"æçVÖ&W'Ó¢·7V&6†FW"çF—FÆWÓÂö÷F–öãà¢’—Ð¢Â÷6VÆV7Cà¢ÂöÆ&VÃà¢ÆÆ&VÃå7V"6†FW"çVÖ&W#ÅFW‡Df–VÆBgVÆÅv–GF‚f&–çCÒ&÷WFÆ–æVB"6—¦SÒ'6ÖÆÂ"fÇVS×¶VF—F÷"æçVÖ&W'Òöä6†ævS×²†WfVçB’Óâ6WB‚&çVÖ&W""ÂWfVçBçF&vWBçfÇVR—ÒÆ6V†öÆFW#Ò$÷F–öæÂ"óãÂöÆ&VÃà¢ÆÆ&VÃå7V"6†FW"F—FÆSÅFW‡Df–VÆBgVÆÅv–GF‚f&–çCÒ&÷WFÆ–æVB"6—¦SÒ'6ÖÆÂ"fÇVS×¶VF—F÷"çF—FÆWÒöä6†ævS×²†WfVçB’Óâ6WB‚'F—FÆR"ÂWfVçBçF&vWBçfÇVR—ÒÆ6V†öÆFW#Ò.Zënixþ8ŽXø¾˜B"&WV—&VBóãÂöÆ&VÃà¢ÆÆ&VÃä×–æÖ"G&ç6ÆF–öãÅFW‡Df–VÆBgVÆÅv–GF‚f&–çCÒ&÷WFÆ–æVB"6—¦SÒ'6ÖÆÂ"ÆæsÒ&×’"fÇVS×¶VF—F÷"çF—FÆT×–æÖ'Òöä6†ævS×²†WfVçB’Óâ6WB‚'F—FÆT×–æÖ""ÂWfVçBçF&vWBçfÇVR—ÒÆ6V†öÆFW#Ò.	ž
+Þ	î
+ÎŽ^
+þ	NîN~¢	îN	®®¾N®Ž	ž¾
+Î‚"óãÂöÆ&VÃà¢Âóà¢—Ð¢¶VF—F÷"çG—RÓÓÒ&w&÷W"bbÃà¢¶VF—F÷"æÖöFRÓÓÒ&VF—B"bbÆÆ&VÃäW†—7F–ærw&÷WÇ6VÆV7BfÇVS×¶VF—F÷"æ÷&–v–æÄw&÷WF—FÆRÇÂ"'Òöä6†ævS×²†WfVçB’Óâ6WDVF—F÷"‚†7W'&VçB’Óâ‡²ââæ7W'&VçBÂ÷&–v–æÄw&÷WF—FÆS¢WfVçBçF&vWBçfÇVRÂF—FÆS¢WfVçBçF&vWBçfÇVRÒ’—Óà¢¶f–Æ&ÆTw&÷W2æÖ‚†w&÷W’ÓâÆ÷F–öâ¶W“×¶w&÷Wæ–GÒfÇVS×¶w&÷WæÆ&VÇÓç¶w&÷WæÆ&VÇÓÂö÷F–öãâ—Ð¢Â÷6VÆV7CãÂöÆ&VÃçÐ¢ÆÆ&VÃäw&÷WF—FÆSÅFW‡Df–VÆBgVÆÅv–GF‚f&–çCÒ&÷WFÆ–æVB"6—¦SÒ'6ÖÆÂ"fÇVS×¶VF—F÷"çF—FÆWÒöä6†ævS×²†WfVçB’Óâ6WB‚'F—FÆR"ÂWfVçBçF&vWBçfÇVR—Ò&WV—&VBóãÂöÆ&VÃà¢Ç6Æ74æÖSÒ&VF—F÷"Ö†VÇ#ägFW"6f–ærÂ6†ö÷6RF†—2w&÷Wv†VâFF–ær÷"VF—F–ær6†FW'2âF†R6†FW"&ævRWFFW2WFöÖF–6ÆÇ’ãÂ÷à¢ÂóçÐ¢¶VF—F÷"çG—RÓÓÒ&6†FW""bb€¢Ãà¢ÆÆ&VÃäw&÷WF—FÆSÇ6VÆV7BfÇVS×¶VF—F÷"æw&÷WF—FÆRÇÂ"'Òöä6†ævS×²†WfVçB’Óâ6WB‚&w&÷WF—FÆR"ÂWfVçBçF&vWBçfÇVR—Óà¢Æ÷F–öâfÇVSÒ"#äFVfVÇBw&÷WÂö÷F–öãà¢¶f–Æ&ÆTw&÷W2æÖ‚†w&÷W’ÓâÆ÷F–öâfÇVS×¶w&÷WæÆ&VÇÒ¶W“×¶w&÷Wæ–GÓç¶w&÷WæÆ&VÇÓÂö÷F–öãâ—Ð¢Â÷6VÆV7CãÂöÆ&VÃà¢Ç6Æ74æÖSÒ&VF—F÷"Ö†VÇ#äÆÂw&÷W2&RÆ—7FVB&÷fRâFò7&VFRw&÷WÂ6†ö÷6Rw&÷WF—FÆR–âG—Rv†VâFF–æræWr—FVÒâ6†FW"&ævW2&R6÷VçFVBWFöÖF–6ÆÇ’g&öÒF†R6†FW'2–âV6‚w&÷WãÂ÷à¢ÆÆ&VÃä6†FW"çVÖ&W#ÅFW‡Df–VÆBgVÆÅv–GF‚f&–çCÒ&÷WFÆ–æVB"6—¦SÒ'6ÖÆÂ"fÇVS×¶VF—F÷"æçVÖ&W'Òöä6†ævS×²†WfVçB’Óâ6WB‚&çVÖ&W""ÂWfVçBçF&vWBçfÇVR—ÒÆ6V†öÆFW#Ò$÷F–öæÂ"óãÂöÆ&VÃà¢ÆÆ&VÃä6†FW"F—FÆSÅFW‡Df–VÆBgVÆÅv–GF‚f&–çCÒ&÷WFÆ–æVB"6—¦SÒ'6ÖÆÂ"fÇVS×¶VF—F÷"çF—FÆWÒöä6†ævS×²†WfVçB’Óâ6WB‚'F—FÆR"ÂWfVçBçF&vWBçfÇVR—ÒÆ6V†öÆFW#Ò.ik8~8Nzº"&WV—&VBóãÂöÆ&VÃà¢ÆÆ&VÃä×–æÖ"G&ç6ÆF–öãÅFW‡Df–VÆBgVÆÅv–GF‚f&–çCÒ&÷WFÆ–æVB"6—¦SÒ'6ÖÆÂ"ÆæsÒ&×’"fÇVS×¶VF—F÷"çF—FÆT×–æÖ'Òöä6†ævS×²†WfVçB’Óâ6WB‚'F—FÆT×–æÖ""ÂWfVçBçF&vWBçfÇVR—ÒÆ6V†öÆFW#Ò.
+	N®Žò	žÎ	N®	ž
+Î	Ž
+Î	î
+Î	^Î	N¢"óãÂöÆ&VÃà¢Âóà¢—Ð¢¶VF—F÷"çG—RÓÓÒ&6&B"bb€¢Ãà¢ÆÆ&VÃà¢¶VF—F÷"ç7GVG•F"ÓÓÒ$w&ÖÖ""ò$6&BÆ–÷WB"¢$fÆ6†6&BÆ–÷WB'Ð¢Ç6VÆV7BfÇVS×¶VF—F÷"æÆ–÷WGÒöä6†ævS×²†WfVçB’Óâ6WB‚&Æ–÷WB"ÂWfVçBçF&vWBçfÇVR—Óà¢Æ÷F–öâfÇVSÒ'7FæF&B#å7FæF&CÂö÷F–öãà¢Æ÷F–öâfÇVSÒ&F÷V&ÆR#äF÷V&ÆRv–GF‚ƒ"6&G2“Âö÷F–öãà¢Æ÷F–öâfÇVSÒ'v–FR#åv–FRƒ26&G2“Âö÷F–öãà¢Â÷6VÆV7Cà¢ÂöÆ&VÃà¢ÆÆ&VÃç¶VF—F÷"ç7GVG•F"ÓÓÒ$w&ÖÖ""ò$w&ÖÖ"GFW&â"¢$fÆ6†6&Bg&öçB'ÓÅFW‡Df–VÆBgVÆÅv–GF‚f&–çCÒ&÷WFÆ–æVB"6—¦SÒ'6ÖÆÂ"fÇVS×¶VF—F÷"çFW&×Òöä6†ævS×²†WfVçB’Óâ6WB‚'FW&Ò"ÂWfVçBçF&vWBçfÇVR—ÒÆ6V†öÆFW#Ò$¦æW6Rv÷&NûÈ‡&VF–æ~ûÈ’"&WV—&VBóãÂöÆ&VÃà¢ÆÆ&VÃä×–æÖ"ÖVæ–æsÅFW‡Df–VÆBgVÆÅv–GF‚f&–çCÒ&÷WFÆ–æVB"6—¦SÒ'6ÖÆÂ"fÇVS×¶VF—F÷"æÖVæ–æwÒöä6†ævS×²†WfVçB’Óâ6WB‚&ÖVæ–ær"ÂWfVçBçF&vWBçfÇVR—Ò&WV—&VBóãÂöÆ&VÃà¢¶VF—F÷"ç7GVG•F"ÓÓÒ$w&ÖÖ""òÃà¢ÆF—b6Æ74æÖSÒ&w&ÖÖ"ÖW†×ÆRÖVF—F÷"#à¢²†VF—F÷"æW†×ÆW2ÇÂw&ÖÖ$W†×ÆW2†VF—F÷"’’æÖ‚†W†×ÆRÂ–æFW‚ÂW†×ÆW2’ÓâÆf–VÆG6WB¶W“×¶–æFW‡Óà¢ÆÆVvVæCäW†×ÆR¶–æFW‚²ÓÂöÆVvVæCà¢ÆÆ&VÃä¦æW6R6VçFVæ6SÅFW‡Df–VÆBgVÆÅv–GF‚f&–çCÒ&÷WFÆ–æVB"6—¦SÒ'6ÖÆÂ"×VÇF–Æ–æRfÇVS×¶W†×ÆRæ¦æW6WÒöä6†ævS×²†WfVçB’Óâ6WB‚&W†×ÆW2"ÂW†×ÆW2æÖ‚†—FVÒÂ’’Óâ’ÓÓÒ–æFW‚ò²ââæ—FVÒÂ¦æW6S¢WfVçBçF&vWBçfÇVRÒ¢—FVÒ’—Ò&WV—&VBóãÂöÆ&VÃà¢ÆÆ&VÃä×–æÖ"G&ç6ÆF–öãÅFW‡Df–VÆBgVÆÅv–GF‚f&–çCÒ&÷WFÆ–æVB"6—¦SÒ'6ÖÆÂ"×VÇF–Æ–æRÆæsÒ&×’"fÇVS×¶W†×ÆRæ×–æÖ'Òöä6†ævS×²†WfVçB’Óâ6WB‚&W†×ÆW2"ÂW†×ÆW2æÖ‚†—FVÒÂ’’Óâ’ÓÓÒ–æFW‚ò²ââæ—FVÒÂ×–æÖ#¢WfVçBçF&vWBçfÇVRÒ¢—FVÒ’—ÒóãÂöÆ&VÃà¢¶W†×ÆW2æÆVæwF‚âbbÆ'WGFöâG—SÒ&'WGFöâ"öä6Æ–6³×²‚’Óâ6WB‚&W†×ÆW2"ÂW†×ÆW2æf–ÇFW"‚…òÂ’’Óâ’ÓÒ–æFW‚’—Óå&VÖ÷fRW†×ÆSÂö'WGFöãçÐ¢Âöf–VÆG6WCâ—Ð¢Æ'WGFöâG—SÒ&'WGFöâ"öä6Æ–6³×²‚’Óâ6WB‚&W†×ÆW2"Â²âââ†VF—F÷"æW†×ÆW2ÇÂw&ÖÖ$W†×ÆW2†VF—F÷"’’Â²¦æW6S¢""Â×–æÖ#¢""ÕÒ—Óâ²FBW†×ÆSÂö'WGFöãà¢ÂöF—cà¢ÆÆ&VÂ6Æ74æÖSÒ&w&ÖÖ"ÖW‡ÆæF–öâÖVF—F÷"#ä×–æÖ"w&ÖÖ"W‡ÆæF–öãÅFW‡Df–VÆBgVÆÅv–GF‚f&–çCÒ&÷WFÆ–æVB"6—¦SÒ'6ÖÆÂ"×VÇF–Æ–æRÆæsÒ&×’"fÇVS×¶VF—F÷"æw&ÖÖ$W‡ÆæF–öâÇÂ"'Òöä6†ævS×²†WfVçB’Óâ6WB‚&w&ÖÖ$W‡ÆæF–öâ"ÂWfVçBçF&vWBçfÇVR—ÒÆ6V†öÆFW#Ò$W‡Æ–âF†Rw&ÖÖ"GFW&â–â×–æÖ""óãÂöÆ&VÃà¢Âóâ¢Ãà¢ÆÆ&VÃä¦æW6RW†×ÆSÅFW‡Df–VÆBgVÆÅv–GF‚f&–çCÒ&÷WFÆ–æVB"6—¦SÒ'6ÖÆÂ"×VÇF–Æ–æRfÇVS×¶VF—F÷"æW†×ÆT¦æW6WÒöä6†ævS×²†WfVçB’Óâ6WB‚&W†×ÆT¦æW6R"ÂWfVçBçF&vWBçfÇVR—Ò&WV—&VBóãÂöÆ&VÃà¢ÆÆ&VÃä×–æÖ"W‡ÆæF–öãÅFW‡Df–VÆBgVÆÅv–GF‚f&–çCÒ&÷WFÆ–æVB"6—¦SÒ'6ÖÆÂ"×VÇF–Æ–æRfÇVS×¶VF—F÷"æW†×ÆT×–æÖ'Òöä6†ævS×²†WfVçB’Óâ6WB‚&W†×ÆT×–æÖ""ÂWfVçBçF&vWBçfÇVR—ÒóãÂöÆ&VÃà¢ÂóçÐ¢Âóà¢—Ð¢¶VF—F÷"çG—RÓÓÒ&¶æ¦’"bb€¢Ãà¢ÆÆ&VÃä¶æ¦’g&öçCÅFW‡Df–VÆBgVÆÅv–GF‚f&–çCÒ&÷WFÆ–æVB"6—¦SÒ'6ÖÆÂ"fÇVS×¶VF—F÷"æ¶æ¦—Òöä6†ævS×²†WfVçB’Óâ6WB‚&¶æ¦’"ÂWfVçBçF&vWBçfÇVR—ÒÆ6V†öÆFW#Ò.kÊ.ZÙr"&WV—&VBóãÂöÆ&VÃà¢ÆÆ&VÃä×–æÖ"ÖVæ–æsÅFW‡Df–VÆBgVÆÅv–GF‚f&–çCÒ&÷WFÆ–æVB"6—¦SÒ'6ÖÆÂ"fÇVS×¶VF—F÷"æÖVæ–æwÒöä6†ævS×²†WfVçB’Óâ6WB‚&ÖVæ–ær"ÂWfVçBçF&vWBçfÇVR—Ò&WV—&VBóãÂöÆ&VÃà¢ÆÆ&VÃäöî(	—–öÖ’Ž™û>ŠªÞ8ò“ÅFW‡Df–VÆBgVÆÅv–GF‚f&–çCÒ&÷WFÆ–æVB"6—¦SÒ'6ÖÆÂ"fÇVS×¶VF—F÷"æöçÒöä6†ævS×²†WfVçB’Óâ6WB‚&öâ"ÂWfVçBçF&vWBçfÇVR—ÒÆ6V†öÆFW#Ò.8*®8;>8:Ž89ò"óãÂöÆ&VÃà¢ÆÆ&VÃä·Vî(	—–öÖ’ŽŠ‰>ŠªÞ8ò“ÅFW‡Df–VÆBgVÆÅv–GF‚f&–çCÒ&÷WFÆ–æVB"6—¦SÒ'6ÖÆÂ"fÇVS×¶VF—F÷"æ·VçÒöä6†ævS×²†WfVçB’Óâ6WB‚&·Vâ"ÂWfVçBçF&vWBçfÇVR—ÒÆ6V†öÆFW#Ò.8þ8)>8(Ž8ò"óãÂöÆ&VÃà¢ÆF—b6Æ74æÖSÒ&w&ÖÖ"ÖW†×ÆRÖVF—F÷"#à¢¶¶æ¦”W†×ÆW2†VF—F÷"’æÖ‚†W†×ÆRÂ–æFW‚ÂW†×ÆW2’ÓâÆf–VÆG6WB¶W“×¶–æFW‡Óà¢ÆÆVvVæCäW†×ÆR¶–æFW‚²ÓÂöÆVvVæCà¢ÆÆ&VÃä¦æW6R6VçFVæ6SÅFW‡Df–VÆBgVÆÅv–GF‚f&–çCÒ&÷WFÆ–æVB"6—¦SÒ'6ÖÆÂ"fÇVS×¶W†×ÆRæ¦æW6WÒöä6†ævS×²†WfVçB’Óâ6WB‚&W†×ÆW2"ÂW†×ÆW2æÖ‚†—FVÒÂ’’Óâ’ÓÓÒ–æFW‚ò²ââæ—FVÒÂ¦æW6S¢WfVçBçF&vWBçfÇVRÒ¢—FVÒ’—Ò&WV—&VBóãÂöÆ&VÃà¢ÆÆ&VÃä×–æÖ"G&ç6ÆF–öãÅFW‡Df–VÆBgVÆÅv–GF‚f&–çCÒ&÷WFÆ–æVB"6—¦SÒ'6ÖÆÂ"ÆæsÒ&×’"fÇVS×¶W†×ÆRæ×–æÖ'Òöä6†ævS×²†WfVçB’Óâ6WB‚&W†×ÆW2"ÂW†×ÆW2æÖ‚†—FVÒÂ’’Óâ’ÓÓÒ–æFW‚ò²ââæ—FVÒÂ×–æÖ#¢WfVçBçF&vWBçfÇVRÒ¢—FVÒ’—ÒóãÂöÆ&VÃà¢Æ'WGFöâG—SÒ&'WGFöâ"F—6&ÆVC×¶W†×ÆW2æÆVæwF‚ÓÓÒÒöä6Æ–6³×²‚’Óâ6WB‚&W†×ÆW2"ÂW†×ÆW2æf–ÇFW"‚…òÂ’’Óâ’ÓÒ–æFW‚’—Óå&VÖ÷fRW†×ÆSÂö'WGFöãà¢Âöf–VÆG6WCâ—Ð¢Æ'WGFöâG—SÒ&'WGFöâ"öä6Æ–6³×²‚’Óâ6WB‚&W†×ÆW2"Â²ââæ¶æ¦”W†×ÆW2†VF—F÷"’Â²¦æW6S¢""Â×–æÖ#¢""ÕÒ—Óâ²FBW†×ÆSÂö'WGFöãà¢ÂöF—cà¢Âóà¢—Ð¢¶VF—F÷"çG—RÓÓÒ&W†W&6—6R"bb€¢Ãà¢Ç6Æ74æÖSÒ&VF—F÷"Ö†VÇ#äW†W&6—6W2Çv—2&VÖ–â–âF†RÖ–â6†FW"Æ—7Bâ76–vâ7V"6†FW"Fò6†÷rF†R6ÖRW†W&6—6RF†W&RFöòâVF—G2WFFR&÷F‚Æ6W2â6ÆV"F†R76–væÖVçBFò&VÖ÷fR—Bg&öÒF†R7V"6†FW"ãÂ÷à¢ÆÆ&VÃäW†W&6—6Rw&÷WÅFW‡Df–VÆBgVÆÅv–GF‚f&–çCÒ&÷WFÆ–æVB"6—¦SÒ'6ÖÆÂ"fÇVS×¶VF—F÷"ç6V7F–öçÒöä6†ævS×²†WfVçB’Óâ6WB‚'6V7F–öâ"ÂWfVçBçF&vWBçfÇVR—ÒÆ6V†öÆFW#Ò#Ó2"&WV—&VBóãÂöÆ&VÃà¢ÆÆ&VÃå6VçFVæ6RòVW7F–öãÅFW‡Df–VÆBgVÆÅv–GF‚f&–çCÒ&÷WFÆ–æVB"6—¦SÒ'6ÖÆÂ"×VÇF–Æ–æRfÇVS×¶VF—F÷"çVW7F–öçÒöä6†ævS×²†WfVçB’Óâ6WB‚'VW7F–öâ"ÂWfVçBçF&vWBçfÇVR—Ò&WV—&VBóãÂöÆ&VÃà¢ÆÆ&VÃä×–æÖ"6VçFVæ6RòVW7F–öãÅFW‡Df–VÆBgVÆÅv–GF‚f&–çCÒ&÷WFÆ–æVB"6—¦SÒ'6ÖÆÂ"×VÇF–Æ–æRÆæsÒ&×’"fÇVS×¶VF—F÷"çVW7F–öä×–æÖ'Òöä6†ævS×²†WfVçB’Óâ6WB‚'VW7F–öä×–æÖ""ÂWfVçBçF&vWBçfÇVR—ÒóãÂöÆ&VÃà¢ÆÆ&VÃäç7vW"¶W“ÅFW‡Df–VÆBgVÆÅv–GF‚f&–çCÒ&÷WFÆ–æVB"6—¦SÒ'6ÖÆÂ"×VÇF–Æ–æRfÇVS×¶VF—F÷"æç7vW'Òöä6†ævS×²†WfVçB’Óâ6WB‚&ç7vW""ÂWfVçBçF&vWBçfÇVR—Ò&WV—&VBóãÂöÆ&VÃà¢ÆÆ&VÃä×–æÖ"ç7vW"òW‡ÆæF–öãÅFW‡Df–VÆBgVÆÅv–GF‚f&–çCÒ&÷WFÆ–æVB"6—¦SÒ'6ÖÆÂ"×VÇF–Æ–æRÆæsÒ&×’"fÇVS×¶VF—F÷"æç7vW$×–æÖ'Òöä6†ævS×²†WfVçB’Óâ6WB‚&ç7vW$×–æÖ""ÂWfVçBçF&vWBçfÇVR—ÒóãÂöÆ&VÃà¢Ç6Æ74æÖSÒ&VF—F÷"Ö†VÇ#ä×–æÖ"f–VÆG2&R÷F–öæÂâW6RÇFW‡GÂ–â¦æW6RVW7F–öâFòVæFW&Æ–æR—BãÂ÷à¢Âóà¢—Ð¢Âöf–VÆG6WCà¢¶W'&÷"bbÇ6Æ74æÖSÒ&6Æ÷VBÖW'&÷""&öÆSÒ&ÆW'B#ç¶W'&÷'ÓÂ÷çÐ¢ÆF—b6Æ74æÖSÒ&VF—F÷"Ö7F–öç2#à¢Æ'WGFöâG—SÒ&'WGFöâ"6Æ74æÖSÒ'6V6öæF'’Ö'WGFöâ"öä6Æ–6³×¶öä6Æ÷6WÓä6æ6VÃÂö'WGFöãà¢Æ'WGFöâG—SÒ'7V&Ö—B"6Æ74æÖSÒ'&–Ö'’Ö'WGFöâ"F—6&ÆVC×·6f–ærÇÂ6å6fWÓç·6f–ærò%6f–ærâââ"¢VF—F÷"æÖöFRÓÓÒ&VF—B"ò%6fR6†ævW2"¢$FB'ÓÂö'WGFöãà¢ÂöF—cà¢Âöf÷&Óà¢ÂöF—cà¢“°§Ð ¦6öç7B&6U7GVG•F'2Ò°¢%fö6""À¢$w&ÖÖ""À¢$¶æ¦’"À¢$Æ—7FVæ–ær"À¢%&VF–ær"À¢$Öö6²W†Ò"À¥Ó° ¦gVæ7F–öâ‡²ÆWfVÂÒ’°¢6öç7B7GVG•F'2ÒÆWfVÂÓÓÒ&ã2"ò²ââæ&6U7GVG•F'2Â%&7F–6R%Ò¢&6U7GVG•F'3°¢6öç7B7GVG•&÷WFW2Ò&÷WFW4f÷$ÆWfVÂ†ÆWfVÂ“°¢W6TVffV7B‚‚’Óâ²Fö7VÖVçBçF—FÆRÒ¤ÅBG¶ÆWfVÂçFõWW$66R‚—Ö²ÒÂ¶ÆWfVÅÒ“°¢W6TVffV7B‚‚’Óâ°¢6öç7B6Æ÷6TÖVçW4÷WG6–FRÒ†WfVçB’Óâ°¢Fö7VÖVçBçVW'•6VÆV7F÷$ÆÂ‚&FWF–Ç2æ6öçFVçBÖVF—BÖÖVçU¶÷VåÒ"’æf÷$V6‚‚†ÖVçR’Óâ°¢–b‚ÖVçRæ6öçF–ç2†WfVçBçF&vWB’’ÖVçRç&VÖ÷fTGG&–'WFR‚&÷Vâ"“°¢Ò“°¢Ó°¢Fö7VÖVçBæFDWfVçDÆ—7FVæW"‚'ö–çFW&F÷vâ"Â6Æ÷6TÖVçW4÷WG6–FR“°¢&WGW&â‚’ÓâFö7VÖVçBç&VÖ÷fTWfVçDÆ—7FVæW"‚'ö–çFW&F÷vâ"Â6Æ÷6TÖVçW4÷WG6–FR“°¢ÒÂµÒ“°¢6öç7B¶FVÆWFUG—RÂ6WDFVÆWFUG—UÒÒW6U7FFR†çVÆÂ“°¢6öç7B¶FVÆWFT–BÂ6WDFVÆWFT–EÒÒW6U7FFR‚""“°¢6öç7B·7GVG•F"ÂWFFU7GVG•F%ÒÒW6U7FFR‚‚’Óâ7GVG•F$g&öÕF‚‡v–æF÷ræÆö6F–öâçF†æÖR’“°¢6öç7B6WE7GVG•F"Ò†Æ&VÂ’Óâ°¢–b‡v–æF÷ræÆö6F–öâçF†æÖRÓÒ7GVG•&÷WFW5¶Æ&VÅÒ’°¢v–æF÷ræ†—7F÷'’çW6…7FFR†çVÆÂÂ""Â7GVG•&÷WFW5¶Æ&VÅÒ²v–æF÷ræÆö6F–öâç6V&6‚“°¢Ð¢WFFU7GVG•F"†Æ&VÂ“°¢v–æF÷rç&WVW7Dæ–ÖF–öäg&ÖR‚‚’Óâ°¢Fö7VÖVçBævWDVÆVÖVçD'”–B†7GVG’×æVÂÒG·7GVG•F'2æ–æFW„öb†Æ&VÂ—Ö“òç67&öÆÄ–çFõf–Wr‡°¢&V†f–÷#¢v–æF÷ræÖF6„ÖVF–‚"‡&VfW'2×&VGV6VBÖÖ÷F–öã¢&VGV6R’"’æÖF6†W2ò&–ç7FçB"¢'6Öö÷F‚"À¢&Æö6³¢'7F'B"À¢Ò“°¢Ò“°¢Ó°¢W6TVffV7B‚‚’Óâ°¢6öç7Böå÷7FFRÒ‚’ÓâWFFU7GVG•F"‡7GVG•F$g&öÕF‚‡v–æF÷ræÆö6F–öâçF†æÖR’“°¢v–æF÷ræFDWfVçDÆ—7FVæW"‚'÷7FFR"Âöå÷7FFR“°¢–b‡v–æF÷ræÆö6F–öâçF†æÖRÓÓÒ"ò"’°¢v–æF÷ræ†—7F÷'’ç&WÆ6U7FFR†çVÆÂÂ""Â7GVG•&÷WFW2åfö6"²v–æF÷ræÆö6F–öâç6V&6‚²v–æF÷ræÆö6F–öâæ†6‚“°¢Ð¢&WGW&â‚’Óâv–æF÷rç&VÖ÷fTWfVçDÆ—7FVæW"‚'÷7FFR"Âöå÷7FFR“°¢ÒÂµÒ“°¢6öç7B—46†FW%7GVG’Ò²$¶æ¦’"Â$Öö6²W†Ò%Òæ–æ6ÇVFW2‡7GVG•F"’bb†ÆWfVÂÓÓÒ&ã2"bb²%&VF–ær"Â%&7F–6R%Òæ–æ6ÇVFW2‡7GVG•F"’“°¢6öç7B7GVG”Æ&VÂÒ7GVG•F"ÓÓÒ%fö6""ò'fö6'VÆ'’"¢7GVG•F"çFôÆ÷vW$66R‚“°¢W6TVffV7B‚‚’Óâ°¢6WD6†FW%VW'’‚""“°¢6WEfö6%VW'’‚""“°¢6WD7F—fR‚""“°¢6WDW†W&6—6U6V7F–öä–B†çVÆÂ“°¢6WEF"‚'fö6'VÆ'’"“°¢6WDVF—F÷"†çVÆÂ“°¢6WDFVÆWFUG—R†çVÆÂ“°¢6WE6†÷u&VF–æw2†fÇ6R“°¢6WE6†÷t¶æ¦’‡G'VR“°¢6WE6†÷t¶æ¦•&VF–æw2‡7GVG•F"ÓÓÒ$¶æ¦’"“°¢–b‡7GVG•F"ÓÓÒ$w&ÖÖ""’6WDw&ÖÖ$ÖöFR‚&6&B"“°¢–b‡7GVG•F"ÓÓÒ%fö6""’6WEfö6$ÖöFR‚&&öö²"“°¢–b‡7GVG•F"ÓÓÒ$¶æ¦’"’6WD¶æ¦”ÖöFR‚&&öö²"“°¢ÒÂ·7GVG•F%Ò“°¢6öç7B¶6†FW%VW'’Â6WD6†FW%VW'•ÒÒW6U7FFR‚""“°¢6öç7B·fö6%VW'’Â6WEfö6%VW'•ÒÒW6U7FFR‚""“°¢6öç7B¶7F—fRÂ6WD7F—fUÒÒW6U7FFR‚""“°¢6öç7B·F"Â6WEF%ÒÒW6U7FFR‚'fö6'VÆ'’"“°¢6öç7B·fö6$ÖöFRÂ6WEfö6$ÖöFUÒÒW6U7FFR‚&&öö²"“°¢6öç7B¶w&ÖÖ$ÖöFRÂ6WDw&ÖÖ$ÖöFUÒÒW6U7FFR‚&6&B"“°¢6öç7B¶¶æ¦”ÖöFRÂ6WD¶æ¦”ÖöFUÒÒW6U7FFR‚&&öö²"“°¢6öç7B&öö´ÖöFRÒ‡7GVG•F"ÓÓÒ$¶æ¦’"ò¶æ¦”ÖöFR¢7GVG•F"ÓÓÒ$w&ÖÖ""òw&ÖÖ$ÖöFR¢fö6$ÖöFR’ÓÓÒ&&öö²#°¢6öç7B6WE7GVG”ÖöFRÒ7GVG•F"ÓÓÒ$¶æ¦’"ò6WD¶æ¦”ÖöFR¢7GVG•F"ÓÓÒ$w&ÖÖ""ò6WDw&ÖÖ$ÖöFR¢6WEfö6$ÖöFS°¢6öç7B·6†÷t¶æ¦’Â6WE6†÷t¶æ¦•ÒÒW6U7FFR‡G'VR“°¢6öç7B·6†÷u&VF–æw2Â6WE6†÷u&VF–æw5ÒÒW6U7FFR†fÇ6R“°¢6öç7B·6†÷t¶æ¦•&VF–æw2Â6WE6†÷t¶æ¦•&VF–æw5ÒÒW6U7FFR‡G'VR“°¢6öç7B·6†÷t¦æW6RÂ6WE6†÷t¦æW6UÒÒW6U7FFR‚‚’Óâ°¢G'’°¢&WGW&âÆö6Å7F÷&vRævWD—FVÒ‚&¦ÇB×6†÷rÖ¦æW6R"’ÓÒ&fÇ6R#°¢Ò6F6‚°¢&WGW&âG'VS°¢Ð¢Ò“°¢6öç7B·6†÷t&öö´W†×ÆW2Â6WE6†÷t&öö´W†×ÆW5ÒÒW6U7FFR‚‚’Óâ°¢G'’°¢&WGW&âÆö6Å7F÷&vRævWD—FVÒ‚&¦ÇB×6†÷rÖ&öö²ÖW†×ÆW2"’ÓÒ&fÇ6R#°¢Ò6F6‚°¢&WGW&âG'VS°¢Ð¢Ò“°¢6öç7B·6†÷u6–FV&"Â6WE6†÷u6–FV&%ÒÒW6U7FFR‡G'VR“°¢6öç7B¶6öçG&öÇ4÷VâÂ6WD6öçG&öÇ4÷VåÒÒW6U7FFR†fÇ6R“°¢6öç7B¶ÖævTÖöFRÂ6WDÖævTÖöFUÒÒW6U7FFR†fÇ6R“°¢6öç7B·6‡VffÆTÖöFRÂ6WE6‡VffÆTÖöFUÒÒW6U7FFR†fÇ6R“°¢6öç7B·÷6—F–öäÖöFRÂ6WE÷6—F–öäÖöFUÒÒW6U7FFR†fÇ6R“°¢6öç7B¶W†W&6—6U6V7F–öä–BÂ6WDW†W&6—6U6V7F–öä–EÒÒW6U7FFR†çVÆÂ“°¢6öç7B6Æ÷VBÒW6T6Æ÷VD6öçFVçB†ÆWfVÂ“°¢6öç7B²6öçFVçBÂWFFT6öçFVçC¢6WD6öçFVçBÒÒ6Æ÷VC°¢6öç7B6†FW'2Ò6öçFVçBæ&6VÆ–æT6†FW'3°¢6öç7B¶æ¦”6†FW$÷F–öç2ÒvWD¶æ¦”6†FW$÷F–öç2†6öçFVçBæ&6VÆ–æT¶æ¦”6†FW'2“°¢6öç7B¶VF—F÷"Â6WDVF—F÷%ÒÒW6U7FFR†çVÆÂ“°¢W6TVffV7B‚‚’Óâ°¢–b‚6Æ÷VBæ—4VF—F÷"’°¢6WDÖævTÖöFR†fÇ6R“°¢6WE÷6—F–öäÖöFR†fÇ6R“°¢6WDVF—F÷"†çVÆÂ“°¢Ð¢ÒÂ¶6Æ÷VBæ—4VF—F÷%Ò“°¢6öç7B6öçG&öÇ5&VbÒW6U&Vb†çVÆÂ“°¢6öç7BW†W&6—6UvU&VbÒW6U&Vb†çVÆÂ“°¢6öç7B6†FW$6öçFVçE&VbÒW6U&Vb†çVÆÂ“°¢6öç7Bfö7W46†FW$6öçFVçBÒ‚’Óâ°¢v–æF÷rç&WVW7Dæ–ÖF–öäg&ÖR‚‚’Óâ°¢–b‡v–æF÷ræ–ææW%v–GF‚ÃÒƒ’°¢6†FW$6öçFVçE&Vbæ7W'&VçCòç67&öÆÄ–çFõf–Wr‡°¢&V†f–÷#¢v–æF÷ræÖF6„ÖVF–‚"‡&VfW'2×&VGV6VBÖÖ÷F–öã¢&VGV6R’"’æÖF6†W2ò&WFò"¢'6Öö÷F‚"À¢&Æö6³¢'7F'B"À¢Ò“°¢&WGW&ã°¢Ð¢6öç7Bf—6–&ÆUæVÂÒ²ââæFö7VÖVçBçVW'•6VÆV7F÷$ÆÂ‚u·&öÆSÒ'F'æVÂ%Òr•Ð¢æf–æB‚‡æVÂ’ÓâæVÂæ†–FFVâ“°¢‡f—6–&ÆUæVÂóò6†FW$6öçFVçE&Vbæ7W'&VçB“òç67&öÆÄ–çFõf–Wr‡°¢&V†f–÷#¢v–æF÷ræÖF6„ÖVF–‚"‡&VfW'2×&VGV6VBÖÖ÷F–öã¢&VGV6R’"’æÖF6†W2ò&WFò"¢'6Öö÷F‚"À¢&Æö6³¢'7F'B"À¢Ò“°¢Ò“°¢Ó°¢W6TVffV7B‚‚’Óâ°¢G'’°¢Æö6Å7F÷&vRç6WD—FVÒ‚&¦ÇB×6†÷rÖ¦æW6R"Â7G&–ær‡6†÷t¦æW6R’“°¢Ò6F6‚·Ð¢ÒÂ·6†÷t¦æW6UÒ“°¢W6TVffV7B‚‚’Óâ°¢G'’°¢Æö6Å7F÷&vRç6WD—FVÒ‚&¦ÇB×6†÷rÖ&öö²ÖW†×ÆW2"Â7G&–ær‡6†÷t&öö´W†×ÆW2’“°¢Ò6F6‚tß‹h‘éì¶»§q«^u¡…ÁÑ•ÉÌ¤¹™¥±Ñ•È ¡¡…ÁÑ•È¤€ôø¡…ÁÑ•È¹¥€„ôôÕ¹É½ÕÁ•´‘íÍÑÕ‘åQ…‰õ€¤¹µ…À ¡¡…ÁÑ•È¤€ôø€¡ì¥è¡…ÁÑ•È¹¥°±…‰•°è€‘í¡…ÁÑ•È¹¹Õµ‰•Éôè€‘í¡…ÁÑ•È¹Ñ¥Ñ±•õ€°É•½Éè¡…ÁÑ•Èô¤¤(€€€€è‘•±•Ñ•QåÁ”€ôôô€‰ÍÕ‰¡…ÁÑ•Èˆ€ü‘•±•Ñ¥½¹¡…ÁÑ•ÉÌ¹™±…Ñ5…À ¡¡…ÁÑ•È¤€ôøÍ½ÉÑ¡…ÁÑ•ÉÌ¡¡…ÁÑ•È¹ÍÕ‰¡…ÁÑ•ÉÌñðmt¤¹µ…À ¡Í•Ñ¥½¸¤€ôø€¡ì¥èÍ•Ñ¥½¸¹¥°±…‰•°è€‘í¡…ÁÑ•È¹Ñ¥Ñ±•ô€¼€‘íÍ•Ñ¥½¸¹¹Õµ‰•Éôè€‘íÍ•Ñ¥½¸¹Ñ¥Ñ±•õ€°É•½ÉèÍ•Ñ¥½¸ô¤¤¤(€€€€è€¡‘•±•Ñ•QåÁ”€ôôô€‰•á•É¥Í”ˆ€ü…±±á•É¥Í•Ì€è‘•±•Ñ•QåÁ”€ôôô€‰­…¹©¤ˆ€ü…±±-…¹©¥…É‘Ì€è…±±Y½…‰Õ±…Éå…É‘Ì¤¹™¥±Ñ•È ¡É•½É¤€ôø€¡É•½É¹ÍÑÕ‘åQ…ˆñð€‰Y½…ˆˆ¤€ôôôÍÑÕ‘åQ…ˆ¤¹µ…À ¡É•½É¤€ôøì(€€€€€½¹ÍÐÍÕ‰¡…ÁÑ•È€ô‘•±•Ñ¥½¹MÕ‰¡…ÁÑ•É	å%¹•Ð¡É•½É¹ÍÕ‰¡…ÁÑ•É%¤ì(€€€€€½¹ÍÐ¡…ÁÑ•È€ô‘•±•Ñ¥½¹¡…ÁÑ•É	å%¹•Ð¡É•½É¹Á…É•¹Ñ¡…ÁÑ•É%ñðÍÕ‰¡…ÁÑ•Èü¹¡…ÁÑ•Èü¹¥ñðÉ•½É¹¡…ÁÑ•É%¤ì(€€€€€É•ÑÕÉ¸ì(€€€€€€€¥èÉ•½É¹}¥°(€€€€€€€±…‰•°è€‘í¡…ÁÑ•Èü¹Ñ¥Ñ±”ñð€ˆ‰ô€¼€‘íÉ•½É¹Ñ•É´ñðÉ•½É¹­…¹©¤ñðÉ•½É¹ÅÕ•ÍÑ¥½¹õ€°(€€€€€€€¡…ÁÑ•É%è¡…ÁÑ•Èü¹¥°(€€€€€€€¡…ÁÑ•É1…‰•°è¡…ÁÑ•È€ü€‘í¡…ÁÑ•È¹¹Õµ‰•Éôè€‘í¡…ÁÑ•È¹Ñ¥Ñ±•õ€€è€ˆˆ°(€€€€€€€ÍÕ‰¡…ÁÑ•É%èÍÕ‰¡…ÁÑ•Èü¹¥°(€€€€€€€ÍÕ‰¡…ÁÑ•É1…‰•°èÍÕ‰¡…ÁÑ•È€ü€‘íÍÕ‰¡…ÁÑ•È¹¹Õµ‰•Éôè€‘íÍÕ‰¡…ÁÑ•È¹Ñ¥Ñ±•õ€€è€ˆˆ°(€€€€€€€É•½É°(€€€€€ôì(€€€ô¤ì(€½¹ÍÐ‘•±•Ñ•M•±•Ñ•€ô…Íå¹Œ€¡‘•±•Ñ•½¹Ñ•¹ÑÌ€ô™…±Í”¤€ôøì(€€€¥˜€ …±½Õ¹…¹‘¥Ð¤É•ÑÕÉ¸ì(€€€½¹ÍÐ½ÁÑ¥½¸€ô‘•±•Ñ¥½¹=ÁÑ¥½¹Ì¹™¥¹ ¡¥Ñ•´¤€ôø¥Ñ•´¹¥€ôôô‘•±•Ñ•%¤ì(€€€¥˜€ …½ÁÑ¥½¸¤É•ÑÕÉ¸ì(€€€¥˜€¡‘•±•Ñ•QåÁ”€ôôô€‰É½ÕÀˆ¤ì(€€€€€½¹ÍÐÍ…Ù•€ô…Ý…¥ÐÍ•Ñ½¹Ñ•¹Ð ¡ÕÉÉ•¹Ð¤€ôøì(€€€€€€€½¹ÍÐÉ½ÕÁ•‘¡…ÁÑ•ÉÌ€ô‘•±•Ñ¥½¹É½ÕÁÌ¹™¥¹ ¡É½ÕÀ¤€ôøÉ½ÕÀ¹±…‰•°€ôôô½ÁÑ¥½¸¹¥¤ü¹¡…ÁÑ•ÉÌñðmtì(€€€€€€€½¹ÍÐÉ•µ½Ù•€ô‘•±•Ñ•½¹Ñ•¹ÑÌ€üÉ½ÕÁ•‘¡…ÁÑ•ÉÌ¹É•‘Õ” ¡¹•áÐ°¡…ÁÑ•È¤€ôøÉ•µ½Ù•¡…ÁÑ•È¡¹•áÐ°¡…ÁÑ•È°ÍÑÕ‘åQ…ˆ€ôôô€‰-…¹©¤ˆ€ü…±±-…¹©¥…É‘Ì€è…±±Y½…‰Õ±…Éå…É‘Ì°…±±á•É¥Í•Ì°ÑÉÕ”¤°ÕÉÉ•¹Ð¤€èÕÉÉ•¹Ðì(€€€€€€€½¹ÍÐ¹•áÐ€ô‘•±•Ñ•½¹Ñ•¹ÑÌ€üÉ•µ½Ù•€èÉ•¹…µ•¡…ÁÑ•ÉÉ½ÕÀ¡É•µ½Ù•°¡…ÁÑ•É=ÁÑ¥½¹Ì°ÍÑÕ‘åQ…ˆ°½ÁÑ¥½¸¹¥°€‰9½ÐÉ½ÕÁ•ˆ¤ì(€€€€€€€É•ÑÕÉ¸ì€¸¸¹¹•áÐ°É½ÕÁÌè¹•áÐ¹É½ÕÁÌ¹™¥±Ñ•È ¡É½ÕÀ¤€ôø€„¡É½ÕÀ¹ÍÑÕ‘åQ…ˆ€ôôôÍÑÕ‘åQ…ˆ€˜˜É½ÕÀ¹Ñ¥Ñ±”€ôôô½ÁÑ¥½¸¹¥¤¤ôì(€€€€€ô¤ì(€€€€€¥˜€¡Í…Ù•¤Í•Ñ•±•Ñ•QåÁ”¡¹Õ±°¤ì(€€€ô•±Í”¥˜€¡‘•±•Ñ•QåÁ”€ôôô€‰¡…ÁÑ•Èˆ¤ì(€€€€€½¹ÍÐÍ…Ù•€ô…Ý…¥ÐÍ•Ñ½¹Ñ•¹Ð ¡ÕÉÉ•¹Ð¤€ôøÉ•µ½Ù•¡…ÁÑ•È¡ÕÉÉ•¹Ð°½ÁÑ¥½¸¹É•½É°ÍÑÕ‘åQ…ˆ€ôôô€‰-…¹©¤ˆ€ü…±±-…¹©¥…É‘Ì€è…±±Y½…‰Õ±…Éå…É‘Ì°…±±á•É¥Í•Ì°‘•±•Ñ•½¹Ñ•¹ÑÌ¤¤ì(€€€€€¥˜€¡Í…Ù•¤ìÍ•Ñ•±•Ñ•QåÁ”¡¹Õ±°¤ìÍ•ÑÑ¥Ù” ˆˆ¤ìÍ•Ñá•É¥Í•M•Ñ¥½¹%¡¹Õ±°¤ìô(€€€ô•±Í”ì(€€€€€½¹ÍÐÍ…Ù•€ô…Ý…¥ÐÍ•Ñ½¹Ñ•¹Ð ¡ÕÉÉ•¹Ð¤€ôøì(€€€€€€€¥˜€¡‘•±•Ñ•QåÁ”€ôôô€‰ÍÕ‰¡…ÁÑ•Èˆ¤É•ÑÕÉ¸É•µ½Ù•MÕ‰¡…ÁÑ•È¡ÕÉÉ•¹Ð°ì€¸¸¹½ÁÑ¥½¸¹É•½É°ÍÑÕ‘åQ…ˆô°ÍÑÕ‘åQ…ˆ€ôôô€‰-…¹©¤ˆ€ü…±±-…¹©¥…É‘Ì€è…±±Y½…‰Õ±…Éå…É‘Ì°…±±á•É¥Í•Ì°‘•±•Ñ•½¹Ñ•¹ÑÌ¤ì(€€€€€€€½¹ÍÐ­•ä€ô‘•±•Ñ•QåÁ”€ôôô€‰•á•É¥Í”ˆ€ü€‰‘•±•Ñ•‘á•É¥Í•Ìˆ€è‘•±•Ñ•QåÁ”€ôôô€‰­…¹©¤ˆ€ü€‰‘•±•Ñ•‘-…¹©¥…É‘Ìˆ€è€‰‘•±•Ñ•‘…É‘Ìˆì(€€€€€€€É•ÑÕÉ¸ì€¸¸¹ÕÉÉ•¹Ð°m­•åtèl¸¸¹¹•ÜM•Ð¡l¸¸¹ÕÉÉ•¹Ñm­•åt°½ÁÑ¥½¸¹¥‘t¥tôì(€€€€€ô¤ì(€€€€€¥˜€¡Í…Ù•¤Í•Ñ•±•Ñ•QåÁ”¡¹Õ±°¤ì(€€€ô(€ôì(€½¹ÍÐÕÍÑ½µ…É‘Í	åQ…ˆ€ôÕÍ•5•µ¼ (€€€€ ¤€ôø=‰©•Ð¹™É½µ¹ÑÉ¥•Ì (€€€€€ÍÑÕ‘åQ…‰Ì(€€€€€€€€¹™¥±Ñ•È ¡±…‰•°¤€ôø±…‰•°€„ôô€‰Y½…ˆˆ€˜˜±…‰•°€„ôô€‰-…¹©¤ˆ¤(€€€€€€€€¹µ…À ¡±…‰•°¤€ôøl(€€€€€€€€€±…‰•°°(€€€€€€€€€…±±Y½…‰Õ±…Éå…É‘Ì¹™¥±Ñ•È ¡…É¤€ôø…É¹ÍÑÕ‘åQ…ˆ€ôôô±…‰•°¤°(€€€€€€€t¤°(€€€€¤°(€€€m…±±Y½…‰Õ±…Éå…É‘Ít°(€€¤ì((€É•ÑÕÉ¸€ (€€€€ñµ…¥¸(€€€€€‘…Ñ„µÍ¡½Üµµå…¹µ…ÈõíÍ¡½Ý5å…¹µ…Éô(€€€€€‘…Ñ„µÍ¡½Üµ©…Á…¹•Í”õíÍ¡½Ý)…Á…¹•Í•ô(€€€€€‘…Ñ„µÍ¡½ÜµÍ¥‘•‰…ÈõíÍ¡½ÝM¥‘•‰…Éô(€€€€ø(€€€€€€ñ¡•…‘•Èø(€€€€€€€€ñ‘¥Øø(€€€€€€€€€€ñÀ±…ÍÍ9…µ”ô‰•å•‰É½Üˆ±…¹œô‰©„ˆø(€€€€€€€€€€€ƒ¢«–"žR£–¶›žþKŽ;ŽóŽ (€€€€€€€€€€ð½Àø(€€€€€€€€€€ñ Äù)1APí±•Ù•°¹Ñ½UÁÁ•É…Í” ¥ôð½ Äø(€€€€€€€€€€ñ¹…Ø±…ÍÍ9…µ”ô‰±•Ù•°µÍÝ¥Ñ ˆ…É¥„µ±…‰•°ô‰)1AP±•Ù•°ˆø(€€€€€€€€€€€íl‰¸Ìˆ°€‰¸È‰t¹µ…À ¡¥Ñ•´¤€ôø€ñ„­•äõí¥Ñ•µô¡É•˜õíÉ½ÕÑ•Í½É1•Ù•°¡¥Ñ•´¥mÍÑÕ‘åQ…‰tñðÉ½ÕÑ•Í½É1•Ù•°¡¥Ñ•´¤¹Y½…‰ô…É¥„µÕÉÉ•¹Ðõí¥Ñ•´€ôôô±•Ù•°€ü€‰Á…”ˆ€èÕ¹‘•™¥¹•‘ôù)1APí¥Ñ•´¹Ñ½UÁÁ•É…Í” ¥ôð½„ø¥ô(€€€€€€€€€€ð½¹…Øø(€€€€€€€€€€ñÀ±…ÍÍ9…µ”ô‰ÍÕ‰Ñ¥Ñ±”ˆù)…Á…¹•Í”ƒ
+Ü5å…¹µ…Èƒ
+Ü™±…Í¡…É‘Ì‰ä¡…ÁÑ•Èð½Àø(€€€€€€€€ð½‘¥Øø(€€€€€€€í±½Õ¹¥Í‘¥Ñ½È€˜˜€ñ™¥•±‘Í•Ð±…ÍÍ9…µ”ô‰½¹Ñ•¹Ðµ…Ñ¥½¹Ìˆ…É¥„µ±…‰•°ô‰5…¹…”ÍÑÕ‘ä½¹Ñ•¹Ðˆ‘¥Í…‰±•õì…±½Õ¹…¹‘¥Ñôø(€€€€€€€€€íl‰Y½…ˆˆ°€‰É…µµ…Èˆ°€‰-…¹©¤‰t¹¥¹±Õ‘•Ì¡ÍÑÕ‘åQ…ˆ¤€ü€ðø(€€€€€€€€€€€€ñ‰ÕÑÑ½¸ÑåÁ”ô‰‰ÕÑÑ½¸ˆ…É¥„µ±…‰•°ô‰‘¡…ÁÑ•Èˆ½¹±¥¬õì ¤€ôø½Á•¹‘¥Ñ½È ‰¡…ÁÑ•Èˆ°€‰…‘ˆ°ìÍÑÕ‘åQ…ˆô¥ôøñÍÁ…¸…É¥„µ¡¥‘‘•¸ô‰ÑÉÕ”ˆû¾ò,ð½ÍÁ…¸ø¡…ÁÑ•Èð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€ñ‰ÕÑÑ½¸ÑåÁ”ô‰‰ÕÑÑ½¸ˆ…É¥„µ±…‰•°ô‰‘ÍÕ‰¡…ÁÑ•Èˆ‘¥Í…‰±•õì…Í•±•Ñ•‘ô½¹±¥¬õì ¤€ôøÍ•±•Ñ•€˜˜½Á•¹‘¥Ñ½È ‰ÍÕ‰¡…ÁÑ•Èˆ°€‰…‘ˆ°ìÍÑÕ‘åQ…ˆ°¡…ÁÑ•É%èÍ•±•Ñ•¹¥ô¥ôøñÍÁ…¸…É¥„µ¡¥‘‘•¸ô‰ÑÉÕ”ˆû¾ò,ð½ÍÁ…¸øMÕ‰¡…ÁÑ•Èð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€ñ‰ÕÑÑ½¸ÑåÁ”ô‰‰ÕÑÑ½¸ˆ…É¥„µ±…‰•°õíÍÑÕ‘åQ…ˆ€ôôô€‰É…µµ…Èˆ€ü€‰‘É…µµ…Èˆ€èÍÑÕ‘åQ…ˆ€ôôô€‰-…¹©¤ˆ€ü€‰‘­…¹©¤ˆ€è€‰‘Ù½…‰Õ±…Éä‰ô‘¥Í…‰±•õì…Í•±•Ñ•‘ô½¹±¥¬õì ¤€ôøÍ•±•Ñ•€˜˜½Á•¹‘¥Ñ½È¡ÍÑÕ‘åQ…ˆ€ôôô€‰-…¹©¤ˆ€ü€‰­…¹©¤ˆ€è€‰…Éˆ°€‰…‘ˆ°ìÍÑÕ‘åQ…ˆ°¡…ÁÑ•É%èÍ•±•Ñ•¹¥ô¥ôøñÍÁ…¸…É¥„µ¡¥‘‘•¸ô‰ÑÉÕ”ˆû¾ò,ð½ÍÁ…¸øíÍÑÕ‘åQ…ˆ€ôôô€‰É…µµ…Èˆ€ü€‰É…µµ…Èˆ€èÍÑÕ‘åQ…ˆ€ôôô€‰-…¹©¤ˆ€ü€‰-…¹©¤ˆ€è€‰Y½…‰Õ±…Éä‰ôð½‰ÕÑÑ½¸ø(€€€€€€€€€€ð¼ø€è€ñ‰ÕÑÑ½¸ÑåÁ”ô‰‰ÕÑÑ½¸ˆ½¹±¥¬õì ¤€ôø½Á•¹‘¥Ñ½È …¡…ÁÑ•É=ÁÑ¥½¹Ì¹Í½µ” ¡¡…ÁÑ•È¤€ôø¡…ÁÑ•È¹ÍÑÕ‘åQ…ˆ€ôôôÍÑÕ‘åQ…ˆ¤€ü€‰¡…ÁÑ•Èˆ€èÍÑÕ‘åQ…ˆ€ôôô€‰-…¹©¤ˆ€ü€‰­…¹©¤ˆ€è€‰ÍÕ‰¡…ÁÑ•Èˆ°€‰…‘ˆ°ìÍÑÕ‘åQ…ˆô¥ôù9•Üð½‰ÕÑÑ½¸ùô(€€€€€€€€€ìñ‘•Ñ…¥±Ì±…ÍÍ9…µ”ô‰½¹Ñ•¹Ðµ•‘¥Ðµµ•¹Ôˆ¹…µ”ô‰ÍÑÕ‘äµ½¹Ñ•¹Ðµ…Ñ¥½¹Ìˆø(€€€€€€€€€€€€ñÍÕµµ…Éäù‘¥Ðð½ÍÕµµ…Éäø(€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰½¹Ñ•¹Ðµ•‘¥Ðµ½ÁÑ¥½¹Ìˆ½¹±¥¬õì¡•Ù•¹Ð¤€ôøì¥˜€¡•Ù•¹Ð¹Ñ…É•Ð¹±½Í•ÍÐ ‰‰ÕÑÑ½¸ˆ¤¤•Ù•¹Ð¹ÕÉÉ•¹ÑQ…É•Ð¹Á…É•¹Ñ±•µ•¹Ð¹É•µ½Ù•ÑÑÉ¥‰ÕÑ” ‰½Á•¸ˆ¤ìõôø(€€€€€€€€€€€€€€ñ‰ÕÑÑ½¸ÑåÁ”ô‰‰ÕÑÑ½¸ˆ‘¥Í…‰±•õì…¡…ÁÑ•ÉÉ½ÕÁÌ¹±•¹Ñ¡ô½¹±¥¬õì ¤€ôø½Á•¹‘¥Ñ½È ‰É½ÕÀˆ°€‰•‘¥Ðˆ°ìÑ¥Ñ±”è¡…ÁÑ•ÉÉ½ÕÁÍlÁtü¹±…‰•°ñð€ˆˆ°½É¥¥¹…±É½ÕÁQ¥Ñ±”è¡…ÁÑ•ÉÉ½ÕÁÍlÁtü¹±…‰•°ñð€ˆˆ°ÍÑÕ‘åQ…ˆô¥ôù‘¥ÐÉ½ÕÀQ¥Ñ±”ð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€€€ñ‰ÕÑÑ½¸ÑåÁ”ô‰‰ÕÑÑ½¸ˆ½¹±¥¬õì ¤€ôøÍ•±•Ñ•€˜˜½Á•¹‘¥Ñ½È ‰¡…ÁÑ•Èˆ°€‰•‘¥Ðˆ°ì€¸¸¹Í•±•Ñ•°ÍÑÕ‘åQ…ˆô¥ô‘¥Í…‰±•õì…Í•±•Ñ•‘ôù‘¥Ð¡…ÁÑ•Èð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€€€ñ‰ÕÑÑ½¸ÑåÁ”ô‰‰ÕÑÑ½¸ˆ½¹±¥¬õì ¤€ôøÍ•±•Ñ•€˜˜½Á•¹‘¥Ñ½È ‰ÍÕ‰¡…ÁÑ•Èˆ°€‰•‘¥Ðˆ°ìÍÑÕ‘åQ…ˆ°¡…ÁÑ•É%èÍ•±•Ñ•¹¥°€¸¸¸¡Í•±•Ñ•¹ÍÕ‰¡…ÁÑ•ÉÍlÁtñðíô¤ô¥ô‘¥Í…‰±•õì…Í•±•Ñ•‘ôù‘¥ÐMÕ‰¡…ÁÑ•Èð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€ð½‘•Ñ…¥±Ìùô(€€€€€€€€€ìñ‘•Ñ…¥±Ì±…ÍÍ9…µ”ô‰½¹Ñ•¹Ðµ•‘¥Ðµµ•¹Ôˆ¹…µ”ô‰ÍÑÕ‘äµ½¹Ñ•¹Ðµ…Ñ¥½¹Ìˆø(€€€€€€€€€€€€ñÍÕµµ…Éäù•±•Ñ”ð½ÍÕµµ…Éäø(€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰½¹Ñ•¹Ðµ•‘¥Ðµ½ÁÑ¥½¹Ìˆø(€€€€€€€€€€€€€íml‰É½ÕÀˆ°€‰É½ÕÀQ¥Ñ±”‰t°l‰¡…ÁÑ•Èˆ°€‰¡…ÁÑ•È‰t°l‰ÍÕ‰¡…ÁÑ•Èˆ°€‰MÕ‰¡…ÁÑ•È‰t°mÍÑÕ‘åQ…ˆ€ôôô€‰-…¹©¤ˆ€ü€‰­…¹©¤ˆ€è€‰…Éˆ°€‰±…Í¡…É‰t°l‰•á•É¥Í”ˆ°€‰á•É¥Í”‰ut¹µ…À ¡mÑåÁ”°±…‰•±t¤€ôø€ñ‰ÕÑÑ½¸­•äõíÑåÁ•ôÑåÁ”ô‰‰ÕÑÑ½¸ˆ½¹±¥¬õì¡•Ù•¹Ð¤€ôøìÍ•Ñ•±•Ñ•QåÁ”¡ÑåÁ”¤ìÍ•Ñ•±•Ñ•% ˆˆ¤ì•Ù•¹Ð¹ÕÉÉ•¹ÑQ…É•Ð¹±½Í•ÍÐ ‰‘•Ñ…¥±Ìˆ¤¹É•µ½Ù•ÑÑÉ¥‰ÕÑ” ‰½Á•¸ˆ¤ìõôù•±•Ñ”í±…‰•±ôð½‰ÕÑÑ½¸ø¥ô(€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€ð½‘•Ñ…¥±Ìùô(€€€€€€€€ð½™¥•±‘Í•Ðùô(€€€€€€ð½¡•…‘•Èø(€€€€€€ñ±½Õ‘MÑ…ÑÕÌ±½Õõí±½Õ‘ô€¼ø(€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰ÍÑÕ‘äµÑ…‰ÌˆÉ½±”ô‰Ñ…‰±¥ÍÐˆ…É¥„µ±…‰•°ô‰MÑÕ‘äÑ½Á¥Ìˆø(€€€€€€€íÍÑÕ‘åQ…‰Ì¹µ…À ¡±…‰•°°¥¹‘•à¤€ôø€ (€€€€€€€€€€ñ‰ÕÑÑ½¸(€€€€€€€€€€€­•äõí±…‰•±ô(€€€€€€€€€€€ÑåÁ”ô‰‰ÕÑÑ½¸ˆ(€€€€€€€€€€€É½±”ô‰Ñ…ˆˆ(€€€€€€€€€€€¥õíÍÑÕ‘äµÑ…ˆ´‘í¥¹‘•áõô(€€€€€€€€€€€…É¥„µ½¹ÑÉ½±ÌõíÍÑÕ‘äµÁ…¹•°´‘í¥¹‘•áõô(€€€€€€€€€€€…É¥„µÍ•±•Ñ•õíÍÑÕ‘åQ…ˆ€ôôô±…‰•±ô(€€€€€€€€€€€Ñ…‰%¹‘•àõíÍÑÕ‘åQ…ˆ€ôôô±…‰•°€ü€À€è€´Åô(€€€€€€€€€€€½¹±¥¬õì ¤€ôøÍ•ÑMÑÕ‘åQ…ˆ¡±…‰•°¥ô(€€€€€€€€€€€½¹-•å½Ý¸õì¡•Ù•¹Ð¤€ôøì(€€€€€€€€€€€€€±•Ð¹•áÐì(€€€€€€€€€€€€€¥˜€¡•Ù•¹Ð¹­•ä€ôôô€‰ÉÉ½ÝI¥¡Ðˆ¤(€€€€€€€€€€€€€€€¹•áÐ€ô€¡¥¹‘•à€¬€Ä¤€”ÍÑÕ‘åQ…‰Ì¹±•¹Ñ ì(€€€€€€€€€€€€€•±Í”¥˜€¡•Ù•¹Ð¹­•ä€ôôô€‰ÉÉ½Ý1•™Ðˆ¤(€€€€€€€€€€€€€€€¹•áÐ€ô€¡¥¹‘•à€¬ÍÑÕ‘åQ…‰Ì¹±•¹Ñ €´€Ä¤€”ÍÑÕ‘åQ…‰Ì¹±•¹Ñ ì(€€€€€€€€€€€€€•±Í”¥˜€¡•Ù•¹Ð¹­•ä€ôôô€‰!½µ”ˆ¤¹•áÐ€ô€Àì(€€€€€€€€€€€€€•±Í”¥˜€¡•Ù•¹Ð¹­•ä€ôôô€‰¹ˆ¤¹•áÐ€ôÍÑÕ‘åQ…‰Ì¹±•¹Ñ €´€Äì(€€€€€€€€€€€€€•±Í”É•ÑÕÉ¸ì(€€€€€€€€€€€€€•Ù•¹Ð¹ÁÉ•Ù•¹Ñ•™…Õ±Ð ¤ì(€€€€€€€€€€€€€Í•ÑMÑÕ‘åQ…ˆ¡ÍÑÕ‘åQ…‰Ím¹•áÑt¤ì(€€€€€€€€€€€€€‘½Õµ•¹Ð¹•Ñ±•µ•¹Ñ	å%¡ÍÑÕ‘äµÑ…ˆ´‘í¹•áÑõ€¤¹™½ÕÌ ¤ì(€€€€€€€€€€€õô(€€€€€€€€€€ø(€€€€€€€€€€€í±…‰•±ô(€€€€€€€€€€ð½‰ÕÑÑ½¸ø(€€€€€€€€¤¥ô(€€€€€€ð½‘¥Øø(€€€€€€ñÍ•Ñ¥½¸(€€€€€€€É½±”ô‰Ñ…‰Á…¹•°ˆ(€€€€€€€¥õíÍÑÕ‘äµÁ…¹•°´‘í¥Í¡…ÁÑ•ÉMÑÕ‘ä€üÍÑÕ‘åQ…‰Ì¹¥¹‘•á=˜¡ÍÑÕ‘åQ…ˆ¤€è€Áõô(€€€€€€€…É¥„µ±…‰•±±•‘‰äõíÍÑÕ‘äµÑ…ˆ´‘í¥Í¡…ÁÑ•ÉMÑÕ‘ä€üÍÑÕ‘åQ…‰Ì¹¥¹‘•á=˜¡ÍÑÕ‘åQ…ˆ¤€è€Áõô(€€€€€€€¡¥‘‘•¸õì…¥Í¡…ÁÑ•ÉMÑÕ‘åô(€€€€€€€Ñ…‰%¹‘•àõìÁô(€€€€€€ø(€€€€€€€€ñÍ•Ñ¥½¸±…ÍÍ9…µ”ô‰Í•…É µÉ¥ˆø(€€€€€€€€€€ñ±…‰•°¡Ñµ±½Èô‰¡…ÁÑ•ÈµÍ•…É ˆø(€€€€€€€€€€€M•…É ¡…ÁÑ•ÉÌ(€€€€€€€€€€€€ñ¥¹ÁÕÐ(€€€€€€€€€€€€€¥ô‰¡…ÁÑ•ÈµÍ•…É ˆ(€€€€€€€€€€€€€±…ÍÍ9…µ”õí¡…ÁÑ•ÉEÕ•Éä¹ÑÉ¥´ ¤€ü€¡™¥±Ñ•É•‘¡…ÁÑ•ÉÌ¹±•¹Ñ €ü€‰Í•…É µ‰½à¡…ÌµÉ•ÍÕ±ÑÌˆ€è€‰Í•…É µ‰½à¹¼µÉ•ÍÕ±ÑÌˆ¤€è€‰Í•…É µ‰½à‰ô(€€€€€€€€€€€€€Ù…±Õ”õí¡…ÁÑ•ÉEÕ•Éåô(€€€€€€€€€€€€€½¹¡…¹”õì¡”¤€ôøÍ•Ñ¡…ÁÑ•ÉEÕ•Éä¡”¹Ñ…É•Ð¹Ù…±Õ”¥ô(€€€€€€€€€€€€€Á±…•¡½±‘•Èô‹’ú/¾òk–ºÛš^?ŽšŸš‚ðˆ(€€€€€€€€€€€€¼ø(€€€€€€€€€€€€ñM•…É¡••‘‰…¬ÅÕ•Éäõí¡…ÁÑ•ÉEÕ•Éåô½Õ¹Ðõí™¥±Ñ•É•‘¡…ÁÑ•ÉÌ¹±•¹Ñ¡ô¹½Õ¸ô‰¡…ÁÑ•Èˆ€¼ø(€€€€€€€€€€ð½±…‰•°ø(€€€€€€€€€€ñ±…‰•°¡Ñµ±½Èô‰Ù½…ˆµÍ•…É ˆ±…ÍÍ9…µ”ô‰‘•Í­Ñ½ÀµÙ½…ˆµÍ•…É ˆø(€€€€€€€€€€€M•…É •Ù•ÉäíÍÑÕ‘å1…‰•±ô…É(€€€€€€€€€€€€ñ¥¹ÁÕÐ(€€€€€€€€€€€€€¥ô‰Ù½…ˆµÍ•…É ˆ(€€€€€€€€€€€€€±…ÍÍ9…µ”õí€‘íÙ½…‰EÕ•Éä¹ÑÉ¥´ ¤€ü€¡Ù½…‰I•ÍÕ±ÑÌ¹±•¹Ñ €ü€‰Í•…É µ‰½à¡…ÌµÉ•ÍÕ±ÑÌˆ€è€‰Í•…É µ‰½à¹¼µÉ•ÍÕ±ÑÌˆ¤€è€‰Í•…É µ‰½à‰ô‘íÑ…ˆ€ôôô€‰•á•É¥Í•Ìˆ€ü€ˆÍ•…É µ‰½àµÉ•…‘½¹±äˆ€è€ˆ‰õô(€€€€€€€€€€€€€Ù…±Õ”õíÙ½…‰EÕ•Éåô(€€€€€€€€€€€€€½¹¡…¹”õì¡”¤€ôøÍ•ÑY½…‰EÕ•Éä¡”¹Ñ…É•Ð¹Ù…±Õ”¥ô(€€€€€€€€€€€€€Á±…•¡½±‘•Èô‹’ú/¾òk–ß¢R×–ê¯ŽŽ
+3ŽŽ{ŽŽOŽ–ß¢R×–ê¯Ž»¢ª³šb8ˆ(€€€€€€€€€€€€€É•…‘=¹±äõíÑ…ˆ€ôôô€‰•á•É¥Í•Ì‰ô(€€€€€€€€€€€€€…É¥„µÉ•…‘½¹±äõíÑ…ˆ€ôôô€‰•á•É¥Í•Ì‰ô(€€€€€€€€€€€€¼ø(€€€€€€€€€€€€ñM•…É¡••‘‰…¬ÅÕ•ÉäõíÑ…ˆ€ôôô€‰•á•É¥Í•Ìˆ€ü€ˆˆ€èÙ½…‰EÕ•Éåô½Õ¹ÐõíÙ½…‰I•ÍÕ±ÑÌ¹±•¹Ñ¡ô€¼ø(€€€€€€€€€€ð½±…‰•°ø(€€€€€€€€ð½Í•Ñ¥½¸ø(€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰±…å½ÕÐˆø(€€€€€€€€€€ñ…Í¥‘”ø(€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰Í¥‘•‰…Èµ¡•…‘¥¹œˆø(€€€€€€€€€€€€€€ñÀ±…ÍÍ9…µ”ô‰½Õ¹ÐˆùQ½Ñ…°í™¥±Ñ•É•‘¡…ÁÑ•ÉÌ¹±•¹Ñ¡ô¡…ÁÑ•ÉÌð½Àø(€€€€€€€€€€€€€€ñ‰ÕÑÑ½¸ÑåÁ”ô‰‰ÕÑÑ½¸ˆ±…ÍÍ9…µ”ô‰Í¥‘•‰…ÈµÑ½±”ˆ½¹±¥¬õì ¤€ôøÍ•ÑM¡½ÝM¥‘•‰…È …Í¡½ÝM¥‘•‰…È¥ô…É¥„µ±…‰•°õíÍ¡½ÝM¥‘•‰…È€ü€‰!¥‘”¡…ÁÑ•ÈÍ¥‘•‰…Èˆ€è€‰M¡½Ü¡…ÁÑ•ÈÍ¥‘•‰…È‰ôø(€€€€€€€€€€€€€€€€ñÍÁ…¸±…ÍÍ9…µ”õíÍ¥‘•‰…ÈµÑ½±”µ¥½¸€‘íÍ¡½ÝM¥‘•‰…È€ü€‰½±±…ÁÍ”ˆ€è€‰•áÁ…¹‰õô…É¥„µ¡¥‘‘•¸ô‰ÑÉÕ”ˆ€¼ø(€€€€€€€€€€€€€€ð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰¡…ÁÑ•ÈµÉ½ÕÀˆø(€€€€€€€€€€€€€í¡…ÁÑ•ÉÉ½ÕÁÌ¹±•¹Ñ €ü€ (€€€€€€€€€€€€€€€¡…ÁÑ•ÉÉ½ÕÁÌ¹µ…À ¡É½ÕÀ¤€ôø€ (€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰¡…ÁÑ•ÈµÉ½ÕÀµ‰±½¬ˆ­•äõíÉ½ÕÀ¹¥‘ôø(€€€€€€€€€€€€€€€€€€€€ñÀ±…ÍÍ9…µ”ô‰¡…ÁÑ•ÈµÉ½ÕÀµ±…‰•°ˆø(€€€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸±…ÍÍ9…µ”ô‰¡…ÁÑ•ÈµÉ½ÕÀµÑ¥Ñ±”ˆùí¡…ÁÑ•ÉQ¥Ñ±”¡É½ÕÀ¹±…‰•°°™…±Í”°Í¡½ÝI•…‘¥¹Ì°ÑÉÕ”°Í¡½Ý-…¹©¤¥ôð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸±…ÍÍ9…µ”ô‰¡…ÁÑ•ÈµÉ½ÕÀµÉ…¹”ˆùí‘¥ÍÁ±…å-…¹©¤¡Í¡½ÝI•…‘¥¹Ì€üÉ½ÕÀ¹É…¹”€è¡¥‘•I•…‘¥¹Ì¡É½ÕÀ¹É…¹”¤°Í¡½Ý-…¹©¤¥ôð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€ð½Àø(€€€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰¡…ÁÑ•ÈµÉ½ÕÀµ…É‘Ìˆø(€€€€€€€€€€€€€€€€€€€íÉ½ÕÀ¹¡…ÁÑ•ÉÌ¹µ…À ¡¡…ÁÑ•È¤€ôø€ (€€€€€€€€€€€€€€€€€€€€€€ñ‰ÕÑÑ½¸(€€€€€€€€€€€€€€€€€€€€€€€±…ÍÍ9…µ”õí¡…ÁÑ•È¹¥€ôôôÍ•±•Ñ•ü¹¥€ü€‰…Ñ¥Ù”ˆ€è€ˆ‰ô(€€€€€€€€€€€€€€€€€€€€€€€½¹±¥¬õì ¤€ôøì(€€€€€€€€€€€€€€€€€€€€€€€€€Í•ÑÑ¥Ù”¡¡…ÁÑ•È¹¥¤ì(€€€€€€€€€€€€€€€€€€€€€€€€€Í•ÑY½…‰EÕ•Éä ˆˆ¤ì(€€€€€€€€€€€€€€€€€€€€€€€€€™½ÕÍ¡…ÁÑ•É½¹Ñ•¹Ð ¤ì(€€€€€€€€€€€€€€€€€€€€€€€õô(€€€€€€€€€€€€€€€€€€€€€€€­•äõí¡…ÁÑ•È¹¥‘ô(€€€€€€€€€€€€€€€€€€€€€€ø(€€€€€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸ù¡…ÁÑ•Èí¡…ÁÑ•È¹¹Õµ‰•Éôð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€€€€€ñÍÑÉ½¹œùí±½…±¥é•‘¡…ÁÑ•ÉQ¥Ñ±”¡¡…ÁÑ•È°™…±Í”°Í¡½ÝI•…‘¥¹Ì°ÑÉÕ”°Í¡½Ý-…¹©¤¥ôð½ÍÑÉ½¹œø(€€€€€€€€€€€€€€€€€€€€€€ð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€€€€€€€€€¤¥ô(€€€€€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€¤¤(€€€€€€€€€€€€€€¤€è€ (€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰•µÁÑäÍ•…É µ•µÁÑäˆø(€€€€€€€€€€€€€€€€€€ñÀù9¼Í•…É¡•É•½É™½Õ¹¸ð½Àø(€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€¥ô(€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€ð½…Í¥‘”ø(€€€€€€€€€€ñ±…‰•°¡Ñµ±½Èô‰µ½‰¥±”µÙ½…ˆµÍ•…É ˆ±…ÍÍ9…µ”ô‰µ½‰¥±”µÙ½…ˆµÍ•…É ˆø(€€€€€€€€€€€M•…É •Ù•ÉäíÍÑÕ‘å1…‰•±ô…É(€€€€€€€€€€€€ñ¥¹ÁÕÐ(€€€€€€€€€€€€€¥ô‰µ½‰¥±”µÙ½…ˆµÍ•…É ˆ(€€€€€€€€€€€€€±…ÍÍ9…µ”õí€‘íÙ½…‰EÕ•Éä¹ÑÉ¥´ ¤€ü€¡Ù½…‰I•ÍÕ±ÑÌ¹±•¹Ñ €ü€‰Í•…É µ‰½à¡…ÌµÉ•ÍÕ±ÑÌˆ€è€‰Í•…É µ‰½à¹¼µÉ•ÍÕ±ÑÌˆ¤€è€‰Í•…É µ‰½à‰ô‘íÑ…ˆ€ôôô€‰•á•É¥Í•Ìˆ€ü€ˆÍ•…É µ‰½àµÉ•…‘½¹±äˆ€è€ˆ‰õô(€€€€€€€€€€€€€Ù…±Õ”õíÙ½…‰EÕ•Éåô(€€€€€€€€€€€€€½¹¡…¹”õì¡”¤€ôøÍ•ÑY½…‰EÕ•Éä¡”¹Ñ…É•Ð¹Ù…±Õ”¥ô(€€€€€€€€€€€€€Á±…•¡½±‘•ÈõíÙ½…‰Õ±…ÉåM•…É¡A±…•¡½±‘•Éô(€€€€€€€€€€€€€É•…‘=¹±äõíÑ…ˆ€ôôô€‰•á•É¥Í•Ì‰ô(€€€€€€€€€€€€€…É¥„µÉ•…‘½¹±äõíÑ…ˆ€ôôô€‰•á•É¥Í•Ì‰ô(€€€€€€€€€€€€¼ø(€€€€€€€€€€€€ñM•…É¡••‘‰…¬ÅÕ•ÉäõíÑ…ˆ€ôôô€‰•á•É¥Í•Ìˆ€ü€ˆˆ€èÙ½…‰EÕ•Éåô½Õ¹ÐõíÙ½…‰I•ÍÕ±ÑÌ¹±•¹Ñ¡ô€¼ø(€€€€€€€€€€ð½±…‰•°ø(€€€€€€€€€€ñ…ÉÑ¥±”É•˜õí¡…ÁÑ•É½¹Ñ•¹ÑI•™ôø(€€€€€€€€€€€íÍ•±•Ñ•€ü€ (€€€€€€€€€€€€€€ðø(€€€€€€€€€€€€€€€€ñÀ±…ÍÍ9…µ”ô‰•å•‰É½Üˆø(€€€€€€€€€€€€€€€€€í¥Í±½‰…±M•…É (€€€€€€€€€€€€€€€€€€€€ü€‘íÍÑÕ‘å1…‰•±ôÍ•…É¡€(€€€€€€€€€€€€€€€€€€€€è¡…ÁÑ•È€‘íÍ•±•Ñ•¹¹Õµ‰•Éõô(€€€€€€€€€€€€€€€€ð½Àø(€€€€€€€€€€€€€€€€ñ Èø(€€€€€€€€€€€€€€€€€í¥Í±½‰…±M•…É (€€€€€€€€€€€€€€€€€€€€üI•ÍÕ±ÑÌ™½ÈƒŠp‘íÙ½…‰EÕ•Éå÷Šu€(€€€€€€€€€€€€€€€€€€€€è±½…±¥é•‘¡…ÁÑ•ÉQ¥Ñ±”¡Í•±•Ñ•°Í¡½Ý5å…¹µ…È°Í¡½ÝI•…‘¥¹Ì°Í¡½Ý)…Á…¹•Í”°Í¡½Ý-…¹©¤¥ô(€€€€€€€€€€€€€€€€ð½ Èø(€€€€€€€€€€€€€€€€ñÀ±…ÍÍ9…µ”ô‰¹½Ñ”ˆø(€€€€€€€€€€€€€€€€€Q½Ñ…°ìˆ€‰ô(€€€€€€€€€€€€€€€€€í¥Í±½‰…±M•…É (€€€€€€€€€€€€€€€€€€€€üÙ½…‰I•ÍÕ±ÑÌ¹±•¹Ñ (€€€€€€€€€€€€€€€€€€€€èÙ½…‰M•Ñ¥½¹Ì¹É•‘Õ” ¡Ñ½Ñ…°°Í•Ñ¥½¸¤€ôøÑ½Ñ…°€¬Í•Ñ¥½¸¹…É‘Ì¹±•¹Ñ °€À¥õìˆ€‰ô(€€€€€€€€€€€€€€€€€í¥Í±½‰…±M•…É (€€€€€€€€€€€€€€€€€€€€üµ…Ñ¡¥¹œ€‘í‰½½­5½‘”€ü€‰•¹ÑÉ¥•Ìˆ€è€‰…É‘Ì‰ô…É½ÍÌ…±°¡…ÁÑ•ÉÍ€(€€€€€€€€€€€€€€€€€€€€è‰½½­5½‘”€ü€‘íÍÑÕ‘å1…‰•±ô•¹ÑÉ¥•Í€€è€‰™±…Í¡…É‘Ì‰ô(€€€€€€€€€€€€€€€€ð½Àø(€€€€€€€€€€€€€€€ì…¥Í±½‰…±M•…É €˜˜€ (€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰Ñ½½±Ìˆø(€€€€€€€€€€€€€€€€€€€€ñ‰ÕÑÑ½¸(€€€€€€€€€€€€€€€€€€€€€±…ÍÍ9…µ”õíÑ…ˆ€ôôô€‰Ù½…‰Õ±…Éäˆ€ü€‰Í•±•Ñ•ˆ€è€ˆ‰ô(€€€€€€€€€€€€€€€€€€€€€½¹±¥¬õì ¤€ôøÍ•ÑQ…ˆ ‰Ù½…‰Õ±…Éäˆ¥ô(€€€€€€€€€€€€€€€€€€€€ø(€€€€€€€€€€€€€€€€€€€€€íÍÑÕ‘åQ…ˆ€ôôô€‰É…µµ…Èˆ€ü€‰É…µµ…Èˆ€è€‰Y½…‰Õ±…Éä‰ô(€€€€€€€€€€€€€€€€€€€€ð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€€€€€€€€€ñ‰ÕÑÑ½¸(€€€€€€€€€€€€€€€€€€€€€±…ÍÍ9…µ”õíÑ…ˆ€ôôô€‰•á•É¥Í•Ìˆ€ü€‰Í•±•Ñ•ˆ€è€ˆ‰ô(€€€€€€€€€€€€€€€€€€€€€½¹±¥¬õì ¤€ôøÍ•ÑQ…ˆ ‰•á•É¥Í•Ìˆ¥ô(€€€€€€€€€€€€€€€€€€€€ø(€€€€€€€€€€€€€€€€€€€€€á•É¥Í•Ì(€€€€€€€€€€€€€€€€€€€€ð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€€€€€€€€íÍÑÕ‘åQ…ˆ€ôôô€‰Y½…ˆˆ€˜˜€ñ‰ÕÑÑ½¸(€€€€€€€€€€€€€€€€€€€€€ÑåÁ”ô‰‰ÕÑÑ½¸ˆ(€€€€€€€€€€€€€€€€€€€€€±…ÍÍ9…µ”õíÍ¡Õ™™±•5½‘”€ü€‰Í•±•Ñ•µ…¹…”µÑ½±”ˆ€è€‰µ…¹…”µÑ½±”‰ô(€€€€€€€€€€€€€€€€€€€€€…É¥„µÁÉ•ÍÍ•õíÍ¡Õ™™±•5½‘•ô(€€€€€€€€€€€€€€€€€€€€€½¹±¥¬õì ¤€ôøìÍ•ÑM¡Õ™™±•5½‘” ¡Ù…±Õ”¤€ôø€…Ù…±Õ”¤ìÍ•Ñá•É¥Í•M•Ñ¥½¹%¡¹Õ±°¤ìõô(€€€€€€€€€€€€€€€€€€€€ø(€€€€€€€€€€€€€€€€€€€€€M¡Õ™™±”èíÍ¡Õ™™±•5½‘”€ü€‰=8ˆ€è€‰=‰ô(€€€€€€€€€€€€€€€€€€€€ð½‰ÕÑÑ½¸ùô(€€€€€€€€€€€€€€€€€€€í±½Õ¹¥Í‘¥Ñ½È€˜˜€ ñ‰ÕÑÑ½¸(€€€€€€€€€€€€€€€€€€€€€ÑåÁ”ô‰‰ÕÑÑ½¸ˆ(€€€€€€€€€€€€€€€€€€€€€±…ÍÍ9…µ”õí€‘íµ…¹…•5½‘”€ü€‰Í•±•Ñ•€ˆ€è€ˆ‰ô‘íÍÑÕ‘åQ…ˆ€ôôô€‰Y½…ˆˆ€ü€ˆˆ€è€‰µ…¹…”µÑ½±”‰õô(€€€€€€€€€€€€€€€€€€€€€…É¥„µÁÉ•ÍÍ•õíµ…¹…•5½‘•ô(€€€€€€€€€€€€€€€€€€€€€‘¥Í…‰±•õì…±½Õ¹…¹‘¥Ñô(€€€€€€€€€€€€€€€€€€€€€½¹±¥¬õì ¤€ôøÍ•Ñ5…¹…•5½‘” ¡Ù…±Õ”¤€ôø€…Ù…±Õ”¥ô(€€€€€€€€€€€€€€€€€€€€ø(€€€€€€€€€€€€€€€€€€€€€5…¹…”èíµ…¹…•5½‘”€ü€‰=8ˆ€è€‰=‰ô(€€€€€€€€€€€€€€€€€€€€ð½‰ÕÑÑ½¸ø¥ô(€€€€€€€€€€€€€€€€€€€ì…‰½½­5½‘”€˜˜±½Õ¹¥Í‘¥Ñ½È€˜˜€ ñ‰ÕÑÑ½¸(€€€€€€€€€€€€€€€€€€€€€ÑåÁ”ô‰‰ÕÑÑ½¸ˆ(€€€€€€€€€€€€€€€€€€€€€±…ÍÍ9…µ”õíÁ½Í¥Ñ¥½¹5½‘”€ü€‰Í•±•Ñ•ˆ€è€ˆ‰ô(€€€€€€€€€€€€€€€€€€€€€…É¥„µÁÉ•ÍÍ•õíÁ½Í¥Ñ¥½¹5½‘•ô(€€€€€€€€€€€€€€€€€€€€€‘¥Í…‰±•õì…±½Õ¹…¹‘¥Ñô(€€€€€€€€€€€€€€€€€€€€€½¹±¥¬õì ¤€ôøÍ•ÑA½Í¥Ñ¥½¹5½‘” ¡Ù…±Õ”¤€ôø€…Ù…±Õ”¥ô(€€€€€€€€€€€€€€€€€€€€ø(€€€€€€€€€€€€€€€€€€€€€A½Í¥Ñ¥½¹ÌèíÁ½Í¥Ñ¥½¹5½‘”€ü€‰=8ˆ€è€‰=‰ô(€€€€€€€€€€€€€€€€€€€€ð½‰ÕÑÑ½¸ø¥ô(€€€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€¥ô(€€€€€€€€€€€€€€€í¥Í±½‰…±M•…É ñðÑ…ˆ€ôôô€‰Ù½…‰Õ±…Éäˆ€ü€ (€€€€€€€€€€€€€€€€€•á•É¥Í•M•Ñ¥½¸€ü€ (€€€€€€€€€€€€€€€€€€€€ñÍ•Ñ¥½¸(€€€€€€€€€€€€€€€€€€€€€±…ÍÍ9…µ”ô‰‘•‘¥…Ñ•µ•á•É¥Í”µÁ…”ˆ(€€€€€€€€€€€€€€€€€€€€€É•˜õí•á•É¥Í•A…•I•™ô(€€€€€€€€€€€€€€€€€€€€€Ñ…‰%¹‘•àõì´Åô(€€€€€€€€€€€€€€€€€€€€€…É¥„µ±…‰•°ô‰•‘¥…Ñ••á•É¥Í•Ìˆ(€€€€€€€€€€€€€€€€€€€€ø(€€€€€€€€€€€€€€€€€€€€€ì…•á•É¥Í•M•Ñ¥½¸¹¥ÍMÕ‰¡…ÁÑ•È€˜˜€ñÀ±…ÍÍ9…µ”ô‰•å•‰É½Üˆø(€€€€€€€€€€€€€€€€€€€€€€€¡…ÁÑ•Èí•á•É¥Í•M•Ñ¥½¸¹¡…ÁÑ•È¹¹Õµ‰•Éô(€€€€€€€€€€€€€€€€€€€€€€ð½Àùô(€€€€€€€€€€€€€€€€€€€€€€ñ È±…¹œô‰©„ˆø(€€€€€€€€€€€€€€€€€€€€€€€í±½…±¥é•‘¡…ÁÑ•ÉQ¥Ñ±”¡•á•É¥Í•M•Ñ¥½¸¹¡…ÁÑ•È°Í¡½Ý5å…¹µ…È°Í¡½ÝI•…‘¥¹Ì°Í¡½Ý)…Á…¹•Í”°Í¡½Ý-…¹©¤¥ô(€€€€€€€€€€€€€€€€€€€€€€ð½ Èø(€€€€€€€€€€€€€€€€€€€€€€ñá•É¥Í•Ì(€€€€€€€€€€€€€€€€€€€€€€€­•äõí•á•É¥Í•M•Ñ¥½¸¹¡…ÁÑ•È¹¥‘ô(€€€€€€€€€€€€€€€€€€€€€€€•á•É¥Í•Ìõí•á•É¥Í•Í½ÉM•Ñ¥½¸¡•á•É¥Í•M•Ñ¥½¸¹¡…ÁÑ•È¥ô(€€€€€€€€€€€€€€€€€€€€€€€Í¡½ÝI•…‘¥¹ÌõíÍ¡½ÝI•…‘¥¹ÍôÍ¡½Ý-…¹©¤õíÍ¡½Ý-…¹©¥ô(€€€€€€€€€€€€€€€€€€€€€€€Í¡½Ý5å…¹µ…ÈõíÍ¡½Ý5å…¹µ…Éô(€€€€€€€€€€€€€€€€€€€€€€€…ÍÍ¥¹µ•¹Ñ1…‰•°õí•á•É¥Í•M•Ñ¥½¸¹¥ÍMÕ‰¡…ÁÑ•È€ü±½…±¥é•‘¡…ÁÑ•ÉQ¥Ñ±”¡•á•É¥Í•M•Ñ¥½¸¹¡…ÁÑ•È°Í¡½Ý5å…¹µ…È°Í¡½ÝI•…‘¥¹Ì°Í¡½Ý)…Á…¹•Í”°Í¡½Ý-…¹©¤¤€èÕ¹‘•™¥¹•‘ô(€€€€€€€€€€€€€€€€€€€€€€€½¹‘õì…‰½½­5½‘”€˜˜±½Õ¹…¹‘¥Ð€ü€ ¤€ôø½Á•¹‘¥Ñ½È ‰•á•É¥Í”ˆ°€‰…‘ˆ°ìÍÑÕ‘åQ…ˆ°¡…ÁÑ•É%èÍ•±•Ñ•¹¥°ÍÕ‰¡…ÁÑ•É%è•á•É¥Í•M•Ñ¥½¸¹¥ÍMÕ‰¡…ÁÑ•È€ü•á•É¥Í•M•Ñ¥½¸¹¡…ÁÑ•È¹¥€è€ˆˆô¤€èÕ¹‘•™¥¹•‘ô(€€€€€€€€€€€€€€€€€€€€€€€½¹‘¥Ðõì…‰½½­5½‘”€˜˜µ…¹…•5½‘”€˜˜±½Õ¹¥Í‘¥Ñ½È€ü€¡¥Ñ•´¤€ôø½Á•¹‘¥Ñ½È ‰•á•É¥Í”ˆ°€‰•‘¥Ðˆ°ì€¸¸¹¥Ñ•´°ÍÑÕ‘åQ…ˆô¤€èÕ¹‘•™¥¹•‘ô(€€€€€€€€€€€€€€€€€€€€€€€½¹•±•Ñ”õì…‰½½­5½‘”€˜˜µ…¹…•5½‘”€˜˜±½Õ¹¥Í‘¥Ñ½È€ü€¡¥Ñ•´¤€ôø‘•±•Ñ•I•½É ‰•á•É¥Í”ˆ°¥Ñ•´¤€èÕ¹‘•™¥¹•‘ô(€€€€€€€€€€€€€€€€€€€€€€¼ø(€€€€€€€€€€€€€€€€€€€€ð½Í•Ñ¥½¸ø(€€€€€€€€€€€€€€€€€€¤€è¥Í±½‰…±M•…É €ü€ (€€€€€€€€€€€€€€€€€€€Ù½…‰I•ÍÕ±ÑÌ¹±•¹Ñ €ü€ (€€€€€€€€€€€€€€€€€€€€€‰½½­5½‘”€ü€ (€€€€€€€€€€€€€€€€€€€€€€€€ñY½…‰Õ±…Éå	½½¬•¹ÑÉ¥•ÌõíÙ½…‰I•ÍÕ±ÑÍôÍ¡½ÝI•…‘¥¹ÌõíÍ¡½ÝI•…‘¥¹ÍôÍ¡½Ý-…¹©¤õíÍ¡½Ý-…¹©¥ôÍ¡½Ý5å…¹µ…ÈõíÍ¡½Ý5å…¹µ…ÉôÍ¡½Ý)…Á…¹•Í”õíÍ¡½Ý)…Á…¹•Í•ôÍ¡½Ýá…µÁ±•ÌÍ¡½Ý¡…ÁÑ•É1…‰•±Ìµ…¹…•5½‘”õíµ…¹…•5½‘•ô¥Í‘¥Ñ½Èõí±½Õ¹¥Í‘¥Ñ½Éô½¹‘¥Ðõì¡…É¤€ôø½Á•¹‘¥Ñ½È ‰…Éˆ°€‰•‘¥Ðˆ°…É¥ô½¹•±•Ñ”õì¡…É¤€ôø‘•±•Ñ•I•½É ‰…Éˆ°…É¥ô€¼ø(€€€€€€€€€€€€€€€€€€€€€€¤€è€ (€€€€€€€€€€€€€€€€€€€€€€ñÍ•Ñ¥½¸±…ÍÍ9…µ”ô‰…É‘Ìˆø(€€€€€€€€€€€€€€€€€€€€€€€íÙ½…‰I•ÍÕ±ÑÌ¹µ…À ¡ì…É°¡…ÁÑ•Èô°¤¤€ôø€ (€€€€€€€€€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”õíµ…¹…•µ¥Ñ•´…Éµ±…å½ÕÐ´‘í…É¹±…å½ÕÐñð€‰ÍÑ…¹‘…É‰ôÍ•…É µ¡¥Ñô­•äõí€‘í¡…ÁÑ•È¹¥‘ô´‘í…É¹}¥€üü…É¹Ñ•Éµô´‘í¥õôø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñ±…Í¡…É…Éõí…É‘ôÍ¡½ÝI•…‘¥¹ÌõíÍ¡½ÝI•…‘¥¹ÍôÍ¡½Ý-…¹©¤õíÍ¡½Ý-…¹©¥ôÍ¡½Ý5å…¹µ…ÈõíÍ¡½Ý5å…¹µ…ÉôÍ¡½Ý)…Á…¹•Í”õíÍ¡½Ý)…Á…¹•Í•ô¡…ÁÑ•É1…‰•°õí¡…ÁÑ•È¹Ñ¥Ñ±•ô€¼ø(€€€€€€€€€€€€€€€€€€€€€€€€€€€íµ…¹…•5½‘”€˜˜±½Õ¹¥Í‘¥Ñ½È€˜˜€ (€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰¥Ñ•´µ…Ñ¥½¹Ìˆø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñ‰ÕÑÑ½¸ÑåÁ”ô‰‰ÕÑÑ½¸ˆ½¹±¥¬õì ¤€ôø½Á•¹‘¥Ñ½È ‰…Éˆ°€‰•‘¥Ðˆ°…É¥ôù‘¥Ðð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñ‰ÕÑÑ½¸ÑåÁ”ô‰‰ÕÑÑ½¸ˆ½¹±¥¬õì ¤€ôø‘•±•Ñ•I•½É ‰…Éˆ°…É¥ôù•±•Ñ”ð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€¥ô(€€€€€€€€€€€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€€€€€€€€€¤¥ô(€€€€€€€€€€€€€€€€€€€€€€ð½Í•Ñ¥½¸ø(€€€€€€€€€€€€€€€€€€€€€€¤(€€€€€€€€€€€€€€€€€€€€¤€è€ (€€€€€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰•µÁÑäÍ•…É µ•µÁÑäˆø(€€€€€€€€€€€€€€€€€€€€€€€€ñÀù9¼Í•…É¡•É•½É™½Õ¹¸ð½Àø(€€€€€€€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€€€€€¤(€€€€€€€€€€€€€€€€€€¤€è€ (€€€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰Ù½…ˆµÍ•Ñ¥½¹Ìˆø(€€€€€€€€€€€€€€€€€€€€€ì…Í¡Õ™™±•Y½…‰Õ±…Éä€˜˜€ñMÕ‰¡…ÁÑ•É9…ØÍ•Ñ¥½¹ÌõíÙ½…‰M•Ñ¥½¹Ì¹™¥±Ñ•È ¡Í•Ñ¥½¸¤€ôøÍ•Ñ¥½¸¹¥ÍMÕ‰¡…ÁÑ•È¤¹µ…À ¡Í•Ñ¥½¸¤€ôøÍ•Ñ¥½¸¹¡…ÁÑ•È¥ô€¼ùô(€€€€€€€€€€€€€€€€€€€€€í‘¥ÍÁ±…å•‘Y½…‰M•Ñ¥½¹Ì¹µ…À ¡ì¡…ÁÑ•È°¥ÍMÕ‰¡…ÁÑ•È°…É‘ÌèÍ•Ñ¥½¹…É‘Ìô¤€ôø€ (€€€€€€€€€€€€€€€€€€€€€€€€ñÍ•Ñ¥½¸±…ÍÍ9…µ”ô‰Ù½…ˆµÍ•Ñ¥½¸ˆ­•äõí¡…ÁÑ•È¹¥‘ôø(€€€€€€€€€€€€€€€€€€€€€€€€€í¥ÍMÕ‰¡…ÁÑ•È€˜˜€ñ‘¥Ø±…ÍÍ9…µ”ô‰Ù½…ˆµÍ•Ñ¥½¸µ¡•…‘¥¹œˆø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰ÍÕ‰¡…ÁÑ•ÈµÑ¥Ñ±”µ…Ñ¥½¹Ìˆø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñ Ì±…¹œô‰©„ˆ¥õí¥ÍMÕ‰¡…ÁÑ•È€üÍÕ‰¡…ÁÑ•ÉQ…É•Ñ%¡¡…ÁÑ•È¹¥¤€èÕ¹‘•™¥¹•‘ôÑ…‰%¹‘•àõí¥ÍMÕ‰¡…ÁÑ•È€ü€´Ä€èÕ¹‘•™¥¹•‘ôùí±½…±¥é•‘¡…ÁÑ•ÉQ¥Ñ±”¡¡…ÁÑ•È°Í¡½Ý5å…¹µ…È°Í¡½ÝI•…‘¥¹Ì°Í¡½Ý)…Á…¹•Í”°Í¡½Ý-…¹©¤¥ôð½ Ìø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€í¥ÍMÕ‰¡…ÁÑ•È€˜˜µ…¹…•5½‘”€˜˜±½Õ¹¥Í‘¥Ñ½È€˜˜€ (€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰¥Ñ•´µ…Ñ¥½¹Ìˆø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñ‰ÕÑÑ½¸ÑåÁ”ô‰‰ÕÑÑ½¸ˆ½¹±¥¬õì ¤€ôø½Á•¹‘¥Ñ½È ‰ÍÕ‰¡…ÁÑ•Èˆ°€‰•‘¥Ðˆ°ì€¸¸¹¡…ÁÑ•È°¡…ÁÑ•É%è¡…ÁÑ•È¹Á…É•¹Ñ¡…ÁÑ•É%ô¥ôù‘¥Ðð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñ‰ÕÑÑ½¸ÑåÁ”ô‰‰ÕÑÑ½¸ˆ½¹±¥¬õì ¤€ôø‘•±•Ñ•MÕ‰¡…ÁÑ•È¡¡…ÁÑ•È¥ôù•±•Ñ”ð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€¥ô(€€€€€€€€€€€€€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰Ù½…ˆµÍ•Ñ¥½¸µ…Ñ¥½¹Ìˆø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€í¥ÍMÕ‰¡…ÁÑ•È€˜˜€ñ‰ÕÑÑ½¸(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ÑåÁ”ô‰‰ÕÑÑ½¸ˆ(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€±…ÍÍ9…µ”õíÍ•Ñ¥½¸µ•á•É¥Í”µ‰ÕÑÑ½¸€‘í•á•É¥Í•M•Ñ¥½¹%€ôôô¡…ÁÑ•È¹¥€ü€‰…Ñ¥Ù”ˆ€è€ˆ‰õô(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€…É¥„µ±…‰•°õíM¡½Üá•É¥Í•Ì½È€‘í¡…ÁÑ•È¹Ñ¥Ñ±•õô(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€…É¥„µÁÉ•ÍÍ•õí•á•É¥Í•M•Ñ¥½¹%€ôôô¡…ÁÑ•È¹¥‘ô(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€½¹±¥¬õì ¤€ôøÍ•Ñá•É¥Í•M•Ñ¥½¹% ¡ÕÉÉ•¹Ð¤€ôøÕÉÉ•¹Ð€ôôô¡…ÁÑ•È¹¥€ü¹Õ±°€è¡…ÁÑ•È¹¥¥ô(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸…É¥„µ¡¥‘‘•¸ô‰ÑÉÕ”ˆûŠZð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸±…ÍÍ9…µ”ô‰ÍÈµ½¹±äˆùá•É¥Í•Ìð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ð½‰ÕÑÑ½¸ùô((€€€€€€€€€€€€€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€€€€€€€€€€€ð½‘¥Øùô(€€€€€€€€€€€€€€€€€€€€€€€€€íÍ•Ñ¥½¹…É‘Ì¹±•¹Ñ €ø€À€˜˜¥ÍMÕ‰¡…ÁÑ•È€˜˜€ñÀ±…ÍÍ9…µ”ô‰¹½Ñ”ˆùíÍ•Ñ¥½¹…É‘Ì¹±•¹Ñ¡ôí‰½½­5½‘”€ü€‘íÍÑÕ‘å1…‰•±ô•¹ÑÉ¥•Í€€è€‰™±…Í¡…É‘Ì‰ôð½Àùô(€€€€€€€€€€€€€€€€€€€€€€€€€í‰½½­5½‘”€ü€ (€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñY½…‰Õ±…Éå	½½¬•¹ÑÉ¥•ÌõíÍ•Ñ¥½¹…É‘ÍôÍ¡½ÝI•…‘¥¹ÌõíÍ¡½ÝI•…‘¥¹ÍôÍ¡½Ý-…¹©¤õíÍ¡½Ý-…¹©¥ôÍ¡½Ý5å…¹µ…ÈõíÍ¡½Ý5å…¹µ…ÉôÍ¡½Ý)…Á…¹•Í”õíÍ¡½Ý)…Á…¹•Í•ôÍ¡½Ýá…µÁ±•ÌõíÍ¡½Ý	½½­á…µÁ±•Íôµ…¹…•5½‘”õíµ…¹…•5½‘•ô¥Í‘¥Ñ½Èõí±½Õ¹¥Í‘¥Ñ½Éô½¹‘¥Ðõì¡…É¤€ôø½Á•¹‘¥Ñ½È ‰…Éˆ°€‰•‘¥Ðˆ°…É¥ô½¹•±•Ñ”õì¡…É¤€ôø‘•±•Ñ•I•½É ‰…Éˆ°…É¥ô€¼ø(€€€€€€€€€€€€€€€€€€€€€€€€€€¤€è€ (€€€€€€€€€€€€€€€€€€€€€€€€€€ñÍ•Ñ¥½¸±…ÍÍ9…µ”ô‰…É‘Ìˆø(€€€€€€€€€€€€€€€€€€€€€€€€€€€íÍ•Ñ¥½¹…É‘Ì¹µ…À ¡ì…Éô°¤¤€ôø€ (€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”õíµ…¹…•µ¥Ñ•´…Éµ±…å½ÕÐ´‘í…É¹±…å½ÕÐñð€‰ÍÑ…¹‘…É‰õô­•äõí…É¹}¥‘ôø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñ±…Í¡…É…Éõí…É‘ôÍ¡½ÝI•…‘¥¹ÌõíÍ¡½ÝI•…‘¥¹ÍôÍ¡½Ý-…¹©¤õíÍ¡½Ý-…¹©¥ôÍ¡½Ý5å…¹µ…ÈõíÍ¡½Ý5å…¹µ…ÉôÍ¡½Ý)…Á…¹•Í”õíÍ¡½Ý)…Á…¹•Í•ô€¼ø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€íÁ½Í¥Ñ¥½¹5½‘”€˜˜€…Í¡Õ™™±•Y½…‰Õ±…Éä€˜˜±½Õ¹¥Í‘¥Ñ½È€˜˜€ (€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰…ÉµÁ½Í¥Ñ¥½¸µ…Ñ¥½¹ÌˆÉ½±”ô‰É½ÕÀˆ…É¥„µ±…‰•°õíA½Í¥Ñ¥½¸½˜€‘í…É¹Ñ•Éµõôø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñ‰ÕÑÑ½¸ÑåÁ”ô‰‰ÕÑÑ½¸ˆ‘¥Í…‰±•õí¤€ôôô€Áô½¹±¥¬õì ¤€ôøµ½Ù•…É¡…É¹}¥°€´Ä¥ô…É¥„µ±…‰•°õí5½Ù”€‘í…É¹Ñ•Éµô‰…­Ý…É‘ôø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ƒŠ@	…­Ý…É(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñÍÁ…¸…É¥„µ±¥Ù”ô‰Á½±¥Ñ”ˆùí¤€¬€Åô€¼íÍ•Ñ¥½¹…É‘Ì¹±•¹Ñ¡ôð½ÍÁ…¸ø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñ‰ÕÑÑ½¸ÑåÁ”ô‰‰ÕÑÑ½¸ˆ‘¥Í…‰±•õí¤€ôôôÍ•Ñ¥½¹…É‘Ì¹±•¹Ñ €´€Åô½¹±¥¬õì ¤€ôøµ½Ù•…É¡…É¹}¥°€Ä¥ô…É¥„µ±…‰•°õí5½Ù”€‘í…É¹Ñ•Éµô™½ÉÝ…É‘ôø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€½ÉÝ…ÉƒŠH(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€¥ô(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€íµ…¹…•5½‘”€˜˜±½Õ¹¥Í‘¥Ñ½È€˜˜€ (€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰¥Ñ•´µ…Ñ¥½¹Ìˆø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñ‰ÕÑÑ½¸ÑåÁ”ô‰‰ÕÑÑ½¸ˆ½¹±¥¬õì ¤€ôø½Á•¹‘¥Ñ½È ‰…Éˆ°€‰•‘¥Ðˆ°…É¥ôù‘¥Ðð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ñ‰ÕÑÑ½¸ÑåÁ”ô‰‰ÕÑÑ½¸ˆ½¹±¥¬õì ¤€ôø‘•±•Ñ•I•½É ‰…Éˆ°…É¥ôù•±•Ñ”ð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€¥ô(€€€€€€€€€€€€€€€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€€€€€€€€€€€€€¤¥ô(€€€€€€€€€€€€€€€€€€€€€€€€€€ð½Í•Ñ¥½¸ø(€€€€€€€€€€€€€€€€€€€€€€€€€€¥ô(€€€€€€€€€€€€€€€€€€€€€€€€ð½Í•Ñ¥½¸ø(€€€€€€€€€€€€€€€€€€€€€€¤¥ô(€€€€€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€€€¤(€€€€€€€€€€€€€€€€¤€è€ (€€€€€€€€€€€€€€€€€€ñá•É¥Í•Ì(€€€€€€€€€€€€€€€€€€€­•äõíÍ•±•Ñ•¹¥‘ô(€€€€€€€€€€€€€€€€€€€•á•É¥Í•Ìõí•á•É¥Í•Íô(€€€€€€€€€€€€€€€€€€€Í¡½ÝI•…‘¥¹ÌõíÍ¡½ÝI•…‘¥¹ÍôÍ¡½Ý-…¹©¤õíÍ¡½Ý-…¹©¥ô(€€€€€€€€€€€€€€€€€€€Í¡½Ý5å…¹µ…ÈõíÍ¡½Ý5å…¹µ…Éô(€€€€€€€€€€€€€€€€€€€½¹‘õì…‰½½­5½‘”€˜˜±½Õ¹…¹‘¥Ð€ü€ ¤€ôø½Á•¹‘¥Ñ½È ‰•á•É¥Í”ˆ°€‰…‘ˆ°ìÍÑÕ‘åQ…ˆ°¡…ÁÑ•É%èÍ•±•Ñ•¹¥ô¤€èÕ¹‘•™¥¹•‘ô(€€€€€€€€€€€€€€€€€€€½¹‘¥Ðõì…‰½½­5½‘”€˜˜µ…¹…•5½‘”€˜˜±½Õ¹¥Í‘¥Ñ½È€ü€¡¥Ñ•´¤€ôø½Á•¹‘¥Ñ½È ‰•á•É¥Í”ˆ°€‰•‘¥Ðˆ°¥Ñ•´¤€èÕ¹‘•™¥¹•‘ô(€€€€€€€€€€€€€€€€€€€½¹•±•Ñ”õì…‰½½­5½‘”€˜˜µ…¹…•5½‘”€˜˜±½Õ¹¥Í‘¥Ñ½È€ü€¡¥Ñ•´¤€ôø‘•±•Ñ•I•½É ‰•á•É¥Í”ˆ°¥Ñ•´¤€èÕ¹‘•™¥¹•‘ô(€€€€€€€€€€€€€€€€€€¼ø(€€€€€€€€€€€€€€€€¥ô(€€€€€€€€€€€€€€ð¼ø(€€€€€€€€€€€€¤€è€ (€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰•µÁÑäÍ•…É µ•µÁÑäˆø(€€€€€€€€€€€€€€€€ñÀùíÍÑÕ‘åQ…ˆ€ôôô€‰É…µµ…Èˆ€˜˜€…ÕÍ•É¡…ÁÑ•ÉÌ¹±•¹Ñ €ü€‰9¼É…µµ…È¡…ÁÑ•ÉÌå•Ð¸¸½Ý¹•È…¸ÕÍ”€¬‘É…µµ…ÈÑ¼É•…Ñ”Ñ¡”™¥ÉÍÐ¡…ÁÑ•È¸ˆ€è€…ÕÍ•É¡…ÁÑ•ÉÌ¹±•¹Ñ €ü9¼€‘íÍÑÕ‘å1…‰•±ô¡…ÁÑ•ÉÌå•Ð¸Q¡”½Ý¹•È…¸ÕÍ”9•ÜÑ¼…‘Ñ¡”™¥ÉÍÐ¡…ÁÑ•È¹€€è€‰9¼Í•…É¡•É•½É™½Õ¹¸‰ôð½Àø(€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€¥ô(€€€€€€€€€€ð½…ÉÑ¥±”ø(€€€€€€€€ð½‘¥Øø(€€€€€€ð½Í•Ñ¥½¸ø(€€€€€íÍÑÕ‘åQ…‰Ì¹Í±¥” Ä¤¹µ…À ¡±…‰•°°¥¹‘•à¤€ôø±…‰•°€„ôô€‰-…¹©¤ˆ€ü¹Õ±°€è€ (€€€€€€€€ñÍ•Ñ¥½¸(€€€€€€€€€­•äõí±…‰•±ô(€€€€€€€€€É½±”ô‰Ñ…‰Á…¹•°ˆ(€€€€€€€€€¥õíÍÑÕ‘äµÁ…¹•°´‘í¥¹‘•à€¬€Åõô(€€€€€€€€€…É¥„µ±…‰•±±•‘‰äõíÍÑÕ‘äµÑ…ˆ´‘í¥¹‘•à€¬€Åõô(€€€€€€€€€¡¥‘‘•¸õíÍÑÕ‘åQ…ˆ€„ôô±…‰•±ô(€€€€€€€€€Ñ…‰%¹‘•àõìÁô(€€€€€€€€ø(€€€€€€€€€í±…‰•°€ôôô€‰-…¹©¤ˆ€ü€ (€€€€€€€€€€€€ñ-…¹©¤(€€€€€€€€€€€€€¥ÍÑ¥Ù”õíÍÑÕ‘åQ…ˆ€ôôô€‰-…¹©¤‰ô(€€€€€€€€€€€€€µ½‘”õí­…¹©¥5½‘•ô(€€€€€€€€€€€€€…±±á•É¥Í•Ìõí…±±á•É¥Í•Íô(€€€€€€€€€€€€€Í¡½Ý5å…¹µ…ÈõíÍ¡½Ý5å…¹µ…Éô(€€€€€€€€€€€€€Í¡½ÝI•…‘¥¹ÌõíÍ¡½ÝI•…‘¥¹ÍôÍ¡½Ý-…¹©¤õíÍ¡½Ý-…¹©¥ô(€€€€€€€€€€€€€Í¡½Ý-…¹©¥I•…‘¥¹ÌõíÍ¡½Ý-…¹©¥I•…‘¥¹Íô(€€€€€€€€€€€€€µ…¹…•5½‘”õíµ…¹…•5½‘”€˜˜±½Õ¹¥Í‘¥Ñ½Éô(€€€€€€€€€€€€€…¹‘¥Ðõí±½Õ¹…¹‘¥Ñô(€€€€€€€€€€€€€¥Í‘¥Ñ½Èõí±½Õ¹¥Í‘¥Ñ½Éô(€€€€€€€€€€€€€Í•Ñ5…¹…•5½‘”õíÍ•Ñ5…¹…•5½‘•ô(€€€€€€€€€€€€€½¹Ñ•¹Ðõí½¹Ñ•¹Ñô(€€€€€€€€€€€€€½Á•¹‘¥Ñ½Èõí½Á•¹‘¥Ñ½Éô(€€€€€€€€€€€€€‘•±•Ñ•I•½Éõí‘•±•Ñ•I•½É‘ô(€€€€€€€€€€€€€‘•±•Ñ•MÕ‰¡…ÁÑ•Èõí‘•±•Ñ•MÕ‰¡…ÁÑ•Éô(€€€€€€€€€€€€€½¹¡…ÁÑ•É¡…¹”õí™½ÕÍ¡…ÁÑ•É½¹Ñ•¹Ñô(€€€€€€€€€€€€¼ø(€€€€€€€€€€¤€è€ (€€€€€€€€€€€€ñ…ÉÑ¥±”±…ÍÍ9…µ”ô‰ÕÍÑ½´µÍÑÕ‘äµÁ…¹•°ˆø(€€€€€€€€€€€€€€ñÀ±…ÍÍ9…µ”ô‰•å•‰É½Üˆùí±…‰•±ôð½Àø(€€€€€€€€€€€€€€ñ Èùí±…‰•±ôÍÑÕ‘ä…É‘Ìð½ Èø(€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰Ñ½½±Ìˆø(€€€€€€€€€€€€€€€í±½Õ¹¥Í‘¥Ñ½È€˜˜€ ñ‰ÕÑÑ½¸(€€€€€€€€€€€€€€€€€ÑåÁ”ô‰‰ÕÑÑ½¸ˆ(€€€€€€€€€€€€€€€€€±…ÍÍ9…µ”õíµ…¹…•5½‘”€ü€‰Í•±•Ñ•ˆ€è€ˆ‰ô(€€€€€€€€€€€€€€€€€…É¥„µÁÉ•ÍÍ•õíµ…¹…•5½‘•ô(€€€€€€€€€€€€€€€€€‘¥Í…‰±•õì…±½Õ¹…¹‘¥Ñô(€€€€€€€€€€€€€€€€€€€€€½¹±¥¬õì ¤€ôøÍ•Ñ5…¹…•5½‘” ¡Ù…±Õ”¤€ôø€…Ù…±Õ”¥ô(€€€€€€€€€€€€€€€€ø(€€€€€€€€€€€€€€€€€5…¹…”èíµ…¹…•5½‘”€ü€‰=8ˆ€è€‰=‰ô(€€€€€€€€€€€€€€€€ð½‰ÕÑÑ½¸ø¥ô(€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€íÕÍÑ½µ…É‘Í	åQ…‰m±…‰•±tü¹±•¹Ñ €ü€ (€€€€€€€€€€€€€€€€ñÍ•Ñ¥½¸±…ÍÍ9…µ”ô‰…É‘Ìˆø(€€€€€€€€€€€€€€€€€íÕÍÑ½µ…É‘Í	åQ…‰m±…‰•±t¹µ…À ¡…É¤€ôø€ (€€€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”õíµ…¹…•µ¥Ñ•´…Éµ±…å½ÕÐ´‘í…É¹±…å½ÕÐñð€‰ÍÑ…¹‘…É‰õô­•äõí…É¹}¥‘ôø(€€€€€€€€€€€€€€€€€€€€€€ñ±…Í¡…É…Éõí…É‘ôÍ¡½ÝI•…‘¥¹ÌõíÍ¡½ÝI•…‘¥¹ÍôÍ¡½Ý-…¹©¤õíÍ¡½Ý-…¹©¥ôÍ¡½Ý5å…¹µ…ÈõíÍ¡½Ý5å…¹µ…ÉôÍ¡½Ý)…Á…¹•Í”õíÍ¡½Ý)…Á…¹•Í•ô€¼ø(€€€€€€€€€€€€€€€€€€€€€íµ…¹…•5½‘”€˜˜±½Õ¹¥Í‘¥Ñ½È€˜˜€ (€€€€€€€€€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰¥Ñ•´µ…Ñ¥½¹Ìˆø(€€€€€€€€€€€€€€€€€€€€€€€€€€ñ‰ÕÑÑ½¸ÑåÁ”ô‰‰ÕÑÑ½¸ˆ½¹±¥¬õì ¤€ôø½Á•¹‘¥Ñ½È ‰…Éˆ°€‰•‘¥Ðˆ°…É¥ôù‘¥Ðð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€€€€€€€€€€€€€€€ñ‰ÕÑÑ½¸ÑåÁ”ô‰‰ÕÑÑ½¸ˆ½¹±¥¬õì ¤€ôø‘•±•Ñ•I•½É ‰…Éˆ°…É¥ôù•±•Ñ”ð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€€€€€€€¥ô(€€€€€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€€€€€¤¥ô(€€€€€€€€€€€€€€€€ð½Í•Ñ¥½¸ø(€€€€€€€€€€€€€€¤€è€ (€€€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰•µÁÑäÍÑÕ‘äµÁ±…•¡½±‘•Èˆø(€€€€€€€€€€€€€€€€€€ñÀù9¼í±…‰•°¹Ñ½1½Ý•É…Í” ¥ô…É‘Ìå•Ð¸UÍ”ƒŠp¬‘í±…‰•±÷Št…‰½Ù”Ñ¼É•…Ñ”½¹”¸ð½Àø(€€€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€€€¥ô(€€€€€€€€€€€€ð½…ÉÑ¥±”ø(€€€€€€€€€€¥ô(€€€€€€€€ð½Í•Ñ¥½¸ø(€€€€€€¤¥ô(€€€€€í±•Ù•°€ôôô€‰¸Ìˆ€˜˜ÍÑÕ‘åQ…ˆ€ôôô€‰5½¬•á…´ˆ€˜˜€ñÍ•Ñ¥½¸(€€€€€€€É½±”ô‰Ñ…‰Á…¹•°ˆ(€€€€€€€¥õíÍÑÕ‘äµÁ…¹•°´‘íÍÑÕ‘åQ…‰Ì¹¥¹‘•á=˜ ‰5½¬•á…´ˆ¥õô(€€€€€€€…É¥„µ±…‰•±±•‘‰äõíÍÑÕ‘äµÑ…ˆ´‘íÍÑÕ‘åQ…‰Ì¹¥¹‘•á=˜ ‰5½¬•á…´ˆ¥õô(€€€€€€€Ñ…‰%¹‘•àõìÁô(€€€€€€øñ5½­á…´€¼øð½Í•Ñ¥½¸ùô(€€€€€í±•Ù•°€ôôô€‰¸Ìˆ€˜˜ÍÑÕ‘åQ…ˆ€ôôô€‰I•…‘¥¹œˆ€˜˜€ñÍ•Ñ¥½¸(€€€€€€€É½±”ô‰Ñ…‰Á…¹•°ˆ(€€€€€€€¥õíÍÑÕ‘äµÁ…¹•°´‘íÍÑÕ‘åQ…‰Ì¹¥¹‘•á=˜ ‰I•…‘¥¹œˆ¥õô(€€€€€€€…É¥„µ±…‰•±±•‘‰äõíÍÑÕ‘äµÑ…ˆ´‘íÍÑÕ‘åQ…‰Ì¹¥¹‘•á=˜ ‰I•…‘¥¹œˆ¥õô(€€€€€€€Ñ…‰%¹‘•àõìÁô(€€€€€€øñI•…‘¥¹AÉ…Ñ¥”€¼øð½Í•Ñ¥½¸ùô(€€€€€í±•Ù•°€ôôô€‰¸Ìˆ€˜˜ÍÑÕ‘åQ…ˆ€ôôô€‰AÉ…Ñ¥”ˆ€˜˜€ñÍ•Ñ¥½¸(€€€€€€€É½±”ô‰Ñ…‰Á…¹•°ˆ(€€€€€€€¥õíÍÑÕ‘äµÁ…¹•°´‘íÍÑÕ‘åQ…‰Ì¹¥¹‘•á=˜ ‰AÉ…Ñ¥”ˆ¥õô(€€€€€€€…É¥„µ±…‰•±±•‘‰äõíÍÑÕ‘äµÑ…ˆ´‘íÍÑÕ‘åQ…‰Ì¹¥¹‘•á=˜ ‰AÉ…Ñ¥”ˆ¥õô(€€€€€€€Ñ…‰%¹‘•àõìÁô(€€€€€€øñAÉ…Ñ¥”¥Í‘¥Ñ½Èõí±½Õ¹¥Í‘¥Ñ½Éô€¼øð½Í•Ñ¥½¸ùô(€€€€€í‘•±•Ñ•QåÁ”€˜˜±½Õ¹¥Í‘¥Ñ½È€˜˜€ñ•±•Ñ•¥…±½œ­•äõí€‘íÍÑÕ‘åQ…‰ô´‘í‘•±•Ñ•QåÁ•õôÑåÁ”õí‘•±•Ñ•QåÁ•ô½ÁÑ¥½¹Ìõí‘•±•Ñ¥½¹=ÁÑ¥½¹ÍôÍ•±•Ñ•‘%õí‘•±•Ñ•%‘ô½¹M•±•ÐõíÍ•Ñ•±•Ñ•%‘ô½¹±½Í”õì ¤€ôøÍ•Ñ•±•Ñ•QåÁ”¡¹Õ±°¥ô½¹•±•Ñ”õí‘•±•Ñ•M•±•Ñ•‘ôÍ…Ù¥¹œõí±½Õ¹Í…Ù¥¹ô…¹•±•Ñ”õí±½Õ¹…¹‘¥Ñô•ÉÉ½Èõí±½Õ¹•ÉÉ½Éô€¼ùô(€€€€€í•‘¥Ñ½È€˜˜±½Õ¹¥Í‘¥Ñ½È€˜˜€ñ½¹Ñ•¹Ñ‘¥Ñ½ÈÍ…Ù¥¹œõí±½Õ¹Í…Ù¥¹ô…¹M…Ù”õí±½Õ¹…¹‘¥Ñô•ÉÉ½Èõí±½Õ¹•ÉÉ½Èñð€ …±½Õ¹½¹¹•Ñ•€ü€‰½¹¹•Ñ¥½¸±½ÍÐ¸-••ÀÑ¡¥Ì™½É´½Á•¸…¹É•½¹¹•ÐÑ¼Í…Ù”¸ˆ€è€ˆˆ¥ô•‘¥Ñ½Èõí•‘¥Ñ½ÉôÍ•Ñ‘¥Ñ½ÈõíÍ•Ñ‘¥Ñ½Éô¡…ÁÑ•É=ÁÑ¥½¹Ìõí¡…ÁÑ•É=ÁÑ¥½¹ÍôÉ½ÕÁÌõí½¹Ñ•¹Ð¹É½ÕÁÌñðmuôÍÑÕ‘åQ…‰ÌõíÍÑÕ‘åQ…‰Íô½¹M…Ù”õíÍ…Ù•½¹Ñ•¹Ñô½¹±½Í”õì ¤€ôøÍ•Ñ‘¥Ñ½È¡¹Õ±°¥ô€¼ùô(€€€€€íl‰Y½…ˆˆ°€‰É…µµ…È‰t¹¥¹±Õ‘•Ì¡ÍÑÕ‘åQ…ˆ¤€˜˜Í•±•Ñ•€˜˜€…¥Í±½‰…±M•…É €˜˜€¡Ñ…ˆ€ôôô€‰•á•É¥Í•Ìˆñð•á•É¥Í•M•Ñ¥½¸¤€˜˜€ñ‰ÕÑÑ½¸(€€€€€€€ÑåÁ”ô‰‰ÕÑÑ½¸ˆ±…ÍÍ9…µ”ô‰‰…¬µÑ¼µÙ½…‰Õ±…Éäˆ(€€€€€€€½¹±¥¬õì ¤€ôøìÍ•ÑQ…ˆ ‰Ù½…‰Õ±…Éäˆ¤ìÍ•Ñá•É¥Í•M•Ñ¥½¹%¡¹Õ±°¤ì™½ÕÍ¡…ÁÑ•É½¹Ñ•¹Ð ¤ìõô(€€€€€€ûŠ@	…¬Ñ¼íÍÑÕ‘åQ…ˆ€ôôô€‰É…µµ…Èˆ€ü€‰É…µµ…Èˆ€è€‰Y½…‰Õ±…Éä‰ôð½‰ÕÑÑ½¸ùô(€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰ÍÑÕ‘äµ½¹ÑÉ½±ÌˆÉ•˜õí½¹ÑÉ½±ÍI•™ôø(€€€€€€€í½¹ÑÉ½±Í=Á•¸€˜˜€ (€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰½¹ÑÉ½±ÌµÁ…¹•°ˆ¥ô‰ÍÑÕ‘äµ½¹ÑÉ½±ÌµÁ…¹•°ˆø(€€€€€€€€€€€€ñÀ±…ÍÍ9…µ”ô‰½¹ÑÉ½±ÌµÑ¥Ñ±”ˆùMÑÕ‘äY¥•Üð½Àø(€€€€€€€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰Ù½…ˆµµ½‘”µÍÝ¥Ñ ˆÉ½±”ô‰É½ÕÀˆ…É¥„µ±…‰•°õí€‘íÍÑÕ‘åQ…‰ô‘¥ÍÁ±…äµ½‘•ôø(€€€€€€€€€€€€€€€€ñ‰ÕÑÑ½¸ÑåÁ”ô‰‰ÕÑÑ½¸ˆ…É¥„µÁÉ•ÍÍ•õì…‰½½­5½‘•ô½¹±¥¬õì ¤€ôøÍ•ÑMÑÕ‘å5½‘” ‰…Éˆ¥ôù…Éµ½‘”ð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€€€€€ñ‰ÕÑÑ½¸ÑåÁ”ô‰‰ÕÑÑ½¸ˆ…É¥„µÁÉ•ÍÍ•õí‰½½­5½‘•ô½¹±¥¬õì ¤€ôøÍ•ÑMÑÕ‘å5½‘” ‰‰½½¬ˆ¥ôù	½½¬µ½‘”ð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€€€ð½‘¥Øø(€€€€€€€€€€€€ñ‰ÕÑÑ½¸(€€€€€€€€€€€€€ÑåÁ”ô‰‰ÕÑÑ½¸ˆ(€€€€€€€€€€€€€…É¥„µÁÉ•ÍÍ•õíÍ¡½Ý)…Á…¹•Í•ô(€€€€€€€€€€€€€½¹±¥¬õì ¤€ôøì(€€€€€€€€€€€€€€€Í•ÑM¡½Ý)…Á…¹•Í” …Í¡½Ý)…Á…¹•Í”¤ì(€€€€€€€€€€€€€€€¥˜€¡Í¡½Ý)…Á…¹•Í”¤Í•ÑM¡½Ý5å…¹µ…È¡ÑÉÕ”¤ì(€€€€€€€€€€€€€õô(€€€€€€€€€€€€ø(€€€€€€€€€€€€€)…Á…¹•Í”€ñÍÁ…¸ùíÍ¡½Ý)…Á…¹•Í”€ü€‰=8ˆ€è€‰=‰ôð½ÍÁ…¸ø(€€€€€€€€€€€€ð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€ñ‰ÕÑÑ½¸(€€€€€€€€€€€€€ÑåÁ”ô‰‰ÕÑÑ½¸ˆ(€€€€€€€€€€€€€…É¥„µÁÉ•ÍÍ•õíÍ¡½Ý5å…¹µ…Éô(€€€€€€€€€€€€€½¹±¥¬õì ¤€ôøì(€€€€€€€€€€€€€€€Í•ÑM¡½Ý5å…¹µ…È …Í¡½Ý5å…¹µ…È¤ì(€€€€€€€€€€€€€€€¥˜€¡Í¡½Ý5å…¹µ…È¤Í•ÑM¡½Ý)…Á…¹•Í”¡ÑÉÕ”¤ì(€€€€€€€€€€€€€õô(€€€€€€€€€€€€ø(€€€€€€€€€€€€€5å…¹µ…È€ñÍÁ…¸ùíÍ¡½Ý5å…¹µ…È€ü€‰=8ˆ€è€‰=‰ôð½ÍÁ…¸ø(€€€€€€€€€€€€ð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€ñ‰ÕÑÑ½¸(€€€€€€€€€€€€€ÑåÁ”ô‰‰ÕÑÑ½¸ˆ(€€€€€€€€€€€€€…É¥„µÁÉ•ÍÍ•õíÍ¡½Ý-…¹©¥ô(€€€€€€€€€€€€€‘¥Í…‰±•õì…Í¡½Ý)…Á…¹•Í•ô(€€€€€€€€€€€€€½¹±¥¬õì ¤€ôøì(€€€€€€€€€€€€€€€Í•ÑM¡½Ý-…¹©¤ …Í¡½Ý-…¹©¤¤ì(€€€€€€€€€€€€€€€¥˜€¡Í¡½Ý-…¹©¤¤Í•ÑM¡½ÝI•…‘¥¹Ì¡ÑÉÕ”¤ì(€€€€€€€€€€€€€õô(€€€€€€€€€€€€ø(€€€€€€€€€€€€€-…¹©¤€ñÍÁ…¸ùíÍ¡½Ý-…¹©¤€ü€‰=8ˆ€è€‰=‰ôð½ÍÁ…¸ø(€€€€€€€€€€€€ð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€ñ‰ÕÑÑ½¸(€€€€€€€€€€€€€ÑåÁ”ô‰‰ÕÑÑ½¸ˆ(€€€€€€€€€€€€€…É¥„µÁÉ•ÍÍ•õíÍ¡½ÝI•…‘¥¹Íô(€€€€€€€€€€€€€‘¥Í…‰±•õì…Í¡½Ý)…Á…¹•Í•ô(€€€€€€€€€€€€€½¹±¥¬õì ¤€ôøì(€€€€€€€€€€€€€€€Í•ÑM¡½ÝI•…‘¥¹Ì …Í¡½ÝI•…‘¥¹Ì¤ì(€€€€€€€€€€€€€€€¥˜€¡Í¡½ÝI•…‘¥¹Ì¤Í•ÑM¡½Ý-…¹©¤¡ÑÉÕ”¤ì(€€€€€€€€€€€€€õô(€€€€€€€€€€€€ø(€€€€€€€€€€€€€ÕÉ¥…¹„€ñÍÁ…¸ùíÍ¡½ÝI•…‘¥¹Ì€ü€‰=8ˆ€è€‰=‰ôð½ÍÁ…¸ø(€€€€€€€€€€€€ð½‰ÕÑÑ½¸ø(€€€€€€€€€€€í¥Í¡…ÁÑ•ÉMÑÕ‘ä€˜˜‰½½­5½‘”€˜˜€ (€€€€€€€€€€€€€€ñ‰ÕÑÑ½¸(€€€€€€€€€€€€€€€ÑåÁ”ô‰‰ÕÑÑ½¸ˆ(€€€€€€€€€€€€€€€…É¥„µÁÉ•ÍÍ•õíÍ¡½Ý	½½­á…µÁ±•Íô(€€€€€€€€€€€€€€€½¹±¥¬õì ¤€ôøÍ•ÑM¡½Ý	½½­á…µÁ±•Ì …Í¡½Ý	½½­á…µÁ±•Ì¥ô(€€€€€€€€€€€€€€ø(€€€€€€€€€€€€€€€á…µÁ±”Í•¹Ñ•¹•Ì€ñÍÁ…¸ùíÍ¡½Ý	½½­á…µÁ±•Ì€ü€‰M¡½Ý¸ˆ€è€‰!¥‘‘•¸‰ôð½ÍÁ…¸ø(€€€€€€€€€€€€€€ð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€¥ô(€€€€€€€€€€€íÍÑÕ‘åQ…ˆ€ôôô€‰-…¹©¤ˆ€˜˜€ (€€€€€€€€€€€€€€ñ‰ÕÑÑ½¸(€€€€€€€€€€€€€€€ÑåÁ”ô‰‰ÕÑÑ½¸ˆ(€€€€€€€€€€€€€€€…É¥„µÁÉ•ÍÍ•õíÍ¡½Ý-…¹©¥I•…‘¥¹Íô(€€€€€€€€€€€€€€€½¹±¥¬õì ¤€ôøÍ•ÑM¡½Ý-…¹©¥I•…‘¥¹Ì …Í¡½Ý-…¹©¥I•…‘¥¹Ì¥ô(€€€€€€€€€€€€€€ø(€€€€€€€€€€€€€€€-…¹©¤=¸½-Õ¸€ñÍÁ…¸ùíÍ¡½Ý-…¹©¥I•…‘¥¹Ì€ü€‰M¡½Ý¸ˆ€è€‰!¥‘‘•¸‰ôð½ÍÁ…¸ø(€€€€€€€€€€€€€€ð½‰ÕÑÑ½¸ø(€€€€€€€€€€€€¥ô(€€€€€€€€€€ð½‘¥Øø(€€€€€€€€¥ô(€€€€€€€€ñ‘¥Ø±…ÍÍ9…µ”ô‰½¹ÑÉ½±Ìµ…Ñ¥½¹Ìˆø(€€€€€€€€€€ñ	…­Q½Q½À€¼ø(€€€€€€€€€€ñ‰ÕÑÑ½¸(€€€€€€€€€€€ÑåÁ”ô‰‰ÕÑÑ½¸ˆ(€€€€€€€€€€€±…ÍÍ9…µ”ô‰½¹ÑÉ½±Ìµ±…Õ¹¡•Èˆ(€€€€€€€€€€€…É¥„µ•áÁ…¹‘•õí½¹ÑÉ½±Í=Á•¹ô(€€€€€€€€€€€…É¥„µ½¹ÑÉ½±Ìô‰ÍÑÕ‘äµ½¹ÑÉ½±ÌµÁ…¹•°ˆ(€€€€€€€€€€€½¹±¥¬õì ¤€ôøÍ•Ñ½¹ÑÉ½±Í=Á•¸ …½¹ÑÉ½±Í=Á•¸¥ô(€€€€€€€€€€ø(€€€€€€€€€€€ìˆ€‰ô(€€€€€€€€€€€í½¹ÑÉ½±Í=Á•¸€ü€‰±½Í”½¹ÑÉ½±Ìˆ€è€ˆüMÑÕ‘ä½¹ÑÉ½±Ì‰õìˆ€‰ô(€€€€€€€€€€ð½‰ÕÑÑ½¸ø(€€€€€€€€ð½‘¥Øø(€€€€€€ð½‘¥Øø(€€€€ð½µ…¥¸ø(€€¤ì)ô)É•…Ñ•I½½Ð¡‘½Õµ•¹Ð¹•Ñ±•µ•¹Ñ	å% ‰É½½Ðˆ¤¤¹É•¹‘•È (€€ñI•…Ð¹MÑÉ¥Ñ5½‘”ø(€€€€ñMÑÕ‘å•ÍÌøñÁÀ±•Ù•°õí±•Ù•±É½µA…Ñ ¡Ý¥¹‘½Ü¹±½…Ñ¥½¸¹Á…Ñ¡¹…µ”¥ô€¼øð½MÑÕ‘å•ÍÌø(€€ð½I•…Ð¹MÑÉ¥Ñ5½‘”ø°(¤ì(

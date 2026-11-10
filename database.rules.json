@@ -4,14 +4,49 @@
     ".write": false,
     "editors": {
       "$uid": {
-        ".read": "auth != null && auth.uid === $uid",
+        ".read": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && auth.uid === $uid",
         ".write": false
+      }
+    },
+    "practiceAdmins": {
+      "$uid": {
+        ".read": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && auth.uid === $uid",
+        ".write": false
+      }
+    },
+    "practiceUsers": {
+      ".read": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && (root.child('editors').child(auth.uid).val() === true || root.child('practiceAdmins').child(auth.uid).val() === true)",
+      "$uid": {
+        ".read": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && (auth.uid === $uid || root.child('editors').child(auth.uid).val() === true || root.child('practiceAdmins').child(auth.uid).val() === true)",
+        ".write": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && (root.child('editors').child(auth.uid).val() === true || root.child('practiceAdmins').child(auth.uid).val() === true)",
+        ".validate": "newData.hasChildren(['username', 'active', 'createdAt', 'createdBy'])",
+        "active": {
+          ".validate": "newData.isBoolean()"
+        },
+        "createdAt": {
+          ".validate": "newData.isNumber()"
+        },
+        "createdBy": {
+          ".validate": "newData.isString()"
+        },
+        "displayName": {
+          ".validate": "newData.isString()"
+        },
+        "username": {
+          ".validate": "newData.isString() && newData.val().matches(/^[a-z0-9._-]{3,24}$/)"
+        }
+      }
+    },
+    "n3Practice": {
+      "sets": {
+        ".read": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && (root.child('practiceUsers').child(auth.uid).child('active').val() === true || root.child('editors').child(auth.uid).val() === true || root.child('practiceAdmins').child(auth.uid).val() === true)",
+        ".write": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && (root.child('editors').child(auth.uid).val() === true || root.child('practiceAdmins').child(auth.uid).val() === true)"
       }
     },
     "jlpt": {
       "content": {
-        ".read": true,
-        ".write": "auth != null && root.child('editors').child(auth.uid).val() === true && newData.exists()",
+        ".read": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && (root.child('practiceUsers').child(auth.uid).child('active').val() === true || root.child('editors').child(auth.uid).val() === true || root.child('practiceAdmins').child(auth.uid).val() === true)",
+        ".write": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && root.child('editors').child(auth.uid).val() === true && newData.exists()",
         ".validate": "newData.hasChildren(['schemaVersion', 'revision', 'payload', 'updatedBy', 'updatedAt'])",
         "schemaVersion": {
           ".validate": "newData.val() === 1"
@@ -34,8 +69,8 @@
       },
       "n2": {
         "content": {
-          ".read": true,
-          ".write": "auth != null && root.child('editors').child(auth.uid).val() === true && newData.exists()",
+          ".read": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && (root.child('practiceUsers').child(auth.uid).child('active').val() === true || root.child('editors').child(auth.uid).val() === true || root.child('practiceAdmins').child(auth.uid).val() === true)",
+          ".write": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && root.child('editors').child(auth.uid).val() === true && newData.exists()",
           ".validate": "newData.hasChildren(['schemaVersion', 'revision', 'payload', 'updatedBy', 'updatedAt'])",
           "schemaVersion": {
             ".validate": "newData.val() === 1"
@@ -54,6 +89,22 @@
           },
           "$other": {
             ".validate": false
+          }
+        }
+      }
+    },
+    "practiceSessions": {
+      "$uid": {
+        ".read": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && auth.uid === $uid",
+        ".write": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && auth.uid === $uid",
+        ".validate": "newData.numChildren() <= 5",
+        "$sessionId": {
+          ".validate": "newData.hasChildren(['startedAt', 'device'])",
+          "startedAt": {
+            ".validate": "newData.isNumber()"
+          },
+          "device": {
+            ".validate": "newData.val() === 'browser'"
           }
         }
       }

@@ -1,22 +1,29 @@
 # Firebase setup
 
-The app uses the existing `akkh-jlpt` project, Google sign-in, and Firebase Realtime Database. N2 is a separate section of the same database, not a new database or project.
+The app uses the existing `akkh-jlpt` project and Firebase Realtime Database. Viewer accounts use usernames and passwords managed in the site owner's user table. Firebase Auth uses an internal, non-deliverable alias for each username; viewers do not need a real email address. Existing Google sign-in remains the editor sign-in. N2 is a separate section of the same database, not a new database or project.
 
 ## Paths and access
 
 - N3 content: `/jlpt/content`
 - N2 content: `/jlpt/n2/content`
 - Authorized owners: `/editors/<Firebase UID> = true`
+- Viewer account table: `/practiceUsers/<Firebase UID>`
+- Device sessions: `/practiceSessions/<Firebase UID>` (maximum five)
+- Private N3 Practice bank: `/n3Practice/sets`
 
-Both content paths allow public reads. Writes require an authorized owner, valid record fields, and an incremented revision. The browser cannot grant editor access. Both levels share the same owner permissions.
+The app requires an approved username/password account or an authorized Google editor account to view any page. Sign-in expires after seven days; database rules also reject older Firebase sign-ins. Each account can register up to five browser/device sessions. Realtime Database reads for N2/N3 study content and the Practice bank are limited to approved viewers or editors. Writes require an authorized owner, valid record fields, and an incremented revision. The browser cannot grant editor access. Both levels share the same owner permissions.
 
-Enable Google as a sign-in provider and authorize the site's domain and localhost in Firebase Authentication. Use Owner Sign In with Google in the app; signing in alone does not grant editor access.
+Enable Google and Email/Password once in Firebase Authentication → Sign-in method. Email/Password is the Firebase provider behind username accounts; the app does not verify or email those aliases. Add the current Vercel domain and localhost under Authorized domains. Existing Google editors can sign in as before. The Google editor account can add viewer accounts from **Manage viewer accounts**; viewer records do not store passwords. Removing a viewer disables access but keeps the record so access can be restored later. Provide passwords to viewers directly; no email reset is available for username-only accounts.
+
+After changing Authentication providers, deploy the updated Realtime Database rules below. Vercel builds do not deploy Firebase rules. This setup uses Firebase Authentication and Realtime Database only, with no Cloud Functions or paid Firebase feature; Spark quotas still apply. New viewers can then sign in with the username and password supplied by the editor. A viewer who loses access is blocked on the next database access check.
 
 The rules are in [database.rules.json](database.rules.json). Deploy updates using:
 
 ```sh
 npx --yes firebase-tools@latest deploy --only database --project akkh-jlpt
 ```
+
+The Practice tab reads its 26-set JSON bank from `/n3Practice/sets`. Only a Google editor can import or replace that bank from the tab; the question content is stored in Realtime Database rather than the frontend bundle.
 
 ## Content storage
 
