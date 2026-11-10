@@ -2,7 +2,7 @@
 // These are not transcriptions of JLPT papers and must not be described as past questions.
 const sets = [
   {
-    id: "2017-july", title: "2017 July practice", sourceNote: "Original N3-style questions; not the 2017 JLPT paper.",
+    id: "2017-july", title: "2017 July practice", sourceNote: "N3 practice questions; not the 2017 JLPT paper.",
     vocabulary: [
       ["会議の時間が変わったので、参加者にメールで（　　　）しました。", ["連絡", "相談", "案内", "紹介"], 0, "変更を相手に知らせるときは「連絡する」を使います。"],
       ["この道は車が多くて（　　　）ので、気をつけてください。", ["危険な", "確実な", "親切な", "十分な"], 0, "事故の可能性が高い状態は「危険」です。"],
@@ -26,7 +26,7 @@ const sets = [
     ],
   },
   {
-    id: "2017-december", title: "2017 December practice", sourceNote: "Original N3-style questions; not the 2017 JLPT paper.",
+    id: "2017-december", title: "2017 December practice", sourceNote: "N3 practice questions; not the 2017 JLPT paper.",
     vocabulary: [
       ["旅行の前に、ホテルを予約したかもう一度（　　　）してください。", ["確認", "説明", "反対", "紹介"], 0, "間違いがないか確かめることは「確認」です。"],
       ["彼は毎日練習して、ピアノがずいぶん（　　　）なった。", ["上手に", "安全に", "自由に", "急に"], 0, "技術がよくなることを「上手になる」と言います。"],
@@ -50,7 +50,7 @@ const sets = [
     ],
   },
   {
-    id: "2018-july", title: "2018 July practice", sourceNote: "Original N3-style questions; not the 2018 JLPT paper.",
+    id: "2018-july", title: "2018 July practice", sourceNote: "N3 practice questions; not the 2018 JLPT paper.",
     vocabulary: [
       ["会場の場所が分からなかったので、地図を見て（　　　）した。", ["確認", "案内", "相談", "招待"], 0, "地図で場所を確かめるときは「確認する」です。"],
       ["祖父は毎朝、公園を歩くことを（　　　）にしている。", ["習慣", "計画", "希望", "注意"], 0, "いつも行うことは「習慣」です。"],
@@ -74,7 +74,7 @@ const sets = [
     ],
   },
   {
-    id: "2018-december", title: "2018 December practice", sourceNote: "Original N3-style questions; not the 2018 JLPT paper.",
+    id: "2018-december", title: "2018 December practice", sourceNote: "N3 practice questions; not the 2018 JLPT paper.",
     vocabulary: [
       ["新しい機械の使い方を、店の人に（　　　）してもらった。", ["説明", "連絡", "返事", "準備"], 0, "使い方を分かるように話すことは「説明」です。"],
       ["道が混んでいて、予定より到着が（　　　）なった。", ["遅く", "細く", "弱く", "低く"], 0, "予定の時刻よりあとになることは「遅くなる」です。"],

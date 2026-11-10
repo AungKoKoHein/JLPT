@@ -4,9 +4,9 @@ import { archivePracticeSets, shuffledQuestions } from "./mockExamArchivePractic
 
 const sections = ["Vocabulary", "Grammar", "Reading"];
 const formatTime = (seconds) => `${String(Math.floor(seconds / 60)).padStart(2, "0")}:${String(seconds % 60).padStart(2, "0")}`;
-const extraExam = { id: "extra-mini", title: "Extra 24-question mini mock", questions: mockQuestions, sourceNote: "The existing original N3 practice test." };
+const extraExam = { id: "extra-mini", title: "Extra 24-question mini mock", questions: mockQuestions, sourceNote: "The existing 24-question N3 practice test." };
 const archiveQuestionPool = archivePracticeSets.flatMap((set) => set.questions);
-const examChoices = [extraExam, ...archivePracticeSets, { id: "random-60", title: "Random mixed mock · 60 questions", questions: shuffledQuestions(archiveQuestionPool), sourceNote: "A shuffled selection from the four original practice sets." }];
+const examChoices = [extraExam, ...archivePracticeSets, { id: "random-60", title: "Random mixed mock · 60 questions", questions: shuffledQuestions(archiveQuestionPool), sourceNote: "A shuffled selection from the four N3 practice sets." }];
 
 export default function MockExam() {
   const [mode, setMode] = useState("intro");
@@ -71,11 +71,11 @@ export default function MockExam() {
     <article className="mock-exam-panel">
       <div className="mock-exam-eyebrow">JLPT N3 · Practice mock</div>
       <h2>Mock Exam</h2>
-        <p className="mock-exam-lead">Choose a named practice set, keep the original mini mock as an extra test, or try a shuffled 60-question mixed mock.</p>
+        <p className="mock-exam-lead">Choose a named practice set, keep the 24-question mini mock as an extra test, or try a shuffled 60-question mixed mock.</p>
       <div className="mock-exam-set-grid">{examChoices.map((exam) => <button type="button" key={exam.id} className={`mock-exam-set-card${activeExam.id === exam.id ? " selected" : ""}`} onClick={() => setActiveExam(exam)}><strong>{exam.title}</strong><span>{exam.questions.length} questions · Vocabulary, Grammar, Reading</span>{exam.id !== "extra-mini" && <small>{exam.sourceNote}</small>}</button>)}</div>
       <h3 className="mock-exam-selected-title">{activeExam.title}</h3>
       <div className="mock-exam-overview">
-        <div><strong>{activeExam.questions.length}</strong><span>original questions</span></div>
+        <div><strong>{activeExam.questions.length}</strong><span>N3 practice questions</span></div>
         <div><strong>{examQuestions.length >= 60 ? "75" : examQuestions.length >= 24 ? "36" : "23"} min</strong><span>practice timer</span></div>
         <div><strong>3 sections</strong><span>Vocabulary · Grammar · Reading</span></div>
       </div>
