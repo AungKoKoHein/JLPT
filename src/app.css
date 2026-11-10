@@ -2630,6 +2630,10 @@ main[data-show-myanmar="false"] .editor [lang="my"] { display: block; }
   .mock-option-status { grid-column: 2; text-align: left; }
 }
 
+.practice-source-page img, .practice-key-image { display: block; width: 100%; height: auto; margin: 12px 0; background: white; }
+.practice-source-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.practice-source-controls select { padding: 7px; max-width: 100%; }
+.practice-question-palette > div { max-height: 360px; overflow-y: auto; padding: 3px; }
 /* N3 reading passages and comprehension practice */
 .reading-practice { --reading-ink: var(--ink, #202d32); --reading-muted: var(--muted, #52646a); --reading-line: var(--line, #d4d5c5); --reading-accent: var(--accent, #18685f); max-width: none; color: var(--reading-ink); }
 .reading-practice h2 { margin: 5px 0 6px; font-size: clamp(1.7rem, 4vw, 2.25rem); }
