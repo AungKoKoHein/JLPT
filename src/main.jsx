@@ -21,6 +21,7 @@ import { kanjiExamples } from "./kanjiContent.js";
 import { matchesVocabulary, vocabularySearchPlaceholder } from "./vocabularySearch.js";
 import supplementalGrammarExamples from "./grammarSupplementalExamples.js";
 import MockExam from "./MockExam.jsx";
+import ReadingPractice from "./ReadingPractice.jsx";
 
 const hideReadings = (value = "") =>
   value
@@ -539,7 +540,7 @@ function App({ level }) {
     }
     return () => window.removeEventListener("popstate", onPopState);
   }, []);
-  const isChapterStudy = !["Kanji", "Mock exam"].includes(studyTab);
+  const isChapterStudy = !["Kanji", "Mock exam"].includes(studyTab) && !(level === "n3" && studyTab === "Reading");
   const studyLabel = studyTab === "Vocab" ? "vocabulary" : studyTab.toLowerCase();
   useEffect(() => {
     setChapterQuery("");
@@ -1385,6 +1386,12 @@ function App({ level }) {
         aria-labelledby={`study-tab-${studyTabs.indexOf("Mock exam")}`}
         tabIndex={0}
       ><MockExam /></section>}
+      {level === "n3" && studyTab === "Reading" && <section
+        role="tabpanel"
+        id={`study-panel-${studyTabs.indexOf("Reading")}`}
+        aria-labelledby={`study-tab-${studyTabs.indexOf("Reading")}`}
+        tabIndex={0}
+      ><ReadingPractice /></section>}
       {deleteType && cloud.isEditor && <DeleteDialog key={`${studyTab}-${deleteType}`} type={deleteType} options={deletionOptions} selectedId={deleteId} onSelect={setDeleteId} onClose={() => setDeleteType(null)} onDelete={deleteSelected} saving={cloud.saving} canDelete={cloud.canEdit} error={cloud.error} />}
       {editor && cloud.isEditor && <ContentEditor saving={cloud.saving} canSave={cloud.canEdit} error={cloud.error || (!cloud.connected ? "Connection lost. Keep this form open and reconnect to save." : "")} editor={editor} setEditor={setEditor} chapterOptions={chapterOptions} groups={content.groups || []} studyTabs={studyTabs} onSave={saveContent} onClose={() => setEditor(null)} />}
       {["Vocab", "Grammar"].includes(studyTab) && selected && !isGlobalSearch && (tab === "exercises" || exerciseSection) && <button
