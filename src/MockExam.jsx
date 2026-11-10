@@ -76,7 +76,6 @@ export default function MockExam() {
       </ul>
       <div className="mock-exam-actions">
         <button type="button" className="primary-button" onClick={startExam}>Start mock exam</button>
-        <a href="https://samplequestions.jlpt.jp/e/guideline/pdf/n3_e.pdf" target="_blank" rel="noreferrer">Official JLPT N3 item type guide ↗</a>
       </div>
     </article>
   );
