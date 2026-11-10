@@ -1,6 +1,3 @@
-Warning: truncated output (original token count: 20047)
-Total output lines: 1485
-
 import { displayKanji } from "./studyText.js";
 import useShuffledCards from "./useShuffledCards.js";
 import DeleteDialog from "./DeleteDialog.jsx";
@@ -610,7 +607,313 @@ function App({ level }) {
     window.requestAnimationFrame(() => {
       if (window.innerWidth <= 800) {
         chapterContentRef.current?.scrollIntoView({
-          behavior: window.matchMedia("(prefers-reduced-…4047 tokens truncated…n.title}`, record: section })))
+          behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+          block: "start",
+        });
+        return;
+      }
+      const visiblePanel = [...document.querySelectorAll('[role="tabpanel"]')]
+        .find((panel) => !panel.hidden);
+      (visiblePanel ?? chapterContentRef.current)?.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+        block: "start",
+      });
+    });
+  };
+  useEffect(() => {
+    try {
+      localStorage.setItem("jlpt-show-japanese", String(showJapanese));
+    } catch {}
+  }, [showJapanese]);
+  useEffect(() => {
+    try {
+      localStorage.setItem("jlpt-show-book-examples", String(showBookExamples));
+    } catch {}
+  }, [showBookExamples]);
+  const [showMyanmar, setShowMyanmar] = useState(() => {
+    try {
+      return localStorage.getItem("jlpt-show-myanmar") !== "false";
+    } catch {
+      return true;
+    }
+  });
+  useEffect(() => {
+    try {
+      localStorage.setItem("jlpt-show-myanmar", String(showMyanmar));
+    } catch {
+      // The toggle still works when browser storage is unavailable.
+    }
+  }, [showMyanmar]);
+  useEffect(() => {
+    if (!controlsOpen) return undefined;
+    const closeOnOutsideClick = (event) => {
+      if (!controlsRef.current?.contains(event.target)) setControlsOpen(false);
+    };
+    document.addEventListener("pointerdown", closeOnOutsideClick);
+    return () => document.removeEventListener("pointerdown", closeOnOutsideClick);
+  }, [controlsOpen]);
+  useEffect(() => {
+    if (!exerciseSectionId || window.innerWidth <= 800) return undefined;
+    const frame = window.requestAnimationFrame(() => {
+      exercisePageRef.current?.focus({ preventScroll: true });
+      exercisePageRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [exerciseSectionId]);
+
+  const allVocabularyCards = useMemo(
+    () => resolveVocabularyCards(chapters, content).filter((card) => !(content.deletedChapters || []).includes(card.parentChapterId || card.chapterId)),
+    [content],
+  );
+  const vocabularySubchapters = useMemo(
+    () => resolveVocabularySubchapters(chapters, content),
+    [content],
+  );
+  const grammarSubchapters = useMemo(
+    () => resolveVocabularySubchapters([], content, "Grammar"),
+    [content],
+  );
+  const moveCard = (cardId, direction) => {
+    setContent((current) => moveVocabularyCard(chapters, current, cardId, direction));
+  };
+  const vocabularyChapters = useMemo(
+    () => [
+      ...chapters.map((chapter) => ({
+        ...chapter,
+        ...content.chapterOverrides[chapter.id],
+        subchapters: vocabularySubchapters.filter(
+          (subchapter) => subchapter.parentChapterId === chapter.id &&
+            (subchapter.studyTab ?? "Vocab") === "Vocab",
+        ),
+        cards: allVocabularyCards.filter((card) => card.chapterId === chapter.id && (!card.studyTab || card.studyTab === "Vocab")),
+      })),
+      ...(content.chapters ?? []).filter((chapter) => (chapter.studyTab ?? "Vocab") === "Vocab").map((chapter) => ({
+        ...chapter,
+        subchapters: vocabularySubchapters.filter(
+          (subchapter) => subchapter.parentChapterId === chapter.id && (subchapter.studyTab ?? "Vocab") === "Vocab",
+        ),
+        cards: allVocabularyCards.filter((card) => card.chapterId === chapter.id && (!card.studyTab || card.studyTab === "Vocab")),
+      })),
+    ],
+    [content, allVocabularyCards, vocabularySubchapters],
+  );
+  const chapterOptions = useMemo(
+    () => [
+      ...vocabularyChapters.map((chapter) => ({ ...chapter, studyTab: "Vocab" })),
+      ...kanjiChapterOptions.map((chapter) => ({
+        ...chapter,
+        ...content.chapterOverrides[chapter.id],
+        subchapters: [
+          ...chapter.subchapters.filter((section) => !content.deletedSubchapters.includes(section.id) && !content.subchapters.some((item) => item.id === section.id)),
+          ...content.subchapters.filter(
+            (subchapter) => subchapter.parentChapterId === chapter.id && subchapter.studyTab === "Kanji",
+          ),
+        ],
+      })),
+      ...(content.chapters ?? []).filter((chapter) => chapter.studyTab !== "Vocab" && chapter.studyTab != null).map((chapter) => ({
+        ...chapter,
+        subchapters: (chapter.studyTab === "Grammar" ? grammarSubchapters : content.subchapters.filter((item) => item.studyTab === chapter.studyTab))
+          .filter((item) => item.parentChapterId === chapter.id && !content.deletedSubchapters.includes(item.id)),
+      })),
+    ].filter((chapter) => !(content.deletedChapters || []).includes(chapter.id)),
+    [content, vocabularyChapters, grammarSubchapters],
+  );
+
+  const allExercises = useMemo(() => resolveExercises(
+    content.baselineExercises,
+    content,
+    chapterOptions.flatMap((chapter) => chapter.subchapters ?? []),
+  ), [content, chapterOptions]);
+  const userChapters = useMemo(() => chapterOptions
+    .filter((chapter) => chapter.studyTab === studyTab)
+    .filter((chapter) => hasVisibleChapterContent(chapter, allVocabularyCards, allExercises))
+    .map((chapter) => ({ ...chapter, cards: allVocabularyCards.filter((card) => card.chapterId === chapter.id && (card.studyTab ?? "Vocab") === studyTab) })),
+    [chapterOptions, allVocabularyCards, allExercises, studyTab]);
+
+  const filteredChapters = useMemo(
+    () =>
+      chapterQuery.trim()
+        ? userChapters.filter((c) => contains(c.title, chapterQuery))
+        : userChapters,
+    [chapterQuery, userChapters],
+  );
+  const chapterGroups = useMemo(() => groupChapters(userChapters, (content.groups || []).filter((group) => group.studyTab === studyTab))
+    .map((group) => ({ ...group, chapters: group.chapters.filter((chapter) => filteredChapters.some((item) => item.id === chapter.id)) }))
+    .filter((group) => !chapterQuery.trim() || group.chapters.length), [userChapters, content.groups, studyTab, filteredChapters, chapterQuery]);
+  const selected =
+    userChapters.find((c) => c.id === active) ?? filteredChapters[0] ?? userChapters[0];
+  const vocabResults = useMemo(() => {
+    const q = vocabQuery.trim();
+    if (!q)
+      return selected?.cards.map((card) => ({ card, chapter: selected })) ?? [];
+    return userChapters
+      .flatMap((chapter) => [
+        ...chapter.cards.map((card) => ({ card, chapter })),
+        ...chapter.subchapters.flatMap((subchapter) => allVocabularyCards
+          .filter((card) => card.chapterId === subchapter.id && (card.studyTab ?? "Vocab") === studyTab)
+          .map((card) => ({ card, chapter: subchapter }))),
+      ])
+      .filter(({ card }) => matchesVocabulary(card, q));
+  }, [vocabQuery, selected, userChapters, allVocabularyCards, studyTab]);
+  const vocabSections = selected
+    ? [
+        { chapter: selected, isSubchapter: false, cards: selected.cards.map((card) => ({ card, chapter: selected })) },
+        ...sortChapters(selected.subchapters).map((subchapter) => ({
+          chapter: subchapter,
+          isSubchapter: true,
+          cards: allVocabularyCards
+            .filter((card) => card.chapterId === subchapter.id && (card.studyTab ?? "Vocab") === studyTab)
+            .map((card) => ({ card, chapter: subchapter })),
+        })),
+      ]
+    : [];
+  const shuffleVocabulary = shuffleMode && studyTab === "Vocab";
+  const shuffledVocabulary = useShuffledCards(vocabSections.flatMap((section) => section.cards), shuffleVocabulary, (entry) => entry.card._id);
+  const displayedVocabSections = shuffleVocabulary && selected
+    ? [{ chapter: selected, isSubchapter: false, cards: shuffledVocabulary }]
+    : vocabSections.filter((section) => section.isSubchapter || section.cards.length > 0);
+  const exercises = selected ? exercisesForView(allExercises, studyTab, selected.id) : [];
+  const exercisesForSection = (section) => exercisesForView(
+    allExercises, studyTab, selected?.id, section.id === selected?.id ? "" : section.id,
+  );
+  const exerciseSection = vocabSections.find(
+    ({ chapter }) => chapter.id === exerciseSectionId,
+  );
+  const isGlobalSearch = Boolean(vocabQuery.trim());
+
+  const openEditor = (type, mode = "add", record = {}) => {
+    if (!cloud.canEdit) return;
+    const selectedTab = studyTab;
+    if (record.studyTab && record.studyTab !== selectedTab) return;
+    const optionsForTab = chapterOptions.filter((item) => item.studyTab === selectedTab);
+    const recordSubchapter = optionsForTab
+      .flatMap((chapter) => chapter.subchapters ?? [])
+      .find((subchapter) => subchapter.id === record.subchapterId || subchapter.id === record.chapterId);
+    const chapter = optionsForTab.find((item) => item.id === (recordSubchapter?.parentChapterId ?? record.parentChapterId ?? record.chapterId ?? selected?.id)) ?? optionsForTab[0];
+    const subchapterId = record.subchapterId ?? recordSubchapter?.id ?? (type === "subchapter" ? record.id : "");
+    setEditor({
+      mode,
+      type,
+      chapterId: chapter?.id ?? "",
+      subchapterId,
+      id: record._id ?? record.id,
+      studyTab: selectedTab,
+      groupTitle: chapter ? chapterGroup(chapter).label : "",
+      groupRange: chapter ? chapterGroup(chapter).range : "",
+      layout: type === "card" && selectedTab === "Grammar" ? "wide" : "standard",
+      number: `${chapter?.number ?? "1"}.${(chapter?.subchapters?.length ?? 0) + 1}`,
+      title: "",
+      titleMyanmar: "",
+      term: "",
+      meaning: "",
+      exampleJapanese: "",
+      exampleMyanmar: "",
+      section: "1-3",
+      question: "",
+      answer: "",
+      questionMyanmar: "",
+      answerMyanmar: "",
+      kanji: "",
+      on: "",
+      kun: "",
+      sentence: "",
+      ...record,
+      ...(type === "kanji" ? { examples: kanjiExamples(record), on: record.readings?.map((r) => r.on).filter(Boolean).join("・") || record.on || "", kun: record.readings?.map((r) => r.kun).filter(Boolean).join("・") || record.kun || "" } : {}),
+      studyTab: selectedTab,
+      chapterId: recordSubchapter?.parentChapterId ?? chapter?.id ?? "",
+      subchapterId,
+      id: record._id ?? record.id,
+    });
+  };
+  const saveContent = async (draft) => {
+    if (!cloud.canEdit || draft.studyTab !== studyTab) return;
+    if (!["chapter", "group"].includes(draft.type) && !chapterOptions.some((chapter) => chapter.id === draft.chapterId && chapter.studyTab === studyTab)) return;
+    if (draft.type === "card") {
+      setStudyTab(draft.studyTab);
+      setActive(draft.chapterId);
+      setChapterQuery("");
+      setVocabQuery("");
+      setExerciseSectionId(null);
+      setTab("vocabulary");
+    }
+    const saved = await setContent((current) => {
+      if (draft.type === "group") {
+        const title = draft.title.trim();
+        if (draft.mode === "edit") return renameChapterGroup(current, chapterOptions, draft.studyTab, draft.originalGroupTitle, title);
+        if (!title || (current.groups || []).some((group) => group.studyTab === draft.studyTab && group.title === title)) return current;
+        return { ...current, groups: [...(current.groups || []), { id: `group-${Date.now()}`, title, studyTab: draft.studyTab }] };
+      }
+      if (draft.type === "chapter") {
+        const id = draft.mode === "edit" ? draft.chapterId : `user-chapter-${Date.now()}`;
+        const fields = { number: draft.number, title: draft.title, titleMyanmar: draft.titleMyanmar, groupTitle: (draft.groupTitle || "").trim() };
+        const chapter = { id, ...fields, studyTab: draft.studyTab, subchapters: [] };
+        setActive(id);
+        if (draft.mode === "edit") {
+          if ((current.chapters ?? []).some((item) => item.id === id)) {
+            return { ...current, chapters: current.chapters.map((item) => item.id === id ? { ...item, ...fields } : item) };
+          }
+          return { ...current, chapterOverrides: { ...current.chapterOverrides, [id]: { ...current.chapterOverrides[id], ...fields } } };
+        }
+        return { ...current, chapters: [...(current.chapters ?? []), chapter] };
+      }
+      if (draft.type === "subchapter" && draft.mode === "edit") {
+        const subchapterId = draft.subchapterId || draft.id;
+        if (current.subchapters.some((item) => item.id === subchapterId)) {
+          return { ...current, subchapters: current.subchapters.map((item) => item.id === subchapterId ? { ...item, ...(draft.sourceId ? { sourceId: draft.sourceId } : {}), parentChapterId: draft.chapterId, studyTab: draft.studyTab, number: draft.number, title: draft.title, titleMyanmar: draft.titleMyanmar } : item) };
+        }
+        return { ...current, chapterOverrides: { ...current.chapterOverrides, [subchapterId]: { number: draft.number, title: draft.title, titleMyanmar: draft.titleMyanmar } } };
+      }
+      if (draft.type === "subchapter") {
+        const id = `user-${Date.now()}`;
+        setActive(draft.chapterId);
+        return { ...current, subchapters: [...current.subchapters, { id, parentChapterId: draft.chapterId, studyTab: draft.studyTab, number: draft.number, title: draft.title, titleMyanmar: draft.titleMyanmar, cards: [] }] };
+      }
+      if (draft.type === "kanji") {
+        const id = draft.id || `user-kanji-${Date.now()}`;
+        const item = {
+          id,
+          _id: id,
+          chapterId: draft.chapterId,
+          subchapterId: draft.subchapterId,
+          studyTab: "Kanji",
+          kanji: draft.kanji,
+          meaning: draft.meaning,
+          readings: [{ kanji: draft.kanji, on: draft.on, kun: draft.kun }],
+          examples: kanjiExamples(draft),
+          term: draft.kanji,
+          layout: draft.layout,
+          sentence: kanjiExamples(draft)[0].japanese,
+          words: kanjiExamples(draft).map((example) => ({ sentence: example.japanese, explanation: example.myanmar })),
+        };
+        if (draft.mode === "edit") return { ...current, kanjiOverrides: { ...current.kanjiOverrides, [draft.id]: item } };
+        return { ...current, kanjiCards: [...current.kanjiCards, item] };
+      }
+      if (draft.type === "card") {
+        const id = draft.id || `user-card-${Date.now()}`;
+        const item = { id, _id: id, chapterId: draft.subchapterId || draft.chapterId, subchapterId: draft.subchapterId || "", parentChapterId: draft.chapterId, studyTab: draft.studyTab, layout: draft.layout, term: draft.term, meaning: draft.meaning, exampleJapanese: draft.exampleJapanese, exampleMyanmar: draft.exampleMyanmar, ...(draft.studyTab === "Grammar" ? { examples: grammarExamples(draft), grammarExplanation: draft.grammarExplanation || "" } : {}), generated: true };
+        if (draft.mode === "edit") return { ...current, cardOverrides: { ...current.cardOverrides, [draft.id]: item } };
+        return { ...current, cards: [...current.cards, item] };
+      }
+      return saveExercise(current, draft);
+    });
+    if (saved) setEditor(null);
+  };
+  const allKanjiCards = resolveKanjiCards(content);
+  const deleteRecord = (type, record) => {
+    if (!cloud.canEdit) return;
+    setDeleteType(type); setDeleteId(record._id);
+  };
+  const deleteSubchapter = (chapter) => {
+    if (!cloud.canEdit) return;
+    setDeleteType("subchapter"); setDeleteId(chapter.id);
+  };
+  const deletionChapters = chapterOptions.filter((chapter) => chapter.studyTab === studyTab);
+  const deletionGroups = groupChapters(deletionChapters, (content.groups || []).filter((group) => group.studyTab === studyTab));
+  const deletionChapterById = new Map(deletionChapters.map((chapter) => [chapter.id, chapter]));
+  const deletionSubchapterById = new Map(deletionChapters.flatMap((chapter) => (chapter.subchapters || []).map((subchapter) => [subchapter.id, { ...subchapter, chapter }])));
+  const deletionOptions = deleteType === "group" ? deletionGroups.filter((group) => group.label !== "Not grouped").map((group) => ({ id: group.label, label: group.label }))
+    : deleteType === "chapter" ? sortChapters(deletionChapters).filter((chapter) => chapter.id !== `ungrouped-${studyTab}`).map((chapter) => ({ id: chapter.id, label: `${chapter.number}: ${chapter.title}`, record: chapter }))
+    : deleteType === "subchapter" ? deletionChapters.flatMap((chapter) => sortChapters(chapter.subchapters || []).map((section) => ({ id: section.id, label: `${chapter.title} / ${section.number}: ${section.title}`, record: section })))
     : (deleteType === "exercise" ? allExercises : deleteType === "kanji" ? allKanjiCards : allVocabularyCards).filter((record) => (record.studyTab || "Vocab") === studyTab).map((record) => {
       const subchapter = deletionSubchapterById.get(record.subchapterId);
       const chapter = deletionChapterById.get(record.parentChapterId || subchapter?.chapter?.id || record.chapterId);
