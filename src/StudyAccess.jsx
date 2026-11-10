@@ -241,7 +241,6 @@ export default function StudyAccess({ children }) {
       <section className="study-access-card">
         <p className="eyebrow">JLPT Study</p>
         <h1>{user ? (sessionStatus === "error" ? "Device access unavailable" : checking ? "Checking account…" : "This account does not have access") : "Sign in to study"}</h1>
-        <p className="study-access-lead">Use the username and password provided by the site owner. Sign-in lasts seven days and each account can use up to five devices. The owner uses Google sign-in to edit study content.</p>
         {user ? <button type="button" className="primary-button" onClick={logout} disabled={busy}>Sign out</button> : <>
           <form className="study-access-form" onSubmit={submitLogin}>
             <label>Username<input type="text" autoComplete="username" required value={username} onChange={(event) => setUsername(event.target.value)} /></label>
