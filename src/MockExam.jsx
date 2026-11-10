@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { mockQuestions } from "./mockExamQuestions.js";
 
-const EXAM_SECONDS = 100 * 60;
+const EXAM_SECONDS = 36 * 60;
 const sections = ["Vocabulary", "Grammar", "Reading"];
 const formatTime = (seconds) => `${String(Math.floor(seconds / 60)).padStart(2, "0")}:${String(seconds % 60).padStart(2, "0")}`;
 
@@ -63,16 +63,16 @@ export default function MockExam() {
     <article className="mock-exam-panel">
       <div className="mock-exam-eyebrow">JLPT N3 · Practice mock</div>
       <h2>Mock Exam</h2>
-      <p className="mock-exam-lead">A timed practice set covering vocabulary, grammar, and reading.</p>
+        <p className="mock-exam-lead">A timed 24-question mini mock covering vocabulary, grammar, and reading.</p>
       <div className="mock-exam-overview">
         <div><strong>{mockQuestions.length}</strong><span>original questions</span></div>
-        <div><strong>100 min</strong><span>practice timer</span></div>
+        <div><strong>36 min</strong><span>practice timer</span></div>
         <div><strong>3 sections</strong><span>Vocabulary · Grammar · Reading</span></div>
       </div>
       <ul className="mock-exam-notes">
         <li>Choose one answer for each question. You can move between questions and flag items to revisit.</li>
         <li>When you finish, see your raw score by section, correct answers, and short explanations in Burmese.</li>
-        <li>This is an original practice set based on published JLPT N3 item types. It is not an official test or score estimate. Listening is not included.</li>
+        <li>This abbreviated set uses original questions based on published JLPT N3 item types. It is not a full-length official test or score estimate. Listening is not included.</li>
       </ul>
       <div className="mock-exam-actions">
         <button type="button" className="primary-button" onClick={startExam}>Start mock exam</button>
