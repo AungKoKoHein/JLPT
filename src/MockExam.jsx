@@ -72,6 +72,9 @@ export default function MockExam() {
       <div className="mock-exam-eyebrow">JLPT N3 · Practice mock</div>
       <h2>Mock Exam</h2>
         <p className="mock-exam-lead">Choose a named practice set, keep the 24-question mini mock as an extra test, or try a shuffled 60-question mixed mock.</p>
+      <div className="mock-exam-actions">
+        <button type="button" className="primary-button" onClick={() => startExam()}>Start {activeExam.title}</button>
+      </div>
       <div className="mock-exam-set-grid">{examChoices.map((exam) => <button type="button" key={exam.id} className={`mock-exam-set-card${activeExam.id === exam.id ? " selected" : ""}`} onClick={() => setActiveExam(exam)}><strong>{exam.title}</strong><span>{exam.questions.length} questions · Vocabulary, Grammar, Reading</span>{exam.id !== "extra-mini" && <small>{exam.sourceNote}</small>}</button>)}</div>
       <h3 className="mock-exam-selected-title">{activeExam.title}</h3>
       <div className="mock-exam-overview">
@@ -85,9 +88,6 @@ export default function MockExam() {
         <li>The four date-named sets contain newly written N3-style questions, not transcriptions of the 2017 or 2018 JLPT papers. Listening is not included.</li>
         <li>The 60-question mock shuffles questions from all four new sets every time you start. The existing 24-question test remains unchanged.</li>
       </ul>
-      <div className="mock-exam-actions">
-        <button type="button" className="primary-button" onClick={() => startExam()}>Start {activeExam.title}</button>
-      </div>
     </article>
   );
 
