@@ -41,8 +41,12 @@ try {
   await cdp('Emulation.setDeviceMetricsOverride', { width: 1440, height: 1000, deviceScaleFactor: 1, mobile: false });
   await cdp('Page.navigate', { url: `http://127.0.0.1:${server.config.server.port}/__practice-check` });
   await until(`document.querySelectorAll('.mock-exam-set-card').length===26`);
+  assert.equal(await evaluate(`document.querySelector('.mock-exam-actions').compareDocumentPosition(document.querySelector('.mock-exam-set-grid')) & Node.DOCUMENT_POSITION_FOLLOWING`), 4, 'Start is above the category grid');
   await click('Start N3-1');
   await until(`document.querySelectorAll('input[type=radio]').length===4`);
+  assert.equal(await evaluate(`document.querySelector('.reading-question-card h4').textContent.trim()`), '問題Ⅰ： ［1］ どちらのほうが大きいか、比べてみましょう。');
+  assert.equal(await evaluate(`document.querySelector('.practice-source-page').open`), false, 'Whole source page is collapsed');
+  assert.equal(await evaluate(`document.querySelectorAll('.reading-answer-list label')[2].textContent.trim()`), '③くらべて');
   await until(`document.querySelector('.practice-source-page img')?.naturalWidth>0`);
   assert.equal(await evaluate(`document.querySelector('.reading-question-actions .primary-button').disabled`), true);
   await evaluate(`document.querySelectorAll('input[type=radio]')[2].click()`);
@@ -55,7 +59,7 @@ try {
   assert.equal(await evaluate(`document.querySelector('fieldset').disabled`), true);
   await click('Results (1/74)');
   await until(`document.querySelector('h2')?.textContent==='Practice results'`);
-  assert.equal(await evaluate(`document.querySelector('.reading-score strong').textContent`), '1 / 73');
+  assert.equal(await evaluate(`document.querySelector('.reading-score strong').textContent`), '1 / 74');
   await click('Try again');
   assert.equal(await evaluate(`document.querySelectorAll('input:checked').length`), 0);
   await cdp('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
@@ -63,7 +67,7 @@ try {
   assert.equal(await evaluate(`document.documentElement.scrollWidth<=document.documentElement.clientWidth`), true);
   await click('← All 26 categories');
   assert.equal(await evaluate(`document.querySelectorAll('.mock-exam-set-card').length`), 26);
-  console.log('PASS: 26 category cards, PDF page loads, check answer, navigation retention, results, retry, and mobile width.');
+  console.log('PASS: Start above categories, individual Japanese question, highlighted PDF answer, collapsed source page, navigation, results, retry, and mobile width.');
 } finally {
   socket?.close();
   chrome.kill();

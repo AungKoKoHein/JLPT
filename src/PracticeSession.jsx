@@ -42,12 +42,14 @@ export default function PracticeSession({ questions, title, description, source 
         <h3 lang="ja">{question.topic}</h3>
         <section className="reading-question-card">
           <div className="reading-question-topline"><strong>Q{question.number}</strong><span>Select one answer</span></div>
-          <h4 lang="ja" style={{ whiteSpace: "pre-line" }}>{question.prompt}</h4>
-          {displayedPage && <div className="practice-source-page">
+          <h4 lang="ja" style={{ whiteSpace: "pre-line" }}>{question.problem && `${question.problem}：`} {question.prompt}</h4>
+          {question.questionImage && <img className="practice-key-image" src={question.questionImage} alt={`Question ${question.number} and its four choices`} />}
+          {displayedPage && <details className="practice-source-page" open={!question.individualItem && !question.questionImage}>
+            <summary>View original page / reading passage</summary>
             <div className="practice-source-controls"><label>Source page <select value={displayedPage.number} onChange={(event) => setSourcePage(Number(event.target.value))}>{question.sourcePages.map((page) => <option key={page.number} value={page.number}>{page.number}{page.number === question.sourcePage ? " · question" : ""}</option>)}</select></label><button type="button" className="secondary-button" onClick={() => setSourcePage(question.sourcePage)}>Question page</button><a href={displayedPage.src} target="_blank" rel="noreferrer">Enlarge page ↗</a></div>
             <p className="reading-note">Read {question.topic.toLowerCase()} question {question.number} and its four choices below. Use the page selector for passages on earlier pages.</p>
             <img src={displayedPage.src} alt={`Original PDF page ${displayedPage.number}; ${question.topic} question ${question.number}`} />
-          </div>}
+          </details>}
           {question.sourceIssue && <p className="reading-note" role="note">{question.sourceIssue}</p>}
           {question.passage && <div className="reading-passage-text" lang="ja">{question.passage}</div>}
           {question.target && <p className="mock-target" lang="ja">{question.target}</p>}
@@ -55,12 +57,12 @@ export default function PracticeSession({ questions, title, description, source 
             <legend>Select one answer</legend>
             {question.choices.map((choice, index) => <label key={index} className={`${answers[question.id] === index ? "selected" : ""}${isChecked && index === question.answer ? " correct" : ""}${isChecked && answers[question.id] === index && !isCorrect ? " incorrect" : ""}`}>
               <input type="radio" name={question.id} checked={answers[question.id] === index} onChange={() => setAnswers((current) => ({ ...current, [question.id]: index }))} />
-              <span className="reading-option-letter">{index+1}</span><span lang="ja">{question.sourcePages ? `Option ${index+1} (${choice})` : choice}</span>
+              <span className="reading-option-letter">{question.sourcePages ? "①②③④"[index] : index+1}</span><span lang="ja">{choice}</span>
               {isChecked && index === question.answer && <strong>Correct answer</strong>}
               {isChecked && answers[question.id] === index && !isCorrect && <strong>Your answer</strong>}
             </label>)}
           </fieldset>
-          {isChecked && <div className={`reading-feedback ${hasKey && isCorrect ? "correct" : "incorrect"}`} role="status"><strong>{!hasKey ? "Unscored. " : isCorrect ? "Correct. " : "Not quite. "}</strong>{hasKey && <span lang="ja">正解：{question.answer+1}) {question.choices[question.answer]}</span>}<p style={{ whiteSpace: "pre-line" }}>{hasKey ? question.explanation : "The source key needs review. This question is excluded from your score."}</p>{question.keyPages && <details><summary>View original answer key</summary>{question.keyPages.map((page) => <a key={page.number} href={page.src} target="_blank" rel="noreferrer"><img className="practice-key-image" src={page.src} alt={`Answer key, PDF page ${page.number}`} loading="lazy" /></a>)}</details>}</div>}
+          {isChecked && <div className={`reading-feedback ${hasKey && isCorrect ? "correct" : "incorrect"}`} role="status"><strong>{!hasKey ? "Unscored. " : isCorrect ? "Correct. " : "Not quite. "}</strong>{hasKey && <span lang="ja">正解：{question.sourcePages ? "①②③④"[question.answer] : `${question.answer+1})`} {question.choices[question.answer]}</span>}<p style={{ whiteSpace: "pre-line" }}>{hasKey ? question.explanation : "The source key needs review. This question is excluded from your score."}</p>{question.keyPages && <details><summary>View original answer key</summary>{question.keyPages.map((page) => <a key={page.number} href={page.src} target="_blank" rel="noreferrer"><img className="practice-key-image" src={page.src} alt={`Answer key, PDF page ${page.number}`} loading="lazy" /></a>)}</details>}</div>}
           <div className="reading-question-actions">
             <button type="button" className="secondary-button" disabled={selected === 0} onClick={() => select(selected - 1)}>← Previous</button>
             <button type="button" className="secondary-button" onClick={() => setResults(true)}>Results ({completed}/{questions.length})</button>
