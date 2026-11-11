@@ -24,10 +24,24 @@ test('PDF collection exposes 26 complete sets and unique question IDs', () => {
   }
 });
 
-test('answer keys preserve source exceptions and cross-page continuation', () => {
+test('highlighted answers take priority over printed table errors', () => {
   assert.equal(bank[0].questions[0].answer, 2);
-  assert.equal(bank[0].questions[37].answer, null, 'PDF prints invalid option 5 for grammar Q3');
+  assert.equal(bank[0].questions[37].answer, 2, 'PDF highlights option 3 despite the table printing invalid option 5');
+  assert.equal(bank[0].questions[37].answerSource, 'PDF highlight');
   const exceptional = bank[21].questions.filter(question => question.topic === 'Grammar & reading');
   assert.deepEqual(exceptional.slice(27, 33).map(question => question.answer), [0,3,2,0,3,1]);
   assert.equal(bank[22].questions.at(-3).answer, 3, 'offset cell is option 4 for grammar Q37');
+});
+
+test('first practice item is one Japanese question with actual answer choices', () => {
+  const question = bank[0].questions[0];
+  assert.equal(question.problem, '問題Ⅰ');
+  assert.equal(question.prompt, '［1］ どちらのほうが大きいか、比べてみましょう。');
+  assert.deepEqual(question.choices, ['ならべて', 'しらべて', 'くらべて', 'うかべて']);
+  assert.equal(question.answerSource, 'PDF highlight');
+  assert.equal(question.choices[question.answer], 'くらべて');
+  for (const item of bank.flatMap(set => set.questions)) {
+    if (item.individualItem) assert.ok(!/^[①②③④]$/.test(item.choices[0]), item.id);
+    if (item.questionImage) assert.ok(fs.existsSync(new URL(`../public${item.questionImage}`, import.meta.url)), item.questionImage);
+  }
 });
