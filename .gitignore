@@ -4,3 +4,11 @@ dist/
 .migration-backups/
 firebase-debug.log
 .tmp-python/
+
+.vercel
+.env*
+
+# Local source PDFs and generated Firebase files are not deployment inputs.
+/source/*.pdf
+/.firebase/logs/
+/dataconnect/.dataconnect/

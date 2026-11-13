@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { StudyAccountContext } from "./StudyAccount.jsx";
 import {
   createUserWithEmailAndPassword,
   deleteUser,
@@ -150,7 +151,9 @@ export default function StudyAccess({ children }) {
   }, (reason) => { setError(explainAuthError(reason)); setChecking(false); }), []);
 
   useEffect(() => {
-    if (!user) { setClaims(null); setChecking(false); return undefined; }
+    // Only the auth observer knows when persisted sign-in restoration is done.
+    // The initial null user must not expose the login form while it is pending.
+    if (!user) { setClaims(null); return undefined; }
     setChecking(true);
     const state = { profile: undefined, editor: undefined, admin: undefined };
     const updateClaim = (key, value) => {
@@ -244,12 +247,14 @@ export default function StudyAccess({ children }) {
     finally { setBusy(false); }
   };
 
-  if (checking) return <main className="study-access-screen"><section className="study-access-card"><p className="eyebrow">JLPT Study</p><h1>Checking access…</h1></section></main>;
+  if (checking || (user && allowed && sessionStatus === "checking")) return <main className="study-access-screen"><section className="study-access-card" role="status" aria-live="polite"><p className="eyebrow">JLPT Study</p><h1>Restoring your session…</h1><p className="study-access-lead">Your study page will be ready shortly.</p></section></main>;
   if (!user || !allowed || sessionStatus !== "ready") return (
     <main className="study-access-screen">
       <section className="study-access-card">
+        <div className="study-login-heading">
         <p className="eyebrow">JLPT Study</p>
         <h1>{user ? (sessionStatus === "error" ? "Device access unavailable" : checking ? "Checking account…" : "This account does not have access") : "Sign in to study"}</h1>
+        </div>
         {user ? <button type="button" className="primary-button" onClick={logout} disabled={busy}>Sign out</button> : <>
           <form className="study-access-form" onSubmit={submitLogin}>
             <label>Username<input type="text" autoComplete="username" required value={username} onChange={(event) => setUsername(event.target.value)} /></label>
@@ -264,8 +269,7 @@ export default function StudyAccess({ children }) {
     </main>
   );
 
-  return <div className="study-access-root">
-    <div className="study-access-bar"><span>Signed in as <strong>{claims?.profile?.username || claims?.profile?.email || user.email}</strong></span><div>{canManageUsers && <PracticeUserManager />}<button type="button" className="secondary-button" onClick={logout} disabled={busy}>Sign out</button></div></div>
-    {children}
-  </div>;
+  return <StudyAccountContext.Provider value={{ username: claims?.profile?.username || claims?.profile?.email || user.email, logout, busy, manager: canManageUsers ? <PracticeUserManager /> : null }}>
+    <div className="study-access-root">{children}</div>
+  </StudyAccountContext.Provider>;
 }

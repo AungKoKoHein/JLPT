@@ -1,0 +1,6601 @@
+{
+  "n3-1-vocabulary-1": {
+    "prompt": "［1］ どちらのほうが大きいか、比べてみましょう。",
+    "underlines": [
+      {
+        "start": 16,
+        "end": 19
+      }
+    ]
+  },
+  "n3-1-vocabulary-2": {
+    "prompt": "［2］ 彼女は高校時代の親しい友人です。",
+    "underlines": [
+      {
+        "start": 12,
+        "end": 15
+      }
+    ]
+  },
+  "n3-1-vocabulary-3": {
+    "prompt": "［3］ 私立ではなく、国立の大学に入りたいです。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 13
+      }
+    ]
+  },
+  "n3-1-vocabulary-4": {
+    "prompt": "［4］ 数学 は得意 ですが、英語は苦手です。",
+    "underlines": [
+      {
+        "start": 18,
+        "end": 20
+      }
+    ]
+  },
+  "n3-1-vocabulary-5": {
+    "prompt": "［5］ 彼女に自分の気持ちを伝えた。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 17
+      }
+    ]
+  },
+  "n3-1-vocabulary-6": {
+    "prompt": "［6］ 失敗は成功 のもとだから、元気を出しなさいと言われた。",
+    "underlines": [
+      {
+        "start": 4,
+        "end": 6
+      }
+    ]
+  },
+  "n3-1-vocabulary-7": {
+    "prompt": "［7］ 人間にはだれにでも欠点がある。",
+    "underlines": [
+      {
+        "start": 4,
+        "end": 6
+      }
+    ]
+  },
+  "n3-1-vocabulary-8": {
+    "prompt": "［8］ このページの五行目を見てください。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 13
+      }
+    ]
+  },
+  "n3-1-vocabulary-9": {
+    "prompt": "［9］ 田中さんは一生懸命 どりょくして、栄養士 の資格 を取 った。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 18
+      }
+    ]
+  },
+  "n3-1-vocabulary-10": {
+    "prompt": "［10］ 父は、弟をつれて、公園に出かけた。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 13
+      }
+    ]
+  },
+  "n3-1-vocabulary-11": {
+    "prompt": "［11］ 今日はかかりの者がいませんので、明日来てください。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 11
+      }
+    ]
+  },
+  "n3-1-vocabulary-12": {
+    "prompt": "［12］ 今日、試験 のけっかが発明 された。",
+    "underlines": [
+      {
+        "start": 12,
+        "end": 15
+      }
+    ]
+  },
+  "n3-1-vocabulary-13": {
+    "prompt": "［13］ 誰も彼の話をうたがわなかった。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 15
+      }
+    ]
+  },
+  "n3-1-vocabulary-14": {
+    "prompt": "［14］ 喫茶店 でコーヒーをちゅうもんした。",
+    "underlines": [
+      {
+        "start": 15,
+        "end": 20
+      }
+    ]
+  },
+  "n3-1-vocabulary-26": {
+    "prompt": "［26］ きのうは珍 しく電車はがらがらだった。",
+    "underlines": [
+      {
+        "start": 16,
+        "end": 23
+      }
+    ]
+  },
+  "n3-1-vocabulary-27": {
+    "prompt": "[27] 預金を窓口 で引 き出 すには印鑑 が必要です。",
+    "underlines": [
+      {
+        "start": 12,
+        "end": 18
+      }
+    ]
+  },
+  "n3-1-vocabulary-28": {
+    "prompt": "[28] 急な仕事が入ったので、旅行の日程 を変更 した。",
+    "underlines": [
+      {
+        "start": 23,
+        "end": 28
+      }
+    ]
+  },
+  "n3-1-vocabulary-29": {
+    "prompt": "[29] 道路 を斜 めに横断 した。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 18
+      }
+    ]
+  },
+  "n3-1-vocabulary-30": {
+    "prompt": "[30] 携帯電話の使用をひかえる。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 18
+      }
+    ]
+  },
+  "n3-1-grammar-14": {
+    "prompt": "[14] 景気 は、去年より ＿＿＿ ＿＿＿    ★   ＿＿＿ よくなったとは言えません。",
+    "underlines": [
+      {
+        "start": 26,
+        "end": 27
+      }
+    ]
+  },
+  "n3-1-grammar-15": {
+    "prompt": "[15] 佐藤 さんは、まだゴルフを  ＿＿＿ ＿＿＿    ★   ＿＿＿ ようです。",
+    "underlines": [
+      {
+        "start": 31,
+        "end": 32
+      }
+    ]
+  },
+  "n3-1-grammar-16": {
+    "prompt": "[16] 日本人だから  ＿＿＿ ＿＿＿    ★   ＿＿＿ わけではない。",
+    "underlines": [
+      {
+        "start": 24,
+        "end": 25
+      }
+    ]
+  },
+  "n3-1-grammar-17": {
+    "prompt": "[17] 手術 をすることになるだろうとおもっていた  ＿＿＿ ＿＿＿    ★   ＿＿＿ ほっと安心した。",
+    "underlines": [
+      {
+        "start": 39,
+        "end": 40
+      }
+    ]
+  },
+  "n3-1-grammar-18": {
+    "prompt": "[18] A 「あのコンサートのチケットは高いでしょうね。」 B 「そうですね。でも、  ＿＿＿ ＿＿＿    ★   ＿＿＿ しないと思いますよ。」",
+    "underlines": [
+      {
+        "start": 56,
+        "end": 57
+      }
+    ]
+  },
+  "n3-1-grammar-28": {
+    "prompt": "［28］ 人生50 年というのはどういう意味か。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 11
+      }
+    ]
+  },
+  "n3-1-grammar-29": {
+    "prompt": "［29］ そう考えればとはどういう意味か。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 11
+      }
+    ]
+  },
+  "n3-1-grammar-30": {
+    "prompt": "［30］ ひとつの生き方はどういう生き方か。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 12
+      }
+    ]
+  },
+  "n3-1-grammar-31": {
+    "prompt": "「31」  ① 「英語で声をかけた」 が、何のために声をかけたのか。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 18
+      }
+    ]
+  },
+  "n3-1-grammar-32": {
+    "prompt": "「32」  ② 「では、私について来てください。」 といったのはどうしてですか。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 25
+      }
+    ]
+  },
+  "n3-1-grammar-33": {
+    "prompt": "「33」  ③ 「いい気分 で家 へ帰 ってきた」とあるが、どうしていい気分だったのか。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 24
+      }
+    ]
+  },
+  "n3-1-grammar-34": {
+    "prompt": "［34］ 二度はいつといつか。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 7
+      }
+    ]
+  },
+  "n3-1-grammar-35": {
+    "prompt": "「35」  誰が何のために、火をたたいていたのか。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 22
+      }
+    ]
+  },
+  "n3-1-grammar-36": {
+    "prompt": "［36］ それがわかると の「それ」は何をさすか。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 12
+      }
+    ]
+  },
+  "n3-1-grammar-37": {
+    "prompt": "「37」 「…声が出なかった」 と書いてあるが、ここからぼくのどんなようすがわかるか。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 15
+      }
+    ]
+  },
+  "n3-2-vocabulary-1": {
+    "prompt": "［1］ どちらのほうが大きいか、比べてみましょう。",
+    "underlines": [
+      {
+        "start": 16,
+        "end": 19
+      }
+    ]
+  },
+  "n3-2-vocabulary-2": {
+    "prompt": "［2］ 彼女は高校時代の親しい友人です。",
+    "underlines": [
+      {
+        "start": 12,
+        "end": 15
+      }
+    ]
+  },
+  "n3-2-vocabulary-3": {
+    "prompt": "［3］ 私立ではなく、国立の大学に入りたいです。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 13
+      }
+    ]
+  },
+  "n3-2-vocabulary-4": {
+    "prompt": "［4］ 数学 は得意 ですが、英語は苦手です。",
+    "underlines": [
+      {
+        "start": 18,
+        "end": 20
+      }
+    ]
+  },
+  "n3-2-vocabulary-5": {
+    "prompt": "［5］ 彼女に自分の気持ちを伝えた。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 17
+      }
+    ]
+  },
+  "n3-2-vocabulary-6": {
+    "prompt": "［6］ 失敗は成功 のもとだから、元気を出しなさいと言われた。",
+    "underlines": [
+      {
+        "start": 4,
+        "end": 6
+      }
+    ]
+  },
+  "n3-2-vocabulary-7": {
+    "prompt": "［7］ 人間にはだれにでも欠点がある。",
+    "underlines": [
+      {
+        "start": 4,
+        "end": 6
+      }
+    ]
+  },
+  "n3-2-vocabulary-8": {
+    "prompt": "［8］ このページの五行目を見てください。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 13
+      }
+    ]
+  },
+  "n3-2-vocabulary-9": {
+    "prompt": "［9］ 田中さんは一生懸命 どりょくして、栄養士 の資格 を取 った。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 18
+      }
+    ]
+  },
+  "n3-2-vocabulary-10": {
+    "prompt": "［10］ 父は、弟をつれて、公園に出かけた。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 13
+      }
+    ]
+  },
+  "n3-2-vocabulary-11": {
+    "prompt": "［11］ 今日はかかりの者がいませんので、明日来てください。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 11
+      }
+    ]
+  },
+  "n3-2-vocabulary-12": {
+    "prompt": "［12］ 今日、試験 のけっかが発明 された。",
+    "underlines": [
+      {
+        "start": 12,
+        "end": 15
+      }
+    ]
+  },
+  "n3-2-vocabulary-13": {
+    "prompt": "［13］ 誰も彼の話をうたがわなかった。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 15
+      }
+    ]
+  },
+  "n3-2-vocabulary-14": {
+    "prompt": "［14］ 喫茶店 でコーヒーをちゅうもんした。",
+    "underlines": [
+      {
+        "start": 15,
+        "end": 20
+      }
+    ]
+  },
+  "n3-2-vocabulary-26": {
+    "prompt": "［26］ きのうは珍 しく電車はがらがらだった。",
+    "underlines": [
+      {
+        "start": 16,
+        "end": 23
+      }
+    ]
+  },
+  "n3-2-vocabulary-27": {
+    "prompt": "[27] 預金を窓口 で引 き出 すには印鑑 が必要です。",
+    "underlines": [
+      {
+        "start": 12,
+        "end": 18
+      }
+    ]
+  },
+  "n3-2-vocabulary-28": {
+    "prompt": "[28] 急な仕事が入ったので、旅行の日程 を変更 した。",
+    "underlines": [
+      {
+        "start": 23,
+        "end": 28
+      }
+    ]
+  },
+  "n3-2-vocabulary-29": {
+    "prompt": "[29] 道路 を斜 めに横断 した。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 18
+      }
+    ]
+  },
+  "n3-2-vocabulary-30": {
+    "prompt": "[30] 携帯電話の使用をひかえる。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 18
+      }
+    ]
+  },
+  "n3-2-grammar-14": {
+    "prompt": "[14] 景気 は、去年より ＿＿＿ ＿＿＿    ★   ＿＿＿ よくなったとは言えません。",
+    "underlines": [
+      {
+        "start": 26,
+        "end": 27
+      }
+    ]
+  },
+  "n3-2-grammar-15": {
+    "prompt": "[15] 佐藤 さんは、まだゴルフを  ＿＿＿ ＿＿＿    ★   ＿＿＿ ようです。",
+    "underlines": [
+      {
+        "start": 31,
+        "end": 32
+      }
+    ]
+  },
+  "n3-2-grammar-16": {
+    "prompt": "[16] 日本人だから  ＿＿＿ ＿＿＿    ★   ＿＿＿ わけではない。",
+    "underlines": [
+      {
+        "start": 24,
+        "end": 25
+      }
+    ]
+  },
+  "n3-2-grammar-17": {
+    "prompt": "[17] 手術 をすることになるだろうとおもっていた  ＿＿＿ ＿＿＿    ★   ＿＿＿ ほっと安心した。",
+    "underlines": [
+      {
+        "start": 39,
+        "end": 40
+      }
+    ]
+  },
+  "n3-2-grammar-18": {
+    "prompt": "[18] A 「あのコンサートのチケットは高いでしょうね。」 B 「そうですね。でも、  ＿＿＿ ＿＿＿    ★   ＿＿＿ しないと思いますよ。」",
+    "underlines": [
+      {
+        "start": 56,
+        "end": 57
+      }
+    ]
+  },
+  "n3-2-grammar-28": {
+    "prompt": "［28］ 人生50 年というのはどういう意味か。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 11
+      }
+    ]
+  },
+  "n3-2-grammar-29": {
+    "prompt": "［29］ そう考えればとはどういう意味か。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 11
+      }
+    ]
+  },
+  "n3-2-grammar-30": {
+    "prompt": "［30］ ひとつの生き方はどういう生き方か。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 12
+      }
+    ]
+  },
+  "n3-2-grammar-31": {
+    "prompt": "「31」  ① 「英語で声をかけた」 が、何のために声をかけたのか。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 18
+      }
+    ]
+  },
+  "n3-2-grammar-32": {
+    "prompt": "「32」  ② 「では、私について来てください。」 といったのはどうしてですか。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 25
+      }
+    ]
+  },
+  "n3-2-grammar-33": {
+    "prompt": "「33」  ③ 「いい気分 で家 へ帰 ってきた」とあるが、どうしていい気分だったのか。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 24
+      }
+    ]
+  },
+  "n3-2-grammar-34": {
+    "prompt": "［34］ 二度はいつといつか。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 7
+      }
+    ]
+  },
+  "n3-2-grammar-35": {
+    "prompt": "「35」  誰が何のために、火をたたいていたのか。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 22
+      }
+    ]
+  },
+  "n3-2-grammar-36": {
+    "prompt": "［36］ それがわかると の「それ」は何をさすか。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 12
+      }
+    ]
+  },
+  "n3-2-grammar-37": {
+    "prompt": "「37」 「…声が出なかった」 と書いてあるが、ここからぼくのどんなようすがわかるか。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 15
+      }
+    ]
+  },
+  "n3-3-vocabulary-1": {
+    "prompt": "［1］ 山本さんはとても正直な人です。",
+    "underlines": [
+      {
+        "start": 12,
+        "end": 14
+      }
+    ]
+  },
+  "n3-3-vocabulary-2": {
+    "prompt": "［2］ 彼女の笑顔は、とてもかわいい。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 9
+      }
+    ]
+  },
+  "n3-3-vocabulary-3": {
+    "prompt": "［3］ そんなに働きすぎると、病気になって倒れますよ。",
+    "underlines": [
+      {
+        "start": 21,
+        "end": 25
+      }
+    ]
+  },
+  "n3-3-vocabulary-4": {
+    "prompt": "［4］ 姉は英語の翻訳の仕事をしています。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 11
+      }
+    ]
+  },
+  "n3-3-vocabulary-5": {
+    "prompt": "［5］ 救急車に乗ったことがありますか。",
+    "underlines": [
+      {
+        "start": 4,
+        "end": 7
+      }
+    ]
+  },
+  "n3-3-vocabulary-6": {
+    "prompt": "［6］ 早く結婚したいのに、なかなかいい相手がみつかりません。",
+    "underlines": [
+      {
+        "start": 20,
+        "end": 22
+      }
+    ]
+  },
+  "n3-3-vocabulary-7": {
+    "prompt": "［7］ コーヒーをこぼして、白いスカートが汚れてしまった。",
+    "underlines": [
+      {
+        "start": 21,
+        "end": 28
+      }
+    ]
+  },
+  "n3-3-vocabulary-8": {
+    "prompt": "［8］ 部屋の家賃は月末に払います。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 9
+      }
+    ]
+  },
+  "n3-3-vocabulary-9": {
+    "prompt": "［9］ ビザの延長 をしんせいした。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 15
+      }
+    ]
+  },
+  "n3-3-vocabulary-10": {
+    "prompt": "［10］ 風で目にすなが入ってしまった。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 11
+      }
+    ]
+  },
+  "n3-3-vocabulary-11": {
+    "prompt": "［11］ 昨日、教室でまなんだことを復習した。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 15
+      }
+    ]
+  },
+  "n3-3-vocabulary-12": {
+    "prompt": "［12］ 友達に進 められて会員 にとうろくした。",
+    "underlines": [
+      {
+        "start": 18,
+        "end": 22
+      }
+    ]
+  },
+  "n3-3-vocabulary-13": {
+    "prompt": "［13］ クレジットカードのりょうしゅうしょにサインをした。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 22
+      }
+    ]
+  },
+  "n3-3-vocabulary-14": {
+    "prompt": "［14］ 鈴木教授 は多くの若い学者をそだてた。",
+    "underlines": [
+      {
+        "start": 19,
+        "end": 23
+      }
+    ]
+  },
+  "n3-3-vocabulary-26": {
+    "prompt": "［26］ 水道 の蛇口 をひねる。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 16
+      }
+    ]
+  },
+  "n3-3-vocabulary-27": {
+    "prompt": "[27] 掃除 のためにいすをどける。",
+    "underlines": [
+      {
+        "start": 15,
+        "end": 18
+      }
+    ]
+  },
+  "n3-3-vocabulary-28": {
+    "prompt": "[28] ラーメンにこしょうをふる。",
+    "underlines": [
+      {
+        "start": 15,
+        "end": 17
+      }
+    ]
+  },
+  "n3-3-vocabulary-29": {
+    "prompt": "[29] ウールのセーターが縮 んだ。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 18
+      }
+    ]
+  },
+  "n3-3-vocabulary-30": {
+    "prompt": "[30] うちの犬はよくほえる。",
+    "underlines": [
+      {
+        "start": 12,
+        "end": 15
+      }
+    ]
+  },
+  "n3-3-grammar-14": {
+    "prompt": "[14] 知らないはずがない。彼は ＿＿＿ ＿＿＿    ★   ＿＿＿ 。",
+    "underlines": [
+      {
+        "start": 29,
+        "end": 30
+      }
+    ]
+  },
+  "n3-3-grammar-15": {
+    "prompt": "[15] 朝まで ＿＿＿ ＿＿＿    ★   ＿＿＿ 寝てしまった。",
+    "underlines": [
+      {
+        "start": 20,
+        "end": 21
+      }
+    ]
+  },
+  "n3-3-grammar-16": {
+    "prompt": "[16] 数 を＿＿＿ ＿＿＿    ★   ＿＿＿ ください。",
+    "underlines": [
+      {
+        "start": 19,
+        "end": 20
+      }
+    ]
+  },
+  "n3-3-grammar-17": {
+    "prompt": "[17] 教えて＿＿＿ ＿＿＿    ★   ＿＿＿ なのに、うまくできなかった。",
+    "underlines": [
+      {
+        "start": 19,
+        "end": 20
+      }
+    ]
+  },
+  "n3-3-grammar-18": {
+    "prompt": "[18] 子供たちが大きくなって、家を出て、今は ＿＿＿ ＿＿＿    ★   ＿＿＿ 暮 らし ている。",
+    "underlines": [
+      {
+        "start": 36,
+        "end": 37
+      }
+    ]
+  },
+  "n3-3-grammar-24": {
+    "prompt": "［24］ なぜそこまでが我慢 をするのだろうと不思議 に感 じていた とあるが、筆者 は母に対して どのように思っていたのか。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 34
+      }
+    ]
+  },
+  "n3-3-grammar-26": {
+    "prompt": "[26] まったく過去 の話になっている とあるが、どういう意味ですか。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 20
+      }
+    ]
+  },
+  "n3-3-grammar-30": {
+    "prompt": "[30] ③ 「関連記事」は何の役に立つと言っているか。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 12
+      }
+    ]
+  },
+  "n3-3-grammar-31": {
+    "prompt": "[31] ① 「それ」 は何を指 しているか。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 11
+      }
+    ]
+  },
+  "n3-3-grammar-32": {
+    "prompt": "[32] ② 「本人 の負担 （注3）になるような期待やほめすぎは考えものだ」とは、どういう意味 ですか。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 38
+      }
+    ]
+  },
+  "n3-3-grammar-34": {
+    "prompt": "［34］ ① 「それと同じぐらい運動 が大事 だ」とあるが、どうして運動が大事だといっている か。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 25
+      }
+    ]
+  },
+  "n3-3-grammar-35": {
+    "prompt": "［35］ ② 「 水泳 はあまり効果がない 」のはどうしてか。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 21
+      }
+    ]
+  },
+  "n3-3-grammar-36": {
+    "prompt": "［36］ ③ 「 運動には様々 な 効果がある 」 とあるが、例えばどんな効果があると言って いるか。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 23
+      }
+    ]
+  },
+  "n3-4-vocabulary-1": {
+    "prompt": "［1］ 近所に有名人が住んでいます。",
+    "underlines": [
+      {
+        "start": 4,
+        "end": 6
+      }
+    ]
+  },
+  "n3-4-vocabulary-2": {
+    "prompt": "［2］ この辺 りは、地震が多 い地域 です。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 13
+      }
+    ]
+  },
+  "n3-4-vocabulary-3": {
+    "prompt": "［3］ 使わないときは、ふたを閉じておいてください。",
+    "underlines": [
+      {
+        "start": 15,
+        "end": 18
+      }
+    ]
+  },
+  "n3-4-vocabulary-4": {
+    "prompt": "［4］ 東京はとても便利な町だと思います。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 13
+      }
+    ]
+  },
+  "n3-4-vocabulary-5": {
+    "prompt": "［5］ 何か調べるなら、これを使うといいですと。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 9
+      }
+    ]
+  },
+  "n3-4-vocabulary-6": {
+    "prompt": "［6］ パーティーに出席する人は、このノートに名前を書いてください。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 12
+      }
+    ]
+  },
+  "n3-4-vocabulary-7": {
+    "prompt": "［7］ レストランの情報がたくさん載 っている本を知っていますか。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 12
+      }
+    ]
+  },
+  "n3-4-vocabulary-8": {
+    "prompt": "［8］ 外国にいる友達から、誕生日プレゼントが届いた。",
+    "underlines": [
+      {
+        "start": 23,
+        "end": 26
+      }
+    ]
+  },
+  "n3-4-vocabulary-9": {
+    "prompt": "［9］ 友達を作るために、せっきょくてきに話しかけるようにしている。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 20
+      }
+    ]
+  },
+  "n3-4-vocabulary-10": {
+    "prompt": "［10］ 1912 年、日本は初めてオリンピックにさんかした。",
+    "underlines": [
+      {
+        "start": 25,
+        "end": 28
+      }
+    ]
+  },
+  "n3-4-vocabulary-11": {
+    "prompt": "［11］ 授業 でかんきょう問題 について発表 しました。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 14
+      }
+    ]
+  },
+  "n3-4-vocabulary-12": {
+    "prompt": "［12］ 奨学金 のもうしこみ方法 を教えてください。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 15
+      }
+    ]
+  },
+  "n3-4-vocabulary-13": {
+    "prompt": "［13］ ひょうじょうを見れば、その人の気持ちが分かります。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 11
+      }
+    ]
+  },
+  "n3-4-vocabulary-14": {
+    "prompt": "［14］ 卒業後 、一番 しんぱいなことは就職 です。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 18
+      }
+    ]
+  },
+  "n3-4-vocabulary-26": {
+    "prompt": "［26］ 午後 からは次第 に天気 もよくなるでしょう。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 15
+      }
+    ]
+  },
+  "n3-4-vocabulary-27": {
+    "prompt": "[27] 木村さんは大きな家に引っ越した。",
+    "underlines": [
+      {
+        "start": 15,
+        "end": 20
+      }
+    ]
+  },
+  "n3-4-vocabulary-28": {
+    "prompt": "[28] 彼の考えは甘いと思った。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 12
+      }
+    ]
+  },
+  "n3-4-vocabulary-29": {
+    "prompt": "[29] 山本さんがとても丁寧 に説明してくれた。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 17
+      }
+    ]
+  },
+  "n3-4-vocabulary-30": {
+    "prompt": "[30] 遅刻 しないように、目覚 まし時計 を6時 に合 わせて寝 た。",
+    "underlines": [
+      {
+        "start": 28,
+        "end": 33
+      }
+    ]
+  },
+  "n3-4-grammar-14": {
+    "prompt": "[14] あの映画は ＿＿＿ ＿＿＿    ★   ＿＿＿ 言えません。",
+    "underlines": [
+      {
+        "start": 22,
+        "end": 23
+      }
+    ]
+  },
+  "n3-4-grammar-15": {
+    "prompt": "[15] 試験はやさしいそうだから、中村さん ＿＿＿ ＿＿＿   ★   ＿＿＿ と思いますよ。",
+    "underlines": [
+      {
+        "start": 33,
+        "end": 34
+      }
+    ]
+  },
+  "n3-4-grammar-16": {
+    "prompt": "[16] 彼女は、日本語の＿＿＿ ＿＿＿    ★   ＿＿＿ 。",
+    "underlines": [
+      {
+        "start": 24,
+        "end": 25
+      }
+    ]
+  },
+  "n3-4-grammar-17": {
+    "prompt": "[17] 運動 もしないで  ＿＿＿ ＿＿＿    ★   ＿＿＿ 太 ってしまいますよ。",
+    "underlines": [
+      {
+        "start": 26,
+        "end": 27
+      }
+    ]
+  },
+  "n3-4-grammar-18": {
+    "prompt": "[18] A 「みんなで沖縄 へ旅行に行きませんか。」 B  「沖縄  ＿＿＿ ＿＿＿    ★   ＿＿＿ 有名ですよ。」",
+    "underlines": [
+      {
+        "start": 47,
+        "end": 48
+      }
+    ]
+  },
+  "n3-4-grammar-24": {
+    "prompt": "[24] ① 「あまり大きな音で聞くのはどうだろうか」 と言っているのはなぜか。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 27
+      }
+    ]
+  },
+  "n3-4-grammar-29": {
+    "prompt": "［29］ ①「満足そうにほほえんだ」とあるが、何が満足だったのか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 17
+      }
+    ]
+  },
+  "n3-4-grammar-32": {
+    "prompt": "［32］   ①「一般 の人」といっても、人にはそれぞれ違 った事情 がある。 とはどういうことか。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 39
+      }
+    ]
+  },
+  "n3-4-grammar-33": {
+    "prompt": "［33］ ② 自分で判断 するのが一番確実 な気 がする のはどうしてか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 28
+      }
+    ]
+  },
+  "n3-4-grammar-34": {
+    "prompt": "「34」 ① 「厳しい」とあるが、何が厳しいか。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 11
+      }
+    ]
+  },
+  "n3-4-grammar-35": {
+    "prompt": "「35」 ② 「5％ぐらい」とあるが、何が5％ぐらいなのか。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 13
+      }
+    ]
+  },
+  "n3-4-grammar-36": {
+    "prompt": "「36」 ③ 「留学生に言いたい」とあるが、留学生に対して社長が一番言いたいことは何か。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 16
+      }
+    ]
+  },
+  "n3-4-grammar-37": {
+    "prompt": "「37」 ④ 「日本人と一緒に働くときに困ってしまう」 のは、例えばどのような人か。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 27
+      }
+    ]
+  },
+  "n3-5-vocabulary-1": {
+    "prompt": "［1］ 土曜日は自由な時間がたくさんあるので、うれしいです。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 11
+      }
+    ]
+  },
+  "n3-5-vocabulary-2": {
+    "prompt": "［2］ この歌は、最近 覚えたばかりなので、まだ上手に歌えません。",
+    "underlines": [
+      {
+        "start": 12,
+        "end": 15
+      }
+    ]
+  },
+  "n3-5-vocabulary-3": {
+    "prompt": "［3］ 小さくて、軽い傘は人気があります。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 11
+      }
+    ]
+  },
+  "n3-5-vocabulary-4": {
+    "prompt": "［4］ 今日はたくさん働いたので、いつもより疲れました。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 14
+      }
+    ]
+  },
+  "n3-5-vocabulary-5": {
+    "prompt": "［5］ 自分で旅行を計画するのは楽しいです。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 12
+      }
+    ]
+  },
+  "n3-5-vocabulary-6": {
+    "prompt": "［6］ その学生は毎日地下鉄で大学に通っています。",
+    "underlines": [
+      {
+        "start": 18,
+        "end": 21
+      }
+    ]
+  },
+  "n3-5-vocabulary-7": {
+    "prompt": "［7］ 姉がいつも食事の用意をしてくれます。",
+    "underlines": [
+      {
+        "start": 12,
+        "end": 14
+      }
+    ]
+  },
+  "n3-5-vocabulary-8": {
+    "prompt": "［8］ 電話代は夜の間と日曜日が安いです。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 11
+      }
+    ]
+  },
+  "n3-5-vocabulary-9": {
+    "prompt": "［9］ 駅のばいてんで新聞を買いました。電車の席が空いていなかったので、 立ったまま読みました。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 10
+      }
+    ]
+  },
+  "n3-5-vocabulary-10": {
+    "prompt": "［10］ 音楽会は7 時にはじまります。きゅうこう電車でいかなくても間に合い ますよ。",
+    "underlines": [
+      {
+        "start": 20,
+        "end": 25
+      }
+    ]
+  },
+  "n3-5-vocabulary-11": {
+    "prompt": "［11］ 毎日漢字を15 ずつ習います。黒板 の字をちゅういしながらノートにうつ します。",
+    "underlines": [
+      {
+        "start": 38,
+        "end": 44
+      }
+    ]
+  },
+  "n3-5-vocabulary-12": {
+    "prompt": "［12］ この部屋は明るくて ひろいので、仕事がしやすいです。",
+    "underlines": [
+      {
+        "start": 15,
+        "end": 18
+      }
+    ]
+  },
+  "n3-5-vocabulary-13": {
+    "prompt": "［13］ 鈴木教授 は多くの若い学者をそだてた。",
+    "underlines": [
+      {
+        "start": 19,
+        "end": 23
+      }
+    ]
+  },
+  "n3-5-vocabulary-14": {
+    "prompt": "［14］ クレジットカードでのりょうしゅうしょにサインをした。",
+    "underlines": [
+      {
+        "start": 15,
+        "end": 23
+      }
+    ]
+  },
+  "n3-5-vocabulary-27": {
+    "prompt": "[27]  腹 が空 いたので、ピザを配達 してもらおう。",
+    "underlines": [
+      {
+        "start": 19,
+        "end": 21
+      }
+    ]
+  },
+  "n3-5-vocabulary-28": {
+    "prompt": "[28] 健康 には常 に注意 を払 っている。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 13
+      }
+    ]
+  },
+  "n3-5-vocabulary-29": {
+    "prompt": "[29] 交差点 でいきなり自転車 が飛 び出 してきたので、驚 いた。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 14
+      }
+    ]
+  },
+  "n3-5-grammar-14": {
+    "prompt": "[14]  昨日 ＿＿＿ ＿＿＿    ★   ＿＿＿ どれですか。",
+    "underlines": [
+      {
+        "start": 20,
+        "end": 21
+      }
+    ]
+  },
+  "n3-5-grammar-15": {
+    "prompt": "[15]  A 「部長はボーナスで新しい車を買うようですね。」 B 「ええ。でも、＿＿＿ ＿＿＿    ★   ＿＿＿ 思っているようですよ。」",
+    "underlines": [
+      {
+        "start": 52,
+        "end": 53
+      }
+    ]
+  },
+  "n3-5-grammar-16": {
+    "prompt": "[16]  ＿＿＿ ＿＿＿    ★   ＿＿＿ とても歌えない。",
+    "underlines": [
+      {
+        "start": 17,
+        "end": 18
+      }
+    ]
+  },
+  "n3-5-grammar-17": {
+    "prompt": "[17] 高くても ＿＿＿ ＿＿＿    ★   ＿＿＿ だと思います。",
+    "underlines": [
+      {
+        "start": 21,
+        "end": 22
+      }
+    ]
+  },
+  "n3-5-grammar-18": {
+    "prompt": "[18] お客さんは ＿＿＿ ＿＿＿    ★   ＿＿＿ と言っています。",
+    "underlines": [
+      {
+        "start": 22,
+        "end": 23
+      }
+    ]
+  },
+  "n3-5-grammar-32": {
+    "prompt": "「3２」  それとは何 を指 すか。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 8
+      }
+    ]
+  },
+  "n3-5-grammar-35": {
+    "prompt": "「35」 ② とても住 み心地 がよく、増 えやすい所 とあるが、それはなぜか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 27
+      }
+    ]
+  },
+  "n3-5-grammar-36": {
+    "prompt": "「36」 ③ これら は何を指しているか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 10
+      }
+    ]
+  },
+  "n3-5-grammar-37": {
+    "prompt": "「37」 ④ のどの奥 に生えている繊毛 とあるが、繊毛 の働 きについて、正しいのはどれか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 20
+      }
+    ]
+  },
+  "n3-6-vocabulary-1": {
+    "prompt": "〔１〕最近、お化粧している高校生が多いですよね。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 9
+      }
+    ]
+  },
+  "n3-6-vocabulary-2": {
+    "prompt": "〔２〕私は日本人の平均寿命まで生きたい思います。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 13
+      }
+    ]
+  },
+  "n3-6-vocabulary-3": {
+    "prompt": "〔３〕テレビよりも子供たちへの影響が少ないと思っている",
+    "underlines": [
+      {
+        "start": 15,
+        "end": 17
+      }
+    ]
+  },
+  "n3-6-vocabulary-4": {
+    "prompt": "〔４〕朝寝坊したら、授業の時間に間に合わないかもしれません。",
+    "underlines": [
+      {
+        "start": 4,
+        "end": 6
+      }
+    ]
+  },
+  "n3-6-vocabulary-5": {
+    "prompt": "〔５〕私の娘は幼稚園 で絵を描いたとき、具合が悪くなった。",
+    "underlines": [
+      {
+        "start": 20,
+        "end": 22
+      }
+    ]
+  },
+  "n3-6-vocabulary-6": {
+    "prompt": "〔６〕センさんは今広告を読んででいる。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 11
+      }
+    ]
+  },
+  "n3-6-vocabulary-7": {
+    "prompt": "〔７〕日本でもっとも輸出額が多いのは、中国である。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 12
+      }
+    ]
+  },
+  "n3-6-vocabulary-8": {
+    "prompt": "〔８〕避難 していた住民は、体育館 で寝ることができて安心しました。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 12
+      }
+    ]
+  },
+  "n3-6-vocabulary-9": {
+    "prompt": "〔９〕サラダを冷蔵庫でひやしておきましょう。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 15
+      }
+    ]
+  },
+  "n3-6-vocabulary-10": {
+    "prompt": "［10］ このじゃぐちをひねると、お湯が出ます。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 11
+      }
+    ]
+  },
+  "n3-6-vocabulary-11": {
+    "prompt": "［11］ ざいりょうをはかりで量りましょう。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 10
+      }
+    ]
+  },
+  "n3-6-vocabulary-12": {
+    "prompt": "［12］ おゆを沸かしてください。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 7
+      }
+    ]
+  },
+  "n3-6-vocabulary-13": {
+    "prompt": "［13］ あねはひつようなしなもののなまえをかみに書いてくれた。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 17
+      }
+    ]
+  },
+  "n3-6-vocabulary-14": {
+    "prompt": "［14］ 鈴木教授 は多くの若い学者をそだてた。",
+    "underlines": [
+      {
+        "start": 19,
+        "end": 23
+      }
+    ]
+  },
+  "n3-6-vocabulary-26": {
+    "prompt": "［26］ 田中さんは、中村さんと交際 しているらしい。",
+    "underlines": [
+      {
+        "start": 16,
+        "end": 21
+      }
+    ]
+  },
+  "n3-6-vocabulary-27": {
+    "prompt": "[27] むだを省 いて、できるだけ貯金をしまう。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 12
+      }
+    ]
+  },
+  "n3-6-vocabulary-28": {
+    "prompt": "[28] まだ結婚していない人は四人います。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 14
+      }
+    ]
+  },
+  "n3-6-vocabulary-29": {
+    "prompt": "[29] ランさんの身長は168 センチメートルです。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 12
+      }
+    ]
+  },
+  "n3-6-vocabulary-30": {
+    "prompt": "[30] 最近、調子が悪くて、病院へ行かないといけないと思うんだ。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 7
+      }
+    ]
+  },
+  "n3-6-grammar-14": {
+    "prompt": "[14] 先生たちの中で、フランス語が ＿＿＿ ＿＿＿    ★   ＿＿＿ いません。",
+    "underlines": [
+      {
+        "start": 31,
+        "end": 32
+      }
+    ]
+  },
+  "n3-6-grammar-15": {
+    "prompt": "[15] 彼がUFO を＿＿＿ ＿＿＿    ★   ＿＿＿ うそだった。",
+    "underlines": [
+      {
+        "start": 23,
+        "end": 24
+      }
+    ]
+  },
+  "n3-6-grammar-16": {
+    "prompt": "[16] 学生たちに辞書を＿＿＿ ＿＿＿    ★   ＿＿＿ 忘れました。",
+    "underlines": [
+      {
+        "start": 24,
+        "end": 25
+      }
+    ]
+  },
+  "n3-6-grammar-17": {
+    "prompt": "[17] 夜遅く大きい＿＿＿ ＿＿＿    ★   ＿＿＿ と注意されました。",
+    "underlines": [
+      {
+        "start": 22,
+        "end": 23
+      }
+    ]
+  },
+  "n3-6-grammar-18": {
+    "prompt": "[18] この地震 ＿＿＿ ＿＿＿    ★   ＿＿＿ はありません。",
+    "underlines": [
+      {
+        "start": 21,
+        "end": 22
+      }
+    ]
+  },
+  "n3-6-grammar-24": {
+    "prompt": "［24］  すれすれのところできわどく生きている とは、どういう意味か。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 24
+      }
+    ]
+  },
+  "n3-6-grammar-26": {
+    "prompt": "[26] ① 姿を見せたことがなかったとあるが、どいう意味か。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 19
+      }
+    ]
+  },
+  "n3-6-grammar-27": {
+    "prompt": "[27] ② こんなこと と、どういうことか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 12
+      }
+    ]
+  },
+  "n3-7-vocabulary-1": {
+    "prompt": "［1］ どこかで客たちの笑う 声がする。",
+    "underlines": [
+      {
+        "start": 12,
+        "end": 14
+      }
+    ]
+  },
+  "n3-7-vocabulary-2": {
+    "prompt": "［2］ 島の豊かな秋が終わると、寒い冬が来る。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 9
+      }
+    ]
+  },
+  "n3-7-vocabulary-3": {
+    "prompt": "［3］ 自分の考えがはっきり述べられる人をやといたい。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 19
+      }
+    ]
+  },
+  "n3-7-vocabulary-4": {
+    "prompt": "［4］ 星が雲にかくれた。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 7
+      }
+    ]
+  },
+  "n3-7-vocabulary-5": {
+    "prompt": "［5］ 氷は水に浮 く。",
+    "underlines": [
+      {
+        "start": 4,
+        "end": 5
+      }
+    ]
+  },
+  "n3-7-vocabulary-6": {
+    "prompt": "［6］ 交差点で車の通行を規制している。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 15
+      }
+    ]
+  },
+  "n3-7-vocabulary-7": {
+    "prompt": "［7］ もっと単純 な処理ですませましょう。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 13
+      }
+    ]
+  },
+  "n3-7-vocabulary-8": {
+    "prompt": "［8］ 薬が効 いて痛みが止まった。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 12
+      }
+    ]
+  },
+  "n3-7-vocabulary-9": {
+    "prompt": "［9］ 千円未満のきんがくは四捨五入 してもいいですか。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 13
+      }
+    ]
+  },
+  "n3-7-vocabulary-10": {
+    "prompt": "［10］ 児童 にスキーのしどうをする許可 を得 た。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 16
+      }
+    ]
+  },
+  "n3-7-vocabulary-11": {
+    "prompt": "［11］ この本を読んで、この寺院 の構造 と、ほぞんの方法がよくわかった",
+    "underlines": [
+      {
+        "start": 24,
+        "end": 27
+      }
+    ]
+  },
+  "n3-7-vocabulary-12": {
+    "prompt": "［12］ 隣 のむらの祭 りで金魚 を3 びき買った。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 10
+      }
+    ]
+  },
+  "n3-7-vocabulary-27": {
+    "prompt": "[27] 娘が大学に合格して安心した。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 18
+      }
+    ]
+  },
+  "n3-7-vocabulary-28": {
+    "prompt": "[28] 面接で緊張してしまって、うまく答えられなかった。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 12
+      }
+    ]
+  },
+  "n3-7-vocabulary-29": {
+    "prompt": "[29] 間違った問題に印を書いておきましょう。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 17
+      }
+    ]
+  },
+  "n3-7-vocabulary-30": {
+    "prompt": "[30] 明日は朝早く出発します。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 16
+      }
+    ]
+  },
+  "n3-7-grammar-14": {
+    "prompt": "[14] ここで ＿＿＿ ＿＿＿    ★   ＿＿＿ されています。",
+    "underlines": [
+      {
+        "start": 20,
+        "end": 21
+      }
+    ]
+  },
+  "n3-7-grammar-15": {
+    "prompt": "[15] あの学生は日本語が＿＿＿ ＿＿＿    ★   ＿＿＿ みたい。",
+    "underlines": [
+      {
+        "start": 25,
+        "end": 26
+      }
+    ]
+  },
+  "n3-7-grammar-16": {
+    "prompt": "[16] 忘れちゃうと＿＿＿ ＿＿＿    ★   ＿＿＿ なくしちゃった。",
+    "underlines": [
+      {
+        "start": 22,
+        "end": 23
+      }
+    ]
+  },
+  "n3-7-grammar-17": {
+    "prompt": "[17] この子＿＿＿ ＿＿＿    ★   ＿＿＿ らしくない。",
+    "underlines": [
+      {
+        "start": 19,
+        "end": 20
+      }
+    ]
+  },
+  "n3-7-grammar-18": {
+    "prompt": "[18] 安売りセールで、買おうと ＿＿＿ ＿＿＿    ★   ＿＿＿ しまいました。",
+    "underlines": [
+      {
+        "start": 29,
+        "end": 30
+      }
+    ]
+  },
+  "n3-7-grammar-28": {
+    "prompt": "[28] ｢バカだ｣という言葉が、① 愛情 を込 め、好意 を持 っていったのだと伝 わる とあるが、 どうしてその  ようにつたわるのか。",
+    "underlines": [
+      {
+        "start": 19,
+        "end": 42
+      }
+    ]
+  },
+  "n3-7-grammar-29": {
+    "prompt": "[29]  ②書き言葉――文字の怖 さである とあるが、書き言葉が怖 いのはどうしてか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 22
+      }
+    ]
+  },
+  "n3-7-grammar-33": {
+    "prompt": "[33]  ② これら とあるが、「これら」の中に含まれないものはどれか。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 11
+      }
+    ]
+  },
+  "n3-8-vocabulary-1": {
+    "prompt": "［1］ 天気予報によれば、来週の日本列島 は、全国的に晴天 が続 くそうです。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 8
+      }
+    ]
+  },
+  "n3-8-vocabulary-2": {
+    "prompt": "［2］ このたなに並んでいる商品は全部、四割引 きになっている。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 14
+      }
+    ]
+  },
+  "n3-8-vocabulary-3": {
+    "prompt": "［3］ この箱の中のお菓子を一人に十個ずつ渡 してください。そして、余ったら、戻 してくだ さい。",
+    "underlines": [
+      {
+        "start": 34,
+        "end": 38
+      }
+    ]
+  },
+  "n3-8-vocabulary-4": {
+    "prompt": "[4] このような服装 が若者の間で急速 に流行した最大の原因 は、テレビの普及 によって情報が同時 に全国に伝わったからであろう。",
+    "underlines": [
+      {
+        "start": 22,
+        "end": 24
+      }
+    ]
+  },
+  "n3-8-vocabulary-5": {
+    "prompt": "[5] 雑誌を発刊するにあたって、名前を一般から募集することにした。",
+    "underlines": [
+      {
+        "start": 20,
+        "end": 22
+      }
+    ]
+  },
+  "n3-8-vocabulary-6": {
+    "prompt": "[6] 女性の高学歴化 や民主主義 の発展により、性別にとらわれることなく、社会の進出 する女性が増えてきた。",
+    "underlines": [
+      {
+        "start": 25,
+        "end": 27
+      }
+    ]
+  },
+  "n3-8-vocabulary-7": {
+    "prompt": "[7] 父は手術のあと、病気も順調 に回復 している。しかし、まだ医者に禁煙 を 命 じられている。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 8
+      }
+    ]
+  },
+  "n3-8-vocabulary-8": {
+    "prompt": "[8] この食品は開封後は、お早めにお召し上がりください。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 11
+      }
+    ]
+  },
+  "n3-8-vocabulary-9": {
+    "prompt": "［9］ わかくても、重い病気になることはあります。",
+    "underlines": [
+      {
+        "start": 4,
+        "end": 9
+      }
+    ]
+  },
+  "n3-8-vocabulary-10": {
+    "prompt": "[10]   いつも夫の帰りが遅いので、さきに晩ご飯を食べています。",
+    "underlines": [
+      {
+        "start": 20,
+        "end": 23
+      }
+    ]
+  },
+  "n3-8-vocabulary-11": {
+    "prompt": "〔11〕 朝からおなかがいたいので、午後は病院に行こうと思います。",
+    "underlines": [
+      {
+        "start": 12,
+        "end": 15
+      }
+    ]
+  },
+  "n3-8-vocabulary-12": {
+    "prompt": "［12］まだ新しいチームですが、なんとかゆうしょうすることができました。",
+    "underlines": [
+      {
+        "start": 20,
+        "end": 25
+      }
+    ]
+  },
+  "n3-8-vocabulary-13": {
+    "prompt": "［13］かなしいとき、大きな声で歌うと元気になります。",
+    "underlines": [
+      {
+        "start": 4,
+        "end": 8
+      }
+    ]
+  },
+  "n3-8-vocabulary-14": {
+    "prompt": "〔14〕 注文が決まったら、このボタンをおしてください。",
+    "underlines": [
+      {
+        "start": 20,
+        "end": 23
+      }
+    ]
+  },
+  "n3-8-vocabulary-27": {
+    "prompt": "[27] 大学の学費は年々高くなる。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 10
+      }
+    ]
+  },
+  "n3-8-vocabulary-28": {
+    "prompt": "[28] 不要なメールを消した。",
+    "underlines": [
+      {
+        "start": 12,
+        "end": 15
+      }
+    ]
+  },
+  "n3-8-vocabulary-29": {
+    "prompt": "[29] 工事現場 の仕事はきつい。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 17
+      }
+    ]
+  },
+  "n3-8-vocabulary-30": {
+    "prompt": "[30] 授業をサボっていたので、勉強の内容が分からない。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 12
+      }
+    ]
+  },
+  "n3-8-grammar-14": {
+    "prompt": "[14] 友達 の君 が ＿＿＿ ＿＿＿    ★   ＿＿＿ ない。",
+    "underlines": [
+      {
+        "start": 24,
+        "end": 25
+      }
+    ]
+  },
+  "n3-8-grammar-15": {
+    "prompt": "[15] 生徒 は＿＿＿ ＿＿＿    ★   ＿＿＿ と教室を飛 び出 して行った。",
+    "underlines": [
+      {
+        "start": 20,
+        "end": 21
+      }
+    ]
+  },
+  "n3-8-grammar-16": {
+    "prompt": "[16] A 「佐藤さん、まだ来ないけど、どうしたのかなあ。」 B 「 この店＿＿＿ ＿＿＿    ★   ＿＿＿ 電話してみようか。」",
+    "underlines": [
+      {
+        "start": 50,
+        "end": 51
+      }
+    ]
+  },
+  "n3-8-grammar-17": {
+    "prompt": "[17] ＿＿＿ ＿＿＿    ★   ＿＿＿ 早くやったほうがいい。",
+    "underlines": [
+      {
+        "start": 16,
+        "end": 17
+      }
+    ]
+  },
+  "n3-8-grammar-18": {
+    "prompt": "[18] あの女の子は ＿＿＿ ＿＿＿    ★   ＿＿＿ ないているようだ。",
+    "underlines": [
+      {
+        "start": 23,
+        "end": 24
+      }
+    ]
+  },
+  "n3-8-grammar-34": {
+    "prompt": "「34」 それは、何を指しているか。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 7
+      }
+    ]
+  },
+  "n3-8-grammar-35": {
+    "prompt": "「35」 ②目くじらを立てるとは、どのような意味か",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 14
+      }
+    ]
+  },
+  "n3-8-grammar-36": {
+    "prompt": "［36］ ③心 が狭 い とはどのような人か。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 12
+      }
+    ]
+  },
+  "n3-9-vocabulary-1": {
+    "prompt": "［1］ 私の誕生日は、3 月二十日です。。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 17
+      }
+    ]
+  },
+  "n3-9-vocabulary-2": {
+    "prompt": "［2］ インドネシアで珍しい魚を見ました。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 14
+      }
+    ]
+  },
+  "n3-9-vocabulary-3": {
+    "prompt": "［3］ 日本で買ったものは、全てアメリカに持って帰りました。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 16
+      }
+    ]
+  },
+  "n3-9-vocabulary-4": {
+    "prompt": "[4] 無理なダイエットで、病気になってしまいました。",
+    "underlines": [
+      {
+        "start": 4,
+        "end": 7
+      }
+    ]
+  },
+  "n3-9-vocabulary-5": {
+    "prompt": "[5] 明日は台風が来るかもしれませんので、注意してください。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 9
+      }
+    ]
+  },
+  "n3-9-vocabulary-6": {
+    "prompt": "[6] うどんが熱いので、なかなか食べられません。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 10
+      }
+    ]
+  },
+  "n3-9-vocabulary-7": {
+    "prompt": "[7] 週末は、運動することが多いです。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 10
+      }
+    ]
+  },
+  "n3-9-vocabulary-8": {
+    "prompt": "[8] 料理が下手なので、よくスーパーでお弁当を買います。",
+    "underlines": [
+      {
+        "start": 21,
+        "end": 23
+      }
+    ]
+  },
+  "n3-9-vocabulary-9": {
+    "prompt": "［9］ 料理までにどうやって勉強するか、けいかくを立てた。",
+    "underlines": [
+      {
+        "start": 20,
+        "end": 24
+      }
+    ]
+  },
+  "n3-9-vocabulary-10": {
+    "prompt": "[10]   クラスで富士山についてはっぴょうしました。",
+    "underlines": [
+      {
+        "start": 18,
+        "end": 23
+      }
+    ]
+  },
+  "n3-9-vocabulary-11": {
+    "prompt": "「11」 夏は、つめたいビールが飲みたくなります。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 12
+      }
+    ]
+  },
+  "n3-9-vocabulary-12": {
+    "prompt": "［12］ ここで写真をとるのは、きんしされています。",
+    "underlines": [
+      {
+        "start": 16,
+        "end": 19
+      }
+    ]
+  },
+  "n3-9-vocabulary-27": {
+    "prompt": "[27] こちらの商品はすべて輸入品です。",
+    "underlines": [
+      {
+        "start": 12,
+        "end": 15
+      }
+    ]
+  },
+  "n3-9-vocabulary-28": {
+    "prompt": "[28] 大野 さんは、毎日熱心 にトレーニングしています。",
+    "underlines": [
+      {
+        "start": 18,
+        "end": 24
+      }
+    ]
+  },
+  "n3-9-vocabulary-29": {
+    "prompt": "[29] 始めてきた場所だが、すっかり気に入ってしまった",
+    "underlines": [
+      {
+        "start": 19,
+        "end": 24
+      }
+    ]
+  },
+  "n3-9-vocabulary-30": {
+    "prompt": "[30] 父は、昔 通っていた学校をたびたび訪ねている。",
+    "underlines": [
+      {
+        "start": 18,
+        "end": 22
+      }
+    ]
+  },
+  "n3-9-grammar-14": {
+    "prompt": "[14] それは、ピカソが ＿＿＿ ＿＿＿    ★   ＿＿＿ を知っていますか。",
+    "underlines": [
+      {
+        "start": 25,
+        "end": 26
+      }
+    ]
+  },
+  "n3-9-grammar-15": {
+    "prompt": "[15] サッカーが好きだから＿＿＿ ＿＿＿    ★   ＿＿＿ じゃない。",
+    "underlines": [
+      {
+        "start": 26,
+        "end": 27
+      }
+    ]
+  },
+  "n3-9-grammar-16": {
+    "prompt": "[16] 川田さんはあんなに＿＿＿ ＿＿＿    ★   ＿＿＿ に違いない。",
+    "underlines": [
+      {
+        "start": 25,
+        "end": 26
+      }
+    ]
+  },
+  "n3-9-grammar-17": {
+    "prompt": "[17] 待 ち合 わせに＿＿＿ ＿＿＿    ★   ＿＿＿ だ。",
+    "underlines": [
+      {
+        "start": 24,
+        "end": 25
+      }
+    ]
+  },
+  "n3-9-grammar-18": {
+    "prompt": "[18] 今晩、＿＿＿ ＿＿＿    ★   ＿＿＿ ので、気をつけてください。",
+    "underlines": [
+      {
+        "start": 19,
+        "end": 20
+      }
+    ]
+  },
+  "n3-9-grammar-29": {
+    "prompt": "[29]  ①ただし と置き換えられる言葉はどれか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 10
+      }
+    ]
+  },
+  "n3-9-grammar-30": {
+    "prompt": "[30]  ②自分 とは、ここでは誰のことか。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 9
+      }
+    ]
+  },
+  "n3-9-grammar-31": {
+    "prompt": "[31]  トイレのドアを開 けると、どうなるか。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 16
+      }
+    ]
+  },
+  "n3-9-grammar-34": {
+    "prompt": "「34」 ①「これ」は何を指しているか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 9
+      }
+    ]
+  },
+  "n3-9-grammar-35": {
+    "prompt": "「35」 ②「タタミがだんだん見られなくなってきている」というのは、どのような意味か。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 27
+      }
+    ]
+  },
+  "n3-9-grammar-36": {
+    "prompt": "［36］ ③「昔から日本人の生活の中にあった」とあるが、昔のタタミはどのようなものだったのか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 22
+      }
+    ]
+  },
+  "n3-10-vocabulary-1": {
+    "prompt": "［１］ この 品物 は 世界中で ここにしかない。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 9
+      }
+    ]
+  },
+  "n3-10-vocabulary-2": {
+    "prompt": "［2］ あの 工場は ひろく する 計画が ある。",
+    "underlines": [
+      {
+        "start": 18,
+        "end": 20
+      }
+    ]
+  },
+  "n3-10-vocabulary-3": {
+    "prompt": "［3］ あの 方 は 頭がいいですね。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 12
+      }
+    ]
+  },
+  "n3-10-vocabulary-4": {
+    "prompt": "[4] サラダを冷蔵庫で冷やしておきましょう。",
+    "underlines": [
+      {
+        "start": 12,
+        "end": 16
+      }
+    ]
+  },
+  "n3-10-vocabulary-5": {
+    "prompt": "[5] 栄養のバランスを考えましょう。",
+    "underlines": [
+      {
+        "start": 4,
+        "end": 6
+      }
+    ]
+  },
+  "n3-10-vocabulary-6": {
+    "prompt": "[6] お湯を沸かしてください。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 11
+      }
+    ]
+  },
+  "n3-10-vocabulary-7": {
+    "prompt": "[7] 汚れがひどくて、洗濯しても真っ白にならない。",
+    "underlines": [
+      {
+        "start": 17,
+        "end": 20
+      }
+    ]
+  },
+  "n3-10-vocabulary-8": {
+    "prompt": "[8] 小鳥が死んだので、穴 をほってうめた。",
+    "underlines": [
+      {
+        "start": 4,
+        "end": 6
+      }
+    ]
+  },
+  "n3-10-vocabulary-9": {
+    "prompt": "［9］ ひとりで悩んでいないで、だれかに相談 したらどうですか。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 11
+      }
+    ]
+  },
+  "n3-10-vocabulary-10": {
+    "prompt": "[10]  彼は絶対 に約束を破らない人だ。",
+    "underlines": [
+      {
+        "start": 15,
+        "end": 19
+      }
+    ]
+  },
+  "n3-10-vocabulary-11": {
+    "prompt": "「11」その大会 は 警備上 の都合で延期 された。",
+    "underlines": [
+      {
+        "start": 16,
+        "end": 18
+      }
+    ]
+  },
+  "n3-10-vocabulary-12": {
+    "prompt": "［12］この住宅は 光 が部屋 の奥 まで届 くようにつくられている。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 8
+      }
+    ]
+  },
+  "n3-10-vocabulary-27": {
+    "prompt": "[27] 「汚い手で目をこすっちゃいけません。」",
+    "underlines": [
+      {
+        "start": 12,
+        "end": 17
+      }
+    ]
+  },
+  "n3-10-vocabulary-28": {
+    "prompt": "[28] 「どうぞおかけになってください。」",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 16
+      }
+    ]
+  },
+  "n3-10-vocabulary-29": {
+    "prompt": "[29] テストででたらめな答えを書いてしまった。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 14
+      }
+    ]
+  },
+  "n3-10-vocabulary-30": {
+    "prompt": "[30] 風邪はひどくないので、予定通り出かけます。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 13
+      }
+    ]
+  },
+  "n3-10-grammar-14": {
+    "prompt": "[14] これは、＿＿＿ ＿＿＿    ★   ＿＿＿ 映画です。",
+    "underlines": [
+      {
+        "start": 20,
+        "end": 21
+      }
+    ]
+  },
+  "n3-10-grammar-15": {
+    "prompt": "[15] 休みが一週間＿＿＿ ＿＿＿    ★   ＿＿＿ ぜひ旅行をしたい。",
+    "underlines": [
+      {
+        "start": 22,
+        "end": 23
+      }
+    ]
+  },
+  "n3-10-grammar-16": {
+    "prompt": "[16] タンさん＿＿＿ ＿＿＿    ★   ＿＿＿ は、ほかのクラスにはいません。",
+    "underlines": [
+      {
+        "start": 20,
+        "end": 21
+      }
+    ]
+  },
+  "n3-10-grammar-17": {
+    "prompt": "[17] 途中 で交通事故 に＿＿＿ ＿＿＿    ★   ＿＿＿ 会議に遅れてしまいまし た。",
+    "underlines": [
+      {
+        "start": 26,
+        "end": 27
+      }
+    ]
+  },
+  "n3-10-grammar-18": {
+    "prompt": "[18] 「＿＿＿ ＿＿＿    ★   ＿＿＿ 悪いよ」と言われた。",
+    "underlines": [
+      {
+        "start": 17,
+        "end": 18
+      }
+    ]
+  },
+  "n3-10-grammar-34": {
+    "prompt": "「34」 （*） そのような とは、どのような意味か。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 14
+      }
+    ]
+  },
+  "n3-10-grammar-35": {
+    "prompt": "「35」 （**） ところ と同 じ使 い方 をしているものはどれか。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 13
+      }
+    ]
+  },
+  "n3-11-vocabulary-1": {
+    "prompt": "［１］ この工場は特別なきかいをつくっています。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 8
+      }
+    ]
+  },
+  "n3-11-vocabulary-2": {
+    "prompt": "［2］ 去年より早く春が来た。",
+    "underlines": [
+      {
+        "start": 4,
+        "end": 6
+      }
+    ]
+  },
+  "n3-11-vocabulary-3": {
+    "prompt": "［3］ このアパートの台所はひろいですね。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 13
+      }
+    ]
+  },
+  "n3-11-vocabulary-4": {
+    "prompt": "[4]  妹の代わりに手紙を書きました。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 10
+      }
+    ]
+  },
+  "n3-11-vocabulary-5": {
+    "prompt": "[5]  私は北区にある学校に通っています。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 9
+      }
+    ]
+  },
+  "n3-11-vocabulary-6": {
+    "prompt": "[6]  世界の歴史をあまり知らないのでもっと勉強したい。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 7
+      }
+    ]
+  },
+  "n3-11-vocabulary-7": {
+    "prompt": "[7]  スポーツをして頭も体もすっきりしました。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 15
+      }
+    ]
+  },
+  "n3-11-vocabulary-8": {
+    "prompt": "[8] わたしが子どもの世話をしますから安心してください。",
+    "underlines": [
+      {
+        "start": 12,
+        "end": 14
+      }
+    ]
+  },
+  "n3-11-vocabulary-9": {
+    "prompt": "［9］ かいさつぐちではじょうしゃけんをお渡しください。",
+    "underlines": [
+      {
+        "start": 4,
+        "end": 10
+      }
+    ]
+  },
+  "n3-11-vocabulary-11": {
+    "prompt": "「11」 食料をほぞんするしゅだんとしては、塩につけたり、かんづめにしたり、かんそうさせたり する方法があります。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 11
+      }
+    ]
+  },
+  "n3-11-vocabulary-12": {
+    "prompt": "［12］ けいざいのあんていしたはってんのためには、しゅうへんの国々のきょうりょくが必要 である。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 14
+      }
+    ]
+  },
+  "n3-11-vocabulary-26": {
+    "prompt": "[26] たぶん、彼は来ないだろう。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 8
+      }
+    ]
+  },
+  "n3-11-vocabulary-27": {
+    "prompt": "[27] この本は、何回読んでも、内容がまったく理解できない。",
+    "underlines": [
+      {
+        "start": 20,
+        "end": 24
+      }
+    ]
+  },
+  "n3-11-vocabulary-28": {
+    "prompt": "[28] 英語の詩を暗記する。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 14
+      }
+    ]
+  },
+  "n3-11-vocabulary-29": {
+    "prompt": "[29] この雑誌はただで配っている。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 12
+      }
+    ]
+  },
+  "n3-11-vocabulary-30": {
+    "prompt": "[30] 風邪はひどくないので、予定通り出かけます。―",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 13
+      }
+    ]
+  },
+  "n3-11-grammar-14": {
+    "prompt": "[14] 非常用食料は、＿＿＿ ＿＿＿    ★   ＿＿＿ 飲んだりしてはいけません。",
+    "underlines": [
+      {
+        "start": 23,
+        "end": 24
+      }
+    ]
+  },
+  "n3-11-grammar-15": {
+    "prompt": "[15] 「田中さん、＿＿＿ ＿＿＿    ★   ＿＿＿ 。」 「10 時までのタイムセールが駅前であるんです。」",
+    "underlines": [
+      {
+        "start": 22,
+        "end": 23
+      }
+    ]
+  },
+  "n3-11-grammar-16": {
+    "prompt": "[16] 今日は＿＿＿ ＿＿＿    ★   ＿＿＿ の映画を上映します。",
+    "underlines": [
+      {
+        "start": 19,
+        "end": 20
+      }
+    ]
+  },
+  "n3-11-grammar-17": {
+    "prompt": "[17] 時間があるなら＿＿＿ ＿＿＿    ★   ＿＿＿ 飲みませんか。",
+    "underlines": [
+      {
+        "start": 23,
+        "end": 24
+      }
+    ]
+  },
+  "n3-11-grammar-18": {
+    "prompt": "[18] ＿＿＿ ＿＿＿    ★   ＿＿＿ 雨が降り始めた。",
+    "underlines": [
+      {
+        "start": 16,
+        "end": 17
+      }
+    ]
+  },
+  "n3-11-grammar-30": {
+    "prompt": "[30]  なぜそこまで我慢 をするのだろうと不思議 に感じていた とあるが、筆者は母に対し てどのように思っていたのか。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 33
+      }
+    ]
+  },
+  "n3-11-grammar-33": {
+    "prompt": "[33]  日本国内専用ですとあるが、どういうことを言いたいのか。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 14
+      }
+    ]
+  },
+  "n3-11-grammar-34": {
+    "prompt": "「34」 「①『これではいけない』という気になる」のはなぜか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 25
+      }
+    ]
+  },
+  "n3-11-grammar-36": {
+    "prompt": "[36] 何が「③奇妙 なこと」なのか。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 15
+      }
+    ]
+  },
+  "n3-12-vocabulary-1": {
+    "prompt": "［１］ 彼が来日した目的は、研究 のための資料 を集 めることである。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 12
+      }
+    ]
+  },
+  "n3-12-vocabulary-2": {
+    "prompt": "［2］ この町 では、住民 の努力 で犯罪 や事件 が減っている。",
+    "underlines": [
+      {
+        "start": 27,
+        "end": 30
+      }
+    ]
+  },
+  "n3-12-vocabulary-3": {
+    "prompt": "［3］ 今度引 っ越 すマンションは、家賃が今の二倍 だ。",
+    "underlines": [
+      {
+        "start": 19,
+        "end": 21
+      }
+    ]
+  },
+  "n3-12-vocabulary-4": {
+    "prompt": "[4]  険 しい山の中で鉄橋 をかける工事が行 われている。",
+    "underlines": [
+      {
+        "start": 20,
+        "end": 22
+      }
+    ]
+  },
+  "n3-12-vocabulary-5": {
+    "prompt": "[5]  あの人はいつも、自分の損得 より他人のことを考えて行動する。",
+    "underlines": [
+      {
+        "start": 21,
+        "end": 23
+      }
+    ]
+  },
+  "n3-12-vocabulary-6": {
+    "prompt": "[6]  大都会の大学は、広いキャンパスを求 めて、次々 と郊外 へ移転 していった。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 8
+      }
+    ]
+  },
+  "n3-12-vocabulary-7": {
+    "prompt": "[7]  スポーツをして頭も体もすっきりしました。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 15
+      }
+    ]
+  },
+  "n3-12-vocabulary-8": {
+    "prompt": "[8]  この標識 のあるところは駐車できません。",
+    "underlines": [
+      {
+        "start": 17,
+        "end": 19
+      }
+    ]
+  },
+  "n3-12-vocabulary-9": {
+    "prompt": "［9］ そんけいする先生に万年筆 をおくった。",
+    "underlines": [
+      {
+        "start": 4,
+        "end": 8
+      }
+    ]
+  },
+  "n3-12-vocabulary-10": {
+    "prompt": "[10]  彼は出版社 でざっしの編集 をしている。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 16
+      }
+    ]
+  },
+  "n3-12-vocabulary-11": {
+    "prompt": "[11] 鳥 の群 がV 字型 をえがいて北の空にとんでいった。",
+    "underlines": [
+      {
+        "start": 25,
+        "end": 28
+      }
+    ]
+  },
+  "n3-12-vocabulary-12": {
+    "prompt": "［12］ 経済 のあんていした発展 のためには、周辺 の国々 の協力 が必要 である。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 13
+      }
+    ]
+  },
+  "n3-12-vocabulary-13": {
+    "prompt": "［13］ この国の総人口 は約 1 おく人である。",
+    "underlines": [
+      {
+        "start": 18,
+        "end": 20
+      }
+    ]
+  },
+  "n3-12-vocabulary-14": {
+    "prompt": "[14] 新しいかんがえが頭 に浮 かぶ",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 12
+      }
+    ]
+  },
+  "n3-12-vocabulary-26": {
+    "prompt": "[26] 田中さんは、中村さんと交際しているらしい。",
+    "underlines": [
+      {
+        "start": 16,
+        "end": 19
+      }
+    ]
+  },
+  "n3-12-vocabulary-27": {
+    "prompt": "[27] この本は、何回読んでも、内容がまったく理解できない。",
+    "underlines": [
+      {
+        "start": 20,
+        "end": 24
+      }
+    ]
+  },
+  "n3-12-vocabulary-28": {
+    "prompt": "[28] 大学の学費は年々高くなる。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 10
+      }
+    ]
+  },
+  "n3-12-vocabulary-29": {
+    "prompt": "[29] 前の車がのろいので追い越した。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 12
+      }
+    ]
+  },
+  "n3-12-vocabulary-30": {
+    "prompt": "[30] 娘が大学に合格して安心した。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 18
+      }
+    ]
+  },
+  "n3-12-grammar-14": {
+    "prompt": "[14] みなさんが ＿＿＿ ＿＿＿    ★   ＿＿＿ がんばることができました。",
+    "underlines": [
+      {
+        "start": 22,
+        "end": 23
+      }
+    ]
+  },
+  "n3-12-grammar-15": {
+    "prompt": "[15] 毎日、ケーキを＿＿＿ ＿＿＿    ★   ＿＿＿ 体重 が増えてしまった。",
+    "underlines": [
+      {
+        "start": 23,
+        "end": 24
+      }
+    ]
+  },
+  "n3-12-grammar-16": {
+    "prompt": "[16] もっと  ＿＿＿ ＿＿＿    ★   ＿＿＿ と、答えられない。",
+    "underlines": [
+      {
+        "start": 21,
+        "end": 22
+      }
+    ]
+  },
+  "n3-12-grammar-17": {
+    "prompt": "[17] 毎日、まじめに＿＿＿ ＿＿＿    ★   ＿＿＿ 限らない。",
+    "underlines": [
+      {
+        "start": 23,
+        "end": 24
+      }
+    ]
+  },
+  "n3-12-grammar-18": {
+    "prompt": "[18] 一番楽しい＿＿＿ ＿＿＿    ★   ＿＿＿ と思う。",
+    "underlines": [
+      {
+        "start": 21,
+        "end": 22
+      }
+    ]
+  },
+  "n3-12-grammar-30": {
+    "prompt": "[30] どうすれば、① 10枚 で900円 の回数券 のほうが得 と分かるか。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 33
+      }
+    ]
+  },
+  "n3-12-grammar-34": {
+    "prompt": "[34] ①森さんもその一人だ とあるが、それはどのような意味か。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 15
+      }
+    ]
+  },
+  "n3-12-grammar-35": {
+    "prompt": "[35] ②そば屋を開く人が多い とあるが、その理由は何だと言っているか。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 16
+      }
+    ]
+  },
+  "n3-12-grammar-36": {
+    "prompt": "[36] ③大変ですよ とあるが、ここでは何が大変なのか。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 11
+      }
+    ]
+  },
+  "n3-13-vocabulary-1": {
+    "prompt": "［１］ さとうさんと 別れた 後、ひとりで 音楽を 聞きに いきました。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 14
+      }
+    ]
+  },
+  "n3-13-vocabulary-2": {
+    "prompt": "［2］ 去年の 旅行は ほんとうに よかった",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 10
+      }
+    ]
+  },
+  "n3-13-vocabulary-3": {
+    "prompt": "［3］ わたしは この きかいが どう 動くか かれに 質問 した。",
+    "underlines": [
+      {
+        "start": 20,
+        "end": 23
+      }
+    ]
+  },
+  "n3-13-vocabulary-4": {
+    "prompt": "[4]  かばんが 重くて、駅まで 歩くのは たいへんです。",
+    "underlines": [
+      {
+        "start": 18,
+        "end": 20
+      }
+    ]
+  },
+  "n3-13-vocabulary-5": {
+    "prompt": "[5]  あの 英語の 本は 早く かえして ください。",
+    "underlines": [
+      {
+        "start": 15,
+        "end": 17
+      }
+    ]
+  },
+  "n3-13-vocabulary-6": {
+    "prompt": "[6]  春なのに 暑い 日が あります。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 6
+      }
+    ]
+  },
+  "n3-13-vocabulary-7": {
+    "prompt": "[7]  パーティーに出席する人は、このノートに名前を書いてください。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 13
+      }
+    ]
+  },
+  "n3-13-vocabulary-8": {
+    "prompt": "[8]  レストランの情報がたくさん載 っている本を知っていますか。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 13
+      }
+    ]
+  },
+  "n3-13-vocabulary-9": {
+    "prompt": "［9］ このけんきゅうは とても いいと おもいます。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 11
+      }
+    ]
+  },
+  "n3-13-vocabulary-10": {
+    "prompt": "[10]  彼らは コンサ－トが 始まるのを まって いた。",
+    "underlines": [
+      {
+        "start": 23,
+        "end": 26
+      }
+    ]
+  },
+  "n3-13-vocabulary-11": {
+    "prompt": "[11] あの ことりの 名前を 知っている人は 答 えて ください。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 11
+      }
+    ]
+  },
+  "n3-13-vocabulary-12": {
+    "prompt": "［12］ その ようじ が 終わったら、台所に 来て ください",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 11
+      }
+    ]
+  },
+  "n3-13-vocabulary-13": {
+    "prompt": "［13］ お金が なくて 困 って いると、姉が かして くれました。",
+    "underlines": [
+      {
+        "start": 25,
+        "end": 28
+      }
+    ]
+  },
+  "n3-13-vocabulary-14": {
+    "prompt": "[14]  これは 家を たてるのに 使 う 道具 です。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 16
+      }
+    ]
+  },
+  "n3-13-vocabulary-26": {
+    "prompt": "[26] 今回の仕事は とても きつい。",
+    "underlines": [
+      {
+        "start": 16,
+        "end": 19
+      }
+    ]
+  },
+  "n3-13-vocabulary-27": {
+    "prompt": "[27] 今日は とても くたびれた。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 18
+      }
+    ]
+  },
+  "n3-13-vocabulary-28": {
+    "prompt": "[28] この店は いつも 混雑 している。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 21
+      }
+    ]
+  },
+  "n3-13-vocabulary-30": {
+    "prompt": "[30]  預金を窓口 で引 き出 すには印鑑 が必要です。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 19
+      }
+    ]
+  },
+  "n3-13-grammar-15": {
+    "prompt": "[15] あの美術館は曜日 ＿＿＿ ＿＿＿   ★   ＿＿＿ 窓口で確認したほ うがいいよ。",
+    "underlines": [
+      {
+        "start": 24,
+        "end": 25
+      }
+    ]
+  },
+  "n3-13-grammar-16": {
+    "prompt": "[16] 自分で野菜を作ってみて、おいしい野菜を育てる ＿＿＿ ＿＿＿＿   ★ ＿＿＿ わかりました。",
+    "underlines": [
+      {
+        "start": 39,
+        "end": 40
+      }
+    ]
+  },
+  "n3-13-grammar-17": {
+    "prompt": "[17] A「今度のさようならパーティー、みんなで歌う歌は、これでいいですか。」 B「すみません。この歌は好きなんですが、すこしむずかしいです ＿＿＿ ＿＿＿     ★   ＿＿＿ してほしいです。",
+    "underlines": [
+      {
+        "start": 84,
+        "end": 85
+      }
+    ]
+  },
+  "n3-13-grammar-18": {
+    "prompt": "[18] 最近、子どもがピアノを習いたいと言い出した。わたしは、子どもが ＿＿＿ ＿＿＿     ★   ＿＿＿ と思っている。",
+    "underlines": [
+      {
+        "start": 49,
+        "end": 50
+      }
+    ]
+  },
+  "n3-13-grammar-24": {
+    "prompt": "24 この手紙の中について、正しいのはどれか。",
+    "underlines": [
+      {
+        "start": 0,
+        "end": 2
+      }
+    ]
+  },
+  "n3-13-grammar-25": {
+    "prompt": "25 「そのような社会」とあるが、どういう社会か。",
+    "underlines": [
+      {
+        "start": 0,
+        "end": 2
+      },
+      {
+        "start": 4,
+        "end": 11
+      }
+    ]
+  },
+  "n3-13-grammar-26": {
+    "prompt": "26 筆者によると、「急がば回れ」は急いでいる時にどのようにした方がよいとい うことか。",
+    "underlines": [
+      {
+        "start": 0,
+        "end": 2
+      }
+    ]
+  },
+  "n3-13-grammar-27": {
+    "prompt": "27 ( ) に入る適当な言葉を選びなさい。",
+    "underlines": [
+      {
+        "start": 0,
+        "end": 2
+      }
+    ]
+  },
+  "n3-13-grammar-28": {
+    "prompt": "28 ガイドと一緒の「パック旅行」のいい点はどんなところだと言っているか。",
+    "underlines": [
+      {
+        "start": 0,
+        "end": 2
+      }
+    ]
+  },
+  "n3-13-grammar-29": {
+    "prompt": "29 「フリーツアー」のいい点はどんなところだと言っているか。",
+    "underlines": [
+      {
+        "start": 0,
+        "end": 2
+      }
+    ]
+  },
+  "n3-13-grammar-31": {
+    "prompt": "31 スーパーの不便な点は何か。",
+    "underlines": [
+      {
+        "start": 0,
+        "end": 2
+      }
+    ]
+  },
+  "n3-13-grammar-32": {
+    "prompt": "32 ( ) に入る適当な言葉を選びなさい",
+    "underlines": [
+      {
+        "start": 0,
+        "end": 2
+      }
+    ]
+  },
+  "n3-13-grammar-33": {
+    "prompt": "33 筆者は、スーパーについてどう思っているのか。",
+    "underlines": [
+      {
+        "start": 0,
+        "end": 2
+      }
+    ]
+  },
+  "n3-13-grammar-34": {
+    "prompt": "34 ①涙が出る原因は、玉ねぎの中に入っている「アリシン」であるとあるが、玉ね ぎを切っているとき、涙が出てくるのはどうしてか。",
+    "underlines": [
+      {
+        "start": 0,
+        "end": 2
+      },
+      {
+        "start": 4,
+        "end": 32
+      },
+      {
+        "start": 50,
+        "end": 51
+      }
+    ]
+  },
+  "n3-13-grammar-35": {
+    "prompt": "35 ②空気中に出たアリシンが体に入るのを防ぐタイプとあるが、これは文章の中の どの方法か。",
+    "underlines": [
+      {
+        "start": 0,
+        "end": 2
+      },
+      {
+        "start": 4,
+        "end": 26
+      }
+    ]
+  },
+  "n3-13-grammar-36": {
+    "prompt": "36 ③レンジで温めたりするやり方とあるが、この方法の特徴について正しく説明し ているのはどれか。",
+    "underlines": [
+      {
+        "start": 0,
+        "end": 2
+      },
+      {
+        "start": 4,
+        "end": 17
+      }
+    ]
+  },
+  "n3-14-vocabulary-1": {
+    "prompt": "［１］ この荷物は 軽いので、一人で持てます。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 12
+      }
+    ]
+  },
+  "n3-14-vocabulary-2": {
+    "prompt": "［2］ 急いで、出発しないと、遅れますよ",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 10
+      }
+    ]
+  },
+  "n3-14-vocabulary-3": {
+    "prompt": "［3］ この野菜は 味がいいです。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 8
+      }
+    ]
+  },
+  "n3-14-vocabulary-4": {
+    "prompt": "[4]  気分が悪くなったら、運動を中止してください。",
+    "underlines": [
+      {
+        "start": 18,
+        "end": 20
+      }
+    ]
+  },
+  "n3-14-vocabulary-5": {
+    "prompt": "[5]  産業は 地理と 深い 関係が ある。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 7
+      }
+    ]
+  },
+  "n3-14-vocabulary-6": {
+    "prompt": "[6]  このむしは 光のほうに 進みます。",
+    "underlines": [
+      {
+        "start": 17,
+        "end": 21
+      }
+    ]
+  },
+  "n3-14-vocabulary-7": {
+    "prompt": "[7]  短い 時間でしたが、楽しかったです。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 7
+      }
+    ]
+  },
+  "n3-14-vocabulary-8": {
+    "prompt": "[8]  たなかさんは 明日の昼 着きます。",
+    "underlines": [
+      {
+        "start": 17,
+        "end": 21
+      }
+    ]
+  },
+  "n3-14-vocabulary-9": {
+    "prompt": "［9］ むかしの人は 月が好きで いろいろなはなしを作った。",
+    "underlines": [
+      {
+        "start": 22,
+        "end": 25
+      }
+    ]
+  },
+  "n3-14-vocabulary-10": {
+    "prompt": "[10]  このびょういんは いしゃが しんせつです。",
+    "underlines": [
+      {
+        "start": 20,
+        "end": 24
+      }
+    ]
+  },
+  "n3-14-vocabulary-11": {
+    "prompt": "[11] 私のかぞくは さきに うちへ かえった。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 10
+      }
+    ]
+  },
+  "n3-14-vocabulary-12": {
+    "prompt": "［１２］  ここには よくはたらく人が あつまっている。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 17
+      }
+    ]
+  },
+  "n3-14-vocabulary-13": {
+    "prompt": "［13］ きのう、ゆうはんに ぎゅうにくをたべた。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 13
+      }
+    ]
+  },
+  "n3-14-vocabulary-14": {
+    "prompt": "[14]  きかいは ただしく つかってください。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 15
+      }
+    ]
+  },
+  "n3-14-vocabulary-26": {
+    "prompt": "[26]  たぶん、彼は来ないだろう。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 9
+      }
+    ]
+  },
+  "n3-14-vocabulary-27": {
+    "prompt": "[27]  健康 には常に注意 を払っている。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 13
+      }
+    ]
+  },
+  "n3-14-vocabulary-28": {
+    "prompt": "[28]  しょうらいの けいかくを はなしました。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 11
+      }
+    ]
+  },
+  "n3-14-vocabulary-29": {
+    "prompt": "[29]  急 な仕事が入ったので、旅行の日程 を変更 した。",
+    "underlines": [
+      {
+        "start": 25,
+        "end": 30
+      }
+    ]
+  },
+  "n3-14-vocabulary-30": {
+    "prompt": "[30]  きのうは珍 しく電車はがらがらだった。",
+    "underlines": [
+      {
+        "start": 17,
+        "end": 24
+      }
+    ]
+  },
+  "n3-14-grammar-14": {
+    "prompt": "[14] （たんすの片付けをしながら） 娘 「お母さん、この着物なあに？」 母親  「それはね、お母さんが大学生の時におばあちゃんに買って＿＿＿ ＿＿＿ ★   ＿＿＿ 大事にしまっておいたのよ。」",
+    "underlines": [
+      {
+        "start": 77,
+        "end": 78
+      }
+    ]
+  },
+  "n3-14-grammar-15": {
+    "prompt": "[15] 子どもが生まれた ＿＿＿ ＿＿＿   ★   ＿＿＿ 安全を気にするようになった。",
+    "underlines": [
+      {
+        "start": 24,
+        "end": 25
+      }
+    ]
+  },
+  "n3-14-grammar-16": {
+    "prompt": "[16] 今年の花火大会の観客数は去年 ＿＿＿ ＿＿＿   ★   ＿＿＿17 万人だった。",
+    "underlines": [
+      {
+        "start": 30,
+        "end": 31
+      }
+    ]
+  },
+  "n3-14-grammar-17": {
+    "prompt": "[17]  もしわからないことがあったら、参考書、インターネット ＿＿＿ ＿＿＿   ★ ＿＿＿ いいですから、調べておいてください。",
+    "underlines": [
+      {
+        "start": 43,
+        "end": 44
+      }
+    ]
+  },
+  "n3-14-grammar-18": {
+    "prompt": "[18] わたしの応援が力 ＿＿＿ ＿＿＿    ★   ＿＿＿ 応援します。",
+    "underlines": [
+      {
+        "start": 25,
+        "end": 26
+      }
+    ]
+  },
+  "n3-15-vocabulary-1": {
+    "prompt": "［１］ プレゼントは きれいな紙で 包んであった。",
+    "underlines": [
+      {
+        "start": 18,
+        "end": 21
+      }
+    ]
+  },
+  "n3-15-vocabulary-2": {
+    "prompt": "［2］ 彼は ダンスが 得意だ。",
+    "underlines": [
+      {
+        "start": 12,
+        "end": 14
+      }
+    ]
+  },
+  "n3-15-vocabulary-3": {
+    "prompt": "［3］ 新しい星 が 発見された。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 13
+      }
+    ]
+  },
+  "n3-15-vocabulary-4": {
+    "prompt": "[4]  このグラフは 人口 の変化 を 表しています。",
+    "underlines": [
+      {
+        "start": 21,
+        "end": 23
+      }
+    ]
+  },
+  "n3-15-vocabulary-5": {
+    "prompt": "[5]  これから、試験の 説明 をします。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 12
+      }
+    ]
+  },
+  "n3-15-vocabulary-6": {
+    "prompt": "[6]  今年は 去年より 台風 が 多い。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 7
+      }
+    ]
+  },
+  "n3-15-vocabulary-7": {
+    "prompt": "[7]  今日は 近所 の 公園に 花見 に 行く。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 16
+      }
+    ]
+  },
+  "n3-15-vocabulary-8": {
+    "prompt": "[8]  毎日、建物の 屋上 で 小鳥 の 世話 を している。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 10
+      }
+    ]
+  },
+  "n3-15-vocabulary-9": {
+    "prompt": "［9］ いぬが  あしで ドアを  あけました。",
+    "underlines": [
+      {
+        "start": 18,
+        "end": 23
+      }
+    ]
+  },
+  "n3-15-vocabulary-10": {
+    "prompt": "[10]  あねに あかい かさを かして もらいました。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 8
+      }
+    ]
+  },
+  "n3-15-vocabulary-11": {
+    "prompt": "[11]  あねは ひつようなしなものの なまえを かみに 書いてくれた。",
+    "underlines": [
+      {
+        "start": 26,
+        "end": 28
+      }
+    ]
+  },
+  "n3-15-vocabulary-12": {
+    "prompt": "［１２］  いしゃから くすり もらった。",
+    "underlines": [
+      {
+        "start": 12,
+        "end": 15
+      }
+    ]
+  },
+  "n3-15-vocabulary-13": {
+    "prompt": "［13］ あの あおい ドアの みせで はなを うって います。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 11
+      }
+    ]
+  },
+  "n3-15-vocabulary-14": {
+    "prompt": "[14]  音楽会は7 時にはじまります。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 18
+      }
+    ]
+  },
+  "n3-15-vocabulary-26": {
+    "prompt": "[26] 彼は ピアノの 練習 を 続 けている。",
+    "underlines": [
+      {
+        "start": 18,
+        "end": 24
+      }
+    ]
+  },
+  "n3-15-vocabulary-27": {
+    "prompt": "[27]  彼女 は 熱心 に 勉強 する。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 15
+      }
+    ]
+  },
+  "n3-15-vocabulary-28": {
+    "prompt": "[28] できるだけ、辞書 を 見ないでください。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 10
+      }
+    ]
+  },
+  "n3-15-vocabulary-29": {
+    "prompt": "[29]  大使館 は 日曜日 開いていません。",
+    "underlines": [
+      {
+        "start": 16,
+        "end": 23
+      }
+    ]
+  },
+  "n3-15-vocabulary-30": {
+    "prompt": "[30]  この問題は とても やさしいです。",
+    "underlines": [
+      {
+        "start": 16,
+        "end": 20
+      }
+    ]
+  },
+  "n3-15-grammar-14": {
+    "prompt": "[14] 皆様 から ＿＿＿ ＿＿＿    ★   ＿＿＿ は、貧 しい子どもたちのために使わせ いただきます。",
+    "underlines": [
+      {
+        "start": 22,
+        "end": 23
+      }
+    ]
+  },
+  "n3-15-grammar-15": {
+    "prompt": "[15] 待ち合わせの時間に ＿＿＿ ＿＿＿    ★   ＿＿＿ 決まっているじゃないか。",
+    "underlines": [
+      {
+        "start": 26,
+        "end": 27
+      }
+    ]
+  },
+  "n3-15-grammar-16": {
+    "prompt": "[16] 以前は、 ＿＿＿ ＿＿＿    ★   ＿＿＿ 増えていくと、だれもが思っていた。",
+    "underlines": [
+      {
+        "start": 21,
+        "end": 22
+      }
+    ]
+  },
+  "n3-15-grammar-17": {
+    "prompt": "[17] 小林さんは旅行が好きで、＿＿＿ ＿＿＿    ★   ＿＿＿行ったことがあるそう だ。",
+    "underlines": [
+      {
+        "start": 28,
+        "end": 29
+      }
+    ]
+  },
+  "n3-15-grammar-18": {
+    "prompt": "[18] ただ今、この番組 ＿＿＿ ＿＿＿    ★   ＿＿＿ ご要望 を募集 しております。",
+    "underlines": [
+      {
+        "start": 25,
+        "end": 26
+      }
+    ]
+  },
+  "n3-15-grammar-24": {
+    "prompt": "［24］ 「親の意識の改革」とは、ここではどのような意味か。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 13
+      }
+    ]
+  },
+  "n3-15-grammar-28": {
+    "prompt": "[28]  ①店の思い出はそのまま子どものころの思い出と重なるとあるが、それはどんな思い 出か。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 31
+      }
+    ]
+  },
+  "n3-15-grammar-34": {
+    "prompt": "[34]  ①「それ」は何を指すか。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 10
+      }
+    ]
+  },
+  "n3-15-grammar-35": {
+    "prompt": "[35] ②「馬耳東風 」 とはどういう意味だと思われるか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 11
+      }
+    ]
+  },
+  "n3-15-grammar-37": {
+    "prompt": "[37] この文章の内容と合わないものはどれか。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 19
+      }
+    ]
+  },
+  "n3-15-grammar-38": {
+    "prompt": "[38] 次の4 つから正しくないものを選びなさい。",
+    "underlines": [
+      {
+        "start": 12,
+        "end": 19
+      }
+    ]
+  },
+  "n3-16-vocabulary-1": {
+    "prompt": "［１］ きょうは 会社に 黒 い 洋服を 着て行きます。",
+    "underlines": [
+      {
+        "start": 17,
+        "end": 19
+      }
+    ]
+  },
+  "n3-16-vocabulary-2": {
+    "prompt": "［2］ まどの ちかくに 立って、ともだちと 会話の れんしゅうを しました。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 16
+      }
+    ]
+  },
+  "n3-16-vocabulary-3": {
+    "prompt": "［3］ 自分で車を 運転 して、北海道 を 旅行 する計画です。",
+    "underlines": [
+      {
+        "start": 27,
+        "end": 29
+      }
+    ]
+  },
+  "n3-16-vocabulary-4": {
+    "prompt": "[4]  父は 学生時代、祖母 の 自転車 で 大学に 通って いたそうです。",
+    "underlines": [
+      {
+        "start": 28,
+        "end": 31
+      }
+    ]
+  },
+  "n3-16-vocabulary-5": {
+    "prompt": "[5]  あの 人は、体が 大きくて 力が 強いから、スポーツが とくいです。",
+    "underlines": [
+      {
+        "start": 22,
+        "end": 24
+      }
+    ]
+  },
+  "n3-16-vocabulary-6": {
+    "prompt": "[6]  この町の 人口は 去年 より 多くなりました。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 12
+      }
+    ]
+  },
+  "n3-16-vocabulary-7": {
+    "prompt": "[7]  教室は 広くて  明るかった。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 7
+      }
+    ]
+  },
+  "n3-16-vocabulary-8": {
+    "prompt": "[8]  すずきさんは じゅうどうを 習って います。毎朝 れんしゅうします。",
+    "underlines": [
+      {
+        "start": 19,
+        "end": 22
+      }
+    ]
+  },
+  "n3-16-vocabulary-9": {
+    "prompt": "［９］  そのかびんは だいじなので、気をつけて はこんでください。",
+    "underlines": [
+      {
+        "start": 25,
+        "end": 29
+      }
+    ]
+  },
+  "n3-16-vocabulary-10": {
+    "prompt": "[10]  「日本についたら、まず ともだちに あいたい。」といっています。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 14
+      }
+    ]
+  },
+  "n3-16-vocabulary-11": {
+    "prompt": "[11]  おなじ いみの ことばを じしょでしらべる。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 12
+      }
+    ]
+  },
+  "n3-16-vocabulary-12": {
+    "prompt": "[12]  あおいいろのシャツをおくってください。",
+    "underlines": [
+      {
+        "start": 16,
+        "end": 20
+      }
+    ]
+  },
+  "n3-16-vocabulary-13": {
+    "prompt": "［13］ かぜが なくなって、そらが あかるく なりました。",
+    "underlines": [
+      {
+        "start": 19,
+        "end": 23
+      }
+    ]
+  },
+  "n3-16-vocabulary-14": {
+    "prompt": "[14]  きょうだいでも、いつも おなじ  きもちではない。",
+    "underlines": [
+      {
+        "start": 23,
+        "end": 26
+      }
+    ]
+  },
+  "n3-16-vocabulary-26": {
+    "prompt": "[26]  字を ていねいに 書きなさい。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 14
+      }
+    ]
+  },
+  "n3-16-vocabulary-27": {
+    "prompt": "[27]  鈴木さんは かならず 来ると 思います。",
+    "underlines": [
+      {
+        "start": 12,
+        "end": 16
+      }
+    ]
+  },
+  "n3-16-vocabulary-28": {
+    "prompt": "[28]   お腹 がすいたので、ピザを 配達してもらおう。",
+    "underlines": [
+      {
+        "start": 21,
+        "end": 25
+      }
+    ]
+  },
+  "n3-16-vocabulary-29": {
+    "prompt": "[29]  日が 暮 れました。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 16
+      }
+    ]
+  },
+  "n3-16-vocabulary-30": {
+    "prompt": "[30]  このまちは よる きけんです。",
+    "underlines": [
+      {
+        "start": 15,
+        "end": 18
+      }
+    ]
+  },
+  "n3-16-grammar-14": {
+    "prompt": "[14] その電子レンジ、まだ ＿＿＿ ＿＿＿    ★   ＿＿＿ 私にください。",
+    "underlines": [
+      {
+        "start": 27,
+        "end": 28
+      }
+    ]
+  },
+  "n3-16-grammar-15": {
+    "prompt": "[15] A チームに ＿＿＿ ＿＿＿    ★   ＿＿＿、 それはB チームだろう。",
+    "underlines": [
+      {
+        "start": 23,
+        "end": 24
+      }
+    ]
+  },
+  "n3-16-grammar-16": {
+    "prompt": "[16] 旅行中はとなりの奥 さんに頼んで、 ＿＿＿ ＿＿＿    ★   ＿＿＿ いる。",
+    "underlines": [
+      {
+        "start": 34,
+        "end": 35
+      }
+    ]
+  },
+  "n3-16-grammar-17": {
+    "prompt": "[17] みんなでドライブに行くことになった。車は村山さんが ＿＿＿ ＿＿＿    ★ ＿＿＿ 。",
+    "underlines": [
+      {
+        "start": 42,
+        "end": 43
+      }
+    ]
+  },
+  "n3-16-grammar-18": {
+    "prompt": "[18] 一度ぐらい ＿＿＿ ＿＿＿    ★   ＿＿＿ ですよ。",
+    "underlines": [
+      {
+        "start": 22,
+        "end": 23
+      }
+    ]
+  },
+  "n3-16-grammar-24": {
+    "prompt": "[２４]  ①目につくの意味はどれか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 11
+      }
+    ]
+  },
+  "n3-16-grammar-25": {
+    "prompt": "[２５] これとはなにか。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 7
+      }
+    ]
+  },
+  "n3-16-grammar-26": {
+    "prompt": "[２６] その距離がしめす内容はどれか。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 9
+      }
+    ]
+  },
+  "n3-16-grammar-31": {
+    "prompt": "[31]  トイレのドアを開けると、どうなるか。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 15
+      }
+    ]
+  },
+  "n3-16-grammar-34": {
+    "prompt": "[34]   ①英語についての意識をたずねたところと意味がほぼ同じものはどれか。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 25
+      }
+    ]
+  },
+  "n3-17-vocabulary-1": {
+    "prompt": "［１］ きょうは 会社に 黒 い 洋服を 着て行きます。",
+    "underlines": [
+      {
+        "start": 17,
+        "end": 19
+      }
+    ]
+  },
+  "n3-17-vocabulary-2": {
+    "prompt": "［2］ まどの ちかくに 立って、ともだちと 会話の れんしゅうを しました。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 16
+      }
+    ]
+  },
+  "n3-17-vocabulary-3": {
+    "prompt": "［3］ 自分で車を 運転 して、北海道 を 旅行 する計画です。",
+    "underlines": [
+      {
+        "start": 27,
+        "end": 29
+      }
+    ]
+  },
+  "n3-17-vocabulary-4": {
+    "prompt": "[4]  父は 学生時代、祖母 の 自転車 で 大学に 通って いたそうです。",
+    "underlines": [
+      {
+        "start": 28,
+        "end": 31
+      }
+    ]
+  },
+  "n3-17-vocabulary-5": {
+    "prompt": "[5]  あの 人は、体が 大きくて 力が 強いから、スポーツが とくいです。",
+    "underlines": [
+      {
+        "start": 22,
+        "end": 24
+      }
+    ]
+  },
+  "n3-17-vocabulary-6": {
+    "prompt": "[6]  この町の 人口は 去年 より 多くなりました。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 12
+      }
+    ]
+  },
+  "n3-17-vocabulary-7": {
+    "prompt": "[7]  教室は 広くて  明るかった。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 7
+      }
+    ]
+  },
+  "n3-17-vocabulary-8": {
+    "prompt": "[8]  すずきさんは じゅうどうを 習って います。毎朝 れんしゅうします。",
+    "underlines": [
+      {
+        "start": 19,
+        "end": 22
+      }
+    ]
+  },
+  "n3-17-vocabulary-9": {
+    "prompt": "［９］  そのかびんは だいじなので、気をつけて はこんでください。",
+    "underlines": [
+      {
+        "start": 25,
+        "end": 29
+      }
+    ]
+  },
+  "n3-17-vocabulary-10": {
+    "prompt": "[10]  「日本についたら、まず ともだちに あいたい。」といっています。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 14
+      }
+    ]
+  },
+  "n3-17-vocabulary-11": {
+    "prompt": "[11]  おなじ いみの ことばを じしょでしらべる。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 12
+      }
+    ]
+  },
+  "n3-17-vocabulary-12": {
+    "prompt": "[12]  あおいいろのシャツをおくってください。",
+    "underlines": [
+      {
+        "start": 16,
+        "end": 20
+      }
+    ]
+  },
+  "n3-17-vocabulary-13": {
+    "prompt": "［13］ かぜが なくなって、そらが あかるく なりました。",
+    "underlines": [
+      {
+        "start": 19,
+        "end": 23
+      }
+    ]
+  },
+  "n3-17-vocabulary-14": {
+    "prompt": "[14]  きょうだいでも、いつも おなじ  きもちではない。",
+    "underlines": [
+      {
+        "start": 23,
+        "end": 26
+      }
+    ]
+  },
+  "n3-17-vocabulary-26": {
+    "prompt": "[26]  字を ていねいに 書きなさい。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 14
+      }
+    ]
+  },
+  "n3-17-vocabulary-27": {
+    "prompt": "[27]  鈴木さんは かならず 来ると 思います。",
+    "underlines": [
+      {
+        "start": 12,
+        "end": 16
+      }
+    ]
+  },
+  "n3-17-vocabulary-28": {
+    "prompt": "[28]   お腹 がすいたので、ピザを 配達してもらおう。",
+    "underlines": [
+      {
+        "start": 21,
+        "end": 25
+      }
+    ]
+  },
+  "n3-17-vocabulary-29": {
+    "prompt": "[29]  日が 暮 れました。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 16
+      }
+    ]
+  },
+  "n3-17-vocabulary-30": {
+    "prompt": "[30]  このまちは よる きけんです。",
+    "underlines": [
+      {
+        "start": 15,
+        "end": 18
+      }
+    ]
+  },
+  "n3-17-grammar-14": {
+    "prompt": "[14] その電子レンジ、まだ ＿＿＿ ＿＿＿    ★   ＿＿＿ 私にください。",
+    "underlines": [
+      {
+        "start": 27,
+        "end": 28
+      }
+    ]
+  },
+  "n3-17-grammar-15": {
+    "prompt": "[15] A チームに ＿＿＿ ＿＿＿    ★   ＿＿＿、 それはB チームだろう。",
+    "underlines": [
+      {
+        "start": 23,
+        "end": 24
+      }
+    ]
+  },
+  "n3-17-grammar-16": {
+    "prompt": "[16] 旅行中はとなりの奥 さんに頼んで、 ＿＿＿ ＿＿＿    ★   ＿＿＿ いる。",
+    "underlines": [
+      {
+        "start": 34,
+        "end": 35
+      }
+    ]
+  },
+  "n3-17-grammar-17": {
+    "prompt": "[17] みんなでドライブに行くことになった。車は村山さんが ＿＿＿ ＿＿＿    ★ ＿＿＿ 。",
+    "underlines": [
+      {
+        "start": 42,
+        "end": 43
+      }
+    ]
+  },
+  "n3-17-grammar-18": {
+    "prompt": "[18] 一度ぐらい ＿＿＿ ＿＿＿    ★   ＿＿＿ ですよ。",
+    "underlines": [
+      {
+        "start": 22,
+        "end": 23
+      }
+    ]
+  },
+  "n3-17-grammar-24": {
+    "prompt": "[２４]  ①目につくの意味はどれか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 11
+      }
+    ]
+  },
+  "n3-17-grammar-25": {
+    "prompt": "[２５] これとはなにか。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 7
+      }
+    ]
+  },
+  "n3-17-grammar-26": {
+    "prompt": "[２６] その距離がしめす内容はどれか。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 9
+      }
+    ]
+  },
+  "n3-17-grammar-31": {
+    "prompt": "[31]  トイレのドアを開けると、どうなるか。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 15
+      }
+    ]
+  },
+  "n3-17-grammar-34": {
+    "prompt": "[34]   ①英語についての意識をたずねたところと意味がほぼ同じものはどれか。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 25
+      }
+    ]
+  },
+  "n3-18-vocabulary-1": {
+    "prompt": "[1] 世界の 歴史を あまり知らないので もっと勉強したい。",
+    "underlines": [
+      {
+        "start": 4,
+        "end": 6
+      }
+    ]
+  },
+  "n3-18-vocabulary-2": {
+    "prompt": "[2] わたしは医者に「働きすぎないように 注意してください。」と言われました。",
+    "underlines": [
+      {
+        "start": 22,
+        "end": 24
+      }
+    ]
+  },
+  "n3-18-vocabulary-3": {
+    "prompt": "[3]  あのお医者さんには 特に  世話になりました。",
+    "underlines": [
+      {
+        "start": 15,
+        "end": 17
+      }
+    ]
+  },
+  "n3-18-vocabulary-4": {
+    "prompt": "[4]  友だちに 日本の 音楽の テープを 貸しました。",
+    "underlines": [
+      {
+        "start": 23,
+        "end": 28
+      }
+    ]
+  },
+  "n3-18-vocabulary-5": {
+    "prompt": "[5] 田中さんの お兄さんは あの建物の 出口のところに 立っています。",
+    "underlines": [
+      {
+        "start": 22,
+        "end": 24
+      }
+    ]
+  },
+  "n3-18-vocabulary-6": {
+    "prompt": "[6]  クラスで、富士山について発表しました。",
+    "underlines": [
+      {
+        "start": 17,
+        "end": 19
+      }
+    ]
+  },
+  "n3-18-vocabulary-7": {
+    "prompt": "[7]  ここで写真をとるのは、禁止されています。",
+    "underlines": [
+      {
+        "start": 16,
+        "end": 18
+      }
+    ]
+  },
+  "n3-18-vocabulary-9": {
+    "prompt": "［９］ 試験までに どうっやて勉強するか、けいかくを立てた。",
+    "underlines": [
+      {
+        "start": 21,
+        "end": 25
+      }
+    ]
+  },
+  "n3-18-vocabulary-10": {
+    "prompt": "[10]  テスト中は、しずかにしてください。",
+    "underlines": [
+      {
+        "start": 12,
+        "end": 16
+      }
+    ]
+  },
+  "n3-18-vocabulary-11": {
+    "prompt": "[11]  夏は、つめいたいビールが飲みたくなります。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 14
+      }
+    ]
+  },
+  "n3-18-vocabulary-12": {
+    "prompt": "[12]  インドネシアでめずらしい魚を見ました。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 18
+      }
+    ]
+  },
+  "n3-18-vocabulary-13": {
+    "prompt": "［13］ むりなダイエットで、病気になってしまいました。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 8
+      }
+    ]
+  },
+  "n3-18-vocabulary-14": {
+    "prompt": "[14]  うんどんがあつい、なかなか食べられません。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 14
+      }
+    ]
+  },
+  "n3-18-vocabulary-26": {
+    "prompt": "[26] 電車がまもなく来ると思いますよ。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 12
+      }
+    ]
+  },
+  "n3-18-vocabulary-27": {
+    "prompt": "[27]  父は、昔通っていた学校をたびたび訪ねている。",
+    "underlines": [
+      {
+        "start": 18,
+        "end": 22
+      }
+    ]
+  },
+  "n3-18-vocabulary-28": {
+    "prompt": "[28]  こちらの商品 はすべて輸入品 です。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 17
+      }
+    ]
+  },
+  "n3-18-vocabulary-29": {
+    "prompt": "[29]  大野さんは毎日熱心 に トレーニング しています。",
+    "underlines": [
+      {
+        "start": 18,
+        "end": 24
+      }
+    ]
+  },
+  "n3-18-grammar-14": {
+    "prompt": "[14] 外国へ行く ＿＿＿ ＿＿＿    ★   ＿＿＿ 行ったほうがいいですよ。",
+    "underlines": [
+      {
+        "start": 22,
+        "end": 23
+      }
+    ]
+  },
+  "n3-18-grammar-15": {
+    "prompt": "[15] 基礎 をしっかり ＿＿＿ ＿＿＿    ★   ＿＿＿、 高度な内容を学ぶのは難し い。",
+    "underlines": [
+      {
+        "start": 25,
+        "end": 26
+      }
+    ]
+  },
+  "n3-18-grammar-16": {
+    "prompt": "[16] あのレストランでは、 ＿＿＿ ＿＿＿    ★   ＿＿＿、息子 が料理を作ってい る。",
+    "underlines": [
+      {
+        "start": 27,
+        "end": 28
+      }
+    ]
+  },
+  "n3-18-grammar-17": {
+    "prompt": "[17] 5 時間もかけて書いたレポートを ＿＿＿ ＿＿＿    ★   ＿＿＿ 。",
+    "underlines": [
+      {
+        "start": 33,
+        "end": 34
+      }
+    ]
+  },
+  "n3-18-grammar-18": {
+    "prompt": "[18] あんなことを ＿＿＿ ＿＿＿    ★   ＿＿＿ のに。",
+    "underlines": [
+      {
+        "start": 23,
+        "end": 24
+      }
+    ]
+  },
+  "n3-18-grammar-25": {
+    "prompt": "[２５] 「 そのころ」と言うのはいつごろのことか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 12
+      }
+    ]
+  },
+  "n3-18-grammar-31": {
+    "prompt": "[31] ハトがどのようなことをした場合に、①この区別ができると筆者は判断したのか。",
+    "underlines": [
+      {
+        "start": 23,
+        "end": 31
+      }
+    ]
+  },
+  "n3-18-grammar-33": {
+    "prompt": "[33]  ③作風 の区別 をおぼえた とあるが、どのようなことか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 19
+      }
+    ]
+  },
+  "n3-18-grammar-35": {
+    "prompt": "[３５]  ②目くじらを立てるとは、どのような意味か。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 15
+      }
+    ]
+  },
+  "n3-18-grammar-36": {
+    "prompt": "[３６]  ③心が狭い人とは、どのような人か。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 11
+      }
+    ]
+  },
+  "n3-19-vocabulary-1": {
+    "prompt": "［１］ 私の住んでいる町は、海に近くて、自動車工業が さかんです。",
+    "underlines": [
+      {
+        "start": 23,
+        "end": 25
+      }
+    ]
+  },
+  "n3-19-vocabulary-2": {
+    "prompt": "［2］ この 島 には 電気も 水道 も なくて、生活 は とても 不便です。",
+    "underlines": [
+      {
+        "start": 34,
+        "end": 36
+      }
+    ]
+  },
+  "n3-19-vocabulary-3": {
+    "prompt": "［3］ 明日の朝6 時に広場 に集まってください。",
+    "underlines": [
+      {
+        "start": 16,
+        "end": 19
+      }
+    ]
+  },
+  "n3-19-vocabulary-4": {
+    "prompt": "[4] 山田さんは 先週、デパートで 時計を 買ったと 言いました。",
+    "underlines": [
+      {
+        "start": 19,
+        "end": 21
+      }
+    ]
+  },
+  "n3-19-vocabulary-5": {
+    "prompt": "[5]  教室で日本の有名な歌を歌いました。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 13
+      }
+    ]
+  },
+  "n3-19-vocabulary-6": {
+    "prompt": "[6]  よく考えてから質問に答えてください。",
+    "underlines": [
+      {
+        "start": 15,
+        "end": 18
+      }
+    ]
+  },
+  "n3-19-vocabulary-7": {
+    "prompt": "[7]  本屋の 店員の アルバイトを 始めました。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 11
+      }
+    ]
+  },
+  "n3-19-vocabulary-8": {
+    "prompt": "[8]  時間が足りなかったので､食堂へは 行きませんでした。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 10
+      }
+    ]
+  },
+  "n3-19-vocabulary-9": {
+    "prompt": "［９］  あの 青い ドアの 店で 花を うって います。",
+    "underlines": [
+      {
+        "start": 21,
+        "end": 24
+      }
+    ]
+  },
+  "n3-19-vocabulary-10": {
+    "prompt": "[10]  弟は晩ご飯においしい魚の料理をよういしてくれました。",
+    "underlines": [
+      {
+        "start": 21,
+        "end": 24
+      }
+    ]
+  },
+  "n3-19-vocabulary-11": {
+    "prompt": "[11]  封筒 に80 円切手をはって、送ってください。",
+    "underlines": [
+      {
+        "start": 17,
+        "end": 20
+      }
+    ]
+  },
+  "n3-19-vocabulary-12": {
+    "prompt": "[12] その有名な 写真家 は、せかいのいろいろな鳥や動物 を写 しました。",
+    "underlines": [
+      {
+        "start": 17,
+        "end": 20
+      }
+    ]
+  },
+  "n3-19-vocabulary-13": {
+    "prompt": "［13］ 小林さんに 道を 聞いたら、 ちずを 書いてくれました。",
+    "underlines": [
+      {
+        "start": 20,
+        "end": 22
+      }
+    ]
+  },
+  "n3-19-vocabulary-14": {
+    "prompt": "[14]  人口 がきゅうにふえると、食べものや服が足りなくなるかもしれない。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 14
+      }
+    ]
+  },
+  "n3-19-vocabulary-26": {
+    "prompt": "[26]  次々 に 新 しい ゲームが 作 られる。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 8
+      }
+    ]
+  },
+  "n3-19-vocabulary-27": {
+    "prompt": "[27]  明日の 飛行機 の予約 を 確認 してください。",
+    "underlines": [
+      {
+        "start": 20,
+        "end": 25
+      }
+    ]
+  },
+  "n3-19-vocabulary-28": {
+    "prompt": "[28]  地震 が 起 きて おどろきました。",
+    "underlines": [
+      {
+        "start": 16,
+        "end": 23
+      }
+    ]
+  },
+  "n3-19-vocabulary-29": {
+    "prompt": "[29]  この ビルの ２階 に 荷物 を 運 ぶ。",
+    "underlines": [
+      {
+        "start": 23,
+        "end": 26
+      }
+    ]
+  },
+  "n3-19-vocabulary-30": {
+    "prompt": "[30]  このごろ 台風 が  よく 来ます。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 10
+      }
+    ]
+  },
+  "n3-19-grammar-14": {
+    "prompt": "[14] 時間と ＿＿＿ ＿＿＿    ★   ＿＿＿ 行けるのに。",
+    "underlines": [
+      {
+        "start": 20,
+        "end": 21
+      }
+    ]
+  },
+  "n3-19-grammar-15": {
+    "prompt": "[15] 日本の ＿＿＿ ＿＿＿    ★   ＿＿＿ でしょう。",
+    "underlines": [
+      {
+        "start": 20,
+        "end": 21
+      }
+    ]
+  },
+  "n3-19-grammar-16": {
+    "prompt": "[16] さすが ＿＿＿ ＿＿＿    ★   ＿＿＿ 3 ヶ月先までいっぱいだ。",
+    "underlines": [
+      {
+        "start": 20,
+        "end": 21
+      }
+    ]
+  },
+  "n3-19-grammar-17": {
+    "prompt": "[17]  井上 さんは、＿＿＿ ＿＿＿    ★   ＿＿＿ いける人だ 。",
+    "underlines": [
+      {
+        "start": 24,
+        "end": 25
+      }
+    ]
+  },
+  "n3-19-grammar-18": {
+    "prompt": "[18] この中で、 ＿＿＿ ＿＿＿    ★   ＿＿＿ 人はいませんか。",
+    "underlines": [
+      {
+        "start": 22,
+        "end": 23
+      }
+    ]
+  },
+  "n3-19-grammar-32": {
+    "prompt": "[32]  ①これはは何を指しているか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 10
+      }
+    ]
+  },
+  "n3-19-grammar-33": {
+    "prompt": "[33] ②試合中はずっと目が離せないことになる とあるが、どうしてか。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 24
+      }
+    ]
+  },
+  "n3-19-grammar-34": {
+    "prompt": "[３４] この①おかあさんは誰のことか。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 13
+      }
+    ]
+  },
+  "n3-19-grammar-35": {
+    "prompt": "[３５] Y さんがおばあさんを②つい叱 ってしまうのはどうしてか。",
+    "underlines": [
+      {
+        "start": 17,
+        "end": 26
+      }
+    ]
+  },
+  "n3-19-grammar-36": {
+    "prompt": "[３６]  ③叱ってはいけないのはどうしてか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 15
+      }
+    ]
+  },
+  "n3-19-grammar-37": {
+    "prompt": "[３７]  ④Y さんを誘 って出 かけようとあるが、どうしてそう言 ったのか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 22
+      }
+    ]
+  },
+  "n3-20-vocabulary-1": {
+    "prompt": "［１］ 週末に 泊 まる 旅館 を 予約しました。",
+    "underlines": [
+      {
+        "start": 18,
+        "end": 20
+      }
+    ]
+  },
+  "n3-20-vocabulary-2": {
+    "prompt": "［2］ 味 が 変 ですよ。苦いです。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 16
+      }
+    ]
+  },
+  "n3-20-vocabulary-3": {
+    "prompt": "［3］ 先輩 に 珍しい お土産を もらいました。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 16
+      }
+    ]
+  },
+  "n3-20-vocabulary-4": {
+    "prompt": "[4]  田舎 の 生活は 不便ですが、人は 皆 親切 です。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 16
+      }
+    ]
+  },
+  "n3-20-vocabulary-5": {
+    "prompt": "[5]  台風 で 近所 の 木が 倒れました。",
+    "underlines": [
+      {
+        "start": 18,
+        "end": 20
+      }
+    ]
+  },
+  "n3-20-vocabulary-6": {
+    "prompt": "[6]  大学 で 経済 を 勉強して、卒業してから 貿易 の仕事 をします。",
+    "underlines": [
+      {
+        "start": 20,
+        "end": 22
+      }
+    ]
+  },
+  "n3-20-vocabulary-7": {
+    "prompt": "[7]  3 日から、雨が 続いている。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 17
+      }
+    ]
+  },
+  "n3-20-vocabulary-8": {
+    "prompt": "[8]  山田さんはクラスの代表に選ばれました。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 16
+      }
+    ]
+  },
+  "n3-20-vocabulary-9": {
+    "prompt": "［9］ 困 っている時 、先生にたすけていただきました。",
+    "underlines": [
+      {
+        "start": 16,
+        "end": 20
+      }
+    ]
+  },
+  "n3-20-vocabulary-10": {
+    "prompt": "[10]  アルバイトの めんせつは 来週の土曜 日だ。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 17
+      }
+    ]
+  },
+  "n3-20-vocabulary-11": {
+    "prompt": "[11]  いいてんきから、外 で食べましょう。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 11
+      }
+    ]
+  },
+  "n3-20-vocabulary-12": {
+    "prompt": "［１２］  雨の日 は、アパートの部屋で音楽をききます。",
+    "underlines": [
+      {
+        "start": 23,
+        "end": 27
+      }
+    ]
+  },
+  "n3-20-vocabulary-13": {
+    "prompt": "［13］ 今年のなつやすみには 国から 父が来ます。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 13
+      }
+    ]
+  },
+  "n3-20-vocabulary-14": {
+    "prompt": "[14]  つぎの休みはヨーロッパをりょこうすることにしました。",
+    "underlines": [
+      {
+        "start": 18,
+        "end": 22
+      }
+    ]
+  },
+  "n3-20-vocabulary-26": {
+    "prompt": "[26] この レストランは すいていますね。",
+    "underlines": [
+      {
+        "start": 15,
+        "end": 23
+      }
+    ]
+  },
+  "n3-20-vocabulary-27": {
+    "prompt": "[27]  日本の タクシーは とても あんぜんだ。",
+    "underlines": [
+      {
+        "start": 20,
+        "end": 25
+      }
+    ]
+  },
+  "n3-20-vocabulary-28": {
+    "prompt": "[28]  高校生の 時 すごく 本を 読んだ。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 16
+      }
+    ]
+  },
+  "n3-20-vocabulary-29": {
+    "prompt": "[29]  あの 人は 頭が おかしい。",
+    "underlines": [
+      {
+        "start": 15,
+        "end": 19
+      }
+    ]
+  },
+  "n3-20-vocabulary-30": {
+    "prompt": "[30]  会議 の資料 を前 もってコピーしておく。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 19
+      }
+    ]
+  },
+  "n3-20-grammar-14": {
+    "prompt": "[14] こんなに ＿＿＿ ＿＿＿    ★   ＿＿＿ 成績 が上がりません。",
+    "underlines": [
+      {
+        "start": 21,
+        "end": 22
+      }
+    ]
+  },
+  "n3-20-grammar-15": {
+    "prompt": "[15] 寒くなって ＿＿＿ ＿＿＿    ★   ＿＿＿ にしました。",
+    "underlines": [
+      {
+        "start": 22,
+        "end": 23
+      }
+    ]
+  },
+  "n3-20-grammar-16": {
+    "prompt": "[16] 申しわけないのですが ＿＿＿ ＿＿＿    ★   ＿＿＿ ものなんです。",
+    "underlines": [
+      {
+        "start": 27,
+        "end": 28
+      }
+    ]
+  },
+  "n3-20-grammar-17": {
+    "prompt": "[17] 本当に好きなら ＿＿＿ ＿＿＿    ★   ＿＿＿ 伝えたほうがいいよ 。",
+    "underlines": [
+      {
+        "start": 24,
+        "end": 25
+      }
+    ]
+  },
+  "n3-20-grammar-18": {
+    "prompt": "[18] 背中 が ＿＿＿ ＿＿＿    ★   ＿＿＿ のかもしれません。",
+    "underlines": [
+      {
+        "start": 21,
+        "end": 22
+      }
+    ]
+  },
+  "n3-20-grammar-28": {
+    "prompt": "[28]  ①大変だとあるが、何が大変なのか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 10
+      }
+    ]
+  },
+  "n3-20-grammar-29": {
+    "prompt": "[29]  ②大学では学べないようなことも教えてもらえるのはどしてか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 28
+      }
+    ]
+  },
+  "n3-20-grammar-31": {
+    "prompt": "[31]  ①動物との暮らしが人の体も元気にするのはどうしてか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 24
+      }
+    ]
+  },
+  "n3-20-grammar-32": {
+    "prompt": "[32]  ②動物を飼うことについて、この文章を書いた人はどう考えているか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 12
+      }
+    ]
+  },
+  "n3-20-grammar-33": {
+    "prompt": "[33]  ③別れる日が来るとはどいうことか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 14
+      }
+    ]
+  },
+  "n3-20-grammar-34": {
+    "prompt": "[34]  ①敬語 が正しく使えることはとても重要 だとあるが、どうしてか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 27
+      }
+    ]
+  },
+  "n3-20-grammar-35": {
+    "prompt": "[35]  ②難 しいと感 じている人が多いとあるが、どうして難 しいと感 じているのか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 22
+      }
+    ]
+  },
+  "n3-20-grammar-36": {
+    "prompt": "[36]  ③本当 に話したいことが話せなかったのはどうしてか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 24
+      }
+    ]
+  },
+  "n3-21-vocabulary-1": {
+    "prompt": "［１］ 日本の首都 はどこですか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 9
+      }
+    ]
+  },
+  "n3-21-vocabulary-3": {
+    "prompt": "［3］ あの時計は遅れている。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 14
+      }
+    ]
+  },
+  "n3-21-vocabulary-4": {
+    "prompt": "[4] 2 人で協力すれば、仕事も早く終わるだろう。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 10
+      }
+    ]
+  },
+  "n3-21-vocabulary-5": {
+    "prompt": "[5] 大学の奨学金 に応募した。",
+    "underlines": [
+      {
+        "start": 12,
+        "end": 14
+      }
+    ]
+  },
+  "n3-21-vocabulary-6": {
+    "prompt": "[6] 子供の疑問に答えた。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 9
+      }
+    ]
+  },
+  "n3-21-vocabulary-7": {
+    "prompt": "[7] 試験の成績が発表された。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 12
+      }
+    ]
+  },
+  "n3-21-vocabulary-8": {
+    "prompt": "[8]  単語のリストは隣 のページにあります。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 7
+      }
+    ]
+  },
+  "n3-21-vocabulary-9": {
+    "prompt": "［9］ みんなで話し合って、問題をかいけつした。",
+    "underlines": [
+      {
+        "start": 17,
+        "end": 21
+      }
+    ]
+  },
+  "n3-21-vocabulary-10": {
+    "prompt": "[10] 山田さんに東京をあんないしてもらった。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 17
+      }
+    ]
+  },
+  "n3-21-vocabulary-11": {
+    "prompt": "[11] 私はけんこうのために毎日、走っている。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 11
+      }
+    ]
+  },
+  "n3-21-vocabulary-12": {
+    "prompt": "[12] 今年の夏はきおんが高かった。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 13
+      }
+    ]
+  },
+  "n3-21-vocabulary-13": {
+    "prompt": "［１３］ 頭がいたいので、薬を飲んだ。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 10
+      }
+    ]
+  },
+  "n3-21-vocabulary-14": {
+    "prompt": "[14]このシャツは工場でたいりょうに作られている。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 18
+      }
+    ]
+  },
+  "n3-21-vocabulary-26": {
+    "prompt": "[26] 私は妻 と一緒に通勤 しています。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 21
+      }
+    ]
+  },
+  "n3-21-vocabulary-27": {
+    "prompt": "[27]  とてもおそろしい経験 をした。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 14
+      }
+    ]
+  },
+  "n3-21-vocabulary-28": {
+    "prompt": "[28]  先生にわけを話した。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 11
+      }
+    ]
+  },
+  "n3-21-vocabulary-29": {
+    "prompt": "[29]  最近、この川は水がへった気がする。",
+    "underlines": [
+      {
+        "start": 15,
+        "end": 18
+      }
+    ]
+  },
+  "n3-21-grammar-14": {
+    "prompt": "[14] 疲 れていたので、 ＿＿＿ ＿＿＿    ★   ＿＿＿ まちがえてしまった。",
+    "underlines": [
+      {
+        "start": 26,
+        "end": 27
+      }
+    ]
+  },
+  "n3-21-grammar-15": {
+    "prompt": "[15] 世界旅行をしてみたいが、お金がないので、実際 に ＿＿＿ ＿＿＿    ★ ＿＿＿ 見ている。",
+    "underlines": [
+      {
+        "start": 41,
+        "end": 42
+      }
+    ]
+  },
+  "n3-21-grammar-16": {
+    "prompt": "[16] 私の友人の中で、リーさん ＿＿＿ ＿＿＿    ★   ＿＿＿ いない。",
+    "underlines": [
+      {
+        "start": 29,
+        "end": 30
+      }
+    ]
+  },
+  "n3-21-grammar-17": {
+    "prompt": "[17] 外は暑かったでしょう。 ＿＿＿ ＿＿＿    ★   ＿＿＿ しましょうか。",
+    "underlines": [
+      {
+        "start": 28,
+        "end": 29
+      }
+    ]
+  },
+  "n3-21-grammar-18": {
+    "prompt": "[18] A 「山下さん、かぜで休んでいるそうだね。明日の会議 、来られるかな。」 B 「きのう電話してみたんだけど、ずいぶん ＿＿＿ ＿＿＿    ★   ＿＿＿って 言ってたよ。",
+    "underlines": [
+      {
+        "start": 75,
+        "end": 76
+      }
+    ]
+  },
+  "n3-21-grammar-35": {
+    "prompt": "[３５]  ①自然を利用した工夫 とは、ここではどのようなことか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 16
+      }
+    ]
+  },
+  "n3-21-grammar-37": {
+    "prompt": "[３７]  ②それとは、何を指すか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 9
+      }
+    ]
+  },
+  "n3-22-vocabulary-5": {
+    "prompt": "5.何か調べるなら、これを使うといいですよ。",
+    "underlines": [
+      {
+        "start": 4,
+        "end": 7
+      }
+    ]
+  },
+  "n3-22-vocabulary-6": {
+    "prompt": "6.パーティーに出席する人は、このノートに名前を書いてください。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 10
+      }
+    ]
+  },
+  "n3-22-vocabulary-7": {
+    "prompt": "7.レストランの情報がたくさん載っている本を知っていますか。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 10
+      }
+    ]
+  },
+  "n3-22-vocabulary-8": {
+    "prompt": "8.外国にいる友達から、誕生日プレゼントが届いた。",
+    "underlines": [
+      {
+        "start": 21,
+        "end": 24
+      }
+    ]
+  },
+  "n3-22-vocabulary-9": {
+    "prompt": "9.土曜日は自由な時間がたくさんあるので、うれしいです。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 9
+      }
+    ]
+  },
+  "n3-22-vocabulary-10": {
+    "prompt": "10.この歌は最近覚えたばかりなので、まだ上手に歌えません。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 12
+      }
+    ]
+  },
+  "n3-22-vocabulary-11": {
+    "prompt": "11.小さくて軽い傘は人気があります。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 9
+      }
+    ]
+  },
+  "n3-22-vocabulary-12": {
+    "prompt": "12.今日はたくさん働いたので、いつもより疲れました。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 13
+      }
+    ]
+  },
+  "n3-22-vocabulary-13": {
+    "prompt": "13.友達を作るために、せっきょくてきに話しかけるようにしている。",
+    "underlines": [
+      {
+        "start": 12,
+        "end": 19
+      }
+    ]
+  },
+  "n3-22-vocabulary-14": {
+    "prompt": "14.1912 年、日本は初めてオリンピックにさんかした。",
+    "underlines": [
+      {
+        "start": 23,
+        "end": 26
+      }
+    ]
+  },
+  "n3-22-vocabulary-15": {
+    "prompt": "15.授業でかんきょう問題について発表しました。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 11
+      }
+    ]
+  },
+  "n3-22-vocabulary-16": {
+    "prompt": "16.奨学金のもうしこみ方法を教えてください。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 12
+      }
+    ]
+  },
+  "n3-22-vocabulary-17": {
+    "prompt": "17.ひょうじょうを見れば、その人の気持ちが分かります。",
+    "underlines": [
+      {
+        "start": 3,
+        "end": 9
+      }
+    ]
+  },
+  "n3-22-vocabulary-18": {
+    "prompt": "18.卒業後、一番しんぱいなことは就職です。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 14
+      }
+    ]
+  },
+  "n3-22-vocabulary-19": {
+    "prompt": "19.朝からお腹がいたいですので、午後は病院に行こうと思います。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 12
+      }
+    ]
+  },
+  "n3-22-vocabulary-20": {
+    "prompt": "20.いつも夫の帰りがおそいので、先に晩御飯を食べています。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 14
+      }
+    ]
+  },
+  "n3-22-vocabulary-21": {
+    "prompt": "21.わかくても、重い病気になることはあります。",
+    "underlines": [
+      {
+        "start": 3,
+        "end": 8
+      }
+    ]
+  },
+  "n3-22-vocabulary-38": {
+    "prompt": "38.会議の為の資料を前もってコピーしておく。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 15
+      }
+    ]
+  },
+  "n3-22-vocabulary-39": {
+    "prompt": "39.交差点でいきなり自転車が飛び出してきたので驚いた。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 11
+      }
+    ]
+  },
+  "n3-22-vocabulary-40": {
+    "prompt": "40.健康には常に注意を払っている。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 9
+      }
+    ]
+  },
+  "n3-22-vocabulary-41": {
+    "prompt": "41.お腹がすいたので、ピザを配達してもらおう。",
+    "underlines": [
+      {
+        "start": 15,
+        "end": 19
+      }
+    ]
+  },
+  "n3-22-vocabulary-42": {
+    "prompt": "42.台風が近づき、ますます風が強くなってきた。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 14
+      }
+    ]
+  },
+  "n3-22-vocabulary-43": {
+    "prompt": "43.たぶん、彼は来ないだろう",
+    "underlines": [
+      {
+        "start": 3,
+        "end": 6
+      }
+    ]
+  },
+  "n3-22-vocabulary-44": {
+    "prompt": "44.この本は何回読んでも、内容がまったく理解出来ない。",
+    "underlines": [
+      {
+        "start": 17,
+        "end": 21
+      }
+    ]
+  },
+  "n3-22-grammar-19": {
+    "prompt": "19.朝からお腹がいたいですので、午後は病院に行こうと思います。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 12
+      }
+    ]
+  },
+  "n3-22-grammar-21": {
+    "prompt": "21.わかくても、重い病気になることはあります。",
+    "underlines": [
+      {
+        "start": 3,
+        "end": 8
+      }
+    ]
+  },
+  "n3-23-vocabulary-1": {
+    "prompt": "［１］ サッカーの日本代表に選ばれた。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 18
+      }
+    ]
+  },
+  "n3-23-vocabulary-2": {
+    "prompt": "［2］ 料金は降りる時には払ってください。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 10
+      }
+    ]
+  },
+  "n3-23-vocabulary-3": {
+    "prompt": "［3］ 関係者以外入らないでください。",
+    "underlines": [
+      {
+        "start": 4,
+        "end": 7
+      }
+    ]
+  },
+  "n3-23-vocabulary-4": {
+    "prompt": "[4] 確認ボタンを押します。",
+    "underlines": [
+      {
+        "start": 4,
+        "end": 6
+      }
+    ]
+  },
+  "n3-23-vocabulary-5": {
+    "prompt": "[5] ドアの横にスイッチがあります。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 8
+      }
+    ]
+  },
+  "n3-23-vocabulary-6": {
+    "prompt": "[6] 高速道 から飛行場がみえます。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 13
+      }
+    ]
+  },
+  "n3-23-vocabulary-7": {
+    "prompt": "[7] ご協力ありがとうがざいます。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 7
+      }
+    ]
+  },
+  "n3-23-vocabulary-8": {
+    "prompt": "[8]  自動販売機で飲み物を買う。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 9
+      }
+    ]
+  },
+  "n3-23-vocabulary-9": {
+    "prompt": "［9］ 道に迷 って困 っている人をたすけてあげました。",
+    "underlines": [
+      {
+        "start": 18,
+        "end": 22
+      }
+    ]
+  },
+  "n3-23-vocabulary-10": {
+    "prompt": "[10] 社長は間違い をみとめた。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 17
+      }
+    ]
+  },
+  "n3-23-vocabulary-11": {
+    "prompt": "[11] バスの料金をはらう。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 14
+      }
+    ]
+  },
+  "n3-23-vocabulary-12": {
+    "prompt": "[12] たくはいで送る。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 9
+      }
+    ]
+  },
+  "n3-23-vocabulary-13": {
+    "prompt": "［１３］ 子供を両親にあずける。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 15
+      }
+    ]
+  },
+  "n3-23-vocabulary-14": {
+    "prompt": "[14]おれいのははがきを書いた。",
+    "underlines": [
+      {
+        "start": 4,
+        "end": 7
+      }
+    ]
+  },
+  "n3-23-vocabulary-26": {
+    "prompt": "[26] 田中さんは中村さんと交際 しているらしい。。",
+    "underlines": [
+      {
+        "start": 15,
+        "end": 20
+      }
+    ]
+  },
+  "n3-23-vocabulary-27": {
+    "prompt": "[27] むだを省 いて、できるだけ貯金 をしましょう。。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 12
+      }
+    ]
+  },
+  "n3-23-vocabulary-28": {
+    "prompt": "[28]  よっぱらいが大声を出して、そうぞうしい。",
+    "underlines": [
+      {
+        "start": 19,
+        "end": 25
+      }
+    ]
+  },
+  "n3-23-vocabulary-29": {
+    "prompt": "[29] 今年は花柄 のスカートがはやっている。",
+    "underlines": [
+      {
+        "start": 17,
+        "end": 23
+      }
+    ]
+  },
+  "n3-23-grammar-14": {
+    "prompt": "[14] 料理の本に ＿＿＿ ＿＿＿    ★   ＿＿＿ おいしくない。",
+    "underlines": [
+      {
+        "start": 22,
+        "end": 23
+      }
+    ]
+  },
+  "n3-23-grammar-15": {
+    "prompt": "[15] 資料 の ＿＿＿ ＿＿＿    ★   ＿＿＿ 開 けなかった。",
+    "underlines": [
+      {
+        "start": 21,
+        "end": 22
+      }
+    ]
+  },
+  "n3-23-grammar-16": {
+    "prompt": "[16] A： 「さがしていた本、見つかりましたか。」 B： 「図書館にもなくて困っていたんですが、渡辺 先生が ＿＿＿ ＿＿＿ ★   ＿＿＿ ことができました。」",
+    "underlines": [
+      {
+        "start": 65,
+        "end": 66
+      }
+    ]
+  },
+  "n3-23-grammar-17": {
+    "prompt": "[17] 京都へ ＿＿＿ ＿＿＿    ★   ＿＿＿ ほうが早いですよ 。",
+    "underlines": [
+      {
+        "start": 20,
+        "end": 21
+      }
+    ]
+  },
+  "n3-23-grammar-18": {
+    "prompt": "[18] 私が昨日から ＿＿＿ ＿＿＿    ★   ＿＿＿ です。",
+    "underlines": [
+      {
+        "start": 23,
+        "end": 24
+      }
+    ]
+  },
+  "n3-23-grammar-29": {
+    "prompt": "[29]  ①古典 を読むためにはその時代についての知識 が必要だとあるが、 どうしてか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 33
+      }
+    ]
+  },
+  "n3-23-grammar-30": {
+    "prompt": "[30] この文章では、②古典 を読む楽しさとはどのようなことだと言っているか。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 22
+      }
+    ]
+  },
+  "n3-24-vocabulary-1": {
+    "prompt": "［１］ 日本語がわからなくて困っています。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 17
+      }
+    ]
+  },
+  "n3-24-vocabulary-2": {
+    "prompt": "［2］ 日本語の教材をさがす。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 10
+      }
+    ]
+  },
+  "n3-24-vocabulary-3": {
+    "prompt": "［3］ なるべく早くお召し上がりください。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 16
+      }
+    ]
+  },
+  "n3-24-vocabulary-4": {
+    "prompt": "[4] 冷房が強すぎます。",
+    "underlines": [
+      {
+        "start": 4,
+        "end": 6
+      }
+    ]
+  },
+  "n3-24-vocabulary-5": {
+    "prompt": "[5] 数を数えてください。",
+    "underlines": [
+      {
+        "start": 4,
+        "end": 5
+      }
+    ]
+  },
+  "n3-24-vocabulary-6": {
+    "prompt": "[6] 録音 された伝言 を再生する。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 16
+      }
+    ]
+  },
+  "n3-24-vocabulary-7": {
+    "prompt": "[7] 携帯電話は便利です。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 11
+      }
+    ]
+  },
+  "n3-24-vocabulary-8": {
+    "prompt": "[8]  品物が入荷したら、お知らせします。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 10
+      }
+    ]
+  },
+  "n3-24-vocabulary-9": {
+    "prompt": "［9］ 言葉 の意味をしらべる。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 15
+      }
+    ]
+  },
+  "n3-24-vocabulary-10": {
+    "prompt": "[10] じっけん結果を報告する。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 9
+      }
+    ]
+  },
+  "n3-24-vocabulary-11": {
+    "prompt": "[11] 明日は北風がふいて、寒くなるでしょう。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 14
+      }
+    ]
+  },
+  "n3-24-vocabulary-12": {
+    "prompt": "[12] 地球おんだんかについて話し合う。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 12
+      }
+    ]
+  },
+  "n3-24-vocabulary-13": {
+    "prompt": "［１３］ 週末は全国的にはれるでしょう。",
+    "underlines": [
+      {
+        "start": 12,
+        "end": 15
+      }
+    ]
+  },
+  "n3-24-vocabulary-14": {
+    "prompt": "[14]これはなんというくだものです。",
+    "underlines": [
+      {
+        "start": 12,
+        "end": 16
+      }
+    ]
+  },
+  "n3-24-vocabulary-26": {
+    "prompt": "[26] 紙のサイズを定規 で測る。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 13
+      }
+    ]
+  },
+  "n3-24-vocabulary-27": {
+    "prompt": "[27] 大学の学費は年々高くなる。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 10
+      }
+    ]
+  },
+  "n3-24-vocabulary-28": {
+    "prompt": "[28]  不要なメールを消した。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 16
+      }
+    ]
+  },
+  "n3-24-vocabulary-29": {
+    "prompt": "[29] 工事現場の仕事はきつい。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 16
+      }
+    ]
+  },
+  "n3-24-vocabulary-30": {
+    "prompt": "[30]  授業をサボっていたので、勉強の内容がわからない。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 13
+      }
+    ]
+  },
+  "n3-24-grammar-14": {
+    "prompt": "[14]  ＿＿＿ ＿＿＿    ★   ＿＿＿ 、子供が熱 を出すんだから。",
+    "underlines": [
+      {
+        "start": 17,
+        "end": 18
+      }
+    ]
+  },
+  "n3-24-grammar-15": {
+    "prompt": "[15] 旅行 ＿＿＿ ＿＿＿    ★   ＿＿＿ が、国内 にも素晴 らしい所 がたくさんある のに。",
+    "underlines": [
+      {
+        "start": 19,
+        "end": 20
+      }
+    ]
+  },
+  "n3-24-grammar-16": {
+    "prompt": "[16] A： 「最近の若者は、とってもおしゃれになったね。」 B： 「うん。 ＿＿＿ ＿＿＿   ★   ＿＿＿ も、たくさんあるね。」",
+    "underlines": [
+      {
+        "start": 50,
+        "end": 51
+      }
+    ]
+  },
+  "n3-24-grammar-17": {
+    "prompt": "[17] 一生 ＿＿＿ ＿＿＿    ★   ＿＿＿ 大金 が手に入った。",
+    "underlines": [
+      {
+        "start": 19,
+        "end": 20
+      }
+    ]
+  },
+  "n3-24-grammar-18": {
+    "prompt": "[18] 限 りある資源 を守 るために、 一人一人 が ＿＿＿ ＿＿＿    ★   ＿＿＿ 。",
+    "underlines": [
+      {
+        "start": 40,
+        "end": 41
+      }
+    ]
+  },
+  "n3-24-grammar-34": {
+    "prompt": "[34] ①息 が詰 まること とは、どういうことか。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 15
+      }
+    ]
+  },
+  "n3-24-grammar-35": {
+    "prompt": "[35]  ②あなたはどうしますか とあるが、筆者はどうすると思っているか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 17
+      }
+    ]
+  },
+  "n3-24-grammar-37": {
+    "prompt": "[37]  ④必ずマイナス面があり とあるが、筆者によると、どういうマイナス面があるか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 17
+      }
+    ]
+  },
+  "n3-25-vocabulary-1": {
+    "prompt": "［1］ 山田さんはクラスの代表に選 ばれた。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 15
+      }
+    ]
+  },
+  "n3-25-vocabulary-2": {
+    "prompt": "［2］ 北海道のきれいな川を守りたいです。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 16
+      }
+    ]
+  },
+  "n3-25-vocabulary-3": {
+    "prompt": "［3］ 仕事がなくて、生活が苦しいです。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 17
+      }
+    ]
+  },
+  "n3-25-vocabulary-4": {
+    "prompt": "[4] 日本では11 月13 日は「文化の日」という祝日です。",
+    "underlines": [
+      {
+        "start": 26,
+        "end": 28
+      }
+    ]
+  },
+  "n3-25-vocabulary-5": {
+    "prompt": "[5] ここは駐車禁止です。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 9
+      }
+    ]
+  },
+  "n3-25-vocabulary-6": {
+    "prompt": "[6] チューインガムは紙に包んで捨ててましょう。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 17
+      }
+    ]
+  },
+  "n3-25-vocabulary-7": {
+    "prompt": "[7] 食堂はまだ準備中です。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 11
+      }
+    ]
+  },
+  "n3-25-vocabulary-8": {
+    "prompt": "[8] 医療関係の仕事をします。",
+    "underlines": [
+      {
+        "start": 4,
+        "end": 6
+      }
+    ]
+  },
+  "n3-25-vocabulary-9": {
+    "prompt": "［9］ 困 っているときに、先生にたすけていただきました。",
+    "underlines": [
+      {
+        "start": 17,
+        "end": 21
+      }
+    ]
+  },
+  "n3-25-vocabulary-10": {
+    "prompt": "[10] このエレベーターはていいん9 名でし。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 18
+      }
+    ]
+  },
+  "n3-25-vocabulary-11": {
+    "prompt": "[11] この手紙はそくたつでお願いします。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 14
+      }
+    ]
+  },
+  "n3-25-vocabulary-12": {
+    "prompt": "[12] くうこうまでリムジンバスで行きました。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 9
+      }
+    ]
+  },
+  "n3-25-vocabulary-14": {
+    "prompt": "[14] きかいでも精算できます。",
+    "underlines": [
+      {
+        "start": 5,
+        "end": 8
+      }
+    ]
+  },
+  "n3-25-vocabulary-26": {
+    "prompt": "[26] 次々 に新しいゲームが作られる。",
+    "underlines": [
+      {
+        "start": 3,
+        "end": 7
+      }
+    ]
+  },
+  "n3-25-vocabulary-27": {
+    "prompt": "[27] 今年のお正月は家でのんびり過ごした。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 18
+      }
+    ]
+  },
+  "n3-25-vocabulary-28": {
+    "prompt": "[28]  コピー用紙がもうすぐなくなるから、買っておこう。",
+    "underlines": [
+      {
+        "start": 16,
+        "end": 20
+      }
+    ]
+  },
+  "n3-25-vocabulary-29": {
+    "prompt": "[29] とてもおそろしい経験をした。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 13
+      }
+    ]
+  },
+  "n3-25-vocabulary-30": {
+    "prompt": "[30]  私は妻と一緒に通勤しています。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 17
+      }
+    ]
+  },
+  "n3-25-grammar-14": {
+    "prompt": "[14]  先週＿＿＿ ＿＿＿    ★   ＿＿＿から 、行ってみませんか。",
+    "underlines": [
+      {
+        "start": 19,
+        "end": 20
+      }
+    ]
+  },
+  "n3-25-grammar-15": {
+    "prompt": "[15] 彼は、この大学が＿＿＿ ＿＿＿    ★   ＿＿＿ 、卒業した。",
+    "underlines": [
+      {
+        "start": 24,
+        "end": 25
+      }
+    ]
+  },
+  "n3-25-grammar-16": {
+    "prompt": "[16] B： 何よりも花が好きな彼女は、 ＿＿＿ ＿＿＿   ★   ＿＿＿ 何 も要らないと言う。",
+    "underlines": [
+      {
+        "start": 32,
+        "end": 33
+      }
+    ]
+  },
+  "n3-25-grammar-17": {
+    "prompt": "[17] 週末も出勤している＿＿＿ ＿＿＿    ★   ＿＿＿ ではなさそうだ から、誘 うのはやめましょう。",
+    "underlines": [
+      {
+        "start": 25,
+        "end": 26
+      }
+    ]
+  },
+  "n3-25-grammar-18": {
+    "prompt": "[18] 17 世紀に書かれたこの小説は、 当時の ＿＿＿ ＿＿＿    ★   ＿ ＿＿ 大変貴重 なものとなっている。",
+    "underlines": [
+      {
+        "start": 37,
+        "end": 38
+      }
+    ]
+  },
+  "n3-25-grammar-29": {
+    "prompt": "[29]  筆者はなぜ②「おじいさんに、とても申し訳ない気がした」のか。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 32
+      }
+    ]
+  },
+  "n3-26-vocabulary-1": {
+    "prompt": "［1］  その袋の中には何が入っているんですか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 8
+      }
+    ]
+  },
+  "n3-26-vocabulary-2": {
+    "prompt": "［2］  花火が爆発 して、子供を含む5 人がけがをした。",
+    "underlines": [
+      {
+        "start": 17,
+        "end": 19
+      }
+    ]
+  },
+  "n3-26-vocabulary-3": {
+    "prompt": "［3］  これから 食事の 用意を します。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 16
+      }
+    ]
+  },
+  "n3-26-vocabulary-4": {
+    "prompt": "［4］  メールにファイルを添付して送った。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 16
+      }
+    ]
+  },
+  "n3-26-vocabulary-5": {
+    "prompt": "［5］  業績 は大幅 に上向 いている。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 11
+      }
+    ]
+  },
+  "n3-26-vocabulary-6": {
+    "prompt": "［6］  あの自転車に乗った老人はそふです。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 16
+      }
+    ]
+  },
+  "n3-26-vocabulary-7": {
+    "prompt": "［7］  台風は発達しながら北上 を続けている。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 10
+      }
+    ]
+  },
+  "n3-26-vocabulary-8": {
+    "prompt": "［8］  この薬は副作用に気をつけてください。",
+    "underlines": [
+      {
+        "start": 9,
+        "end": 12
+      }
+    ]
+  },
+  "n3-26-vocabulary-9": {
+    "prompt": "［9］  小学校で地震 のひなん訓練 が行 われた。",
+    "underlines": [
+      {
+        "start": 13,
+        "end": 16
+      }
+    ]
+  },
+  "n3-26-vocabulary-10": {
+    "prompt": "［10］ わたしの しゅみは まんがを よむ ことです。",
+    "underlines": [
+      {
+        "start": 15,
+        "end": 18
+      }
+    ]
+  },
+  "n3-26-vocabulary-11": {
+    "prompt": "［11］ あさ 起きて、公園を さんぽしました。",
+    "underlines": [
+      {
+        "start": 16,
+        "end": 19
+      }
+    ]
+  },
+  "n3-26-vocabulary-12": {
+    "prompt": "［12］ 私の すんで いる 町は 静かです。",
+    "underlines": [
+      {
+        "start": 8,
+        "end": 11
+      }
+    ]
+  },
+  "n3-26-vocabulary-13": {
+    "prompt": "［13］ 毎日1 時間、漢字の勉強をするようにつとめている。",
+    "underlines": [
+      {
+        "start": 23,
+        "end": 27
+      }
+    ]
+  },
+  "n3-26-vocabulary-14": {
+    "prompt": "［14］ あなたは宇宙 は永遠 につづくと思いますか。",
+    "underlines": [
+      {
+        "start": 17,
+        "end": 20
+      }
+    ]
+  },
+  "n3-26-vocabulary-26": {
+    "prompt": "［26］ 先月から客がさっぱり来なくなった。",
+    "underlines": [
+      {
+        "start": 11,
+        "end": 15
+      }
+    ]
+  },
+  "n3-26-vocabulary-27": {
+    "prompt": "［27］ 初めて車を運転したときは緊張 した。",
+    "underlines": [
+      {
+        "start": 17,
+        "end": 19
+      }
+    ]
+  },
+  "n3-26-vocabulary-28": {
+    "prompt": "［28］ 会社側は労働組合 の要求 を飲んだ。",
+    "underlines": [
+      {
+        "start": 19,
+        "end": 22
+      }
+    ]
+  },
+  "n3-26-vocabulary-29": {
+    "prompt": "［29］ 彼女の話を聞いて、もっともだと思います。",
+    "underlines": [
+      {
+        "start": 14,
+        "end": 18
+      }
+    ]
+  },
+  "n3-26-vocabulary-30": {
+    "prompt": "［30］ パソコンでメールの文章をプリントアウトした。",
+    "underlines": [
+      {
+        "start": 17,
+        "end": 24
+      }
+    ]
+  },
+  "n3-26-grammar-14": {
+    "prompt": "［14］ 事故は急いでいた歩行者が信号が__ __ _★_ __ 交差点を飛び出した ことが原因だった。",
+    "underlines": [
+      {
+        "start": 27,
+        "end": 28
+      }
+    ]
+  },
+  "n3-26-grammar-15": {
+    "prompt": "［15］ 友達から借りた本はとっくに__ __ _★_ __ もらっていないと言われ て驚 いた。",
+    "underlines": [
+      {
+        "start": 25,
+        "end": 26
+      }
+    ]
+  },
+  "n3-26-grammar-16": {
+    "prompt": "［16］ そんなことも分からない__ __ _★_ __ いられなかった。",
+    "underlines": [
+      {
+        "start": 23,
+        "end": 24
+      }
+    ]
+  },
+  "n3-26-grammar-17": {
+    "prompt": "［17］ 一度はあきらめだが、まだ可能性は__ __ _★_ __ ので、もう一度や ってみることにした。",
+    "underlines": [
+      {
+        "start": 28,
+        "end": 29
+      }
+    ]
+  },
+  "n3-26-grammar-18": {
+    "prompt": "［18］ お顔は何度もテレビで__ __ _★_ __ のは今度がはじめてです。",
+    "underlines": [
+      {
+        "start": 22,
+        "end": 23
+      }
+    ]
+  },
+  "n3-26-grammar-27": {
+    "prompt": "［27］ 筆者の言う喜びは何によるものか。",
+    "underlines": [
+      {
+        "start": 10,
+        "end": 12
+      }
+    ]
+  },
+  "n3-26-grammar-28": {
+    "prompt": "［28］ ①そういうことはどんなことか。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 12
+      }
+    ]
+  },
+  "n3-26-grammar-29": {
+    "prompt": "［29］ ②一番楽な従来どおりのやり方とはどんなやり方か。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 19
+      }
+    ]
+  },
+  "n3-26-grammar-31": {
+    "prompt": "［31］ ①それは何を指しているか。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 8
+      }
+    ]
+  },
+  "n3-26-grammar-32": {
+    "prompt": "［32］ ②ミッシング・リンクのようなものはどんなことを表しているか。",
+    "underlines": [
+      {
+        "start": 6,
+        "end": 21
+      }
+    ]
+  },
+  "n3-26-grammar-34": {
+    "prompt": "［34］ ①「そうした空間」とあるが、どんな空間か。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 13
+      }
+    ]
+  },
+  "n3-26-grammar-35": {
+    "prompt": "［35］ ②「書斎の本当の姿」とあるが、筆者の考える書斎とはどんなものか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 14
+      }
+    ]
+  },
+  "n3-26-grammar-37": {
+    "prompt": "［37］ ④「そう納得 すれば」とあるが、だれが納得するのか。",
+    "underlines": [
+      {
+        "start": 7,
+        "end": 15
+      }
+    ]
+  }
+}

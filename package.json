@@ -9,6 +9,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "dev": "vite",
+    "prebuild": "node scripts/practice-furigana.test.mjs",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
+    "kuromoji": "^0.1.2",
     "prettier": "^3.9.6",
     "typescript": "^7.0.2"
   }

@@ -1,6 +1,8 @@
 import React from "react";
 
 export default function CloudStatus({ cloud }) {
+  const isGoogleEditor = cloud.isEditor && cloud.user?.providerData?.some(provider => provider.providerId === "google.com");
+  if (!isGoogleEditor) return null;
   return (
     <section className="cloud-status" aria-label="Cloud storage">
       <div>
@@ -18,29 +20,10 @@ export default function CloudStatus({ cloud }) {
                   : "Shared study content · view only"}
         </strong>
         {cloud.user && <p>Signed in as {cloud.user.email}</p>}
-        {cloud.user && !cloud.isEditor && (
-          <p>
-            Your account has no editing permission. Your Firebase user ID:{" "}
-            <code>{cloud.user.uid}</code>
-          </p>
-        )}
         <p role="status">{cloud.message}</p>
         {cloud.error && <p role="alert">{cloud.error}</p>}
       </div>
       <div className="cloud-actions">
-        {cloud.user ? (
-          <button type="button" onClick={cloud.logOut} disabled={cloud.saving}>
-            Sign Out
-          </button>
-        ) : (
-          <button
-            type="button"
-            onClick={cloud.signIn}
-            disabled={cloud.authBusy}
-          >
-            {cloud.authBusy ? "Signing in…" : "Owner Sign In with Google"}
-          </button>
-        )}
         {cloud.error && (
           <button type="button" onClick={cloud.retry} disabled={cloud.saving}>
             Retry Connection

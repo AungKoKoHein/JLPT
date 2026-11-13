@@ -2,7 +2,6 @@ export const studyRoutes = {
   Vocab: "/vocab",
   Grammar: "/grammar",
   Kanji: "/kanji",
-  Listening: "/listening",
   Reading: "/reading",
   "Mock exam": "/mock-exam",
 };
@@ -11,7 +10,7 @@ export function studyTabFromPath(pathname) {
   const level = levelFromPath(pathname);
   const path = pathname.replace(/^\/n[23](?=\/|$)/, "").replace(/\/+$/, "") || "/";
   const routes = routesForLevel(level);
-  return Object.keys(routes).find((tab) => routes[tab] === path) || "Vocab";
+  return Object.keys(routes).find((tab) => routes[tab] === `/${level}${path}`) || "Vocab";
 }
 
 export function levelFromPath(pathname) {

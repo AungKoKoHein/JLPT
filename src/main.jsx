@@ -1,4 +1,4 @@
-import { displayKanji } from "./studyText.js";
+import { displayKanji, hideReadings } from "./studyText.js";
 import useShuffledCards from "./useShuffledCards.js";
 import DeleteDialog from "./DeleteDialog.jsx";
 import { removeChapter, removeSubchapter } from "./deleteContainers.js";
@@ -23,12 +23,10 @@ import supplementalGrammarExamples from "./grammarSupplementalExamples.js";
 import MockExam from "./MockExam.jsx";
 import ReadingPractice from "./ReadingPractice.jsx";
 import Practice from "./Practice.jsx";
+import StudyControlsHost from "./StudyControlsHost.jsx";
 import StudyAccess from "./StudyAccess.jsx";
+import { StudyAccountControls } from "./StudyAccount.jsx";
 
-const hideReadings = (value = "") =>
-  value
-    .replace(/（[^）]*）/g, "")
-    .replace(/\([^)]*\)/g, "");
 const chapterTitle = (
   title,
   showMyanmar,
@@ -140,7 +138,7 @@ function GrammarDetails({ card, showReadings, showKanji, showMyanmar, showJapane
     {showExamples && visibleExamples.map((example, index) => (
       <div className="grammar-example" key={index}>
         {showJapanese && example.japanese && <p lang="ja">{display(example.japanese)}</p>}
-        {showMyanmar && example.myanmar && <p lang="my">{display(example.myanmar)}</p>}
+        {showMyanmar && example.myanmar && <p lang="my">{example.myanmar}</p>}
       </div>
     ))}
     {showMyanmar && card.grammarExplanation && <p className="grammar-explanation" lang="my">{card.grammarExplanation}</p>}
@@ -207,7 +205,7 @@ function Flashcard({
                 Myanmar Explanation
               </span>
               <span className="mm sentence" lang="my">
-                {display(card.exampleMyanmar) ||
+                {card.exampleMyanmar ||
                   "အထက်ပါ ဝါကျတွင် စကားလုံး၏ အဓိပ္ပာယ်နှင့် အသုံးပြုပုံကို လေ့လာပါ။"}
               </span>
             </>
@@ -240,7 +238,7 @@ function VocabularyBook({ entries, showReadings, showKanji, showMyanmar, showJap
             <p className="book-example" lang="ja">e.g. {display(card.exampleJapanese)}</p>
           )}
           {showExamples && showMyanmar && card.exampleMyanmar && (
-            <p className="book-translation" lang="my">{display(card.exampleMyanmar)}</p>
+            <p className="book-translation" lang="my">{card.exampleMyanmar}</p>
           )}
           </>}
           {manageMode && isEditor && (
@@ -502,7 +500,6 @@ const baseStudyTabs = [
   "Vocab",
   "Grammar",
   "Kanji",
-  "Listening",
   "Reading",
   "Mock exam",
 ];
@@ -973,11 +970,11 @@ function App({ level }) {
       data-show-japanese={showJapanese}
       data-show-sidebar={showSidebar}
     >
-      <header>
-        <div>
-          <p className="eyebrow" lang="ja">
+      <header className="study-page-header">
+        <div className="study-page-heading">
+          <div className="study-header-topline"><p className="eyebrow" lang="ja">
             自分用学習ノート
-          </p>
+          </p><StudyAccountControls /></div>
           <h1>JLPT {level.toUpperCase()}</h1>
           <nav className="level-switch" aria-label="JLPT level">
             {["n3", "n2"].map((item) => <a key={item} href={routesForLevel(item)[studyTab] || routesForLevel(item).Vocab} aria-current={item === level ? "page" : undefined}>JLPT {item.toUpperCase()}</a>)}
@@ -1312,7 +1309,7 @@ function App({ level }) {
               </>
             ) : (
               <div className="empty search-empty">
-                <p>{studyTab === "Grammar" && !userChapters.length ? "No grammar chapters yet. An owner can use + Add Grammar to create the first chapter." : !userChapters.length ? `No ${studyLabel} chapters yet. The owner can use New to add the first chapter.` : "No searched record found."}</p>
+                <p>{!userChapters.length ? `No ${studyLabel} chapters yet.` : "No searched record found."}</p>
               </div>
             )}
           </article>
@@ -1376,7 +1373,7 @@ function App({ level }) {
                 </section>
               ) : (
                 <div className="empty study-placeholder">
-                  <p>No {label.toLowerCase()} cards yet. Use “+ Add {label}” above to create one.</p>
+                  <p>No {label.toLowerCase()} cards yet.</p>
                 </div>
               )}
             </article>
@@ -1388,26 +1385,26 @@ function App({ level }) {
         id={`study-panel-${studyTabs.indexOf("Mock exam")}`}
         aria-labelledby={`study-tab-${studyTabs.indexOf("Mock exam")}`}
         tabIndex={0}
-      ><MockExam /></section>}
+      ><MockExam showReadings={showReadings} showKanji={showKanji} /></section>}
       {level === "n3" && studyTab === "Reading" && <section
         role="tabpanel"
         id={`study-panel-${studyTabs.indexOf("Reading")}`}
         aria-labelledby={`study-tab-${studyTabs.indexOf("Reading")}`}
         tabIndex={0}
-      ><ReadingPractice /></section>}
+      ><ReadingPractice showReadings={showReadings} showKanji={showKanji} /></section>}
       {level === "n3" && studyTab === "Practice" && <section
         role="tabpanel"
         id={`study-panel-${studyTabs.indexOf("Practice")}`}
         aria-labelledby={`study-tab-${studyTabs.indexOf("Practice")}`}
         tabIndex={0}
-      ><Practice isEditor={cloud.isEditor} /></section>}
+      ><Practice isEditor={cloud.isEditor} showReadings={showReadings} showKanji={showKanji} /></section>}
       {deleteType && cloud.isEditor && <DeleteDialog key={`${studyTab}-${deleteType}`} type={deleteType} options={deletionOptions} selectedId={deleteId} onSelect={setDeleteId} onClose={() => setDeleteType(null)} onDelete={deleteSelected} saving={cloud.saving} canDelete={cloud.canEdit} error={cloud.error} />}
       {editor && cloud.isEditor && <ContentEditor saving={cloud.saving} canSave={cloud.canEdit} error={cloud.error || (!cloud.connected ? "Connection lost. Keep this form open and reconnect to save." : "")} editor={editor} setEditor={setEditor} chapterOptions={chapterOptions} groups={content.groups || []} studyTabs={studyTabs} onSave={saveContent} onClose={() => setEditor(null)} />}
       {["Vocab", "Grammar"].includes(studyTab) && selected && !isGlobalSearch && (tab === "exercises" || exerciseSection) && <button
         type="button" className="back-to-vocabulary"
         onClick={() => { setTab("vocabulary"); setExerciseSectionId(null); focusChapterContent(); }}
       >← Back to {studyTab === "Grammar" ? "Grammar" : "Vocabulary"}</button>}
-      <div className="study-controls" ref={controlsRef}>
+      <StudyControlsHost><div className="study-controls" ref={controlsRef}>
         {controlsOpen && (
           <div className="controls-panel" id="study-controls-panel">
             <p className="controls-title">Study View</p>
@@ -1491,6 +1488,7 @@ function App({ level }) {
           </button>
         </div>
       </div>
+      </StudyControlsHost>
     </main>
   );
 }

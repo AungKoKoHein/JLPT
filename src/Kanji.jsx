@@ -1,4 +1,4 @@
-import { displayKanji } from "./studyText.js";
+import { displayKanji, hideReadings } from "./studyText.js";
 import { kanjiExamples, kanjiExampleText } from "./kanjiContent.js";
 import { hasVisibleChapterContent } from "./chapterVisibility.js";
 import useShuffledCards from "./useShuffledCards.js";
@@ -52,7 +52,7 @@ const matchesSearch = (value, query) => {
   return normalizeSearchText(value).includes(q);
 };
 const displayText = (text, showReadings, showKanji = true) =>
-  displayKanji(showReadings ? text : text.replace(/（[^）]*）/g, ""), showKanji);
+  displayKanji(showReadings ? text : hideReadings(text), showKanji);
 
 function KanjiBookEntry({ card, showReadings, showKanji, showKanjiReadings, showMyanmar }) {
   const readings = card.readings?.length ? card.readings : [{ on: card.on, kun: card.kun }];

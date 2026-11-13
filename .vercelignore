@@ -1,0 +1,14 @@
+node_modules
+dist
+.git
+.firebase
+.migration-backups
+.tmp-python
+.agents
+.claude
+docs
+source
+firebase-debug.log
+.env*
+.codex
+.aws
