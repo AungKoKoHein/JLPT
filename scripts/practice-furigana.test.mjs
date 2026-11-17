@@ -9,13 +9,20 @@ import { archivePracticeSets } from "../src/mockExamArchivePractice.js";
 import { practiceText } from "../src/practiceText.js";
 import { hideReadings } from "../src/studyText.js";
 
+test("PDF spaces do not split compound verb readings", () => {
+  assert.equal(practiceText("引 き出 した", true), "引 き出（ひきだ） した");
+  const moving = "［3］ 今度引 っ越 すマンションは、家賃が今の二倍 だ。";
+  assert.ok(practiceText(moving, true).includes("引 っ越（ひっこ） す"));
+  assert.equal(practiceText("引 き出 した", false), "引 き出 した");
+});
+
 test("every bundled Reading, Practice and Mock Exam Japanese field has complete annotations", () => {
   let fields = 0;
   function visit(value) {
     if (typeof value === "string" && /\p{Script=Han}/u.test(value)) {
       fields++;
       assert.ok(readings[value], `Missing field: ${value}`);
-      const uncovered = readings[value].replace(/[\p{Script=Han}々〆ぁ-ゖァ-ヶー]+[（(][ぁ-ゖァ-ヶー]+[）)]/gu, "");
+      const uncovered = readings[value].replace(/[\p{Script=Han}々〆ぁ-ゖァ-ヶー \t\u3000]+[（(][ぁ-ゖァ-ヶー]+[）)]/gu, "");
       assert.doesNotMatch(uncovered, /\p{Script=Han}/u, `Uncovered kanji: ${readings[value]}`);
       assert.equal(practiceText(value, false), hideReadings(value), "OFF preserves the original text and spacing");
     } else if (Array.isArray(value)) value.forEach(visit);

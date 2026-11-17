@@ -35,7 +35,7 @@ const units = ['', 'いち', 'に', 'さん', 'よん', 'ご', 'ろく', 'しち
 function calendarReading(day) {
   return dayReadings[day] || `${day >= 30 ? 'さんじゅう' : day >= 20 ? 'にじゅう' : 'じゅう'}${units[day % 10]}にち`;
 }
-function annotate(text) {
+function annotateCompact(text) {
   let result = "";
   let cursor = 0;
   let tokenCursor = 0;
@@ -75,6 +75,30 @@ function annotate(text) {
     cursor = position + word.length;
   }
   return result + text.slice(cursor);
+}
+// Tokenize whole Japanese words even when PDF layout inserts spaces inside them.
+// Restore those spaces after annotation so source text and underline offsets survive.
+function annotate(text) {
+  const spaces = new Map();
+  let compact = "";
+  for (let index = 0; index < text.length;) {
+    const gap = text.slice(index).match(/^[ \t\u3000]+/u)?.[0];
+    if (gap && /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\u30FC\u3005]$/u.test(compact)
+      && /^[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\u30FC\u3005]/u.test(text.slice(index + gap.length))) {
+      spaces.set(compact.length, gap);
+      index += gap.length;
+    } else compact += text[index++];
+  }
+  const annotated = annotateCompact(compact);
+  let result = "";
+  let visible = 0;
+  for (let index = 0; index < annotated.length;) {
+    const reading = annotated.slice(index).match(/^\uFF08[\u3041-\u3096\u30A1-\u30F6\u30FC]+\uFF09/u)?.[0];
+    if (reading) { result += reading; index += reading.length; continue; }
+    result += (spaces.get(visible) || "") + annotated[index++];
+    visible++;
+  }
+  return result;
 }
 function visit(value) {
   if (typeof value === "string" && han.test(value)) {

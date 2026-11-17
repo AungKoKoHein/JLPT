@@ -47,6 +47,14 @@ try {
   await until(`document.querySelectorAll('.mock-question-palette button').length===74`);
   assert.match(await evaluate(`document.querySelector('.mock-problem-instruction').textContent`), /(?:なさい|ください)/, 'Mock questions show full PDF section directions');
   assert.equal(await evaluate(`document.querySelectorAll('input[type=radio]').length`),4);
+  const examText = await evaluate(`document.querySelector('.mock-question-card').textContent`);
+  const underlineText = await evaluate(`[...document.querySelectorAll('.pdf-question-underline')].map(e => e.textContent)`);
+  await evaluate(`window.toggleReadings()`);
+  await new Promise(resolve => setTimeout(resolve, 150));
+  assert.equal(await evaluate(`document.querySelector('.mock-question-card').textContent`), examText, 'Question and choices ignore furigana toggle');
+  assert.deepEqual(await evaluate(`[...document.querySelectorAll('.pdf-question-underline')].map(e => e.textContent)`), underlineText, 'Underlined targets do not reveal readings');
+  await evaluate(`window.toggleReadings()`);
+
   await evaluate(`document.querySelector('input[type=radio]').click()`);
   assert.equal(await evaluate(`document.querySelectorAll('.mock-attempt .correct, .mock-attempt .incorrect').length`), 0, 'Exam selection does not reveal correctness');
   assert.equal(await evaluate(`document.querySelector('.mock-answer-list').disabled`), false, 'Exam answers remain editable');
@@ -69,9 +77,8 @@ try {
   assert.ok(await evaluate(`document.querySelector('.mock-reading-passage').textContent.length>50`));
   const originalReading = await evaluate(`document.querySelector('.mock-reading-passage').textContent`);
   await evaluate(`window.toggleReadings()`);
-  await until(`document.querySelector('.mock-reading-passage').textContent.includes('（')`);
-  const readingText = await evaluate(`document.querySelector('.mock-reading-passage').textContent`);
-  assert.doesNotMatch(readingText.replace(/[\p{Script=Han}々〆\p{Script=Hiragana}\p{Script=Katakana}ー]+[（(][\p{Script=Hiragana}\p{Script=Katakana}ー]+[）)]/gu, ''), /\p{Script=Han}/u, 'Mock reading also has complete furigana');
+  await new Promise(resolve => setTimeout(resolve, 150));
+  assert.equal(await evaluate(`document.querySelector('.mock-reading-passage').textContent`), originalReading, 'Mock passage ignores furigana toggle');
   await evaluate(`window.toggleReadings()`);
   await until(`document.querySelector('.mock-reading-passage').textContent===${JSON.stringify(originalReading)}`);
   await click('Finish exam');

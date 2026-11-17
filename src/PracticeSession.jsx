@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { practiceText } from "./practiceText.js";
 import QuestionPrompt from "./QuestionPrompt.jsx";
 import StarAnswer from "./StarAnswer.jsx";
+import PracticeExplanationDialog from "./PracticeExplanationDialog.jsx";
 import { practiceQuestionGroups, problemInstruction, scrollToQuestion, starLayout } from "./questionPresentation.js";
 
 export default function PracticeSession({ questions, title, showReadings = false, showKanji = true, autoScroll = false }) {
@@ -12,6 +13,8 @@ export default function PracticeSession({ questions, title, showReadings = false
   const [results, setResults] = useState(false);
   const [sourcePage, setSourcePage] = useState(null);
   const [arrangements, setArrangements] = useState({});
+  const [explanationOpen, setExplanationOpen] = useState(false);
+  const explanationButton = useRef(null);
   const questionCard = useRef(null);
   useEffect(() => { if (autoScroll) scrollToQuestion(questionCard.current); }, [autoScroll]);
   const question = questions[selected];
@@ -21,7 +24,7 @@ export default function PracticeSession({ questions, title, showReadings = false
   const isCorrect = answers[question.id] === question.answer;
   const scoreable = questions.filter((item) => Number.isInteger(item.answer));
   const displayedPage = question.sourcePages?.find((page) => page.number === (sourcePage ?? question.sourcePage)) || question.sourcePages?.[0];
-  const select = (index) => { setSelected(index); setResults(false); setSourcePage(null); };
+  const select = (index) => { setSelected(index); setResults(false); setSourcePage(null); setExplanationOpen(false); };
   const restart = () => { setAnswers({}); setChecked({}); setArrangements({}); select(0); scrollToQuestion(questionCard.current); };
 
   const compactChoices = !question.passage && !question.questionImage && question.choices.every(choice => choice.length <= 45);
@@ -63,7 +66,7 @@ export default function PracticeSession({ questions, title, showReadings = false
           {question.sourceIssue && <p className="reading-note" role="note">{question.sourceIssue}</p>}
           {question.passage && <div className="reading-passage-text" lang="ja">{display(question.passage)}</div>}
           {question.target && <p className="mock-target" lang="ja">{display(question.target)}</p>}
-          </div><div className="practice-response-panel"><div className="practice-response-heading"><strong>Choose your answer</strong><span>Practice mode</span></div>
+          </div><div className="practice-response-panel"><div className="practice-response-heading"><strong>Choose your answer</strong><div className="practice-response-tools"><button type="button" ref={explanationButton} className="secondary-button practice-explanation-button" disabled={!isChecked} aria-haspopup="dialog" onClick={() => setExplanationOpen(true)}>Show explanations</button><span className="practice-mode-badge">Practice mode</span></div></div>
           {starLayout(question.prompt) ? <StarAnswer key={question.id} question={question} value={arrangements[question.id]} disabled={isChecked} checked={isChecked} display={display} onChange={(order, answer) => { setArrangements(current => ({ ...current, [question.id]: order })); setAnswers(current => ({ ...current, [question.id]: answer })); if (order.every(item => item != null)) setChecked(current => ({ ...current, [question.id]: true })); }} /> : <fieldset className={`reading-answer-list${compactChoices ? " practice-short-answers" : ""}`} disabled={isChecked}>
             <legend>Select one answer</legend>
             {question.choices.map((choice, index) => <label key={index} className={`${answers[question.id] === index ? "selected" : ""}${isChecked && index === question.answer ? " correct" : ""}${isChecked && answers[question.id] === index && !isCorrect ? " incorrect" : ""}`}>
@@ -80,5 +83,6 @@ export default function PracticeSession({ questions, title, showReadings = false
         </section>
       </section>
     </div>}
+    {explanationOpen && <PracticeExplanationDialog returnFocusRef={explanationButton} key={question.id} question={question} selectedAnswer={answers[question.id]} display={display} onClose={() => setExplanationOpen(false)} />}
   </article>;
 }

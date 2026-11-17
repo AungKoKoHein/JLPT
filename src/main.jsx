@@ -461,8 +461,8 @@ function ContentEditor({ editor, setEditor, chapterOptions, groups, studyTabs, o
             <>
               <label>Kanji Front<TextField fullWidth variant="outlined" size="small" value={editor.kanji} onChange={(event) => set("kanji", event.target.value)} placeholder="漢字" required /></label>
               <label>Myanmar Meaning<TextField fullWidth variant="outlined" size="small" value={editor.meaning} onChange={(event) => set("meaning", event.target.value)} required /></label>
-              <label>On’yomi (音読み)<TextField fullWidth variant="outlined" size="small" value={editor.on} onChange={(event) => set("on", event.target.value)} placeholder="オンヨミ" /></label>
-              <label>Kun’yomi (訓読み)<TextField fullWidth variant="outlined" size="small" value={editor.kun} onChange={(event) => set("kun", event.target.value)} placeholder="くんよみ" /></label>
+              <label>(on)<TextField fullWidth variant="outlined" size="small" value={editor.on} onChange={(event) => set("on", event.target.value)} placeholder="オンヨミ" /></label>
+              <label>(kun)<TextField fullWidth variant="outlined" size="small" value={editor.kun} onChange={(event) => set("kun", event.target.value)} placeholder="くんよみ" /></label>
               <div className="grammar-example-editor">
                 {kanjiExamples(editor).map((example, index, examples) => <fieldset key={index}>
                   <legend>Example {index + 1}</legend>
