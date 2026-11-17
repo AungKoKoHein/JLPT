@@ -1,6 +1,6 @@
 # Kanji reading sources
 
-The character readings in `src/data/kanjiReadings.json` are derived from
+The character readings in `src/kanjiReadings.json` are derived from
 [KANJIDIC](https://www.edrdg.org/wiki/index.php/KANJIDIC_Project), copyright
 James William BREEN and the Electronic Dictionary Research and Development Group,
 via [David Gouveia's kanji-data](https://github.com/davidluzgouveia/kanji-data).
@@ -16,8 +16,8 @@ retained the approved textbook kun readings for 起. Dictionary readings can inc
 uncommon readings; they are character readings, not pronunciations of entire words.
 Hyphens retain the dictionary's prefix/suffix notation. No name readings are imported.
 
-To refresh the data, run `node scripts/import-kanji-readings.mjs`, followed by
-`npx prettier --write src/data/kanjiReadings.json` and the validation script.
+The runtime fallback is extracted from the character readings already stored in
+`migrations/n3-catalog.json`, with the requested readings for the character U+8D77.
 
 ## kanji-data MIT licence
 

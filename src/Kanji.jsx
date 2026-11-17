@@ -1,5 +1,5 @@
 import { displayKanji, hideReadings } from "./studyText.js";
-import { kanjiExamples, kanjiExampleText } from "./kanjiContent.js";
+import { kanjiExamples, kanjiExampleText, kanjiCardReadings } from "./kanjiContent.js";
 import { hasVisibleChapterContent } from "./chapterVisibility.js";
 import useShuffledCards from "./useShuffledCards.js";
 import { sortChapters, groupChapters } from "./chapterGroups.js";
@@ -55,12 +55,12 @@ const displayText = (text, showReadings, showKanji = true) =>
   displayKanji(showReadings ? text : hideReadings(text), showKanji);
 
 function KanjiBookEntry({ card, showReadings, showKanji, showKanjiReadings, showMyanmar }) {
-  const readings = card.readings?.length ? card.readings : [{ on: card.on, kun: card.kun }];
+  const readings = kanjiCardReadings(card);
   return <div className="kanji-study-card">
     <p className="kanji-study-heading"><strong lang="ja">{displayText(card.kanji, showReadings, showKanji)}</strong>{showMyanmar && <span lang="my"> - {card.meaning}</span>}</p>
     {showKanjiReadings && <div lang="ja" className="kanji-study-readings">
-      <p>音読み - {readings.map((reading) => reading.on).filter(Boolean).join("・") || "—"}</p>
-      <p>訓読み - {readings.map((reading) => reading.kun).filter(Boolean).join("・") || "—"}</p>
+      <p>(on) - {readings.map((reading) => reading.on).filter(Boolean).join("・") || "—"}</p>
+      <p>(kun) - {readings.map((reading) => reading.kun).filter(Boolean).join("・") || "—"}</p>
     </div>}
     <ol className="kanji-examples">
       {kanjiExamples(card).filter((example) => example.japanese || example.myanmar).map((example, index) => <li key={index}>
@@ -73,7 +73,7 @@ function KanjiBookEntry({ card, showReadings, showKanji, showKanjiReadings, show
 
 function KanjiFlashcard({ card, showReadings, showKanji, showKanjiReadings, showMyanmar }) {
   const [flipped, setFlipped] = useState(false);
-  const readings = card.readings?.length ? card.readings : [{ on: card.on, kun: card.kun }];
+  const readings = kanjiCardReadings(card);
   return (
     <button
       type="button"
@@ -89,9 +89,9 @@ function KanjiFlashcard({ card, showReadings, showKanji, showKanjiReadings, show
           {card.strokes && <span className="hint">{card.strokes} strokes</span>}
           {showKanjiReadings && readings.map((reading, index) => (
             <span className="kanji-reading-summary" key={index}>
-              <span className="label" data-japanese>On’yomi (音読み)</span>
+              <span className="label" data-japanese>(on)</span>
               <span className="example" lang="ja">{reading.on || "—"}</span>
-              <span className="label" data-japanese>Kun’yomi (訓読み)</span>
+              <span className="label" data-japanese>(kun)</span>
               <span className="example" lang="ja">{reading.kun || "—"}</span>
             </span>
           ))}

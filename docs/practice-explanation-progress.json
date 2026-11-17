@@ -1,0 +1,137 @@
+{
+  "timezone": "Asia/Rangoon",
+  "batchUnit": "one complete playable practice set",
+  "maximumBatchesPerDay": 4,
+  "minimumHoursBetweenRuns": 5,
+  "completed": [
+    "n3-1"
+  ],
+  "remaining": [
+    {
+      "id": "n3-3",
+      "questions": 72,
+      "choices": 288
+    },
+    {
+      "id": "n3-4",
+      "questions": 74,
+      "choices": 296
+    },
+    {
+      "id": "n3-5",
+      "questions": 71,
+      "choices": 284
+    },
+    {
+      "id": "n3-6",
+      "questions": 64,
+      "choices": 256
+    },
+    {
+      "id": "n3-7",
+      "questions": 69,
+      "choices": 276
+    },
+    {
+      "id": "n3-8",
+      "questions": 71,
+      "choices": 284
+    },
+    {
+      "id": "n3-9",
+      "questions": 70,
+      "choices": 280
+    },
+    {
+      "id": "n3-10",
+      "questions": 70,
+      "choices": 280
+    },
+    {
+      "id": "n3-11",
+      "questions": 69,
+      "choices": 276
+    },
+    {
+      "id": "n3-12",
+      "questions": 66,
+      "choices": 264
+    },
+    {
+      "id": "n3-13",
+      "questions": 65,
+      "choices": 260
+    },
+    {
+      "id": "n3-14",
+      "questions": 74,
+      "choices": 296
+    },
+    {
+      "id": "n3-15",
+      "questions": 73,
+      "choices": 292
+    },
+    {
+      "id": "n3-16",
+      "questions": 74,
+      "choices": 296
+    },
+    {
+      "id": "n3-18",
+      "questions": 72,
+      "choices": 288
+    },
+    {
+      "id": "n3-19",
+      "questions": 74,
+      "choices": 296
+    },
+    {
+      "id": "n3-20",
+      "questions": 74,
+      "choices": 296
+    },
+    {
+      "id": "n3-21",
+      "questions": 71,
+      "choices": 284
+    },
+    {
+      "id": "n3-22",
+      "questions": 50,
+      "choices": 200
+    },
+    {
+      "id": "n3-23",
+      "questions": 73,
+      "choices": 292
+    },
+    {
+      "id": "n3-24",
+      "questions": 71,
+      "choices": 284
+    },
+    {
+      "id": "n3-25",
+      "questions": 72,
+      "choices": 288
+    },
+    {
+      "id": "n3-26",
+      "questions": 74,
+      "choices": 296
+    }
+  ],
+  "scheduleStatus": "not-registered; this session has no cloud task scheduling capability",
+  "publication": "Cloud batches may commit and push to the baseline branch only; no merge to main or production deploy.",
+  "executionRequirement": "cloud; must run while the user PC is off",
+  "proposedDailyTimesMyanmar": [
+    "01:00",
+    "10:00",
+    "15:00",
+    "20:00"
+  ],
+  "firstProposedRunMyanmar": "2026-11-17T15:00:00+06:30",
+  "baselineBranch": "codex/jlpt-cloud-baseline-20261117"
+}

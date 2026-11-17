@@ -15,7 +15,10 @@ const extraExam = { id: "extra-mini", title: "Extra 24-question mini mock", ques
 const archiveQuestionPool = archivePracticeSets.flatMap((set) => set.questions);
 const examChoices = [extraExam, createDecemberExam(), ...archivePracticeSets, { id: "random-60", title: "Random mixed mock · 60 questions", questions: shuffledQuestions(archiveQuestionPool), sourceNote: "A shuffled selection from the four N3 practice sets." }];
 
-export default function MockExam({ showReadings = false, showKanji = true }) {
+export default function MockExam() {
+  // Exam questions must not reveal readings through the global study controls.
+  const showReadings = false;
+  const showKanji = true;
   const display = text => practiceText(text, showReadings, showKanji);
   const [mode, setMode] = useState("intro");
   const [activeExam, setActiveExam] = useState(examChoices[0]);

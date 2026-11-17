@@ -1,4 +1,22 @@
 import { annotateKanjiFurigana } from "./kanjiFurigana.js";
+import characterReadings from "./kanjiReadings.json" with { type: "json" };
+
+// Saved/imported cards may omit readings even when the bundled catalog has them.
+// Fill each character independently; never use a compound word's pronunciation.
+export function kanjiCardReadings(card) {
+  const characters = [...new Set(String(card.kanji ?? "").match(/\p{Script=Han}/gu) ?? [])];
+  const entries = card.readings?.length ? card.readings : characters.map((kanji) => ({
+    kanji,
+    ...(characters.length === 1 ? { on: card.on, kun: card.kun } : {}),
+  }));
+  return entries.map((entry) => {
+    const kanji = entry.kanji || (characters.length === 1 ? characters[0] : "");
+    const fallback = characterReadings[kanji] ?? {};
+    if (kanji === "起") return { ...entry, kanji, ...fallback };
+    const filled = (value, replacement) => value?.trim() && !/^[—–-]+$/.test(value.trim()) ? value : replacement || "";
+    return { ...entry, kanji, on: filled(entry.on, fallback.on), kun: filled(entry.kun, fallback.kun) };
+  });
+}
 
 // @ts-check
 /** @typedef {{ japanese: string, myanmar: string }} KanjiExample */
