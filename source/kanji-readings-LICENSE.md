@@ -1,5 +1,15 @@
 # Kanji reading sources
 
+The N2 Soumatome import in `migrations/n2-soumatome-catalog.json` also uses the
+locally available KANJIDIC2 XML for character on/kun readings and stroke counts.
+It retains dictionary prefix/suffix hyphens, removes okurigana separator dots,
+deduplicates readings, and excludes name readings. These character readings may
+include readings beyond those printed in the textbook. The same EDRDG attribution
+and CC BY-SA 4.0 terms below apply to this derived reading data.
+Myanmar character meanings and supplementary study-word selections were added
+for this app. The original scanned textbook pages are user-supplied reference
+material and are not covered by the dictionary licence.
+
 The character readings in `src/kanjiReadings.json` are derived from
 [KANJIDIC](https://www.edrdg.org/wiki/index.php/KANJIDIC_Project), copyright
 James William BREEN and the Electronic Dictionary Research and Development Group,

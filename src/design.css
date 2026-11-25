@@ -1,4 +1,9 @@
 /* Shared presentation for the study library and its focused workspaces. */
+.kanji-book-source { margin: 16px 0 24px; padding: 14px 18px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.kanji-book-source summary { cursor: pointer; font-weight: 600; }
+.kanji-book-source-pages { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px; margin-top: 16px; }
+.kanji-book-source-pages a { display: grid; gap: 8px; color: var(--accent); }
+.kanji-book-source-pages img { width: 100%; height: auto; border-radius: 6px; background: white; }
 :root {
   --canvas: #eaf2ee;
   --surface: #f7f2e7;

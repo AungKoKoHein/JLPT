@@ -33,6 +33,10 @@ const firstReading = (value = "") =>
  */
 export function kanjiExampleText(card, example) {
   let text = String(example?.japanese ?? "");
+  // An explicitly annotated study word already has its complete pronunciation.
+  // Adding the card character's kun reading inside it would corrupt the word.
+  if (example?.term && example?.reading && text === `${example.term}（${example.reading}）`) return text;
+  if (/^[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}々ー]+[（(][ぁ-ゖァ-ヶー]+[）)][ぁ-ゖ]*$/u.test(text)) return text;
   const candidates = [];
   const addCandidate = (term, reading) => {
     term = String(term ?? "").trim();

@@ -1,0 +1,66 @@
+{
+  "status": "validated-pending-publication",
+  "request": "Replace existing N2 Kanji with all Kanji from the supplied Soumatome PDF, using the existing N3 Kanji format and Myanmar meanings.",
+  "source": {
+    "path": "C:/Users/EMP_26018/Downloads/[studyjapanese.net]_Nihongo_SouMatome_N2-Kanji.pdf",
+    "pages": 177,
+    "type": "scanned images, no text layer",
+    "numberedKanjiEntries": 739,
+    "weeks": 8,
+    "regularLessonPdfPages": "For week index 0..7: PDF pages 13+16*week through 24+16*week.",
+    "additionalKanjiColumnPdfPages": [
+      27,
+      43,
+      59,
+      75,
+      91,
+      107,
+      123,
+      139
+    ],
+    "specialLayouts": "PDF pages 35 and 36 have Kanji tables on the right of large remote-control drawings. Pages 119 and 120 may also have alternate layouts and have been rendered for inspection. Weekly column pages have mixed multi-column layouts.",
+    "lastEntry": "739 並, PDF page 139"
+  },
+  "decisions": {
+    "meaningLanguage": "Myanmar, like N3 (explicit user answer)",
+    "replaceExistingN2Kanji": true,
+    "preserveOtherN2Sections": true,
+    "reuseExistingKanjiComponent": true,
+    "avoidUnreviewedOcr": true
+  },
+  "completed": [
+    "Verified all 739 unique numbered characters against the supplied scans, including all weekly columns.",
+    "Added Myanmar character meanings, KANJIDIC2 on/kun readings and stroke counts.",
+    "Reused 1128 matching translated vocabulary examples and added supplementary study words; 1377 examples total.",
+    "Added 739 reading exercises and 104 original scanned lesson/column page references.",
+    "Built 8 weekly chapters and 56 daily/column sections using the existing N3 Kanji component.",
+    "Corrected entry 223 from the older import: the supplied PDF has ?, not ?.",
+    "Replacement preview backs up current N2 content and preserves all 118 Grammar cards and non-Kanji exercises.",
+    "All 111 regression tests, typecheck, production build, and focused desktop/mobile browser checks passed."
+  ],
+  "artifacts": {
+    "verifiedFirstWeekManifest": "migrations/n2-soumatome-pages.json",
+    "ocrDirectory": ".migration-backups/n2-soumatome/",
+    "contactSheets": ".tmp-python/n2-kanji-week-1.png through .tmp-python/n2-kanji-week-8.png",
+    "otherRenders": ".tmp-python/n2-full-{27,35,36,43,59,75,91,107,119,120,123,139}.png",
+    "ocrScript": ".tmp-python/ocr-soumatome.mjs",
+    "ocrLibrary": ".tmp-python/ocr/node_modules/tesseract.js, local jpn and eng traineddata",
+    "pdfLibrary": ".tmp-python/pymupdf (add .tmp-python to Python sys.path)",
+    "dictionary": ".tmp-python/kanjidic2.xml (full character readings/meanings/strokes; inspect licence before deriving additional data)",
+    "catalog": "migrations/n2-soumatome-catalog.json",
+    "replacement": "migrations/replace-n2-soumatome.mjs",
+    "browserCheck": "scripts/n2-soumatome-browser.mjs"
+  },
+  "remaining": [
+    "Publish application/reference-page assets.",
+    "Apply the backed-up ETag-protected replacement to jlpt/n2/content.",
+    "Verify saved content and unchanged non-Kanji sections, then mark complete."
+  ],
+  "liveStateAtPause": {
+    "n2DatabaseModified": false,
+    "appSourceModifiedForN2": false,
+    "productionDeployedForN2": false,
+    "existingN2KanjiRemoved": false
+  },
+  "resume": "Finish publication and conditional N2 replacement; no further transcription is needed."
+}

@@ -1,0 +1,736 @@
+{
+  "source": "[studyjapanese.net]_Nihongo_SouMatome_N2-Kanji.pdf",
+  "status": "complete character transcription; readings, Myanmar meanings, and source examples pending",
+  "expectedTotal": 739,
+  "verifiedThrough": 739,
+  "pages": [
+    {
+      "pdfPage": 13,
+      "week": 1,
+      "day": 1,
+      "firstNumber": 1,
+      "kanji": "禁煙静危険関係"
+    },
+    {
+      "pdfPage": 14,
+      "week": 1,
+      "day": 1,
+      "firstNumber": 8,
+      "kanji": "落石飛駐捨遊泳"
+    },
+    {
+      "pdfPage": 15,
+      "week": 1,
+      "day": 2,
+      "firstNumber": 15,
+      "kanji": "喫非御常受付"
+    },
+    {
+      "pdfPage": 16,
+      "week": 1,
+      "day": 2,
+      "firstNumber": 21,
+      "kanji": "案内議化階段"
+    },
+    {
+      "pdfPage": 17,
+      "week": 1,
+      "day": 3,
+      "firstNumber": 27,
+      "kanji": "営放押準備定"
+    },
+    {
+      "pdfPage": 18,
+      "week": 1,
+      "day": 3,
+      "firstNumber": 33,
+      "kanji": "流清掃閉点検"
+    },
+    {
+      "pdfPage": 19,
+      "week": 1,
+      "day": 4,
+      "firstNumber": 39,
+      "kanji": "鉄窓符精算改札"
+    },
+    {
+      "pdfPage": 20,
+      "week": 1,
+      "day": 4,
+      "firstNumber": 46,
+      "kanji": "線刻番号快速路"
+    },
+    {
+      "pdfPage": 21,
+      "week": 1,
+      "day": 5,
+      "firstNumber": 53,
+      "kanji": "港由深降両替賃"
+    },
+    {
+      "pdfPage": 22,
+      "week": 1,
+      "day": 5,
+      "firstNumber": 60,
+      "kanji": "割増優席側座寄"
+    },
+    {
+      "pdfPage": 23,
+      "week": 1,
+      "day": 6,
+      "firstNumber": 67,
+      "kanji": "郵局貯包達際"
+    },
+    {
+      "pdfPage": 24,
+      "week": 1,
+      "day": 6,
+      "firstNumber": 73,
+      "kanji": "初再療科婦皮膚救"
+    },
+    {
+      "pdfPage": 27,
+      "week": 1,
+      "day": 7,
+      "firstNumber": 81,
+      "kanji": "看板羽成第総"
+    },
+    {
+      "pdfPage": 29,
+      "week": 2,
+      "day": 1,
+      "firstNumber": 87,
+      "kanji": "普券数機復片枚"
+    },
+    {
+      "pdfPage": 30,
+      "week": 2,
+      "day": 1,
+      "firstNumber": 94,
+      "kanji": "期販指調整表示"
+    },
+    {
+      "pdfPage": 31,
+      "week": 2,
+      "day": 2,
+      "firstNumber": 101,
+      "kanji": "現支払預戻残照"
+    },
+    {
+      "pdfPage": 32,
+      "week": 2,
+      "day": 2,
+      "firstNumber": 108,
+      "kanji": "硬貨確認違取消"
+    },
+    {
+      "pdfPage": 33,
+      "week": 2,
+      "day": 3,
+      "firstNumber": 115,
+      "kanji": "温冷緑紅玉返"
+    },
+    {
+      "pdfPage": 34,
+      "week": 2,
+      "day": 3,
+      "firstNumber": 121,
+      "kanji": "団般幼児歳未満老"
+    },
+    {
+      "pdfPage": 35,
+      "week": 2,
+      "day": 4,
+      "firstNumber": 129,
+      "kanji": "設換向停暖除湿"
+    },
+    {
+      "pdfPage": 36,
+      "week": 2,
+      "day": 4,
+      "firstNumber": 136,
+      "kanji": "標倍巻録量予約"
+    },
+    {
+      "pdfPage": 37,
+      "week": 2,
+      "day": 5,
+      "firstNumber": 143,
+      "kanji": "帯保留守伝済件"
+    },
+    {
+      "pdfPage": 38,
+      "week": 2,
+      "day": 5,
+      "firstNumber": 150,
+      "kanji": "信歴箱規変選決"
+    },
+    {
+      "pdfPage": 39,
+      "week": 2,
+      "day": 6,
+      "firstNumber": 157,
+      "kanji": "登編能修完了像"
+    },
+    {
+      "pdfPage": 40,
+      "week": 2,
+      "day": 6,
+      "firstNumber": 164,
+      "kanji": "類式央存印刷拡"
+    },
+    {
+      "pdfPage": 43,
+      "week": 2,
+      "day": 7,
+      "firstNumber": 171,
+      "kanji": "若反賛拾鋭鈍肯否浮沈"
+    },
+    {
+      "pdfPage": 45,
+      "week": 3,
+      "day": 1,
+      "firstNumber": 181,
+      "kanji": "様要利細在客額"
+    },
+    {
+      "pdfPage": 46,
+      "week": 3,
+      "day": 1,
+      "firstNumber": 188,
+      "kanji": "込領収械曲汚殿"
+    },
+    {
+      "pdfPage": 47,
+      "week": 3,
+      "day": 2,
+      "firstNumber": 195,
+      "kanji": "連絡荷届参衣他"
+    },
+    {
+      "pdfPage": 48,
+      "week": 3,
+      "day": 2,
+      "firstNumber": 202,
+      "kanji": "蔵凍等配担当頂"
+    },
+    {
+      "pdfPage": 49,
+      "week": 3,
+      "day": 3,
+      "firstNumber": 209,
+      "kanji": "商個相交効限"
+    },
+    {
+      "pdfPage": 50,
+      "week": 3,
+      "day": 3,
+      "firstNumber": 215,
+      "kanji": "全共忘経過責任負"
+    },
+    {
+      "pdfPage": 51,
+      "week": 3,
+      "day": 4,
+      "firstNumber": 223,
+      "kanji": "必袋積燃枝葉埋"
+    },
+    {
+      "pdfPage": 52,
+      "week": 3,
+      "day": 4,
+      "firstNumber": 230,
+      "kanji": "製容器装雑誌資"
+    },
+    {
+      "pdfPage": 53,
+      "week": 3,
+      "day": 5,
+      "firstNumber": 237,
+      "kanji": "難訓練震加延"
+    },
+    {
+      "pdfPage": 54,
+      "week": 3,
+      "day": 5,
+      "firstNumber": 243,
+      "kanji": "断管記迷協願平"
+    },
+    {
+      "pdfPage": 55,
+      "week": 3,
+      "day": 6,
+      "firstNumber": 250,
+      "kanji": "結果封法各位異"
+    },
+    {
+      "pdfPage": 56,
+      "week": 3,
+      "day": 6,
+      "firstNumber": 257,
+      "kanji": "移務更越郊周畑"
+    },
+    {
+      "pdfPage": 59,
+      "week": 3,
+      "day": 7,
+      "firstNumber": 264,
+      "kanji": "昨翌軒毒涙笑"
+    },
+    {
+      "pdfPage": 61,
+      "week": 4,
+      "day": 1,
+      "firstNumber": 270,
+      "kanji": "署依頼府到希望"
+    },
+    {
+      "pdfPage": 62,
+      "week": 4,
+      "day": 1,
+      "firstNumber": 277,
+      "kanji": "申姓齢性宅勤部"
+    },
+    {
+      "pdfPage": 63,
+      "week": 4,
+      "day": 2,
+      "firstNumber": 284,
+      "kanji": "婚招状欠喜治委"
+    },
+    {
+      "pdfPage": 64,
+      "week": 4,
+      "day": 2,
+      "firstNumber": 291,
+      "kanji": "祝舞礼忙妻張奥"
+    },
+    {
+      "pdfPage": 65,
+      "week": 4,
+      "day": 3,
+      "firstNumber": 298,
+      "kanji": "浅君久互追伸皆"
+    },
+    {
+      "pdfPage": 66,
+      "week": 4,
+      "day": 3,
+      "firstNumber": 305,
+      "kanji": "暮慣活恋健康祈"
+    },
+    {
+      "pdfPage": 67,
+      "week": 4,
+      "day": 4,
+      "firstNumber": 312,
+      "kanji": "福拝打伺幸失"
+    },
+    {
+      "pdfPage": 68,
+      "week": 4,
+      "day": 4,
+      "firstNumber": 318,
+      "kanji": "突然諸情退職紹介"
+    },
+    {
+      "pdfPage": 69,
+      "week": 4,
+      "day": 5,
+      "firstNumber": 326,
+      "kanji": "次章対最適誤直"
+    },
+    {
+      "pdfPage": 70,
+      "week": 4,
+      "day": 5,
+      "firstNumber": 333,
+      "kanji": "例詞形助副囲"
+    },
+    {
+      "pdfPage": 71,
+      "week": 4,
+      "day": 6,
+      "firstNumber": 339,
+      "kanji": "夢専史域祭査戦争将橋"
+    },
+    {
+      "pdfPage": 72,
+      "week": 4,
+      "day": 6,
+      "firstNumber": 349,
+      "kanji": "憎殺悲恥感球和愛仲良"
+    },
+    {
+      "pdfPage": 75,
+      "week": 4,
+      "day": 7,
+      "firstNumber": 359,
+      "kanji": "腹背息血圧臓液鼻吸眠欲疲胃胸"
+    },
+    {
+      "pdfPage": 77,
+      "week": 5,
+      "day": 1,
+      "firstNumber": 373,
+      "kanji": "傾横湯恐原因置"
+    },
+    {
+      "pdfPage": 78,
+      "week": 5,
+      "day": 1,
+      "firstNumber": 380,
+      "kanji": "寝熱焼触灯油余"
+    },
+    {
+      "pdfPage": 79,
+      "week": 5,
+      "day": 2,
+      "firstNumber": 387,
+      "kanji": "毛糸肌柔香軟"
+    },
+    {
+      "pdfPage": 80,
+      "week": 5,
+      "day": 2,
+      "firstNumber": 393,
+      "kanji": "溶濯接塗緒泥黄"
+    },
+    {
+      "pdfPage": 81,
+      "week": 5,
+      "day": 3,
+      "firstNumber": 400,
+      "kanji": "途具床壁乾布柱"
+    },
+    {
+      "pdfPage": 82,
+      "week": 5,
+      "day": 3,
+      "firstNumber": 407,
+      "kanji": "虫歯防磨抜悩髪"
+    },
+    {
+      "pdfPage": 83,
+      "week": 5,
+      "day": 4,
+      "firstNumber": 414,
+      "kanji": "刺肩腰節神痛"
+    },
+    {
+      "pdfPage": 84,
+      "week": 5,
+      "day": 4,
+      "firstNumber": 420,
+      "kanji": "浴的汗師談燥折"
+    },
+    {
+      "pdfPage": 85,
+      "week": 5,
+      "day": 5,
+      "firstNumber": 427,
+      "kanji": "賞庫造費可秒身"
+    },
+    {
+      "pdfPage": 86,
+      "week": 5,
+      "day": 5,
+      "firstNumber": 434,
+      "kanji": "召杯沸粉末栄"
+    },
+    {
+      "pdfPage": 87,
+      "week": 5,
+      "day": 6,
+      "firstNumber": 440,
+      "kanji": "鳴訪呼警報裏"
+    },
+    {
+      "pdfPage": 88,
+      "week": 5,
+      "day": 6,
+      "firstNumber": 446,
+      "kanji": "差続辞面操実列"
+    },
+    {
+      "pdfPage": 91,
+      "week": 5,
+      "day": 7,
+      "firstNumber": 453,
+      "kanji": "棒枯舟貧昔岩泣咲司念涼散吹坊怒畜才珍"
+    },
+    {
+      "pdfPage": 93,
+      "week": 6,
+      "day": 1,
+      "firstNumber": 471,
+      "kanji": "得告税価格超均"
+    },
+    {
+      "pdfPage": 94,
+      "week": 6,
+      "day": 1,
+      "firstNumber": 478,
+      "kanji": "靴供象組値募無"
+    },
+    {
+      "pdfPage": 95,
+      "week": 6,
+      "day": 2,
+      "firstNumber": 485,
+      "kanji": "詰麦純草塩固演"
+    },
+    {
+      "pdfPage": 96,
+      "week": 6,
+      "day": 2,
+      "firstNumber": 492,
+      "kanji": "菓贈省承展破処"
+    },
+    {
+      "pdfPage": 97,
+      "week": 6,
+      "day": 3,
+      "firstNumber": 499,
+      "kanji": "泉宿季豊富迎泊"
+    },
+    {
+      "pdfPage": 98,
+      "week": 6,
+      "day": 3,
+      "firstNumber": 506,
+      "kanji": "居築角徒畳米解"
+    },
+    {
+      "pdfPage": 99,
+      "week": 6,
+      "day": 4,
+      "firstNumber": 513,
+      "kanji": "辺察役美術坂寺"
+    },
+    {
+      "pdfPage": 100,
+      "week": 6,
+      "day": 4,
+      "firstNumber": 520,
+      "kanji": "湾島岸園湖城谷"
+    },
+    {
+      "pdfPage": 101,
+      "week": 6,
+      "day": 5,
+      "firstNumber": 527,
+      "kanji": "財観宝仏王銅塔"
+    },
+    {
+      "pdfPage": 102,
+      "week": 6,
+      "day": 5,
+      "firstNumber": 534,
+      "kanji": "絵略順版芸複刊"
+    },
+    {
+      "pdfPage": 103,
+      "week": 6,
+      "day": 6,
+      "firstNumber": 541,
+      "kanji": "層束甘辛皿綿旧"
+    },
+    {
+      "pdfPage": 104,
+      "week": 6,
+      "day": 6,
+      "firstNumber": 548,
+      "kanji": "厚薄粒極革苦"
+    },
+    {
+      "pdfPage": 107,
+      "week": 6,
+      "day": 7,
+      "firstNumber": 554,
+      "kanji": "困氷永夫識挟狭群祖隅偶"
+    },
+    {
+      "pdfPage": 109,
+      "week": 7,
+      "day": 1,
+      "firstNumber": 565,
+      "kanji": "求簡単許給与応"
+    },
+    {
+      "pdfPage": 110,
+      "week": 7,
+      "day": 1,
+      "firstNumber": 572,
+      "kanji": "課程制講級基導"
+    },
+    {
+      "pdfPage": 111,
+      "week": 7,
+      "day": 2,
+      "firstNumber": 579,
+      "kanji": "庭育猫探灰輪晩"
+    },
+    {
+      "pdfPage": 112,
+      "week": 7,
+      "day": 2,
+      "firstNumber": 586,
+      "kanji": "劇公踊種匹渡馬"
+    },
+    {
+      "pdfPage": 113,
+      "week": 7,
+      "day": 3,
+      "firstNumber": 593,
+      "kanji": "貝酒蒸干竹卵根"
+    },
+    {
+      "pdfPage": 114,
+      "week": 7,
+      "day": 3,
+      "firstNumber": 600,
+      "kanji": "材植砂乳含炭脂"
+    },
+    {
+      "pdfPage": 115,
+      "week": 7,
+      "day": 4,
+      "firstNumber": 607,
+      "kanji": "筒卒績論志述構"
+    },
+    {
+      "pdfPage": 116,
+      "week": 7,
+      "day": 4,
+      "firstNumber": 614,
+      "kanji": "遅仮机冊採濃筆"
+    },
+    {
+      "pdfPage": 117,
+      "week": 7,
+      "day": 5,
+      "firstNumber": 621,
+      "kanji": "航陸損候船丸"
+    },
+    {
+      "pdfPage": 118,
+      "week": 7,
+      "day": 5,
+      "firstNumber": 627,
+      "kanji": "混想故乱河輸"
+    },
+    {
+      "pdfPage": 119,
+      "week": 7,
+      "day": 6,
+      "firstNumber": 633,
+      "kanji": ""
+    },
+    {
+      "pdfPage": 120,
+      "week": 7,
+      "day": 6,
+      "firstNumber": 633,
+      "kanji": "率宇戸晴曇雪恵陽雲"
+    },
+    {
+      "pdfPage": 123,
+      "week": 7,
+      "day": 7,
+      "firstNumber": 642,
+      "kanji": "漁底鉱彼滴偉則測授零"
+    },
+    {
+      "pdfPage": 125,
+      "week": 8,
+      "day": 1,
+      "firstNumber": 652,
+      "kanji": "州波盗逃疑捕絶"
+    },
+    {
+      "pdfPage": 126,
+      "week": 8,
+      "day": 1,
+      "firstNumber": 659,
+      "kanji": "党補童爆暴亡罪"
+    },
+    {
+      "pdfPage": 127,
+      "week": 8,
+      "day": 2,
+      "firstNumber": 666,
+      "kanji": "型欧労兆貿易農"
+    },
+    {
+      "pdfPage": 128,
+      "week": 8,
+      "day": 2,
+      "firstNumber": 673,
+      "kanji": "命令被害権億星"
+    },
+    {
+      "pdfPage": 129,
+      "week": 8,
+      "day": 3,
+      "firstNumber": 680,
+      "kanji": "武巨競敗逆勝投"
+    },
+    {
+      "pdfPage": 130,
+      "week": 8,
+      "day": 3,
+      "firstNumber": 687,
+      "kanji": "軍兵捜倒骨針叫"
+    },
+    {
+      "pdfPage": 131,
+      "week": 8,
+      "day": 4,
+      "firstNumber": 694,
+      "kanji": "脳抱双尊雇条善"
+    },
+    {
+      "pdfPage": 132,
+      "week": 8,
+      "day": 4,
+      "firstNumber": 701,
+      "kanji": "律勢怖荒耕景掘"
+    },
+    {
+      "pdfPage": 133,
+      "week": 8,
+      "day": 5,
+      "firstNumber": 708,
+      "kanji": "批判臣賢勇敬評"
+    },
+    {
+      "pdfPage": 134,
+      "week": 8,
+      "day": 5,
+      "firstNumber": 715,
+      "kanji": "似犯孫娘覚帽"
+    },
+    {
+      "pdfPage": 135,
+      "week": 8,
+      "day": 6,
+      "firstNumber": 721,
+      "kanji": "環境減努庁官"
+    },
+    {
+      "pdfPage": 136,
+      "week": 8,
+      "day": 6,
+      "firstNumber": 727,
+      "kanji": "宙独技政況腕"
+    },
+    {
+      "pdfPage": 139,
+      "week": 8,
+      "day": 7,
+      "firstNumber": 733,
+      "kanji": "昇幅著占比較並"
+    }
+  ]
+}
