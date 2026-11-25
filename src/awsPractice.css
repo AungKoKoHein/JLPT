@@ -4,7 +4,7 @@
 .aws-progress { display: grid; gap: 8px; min-width: 140px; color: var(--muted); font-size: .9rem; }
 .aws-progress progress { width: 100%; accent-color: var(--accent); }
 .aws-source-card { border: 1px solid var(--line); border-radius: 4px; background: var(--surface); color: var(--ink); overflow: hidden; }
-.aws-source-card > header { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; border-bottom: 1px solid var(--line); color: var(--muted); }
+.aws-source-card > header { display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 16px; margin: 0; padding: 12px 20px; min-height: 0; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: transparent; box-shadow: none; color: var(--muted); text-align: left; }
 .aws-source-card h3 { font-size: 1rem; font-weight: 400; margin: 0; }
 .aws-source-card > header > span { font-style: italic; }
 .aws-source-body { padding: 22px 20px 28px; font-size: 1rem; line-height: 1.75; }
