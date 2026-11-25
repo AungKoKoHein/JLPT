@@ -1,8 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { StudyAccountControls } from "./StudyAccount.jsx";
+import StudySessionView from "./StudySessionView.jsx";
+import AwsPracticeSession from "./AwsPracticeSession.jsx";
+import { awsPracticeTitle } from "./awsPracticeSample.js";
 
 export default function AwsApp() {
-  useEffect(() => { document.title = "AWS · Practice"; }, []);
+  const [active, setActive] = useState(false);
+  useEffect(() => { document.title = awsPracticeTitle; }, []);
+
+  if (active) return <StudySessionView label="Practice" onQuit={() => setActive(false)}><AwsPracticeSession /></StudySessionView>;
 
   return <main>
     <header className="study-page-header">
@@ -23,8 +29,10 @@ export default function AwsApp() {
     <section role="tabpanel" id="aws-practice-panel" aria-labelledby="aws-practice-tab">
       <article className="mock-exam-panel">
         <div className="mock-exam-eyebrow">AWS SAA-C03</div>
-        <h2>Practice</h2>
-        <p className="reading-note" lang="ja">問題はまだ追加されていません。</p>
+        <h2 style={{ overflowWrap: 'anywhere' }}>{awsPracticeTitle}</h2>
+        <p>Preview one question from the PDF before adding the full collection.</p>
+        <div className="mock-exam-overview"><div><strong>1</strong><span>sample question</span></div><div><strong>18</strong><span>PDF question number</span></div><div><strong>Choose two</strong><span>Letter-only answers</span></div></div>
+        <div className="mock-exam-actions"><button type="button" className="primary-button" onClick={() => setActive(true)}>Start sample practice</button><span>Topic 1 · PDF page 7</span></div>
       </article>
     </section>
   </main>;

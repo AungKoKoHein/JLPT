@@ -1,0 +1,40 @@
+.aws-practice-session { max-width: 1100px; margin: 0 auto; }
+.aws-session-heading { display: flex; justify-content: space-between; gap: 24px; align-items: center; margin-bottom: 24px; }
+.aws-session-heading h2 { margin: 4px 0; font-size: clamp(1.05rem, 2.5vw, 1.5rem); overflow-wrap: anywhere; }
+.aws-progress { display: grid; gap: 8px; min-width: 140px; color: var(--muted); font-size: .9rem; }
+.aws-progress progress { width: 100%; accent-color: var(--accent); }
+.aws-source-card { border: 1px solid var(--line); border-radius: 4px; background: var(--surface); color: var(--ink); overflow: hidden; }
+.aws-source-card > header { display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; border-bottom: 1px solid var(--line); color: var(--muted); }
+.aws-source-card h3 { font-size: 1rem; font-weight: 400; margin: 0; }
+.aws-source-card > header > span { font-style: italic; }
+.aws-source-body { padding: 22px 20px 28px; font-size: 1rem; line-height: 1.75; }
+.aws-prompt p { margin: 0; }
+.aws-source-options { margin: 30px 0 0; padding-left: 40px; }
+.aws-source-options li { padding-left: 0; margin: 0 0 12px; }
+.aws-source-options li:last-child { margin-bottom: 0; }
+.aws-answer-panel, .aws-results { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 24px; margin-top: 20px; }
+.aws-answer-panel fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.aws-answer-panel legend { font-weight: 600; margin-bottom: 16px; padding: 0; }
+.aws-answer-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+.aws-answer-letter { display: grid; place-items: center; width: 60px; min-height: 54px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); font-size: 1.1rem; font-weight: 600; cursor: pointer; }
+.aws-answer-letter.selected { background: var(--accent-soft); border: 2px solid var(--accent); color: var(--accent); }
+.aws-answer-letter.correct { border: 2px solid #19804a; background: #e5f5eb; color: #155d39; opacity: 1; }
+.aws-answer-letter.incorrect { border: 2px solid #b23b3b; background: #fbeaea; color: #942d2d; opacity: 1; }
+.aws-answer-letter:disabled:not(.selected):not(.correct):not(.incorrect) { opacity: .45; cursor: default; }
+.aws-answer-letter:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+.aws-selection-count { font-size: .9rem; color: var(--muted); margin: 14px 0; }
+.aws-answer-feedback { margin: 20px 0; }
+.aws-answer-feedback p { margin: 4px 0; }
+.aws-explanation { border-top: 1px solid var(--line); margin-top: 16px; padding-top: 16px; }
+.aws-explanation summary { cursor: pointer; font-weight: 600; }
+.aws-explanation a { color: var(--accent); }
+.aws-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+@media (max-width: 600px) {
+  .aws-session-heading { display: block; }
+  .aws-progress { margin-top: 16px; }
+  .aws-source-body { padding: 18px 16px 22px; }
+  .aws-source-options { padding-left: 24px; margin-top: 24px; }
+  .aws-answer-panel, .aws-results { padding: 18px 16px; }
+  .aws-answer-buttons { gap: 8px; }
+  .aws-answer-letter { width: 46px; min-height: 48px; }
+}
