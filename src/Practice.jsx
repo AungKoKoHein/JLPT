@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { onValue, ref, set } from "firebase/database";
 import { database } from "./firebase.js";
+import ConfirmDialog from "./ConfirmDialog.jsx";
 import PracticeSession from "./PracticeSession.jsx";
 import StudySessionView from "./StudySessionView.jsx";
 import sourceSets from "./n3PracticeBank.json";
@@ -33,6 +34,7 @@ export default function Practice({ isEditor = false, showReadings = false, showK
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [importing, setImporting] = useState(false);
+  const [pendingBank, setPendingBank] = useState(null);
   useEffect(() => onValue(ref(database, "n3Practice/sets"), (snapshot) => {
     const value = snapshot.val();
     if (!value) { setSets(bundledSets); return; }
@@ -50,12 +52,22 @@ export default function Practice({ isEditor = false, showReadings = false, showK
     setImporting(true); setError(""); setMessage("");
     try {
       const bank = validateBank(JSON.parse(await file.text()));
-      if (!window.confirm("Replace the cloud practice bank with these 26 sets?")) return;
+      setPendingBank(bank);
+    } catch (reason) { setError(reason.message || "Could not import the question bank."); }
+    finally { setImporting(false); input.value = ""; }
+  };
+
+  const confirmImport = async () => {
+    if (importing || !pendingBank) return;
+    const bank = pendingBank;
+    setPendingBank(null);
+    setImporting(true);
+    try {
       await set(ref(database, "n3Practice/sets"), bank);
       setActiveId(null); setSelectedId(bank[0].id);
       setMessage("Imported all 26 categories.");
     } catch (reason) { setError(reason.message || "Could not import the question bank."); }
-    finally { setImporting(false); input.value = ""; }
+    finally { setImporting(false); }
   };
 
   if (active?.questions.length) return <StudySessionView label="Practice" onQuit={() => setActiveId(null)}>
@@ -65,6 +77,7 @@ export default function Practice({ isEditor = false, showReadings = false, showK
   if (!selected) return <article className="mock-exam-panel"><h2>Practice categories</h2><p>No questions available.</p></article>;
 
   return <article className="mock-exam-panel">
+    {pendingBank && <ConfirmDialog title="Replace the practice bank?" message="Replace the cloud practice bank with these 26 sets?" confirmLabel="Replace practice bank" onClose={() => setPendingBank(null)} onConfirm={confirmImport} />}
     <div className="mock-exam-eyebrow">JLPT N3 · Practice</div>
     <h2>Practice categories</h2>
     <div className="mock-exam-actions"><button type="button" className="primary-button" onClick={() => setActiveId(selected.id)}>Start {selected.title}</button><span>{selected.questions.length} questions</span></div>

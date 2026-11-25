@@ -8,15 +8,18 @@ export const studyRoutes = {
 
 export function studyTabFromPath(pathname) {
   const level = levelFromPath(pathname);
+  if (level === 'aws') return 'Practice';
   const path = pathname.replace(/^\/n[23](?=\/|$)/, "").replace(/\/+$/, "") || "/";
   const routes = routesForLevel(level);
   return Object.keys(routes).find((tab) => routes[tab] === `/${level}${path}`) || "Vocab";
 }
 
 export function levelFromPath(pathname) {
+  if (/^\/aws(?:\/|$)/.test(pathname)) return 'aws';
   return /^\/n2(?:\/|$)/.test(pathname) ? "n2" : "n3";
 }
 export function routesForLevel(level) {
+  if (level === 'aws') return { Practice: '/aws/practice' };
   if (!["n2", "n3"].includes(level)) throw new Error("Unknown JLPT level");
   const routes = Object.fromEntries(Object.entries(studyRoutes).map(([tab, path]) => [tab, '/' + level + path]));
   if (level === "n3") routes.Practice = "/n3/practice";

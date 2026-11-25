@@ -7,7 +7,11 @@ import { renderToStaticMarkup } from 'react-dom/server';
 
 const source = fs.readFileSync(new URL('../src/CloudStatus.jsx', import.meta.url), 'utf8');
 const { code } = await transformWithOxc(source, 'CloudStatus.jsx');
-const compiled = code.replace(/from ["'](react(?:\/jsx-runtime)?)["']/g, (_, name) => `from ${JSON.stringify(import.meta.resolve(name))}`);
+const resolveReact = code => code.replace(/from ["'](react(?:\/jsx-runtime)?)["']/g, (_, name) => `from ${JSON.stringify(import.meta.resolve(name))}`);
+const dialogSource = fs.readFileSync(new URL('../src/ConfirmDialog.jsx', import.meta.url), 'utf8');
+const dialog = await transformWithOxc(dialogSource, 'ConfirmDialog.jsx');
+const dialogUrl = `data:text/javascript;base64,${Buffer.from(resolveReact(dialog.code)).toString('base64')}`;
+const compiled = resolveReact(code).replace(/from ["']\.\/ConfirmDialog\.jsx["']/, `from ${JSON.stringify(dialogUrl)}`);
 const { default: CloudStatus } = await import(`data:text/javascript;base64,${Buffer.from(compiled).toString('base64')}`);
 const base = { connected: true, loaded: true, message: '', error: '', level: 'n3', revision: 1 };
 const render = cloud => renderToStaticMarkup(React.createElement(CloudStatus, { cloud: { ...base, ...cloud } }));

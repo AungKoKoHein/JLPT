@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import ConfirmDialog from "./ConfirmDialog.jsx";
 
 export default function CloudStatus({ cloud }) {
+  const [confirmImport, setConfirmImport] = useState(false);
   const isGoogleEditor = cloud.isEditor && cloud.user?.providerData?.some(provider => provider.providerId === "google.com");
   if (!isGoogleEditor) return null;
   return (
     <section className="cloud-status" aria-label="Cloud storage">
+      {confirmImport && <ConfirmDialog title="Publish previous browser edits?" message="Publish this browser's previous edits to Firebase so everyone can see them?" confirmLabel="Publish edits" onClose={() => setConfirmImport(false)} onConfirm={() => { setConfirmImport(false); cloud.importBrowserEdits(); }} />}
       <div>
         <strong>
           {cloud.saving
@@ -32,7 +35,7 @@ export default function CloudStatus({ cloud }) {
         {cloud.level === "n3" && cloud.isEditor && cloud.loaded && cloud.revision === 0 && (
           <button
             type="button"
-            onClick={cloud.importBrowserEdits}
+            onClick={() => setConfirmImport(true)}
             disabled={!cloud.canEdit}
           >
             Publish Previous Browser Edits

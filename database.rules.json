@@ -97,7 +97,6 @@
       "$uid": {
         ".read": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && auth.uid === $uid",
         "slots": {
-          ".read": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && auth.uid === $uid",
           "0": {
             ".write": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && auth.uid === $uid && (!data.exists() || !newData.exists() || data.child('sessionId').val() === newData.child('sessionId').val())",
             ".validate": "newData.hasChildren(['sessionId', 'startedAt', 'device'])",
@@ -162,8 +161,95 @@
             "device": {
               ".validate": "newData.val() === 'browser'"
             }
+          },
+          ".read": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && auth.uid === $uid"
+        },
+        ".write": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && (root.child('editors').child(auth.uid).val() === true || root.child('practiceAdmins').child(auth.uid).val() === true) && auth.uid !== $uid && !newData.exists()"
+      }
+    },
+    "mockExamRecords": {
+      "$uid": {
+        ".read": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && auth.uid === $uid && (root.child('practiceUsers').child(auth.uid).child('active').val() === true || root.child('editors').child(auth.uid).val() === true || root.child('practiceAdmins').child(auth.uid).val() === true)",
+        "$attempt": {
+          ".write": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && auth.uid === $uid && (root.child('practiceUsers').child(auth.uid).child('active').val() === true || root.child('editors').child(auth.uid).val() === true || root.child('practiceAdmins').child(auth.uid).val() === true) && (!data.exists() || !newData.exists())",
+          ".validate": "newData.hasChildren(['examId', 'examTitle', 'completedAt', 'correct', 'total', 'scores']) && newData.child('total').val() === newData.child('scores/Kanji/total').val() + newData.child('scores/Vocabulary/total').val() + newData.child('scores/Grammar/total').val() + newData.child('scores/Reading/total').val() && newData.child('correct').val() === newData.child('scores/Kanji/correct').val() + newData.child('scores/Vocabulary/correct').val() + newData.child('scores/Grammar/correct').val() + newData.child('scores/Reading/correct').val()",
+          "examId": {
+            ".validate": "newData.isString() && newData.val().length <= 100"
+          },
+          "examTitle": {
+            ".validate": "newData.isString() && newData.val().length <= 200"
+          },
+          "completedAt": {
+            ".validate": "newData.isNumber() && newData.val() > 0 && newData.val() <= now + 300000"
+          },
+          "correct": {
+            ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() % 1 === 0 && newData.val() <= newData.parent().child('total').val()"
+          },
+          "total": {
+            ".validate": "newData.isNumber() && newData.val() > 0 && newData.val() <= 500 && newData.val() % 1 === 0"
+          },
+          "scores": {
+            ".validate": "newData.hasChildren(['Kanji', 'Vocabulary', 'Grammar', 'Reading'])",
+            "Kanji": {
+              ".validate": "newData.hasChildren(['correct', 'total'])",
+              "correct": {
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() % 1 === 0 && newData.val() <= newData.parent().child('total').val()"
+              },
+              "total": {
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 500 && newData.val() % 1 === 0"
+              },
+              "$other": {
+                ".validate": false
+              }
+            },
+            "Vocabulary": {
+              ".validate": "newData.hasChildren(['correct', 'total'])",
+              "correct": {
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() % 1 === 0 && newData.val() <= newData.parent().child('total').val()"
+              },
+              "total": {
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 500 && newData.val() % 1 === 0"
+              },
+              "$other": {
+                ".validate": false
+              }
+            },
+            "Grammar": {
+              ".validate": "newData.hasChildren(['correct', 'total'])",
+              "correct": {
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() % 1 === 0 && newData.val() <= newData.parent().child('total').val()"
+              },
+              "total": {
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 500 && newData.val() % 1 === 0"
+              },
+              "$other": {
+                ".validate": false
+              }
+            },
+            "Reading": {
+              ".validate": "newData.hasChildren(['correct', 'total'])",
+              "correct": {
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() % 1 === 0 && newData.val() <= newData.parent().child('total').val()"
+              },
+              "total": {
+                ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 500 && newData.val() % 1 === 0"
+              },
+              "$other": {
+                ".validate": false
+              }
+            },
+            "$other": {
+              ".validate": false
+            }
+          },
+          "$other": {
+            ".validate": false
+          },
+          "review": {
+            ".validate": "newData.isString() && newData.val().length <= 1000000"
           }
-        }
+        },
+        ".write": "auth != null && auth.token.auth_time * 1000 > now - 604800000 && (root.child('editors').child(auth.uid).val() === true || root.child('practiceAdmins').child(auth.uid).val() === true) && auth.uid !== $uid && !newData.exists()"
       }
     }
   }

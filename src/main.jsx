@@ -15,6 +15,7 @@ import Kanji, { getKanjiChapterOptions, resolveKanjiCards } from "./Kanji.jsx";
 import { useCloudContent } from "./useCloudContent.js";
 import CloudStatus from "./CloudStatus.jsx";
 import "./app.css";
+import "./design.css";
 import TextField from "./TextField.jsx";
 import SearchFeedback from "./SearchFeedback.jsx";
 import { kanjiExamples } from "./kanjiContent.js";
@@ -23,6 +24,7 @@ import supplementalGrammarExamples from "./grammarSupplementalExamples.js";
 import MockExam from "./MockExam.jsx";
 import ReadingPractice from "./ReadingPractice.jsx";
 import Practice from "./Practice.jsx";
+const AwsApp = React.lazy(() => import("./AwsApp.jsx"));
 import StudyControlsHost from "./StudyControlsHost.jsx";
 import StudyAccess from "./StudyAccess.jsx";
 import { StudyAccountControls } from "./StudyAccount.jsx";
@@ -977,7 +979,7 @@ function App({ level }) {
           </p><StudyAccountControls /></div>
           <h1>JLPT {level.toUpperCase()}</h1>
           <nav className="level-switch" aria-label="JLPT level">
-            {["n3", "n2"].map((item) => <a key={item} href={routesForLevel(item)[studyTab] || routesForLevel(item).Vocab} aria-current={item === level ? "page" : undefined}>JLPT {item.toUpperCase()}</a>)}
+            {["n3", "n2", "aws"].map((item) => <a key={item} href={routesForLevel(item)[studyTab] || routesForLevel(item).Vocab || routesForLevel(item).Practice} aria-current={item === level ? "page" : undefined}>{item === "aws" ? "AWS" : `JLPT ${item.toUpperCase()}`}</a>)}
           </nav>
           <p className="subtitle">Japanese · Myanmar · flashcards by chapter</p>
         </div>
@@ -1494,6 +1496,6 @@ function App({ level }) {
 }
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <StudyAccess><App level={levelFromPath(window.location.pathname)} /></StudyAccess>
+    <StudyAccess><React.Suspense fallback={<p role="status">読み込み中…</p>}>{levelFromPath(window.location.pathname) === "aws" ? <AwsApp /> : <App level={levelFromPath(window.location.pathname)} />}</React.Suspense></StudyAccess>
   </React.StrictMode>,
 );

@@ -4,14 +4,10 @@
   "maximumBatchesPerDay": 4,
   "minimumHoursBetweenRuns": 5,
   "completed": [
-    "n3-1"
+    "n3-1",
+    "n3-3"
   ],
   "remaining": [
-    {
-      "id": "n3-3",
-      "questions": 72,
-      "choices": 288
-    },
     {
       "id": "n3-4",
       "questions": 74,

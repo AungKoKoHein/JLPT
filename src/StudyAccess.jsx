@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { StudyAccountContext } from "./StudyAccount.jsx";
+import ThemeToggle from "./ThemeToggle.jsx";
+import ViewerAccountDialog from "./ViewerAccountDialog.jsx";
 import {
   createUserWithEmailAndPassword,
   deleteUser,
@@ -30,6 +32,7 @@ const authEmailForUsername = (username) => `${username.trim().toLowerCase()}@use
 
 function PracticeUserManager() {
   const [users, setUsers] = useState({});
+  const [accountDialog, setAccountDialog] = useState(null);
   const [username, setUsername] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [password, setPassword] = useState("");
@@ -119,12 +122,15 @@ function PracticeUserManager() {
               <td data-label="Username">{user.username || user.email}<small>{user.displayName}</small></td>
               <td data-label="Status"><span className={`practice-user-status ${user.active ? "active" : "inactive"}`}>{user.active ? "Can view" : "Access removed"}</span></td>
               <td data-label="Actions"><div className="practice-user-actions">
+                <button type="button" className="secondary-button" disabled={busy} onClick={() => setAccountDialog({ user, mode: "edit" })}>Edit</button>
+                <button type="button" className="secondary-button" disabled={busy} onClick={() => setAccountDialog({ user, mode: "delete" })}>Delete permanently</button>
                 {user.active ? <button type="button" className="secondary-button" disabled={busy} onClick={() => setActive(user, false)}>Remove access</button> : <button type="button" className="secondary-button" disabled={busy} onClick={() => setActive(user, true)}>Restore access</button>}
               </div></td>
             </tr>)}</tbody>
           </table>
           {!sortedUsers.length && <p className="practice-user-empty">No viewer accounts yet.</p>}
         </div>
+        {accountDialog && <ViewerAccountDialog user={accountDialog.user} mode={accountDialog.mode} onClose={() => setAccountDialog(null)} onSaved={text => { setMessage(text); setError(""); setAccountDialog(null); }} />}
         <p className="practice-user-note">Removing access disables the account in this site but keeps its record, so you can restore it later. Passwords are not stored in the user table. The Google editor account is managed separately.</p>
       </div>
     </details>
@@ -251,6 +257,7 @@ export default function StudyAccess({ children }) {
   if (!user || !allowed || sessionStatus !== "ready") return (
     <main className="study-access-screen">
       <section className="study-access-card">
+        <div className="study-access-theme"><ThemeToggle /></div>
         <div className="study-login-heading">
         <p className="eyebrow">JLPT Study</p>
         <h1>{user ? (sessionStatus === "error" ? "Device access unavailable" : checking ? "Checking account…" : "This account does not have access") : "Sign in to study"}</h1>
@@ -269,7 +276,7 @@ export default function StudyAccess({ children }) {
     </main>
   );
 
-  return <StudyAccountContext.Provider value={{ username: claims?.profile?.username || claims?.profile?.email || user.email, logout, busy, manager: canManageUsers ? <PracticeUserManager /> : null }}>
+  return <StudyAccountContext.Provider value={{ uid: user.uid, username: claims?.profile?.username || claims?.profile?.email || user.email, logout, busy, manager: canManageUsers ? <PracticeUserManager /> : null }}>
     <div className="study-access-root">{children}</div>
   </StudyAccountContext.Provider>;
 }

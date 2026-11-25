@@ -1,7 +1,7 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { mockQuestions } from "./mockExamQuestions.js";
 import { archivePracticeSets, shuffledQuestions } from "./mockExamArchivePractice.js";
-import { createDecemberExam } from "./decemberExam.js";
+import { createDecemberExam, createFocusedExam, focusedExamSkills } from "./decemberExam.js";
 import { practiceText } from "./practiceText.js";
 import ConfirmDialog from "./ConfirmDialog.jsx";
 import StudySessionView from "./StudySessionView.jsx";
@@ -9,13 +9,40 @@ import QuestionPrompt from "./QuestionPrompt.jsx";
 import StarAnswer from "./StarAnswer.jsx";
 import { problemInstruction, scrollToQuestion, starLayout } from "./questionPresentation.js";
 
+import { examRecordPath, localExamRecords, saveExamRecord } from "./mockExamStore.js";
+import { StudyAccountContext } from "./StudyAccount.jsx";
+import MockExamHistory, { SkillScores } from "./MockExamHistory.jsx";
+import { scoreExam } from "./mockExamRecords.js";
+
 const sections = ["Vocabulary", "Grammar", "Reading"];
 const formatTime = (seconds) => `${String(Math.floor(seconds / 60)).padStart(2, "0")}:${String(seconds % 60).padStart(2, "0")}`;
 const extraExam = { id: "extra-mini", title: "Extra 24-question mini mock", questions: mockQuestions, sourceNote: "The existing 24-question N3 practice test." };
 const archiveQuestionPool = archivePracticeSets.flatMap((set) => set.questions);
-const examChoices = [extraExam, createDecemberExam(), ...archivePracticeSets, { id: "random-60", title: "Random mixed mock · 60 questions", questions: shuffledQuestions(archiveQuestionPool), sourceNote: "A shuffled selection from the four N3 practice sets." }];
+const examChoices = [extraExam, createDecemberExam(), ...focusedExamSkills.map(skill => createFocusedExam(skill)), ...archivePracticeSets, { id: "random-60", title: "Random mixed mock · 60 questions", questions: shuffledQuestions(archiveQuestionPool), sourceNote: "A shuffled selection from the four N3 practice sets." }];
 
 export default function MockExam() {
+  const account = useContext(StudyAccountContext);
+  const attempt = useRef(null);
+  const [recordStatus, setRecordStatus] = useState("");
+  const [recordError, setRecordError] = useState(false);
+  const saveRecord = async () => {
+    const current = attempt.current;
+    if (!current?.record || !current.path || current.saving || current.saved) return;
+    current.saving = true;
+    setRecordError(false);
+    setRecordStatus("Saving exam record…");
+    try {
+      await saveExamRecord(current.path, current.record);
+      current.saved = true;
+      if (attempt.current === current) setRecordStatus(localExamRecords ? "Exam record saved in this browser for local testing." : "Exam record saved to your account.");
+    } catch (error) {
+      if (attempt.current !== current) return;
+      setRecordError(true);
+      setRecordStatus(String(error.code).toLowerCase().includes('permission')
+        ? "Exam record was not saved: the database denied access. The updated exam database rules must be installed in the connected development environment before results with saved questions can be stored."
+        : "Exam record could not be saved. Check your connection and retry before leaving.");
+    } finally { current.saving = false; }
+  };
   // Exam questions must not reveal readings through the global study controls.
   const showReadings = false;
   const showKanji = true;
@@ -49,6 +76,8 @@ export default function MockExam() {
   }, [mode, secondsLeft]);
 
   const examQuestions = activeExam.questions;
+  const examSections = sections.filter(section => examQuestions.some(question => question.section === section));
+  const sectionLabel = activeExam.skill || examSections.join(' · ');
   const examSeconds = activeExam.durationMinutes ? activeExam.durationMinutes * 60 : examQuestions.length >= 60 ? 75 * 60 : examQuestions.length >= 24 ? 36 * 60 : 23 * 60;
   const question = examQuestions[questionIndex];
   const reviewQuestions = useMemo(
@@ -64,8 +93,19 @@ export default function MockExam() {
   const correctTotal = sections.reduce((total, section) => total + correctCounts[section].correct, 0);
   const answeredCount = Object.values(answers).filter(answer => answer != null).length;
 
+  useEffect(() => {
+    if (mode !== "results" || !attempt.current || attempt.current.record) return;
+    const scores = scoreExam(examQuestions, answers);
+    attempt.current.record = { examId: activeExam.id, examTitle: activeExam.title, completedAt: Date.now(), correct: correctTotal, total: examQuestions.length, scores, review: JSON.stringify({ questions: examQuestions, answers }) };
+    if (attempt.current.path) saveRecord();
+    else setRecordStatus("Sign in to save exam records.");
+  }, [mode, answers, examQuestions, activeExam, correctTotal]);
+
   const startExam = (selection = activeExam) => {
-    const exam = selection.id === "dec-exam" ? createDecemberExam() : selection.id === "random-60" ? { ...selection, questions: shuffledQuestions(archiveQuestionPool) } : selection;
+    const exam = selection.skill ? createFocusedExam(selection.skill) : selection.id === "dec-exam" ? createDecemberExam() : selection.id === "random-60" ? { ...selection, questions: shuffledQuestions(archiveQuestionPool) } : selection;
+    attempt.current = { path: account?.uid ? examRecordPath(account.uid) : null };
+    setRecordStatus("");
+    setRecordError(false);
     setActiveExam(exam);
     setAnswers({});
     setFlagged([]);
@@ -89,17 +129,21 @@ export default function MockExam() {
 
   if (mode === "intro") return (
     <article className="mock-exam-panel">
+      {recordError && <div role="alert"><p>{recordStatus}</p><button type="button" className="secondary-button" onClick={saveRecord}>Retry saving record</button></div>}
+      <MockExamHistory uid={account?.uid} dashboard />
       <div className="mock-exam-eyebrow">JLPT N3 · Practice mock</div>
       <h2>Mock Exam</h2>
       <div className="mock-exam-actions">
         <button type="button" className="primary-button" onClick={() => startExam()}>Start {activeExam.title}</button>
       </div>
-      <div className="mock-exam-set-grid">{examChoices.map((exam) => <button type="button" key={exam.id} className={`mock-exam-set-card${activeExam.id === exam.id ? " selected" : ""}`} onClick={() => setActiveExam(exam)}><strong>{exam.title}</strong><span>{exam.questions.length} questions · Vocabulary, Grammar, Reading</span>{exam.id !== "extra-mini" && <small>{exam.sourceNote}</small>}</button>)}</div>
+      <div className="mock-exam-set-grid">{examChoices.map((exam) => <button type="button" key={exam.id} className={`mock-exam-set-card${activeExam.id === exam.id ? " selected" : ""}`} aria-pressed={activeExam.id === exam.id} onClick={() => setActiveExam(exam)}><strong>{exam.title}</strong><span>{exam.questions.length} questions · {exam.skill || 'Vocabulary, Grammar, Reading'}</span>{exam.id !== "extra-mini" && <small>{exam.sourceNote}</small>}</button>)}<button type="button" className="secondary-button mock-choose-another" onClick={() => { const others = examChoices.filter(exam => exam.id !== activeExam.id); setActiveExam(others[Math.floor(Math.random() * others.length)]); }}>Choose another test</button></div>
       <h3 className="mock-exam-selected-title">{activeExam.title}</h3>
+      {activeExam.structure && <section className="exam-history" aria-label="Exam structure"><h3>Fixed structure, fresh questions</h3><p>{activeExam.skill ? `${activeExam.questions.length} ${activeExam.skill.toLowerCase()} questions. A fresh selection is drawn each time you start or retry.` : '74 questions ? Vocabulary 47% (including Kanji), Grammar 31%, Reading 22%. Written practice only; listening is not included.'}</p><div className="exam-skill-grid">{examSections.map(section => <div className="exam-skill" key={section}><strong>{activeExam.skill || section}</strong>{activeExam.structure.filter(group => group.section === section).map(group => <span key={group.type}>{group.type}: {group.count}</span>)}</div>)}</div><p>Questions are randomly selected within each type. Shared passages and their questions stay together.</p></section>}
+
       <div className="mock-exam-overview">
         <div><strong>{activeExam.questions.length}</strong><span>N3 practice questions</span></div>
         <div><strong>{examSeconds / 60} min</strong><span>practice timer</span></div>
-        <div><strong>3 sections</strong><span>Vocabulary · Grammar · Reading</span></div>
+        <div><strong>{activeExam.skill ? "1 skill" : `${examSections.length} sections`}</strong><span>{sectionLabel}</span></div>
       </div>
     </article>
   );
@@ -112,8 +156,14 @@ export default function MockExam() {
         <h2>{activeExam.title} · Result</h2>
         <div className="mock-score-summary">
           <div className="mock-score-total"><strong>{correctTotal}<span> / {examQuestions.length}</span></strong><small>raw correct answers</small></div>
-          <div className="mock-section-scores">{sections.map((section) => <div key={section}><span>{section}</span><strong>{correctCounts[section].correct} / {correctCounts[section].total}</strong></div>)}</div>
+          <div className="mock-section-scores">{examSections.map((section) => <div key={section}><span>{activeExam.skill || section}</span><strong>{correctCounts[section].correct} / {correctCounts[section].total}</strong></div>)}</div>
         </div>
+        <section aria-label="Current exam strengths and weaknesses">
+          <h3>Current exam strengths and weaknesses</h3>
+          <SkillScores scores={scoreExam(examQuestions, answers)} />
+        </section>
+        <p role="status">{recordStatus}</p>
+        {recordError && <button type="button" className="secondary-button" onClick={saveRecord}>Retry saving record</button>}
         <div className="mock-review-heading">
           <div><h3>Answer review</h3></div>
           <label>Section <select value={reviewSection} onChange={(event) => { setReviewSection(event.target.value); setReviewIndex(0); }}><option>All</option>{sections.map((section) => <option key={section}>{section}</option>)}</select></label>
@@ -133,7 +183,7 @@ export default function MockExam() {
             <div className="mock-review-options">{item.choices.map((choice, index) => {
               const selected = answers[item.id] === index;
               const correct = item.answer === index;
-              return <div key={choice} className={`mock-review-option${correct ? " correct" : ""}${selected && !correct ? " incorrect" : ""}`}><span className="mock-option-letter">{"ABCD"[index]}</span><span lang="ja">{display(choice)}</span></div>;
+              return <div key={index} className={`mock-review-option${correct ? " correct" : ""}${selected && !correct ? " incorrect" : ""}`}><span className="mock-option-letter">{"ABCD"[index]}</span><span lang="ja">{display(choice)}</span></div>;
             })}</div>
             <p className="mock-explanation" lang="my"><strong>ရှင်းလင်းချက် — </strong>{display(item.explanation)}</p>
             <div className="mock-review-controls"><button type="button" className="secondary-button" disabled={reviewIndex === 0} onClick={() => setReviewIndex((index) => index - 1)}>← Previous</button><span>{reviewIndex + 1} / {reviewQuestions.length}</span><button type="button" className="secondary-button" disabled={reviewIndex === reviewQuestions.length - 1} onClick={() => setReviewIndex((index) => index + 1)}>Next →</button></div>
@@ -174,7 +224,7 @@ export default function MockExam() {
           </div><div className="practice-response-panel"><div className="practice-response-heading"><strong>Choose your answer</strong><span>Exam mode</span></div>
           {starLayout(question.prompt) ? <StarAnswer key={question.id} question={question} value={arrangements[question.id]} display={display} onChange={(order, answer) => { setArrangements(current => ({ ...current, [question.id]: order })); setAnswers(current => ({ ...current, [question.id]: answer })); }} /> : <fieldset className={`mock-answer-list${question.choices.every(choice => choice.length <= 45) ? " mock-short-answers" : ""}`}>
             <legend>Select one answer</legend>
-            {question.choices.map((choice, index) => <label key={choice} className={`mock-answer-option${answers[question.id] === index ? " selected" : ""}`}>
+            {question.choices.map((choice, index) => <label key={index} className={`mock-answer-option${answers[question.id] === index ? " selected" : ""}`}>
               <input type="radio" name={`question-${question.id}`} checked={answers[question.id] === index} onChange={() => setAnswers((current) => ({ ...current, [question.id]: index }))} />
               <span className="mock-option-letter">{"ABCD"[index]}</span><span lang="ja">{display(choice)}</span>
             </label>)}

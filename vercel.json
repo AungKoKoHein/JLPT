@@ -1,5 +1,7 @@
 {
   "rewrites": [
+    { "source": "/aws", "destination": "/index.html" },
+    { "source": "/aws/:path*", "destination": "/index.html" },
     { "source": "/n2/:path*", "destination": "/index.html" },
     { "source": "/n3/:path*", "destination": "/index.html" },
     { "source": "/vocab", "destination": "/index.html" },

@@ -10,7 +10,7 @@ export default defineConfig({
     generateBundle(_, bundle) {
       const entry = bundle["index.html"];
       if (!entry || entry.type !== "asset") return;
-      const routes = ["/n2", "/n3", ...Object.values(studyRoutes),
+      const routes = ["/n2", "/n3", "/aws", ...Object.values(routesForLevel("aws")), ...Object.values(studyRoutes),
         ...Object.values(routesForLevel("n2")), ...Object.values(routesForLevel("n3"))];
       for (const route of routes) {
         this.emitFile({ type: "asset", fileName: `${route.slice(1)}/index.html`, source: entry.source });

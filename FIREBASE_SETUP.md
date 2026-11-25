@@ -15,7 +15,7 @@ The app requires an approved username/password account or an authorized Google e
 
 Enable Google and Email/Password once in Firebase Authentication → Sign-in method. Email/Password is the Firebase provider behind username accounts; the app does not verify or email those aliases. Add the current Vercel domain and localhost under Authorized domains. Existing Google editors can sign in as before. The Google editor account can add viewer accounts from **Manage viewer accounts**; viewer records do not store passwords. Removing a viewer disables access but keeps the record so access can be restored later. Provide passwords to viewers directly; no email reset is available for username-only accounts.
 
-After changing Authentication providers, deploy the updated Realtime Database rules below. Vercel builds do not deploy Firebase rules. This setup uses Firebase Authentication and Realtime Database only, with no Cloud Functions or paid Firebase feature; Spark quotas still apply. New viewers can then sign in with the username and password supplied by the editor. A viewer who loses access is blocked on the next database access check.
+After changing Authentication providers, deploy the updated Realtime Database rules below. Vercel builds do not deploy Firebase rules. This setup uses Firebase Authentication and Realtime Database; Spark quotas still apply. Viewer account edits and permanent deletion use a protected Vercel API endpoint. No Firebase Cloud Functions are required. New viewers can then sign in with the username and password supplied by the editor. A viewer who loses access is blocked on the next database access check.
 
 The rules are in [database.rules.json](database.rules.json). Deploy updates using:
 
@@ -40,3 +40,12 @@ Caches are level-specific. Editing requires loaded data, owner permission, and a
 Run it with the installed firebase-tools package directory as its first argument. Without `--apply` it performs a read-only check; with `--apply` it uploads. Backups are stored locally in ignored `.migration-backups/`. The migration snapshot is retained for regression tests and is excluded from the frontend bundle.
 
 Reference: [Firebase conditional writes](https://firebase.google.com/docs/database/rest/save-data).
+
+
+## Editing and permanently deleting viewer accounts
+
+Each viewer row has **Edit** and **Delete permanently** actions, using in-page modal dialogs. Edit updates the internal Firebase Auth email when the username changes, and changes the password only when a new password is supplied. The Firebase UID stays the same, preserving exam records. Passwords are never stored in the viewer table. Permanent deletion requires typing the username and removes Firebase Auth, `/practiceUsers/<uid>`, `/practiceSessions/<uid>`, and `/mockExamRecords/<uid>`.
+
+`/api/viewer-accounts` verifies the manager's Firebase ID token, the seven-day sign-in limit, and current editor/admin permissions. It only accepts password-based viewer accounts with the internal username email domain. Google accounts and the current manager are protected. Database operations use the caller's Firebase credentials and rules. Partial deletion can be retried to finish record cleanup.
+
+The Vercel production endpoint uses OIDC workload identity federation with the `viewer-manager@akkh-jlpt.iam.gserviceaccount.com` service account. The identity provider accepts only the existing JLPT project's production deployment. Its custom role grants only Firebase Auth user read, update, and delete permissions. No private service-account keys are created or stored. One-time setup is in `scripts/setup-viewer-management.mjs`; pass the installed Firebase CLI directory, using an authorized CLI login. Development and preview deployments do not receive this production privilege.

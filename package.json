@@ -15,8 +15,11 @@
   },
   "dependencies": {
     "@dataconnect/generated": "file:src/dataconnect-generated",
+    "@vercel/oidc": "^4.0.9",
     "@vitejs/plugin-react": "latest",
     "firebase": "^12.19.0",
+    "firebase-admin": "^14.5.1",
+    "google-auth-library": "^11.3.4",
     "react": "latest",
     "react-dom": "latest",
     "vite": "latest"
@@ -27,5 +30,10 @@
     "kuromoji": "^0.1.2",
     "prettier": "^3.9.6",
     "typescript": "^7.0.2"
+  },
+  "overrides": {
+    "jwks-rsa": {
+      "jose": "^5.10.0"
+    }
   }
 }

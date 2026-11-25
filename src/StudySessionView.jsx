@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import ThemeToggle from "./ThemeToggle.jsx";
 
 export default function StudySessionView({ label, onQuit, children }) {
   const quitButton = useRef(null);
@@ -22,6 +23,7 @@ export default function StudySessionView({ label, onQuit, children }) {
     <header className="study-session-toolbar">
       <strong>{label}</strong>
       <div className="study-session-toolbar-actions"><div data-session-controls />
+      <ThemeToggle />
       <button ref={quitButton} type="button" className="secondary-button" onClick={onQuit}>Quit {label === "Practice" ? "practice" : label === "Reading" ? "reading" : "exam"}</button>
       </div>
     </header>

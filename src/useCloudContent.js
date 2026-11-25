@@ -218,12 +218,6 @@ export function useCloudContent(level = "n3") {
         return;
       }
       const data = normalizeContent(JSON.parse(legacy));
-      if (
-        !window.confirm(
-          "Publish this browser's previous edits to Firebase so everyone can see them?",
-        )
-      )
-        return;
       await updateContent(data);
     } catch (error) {
       setError(`Could not import browser edits: ${explainError(error)}`);

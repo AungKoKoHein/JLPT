@@ -1,8 +1,9 @@
 # Saved Practice explanations
 
-N3-1 is the first completed batch: 74 questions (35 vocabulary and 39
-grammar/reading), with a Myanmar summary and individual explanations for all
-296 choices. The four JSON files in `src/practiceExplanations/` are ordinary
+N3-1 and N3-3 are completed: 146 playable questions, with a Myanmar summary
+and individual explanations for all 584 choices. N3-3 adds 35 vocabulary and
+37 grammar/reading questions (72 summaries and 288 choice explanations).
+The six JSON files in `src/practiceExplanations/` are ordinary
 editable, bundled content. Opening **Show explanations** makes no AI request,
 requires no AI credentials, and does not depend on localStorage.
 
@@ -15,7 +16,7 @@ explanations use the original passages and PDF pages as evidence.
 Each entry retains a snapshot of the source prompt, choices and answer. Imported
 questions resolve through `sourceQuestionId`. Edited questions receive a clear
 source-mismatch message instead of a stale explanation. Sets not yet authored
-show a Myanmar notice identifying N3-1 as the currently available batch. There
+show a Myanmar notice identifying N3-1 and N3-3 as the available batches. There
 is no fallback to on-click AI generation.
 
 ## Source issues
@@ -42,6 +43,23 @@ enabled Firebase services have not been changed or disabled as part of this
 content update.
 
 ## Checks
+
+N3-3 source notes:
+
+- Vocabulary 13: the key selects ② 料収書; the correct spelling is ① 領収書.
+  The modal flags this and suggests ① without changing scoring.
+- Grammar 13: the source mixes が with transitive つけっぱなし. The note
+  distinguishes 火をつけっぱなし from 火がつきっぱなし; ① is the valid
+  stem among the supplied options.
+- Grammar 38: the key counts two jobs. The bento shift starts at 15:00 exactly
+  when Wednesday/Friday classes end. The note explicitly identifies the
+  implied need for travel time, which is not stated in the passage. The bakery
+  and cleaning jobs require three days per week, so weekends alone do not fit.
+- Grammar 39: verified Japanese choice labels come from original page 44.
+- Cloze questions 19–23 were checked against page 38; sentence-order questions
+  14–18 include the full sentence, order and each piece's position. Reading
+  explanations refer to passage evidence; suppressed duplicates 28–29 are
+  not included in this playable batch.
 
 ```sh
 node scripts/practice-explanations.test.mjs

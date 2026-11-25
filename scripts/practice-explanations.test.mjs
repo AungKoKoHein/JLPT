@@ -16,15 +16,17 @@ import {
   validateExplanation,
 } from "../src/practiceExplanationContext.js";
 
-test("all 74 N3-1 questions have distinct, substantive Myanmar explanations for every choice", () => {
-  const questions = practiceCategories(bank).find(
-    (set) => set.id === "n3-1",
-  ).questions;
-  assert.equal(questions.length, 74);
-  assert.equal(Object.keys(savedExplanations).length, 74);
+test("all completed sets have distinct, substantive Myanmar explanations for every choice", () => {
+  const sets = practiceCategories(bank).filter(set => ["n3-1", "n3-3"].includes(set.id));
+  assert.deepEqual(sets.map(set => [set.id, set.questions.length]), [["n3-1", 74], ["n3-3", 72]]);
+  const questions = sets.flatMap(set => set.questions);
+  assert.equal(Object.keys(savedExplanations).length, 146);
   let count = 0;
   for (const question of questions) {
     const result = savedPracticeExplanation(question);
+    assert.deepEqual(savedExplanations[question.id].source, {
+      prompt: question.prompt, choices: question.choices, answer: question.answer,
+    });
     validateExplanation(result, 4);
     assert.equal(
       new Set(result.choices.map((choice) => choice.explanation)).size,
@@ -39,7 +41,7 @@ test("all 74 N3-1 questions have distinct, substantive Myanmar explanations for 
       count++;
     }
   }
-  assert.equal(count, 296);
+  assert.equal(count, 584);
 });
 
 test("bundled explanations are available without fetch, localStorage, or AI", async () => {
@@ -48,7 +50,7 @@ test("bundled explanations are available without fetch, localStorage, or AI", as
     throw Error("Network must never be used");
   };
   try {
-    for (const question of bank[0].questions) {
+    for (const question of practiceCategories(bank).filter(set => ["n3-1", "n3-3"].includes(set.id)).flatMap(set => set.questions)) {
       const result = await loadPracticeExplanation(question);
       assert.equal(result.source, "saved");
       assert.equal(result.choices.length, 4);
@@ -80,12 +82,32 @@ test("imported IDs use the saved source ID, and edited questions do not receive 
 });
 
 test("unwritten sets show a truthful message rather than call AI", async () => {
-  const question = bank[2].questions[0];
+  const question = practiceCategories(bank).find(set => set.id === "n3-4").questions[0];
   assert.equal(savedPracticeExplanation(question), null);
   await assert.rejects(loadPracticeExplanation(question), {
     code: "explanation-not-ready",
   });
   assert.match(explanationError({ code: "explanation-not-ready" }), /N3-1/);
+});
+
+test("N3-3 preserves source conflicts, sentence order, and verified image labels", () => {
+  const conflict = savedExplanations["n3-3-vocabulary-13"];
+  assert.equal(conflict.source.answer, 1);
+  assert.equal(conflict.suggestedAnswer, 0);
+  assert.match(conflict.keyIssue, /領収書/);
+  assert.match(savedExplanations["n3-3-grammar-13"].keyIssue, /つきっぱなし/);
+  assert.match(savedExplanations["n3-3-grammar-38"].keyIssue, /15:00/);
+  for (let n = 14; n <= 18; n++) {
+    const entry = savedExplanations[`n3-3-grammar-${n}`];
+    assert.match(entry.summary, /→/);
+    assert.ok(entry.explanations.every(text => text.includes("နေရာ")));
+  }
+  assert.deepEqual(savedExplanations["n3-3-grammar-39"].choiceLabels, [
+    "３月１日までに、スーパーに面接の時間を予約する。",
+    "１月２０日までに、履歴書に写真をはってスーパーに持っていく。",
+    "２月１２日までに、履歴書に写真をはってスーパーに送る。",
+    "１月２０日までに、スーパーに電話して希望のアルバイトの種類を言う。",
+  ]);
 });
 
 test("a conflicting source key is flagged, and image-only choices have actual Japanese labels", () => {

@@ -23,3 +23,10 @@ test("root and unrecognized paths fall back to vocabulary", () => {
   assert.equal(studyTabFromPath("/"), "Vocab");
   assert.equal(studyTabFromPath("/unknown"), "Vocab");
 });
+
+test("AWS has its own Practice-only route", () => {
+  assert.deepEqual(routesForLevel('aws'), { Practice: '/aws/practice' });
+  assert.equal(studyTabFromPath('/aws'), 'Practice');
+  assert.equal(studyTabFromPath('/aws/practice'), 'Practice');
+  assert.equal(studyTabFromPath('/aws/practice/'), 'Practice');
+});

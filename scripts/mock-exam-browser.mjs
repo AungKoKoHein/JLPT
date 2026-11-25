@@ -12,7 +12,7 @@ const server = await createServer({ configFile: false, logLevel: 'error', plugin
   configureServer(server) {
     server.middlewares.use('/__practice-check', async (_req, res) => {
       res.setHeader('Content-Type', 'text/html');
-      res.end(await server.transformIndexHtml('/__practice-check', `<html><head><meta name="viewport" content="width=device-width, initial-scale=1"></head><body><div id="root"></div><script type="module">import React from 'react';import{createRoot}from'react-dom/client';import Practice from '/src/MockExam.jsx';import '/src/app.css';function Check(){const[readings,setReadings]=React.useState(false);window.toggleReadings=()=>setReadings(v=>!v);return React.createElement(Practice,{showReadings:readings});}createRoot(document.getElementById('root')).render(React.createElement(Check));</script></body></html>`));
+      res.end(await server.transformIndexHtml('/__practice-check', `<html><head><meta name="viewport" content="width=device-width, initial-scale=1"></head><body><div id="root"></div><script type="module">import React from 'react';import{createRoot}from'react-dom/client';import Practice from '/src/MockExam.jsx';import{StudyAccountContext}from'/src/StudyAccount.jsx';localStorage.removeItem('jlpt:local-mock-exams:local-browser-check');import '/src/app.css';function Check(){const[readings,setReadings]=React.useState(false);window.toggleReadings=()=>setReadings(v=>!v);return React.createElement(StudyAccountContext.Provider,{value:{uid:'local-browser-check'}},React.createElement(Practice,{showReadings:readings}));}createRoot(document.getElementById('root')).render(React.createElement(Check));</script></body></html>`));
     });
   },
 }], server: { host: '127.0.0.1', port: 0 } });
@@ -40,7 +40,11 @@ try {
   await cdp('Page.enable');
   await cdp('Emulation.setDeviceMetricsOverride', { width: 1440, height: 1000, deviceScaleFactor: 1, mobile: false });
   await cdp('Page.navigate', { url: `http://127.0.0.1:${server.config.server.port}/__practice-check` });
-  await until(`document.querySelectorAll('.mock-exam-set-card').length===7`);
+  await until(`document.querySelectorAll('.mock-exam-set-card').length===11`);
+  assert.equal(await evaluate(`document.querySelector('.mock-choose-another').textContent`), 'Choose another test');
+  assert.ok(await evaluate(`(() => { const random = document.querySelector('.mock-exam-set-card:last-of-type'); const choices = [...document.querySelectorAll('.mock-exam-set-card')]; const last = choices.at(-1).getBoundingClientRect(); const button = document.querySelector('.mock-choose-another').getBoundingClientRect(); return button.left > last.right && button.top >= last.top && button.bottom <= last.bottom + 1; })()`), 'Choose another test sits to the right of Random mixed mock');
+  await evaluate(`document.querySelector('.mock-choose-another').click()`);
+  await until(`document.querySelector('.mock-exam-set-card.selected strong').textContent !== 'Extra 24-question mini mock'`);
   await evaluate(`window.confirm=()=>{throw Error('Browser confirmation must not be used')};window.alert=()=>{throw Error('Browser alert must not be used')}`);
   await evaluate(`[...document.querySelectorAll('.mock-exam-set-card')].find(b=>b.querySelector('strong').textContent==='For Dec Exam').click()`);
   await click('Start For Dec Exam');
@@ -91,8 +95,49 @@ try {
   await click('Finish exam');
   await click('Finish and view results');
   await until(`document.querySelector('.mock-results') !== null`);
+  assert.equal(await evaluate(`document.querySelectorAll('.exam-skill-grid').length`), 1, 'Finished exam shows exactly one skill status panel');
+  assert.equal(await evaluate(`document.querySelectorAll('.exam-overall-performance, .exam-history, .exam-performance-detail').length`), 0, 'Finished exam has no overall or history status panels');
+  assert.equal(await evaluate(`document.querySelectorAll('[aria-label="Current exam strengths and weaknesses"]').length`), 1);
   assert.equal(await evaluate(`document.querySelectorAll('.mock-review-nav button').length`),74);
   assert.ok(await evaluate(`document.documentElement.scrollWidth<=document.documentElement.clientWidth`),'Results fit phone width');
+  await until(`document.querySelector('.mock-results [role=status]').textContent.includes('saved in this browser')`);
+  await click('Choose another test');
+  await click('Latest exam');
+  await until(`document.querySelector('.exam-history-modal')?.open`);
+  await until(`document.querySelectorAll('tbody tr').length === 1`);
+  await evaluate(`document.querySelector('button[aria-label^="Delete"]').click()`);
+  await click('Delete exam');
+  await until(`document.querySelectorAll('tbody tr').length === 0`);
+  assert.equal(await evaluate(`Object.keys(JSON.parse(localStorage.getItem('jlpt:local-mock-exams:local-browser-check'))).length`), 0, 'Deleted result is removed from persistent local records');
+  assert.match(await evaluate(`document.querySelector('.exam-overall-performance').textContent`), /Not tested/);
+  await click('Close');
+  await until(`document.querySelector('.exam-history-modal') === null`);
+  await evaluate(`[...document.querySelectorAll('.mock-exam-set-card')].find(b=>b.querySelector('strong').textContent==='For Dec Exam').click()`);
+  await click('Start For Dec Exam');
+  await click('Finish exam');
+  await click('Finish and view results');
+  await until(`document.querySelector('.mock-results [role=status]').textContent.includes('saved in this browser')`);
+  assert.equal(await evaluate(`Object.keys(JSON.parse(localStorage.getItem('jlpt:local-mock-exams:local-browser-check'))).length`), 1, 'Finishing another exam creates a new saved result after deletion');
+  await click('Choose another test');
+  await click('Latest exam');
+  await until(`document.querySelector('.exam-history-modal')?.open`);
+  await until(`document.querySelectorAll('tbody tr').length === 1`);
+  assert.match(await evaluate(`document.querySelector('.exam-overall-performance').textContent`), /1 completed exam/);
+  await click('Close');
+  await until(`document.querySelector('.exam-history-modal') === null`);
+  await evaluate(`document.querySelector('.exam-history-top-actions button:last-child').focus()`);
+  await click('Previous exams');
+  await until(`document.querySelector('.exam-history-modal')?.open`);
+  assert.match(await evaluate(`document.querySelector('.exam-history-modal').textContent`), /No previous exams yet/);
+  await cdp('Input.dispatchKeyEvent',{type:'keyDown',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
+  await cdp('Input.dispatchKeyEvent',{type:'keyUp',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});
+  await until(`document.querySelector('.exam-history-modal') === null`);
+  assert.equal(await evaluate(`document.activeElement.textContent`), 'Previous exams');
+  await evaluate(`[...document.querySelectorAll('.mock-exam-set-card')].find(b=>b.querySelector('strong').textContent==='For Dec Exam').click()`);
+  await click('Start For Dec Exam');
+  await click('Finish exam');
+  await click('Finish and view results');
+  await until(`document.querySelector('.mock-results') !== null`);
   await click('Try again');
   await until(`document.querySelector('.mock-attempt') !== null`);
   assert.match(await evaluate(`document.querySelector('.mock-question-meta').textContent`),/Answered 0 \/ 74/);
@@ -103,5 +148,19 @@ try {
   await until(`document.querySelector('.study-session-view') === null`);
   await until(`document.body.style.overflow === ''`);
   assert.equal(await evaluate(`document.body.style.overflow`), '', 'Quit restores background scrolling');
-  console.log('PASS: Full-screen session and quit, December mock, 74 PDF questions, reading context, modal finish/cancel, retry, and 1440/1024/800/768/600/393/360px layouts.');
+  for (const [skill, count] of [['Vocabulary',21], ['Grammar',23], ['Reading',16], ['Kanji',14]]) {
+    await evaluate(`[...document.querySelectorAll('.mock-exam-set-card')].find(b=>b.querySelector('strong').textContent===${JSON.stringify(skill + ' Exam')}).click()`);
+    assert.match(await evaluate(`document.querySelector('.mock-exam-overview').textContent`), /1 skill/);
+    await click('Start ' + skill + ' Exam');
+    await until(`document.querySelectorAll('.mock-question-palette button').length===${count}`);
+    await evaluate(`document.querySelector('input[type=radio]').click()`);
+    await click('Finish exam');
+    await click('Finish and view results');
+    await until(`document.querySelector('.mock-results') !== null`);
+    assert.equal(await evaluate(`document.querySelectorAll('.mock-review-nav button').length`), count);
+    assert.equal(await evaluate(`document.querySelectorAll('.mock-section-scores > div').length`), 1);
+    await click('Choose another test');
+    await until(`document.querySelector('.mock-exam-set-grid') !== null`);
+  }
+  console.log('PASS: Selection button placement, local save/delete/new completion and recalculated overall scores, single results status panel, December mock, answer review, retry, quit, and responsive layouts.');
 } finally {socket?.close();chrome.kill();await server.close();}
