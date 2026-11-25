@@ -7,6 +7,9 @@ export default function SubchapterNav({ sections }) {
   const [visible, setVisible] = useState(false);
   const [activeId, setActiveId] = useState(sections[0]?.id ?? "");
   const sectionKey = sections.map((section) => section.id).join(",");
+  // Inactive study panels may retain the same heading IDs. Resolve targets
+  // within this navigation's own content panel rather than the document.
+  const findTarget = (id) => navRef.current?.parentElement?.querySelector(`#${CSS.escape(subchapterTargetId(id))}`);
 
   useEffect(() => {
     const container = navRef.current?.parentElement;
@@ -38,7 +41,7 @@ export default function SubchapterNav({ sections }) {
     let frame;
     const updateActiveSection = () => {
       const current = sections.reduce((active, section) => {
-        const target = document.getElementById(subchapterTargetId(section.id));
+        const target = findTarget(section.id);
         return target && target.getBoundingClientRect().top <= 140 ? section.id : active;
       }, sections[0].id);
       setActiveId(current);
@@ -70,7 +73,7 @@ export default function SubchapterNav({ sections }) {
           title={`Subchapter ${index + 1}: ${section.title}`}
           aria-label={`Jump to subchapter ${index + 1}: ${section.title}`}
           onClick={() => {
-            const target = document.getElementById(subchapterTargetId(section.id));
+            const target = findTarget(section.id);
             if (!target) return;
             target.focus({ preventScroll: true });
             target.scrollIntoView({

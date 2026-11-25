@@ -373,10 +373,6 @@ export default function Kanji({
                             <p className="note" lang="ja">
                               {lessonCards.map((card) => card.kanji).join("、")}
                             </p>
-                            {section.sourcePages?.length > 0 && <details className="kanji-book-source">
-                              <summary>Original textbook pages · vocabulary and examples</summary>
-                              <div className="kanji-book-source-pages">{section.sourcePages.map(page => <a key={page.src} href={page.src} target="_blank" rel="noreferrer"><span>PDF page {page.number}</span><img loading="lazy" src={page.src} alt={`Original N2 Kanji lesson, PDF page ${page.number}`} /></a>)}</div>
-                            </details>}
                             <div className="cards">
                               {lessonCards.map(renderCard)}
                             </div>
