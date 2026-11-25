@@ -6,6 +6,8 @@ import PracticeSession from "./PracticeSession.jsx";
 import StudySessionView from "./StudySessionView.jsx";
 import sourceSets from "./n3PracticeBank.json";
 import { practiceCategories } from "./practiceCategories.js";
+import useN3FlaggedQuestions from './useN3FlaggedQuestions.jsx';
+import { flaggedCollections } from './n3FlaggedQuestions.js';
 
 const bundledSets = practiceCategories(sourceSets);
 
@@ -28,6 +30,8 @@ function validateBank(value) {
 }
 
 export default function Practice({ isEditor = false, showReadings = false, showKanji = true }) {
+  const { questions: flaggedQuestions } = useN3FlaggedQuestions();
+  const [activeFlagged, setActiveFlagged] = useState(null);
   const [sets, setSets] = useState(bundledSets);
   const [selectedId, setSelectedId] = useState(bundledSets[0].id);
   const [activeId, setActiveId] = useState(null);
@@ -44,7 +48,7 @@ export default function Practice({ isEditor = false, showReadings = false, showK
 
   const availableSets = sets.filter(item => item.questions.length > 0);
   const selected = availableSets.find((item) => item.id === selectedId) || availableSets[0];
-  const active = sets.find((item) => item.id === activeId);
+  const active = activeFlagged || sets.find((item) => item.id === activeId);
   const importBank = async (event) => {
     const input = event.target;
     const file = input.files?.[0];
@@ -70,7 +74,7 @@ export default function Practice({ isEditor = false, showReadings = false, showK
     finally { setImporting(false); }
   };
 
-  if (active?.questions.length) return <StudySessionView label="Practice" onQuit={() => setActiveId(null)}>
+  if (active?.questions.length) return <StudySessionView label="Practice" onQuit={() => { setActiveId(null); setActiveFlagged(null); }}>
     <PracticeSession key={active.id} autoScroll showReadings={showReadings} showKanji={showKanji} questions={active.questions} title={`JLPT N3 · ${active.title}`} source={active.sourceRange ? `FULL-26-DE-日本語能力試験N3.pdf · pages ${active.sourceRange}` : null} />
   </StudySessionView>;
 
@@ -80,6 +84,7 @@ export default function Practice({ isEditor = false, showReadings = false, showK
     {pendingBank && <ConfirmDialog title="Replace the practice bank?" message="Replace the cloud practice bank with these 26 sets?" confirmLabel="Replace practice bank" onClose={() => setPendingBank(null)} onConfirm={confirmImport} />}
     <div className="mock-exam-eyebrow">JLPT N3 · Practice</div>
     <h2>Practice categories</h2>
+    <section aria-label="Flagged practice"><h3>Review flagged questions</h3><p>Questions marked “Flag for review” in Practice or Mock Exam. Saved in this browser.</p><div className="mock-exam-set-grid">{flaggedCollections(flaggedQuestions).map(set => <button type="button" className="mock-exam-set-card flagged-practice-card" key={set.id} disabled={!set.questions.length} onClick={() => { setActiveId(null); setActiveFlagged(set); }}><strong>{set.title}</strong><span>{set.questions.length} questions</span></button>)}</div>{!flaggedQuestions.length && <p>Flag a question during practice or an exam to review it here.</p>}</section>
     <div className="mock-exam-actions"><button type="button" className="primary-button" onClick={() => setActiveId(selected.id)}>Start {selected.title}</button><span>{selected.questions.length} questions</span></div>
     {isEditor && <details className="practice-import"><summary>{importing ? "Importing…" : "Import a replacement 26-set JSON bank"}</summary><p>The PDF collection is already available. An imported cloud bank replaces it for signed-in users.</p><input type="file" accept="application/json,.json" onChange={importBank} disabled={importing} /></details>}
     {error && <p role="alert">{error}</p>}

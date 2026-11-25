@@ -13,6 +13,9 @@ import { examRecordPath, localExamRecords, saveExamRecord } from "./mockExamStor
 import { StudyAccountContext } from "./StudyAccount.jsx";
 import MockExamHistory, { SkillScores } from "./MockExamHistory.jsx";
 import { scoreExam } from "./mockExamRecords.js";
+import useN3FlaggedQuestions from "./useN3FlaggedQuestions.jsx";
+import { flaggedCollections } from "./n3FlaggedQuestions.js";
+import './n3QuestionLayout.css';
 
 const sections = ["Vocabulary", "Grammar", "Reading"];
 const formatTime = (seconds) => `${String(Math.floor(seconds / 60)).padStart(2, "0")}:${String(seconds % 60).padStart(2, "0")}`;
@@ -22,6 +25,7 @@ const examChoices = [extraExam, createDecemberExam(), ...focusedExamSkills.map(s
 
 export default function MockExam() {
   const account = useContext(StudyAccountContext);
+  const { questions: flaggedQuestions, isFlagged, toggleFlag, error: flagError } = useN3FlaggedQuestions();
   const attempt = useRef(null);
   const [recordStatus, setRecordStatus] = useState("");
   const [recordError, setRecordError] = useState(false);
@@ -51,7 +55,6 @@ export default function MockExam() {
   const [activeExam, setActiveExam] = useState(examChoices[0]);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState({});
-  const [flagged, setFlagged] = useState([]);
   const [secondsLeft, setSecondsLeft] = useState(36 * 60);
   const [paused, setPaused] = useState(false);
   const [hideTimer, setHideTimer] = useState(false);
@@ -102,13 +105,16 @@ export default function MockExam() {
   }, [mode, answers, examQuestions, activeExam, correctTotal]);
 
   const startExam = (selection = activeExam) => {
+    if (selection.flaggedSet) {
+      selection = flaggedCollections(flaggedQuestions).find(exam => exam.id === selection.id);
+      if (!selection?.questions.length) return;
+    }
     const exam = selection.skill ? createFocusedExam(selection.skill) : selection.id === "dec-exam" ? createDecemberExam() : selection.id === "random-60" ? { ...selection, questions: shuffledQuestions(archiveQuestionPool) } : selection;
     attempt.current = { path: account?.uid ? examRecordPath(account.uid) : null };
     setRecordStatus("");
     setRecordError(false);
     setActiveExam(exam);
     setAnswers({});
-    setFlagged([]);
     setArrangements({});
     setConfirmation(null);
     setQuestionIndex(0);
@@ -125,7 +131,6 @@ export default function MockExam() {
     setReviewIndex(0);
   };
   const finishExam = () => setConfirmation({ title: "Finish this exam?", message: `${answeredCount} of ${examQuestions.length} answered${answeredCount < examQuestions.length ? ` · ${examQuestions.length - answeredCount} unanswered` : ""}.`, confirmLabel: "Finish and view results", action: completeExam });
-  const toggleFlag = (id) => setFlagged((current) => current.includes(id) ? current.filter((item) => item !== id) : [...current, id]);
 
   if (mode === "intro") return (
     <article className="mock-exam-panel">
@@ -133,6 +138,7 @@ export default function MockExam() {
       <MockExamHistory uid={account?.uid} dashboard />
       <div className="mock-exam-eyebrow">JLPT N3 · Practice mock</div>
       <h2>Mock Exam</h2>
+      <section aria-label="Flagged exams"><h3>Review flagged questions</h3><p>Take an exam using only questions marked “Flag for review.” Saved in this browser.</p><div className="mock-exam-set-grid">{flaggedCollections(flaggedQuestions).map(exam => <button type="button" className="mock-exam-set-card flagged-exam-card" key={exam.id} disabled={!exam.questions.length} onClick={() => startExam(exam)}><strong>{exam.title}</strong><span>{exam.questions.length} questions · {exam.durationMinutes} min</span></button>)}</div>{!flaggedQuestions.length && <p>Flag a question during practice or an exam to review it here.</p>}</section>
       <div className="mock-exam-actions">
         <button type="button" className="primary-button" onClick={() => startExam()}>Start {activeExam.title}</button>
       </div>
@@ -179,7 +185,7 @@ export default function MockExam() {
             {problemInstruction(item) && <p className="mock-problem-instruction" lang="ja">{display(problemInstruction(item))}</p>}
             {item.passage && <div className="mock-reading-passage" lang="ja">{display(item.passage)}</div>}
             <h4 lang="ja"><QuestionPrompt question={item} showReadings={showReadings} showKanji={showKanji} /></h4>
-            {item.target && <p className="mock-target" lang="ja">{display(item.target)}</p>}
+            {item.target && !item.prompt.includes(item.target) && <p className="mock-target" lang="ja">{display(item.target)}</p>}
             <div className="mock-review-options">{item.choices.map((choice, index) => {
               const selected = answers[item.id] === index;
               const correct = item.answer === index;
@@ -195,7 +201,7 @@ export default function MockExam() {
   }
 
   return (
-    <StudySessionView label="Mock exam" onQuit={() => setConfirmation({ title: "Quit this exam?", message: "Your current answers will be cleared when you start another exam.", confirmLabel: "Quit exam", action: () => { setConfirmation(null); setMode("intro"); } })}><article className="mock-exam-panel mock-attempt">
+    <StudySessionView label="Mock exam" onQuit={() => setConfirmation({ title: "Quit this exam?", message: "Your current answers will be cleared when you start another exam.", confirmLabel: "Quit exam", action: () => { setConfirmation(null); setMode("intro"); } })}><article className="mock-exam-panel mock-attempt n3-letter-layout">
       <div className="mock-exam-topline">
         <div><div className="mock-exam-eyebrow">JLPT N3 · {activeExam.title}</div><h2>Question {questionIndex + 1} of {examQuestions.length}</h2></div>
         <div className="mock-timer-block">
@@ -207,29 +213,31 @@ export default function MockExam() {
       <div className="mock-progress" aria-label={`Question ${questionIndex + 1} of ${examQuestions.length}`}><div style={{ width: `${((questionIndex + 1) / examQuestions.length) * 100}%` }} /></div>
       <div className="mock-attempt-grid">
         <section className="mock-question-card mock-split-question" aria-label={`Question ${questionIndex + 1}`} ref={questionCard} tabIndex={-1}><div className="practice-prompt-panel">
-          <div className="mock-question-meta"><span>{question.section}</span><span>{display(question.type)}</span><strong>Answered {answeredCount} / {examQuestions.length}</strong></div>
+          <div className="n3-question-header"><div className="mock-question-meta"><span>{question.section}</span><span>{display(question.type)}</span><strong>Answered {answeredCount} / {examQuestions.length}</strong></div>
         <aside className="mock-question-nav">
           <details className="mock-navigation-drawer" open={navigationOpen} onToggle={event => setNavigationOpen(event.currentTarget.open)}>
           <summary>Question navigation <span>{answeredCount} / {examQuestions.length}</span></summary>
-          <div className="mock-question-palette">{examQuestions.map((item, index) => <button type="button" key={item.id} className={`${index === questionIndex ? "current " : ""}${answers[item.id] != null ? "answered " : ""}${flagged.includes(item.id) ? "flagged" : ""}`} onClick={() => setQuestionIndex(index)} aria-label={`Question ${index + 1}${answers[item.id] != null ? ", answered" : ", unanswered"}${flagged.includes(item.id) ? ", flagged for review" : ""}`}>
-            {index + 1}{flagged.includes(item.id) && <span aria-hidden="true">⚑</span>}
+          <div className="mock-question-palette">{examQuestions.map((item, index) => <button type="button" key={item.id} className={`${index === questionIndex ? "current " : ""}${answers[item.id] != null ? "answered " : ""}${isFlagged(item) ? "flagged" : ""}`} onClick={() => setQuestionIndex(index)} aria-label={`Question ${index + 1}${answers[item.id] != null ? ", answered" : ", unanswered"}${isFlagged(item) ? ", flagged for review" : ""}`}>
+            {index + 1}{isFlagged(item) && <span aria-hidden="true">⚑</span>}
           </button>)}</div>
           <div className="mock-nav-legend"><span><i className="answered" /> Answered</span><span><i className="flagged" /> Flagged</span></div>
           </details>
-        </aside>
+        </aside></div>
           {problemInstruction(question) && <p className="mock-problem-instruction" lang="ja">{display(problemInstruction(question))}</p>}
           {question.passage && <div className="mock-reading-passage" lang="ja">{display(question.passage)}</div>}
           <h3 lang="ja"><QuestionPrompt question={question} showReadings={showReadings} showKanji={showKanji} /></h3>
-          {question.target && <p className="mock-target" lang="ja">{display(question.target)}</p>}
+          {question.target && !question.prompt.includes(question.target) && <p className="mock-target" lang="ja">{display(question.target)}</p>}
+          {!starLayout(question.prompt) && <ol className="n3-source-options" type="A" lang="ja">{question.choices.map((choice, index) => <li key={index}>{display(choice)}</li>)}</ol>}
           </div><div className="practice-response-panel"><div className="practice-response-heading"><strong>Choose your answer</strong><span>Exam mode</span></div>
           {starLayout(question.prompt) ? <StarAnswer key={question.id} question={question} value={arrangements[question.id]} display={display} onChange={(order, answer) => { setArrangements(current => ({ ...current, [question.id]: order })); setAnswers(current => ({ ...current, [question.id]: answer })); }} /> : <fieldset className={`mock-answer-list${question.choices.every(choice => choice.length <= 45) ? " mock-short-answers" : ""}`}>
             <legend>Select one answer</legend>
             {question.choices.map((choice, index) => <label key={index} className={`mock-answer-option${answers[question.id] === index ? " selected" : ""}`}>
               <input type="radio" name={`question-${question.id}`} checked={answers[question.id] === index} onChange={() => setAnswers((current) => ({ ...current, [question.id]: index }))} />
-              <span className="mock-option-letter">{"ABCD"[index]}</span><span lang="ja">{display(choice)}</span>
+              <span className="mock-option-letter">{"ABCD"[index]}</span><span className="n3-answer-accessible" lang="ja">{display(choice)}</span>
             </label>)}
           </fieldset>}
-          <div className="mock-question-actions"><label className="mock-flag"><input type="checkbox" checked={flagged.includes(question.id)} onChange={() => toggleFlag(question.id)} /> Flag for review</label><button type="button" className="text-button" onClick={() => { setAnswers((current) => { const next = { ...current }; delete next[question.id]; return next; }); setArrangements(current => { const next = { ...current }; delete next[question.id]; return next; }); }} disabled={answers[question.id] == null}>Clear answer</button></div>
+          <div className="mock-question-actions"><label className="mock-flag"><input type="checkbox" checked={isFlagged(question)} onChange={() => toggleFlag(question)} /> Flag for review</label><button type="button" className="text-button" onClick={() => { setAnswers((current) => { const next = { ...current }; delete next[question.id]; return next; }); setArrangements(current => { const next = { ...current }; delete next[question.id]; return next; }); }} disabled={answers[question.id] == null}>Clear answer</button></div>
+          {flagError && <p role="alert">{flagError}</p>}
           <div className="mock-navigation-controls"><button type="button" className="secondary-button" disabled={questionIndex === 0} onClick={() => setQuestionIndex((index) => index - 1)}>← Back</button><span>{questionIndex + 1} / {examQuestions.length}</span>{questionIndex < examQuestions.length - 1 ? <button type="button" className="primary-button" onClick={() => setQuestionIndex((index) => index + 1)}>Next →</button> : <button type="button" className="primary-button" onClick={finishExam}>Finish exam</button>}</div>
           {questionIndex < examQuestions.length - 1 && <button type="button" className="mock-finish-button" onClick={finishExam}>Finish exam</button>}
           </div>

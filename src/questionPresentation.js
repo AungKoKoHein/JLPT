@@ -3,7 +3,9 @@ import instructions from './practiceInstructions.json' with { type: 'json' };
 
 export function promptUnderlines(question) {
   const entry = presentation[question.sourceQuestionId || question.id];
-  return entry?.prompt === question.prompt ? entry.underlines : [];
+  if (entry?.prompt === question.prompt && entry.underlines.length) return entry.underlines;
+  const start = question.target ? question.prompt.indexOf(question.target) : -1;
+  return start >= 0 ? [{ start, end: start + question.target.length }] : [];
 }
 
 export function starLayout(prompt = '') {

@@ -40,9 +40,9 @@ try {
   await cdp('Page.enable');
   await cdp('Emulation.setDeviceMetricsOverride', { width: 1440, height: 1000, deviceScaleFactor: 1, mobile: false });
   await cdp('Page.navigate', { url: `http://127.0.0.1:${server.config.server.port}/__practice-check` });
-  await until(`document.querySelectorAll('.mock-exam-set-card').length===24`);
+  await until(`document.querySelectorAll('.mock-exam-set-card:not(.flagged-practice-card)').length===24`);
   assert.equal(await evaluate(`[...document.querySelectorAll('.mock-exam-set-card strong')].some(e=>['N3-2','N3-17'].includes(e.textContent))`), false, 'Empty categories are hidden');
-  assert.equal(await evaluate(`document.querySelector('.mock-exam-actions').compareDocumentPosition(document.querySelector('.mock-exam-set-grid')) & Node.DOCUMENT_POSITION_FOLLOWING`), 4, 'Start is above the category grid');
+  assert.equal(await evaluate(`document.querySelector('.mock-exam-actions').compareDocumentPosition(document.querySelector('[aria-label="Practice categories"]')) & Node.DOCUMENT_POSITION_FOLLOWING`), 4, 'Start is above the category grid');
   await evaluate(`const scrollIntoView=Element.prototype.scrollIntoView;Element.prototype.scrollIntoView=function(options){window.lastScrollTarget=this.className;return scrollIntoView.call(this,options)}`);
   await click('Start N3-1');
   await until(`document.querySelectorAll('input[type=radio]').length===4`);
@@ -50,7 +50,8 @@ try {
   await click('Study Controls');
   assert.equal(await evaluate(`window.controlsClicked`), true, 'Controls remain interactive in the session toolbar');
   await cdp('Emulation.setDeviceMetricsOverride', { width: 1366, height: 600, deviceScaleFactor: 1, mobile: false });
-  assert.equal(await evaluate(`(() => { const content = document.querySelector('.study-session-content'); return content.scrollHeight <= content.clientHeight + 1; })()`), true, 'Short questions fit a 600px-high screen without scrolling');
+  assert.equal(await evaluate(`document.documentElement.scrollWidth<=innerWidth`), true, 'Question and choices fit the screen width');
+  assert.ok(await evaluate(`document.querySelector('.practice-response-panel').getBoundingClientRect().left > document.querySelector('.practice-prompt-panel').getBoundingClientRect().right`), 'Letter buttons appear beside the question on desktop');
   await cdp('Emulation.setDeviceMetricsOverride', { width: 1440, height: 1000, deviceScaleFactor: 1, mobile: false });
   await until(`window.lastScrollTarget?.includes('practice-question-card')`);
   await click('Next →');
@@ -63,9 +64,13 @@ try {
   assert.match(await evaluate(`document.querySelector('.practice-problem-heading').textContent.trim()`), /言葉の読み方.*選びなさい/);
   assert.equal(await evaluate(`document.querySelector('.practice-question-prompt').textContent.trim()`), '［1］ どちらのほうが大きいか、比べてみましょう。');
   assert.deepEqual(await evaluate(`[...document.querySelectorAll('.practice-question-group h4')].slice(0,3).map(e=>e.textContent)`), ['問題 1', '問題 2', '問題 3']);
-  assert.equal(await evaluate(`document.querySelector('.practice-source-page').open`), false, 'Whole source page is collapsed');
-  assert.equal(await evaluate(`document.querySelectorAll('.reading-answer-list label')[2].textContent.trim()`), '③くらべて');
-  await until(`document.querySelector('.practice-source-page img')?.naturalWidth>0`);
+  assert.equal(await evaluate(`document.querySelector('.practice-source-page')`), null, 'Original source page dropdown is hidden');
+  assert.equal(await evaluate(`document.querySelectorAll('.reading-answer-list label')[2].textContent.trim()`), 'Cくらべて');
+  assert.equal(await evaluate(`document.querySelectorAll('.n3-source-options li').length`), 4);
+  assert.deepEqual(await evaluate(`[...document.querySelectorAll('.reading-option-letter')].map(e=>e.textContent)`), ['A','B','C','D']);
+  assert.equal(await evaluate(`document.querySelector('.reading-answer-list label').getBoundingClientRect().width`),62);
+  assert.ok(await evaluate(`[...document.querySelectorAll('.reading-answer-list label')].every(label=>{const b=label.getBoundingClientRect(),l=label.querySelector('.reading-option-letter').getBoundingClientRect();return Math.abs((b.left+b.width/2)-(l.left+l.width/2))<1&&Math.abs((b.top+b.height/2)-(l.top+l.height/2))<1})`), 'Answer letters are centered inside each button');
+  assert.ok(await evaluate(`document.querySelector('.n3-answer-accessible').getBoundingClientRect().width<=1`), 'Choice text stays in the question panel, with letter-only answer controls');
   assert.equal(await evaluate(`[...document.querySelectorAll('button')].some(button => button.textContent.trim() === 'Check answer')`), false);
   await evaluate(`document.querySelectorAll('input[type=radio]')[2].click()`);
   await until(`document.querySelector('.reading-answer-list label.correct') !== null`);
@@ -91,13 +96,12 @@ try {
   await until(`document.querySelector('.star-answer-slot.correct') !== null`);
   assert.ok(await evaluate(`document.querySelector('.star-answer').disabled`));
   await cdp('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
-  await until(`document.querySelector('.practice-source-page img')?.naturalWidth>0`);
   assert.equal(await evaluate(`document.documentElement.scrollWidth<=document.documentElement.clientWidth`), true);
   assert.equal(await evaluate(`Boolean(document.querySelector('.study-session-view'))`), true, 'Practice opens in a dedicated full-screen view');
   assert.equal(await evaluate(`getComputedStyle(document.body).overflow`), 'hidden', 'Background scrolling is locked');
   await click('Quit practice');
   assert.equal(await evaluate(`Boolean(document.querySelector('.study-session-view'))`), false, 'Quit closes the full-screen view');
-  assert.equal(await evaluate(`document.querySelectorAll('.mock-exam-set-card').length`), 24);
+  assert.equal(await evaluate(`document.querySelectorAll('.mock-exam-set-card:not(.flagged-practice-card)').length`), 24);
   console.log('PASS: Start above categories, individual Japanese question, highlighted PDF answer, collapsed source page, navigation, results, retry, and mobile width.');
 } finally {
   socket?.close();

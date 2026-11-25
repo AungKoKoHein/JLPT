@@ -1,0 +1,29 @@
+:is(.practice-session, .mock-attempt).n3-letter-layout .practice-question-card,
+:is(.practice-session, .mock-attempt).n3-letter-layout .mock-split-question { grid-template-columns: minmax(0, 1fr) 340px; gap: 24px; }
+:is(.practice-session, .mock-attempt).n3-letter-layout .practice-prompt-panel { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; box-shadow: none; }
+:is(.practice-session, .mock-attempt).n3-letter-layout .practice-response-panel { position: sticky; top: 16px; padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: none; }
+.n3-source-options { margin: 30px 0 0; padding-left: 28px; font-size: 1.15rem; line-height: 1.8; }
+.n3-source-options li { padding-left: 4px; margin-bottom: 14px; white-space: pre-wrap; }
+.n3-question-header { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 16px; margin-bottom: 12px; }
+.n3-question-header .mock-question-meta { flex: 1 1 auto; margin: 0; }
+.mock-attempt.n3-letter-layout .n3-question-header .mock-question-nav { flex: 0 0 auto; margin: 0 0 0 auto; }
+.mock-attempt.n3-letter-layout .n3-question-header .mock-navigation-drawer summary { margin: 0; }
+.mock-attempt.n3-letter-layout .mock-problem-instruction { margin-top: 0; margin-bottom: 12px; padding-bottom: 8px; }
+:is(.practice-session, .mock-attempt).n3-letter-layout :is(.reading-answer-list, .mock-answer-list) { display: flex; flex-wrap: wrap; gap: 12px; }
+:is(.practice-session, .mock-attempt).n3-letter-layout :is(.reading-answer-list, .mock-answer-list) legend { margin-bottom: 16px; }
+:is(.practice-session, .mock-attempt).n3-letter-layout :is(.reading-answer-list, .mock-answer-list) label { box-sizing: border-box; display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; place-items: center; text-align: center; position: relative; width: 62px; min-height: 62px; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); cursor: pointer; }
+:is(.practice-session, .mock-attempt).n3-letter-layout :is(.reading-option-letter, .mock-option-letter) { display: block; width: auto; height: auto; padding: 0; border: 0; background: transparent; color: inherit; font-size: 1.3rem; font-weight: 600; }
+:is(.practice-session, .mock-attempt).n3-letter-layout :is(.n3-answer-accessible, .reading-answer-list input, .mock-answer-list input) { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+:is(.practice-session, .mock-attempt).n3-letter-layout :is(.reading-answer-list, .mock-answer-list) label.selected { background: var(--accent-soft); border: 2px solid var(--accent); color: var(--accent); }
+:is(.practice-session, .mock-attempt).n3-letter-layout .reading-answer-list label.correct { background: #e5f5eb; border: 2px solid #19804a; color: #155d39; }
+:is(.practice-session, .mock-attempt).n3-letter-layout .reading-answer-list label.incorrect { background: #fbeaea; border: 2px solid #b23b3b; color: #942d2d; }
+:is(.practice-session, .mock-attempt).n3-letter-layout :is(.reading-answer-list, .mock-answer-list) label:focus-within { outline: 3px solid var(--focus); outline-offset: 4px; }
+@media (max-width: 900px) {
+  :is(.practice-session, .mock-attempt).n3-letter-layout .practice-question-card, :is(.practice-session, .mock-attempt).n3-letter-layout .mock-split-question { grid-template-columns: minmax(0, 1fr); }
+  :is(.practice-session, .mock-attempt).n3-letter-layout .practice-response-panel { position: static; }
+}
+@media (max-width: 600px) {
+  :is(.practice-session, .mock-attempt).n3-letter-layout .practice-response-panel { padding: 18px 16px; }
+  :is(.practice-session, .mock-attempt).n3-letter-layout :is(.reading-answer-list, .mock-answer-list) { gap: 8px; }
+  :is(.practice-session, .mock-attempt).n3-letter-layout :is(.reading-answer-list, .mock-answer-list) label { width: 52px; min-height: 54px; }
+}

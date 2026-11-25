@@ -3,6 +3,14 @@ import test from 'node:test';
 import bank from '../src/n3PracticeBank.json' with { type: 'json' };
 import { promptUnderlines, starLayout, problemInstruction } from '../src/questionPresentation.js';
 import { createDecemberExam } from '../src/decemberExam.js';
+import { mockQuestions } from '../src/mockExamQuestions.js';
+
+test('mini mock keywords are underlined within the sentence', () => {
+  const question = mockQuestions[0];
+  assert.equal(question.target, '改札');
+  assert.deepEqual(promptUnderlines(question).map(({ start, end }) => question.prompt.slice(start, end)), ['改札']);
+  assert.deepEqual(promptUnderlines({ ...question, target: 'missing' }), []);
+});
 
 test('every bundled section displays full PDF directions, including cloud question IDs', () => {
   for (const question of bank.flatMap(set => set.questions).filter(q => q.problem)) {
