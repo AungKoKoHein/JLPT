@@ -4,14 +4,16 @@ import QuestionPrompt from "./QuestionPrompt.jsx";
 import StarAnswer from "./StarAnswer.jsx";
 import PracticeExplanationDialog from "./PracticeExplanationDialog.jsx";
 import { practiceQuestionGroups, problemInstruction, scrollToQuestion, starLayout } from "./questionPresentation.js";
+import './n3QuestionLayout.css';
+import useN3FlaggedQuestions from './useN3FlaggedQuestions.jsx';
 
 export default function PracticeSession({ questions, title, showReadings = false, showKanji = true, autoScroll = false }) {
   const display = (text) => practiceText(text, showReadings, showKanji);
+  const { isFlagged, toggleFlag, error: flagError } = useN3FlaggedQuestions();
   const [selected, setSelected] = useState(0);
   const [answers, setAnswers] = useState({});
   const [checked, setChecked] = useState({});
   const [results, setResults] = useState(false);
-  const [sourcePage, setSourcePage] = useState(null);
   const [arrangements, setArrangements] = useState({});
   const [explanationOpen, setExplanationOpen] = useState(false);
   const explanationButton = useRef(null);
@@ -23,16 +25,15 @@ export default function PracticeSession({ questions, title, showReadings = false
   const isChecked = Boolean(checked[question.id]);
   const isCorrect = answers[question.id] === question.answer;
   const scoreable = questions.filter((item) => Number.isInteger(item.answer));
-  const displayedPage = question.sourcePages?.find((page) => page.number === (sourcePage ?? question.sourcePage)) || question.sourcePages?.[0];
-  const select = (index) => { setSelected(index); setResults(false); setSourcePage(null); setExplanationOpen(false); };
+  const select = (index) => { setSelected(index); setResults(false); setExplanationOpen(false); };
   const restart = () => { setAnswers({}); setChecked({}); setArrangements({}); select(0); scrollToQuestion(questionCard.current); };
 
   const compactChoices = !question.passage && !question.questionImage && question.choices.every(choice => choice.length <= 45);
 
-  return <article className="reading-practice practice-session">
+  return <article className="reading-practice practice-session n3-letter-layout">
     <div className="reading-practice-heading">
       <div><div className="reading-eyebrow">{title}</div><h2>{results ? "Practice results" : "Practice questions"}</h2></div>
-      <div className="practice-session-progress"><span>Question {selected + 1} of {questions.length}</span><progress value={completed} max={questions.length} aria-label="Practice progress" /></div><div className="practice-session-status"><div className="reading-content-meta"><span>Question {selected + 1} of {questions.length}</span>{question.pages && <span>PDF page {question.pages}</span>}</div><div className="reading-progress"><strong>{completed} / {questions.length}</strong><span>checked</span></div></div>
+      <div className="practice-session-progress"><span>Question {selected + 1} of {questions.length}</span><progress value={completed} max={questions.length} aria-label="Practice progress" /></div><div className="practice-session-status"><div className="reading-content-meta"><span>Question {selected + 1} of {questions.length}</span></div><div className="reading-progress"><strong>{completed} / {questions.length}</strong><span>checked</span></div></div>
     </div>
     {results ? <>
       <p className="reading-score">Correct: <strong>{correct} / {scoreable.length}</strong> · Checked: {completed} / {questions.length}</p>
@@ -58,27 +59,26 @@ export default function PracticeSession({ questions, title, showReadings = false
           {question.problem && <h4 lang="ja" className="practice-problem-heading">{display(problemInstruction(question))}</h4>}
           <h4 lang="ja" className="practice-question-prompt"><QuestionPrompt question={question} showReadings={showReadings} showKanji={showKanji} /></h4>
           {question.questionImage && <img className="practice-key-image" src={question.questionImage} alt={`Question ${question.number} and its four choices`} />}
-          {displayedPage && <details className="practice-source-page" open={question.openSource || (!question.individualItem && !question.questionImage)}>
-            <summary>View original page / reading passage</summary>
-            <div className="practice-source-controls"><label>Source page <select value={displayedPage.number} onChange={(event) => setSourcePage(Number(event.target.value))}>{question.sourcePages.map((page) => <option key={page.number} value={page.number}>{page.number}{page.number === question.sourcePage ? " · question" : ""}</option>)}</select></label><button type="button" className="secondary-button" onClick={() => setSourcePage(question.sourcePage)}>Question page</button><a href={displayedPage.src} target="_blank" rel="noreferrer">Enlarge page ↗</a></div>
-            <img src={displayedPage.src} alt={`Original PDF page ${displayedPage.number}; ${question.topic} question ${question.number}`} />
-          </details>}
+
           {question.sourceIssue && <p className="reading-note" role="note">{question.sourceIssue}</p>}
           {question.passage && <div className="reading-passage-text" lang="ja">{display(question.passage)}</div>}
-          {question.target && <p className="mock-target" lang="ja">{display(question.target)}</p>}
+          {question.target && !question.prompt.includes(question.target) && <p className="mock-target" lang="ja">{display(question.target)}</p>}
+          {!starLayout(question.prompt) && <ol className="n3-source-options" type="A" lang="ja">{question.choices.map((choice, index) => <li key={index}>{display(choice)}</li>)}</ol>}
           </div><div className="practice-response-panel"><div className="practice-response-heading"><strong>Choose your answer</strong><div className="practice-response-tools"><button type="button" ref={explanationButton} className="secondary-button practice-explanation-button" disabled={!isChecked} aria-haspopup="dialog" onClick={() => setExplanationOpen(true)}>Show explanations</button><span className="practice-mode-badge">Practice mode</span></div></div>
           {starLayout(question.prompt) ? <StarAnswer key={question.id} question={question} value={arrangements[question.id]} disabled={isChecked} checked={isChecked} display={display} onChange={(order, answer) => { setArrangements(current => ({ ...current, [question.id]: order })); setAnswers(current => ({ ...current, [question.id]: answer })); if (order.every(item => item != null)) setChecked(current => ({ ...current, [question.id]: true })); }} /> : <fieldset className={`reading-answer-list${compactChoices ? " practice-short-answers" : ""}`} disabled={isChecked}>
             <legend>Select one answer</legend>
             {question.choices.map((choice, index) => <label key={index} className={`${answers[question.id] === index ? "selected" : ""}${isChecked && index === question.answer ? " correct" : ""}${isChecked && answers[question.id] === index && !isCorrect ? " incorrect" : ""}`}>
               <input type="radio" name={question.id} checked={answers[question.id] === index} onChange={() => { setAnswers(current => ({ ...current, [question.id]: index })); setChecked(current => ({ ...current, [question.id]: true })); }} />
-              <span className="reading-option-letter">{question.sourcePages ? "①②③④"[index] : index+1}</span><span lang="ja">{display(choice)}</span>
+              <span className="reading-option-letter">{"ABCD"[index]}</span><span className="n3-answer-accessible" lang="ja">{display(choice)}</span>
             </label>)}
           </fieldset>}
           <div className="reading-question-actions">
+            <label className="mock-flag"><input type="checkbox" checked={isFlagged(question)} onChange={() => toggleFlag(question)} /> Flag for review</label>
             <button type="button" className="secondary-button" disabled={selected === 0} onClick={() => select(selected - 1)}>← Previous</button>
             <button type="button" className="secondary-button" onClick={() => setResults(true)}>Results ({completed}/{questions.length})</button>
             <button type="button" className="primary-button" onClick={() => selected === questions.length - 1 ? setResults(true) : select(selected + 1)}>{selected === questions.length - 1 ? "Finish →" : "Next →"}</button>
           </div>
+          {flagError && <p role="alert">{flagError}</p>}
           </div>
         </section>
       </section>

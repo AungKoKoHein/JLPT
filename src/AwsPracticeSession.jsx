@@ -21,6 +21,14 @@ export default function AwsPracticeSession() {
     requestAnimationFrame(() => { card.current?.focus({ preventScroll: true }); card.current?.scrollIntoView({ block: 'start' }); });
   };
   const restart = () => { setAnswers({}); setSubmitted({}); select(0); };
+  const chooseAnswer = letter => {
+    if (checked) return;
+    const next = toggleAwsAnswer(selected, letter, question.selectCount);
+    setAnswers(current => ({ ...current, [question.id]: next }));
+    if (next.length === question.selectCount) {
+      setSubmitted(current => ({ ...current, [question.id]: true }));
+    }
+  };
   const visibleResults = awsQuestions.filter(item => filter === 'all' || (filter === 'unchecked' ? !submitted[item.id] : submitted[item.id]));
 
   return <article className="aws-practice-session">
@@ -50,20 +58,16 @@ export default function AwsPracticeSession() {
         </div>
       </section>
       <section className="aws-answer-panel" aria-label="Answer selection">
-        <p className="aws-source-page">PDF page {question.sourcePages.join('–')}</p>
         <fieldset disabled={checked}>
           <legend>Choose {question.selectCount === 1 ? 'one answer' : question.selectCount === 2 ? 'two answers' : 'three answers'}</legend>
           <div className="aws-answer-buttons">{question.choices.map((_, choiceIndex) => {
             const letter = String.fromCharCode(65 + choiceIndex);
-            return <button type="button" key={letter} aria-pressed={selected.includes(letter)} className={`aws-answer-letter${selected.includes(letter) ? ' selected' : ''}${checked && question.answers?.includes(letter) ? ' correct' : ''}${status === 'Review' && selected.includes(letter) && !question.answers?.includes(letter) ? ' incorrect' : ''}`} disabled={question.selectCount > 1 && !selected.includes(letter) && selected.length >= question.selectCount} onClick={() => setAnswers(current => ({ ...current, [question.id]: toggleAwsAnswer(current[question.id] || [], letter, question.selectCount) }))}>{letter}</button>;
+            return <button type="button" key={letter} aria-pressed={selected.includes(letter)} className={`aws-answer-letter${selected.includes(letter) ? ' selected' : ''}${checked && question.answers?.includes(letter) ? ' correct' : ''}${status === 'Review' && selected.includes(letter) && !question.answers?.includes(letter) ? ' incorrect' : ''}`} disabled={question.selectCount > 1 && !selected.includes(letter) && selected.length >= question.selectCount} onClick={() => chooseAnswer(letter)}>{letter}</button>;
           })}</div>
         </fieldset>
         <p className="aws-selection-count" role="status">{selected.length} of {question.selectCount} selected</p>
-        {checked && <div className="aws-answer-feedback" role="status"><strong>{status === 'Ungraded' ? 'Answer saved · ungraded' : status === 'Correct' ? 'Correct' : 'Review your answer'}</strong><p>Your answer: {selected.join(', ')}{question.answers ? ` · Correct answer: ${question.answers.join(', ')}` : ''}</p>{!question.answers && <p>No answer key is included in the PDF for this question.</p>}</div>}
-        {checked && <p className="aws-key-source">{question.answerSource === 'aws-documentation-inference' ? 'Supplemented answer: inferred from AWS documentation.' : question.answerSource === 'aws-documentation-correction' ? 'Supplied key corrected using AWS documentation. See explanation.' : 'Answer key: supplied solution notes.'}</p>}
         {checked && question.explanation && <details key={question.id} className="aws-explanation"><summary>Show explanation</summary><p>{question.explanation}</p><ul>{question.references.map(reference => <li key={reference.url}><a href={reference.url} target="_blank" rel="noreferrer">{reference.title}</a></li>)}</ul></details>}
         <div className="aws-actions">
-          {!checked && <button type="button" className="primary-button" disabled={selected.length !== question.selectCount} onClick={() => setSubmitted(current => ({ ...current, [question.id]: true }))}>{question.answers ? 'Check answer' : 'Submit answer'}</button>}
           {checked && <button type="button" className="secondary-button" onClick={() => { setAnswers(current => ({ ...current, [question.id]: [] })); setSubmitted(current => ({ ...current, [question.id]: false })); }}>Try again</button>}
         </div>
         <div className="aws-question-navigation"><button type="button" className="secondary-button" disabled={index === 0} onClick={() => select(index - 1)}>Previous</button><button type="button" className="primary-button" onClick={() => index === awsQuestions.length - 1 ? setResults(true) : select(index + 1)}>{index === awsQuestions.length - 1 ? 'Finish' : 'Next'}</button></div>

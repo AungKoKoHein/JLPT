@@ -12,7 +12,7 @@ const server = await createServer({ configFile: false, logLevel: 'error', plugin
   configureServer(server) {
     server.middlewares.use('/__practice-check', async (_req, res) => {
       res.setHeader('Content-Type', 'text/html');
-      res.end(await server.transformIndexHtml('/__practice-check', `<html><head><meta name="viewport" content="width=device-width, initial-scale=1"></head><body><div id="root"></div><script type="module">import React from 'react';import{createRoot}from'react-dom/client';import Practice from '/src/MockExam.jsx';import{StudyAccountContext}from'/src/StudyAccount.jsx';localStorage.removeItem('jlpt:local-mock-exams:local-browser-check');import '/src/app.css';function Check(){const[readings,setReadings]=React.useState(false);window.toggleReadings=()=>setReadings(v=>!v);return React.createElement(StudyAccountContext.Provider,{value:{uid:'local-browser-check'}},React.createElement(Practice,{showReadings:readings}));}createRoot(document.getElementById('root')).render(React.createElement(Check));</script></body></html>`));
+      res.end(await server.transformIndexHtml('/__practice-check', `<html><head><meta name="viewport" content="width=device-width, initial-scale=1"></head><body><div id="root"></div><script type="module">import React from 'react';import{createRoot}from'react-dom/client';import Practice from '/src/MockExam.jsx';import{StudyAccountContext}from'/src/StudyAccount.jsx';localStorage.removeItem('jlpt:local-mock-exams:local-browser-check');import '/src/app.css';function Check(){const[readings,setReadings]=React.useState(false);window.toggleReadings=()=>setReadings(v=>!v);return React.createElement(StudyAccountContext.Provider,{value:{uid:'local-browser-check'}},React.createElement(Practice,{showReadings:readings}));}const root=createRoot(document.getElementById('root'));root.render(React.createElement(Check));window.openPracticeCheck=async()=>{const{default:Practice}=await import('/src/Practice.jsx');root.render(React.createElement(StudyAccountContext.Provider,{value:{uid:'local-browser-check'}},React.createElement(Practice)));};</script></body></html>`));
     });
   },
 }], server: { host: '127.0.0.1', port: 0 } });
@@ -40,7 +40,7 @@ try {
   await cdp('Page.enable');
   await cdp('Emulation.setDeviceMetricsOverride', { width: 1440, height: 1000, deviceScaleFactor: 1, mobile: false });
   await cdp('Page.navigate', { url: `http://127.0.0.1:${server.config.server.port}/__practice-check` });
-  await until(`document.querySelectorAll('.mock-exam-set-card').length===11`);
+  await until(`document.querySelectorAll('.mock-exam-set-card:not(.flagged-exam-card)').length===11`);
   assert.equal(await evaluate(`document.querySelector('.mock-choose-another').textContent`), 'Choose another test');
   assert.ok(await evaluate(`(() => { const random = document.querySelector('.mock-exam-set-card:last-of-type'); const choices = [...document.querySelectorAll('.mock-exam-set-card')]; const last = choices.at(-1).getBoundingClientRect(); const button = document.querySelector('.mock-choose-another').getBoundingClientRect(); return button.left > last.right && button.top >= last.top && button.bottom <= last.bottom + 1; })()`), 'Choose another test sits to the right of Random mixed mock');
   await evaluate(`document.querySelector('.mock-choose-another').click()`);
@@ -62,13 +62,16 @@ try {
   await evaluate(`document.querySelector('input[type=radio]').click()`);
   assert.equal(await evaluate(`document.querySelectorAll('.mock-attempt .correct, .mock-attempt .incorrect').length`), 0, 'Exam selection does not reveal correctness');
   assert.equal(await evaluate(`document.querySelector('.mock-answer-list').disabled`), false, 'Exam answers remain editable');
-  assert.ok(await evaluate(`parseFloat(getComputedStyle(document.querySelector('.mock-answer-option span[lang="ja"]')).fontSize) >= 18`), 'Answer text is enlarged');
+  assert.ok(await evaluate(`parseFloat(getComputedStyle(document.querySelector('.mock-answer-option .mock-option-letter')).fontSize) >= 20`), 'Answer letters are enlarged');
+  assert.equal(await evaluate(`document.querySelectorAll('.n3-source-options li').length`),4);
+  assert.ok(await evaluate(`document.querySelector('.mock-problem-instruction').getBoundingClientRect().top-document.querySelector('.n3-question-header').getBoundingClientRect().bottom<=16`), 'Question instructions follow the compact header without an empty gap');
   for (const width of [1440,1024,800,768,600,393,360]) {
     await cdp('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<600});
     await new Promise(resolve=>setTimeout(resolve,150));
     assert.ok(await evaluate(`document.documentElement.scrollWidth<=document.documentElement.clientWidth`),`Horizontal overflow at ${width}px`);
     assert.ok(await evaluate(`document.querySelector('.mock-question-card').getBoundingClientRect().width<=innerWidth`),`Question fits at ${width}px`);
     assert.ok(await evaluate(`document.querySelector('.mock-answer-option').getBoundingClientRect().height>=44`),`Touch target at ${width}px`);
+    assert.ok(await evaluate(`[...document.querySelectorAll('.mock-answer-option')].every(label=>{const b=label.getBoundingClientRect(),l=label.querySelector('.mock-option-letter').getBoundingClientRect();return Math.abs((b.left+b.width/2)-(l.left+l.width/2))<1&&Math.abs((b.top+b.height/2)-(l.top+l.height/2))<1})`),`Centered letters at ${width}px`);
     if (process.env.CAPTURE_MOCK_UI === '1' && [1440, 800, 360].includes(width)) {
       const screenshot = await cdp('Page.captureScreenshot', { format: 'png' });
       fs.writeFileSync(new URL(`../.tmp-python/mock-${width}.png`, import.meta.url), Buffer.from(screenshot.data, 'base64'));
@@ -162,5 +165,36 @@ try {
     await click('Choose another test');
     await until(`document.querySelector('.mock-exam-set-grid') !== null`);
   }
-  console.log('PASS: Selection button placement, local save/delete/new completion and recalculated overall scores, single results status panel, December mock, answer review, retry, quit, and responsive layouts.');
+  await click('Start Extra 24-question mini mock');
+  await evaluate(`document.querySelector('.mock-flag input').click()`);
+  await evaluate(`document.querySelectorAll('.mock-question-palette button')[8].click()`);
+  await evaluate(`document.querySelector('.mock-flag input').click()`);
+  await click('Quit exam');
+  await evaluate(`[...document.querySelectorAll('dialog button')].find(b=>b.textContent.trim()==='Quit exam').click()`);
+  await until(`document.querySelectorAll('.flagged-exam-card').length===3`);
+  assert.ok(await evaluate(`document.querySelector('.flagged-exam-card').textContent.includes('2 questions')`));
+  await cdp('Page.reload');
+  await until(`document.querySelector('.flagged-exam-card')?.textContent.includes('2 questions')`);
+  await evaluate(`[...document.querySelectorAll('.flagged-exam-card')].find(b=>b.querySelector('strong').textContent==='Flagged Grammar').click()`);
+  await until(`document.querySelectorAll('.mock-question-palette button').length===1`);
+  assert.ok(await evaluate(`document.querySelector('.mock-question-meta').textContent.includes('Grammar')`));
+  await evaluate(`document.querySelector('.mock-flag input').click()`);
+  assert.ok(await evaluate(`document.querySelector('.mock-attempt')!==null`), 'Removing the last flag preserves the active exam snapshot');
+  await click('Quit exam');
+  await evaluate(`[...document.querySelectorAll('dialog button')].find(b=>b.textContent.trim()==='Quit exam').click()`);
+  await until(`document.querySelectorAll('.flagged-exam-card').length===3`);
+  assert.ok(await evaluate(`[...document.querySelectorAll('.flagged-exam-card')].find(b=>b.querySelector('strong').textContent==='Flagged Grammar').disabled`));
+  await evaluate(`window.openPracticeCheck()`);
+  await until(`document.querySelectorAll('.flagged-practice-card').length===3`);
+  await evaluate(`[...document.querySelectorAll('.flagged-practice-card')].find(b=>b.querySelector('strong').textContent==='Flagged Vocabulary').click()`);
+  await until(`document.querySelectorAll('.reading-answer-list input').length===4`);
+  assert.ok(await evaluate(`document.querySelector('.mock-flag input').checked`), 'Exam flags are available in Practice');
+  await evaluate(`document.querySelector('.reading-answer-list input').click()`);
+  assert.ok(await evaluate(`document.querySelector('.reading-answer-list').disabled`));
+  await evaluate(`document.querySelector('.mock-flag input').click()`);
+  assert.ok(await evaluate(`document.querySelector('.practice-session')!==null`), 'Removing the last flag preserves active practice');
+  await click('Quit practice');
+  await until(`document.querySelectorAll('.flagged-practice-card').length===3`);
+  assert.ok(await evaluate(`[...document.querySelectorAll('.flagged-practice-card')].every(b=>b.disabled)`));
+  console.log('PASS: Mock exam flows, scoring, responsive layouts, persistent flags, flagged Grammar exam, shared flagged Vocabulary practice, and empty/unflag states.');
 } finally {socket?.close();chrome.kill();await server.close();}
