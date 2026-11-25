@@ -13,7 +13,7 @@ const server = await createServer({ configFile: false, logLevel: 'error', plugin
       res.end(await server.transformIndexHtml('/__n2-kanji-check', `<html><head><meta name="viewport" content="width=device-width,initial-scale=1"></head><body><div id="root"></div><script type="module">
 import React from 'react';import{createRoot}from'react-dom/client';import Kanji,{getKanjiChapterOptions}from'/src/Kanji.jsx';import{normalizeContent}from'/src/cloudContent.js';import{resolveExercises}from'/src/exerciseContent.js';import catalog from'/migrations/n2-soumatome-catalog.json';import'/src/app.css';import'/src/design.css';
 const content=normalizeContent(catalog);const sections=getKanjiChapterOptions(content.baselineKanjiChapters).flatMap(c=>c.subchapters);const exercises=resolveExercises(content.baselineExercises,content,sections);
-function Check(){const[mode,setMode]=React.useState('book');const[showReadings,setReadings]=React.useState(true);const h=React.createElement;return h('main',null,h('h1',null,'N2 Kanji'),h('button',{onClick:()=>setMode('flashcards')},'Flashcards'),h('button',{onClick:()=>setMode('book')},'Book view'),h('button',{onClick:()=>setReadings(x=>!x)},'Toggle readings'),h(Kanji,{isActive:true,mode,allExercises:exercises,showReadings,showKanji:true,showKanjiReadings:true,showMyanmar:true,manageMode:false,canEdit:false,isEditor:false,content}));}
+function Check(){const[mode,setMode]=React.useState('book');const[showReadings,setReadings]=React.useState(true);const h=React.createElement;return h('main',null,h('h1',null,'N2 Kanji'),h('button',{onClick:()=>setMode('flashcards')},'Flashcards'),h('button',{onClick:()=>setMode('book')},'Book view'),h('button',{onClick:()=>setReadings(x=>!x)},'Toggle readings'),h('section',{hidden:true},sections.map(section=>h('h3',{key:section.id,id:'subchapter-title-'+section.id,tabIndex:-1},'Hidden inactive panel heading'))),h(Kanji,{isActive:true,mode,allExercises:exercises,showReadings,showKanji:true,showKanjiReadings:true,showMyanmar:true,manageMode:false,canEdit:false,isEditor:false,content}));}
 createRoot(document.getElementById('root')).render(React.createElement(Check));</script></body></html>`));
     });
   },
@@ -40,6 +40,14 @@ try {
   await until(`document.querySelectorAll('.kanji-study-card').length===86`);
   assert.equal(await evaluate(`document.querySelectorAll('.chapter-group-cards button').length`),8);
   assert.equal(await evaluate(`document.querySelectorAll('.kanji-lesson-group').length`),7);
+  await cdp('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
+  await evaluate(`document.querySelector('.kanji-study').scrollIntoView()`);
+  await until(`!document.querySelector('.subchapter-nav').hidden`);
+  for (const number of [3,7,1]) {
+    await evaluate(`document.querySelectorAll('.subchapter-nav button')[${number - 1}].click()`);
+    assert.equal(await evaluate(`document.activeElement===document.querySelectorAll('.kanji-study .kanji-lesson-group h3')[${number - 1}]`), true, `Jump ${number} focuses the visible heading despite hidden duplicate IDs`);
+    assert.ok(await evaluate(`Math.abs(document.activeElement.getBoundingClientRect().top)<150`),`Jump ${number} scrolls to its visible section`);
+  }
   assert.ok(await evaluate(`/[\u1000-\u109f]/.test(document.querySelector('.kanji-study-heading').textContent)`));
   assert.ok(await evaluate(`document.querySelector('.kanji-examples').textContent.includes(String.fromCodePoint(0xff08))`));
   await click('Toggle readings');
