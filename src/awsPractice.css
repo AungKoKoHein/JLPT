@@ -32,9 +32,12 @@
 .aws-explanation a { color: var(--accent); }
 .aws-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
 .aws-policy-image { display: block; max-width: 100%; height: auto; margin: 18px 0; background: white; }
-.aws-question-jump { display: grid; gap: 8px; margin-bottom: 24px; }
-.aws-question-jump small { color: var(--muted); }
-.aws-question-jump select, .aws-results select { max-width: 100%; padding: 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); font-size: 1rem; }
+.aws-question-header-tools { display: flex; align-items: center; gap: 16px; min-width: 0; }
+.aws-question-header-tools > span { font-style: italic; white-space: nowrap; }
+.aws-question-header-tools select, .aws-results select { max-width: 100%; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); font-size: 1rem; }
+.aws-question-header-tools select { width: 150px; }
+.aws-source-page { color: var(--muted); margin: 0 0 20px; font-size: .9rem; }
+.aws-key-source { color: var(--muted); font-size: .9rem; }
 .aws-question-navigation { display: flex; gap: 12px; justify-content: space-between; margin-top: 24px; }
 .aws-results-button { margin-top: 16px; width: 100%; }
 .aws-result-list { display: grid; gap: 10px; margin-top: 20px; }
@@ -46,6 +49,8 @@
   .aws-practice-layout > .aws-answer-panel { position: static; }
 }
 @media (max-width: 600px) {
+  .aws-question-header-tools { gap: 8px; }
+  .aws-question-header-tools select { width: 90px; }
   .aws-session-heading { display: block; }
   .aws-progress { margin-top: 16px; }
   .aws-source-body { padding: 18px 16px 22px; }

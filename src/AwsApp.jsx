@@ -32,7 +32,7 @@ export default function AwsApp() {
         <h2 style={{ overflowWrap: 'anywhere' }}>{awsPracticeTitle}</h2>
         <p>All {awsQuestions.length} questions from the PDF, including policy diagrams and multiple-answer questions.</p>
         <div className="mock-exam-overview"><div><strong>{awsQuestions.length}</strong><span>practice questions</span></div><div><strong>A–F</strong><span>Only each question’s options</span></div><div><strong>At your pace</strong><span>Letter-only answers</span></div></div>
-        <p className="reading-note">The PDF has no answer key. You can submit and review every question; questions without a verified key remain ungraded.</p>
+        <p className="reading-note">All questions include answer checking. Keys come from your solution notes, with missing answers supplemented using AWS documentation.</p>
         <div className="mock-exam-actions"><button type="button" className="primary-button" onClick={() => setActive(true)}>Start practice</button><span>Topic 1 · Questions 1–684</span></div>
       </article>
     </section>

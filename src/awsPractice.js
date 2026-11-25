@@ -1,6 +1,7 @@
 import bank from './awsPracticeBank.json' with { type: 'json' };
+import keys from './awsAnswerKeys.json' with { type: 'json' };
 export const awsPracticeTitle = bank.title;
-// The PDF contains no answer key. Only question 18 has an independently verified key.
+// Preserve the previously reviewed explanation; every question now has a key.
 const verifiedAnswers = {
   18: {
     answers: ['A', 'B'],
@@ -11,7 +12,7 @@ const verifiedAnswers = {
     ],
   },
 };
-export const awsQuestions = bank.questions.map(q => ({ ...q, ...verifiedAnswers[q.number] }));
+export const awsQuestions = bank.questions.map(q => ({ ...q, ...keys.answers[q.number], ...verifiedAnswers[q.number] }));
 export function toggleAwsAnswer(selected, letter, count) {
   if (selected.includes(letter)) return selected.filter(value => value !== letter);
   if (count === 1) return [letter];

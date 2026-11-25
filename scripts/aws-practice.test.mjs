@@ -32,11 +32,37 @@ test('single selections replace the prior answer and multiple selections stop at
   assert.deepEqual(toggleAwsAnswer(['A', 'B'], 'F', 3), ['A', 'B', 'F']);
 });
 
-test('missing source keys remain ungraded while the verified answer requires both correct choices', () => {
-  assert.equal(awsQuestions.filter(q => Array.isArray(q.answers)).length, 1);
+test('every question has a valid answer key with exactly the required number of choices', () => {
+  assert.equal(awsQuestions.filter(q => Array.isArray(q.answers)).length, 684);
+  for (const question of awsQuestions) {
+    assert.equal(question.answers.length, question.selectCount, `Question ${question.number}`);
+    assert.equal(new Set(question.answers).size, question.answers.length);
+    for (const letter of question.answers) assert.ok('ABCDEF'.slice(0, question.choices.length).includes(letter));
+    assert.ok(question.answerSource);
+    assert.equal(awsAnswerStatus(question, question.answers, true), 'Correct');
+  }
   assert.equal(awsAnswerStatus(awsQuestions[0], ['A'], false), 'Unchecked');
-  assert.equal(awsAnswerStatus(awsQuestions[0], ['A'], true), 'Ungraded');
+  assert.equal(awsAnswerStatus(awsQuestions[0], ['A'], true), 'Correct');
+  assert.equal(awsAnswerStatus(awsQuestions[0], ['D'], true), 'Review');
   assert.equal(awsAnswerStatus(awsQuestions[17], ['B', 'A'], true), 'Correct');
   assert.equal(awsAnswerStatus(awsQuestions[17], ['A'], true), 'Review');
   assert.equal(awsAnswerStatus(awsQuestions[17], ['A', 'C'], true), 'Review');
+});
+
+test('supplemented answers keep explanations and primary-source references', () => {
+  const supplemented = awsQuestions.filter(q => q.answerSource === 'aws-documentation-inference');
+  assert.equal(supplemented.length, 49);
+  for (const question of supplemented) {
+    assert.ok(question.explanation);
+    assert.ok(question.references.length > 0);
+    question.references.forEach(reference => assert.ok(new URL(reference.url).hostname.endsWith('aws.amazon.com')));
+  }
+  assert.deepEqual(awsQuestions[124].answers, ['A', 'E']);
+  assert.deepEqual(awsQuestions[156].answers, ['D', 'E']);
+  assert.deepEqual(awsQuestions[231].answers, ['C']);
+  assert.deepEqual(awsQuestions[314].answers, ['D']);
+  assert.deepEqual(awsQuestions[422].answers, ['A', 'B']);
+  assert.deepEqual(awsQuestions[476].answers, ['D']);
+  assert.deepEqual(awsQuestions[678].answers, ['A', 'C', 'E']);
+  assert.deepEqual(awsQuestions[678].providedAnswers, ['B', 'C', 'E']);
 });

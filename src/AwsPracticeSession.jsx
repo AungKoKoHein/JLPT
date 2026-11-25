@@ -31,14 +31,14 @@ export default function AwsPracticeSession() {
     {results ? <section className="aws-results">
       <h3>Practice results</h3>
       <p>{completed} / {awsQuestions.length} submitted · Correct: {correct} / {graded.length} graded · {completed - graded.length} ungraded</p>
-      <p>The PDF has no answer key. Ungraded submissions do not count as correct or incorrect.</p>
+      <p>Answers are checked against the supplied solution notes and documented supplemental keys.</p>
       <label>Show <select value={filter} onChange={event => setFilter(event.target.value)}><option value="all">All questions</option><option value="submitted">Submitted</option><option value="unchecked">Unchecked</option></select></label>
       <div className="aws-result-list">{visibleResults.map(item => <button key={item.id} type="button" onClick={() => select(item.number - 1)}><strong>Question #{item.number}</strong><span>{item.prompt.join(' ')}</span><small>{awsAnswerStatus(item, answers[item.id] || [], submitted[item.id])}{submitted[item.id] ? ` · ${(answers[item.id] || []).join(', ')}` : ''}</small></button>)}</div>
       {!visibleResults.length && <p>No questions in this view.</p>}
       <div className="aws-actions"><button type="button" className="secondary-button" onClick={() => setResults(false)}>Back to questions</button><button type="button" className="primary-button" onClick={restart}>Start over</button></div>
     </section> : <div className="aws-practice-layout">
       <section className="aws-source-card" aria-labelledby="aws-question-heading" ref={card} tabIndex={-1}>
-        <header><h3 id="aws-question-heading">Question #{question.number}</h3><span>{question.topic}</span></header>
+        <header><h3 id="aws-question-heading">Question #{question.number}</h3><div className="aws-question-header-tools"><select id="aws-question-select" aria-label="Select question" value={index} onChange={event => select(Number(event.target.value))}>{awsQuestions.map((item, itemIndex) => <option key={item.id} value={itemIndex}>#{item.number}{submitted[item.id] ? ' · submitted' : ''}</option>)}</select><span>{question.topic}</span></div></header>
         <div className="aws-source-body">
           <div className="aws-prompt">{question.prompt.map((paragraph, paragraphIndex) => <p key={paragraphIndex}>{paragraph}</p>)}</div>
           {question.promptImages.map(asset => <img key={asset.src} className="aws-policy-image" src={asset.src} alt={asset.alt} />)}
@@ -50,7 +50,7 @@ export default function AwsPracticeSession() {
         </div>
       </section>
       <section className="aws-answer-panel" aria-label="Answer selection">
-        <div className="aws-question-jump"><label htmlFor="aws-question-select">Go to question</label><select id="aws-question-select" value={index} onChange={event => select(Number(event.target.value))}>{awsQuestions.map((item, itemIndex) => <option key={item.id} value={itemIndex}>#{item.number}{submitted[item.id] ? ' · submitted' : ''}</option>)}</select><small>PDF page {question.sourcePages.join('–')}</small></div>
+        <p className="aws-source-page">PDF page {question.sourcePages.join('–')}</p>
         <fieldset disabled={checked}>
           <legend>Choose {question.selectCount === 1 ? 'one answer' : question.selectCount === 2 ? 'two answers' : 'three answers'}</legend>
           <div className="aws-answer-buttons">{question.choices.map((_, choiceIndex) => {
@@ -60,7 +60,8 @@ export default function AwsPracticeSession() {
         </fieldset>
         <p className="aws-selection-count" role="status">{selected.length} of {question.selectCount} selected</p>
         {checked && <div className="aws-answer-feedback" role="status"><strong>{status === 'Ungraded' ? 'Answer saved · ungraded' : status === 'Correct' ? 'Correct' : 'Review your answer'}</strong><p>Your answer: {selected.join(', ')}{question.answers ? ` · Correct answer: ${question.answers.join(', ')}` : ''}</p>{!question.answers && <p>No answer key is included in the PDF for this question.</p>}</div>}
-        {checked && question.explanation && <details key={question.id} className="aws-explanation"><summary>Show explanation</summary><p>{question.explanation}</p><p>This answer was checked against AWS documentation; the PDF does not include an answer key.</p><ul>{question.references.map(reference => <li key={reference.url}><a href={reference.url} target="_blank" rel="noreferrer">{reference.title}</a></li>)}</ul></details>}
+        {checked && <p className="aws-key-source">{question.answerSource === 'aws-documentation-inference' ? 'Supplemented answer: inferred from AWS documentation.' : question.answerSource === 'aws-documentation-correction' ? 'Supplied key corrected using AWS documentation. See explanation.' : 'Answer key: supplied solution notes.'}</p>}
+        {checked && question.explanation && <details key={question.id} className="aws-explanation"><summary>Show explanation</summary><p>{question.explanation}</p><ul>{question.references.map(reference => <li key={reference.url}><a href={reference.url} target="_blank" rel="noreferrer">{reference.title}</a></li>)}</ul></details>}
         <div className="aws-actions">
           {!checked && <button type="button" className="primary-button" disabled={selected.length !== question.selectCount} onClick={() => setSubmitted(current => ({ ...current, [question.id]: true }))}>{question.answers ? 'Check answer' : 'Submit answer'}</button>}
           {checked && <button type="button" className="secondary-button" onClick={() => { setAnswers(current => ({ ...current, [question.id]: [] })); setSubmitted(current => ({ ...current, [question.id]: false })); }}>Try again</button>}

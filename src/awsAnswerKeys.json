@@ -1,0 +1,4607 @@
+{
+  "source": "AWS SAA-03 Solution(answer key).txt",
+  "sourceSha256": "0db09d340c5f55f3edc1efa124879948f7c27d83e6c3d51d11c10b3b2bd0e61e",
+  "answers": {
+    "1": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "2": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "3": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "4": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "5": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "6": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "7": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "8": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "9": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "10": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "11": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "12": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "13": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "14": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "15": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "16": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "17": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "18": {
+      "answers": [
+        "A",
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "19": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "20": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "21": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "22": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "23": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "24": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "25": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "26": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "27": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "28": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "29": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "30": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "31": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "32": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "33": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "34": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "35": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "36": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "37": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "38": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "39": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "40": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "41": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "42": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "43": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "44": {
+      "answers": [
+        "A",
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "45": {
+      "answers": [
+        "B",
+        "E"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "46": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "47": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "48": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "49": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "50": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "51": {
+      "answers": [
+        "B",
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "52": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "53": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "54": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "55": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "56": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "57": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "58": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "59": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "60": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "61": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "62": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "63": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "64": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "65": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "66": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "67": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "68": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "69": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "70": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "71": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "72": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "73": {
+      "answers": [
+        "C",
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "74": {
+      "answers": [
+        "A",
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "75": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "76": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "77": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "78": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "79": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "80": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "81": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "82": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "83": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "84": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "85": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "86": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "87": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "88": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "89": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "90": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "91": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "92": {
+      "answers": [
+        "A",
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "93": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "94": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "95": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "96": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "97": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "98": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "99": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "100": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "101": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "102": {
+      "answers": [
+        "B",
+        "E"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "103": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "104": {
+      "answers": [
+        "A",
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "105": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "106": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "107": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "108": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "109": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "110": {
+      "answers": [
+        "B",
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "111": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "112": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "113": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "114": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "115": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "116": {
+      "answers": [
+        "A",
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "117": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "118": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "119": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "120": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "121": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "122": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "123": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "124": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "125": {
+      "answers": [
+        "A",
+        "E"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "126": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "127": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "128": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "129": {
+      "answers": [
+        "A",
+        "E"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "130": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "131": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "132": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "133": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "134": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "135": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "136": {
+      "answers": [
+        "A",
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "137": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "138": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "139": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "140": {
+      "answers": [
+        "A",
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "141": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "142": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "143": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "144": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "145": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "146": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "147": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "148": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "149": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "150": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "151": {
+      "answers": [
+        "A",
+        "C"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Preventive Control Tower controls and Organizations SCPs can restrict both Region usage and internet connectivity. Detective Config rules only report violations.",
+      "references": [
+        {
+          "title": "Control Tower data residency controls",
+          "url": "https://docs.aws.amazon.com/controltower/latest/controlreference/data-residency-controls.html"
+        }
+      ]
+    },
+    "152": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "153": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "154": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "155": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "156": {
+      "answers": [
+        "A",
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "157": {
+      "answers": [
+        "D",
+        "E"
+      ],
+      "answerSource": "supplied-notes-reviewed",
+      "explanation": "Export database audit logs to CloudWatch Logs and use AWS Backup retention for five-year backups. These are the two options explicitly marked correct in the supplied notes.",
+      "references": [
+        {
+          "title": "AWS Backup cross-Region copies",
+          "url": "https://docs.aws.amazon.com/aws-backup/latest/devguide/cross-region-backup.html"
+        }
+      ]
+    },
+    "158": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "CloudFront distributes both live HTTP streams and stored video close to viewers.",
+      "references": [
+        {
+          "title": "CloudFront streaming video",
+          "url": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/on-demand-streaming-video.html"
+        }
+      ]
+    },
+    "159": {
+      "answers": [
+        "C",
+        "E"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "WAF filters malicious web requests; IAM authorization restricts API access to authorized identities. API keys identify usage-plan clients and must not be treated as authentication or authorization. This is a reasoned answer based on current AWS guidance.",
+      "references": [
+        {
+          "title": "API Gateway authorization",
+          "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/modernization-integrating-microservices/apis.html"
+        },
+        {
+          "title": "API Gateway usage plans",
+          "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html"
+        }
+      ]
+    },
+    "160": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "S3 Standard provides immediate access without the database or search-cluster overhead of the other choices.",
+      "references": [
+        {
+          "title": "S3 storage classes",
+          "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html"
+        }
+      ]
+    },
+    "161": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "162": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "163": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "164": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "165": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "166": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "167": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "168": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "169": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "170": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "171": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "172": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "173": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "174": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "175": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "176": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "177": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "178": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "AWS Backup centralizes cross-Region copies for supported EC2 and RDS backups.",
+      "references": [
+        {
+          "title": "AWS Backup cross-Region copies",
+          "url": "https://docs.aws.amazon.com/aws-backup/latest/devguide/cross-region-backup.html"
+        }
+      ]
+    },
+    "179": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Attach a role to the EC2 instance with parameter read access and permission to decrypt the parameter encryption key.",
+      "references": [
+        {
+          "title": "Parameter Store SecureString encryption",
+          "url": "https://docs.aws.amazon.com/systems-manager/latest/userguide/secure-string-parameter-kms-encryption.html"
+        }
+      ]
+    },
+    "180": {
+      "answers": [
+        "B",
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "181": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "182": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "183": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "184": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Attach Lambda to the VPC so it can use the existing private network path to the on-premises database.",
+      "references": [
+        {
+          "title": "Lambda VPC access",
+          "url": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html"
+        }
+      ]
+    },
+    "185": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "186": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "187": {
+      "answers": [
+        "A",
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "188": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "189": {
+      "answers": [
+        "B",
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "190": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "191": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Run reporting reads on a read replica so they do not compete with order processing on the primary database.",
+      "references": [
+        {
+          "title": "RDS read replicas",
+          "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html"
+        }
+      ]
+    },
+    "192": {
+      "answers": [
+        "B",
+        "E"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Textract extracts text from scans, Comprehend Medical identifies medical entities, and S3 with Athena provides managed storage and SQL analysis.",
+      "references": [
+        {
+          "title": "Medical document extraction with Textract and Comprehend Medical",
+          "url": "https://aws.amazon.com/blogs/industries/automating-claims-adjudication-workflows-using-amazon-textract-and-amazon-comprehend-medical/"
+        }
+      ]
+    },
+    "193": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Redis caches repeated database reads and supports replicated, highly available deployments. Read replicas distribute reads but do not remove them.",
+      "references": [
+        {
+          "title": "Redis replication and high availability",
+          "url": "https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Scaling.RedisReplGrps.html"
+        }
+      ]
+    },
+    "194": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "A replicated database cluster across Availability Zones provides failover without waiting to rebuild a single failed server.",
+      "references": [
+        {
+          "title": "Database high availability on EC2",
+          "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/migration-sql-server/ec2-sql-ha.html"
+        }
+      ]
+    },
+    "195": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Queue orders durably in SQS and let Auto Scaling workers consume them, so processing can resume after an outage.",
+      "references": [
+        {
+          "title": "Lambda with Amazon SQS",
+          "url": "https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html"
+        }
+      ]
+    },
+    "196": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Set each item expiration timestamp and enable DynamoDB TTL. Expiration cleanup is asynchronous; filter expired items when reading if needed.",
+      "references": [
+        {
+          "title": "DynamoDB time to live",
+          "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html"
+        }
+      ]
+    },
+    "197": {
+      "answers": [
+        "B",
+        "E"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Use the Windows .NET Elastic Beanstalk platform and RDS for Oracle Multi-AZ to preserve application and database compatibility.",
+      "references": [
+        {
+          "title": "Oracle migration and Multi-AZ",
+          "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/migration-oracle-database/rds-oracle.html"
+        }
+      ]
+    },
+    "198": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "EKS preserves Kubernetes deployment tooling, Fargate manages worker compute, and DocumentDB offers MongoDB-compatible storage. Check supported MongoDB features during migration.",
+      "references": [
+        {
+          "title": "EKS on Fargate",
+          "url": "https://docs.aws.amazon.com/eks/latest/userguide/fargate.html"
+        },
+        {
+          "title": "DocumentDB MongoDB compatibility",
+          "url": "https://docs.aws.amazon.com/documentdb/latest/devguide/compatibility.html"
+        }
+      ]
+    },
+    "199": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Transcribe provides speaker-separated transcripts; Athena supports SQL analysis of transcripts stored in S3. Configure seven-year S3 retention separately.",
+      "references": [
+        {
+          "title": "Transcribe speaker diarization",
+          "url": "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
+        }
+      ]
+    },
+    "200": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "A Cognito user-pool authorizer validates tokens at API Gateway without a custom Lambda authorizer.",
+      "references": [
+        {
+          "title": "API Gateway Cognito authorizers",
+          "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-integrate-with-cognito.html"
+        }
+      ]
+    },
+    "201": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "202": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "203": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "204": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "205": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "206": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "207": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "SQS buffers requests durably while Lambda controls writes to the provisioned DynamoDB capacity.",
+      "references": [
+        {
+          "title": "Lambda with Amazon SQS",
+          "url": "https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html"
+        }
+      ]
+    },
+    "208": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "209": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "210": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Separate queues decouple collection and fulfillment. Backlog per instance gives each worker group a scaling target proportional to pending work.",
+      "references": [
+        {
+          "title": "SQS backlog scaling",
+          "url": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-using-sqs-queue.html"
+        }
+      ]
+    },
+    "211": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "212": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "213": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "214": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "215": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "216": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "217": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "218": {
+      "answers": [
+        "A",
+        "E"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "219": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Use memory-optimized instances for in-memory work and collect application metrics with the CloudWatch agent. Memory is not a default EC2 metric.",
+      "references": [
+        {
+          "title": "CloudWatch agent metrics",
+          "url": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/metrics-collected-by-CloudWatch-agent.html"
+        }
+      ]
+    },
+    "220": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "221": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "222": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "223": {
+      "answers": [
+        "A",
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "224": {
+      "answers": [
+        "C",
+        "E"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Multivalue routing returns healthy addresses with roughly random distribution. Two instances in each of two Availability Zones retain capacity after a zone failure.",
+      "references": [
+        {
+          "title": "Route 53 multivalue routing",
+          "url": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-multivalue.html"
+        },
+        {
+          "title": "Auto Scaling and Availability Zones",
+          "url": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-benefits.html"
+        }
+      ]
+    },
+    "225": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "226": {
+      "answers": [
+        "A",
+        "E"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "227": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "228": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "229": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "230": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "231": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "232": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "supplied-notes-reviewed",
+      "explanation": "Analyze accepted SSH and RDP flows in CloudWatch Logs and notify through metric alarms. Flow logs indicate network connections, not proof of a successful operating-system login.",
+      "references": [
+        {
+          "title": "VPC flow logs in CloudWatch",
+          "url": "https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-cwl.html"
+        }
+      ]
+    },
+    "233": {
+      "answers": [
+        "A",
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "234": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "235": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Schema conversion plus full load and CDC migrates the database and tracks changes. Memory helps buffer a heavy change stream. Bidirectional writes still need a conflict-management plan.",
+      "references": [
+        {
+          "title": "DMS replication sizing",
+          "url": "https://docs.aws.amazon.com/dms/latest/userguide/CHAP_BestPractices.SizingReplicationInstance.html"
+        }
+      ]
+    },
+    "236": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "237": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "238": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "239": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "240": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "241": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "242": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "243": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "244": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "245": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "246": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "247": {
+      "answers": [
+        "C",
+        "E"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Allow long transactions to finish and enable automated backups before creating an RDS read replica.",
+      "references": [
+        {
+          "title": "Creating RDS read replicas",
+          "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.Create.html"
+        }
+      ]
+    },
+    "248": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "249": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "250": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "251": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "252": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "253": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "254": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "255": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "256": {
+      "answers": [
+        "B",
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "257": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Stream CloudWatch metrics through Firehose into S3 without adding work to instance launch scripts.",
+      "references": [
+        {
+          "title": "CloudWatch metric streams",
+          "url": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Metric-Streams.html"
+        }
+      ]
+    },
+    "258": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "259": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "260": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "261": {
+      "answers": [
+        "A",
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "262": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "263": {
+      "answers": [
+        "A",
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "264": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "265": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "266": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "267": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "268": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "269": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "270": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "271": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "272": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "273": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "274": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "275": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "276": {
+      "answers": [
+        "A",
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "277": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "278": {
+      "answers": [
+        "B",
+        "E"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "279": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "280": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "281": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "282": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "283": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "FSx for NetApp ONTAP supports concurrent NFS and SMB access to shared volumes.",
+      "references": [
+        {
+          "title": "FSx ONTAP multiprotocol volumes",
+          "url": "https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-volumes.html"
+        }
+      ]
+    },
+    "284": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "285": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "286": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "287": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "288": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "289": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "290": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "291": {
+      "answers": [
+        "A",
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "292": {
+      "answers": [
+        "A",
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "293": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "294": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "295": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "296": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "297": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "298": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Use separate subnets in both Availability Zones, distribute application instances, and enable RDS Multi-AZ failover.",
+      "references": [
+        {
+          "title": "RDS high availability",
+          "url": "https://docs.aws.amazon.com/AmazonRDS/latest/gettingstartedguide/concepts.html"
+        },
+        {
+          "title": "Auto Scaling and Availability Zones",
+          "url": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-benefits.html"
+        }
+      ]
+    },
+    "299": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "300": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "301": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "302": {
+      "answers": [
+        "A",
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "303": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "304": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "305": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "306": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "307": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "308": {
+      "answers": [
+        "A",
+        "C"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Inspect the account running the database and its RDS reservation recommendations. Active databases call for reservation optimization rather than idle-instance checks.",
+      "references": [
+        {
+          "title": "Trusted Advisor cost checks",
+          "url": "https://docs.aws.amazon.com/awssupport/latest/user/cost-optimization-checks.html"
+        }
+      ]
+    },
+    "309": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "310": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "311": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "SNS subscription filters route each quote type into its own durable SQS queue for independent processing.",
+      "references": [
+        {
+          "title": "SNS message filtering",
+          "url": "https://docs.aws.amazon.com/sns/latest/dg/sns-message-filtering.html"
+        },
+        {
+          "title": "Lambda with Amazon SQS",
+          "url": "https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html"
+        }
+      ]
+    },
+    "312": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "313": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "314": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "315": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Amazon Inspector scans EC2 software for vulnerabilities and generates findings that can drive automated reporting.",
+      "references": [
+        {
+          "title": "Inspector EC2 vulnerability scanning",
+          "url": "https://docs.aws.amazon.com/inspector/latest/user/scanning-ec2.html"
+        }
+      ]
+    },
+    "316": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "317": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "318": {
+      "answers": [
+        "A",
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "319": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "320": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "321": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "322": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "323": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "324": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "325": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "326": {
+      "answers": [
+        "A",
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "327": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Route outbound traffic through Network Firewall and allow only approved repository domains. Security groups cannot filter by URL.",
+      "references": [
+        {
+          "title": "Network Firewall domain lists",
+          "url": "https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateful-rule-groups-domain-names.html"
+        }
+      ]
+    },
+    "328": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "329": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "330": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "331": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "332": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "333": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "334": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "335": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "336": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "337": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "338": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "339": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "340": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "341": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Of these options, the Lake Formation ingestion and Athena path supports centrally enforced column permissions for QuickSight.",
+      "references": [
+        {
+          "title": "Lake Formation service integrations",
+          "url": "https://docs.aws.amazon.com/lake-formation/latest/dg/service-integrations.html"
+        }
+      ]
+    },
+    "342": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "343": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "344": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "345": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "346": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "347": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "348": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "349": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "350": {
+      "answers": [
+        "A",
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "351": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "352": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "353": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "354": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "355": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "356": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "357": {
+      "answers": [
+        "A",
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "358": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "359": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "360": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "361": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "362": {
+      "answers": [
+        "B",
+        "E"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "363": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "364": {
+      "answers": [
+        "B",
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "365": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "366": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "With Cognito already providing identity, usage plans and API keys can distinguish subscription API offerings. Keep Cognito authorization in place; an API key alone is not an authorization boundary.",
+      "references": [
+        {
+          "title": "API Gateway usage plans",
+          "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html"
+        },
+        {
+          "title": "API Gateway Cognito authorizers",
+          "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-integrate-with-cognito.html"
+        }
+      ]
+    },
+    "367": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "368": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "369": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "370": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "371": {
+      "answers": [
+        "C",
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "372": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "373": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "374": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "375": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "376": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "377": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "378": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "379": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "380": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "381": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "382": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "383": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "384": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "385": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "386": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "387": {
+      "answers": [
+        "D",
+        "E"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "388": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "389": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "390": {
+      "answers": [
+        "B",
+        "D"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Store sessions outside individual application servers. DynamoDB and replicated Redis are the offered shared session-store options; configure Redis replication and recovery for resilience.",
+      "references": [
+        {
+          "title": "Redis replication and high availability",
+          "url": "https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Scaling.RedisReplGrps.html"
+        }
+      ]
+    },
+    "391": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "392": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "393": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "394": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "395": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "396": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "397": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "398": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "399": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "400": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "401": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "402": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "The default Kinesis retention is 24 hours. A consumer running every other day needs a longer retention window.",
+      "references": [
+        {
+          "title": "Kinesis retention",
+          "url": "https://docs.aws.amazon.com/streams/latest/dev/kinesis-extended-retention.html"
+        }
+      ]
+    },
+    "403": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "404": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "405": {
+      "answers": [
+        "D",
+        "E"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "406": {
+      "answers": [
+        "C",
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "407": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "408": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "409": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "410": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "411": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "412": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "413": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "414": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "S3 File Gateway exposes a familiar share and asynchronously uploads new writes to S3 without a custom transfer workflow.",
+      "references": [
+        {
+          "title": "S3 File Gateway file sharing",
+          "url": "https://docs.aws.amazon.com/filegateway/latest/files3/Requirements.html"
+        }
+      ]
+    },
+    "415": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "416": {
+      "answers": [
+        "B",
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "417": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Compute Savings Plans cover both EC2 and Lambda. Connecting Lambda to the application private subnets provides direct access.",
+      "references": [
+        {
+          "title": "Savings Plan types",
+          "url": "https://docs.aws.amazon.com/savingsplans/latest/userguide/plan-types.html"
+        },
+        {
+          "title": "Lambda VPC access",
+          "url": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html"
+        }
+      ]
+    },
+    "418": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "419": {
+      "answers": [
+        "A",
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "420": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "421": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "422": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "423": {
+      "answers": [
+        "A",
+        "B"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "IAM identity-based policies attach to users, groups, or roles. Among these options, roles and groups are valid.",
+      "references": [
+        {
+          "title": "IAM identity-based policies",
+          "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html"
+        }
+      ]
+    },
+    "424": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "425": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "426": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "427": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "428": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "429": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "The allow statement is limited to us-east-1. The explicit deny blocks StopInstances and TerminateInstances without MFA, overriding the allow. Other Regions have no allow in this policy.",
+      "references": [
+        {
+          "title": "IAM policy evaluation",
+          "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html"
+        }
+      ]
+    },
+    "430": {
+      "answers": [
+        "B",
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "431": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "432": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "433": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "434": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Pre-provision the recovery load balancer and Auto Scaling group, replicate data with global tables, and use DNS failover to reduce recovery work.",
+      "references": [
+        {
+          "title": "DynamoDB global tables",
+          "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html"
+        }
+      ]
+    },
+    "435": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "436": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "437": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "438": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "439": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "440": {
+      "answers": [
+        "A",
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "441": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "442": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "443": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "444": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "445": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "446": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "447": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "448": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "449": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "450": {
+      "answers": [
+        "C",
+        "E",
+        "F"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "451": {
+      "answers": [
+        "B",
+        "C",
+        "F"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "452": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "453": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "454": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "455": {
+      "answers": [
+        "B",
+        "D",
+        "F"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "456": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "457": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "458": {
+      "answers": [
+        "B",
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "459": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "460": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "461": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "462": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "463": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "464": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "465": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "466": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "467": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "468": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "469": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "470": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "471": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "472": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "473": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "474": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "475": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "476": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "477": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "DeleteObject is an object-level action and needs the object ARN ending in /*. The existing bucket ARN alone does not grant deletion.",
+      "references": [
+        {
+          "title": "S3 API permissions",
+          "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-with-s3-policy-actions.html"
+        }
+      ]
+    },
+    "478": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "479": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "480": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "481": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "482": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "483": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "484": {
+      "answers": [
+        "A",
+        "E"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "485": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "486": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "487": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "488": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "489": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "490": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "491": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "A standard SQS queue supports at-least-once processing. An encrypted-queue consumer needs kms:Decrypt on the KMS key.",
+      "references": [
+        {
+          "title": "Lambda with Amazon SQS",
+          "url": "https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html"
+        },
+        {
+          "title": "SQS encryption key permissions",
+          "url": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-key-management.html"
+        }
+      ]
+    },
+    "492": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "493": {
+      "answers": [
+        "D",
+        "E",
+        "F"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "494": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "495": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "496": {
+      "answers": [
+        "B",
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "497": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "498": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "499": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "500": {
+      "answers": [
+        "A",
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "501": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "502": {
+      "answers": [
+        "C",
+        "E"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "503": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "504": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "505": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "506": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "507": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "508": {
+      "answers": [
+        "B",
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "509": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "510": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "511": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "512": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "513": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "514": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "515": {
+      "answers": [
+        "B",
+        "C",
+        "E"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "516": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "517": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "518": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "519": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "520": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "521": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "522": {
+      "answers": [
+        "B",
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "523": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "524": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "525": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "526": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "527": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "528": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Transfer Family keeps FTP ingestion managed. S3 arrival events start Lambda processing, which can delete each object after success.",
+      "references": [
+        {
+          "title": "AWS Transfer Family",
+          "url": "https://docs.aws.amazon.com/transfer/latest/userguide/what-is-aws-transfer-family.html"
+        }
+      ]
+    },
+    "529": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "530": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "531": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "532": {
+      "answers": [
+        "A",
+        "D",
+        "F"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "533": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "534": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "535": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "536": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "537": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "538": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "539": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Elastic Disaster Recovery continuously replicates disk changes with an RPO measured in seconds and recovery typically in minutes.",
+      "references": [
+        {
+          "title": "Elastic Disaster Recovery objectives",
+          "url": "https://docs.aws.amazon.com/drs/latest/userguide/CloudEndure-Concepts.html"
+        }
+      ]
+    },
+    "540": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "541": {
+      "answers": [
+        "A",
+        "C",
+        "E"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "542": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "543": {
+      "answers": [
+        "A",
+        "E"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Use the purchasing account as the Organizations management account and enable discount sharing there for member accounts.",
+      "references": [
+        {
+          "title": "Savings Plans discount sharing",
+          "url": "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ri-turn-off.html"
+        }
+      ]
+    },
+    "544": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "545": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "546": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "547": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "548": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "549": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "550": {
+      "answers": [
+        "B",
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "551": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "552": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "553": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "554": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "555": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "556": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "557": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "558": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "559": {
+      "answers": [
+        "B",
+        "E"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "560": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "561": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "562": {
+      "answers": [
+        "A",
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "563": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "564": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "565": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "566": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "567": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "568": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "569": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "EventBridge publishes matched-event and target-invocation metrics in the AWS/Events namespace.",
+      "references": [
+        {
+          "title": "EventBridge CloudWatch metrics",
+          "url": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-monitoring.html"
+        }
+      ]
+    },
+    "570": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "571": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "572": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "573": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "574": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "575": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "576": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "577": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "578": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "579": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "580": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "581": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Two On-Demand instances in each of two Availability Zones leave two running instances after either zone fails.",
+      "references": [
+        {
+          "title": "Auto Scaling and Availability Zones",
+          "url": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-benefits.html"
+        }
+      ]
+    },
+    "582": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "583": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "584": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "585": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "586": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "587": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "588": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "589": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "590": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "591": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "592": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "593": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "594": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "595": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "596": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "597": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "598": {
+      "answers": [
+        "A",
+        "C",
+        "F"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "599": {
+      "answers": [
+        "A",
+        "C",
+        "F"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Customers provide site power, networking, physical access control, and workload spare capacity. AWS maintains the Outposts rack hardware and managed infrastructure.",
+      "references": [
+        {
+          "title": "Outposts shared responsibility",
+          "url": "https://docs.aws.amazon.com/whitepapers/latest/aws-outposts-high-availability-design/aws-outposts-high-availability-design.html"
+        }
+      ]
+    },
+    "600": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "601": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "602": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "603": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "604": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "605": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "606": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "607": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "608": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Associate a WAF web ACL with the ALB and allow the registered addresses using IP sets. Split the list across sets when service quotas require it.",
+      "references": [
+        {
+          "title": "WAF IP sets",
+          "url": "https://docs.aws.amazon.com/waf/latest/developerguide/waf-ip-set-managing.html"
+        }
+      ]
+    },
+    "609": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "610": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "611": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "612": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "613": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "614": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "615": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "616": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "617": {
+      "answers": [
+        "B",
+        "E"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "618": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "619": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "620": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "621": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "622": {
+      "answers": [
+        "C",
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "623": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "624": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "625": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "626": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "627": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "628": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "629": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "630": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "631": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "632": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "633": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "634": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "635": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "636": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "637": {
+      "answers": [
+        "B",
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "638": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "aws-documentation-inference",
+      "explanation": "Generate short-lived presigned URLs with a suitably scoped role to grant object access without provisioning employee IAM users.",
+      "references": [
+        {
+          "title": "S3 presigned URLs",
+          "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-presigned-url.html"
+        }
+      ]
+    },
+    "639": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "640": {
+      "answers": [
+        "B",
+        "E"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "641": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "642": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "643": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "644": {
+      "answers": [
+        "A",
+        "E"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "645": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "646": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "647": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "648": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "649": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "650": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "651": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "652": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "653": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "654": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "655": {
+      "answers": [
+        "C",
+        "E"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "656": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "657": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "658": {
+      "answers": [
+        "A",
+        "E"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "659": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "660": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "661": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "662": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "663": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "664": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "665": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "666": {
+      "answers": [
+        "B",
+        "E"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "667": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "668": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "669": {
+      "answers": [
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "670": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "671": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "672": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "673": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "674": {
+      "answers": [
+        "B",
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "675": {
+      "answers": [
+        "D"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "676": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "677": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "678": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "679": {
+      "answers": [
+        "A",
+        "C",
+        "E"
+      ],
+      "answerSource": "aws-documentation-correction",
+      "providedAnswers": [
+        "B",
+        "C",
+        "E"
+      ],
+      "explanation": "The supplied notes list B, C, E. A default retention period requires S3 Object Lock; versioning alone does not protect retention. Select Object Lock, a 30-day default retention, and lifecycle expiration. Object Lock enables versioning. For permanent removal of versions, also configure the appropriate noncurrent-version expiration policy.",
+      "references": [
+        {
+          "title": "S3 Object Lock and default retention",
+          "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html"
+        }
+      ]
+    },
+    "680": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "681": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "682": {
+      "answers": [
+        "A"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "683": {
+      "answers": [
+        "A",
+        "C"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    },
+    "684": {
+      "answers": [
+        "B"
+      ],
+      "answerSource": "AWS SAA-03 Solution(answer key).txt"
+    }
+  }
+}

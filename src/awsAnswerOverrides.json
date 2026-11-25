@@ -1,0 +1,730 @@
+{
+  "151": {
+    "answers": [
+      "A",
+      "C"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Preventive Control Tower controls and Organizations SCPs can restrict both Region usage and internet connectivity. Detective Config rules only report violations.",
+    "references": [
+      {
+        "title": "Control Tower data residency controls",
+        "url": "https://docs.aws.amazon.com/controltower/latest/controlreference/data-residency-controls.html"
+      }
+    ]
+  },
+  "157": {
+    "answers": [
+      "D",
+      "E"
+    ],
+    "answerSource": "supplied-notes-reviewed",
+    "explanation": "Export database audit logs to CloudWatch Logs and use AWS Backup retention for five-year backups. These are the two options explicitly marked correct in the supplied notes.",
+    "references": [
+      {
+        "title": "AWS Backup cross-Region copies",
+        "url": "https://docs.aws.amazon.com/aws-backup/latest/devguide/cross-region-backup.html"
+      }
+    ]
+  },
+  "158": {
+    "answers": [
+      "A"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "CloudFront distributes both live HTTP streams and stored video close to viewers.",
+    "references": [
+      {
+        "title": "CloudFront streaming video",
+        "url": "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/on-demand-streaming-video.html"
+      }
+    ]
+  },
+  "159": {
+    "answers": [
+      "C",
+      "E"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "WAF filters malicious web requests; IAM authorization restricts API access to authorized identities. API keys identify usage-plan clients and must not be treated as authentication or authorization. This is a reasoned answer based on current AWS guidance.",
+    "references": [
+      {
+        "title": "API Gateway authorization",
+        "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/modernization-integrating-microservices/apis.html"
+      },
+      {
+        "title": "API Gateway usage plans",
+        "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html"
+      }
+    ]
+  },
+  "160": {
+    "answers": [
+      "C"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "S3 Standard provides immediate access without the database or search-cluster overhead of the other choices.",
+    "references": [
+      {
+        "title": "S3 storage classes",
+        "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html"
+      }
+    ]
+  },
+  "178": {
+    "answers": [
+      "A"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "AWS Backup centralizes cross-Region copies for supported EC2 and RDS backups.",
+    "references": [
+      {
+        "title": "AWS Backup cross-Region copies",
+        "url": "https://docs.aws.amazon.com/aws-backup/latest/devguide/cross-region-backup.html"
+      }
+    ]
+  },
+  "179": {
+    "answers": [
+      "A"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Attach a role to the EC2 instance with parameter read access and permission to decrypt the parameter encryption key.",
+    "references": [
+      {
+        "title": "Parameter Store SecureString encryption",
+        "url": "https://docs.aws.amazon.com/systems-manager/latest/userguide/secure-string-parameter-kms-encryption.html"
+      }
+    ]
+  },
+  "184": {
+    "answers": [
+      "A"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Attach Lambda to the VPC so it can use the existing private network path to the on-premises database.",
+    "references": [
+      {
+        "title": "Lambda VPC access",
+        "url": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html"
+      }
+    ]
+  },
+  "191": {
+    "answers": [
+      "A"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Run reporting reads on a read replica so they do not compete with order processing on the primary database.",
+    "references": [
+      {
+        "title": "RDS read replicas",
+        "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html"
+      }
+    ]
+  },
+  "192": {
+    "answers": [
+      "B",
+      "E"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Textract extracts text from scans, Comprehend Medical identifies medical entities, and S3 with Athena provides managed storage and SQL analysis.",
+    "references": [
+      {
+        "title": "Medical document extraction with Textract and Comprehend Medical",
+        "url": "https://aws.amazon.com/blogs/industries/automating-claims-adjudication-workflows-using-amazon-textract-and-amazon-comprehend-medical/"
+      }
+    ]
+  },
+  "193": {
+    "answers": [
+      "B"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Redis caches repeated database reads and supports replicated, highly available deployments. Read replicas distribute reads but do not remove them.",
+    "references": [
+      {
+        "title": "Redis replication and high availability",
+        "url": "https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Scaling.RedisReplGrps.html"
+      }
+    ]
+  },
+  "194": {
+    "answers": [
+      "A"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "A replicated database cluster across Availability Zones provides failover without waiting to rebuild a single failed server.",
+    "references": [
+      {
+        "title": "Database high availability on EC2",
+        "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/migration-sql-server/ec2-sql-ha.html"
+      }
+    ]
+  },
+  "195": {
+    "answers": [
+      "C"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Queue orders durably in SQS and let Auto Scaling workers consume them, so processing can resume after an outage.",
+    "references": [
+      {
+        "title": "Lambda with Amazon SQS",
+        "url": "https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html"
+      }
+    ]
+  },
+  "196": {
+    "answers": [
+      "D"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Set each item expiration timestamp and enable DynamoDB TTL. Expiration cleanup is asynchronous; filter expired items when reading if needed.",
+    "references": [
+      {
+        "title": "DynamoDB time to live",
+        "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html"
+      }
+    ]
+  },
+  "197": {
+    "answers": [
+      "B",
+      "E"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Use the Windows .NET Elastic Beanstalk platform and RDS for Oracle Multi-AZ to preserve application and database compatibility.",
+    "references": [
+      {
+        "title": "Oracle migration and Multi-AZ",
+        "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/migration-oracle-database/rds-oracle.html"
+      }
+    ]
+  },
+  "198": {
+    "answers": [
+      "D"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "EKS preserves Kubernetes deployment tooling, Fargate manages worker compute, and DocumentDB offers MongoDB-compatible storage. Check supported MongoDB features during migration.",
+    "references": [
+      {
+        "title": "EKS on Fargate",
+        "url": "https://docs.aws.amazon.com/eks/latest/userguide/fargate.html"
+      },
+      {
+        "title": "DocumentDB MongoDB compatibility",
+        "url": "https://docs.aws.amazon.com/documentdb/latest/devguide/compatibility.html"
+      }
+    ]
+  },
+  "199": {
+    "answers": [
+      "B"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Transcribe provides speaker-separated transcripts; Athena supports SQL analysis of transcripts stored in S3. Configure seven-year S3 retention separately.",
+    "references": [
+      {
+        "title": "Transcribe speaker diarization",
+        "url": "https://docs.aws.amazon.com/transcribe/latest/dg/diarization.html"
+      }
+    ]
+  },
+  "200": {
+    "answers": [
+      "D"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "A Cognito user-pool authorizer validates tokens at API Gateway without a custom Lambda authorizer.",
+    "references": [
+      {
+        "title": "API Gateway Cognito authorizers",
+        "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-integrate-with-cognito.html"
+      }
+    ]
+  },
+  "207": {
+    "answers": [
+      "D"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "SQS buffers requests durably while Lambda controls writes to the provisioned DynamoDB capacity.",
+    "references": [
+      {
+        "title": "Lambda with Amazon SQS",
+        "url": "https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html"
+      }
+    ]
+  },
+  "210": {
+    "answers": [
+      "D"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Separate queues decouple collection and fulfillment. Backlog per instance gives each worker group a scaling target proportional to pending work.",
+    "references": [
+      {
+        "title": "SQS backlog scaling",
+        "url": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-using-sqs-queue.html"
+      }
+    ]
+  },
+  "219": {
+    "answers": [
+      "D"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Use memory-optimized instances for in-memory work and collect application metrics with the CloudWatch agent. Memory is not a default EC2 metric.",
+    "references": [
+      {
+        "title": "CloudWatch agent metrics",
+        "url": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/metrics-collected-by-CloudWatch-agent.html"
+      }
+    ]
+  },
+  "224": {
+    "answers": [
+      "C",
+      "E"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Multivalue routing returns healthy addresses with roughly random distribution. Two instances in each of two Availability Zones retain capacity after a zone failure.",
+    "references": [
+      {
+        "title": "Route 53 multivalue routing",
+        "url": "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-multivalue.html"
+      },
+      {
+        "title": "Auto Scaling and Availability Zones",
+        "url": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-benefits.html"
+      }
+    ]
+  },
+  "232": {
+    "answers": [
+      "C"
+    ],
+    "answerSource": "supplied-notes-reviewed",
+    "explanation": "Analyze accepted SSH and RDP flows in CloudWatch Logs and notify through metric alarms. Flow logs indicate network connections, not proof of a successful operating-system login.",
+    "references": [
+      {
+        "title": "VPC flow logs in CloudWatch",
+        "url": "https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-cwl.html"
+      }
+    ]
+  },
+  "235": {
+    "answers": [
+      "C"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Schema conversion plus full load and CDC migrates the database and tracks changes. Memory helps buffer a heavy change stream. Bidirectional writes still need a conflict-management plan.",
+    "references": [
+      {
+        "title": "DMS replication sizing",
+        "url": "https://docs.aws.amazon.com/dms/latest/userguide/CHAP_BestPractices.SizingReplicationInstance.html"
+      }
+    ]
+  },
+  "247": {
+    "answers": [
+      "C",
+      "E"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Allow long transactions to finish and enable automated backups before creating an RDS read replica.",
+    "references": [
+      {
+        "title": "Creating RDS read replicas",
+        "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.Create.html"
+      }
+    ]
+  },
+  "257": {
+    "answers": [
+      "A"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Stream CloudWatch metrics through Firehose into S3 without adding work to instance launch scripts.",
+    "references": [
+      {
+        "title": "CloudWatch metric streams",
+        "url": "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-Metric-Streams.html"
+      }
+    ]
+  },
+  "283": {
+    "answers": [
+      "D"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "FSx for NetApp ONTAP supports concurrent NFS and SMB access to shared volumes.",
+    "references": [
+      {
+        "title": "FSx ONTAP multiprotocol volumes",
+        "url": "https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-volumes.html"
+      }
+    ]
+  },
+  "298": {
+    "answers": [
+      "C"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Use separate subnets in both Availability Zones, distribute application instances, and enable RDS Multi-AZ failover.",
+    "references": [
+      {
+        "title": "RDS high availability",
+        "url": "https://docs.aws.amazon.com/AmazonRDS/latest/gettingstartedguide/concepts.html"
+      },
+      {
+        "title": "Auto Scaling and Availability Zones",
+        "url": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-benefits.html"
+      }
+    ]
+  },
+  "308": {
+    "answers": [
+      "A",
+      "C"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Inspect the account running the database and its RDS reservation recommendations. Active databases call for reservation optimization rather than idle-instance checks.",
+    "references": [
+      {
+        "title": "Trusted Advisor cost checks",
+        "url": "https://docs.aws.amazon.com/awssupport/latest/user/cost-optimization-checks.html"
+      }
+    ]
+  },
+  "311": {
+    "answers": [
+      "C"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "SNS subscription filters route each quote type into its own durable SQS queue for independent processing.",
+    "references": [
+      {
+        "title": "SNS message filtering",
+        "url": "https://docs.aws.amazon.com/sns/latest/dg/sns-message-filtering.html"
+      },
+      {
+        "title": "Lambda with Amazon SQS",
+        "url": "https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html"
+      }
+    ]
+  },
+  "315": {
+    "answers": [
+      "D"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Amazon Inspector scans EC2 software for vulnerabilities and generates findings that can drive automated reporting.",
+    "references": [
+      {
+        "title": "Inspector EC2 vulnerability scanning",
+        "url": "https://docs.aws.amazon.com/inspector/latest/user/scanning-ec2.html"
+      }
+    ]
+  },
+  "327": {
+    "answers": [
+      "A"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Route outbound traffic through Network Firewall and allow only approved repository domains. Security groups cannot filter by URL.",
+    "references": [
+      {
+        "title": "Network Firewall domain lists",
+        "url": "https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateful-rule-groups-domain-names.html"
+      }
+    ]
+  },
+  "341": {
+    "answers": [
+      "D"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Of these options, the Lake Formation ingestion and Athena path supports centrally enforced column permissions for QuickSight.",
+    "references": [
+      {
+        "title": "Lake Formation service integrations",
+        "url": "https://docs.aws.amazon.com/lake-formation/latest/dg/service-integrations.html"
+      }
+    ]
+  },
+  "366": {
+    "answers": [
+      "D"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "With Cognito already providing identity, usage plans and API keys can distinguish subscription API offerings. Keep Cognito authorization in place; an API key alone is not an authorization boundary.",
+    "references": [
+      {
+        "title": "API Gateway usage plans",
+        "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html"
+      },
+      {
+        "title": "API Gateway Cognito authorizers",
+        "url": "https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-integrate-with-cognito.html"
+      }
+    ]
+  },
+  "390": {
+    "answers": [
+      "B",
+      "D"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Store sessions outside individual application servers. DynamoDB and replicated Redis are the offered shared session-store options; configure Redis replication and recovery for resilience.",
+    "references": [
+      {
+        "title": "Redis replication and high availability",
+        "url": "https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/Scaling.RedisReplGrps.html"
+      }
+    ]
+  },
+  "402": {
+    "answers": [
+      "A"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "The default Kinesis retention is 24 hours. A consumer running every other day needs a longer retention window.",
+    "references": [
+      {
+        "title": "Kinesis retention",
+        "url": "https://docs.aws.amazon.com/streams/latest/dev/kinesis-extended-retention.html"
+      }
+    ]
+  },
+  "414": {
+    "answers": [
+      "B"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "S3 File Gateway exposes a familiar share and asynchronously uploads new writes to S3 without a custom transfer workflow.",
+    "references": [
+      {
+        "title": "S3 File Gateway file sharing",
+        "url": "https://docs.aws.amazon.com/filegateway/latest/files3/Requirements.html"
+      }
+    ]
+  },
+  "417": {
+    "answers": [
+      "C"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Compute Savings Plans cover both EC2 and Lambda. Connecting Lambda to the application private subnets provides direct access.",
+    "references": [
+      {
+        "title": "Savings Plan types",
+        "url": "https://docs.aws.amazon.com/savingsplans/latest/userguide/plan-types.html"
+      },
+      {
+        "title": "Lambda VPC access",
+        "url": "https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html"
+      }
+    ]
+  },
+  "423": {
+    "answers": [
+      "A",
+      "B"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "IAM identity-based policies attach to users, groups, or roles. Among these options, roles and groups are valid.",
+    "references": [
+      {
+        "title": "IAM identity-based policies",
+        "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html"
+      }
+    ]
+  },
+  "429": {
+    "answers": [
+      "D"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "The allow statement is limited to us-east-1. The explicit deny blocks StopInstances and TerminateInstances without MFA, overriding the allow. Other Regions have no allow in this policy.",
+    "references": [
+      {
+        "title": "IAM policy evaluation",
+        "url": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html"
+      }
+    ]
+  },
+  "434": {
+    "answers": [
+      "A"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Pre-provision the recovery load balancer and Auto Scaling group, replicate data with global tables, and use DNS failover to reduce recovery work.",
+    "references": [
+      {
+        "title": "DynamoDB global tables",
+        "url": "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html"
+      }
+    ]
+  },
+  "477": {
+    "answers": [
+      "D"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "DeleteObject is an object-level action and needs the object ARN ending in /*. The existing bucket ARN alone does not grant deletion.",
+    "references": [
+      {
+        "title": "S3 API permissions",
+        "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-with-s3-policy-actions.html"
+      }
+    ]
+  },
+  "491": {
+    "answers": [
+      "A"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "A standard SQS queue supports at-least-once processing. An encrypted-queue consumer needs kms:Decrypt on the KMS key.",
+    "references": [
+      {
+        "title": "Lambda with Amazon SQS",
+        "url": "https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html"
+      },
+      {
+        "title": "SQS encryption key permissions",
+        "url": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-key-management.html"
+      }
+    ]
+  },
+  "528": {
+    "answers": [
+      "D"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Transfer Family keeps FTP ingestion managed. S3 arrival events start Lambda processing, which can delete each object after success.",
+    "references": [
+      {
+        "title": "AWS Transfer Family",
+        "url": "https://docs.aws.amazon.com/transfer/latest/userguide/what-is-aws-transfer-family.html"
+      }
+    ]
+  },
+  "539": {
+    "answers": [
+      "C"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Elastic Disaster Recovery continuously replicates disk changes with an RPO measured in seconds and recovery typically in minutes.",
+    "references": [
+      {
+        "title": "Elastic Disaster Recovery objectives",
+        "url": "https://docs.aws.amazon.com/drs/latest/userguide/CloudEndure-Concepts.html"
+      }
+    ]
+  },
+  "543": {
+    "answers": [
+      "A",
+      "E"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Use the purchasing account as the Organizations management account and enable discount sharing there for member accounts.",
+    "references": [
+      {
+        "title": "Savings Plans discount sharing",
+        "url": "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ri-turn-off.html"
+      }
+    ]
+  },
+  "569": {
+    "answers": [
+      "A"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "EventBridge publishes matched-event and target-invocation metrics in the AWS/Events namespace.",
+    "references": [
+      {
+        "title": "EventBridge CloudWatch metrics",
+        "url": "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-monitoring.html"
+      }
+    ]
+  },
+  "581": {
+    "answers": [
+      "B"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Two On-Demand instances in each of two Availability Zones leave two running instances after either zone fails.",
+    "references": [
+      {
+        "title": "Auto Scaling and Availability Zones",
+        "url": "https://docs.aws.amazon.com/autoscaling/ec2/userguide/auto-scaling-benefits.html"
+      }
+    ]
+  },
+  "599": {
+    "answers": [
+      "A",
+      "C",
+      "F"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Customers provide site power, networking, physical access control, and workload spare capacity. AWS maintains the Outposts rack hardware and managed infrastructure.",
+    "references": [
+      {
+        "title": "Outposts shared responsibility",
+        "url": "https://docs.aws.amazon.com/whitepapers/latest/aws-outposts-high-availability-design/aws-outposts-high-availability-design.html"
+      }
+    ]
+  },
+  "608": {
+    "answers": [
+      "A"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Associate a WAF web ACL with the ALB and allow the registered addresses using IP sets. Split the list across sets when service quotas require it.",
+    "references": [
+      {
+        "title": "WAF IP sets",
+        "url": "https://docs.aws.amazon.com/waf/latest/developerguide/waf-ip-set-managing.html"
+      }
+    ]
+  },
+  "638": {
+    "answers": [
+      "A"
+    ],
+    "answerSource": "aws-documentation-inference",
+    "explanation": "Generate short-lived presigned URLs with a suitably scoped role to grant object access without provisioning employee IAM users.",
+    "references": [
+      {
+        "title": "S3 presigned URLs",
+        "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-presigned-url.html"
+      }
+    ]
+  },
+  "679": {
+    "answers": [
+      "A",
+      "C",
+      "E"
+    ],
+    "answerSource": "aws-documentation-correction",
+    "providedAnswers": [
+      "B",
+      "C",
+      "E"
+    ],
+    "explanation": "The supplied notes list B, C, E. A default retention period requires S3 Object Lock; versioning alone does not protect retention. Select Object Lock, a 30-day default retention, and lifecycle expiration. Object Lock enables versioning. For permanent removal of versions, also configure the appropriate noncurrent-version expiration policy.",
+    "references": [
+      {
+        "title": "S3 Object Lock and default retention",
+        "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html"
+      }
+    ]
+  }
+}
