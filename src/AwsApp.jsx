@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { StudyAccountControls } from "./StudyAccount.jsx";
 import StudySessionView from "./StudySessionView.jsx";
 import AwsPracticeSession from "./AwsPracticeSession.jsx";
-import { awsPracticeTitle } from "./awsPracticeSample.js";
+import { awsPracticeTitle, awsQuestions } from "./awsPractice.js";
 
 export default function AwsApp() {
   const [active, setActive] = useState(false);
@@ -30,9 +30,10 @@ export default function AwsApp() {
       <article className="mock-exam-panel">
         <div className="mock-exam-eyebrow">AWS SAA-C03</div>
         <h2 style={{ overflowWrap: 'anywhere' }}>{awsPracticeTitle}</h2>
-        <p>Preview one question from the PDF before adding the full collection.</p>
-        <div className="mock-exam-overview"><div><strong>1</strong><span>sample question</span></div><div><strong>18</strong><span>PDF question number</span></div><div><strong>Choose two</strong><span>Letter-only answers</span></div></div>
-        <div className="mock-exam-actions"><button type="button" className="primary-button" onClick={() => setActive(true)}>Start sample practice</button><span>Topic 1 · PDF page 7</span></div>
+        <p>All {awsQuestions.length} questions from the PDF, including policy diagrams and multiple-answer questions.</p>
+        <div className="mock-exam-overview"><div><strong>{awsQuestions.length}</strong><span>practice questions</span></div><div><strong>A–F</strong><span>Only each question’s options</span></div><div><strong>At your pace</strong><span>Letter-only answers</span></div></div>
+        <p className="reading-note">The PDF has no answer key. You can submit and review every question; questions without a verified key remain ungraded.</p>
+        <div className="mock-exam-actions"><button type="button" className="primary-button" onClick={() => setActive(true)}>Start practice</button><span>Topic 1 · Questions 1–684</span></div>
       </article>
     </section>
   </main>;
