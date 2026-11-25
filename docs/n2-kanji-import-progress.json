@@ -1,5 +1,5 @@
 {
-  "status": "validated-pending-publication",
+  "status": "complete",
   "request": "Replace existing N2 Kanji with all Kanji from the supplied Soumatome PDF, using the existing N3 Kanji format and Myanmar meanings.",
   "source": {
     "path": "C:/Users/EMP_26018/Downloads/[studyjapanese.net]_Nihongo_SouMatome_N2-Kanji.pdf",
@@ -36,7 +36,9 @@
     "Built 8 weekly chapters and 56 daily/column sections using the existing N3 Kanji component.",
     "Corrected entry 223 from the older import: the supplied PDF has ?, not ?.",
     "Replacement preview backs up current N2 content and preserves all 118 Grammar cards and non-Kanji exercises.",
-    "All 111 regression tests, typecheck, production build, and focused desktop/mobile browser checks passed."
+    "All 111 regression tests, typecheck, production build, and focused desktop/mobile browser checks passed.",
+    "Published and verified /n2/kanji and all 104 source-page images.",
+    "Replaced only live N2 Kanji using a backed-up conditional ETag write; saved payload verified at revision 3."
   ],
   "artifacts": {
     "verifiedFirstWeekManifest": "migrations/n2-soumatome-pages.json",
@@ -51,16 +53,22 @@
     "replacement": "migrations/replace-n2-soumatome.mjs",
     "browserCheck": "scripts/n2-soumatome-browser.mjs"
   },
-  "remaining": [
-    "Publish application/reference-page assets.",
-    "Apply the backed-up ETag-protected replacement to jlpt/n2/content.",
-    "Verify saved content and unchanged non-Kanji sections, then mark complete."
-  ],
+  "remaining": [],
   "liveStateAtPause": {
-    "n2DatabaseModified": false,
-    "appSourceModifiedForN2": false,
-    "productionDeployedForN2": false,
-    "existingN2KanjiRemoved": false
+    "n2DatabaseModified": true,
+    "appSourceModifiedForN2": true,
+    "productionDeployedForN2": true,
+    "existingN2KanjiRemoved": true
   },
-  "resume": "Finish publication and conditional N2 replacement; no further transcription is needed."
+  "resume": "Task complete. Future requests can edit the published N2 Kanji collection.",
+  "liveVerification": {
+    "revision": 3,
+    "cards": 739,
+    "chapters": 8,
+    "sections": 56,
+    "readingExercises": 739,
+    "referencePageImages": 104,
+    "url": "https://japanese-study-akkh.vercel.app/n2/kanji",
+    "backup": ".migration-backups/n2-kanji-2026-11-25T08-47-07.397Z"
+  }
 }
