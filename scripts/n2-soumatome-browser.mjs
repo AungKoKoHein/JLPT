@@ -43,7 +43,7 @@ try {
   await cdp('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
   await evaluate(`document.querySelector('.kanji-study').scrollIntoView()`);
   await until(`!document.querySelector('.subchapter-nav').hidden`);
-  for (const number of [3,7,1]) {
+  for (const number of [1,2,3,4,5,6,7,1]) {
     await evaluate(`document.querySelectorAll('.subchapter-nav button')[${number - 1}].click()`);
     assert.equal(await evaluate(`document.activeElement===document.querySelectorAll('.kanji-study .kanji-lesson-group h3')[${number - 1}]`), true, `Jump ${number} focuses the visible heading despite hidden duplicate IDs`);
     assert.ok(await evaluate(`Math.abs(document.activeElement.getBoundingClientRect().top)<150`),`Jump ${number} scrolls to its visible section`);
@@ -53,9 +53,8 @@ try {
   await click('Toggle readings');
   assert.equal(await evaluate(`document.querySelector('.kanji-examples').textContent.includes(String.fromCodePoint(0xff08))`),false);
   await click('Toggle readings');
-  await evaluate(`document.querySelector('.kanji-book-source').open=true`);
-  await until(`document.querySelector('.kanji-book-source img').complete&&document.querySelector('.kanji-book-source img').naturalWidth>0`);
-  await evaluate(`document.querySelector('.kanji-book-source').open=false`);
+  assert.equal(await evaluate(`document.querySelector('.kanji-book-source')`),null);
+  assert.equal(await evaluate(`document.body.textContent.includes('Original textbook pages')`),false);
   await click('Flashcards');
   await until(`document.querySelectorAll('.flashcard.kanji-card').length===86`);
   await evaluate(`document.querySelector('.flashcard.kanji-card').click()`);
@@ -78,5 +77,5 @@ try {
     const { data } = await cdp('Page.captureScreenshot', { format: 'png' });
     fs.writeFileSync(path.resolve(`.tmp-python/n2-kanji-${width}.png`),Buffer.from(data,'base64'));
   }
-  console.log('PASS: Native Kanji book/flashcard views, daily groups, Myanmar, readings, reference pages, corrected entry 223, exercises, final entry 739, and responsive layouts.');
+  console.log('PASS: Numbered links 1-7 target visible headings, textbook dropdown hidden, native book/flashcards, Myanmar, readings, exercises, and responsive layouts.');
 } finally { socket?.close(); chrome.kill(); await server.close(); }
