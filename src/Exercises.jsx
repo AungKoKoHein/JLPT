@@ -1,5 +1,7 @@
 import { displayKanji } from "./studyText.js";
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
+import { groupExercisesByType } from "./exercisePresentation.js";
+import "./exercises.css";
 
 export default function Exercises({
   exercises,
@@ -11,7 +13,10 @@ export default function Exercises({
   onAdd,
   assignmentLabel,
 }) {
-  const [showAnswers, setShowAnswers] = useState(false);
+  const [answerVisibility, setAnswerVisibility] = useState({});
+  const answerPrefix = useId();
+  const showAnswers = exercises.length > 0 && exercises.every(item => answerVisibility[item._id]);
+  const groups = groupExercisesByType(exercises, showMyanmar);
   const display = (text = "") =>
     displayKanji(showReadings
       ? text
@@ -60,31 +65,41 @@ export default function Exercises({
           className="reading-toggle answer-key-toggle"
           aria-label="Show Answer Key"
           aria-pressed={showAnswers}
-          onClick={() => setShowAnswers((value) => !value)}
+          disabled={!exercises.length}
+          onClick={() => setAnswerVisibility(showAnswers ? {} : Object.fromEntries(exercises.map(item => [item._id, true])))}
         >
           Answer Key: {showAnswers ? "ON" : "OFF"}
         </button>
       </div>
-      {[...new Set(exercises.map((item) => item.section))].map((section) => (
-        <section key={section} className="exercise-section">
-          <h3>{display(String(section))}</h3>
+      {groups.map((group) => (
+        <section key={group.key} className="exercise-section" data-exercise-type={group.key}>
+          <h3 lang={group.lang} className="exercise-type-heading">{display(group.title)}</h3>
           <ol>
-            {exercises
-              .filter((item) => item.section === section)
-              .map((item) => (
+            {group.items.map((item, index) => {
+                const shown = Boolean(answerVisibility[item._id]);
+                const answerId = `${answerPrefix}-answer-${encodeURIComponent(item._id)}`;
+                return (
                 <li key={item._id} data-exercise-id={item._id}>
+                  {group.sectionCount > 1 && (index === 0 || group.items[index - 1].section !== item.section) && <p className="exercise-source-section" lang="ja">{display(String(item.section || ''))}</p>}
                   {item.imageSrc && (
                     <img className="exercise-illustration" src={`${import.meta.env.BASE_URL}${item.imageSrc}`} alt={item.imageAlt ?? "Exercise illustration"} loading="lazy" />
                   )}
-                  <p className="exercise-question" lang="ja">
+                  <div className="exercise-question-row"><p className="exercise-question" lang="ja">
                     {question(item)}
                   </p>
+                  <button type="button" className="exercise-answer-eye"
+                    aria-label={`${shown ? 'Hide' : 'Show'} answer for question ${index + 1} in ${group.title}`}
+                    title={shown ? 'အဖြေ ဖျောက်မည်' : 'အဖြေ ကြည့်မည်'}
+                    aria-expanded={shown} aria-controls={answerId}
+                    onClick={() => setAnswerVisibility(current => ({ ...current, [item._id]: !current[item._id] }))}>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" /><circle cx="12" cy="12" r="3" />{shown && <path d="m3 3 18 18" />}</svg>
+                  </button></div>
                   {showMyanmar && item.questionMyanmar && (
                     <p className="exercise-translation" lang="my">
                       {item.questionMyanmar}
                     </p>
                   )}
-                  {showAnswers && (
+                  <div id={answerId} hidden={!shown}>{shown && (
                     <>
                       <p className="exercise-answer" lang="ja">
                         <strong>Answer:</strong> {display(item.answer)}
@@ -95,23 +110,23 @@ export default function Exercises({
                         </p>
                       )}
                     </>
-                  )}
+                  )}</div>
                   {(onEdit || onDelete) && (
                     <div className="item-actions">
                       {onEdit && (
-                        <button type="button" onClick={() => onEdit(item)}>
+                          <button type="button" onClick={() => onEdit(exercises.find(original => original._id === item._id))}>
                           Edit
                         </button>
                       )}
                       {onDelete && (
-                        <button type="button" onClick={() => onDelete(item)}>
+                          <button type="button" onClick={() => onDelete(exercises.find(original => original._id === item._id))}>
                           Delete Everywhere
                         </button>
                       )}
                     </div>
                   )}
                 </li>
-              ))}
+              ); })}
           </ol>
         </section>
       ))}

@@ -3,12 +3,14 @@ import { kanjiExamples, kanjiExampleText, kanjiCardReadings } from "./kanjiConte
 import { hasVisibleChapterContent } from "./chapterVisibility.js";
 import useShuffledCards from "./useShuffledCards.js";
 import { sortChapters, groupChapters } from "./chapterGroups.js";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Exercises from "./Exercises.jsx";
 import SidebarToggle from "./SidebarToggle.jsx";
 import SearchFeedback from "./SearchFeedback.jsx";
 import SubchapterNav, { subchapterTargetId } from "./SubchapterNav.jsx";
 import { exercisesForView } from "./exerciseContent.js";
+import { getN2KanjiLessons } from "./n2KanjiLessons.js";
+import { N2LessonExamples } from "./N2KanjiLessonContent.jsx";
 export const getKanjiChapterOptions = (chapters) => chapters.map(({ id, number, title, sections }) => ({
   id,
   number,
@@ -118,6 +120,7 @@ export default function Kanji({
   mode = "book",
   allExercises,
   showMyanmar,
+  showJapanese = true,
   showReadings,
   showKanji,
   showKanjiReadings,
@@ -139,6 +142,7 @@ export default function Kanji({
   const [tab, setTab] = useState("kanji");
   const [active, setActive] = useState("kanji-1");
   const [exerciseScope, setExerciseScope] = useState("");
+  const exerciseViewRef = useRef(null);
   useEffect(() => {
     if (isActive) {
       setTab("kanji");
@@ -165,6 +169,7 @@ export default function Kanji({
   const selected =
     filteredChapters.find((chapter) => chapter.id === active) ??
     filteredChapters[0];
+  const n2Lessons = getN2KanjiLessons(selected);
   const baseCards = [];
   const customCards = resolvedCards.filter((card) => card.chapterId === selected?.id && !card.subchapterId);
   const customSubchapters = (content.subchapters ?? []).filter(
@@ -383,6 +388,15 @@ export default function Kanji({
                             <div className="cards">
                               {lessonCards.map(renderCard)}
                             </div>
+                            <N2LessonExamples
+                              lesson={n2Lessons.find(lesson => lesson.page === section.page)}
+                              showJapanese={showJapanese} showMyanmar={showMyanmar}
+                              showReadings={showReadings} showKanji={showKanji}
+                              onExercises={() => {
+                                setTab("exercises"); setExerciseScope(`${selected.id}-section-${section.page}`); setQuery("");
+                                requestAnimationFrame(() => { exerciseViewRef.current?.focus({ preventScroll: true }); exerciseViewRef.current?.scrollIntoView({ block: 'start', behavior: 'instant' }); });
+                              }}
+                            />
                           </section>
                         );
                       })
@@ -428,6 +442,7 @@ export default function Kanji({
                       {exerciseSubchapters.map((section) => <option key={section.id} value={section.id}>Sub Chapter {section.number}: {section.title}</option>)}
                     </select>
                   </label>
+                  <div ref={exerciseViewRef} tabIndex={-1}>
                   <Exercises
                     key={`${selected.id}:${exerciseAssignment?.id ?? "all"}`}
                     exercises={exercises}
@@ -438,6 +453,7 @@ export default function Kanji({
                     onEdit={manageMode && isEditor ? (item) => openEditor("exercise", "edit", item) : undefined}
                     onDelete={manageMode && isEditor ? (item) => deleteRecord("exercise", item) : undefined}
                   />
+                  </div>
                   {!exerciseAssignment && selected.extraWords?.map((word, index) => <p className="note" key={index}>
                     <span lang="ja">{displayText(word.term, showReadings, showKanji)}</span>{" "}
                     {showMyanmar && <span lang="my">{word.explanation}</span>}

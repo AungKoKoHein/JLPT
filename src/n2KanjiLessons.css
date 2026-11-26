@@ -1,0 +1,14 @@
+.n2-lesson-examples { margin:12px 0 18px; padding:16px; border:1px solid var(--line); border-radius:12px; background:var(--accent-soft); }
+.n2-lesson-content-heading { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px; }
+.n2-lesson-content-heading :is(h3,h4) { margin:0; color:var(--ink); font-size:17px; line-height:1.9; }
+.n2-lesson-content-heading p { margin:4px 0 0; font-size:13px; color:var(--muted); line-height:1.9; }
+.n2-lesson-content-heading button { min-height:44px; font:inherit; font-size:13px; padding:8px 12px; cursor:pointer; }
+.n2-lesson-examples ol { margin:0; padding-left:24px; }
+.n2-lesson-examples li+li { margin-top:12px; }
+.n2-lesson-examples li p { margin:3px 0; font-size:17px; line-height:2; overflow-wrap:anywhere; }
+.n2-lesson-examples li p[lang="my"] { font-size:15px; color:var(--muted); }
+@media(max-width:760px) {
+  .n2-lesson-examples { padding:12px; }
+  .n2-lesson-content-heading button { width:100%; }
+  .n2-lesson-examples li p { font-size:16px; }
+}

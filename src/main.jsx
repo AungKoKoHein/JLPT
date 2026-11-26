@@ -29,6 +29,7 @@ const AwsApp = React.lazy(() => import("./AwsApp.jsx"));
 import StudyControlsHost from "./StudyControlsHost.jsx";
 import StudyAccess from "./StudyAccess.jsx";
 import SidebarToggle from "./SidebarToggle.jsx";
+import { n2KanjiLessonExercises } from "./n2KanjiLessons.js";
 import { StudyAccountControls } from "./StudyAccount.jsx";
 
 const chapterTitle = (
@@ -755,10 +756,10 @@ function App({ level }) {
   );
 
   const allExercises = useMemo(() => resolveExercises(
-    content.baselineExercises,
+    level === "n2" ? [...n2KanjiLessonExercises(content.baselineKanjiChapters), ...content.baselineExercises] : content.baselineExercises,
     content,
     chapterOptions.flatMap((chapter) => chapter.subchapters ?? []),
-  ), [content, chapterOptions]);
+  ), [content, chapterOptions, level]);
   const userChapters = useMemo(() => chapterOptions
     .filter((chapter) => chapter.studyTab === studyTab)
     .filter((chapter) => hasVisibleChapterContent(chapter, allVocabularyCards, allExercises))
@@ -1363,6 +1364,7 @@ function App({ level }) {
               showSidebar={showSidebar}
               onToggleSidebar={() => setShowSidebar(value => !value)}
               isActive={studyTab === "Kanji"}
+              showJapanese={showJapanese}
               mode={kanjiMode}
               allExercises={allExercises}
               showMyanmar={showMyanmar}

@@ -11,9 +11,9 @@ const server = await createServer({ configFile: false, logLevel: 'error', plugin
     server.middlewares.use('/__n2-kanji-check', async (_req, res) => {
       res.setHeader('Content-Type', 'text/html');
       res.end(await server.transformIndexHtml('/__n2-kanji-check', `<html><head><meta name="viewport" content="width=device-width,initial-scale=1"></head><body><div id="root"></div><script type="module">
-import React from 'react';import{createRoot}from'react-dom/client';import Kanji,{getKanjiChapterOptions}from'/src/Kanji.jsx';import{normalizeContent}from'/src/cloudContent.js';import{resolveExercises}from'/src/exerciseContent.js';import catalog from'/migrations/n2-soumatome-catalog.json';import'/src/app.css';import'/src/design.css';
-const content=normalizeContent(catalog);const sections=getKanjiChapterOptions(content.baselineKanjiChapters).flatMap(c=>c.subchapters);const exercises=resolveExercises(content.baselineExercises,content,sections);
-function Check(){const[mode,setMode]=React.useState('book');const[showReadings,setReadings]=React.useState(true);const h=React.createElement;return h('main',null,h('h1',null,'N2 Kanji'),h('button',{onClick:()=>setMode('flashcards')},'Flashcards'),h('button',{onClick:()=>setMode('book')},'Book view'),h('button',{onClick:()=>setReadings(x=>!x)},'Toggle readings'),h('section',{hidden:true},sections.map(section=>h('h3',{key:section.id,id:'subchapter-title-'+section.id,tabIndex:-1},'Hidden inactive panel heading'))),h(Kanji,{isActive:true,mode,allExercises:exercises,showReadings,showKanji:true,showKanjiReadings:true,showMyanmar:true,manageMode:false,canEdit:false,isEditor:false,content}));}
+import React from 'react';import{createRoot}from'react-dom/client';import Kanji,{getKanjiChapterOptions}from'/src/Kanji.jsx';import{normalizeContent}from'/src/cloudContent.js';import{resolveExercises}from'/src/exerciseContent.js';import catalog from'/migrations/n2-soumatome-catalog.json';import{n2KanjiLessonExercises}from'/src/n2KanjiLessons.js';import'/src/app.css';import'/src/design.css';import'/src/dashboard.css';document.documentElement.dataset.theme='light';
+const content=normalizeContent(catalog);const sections=getKanjiChapterOptions(content.baselineKanjiChapters).flatMap(c=>c.subchapters);const exercises=resolveExercises([...n2KanjiLessonExercises(content.baselineKanjiChapters),...content.baselineExercises],content,sections);
+function Check(){const[mode,setMode]=React.useState('book');const[showReadings,setReadings]=React.useState(true);const h=React.createElement;return h('main',{className:'study-dashboard','data-show-sidebar':true},h('h1',null,'N2 Kanji'),h('button',{onClick:()=>setMode('flashcards')},'Flashcards'),h('button',{onClick:()=>setMode('book')},'Book view'),h('button',{onClick:()=>setReadings(x=>!x)},'Toggle readings'),h('section',{hidden:true},sections.map(section=>h('h3',{key:section.id,id:'subchapter-title-'+section.id,tabIndex:-1},'Hidden inactive panel heading'))),h(Kanji,{isActive:true,mode,allExercises:exercises,showReadings,showKanji:true,showKanjiReadings:true,showMyanmar:true,manageMode:false,canEdit:false,isEditor:false,content}));}
 createRoot(document.getElementById('root')).render(React.createElement(Check));</script></body></html>`));
     });
   },
@@ -38,6 +38,7 @@ try {
   await cdp('Emulation.setDeviceMetricsOverride', { width: 1440, height: 1000, deviceScaleFactor: 1, mobile: false });
   await cdp('Page.navigate', { url: `http://127.0.0.1:${server.config.server.port}/__n2-kanji-check` });
   await until(`document.querySelectorAll('.kanji-study-card').length===86`);
+  assert.equal(await evaluate(`document.querySelectorAll('.n2-lesson-examples li').length`),14,'Two translated example sentences for each daily/column lesson');
   assert.equal(await evaluate(`document.querySelectorAll('.chapter-group-cards button').length`),8);
   assert.equal(await evaluate(`document.querySelectorAll('.kanji-lesson-group').length`),7);
   await cdp('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
@@ -64,9 +65,9 @@ try {
   await until(`document.querySelectorAll('.kanji-study-card').length===89`);
   assert.ok(await evaluate(`[...document.querySelectorAll('.kanji-study-heading strong')].some(x=>x.textContent===String.fromCodePoint(0x5fc5))`));
   await click('Exercises');
-  await until(`document.querySelectorAll('[data-exercise-id]').length===89`);
+  await until(`document.querySelectorAll('[data-exercise-id]').length===102`);
   await click('Answer Key: OFF');
-  assert.equal(await evaluate(`document.querySelectorAll('.exercise-answer').length`),89);
+  assert.equal(await evaluate(`document.querySelectorAll('.exercise-answer').length`),102);
   await evaluate(`document.querySelectorAll('.chapter-group-cards button')[7].click()`);
   await click('Words');
   await until(`document.querySelectorAll('.kanji-study-card').length===88`);
@@ -74,6 +75,32 @@ try {
   for (const width of [1440,768,393,360]) {
     await cdp('Emulation.setDeviceMetricsOverride',{width,height:1000,deviceScaleFactor:1,mobile:width<600});
     assert.ok(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),`No overflow at ${width}px`);
+    await evaluate(`document.querySelector('.n2-lesson-examples').scrollIntoView({block:'start'})`);
+    const exampleScreenshot = await cdp('Page.captureScreenshot', { format: 'png' });
+    fs.writeFileSync(path.resolve(`.tmp-python/n2-lesson-examples-${width}.png`),Buffer.from(exampleScreenshot.data,'base64'));
+    await evaluate(`document.querySelector('.n2-lesson-examples button').click()`);
+    await until(`document.querySelectorAll('[data-exercise-id^="n2-soumatome-text-"]').length===2`);
+    assert.deepEqual(await evaluate(`[...document.querySelectorAll('[data-exercise-id^="n2-soumatome-text-"]')].map(item=>item.dataset.exerciseId)`),['n2-soumatome-text-125-1','n2-soumatome-text-125-2']);
+    assert.equal(await evaluate(`document.querySelectorAll('.exercises img,.n2-original-exercises,.n2-exercise-scans').length`),0,'No PDF scans are displayed');
+    assert.equal(await evaluate(`document.querySelectorAll('.exercise-answer').length`),0,'Answers use the same hidden-by-default toggle as N3');
+    assert.equal(await evaluate(`document.querySelectorAll('.exercise-answer-eye').length`),16,'Each exercise has an independent eye toggle');
+    assert.equal(await evaluate(`document.querySelectorAll('.exercise-translation').length`),0,'Repeated instructions are removed from individual sentences');
+    assert.ok(await evaluate(`(() => { const instructions = [...document.querySelectorAll('.exercise-type-heading')].map(p=>p.textContent); return instructions.length > 0 && new Set(instructions).size===instructions.length; })()`),'Each exercise type has one instruction heading');
+    await evaluate(`document.querySelectorAll('.exercise-answer-eye')[0].click()`);
+    assert.equal(await evaluate(`document.querySelectorAll('.exercise-answer').length`),1,'Eye reveals only its own answer');
+    await evaluate(`document.querySelectorAll('.exercise-answer-eye')[1].click();document.querySelectorAll('.exercise-answer-eye')[0].click()`);
+    assert.equal(await evaluate(`document.querySelectorAll('.exercise-answer').length`),1,'Hiding one answer does not hide another');
+    await click('Answer Key: OFF');
+    assert.equal(await evaluate(`document.querySelectorAll('.exercise-answer').length`),16,'Existing drills and two textbook questions share the N3 answer toggle');
+    await evaluate(`document.querySelectorAll('.exercise-answer-eye')[0].click()`);
+    assert.equal(await evaluate(`document.querySelectorAll('.exercise-answer').length`),15,'Individual eye can hide one answer after showing all');
+    await click('Answer Key: OFF');
+    assert.equal(await evaluate(`document.querySelectorAll('.exercise-answer').length`),16,'Show all restores a locally hidden answer');
+    assert.ok(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),`Text exercises fit at ${width}px`);
+    const exerciseScreenshot = await cdp('Page.captureScreenshot', { format: 'png' });
+    fs.writeFileSync(path.resolve(`.tmp-python/n2-lesson-exercises-${width}.png`),Buffer.from(exerciseScreenshot.data,'base64'));
+    await click('Words');
+    await until(`document.querySelectorAll('.n2-lesson-examples li').length===14`);
     const { data } = await cdp('Page.captureScreenshot', { format: 'png' });
     fs.writeFileSync(path.resolve(`.tmp-python/n2-kanji-${width}.png`),Buffer.from(data,'base64'));
   }

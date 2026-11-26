@@ -1,0 +1,26 @@
+{
+  "source": "[studyjapanese.net]_Nihongo_SouMatome_N2-Kanji.pdf",
+  "sourcePageCount": 177,
+  "scope": "Existing N2 Soumatome weekly chapters only",
+  "dailyAndColumnSections": 56,
+  "supplementaryExamples": {
+    "count": 112,
+    "perSection": 2,
+    "origin": "New supplementary sentences using each lesson's vocabulary, not quotations from the textbook",
+    "translation": "Myanmar",
+    "readingAnnotations": true
+  },
+  "originalPdfMaterial": {
+    "selectedTextExercises": 104,
+    "dailyLessons": "Two reviewed choice questions per day, 96 total",
+    "columnLessons": "One reading question from that week's review, 8 total; adapted to written answers",
+    "format": "Same shared Exercises component as N3; no PDF scans or scan links",
+    "answerVisibility": "Existing N3 Answer Key toggle",
+    "sources": "Page/question references retained on each exercise",
+    "selection": "Selected exercises, not a complete transcription of every textbook question"
+  },
+  "storage": "Bundled lesson supplement keyed by existing chapter and section IDs; no database migration or content replacement",
+  "existingKanjiCards": "Preserved",
+  "existingReadingDrills": "Preserved",
+  "n3": "Unaffected"
+}
