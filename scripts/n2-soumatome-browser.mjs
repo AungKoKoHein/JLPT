@@ -11,9 +11,9 @@ const server = await createServer({ configFile: false, logLevel: 'error', plugin
     server.middlewares.use('/__n2-kanji-check', async (_req, res) => {
       res.setHeader('Content-Type', 'text/html');
       res.end(await server.transformIndexHtml('/__n2-kanji-check', `<html><head><meta name="viewport" content="width=device-width,initial-scale=1"></head><body><div id="root"></div><script type="module">
-import React from 'react';import{createRoot}from'react-dom/client';import Kanji,{getKanjiChapterOptions}from'/src/Kanji.jsx';import{normalizeContent}from'/src/cloudContent.js';import{resolveExercises}from'/src/exerciseContent.js';import catalog from'/migrations/n2-soumatome-catalog.json';import{n2KanjiLessonExercises}from'/src/n2KanjiLessons.js';import'/src/app.css';import'/src/design.css';import'/src/dashboard.css';document.documentElement.dataset.theme='light';
+import useChapterSidebarViewport from '/src/useChapterSidebarViewport.js';import React from 'react';import{createRoot}from'react-dom/client';import Kanji,{getKanjiChapterOptions}from'/src/Kanji.jsx';import{normalizeContent}from'/src/cloudContent.js';import{resolveExercises}from'/src/exerciseContent.js';import catalog from'/migrations/n2-soumatome-catalog.json';import{n2KanjiLessonExercises}from'/src/n2KanjiLessons.js';import'/src/app.css';import'/src/design.css';import'/src/dashboard.css';document.documentElement.dataset.theme='light';
 const content=normalizeContent(catalog);const sections=getKanjiChapterOptions(content.baselineKanjiChapters).flatMap(c=>c.subchapters);const exercises=resolveExercises([...n2KanjiLessonExercises(content.baselineKanjiChapters),...content.baselineExercises],content,sections);
-function Check(){const[sidebar,setSidebar]=React.useState(true);const[mode,setMode]=React.useState('book');const[showReadings,setReadings]=React.useState(true);const h=React.createElement;return h('main',{className:'study-dashboard','data-show-sidebar':sidebar},h('h1',null,'N2 Kanji'),h('button',{onClick:()=>setMode('flashcards')},'Flashcards'),h('button',{onClick:()=>setMode('book')},'Book view'),h('button',{onClick:()=>setReadings(x=>!x)},'Toggle readings'),h('section',{hidden:true},sections.map(section=>h('h3',{key:section.id,id:'subchapter-title-'+section.id,tabIndex:-1},'Hidden inactive panel heading'))),h(Kanji,{isActive:true,showSidebar:sidebar,onToggleSidebar:()=>setSidebar(x=>!x),mode,allExercises:exercises,showReadings,showKanji:true,showKanjiReadings:true,showMyanmar:true,manageMode:false,canEdit:false,isEditor:false,content}));}
+function Check(){const layoutRef=React.useRef(null);const[sidebar,setSidebar]=React.useState(true);useChapterSidebarViewport(layoutRef,String(sidebar));const[mode,setMode]=React.useState('book');const[showReadings,setReadings]=React.useState(true);const h=React.createElement;return h('main',{className:'study-dashboard','data-show-sidebar':sidebar},h('h1',null,'N2 Kanji'),h('button',{onClick:()=>setMode('flashcards')},'Flashcards'),h('button',{onClick:()=>setMode('book')},'Book view'),h('button',{onClick:()=>setReadings(x=>!x)},'Toggle readings'),h('section',{hidden:true},sections.map(section=>h('h3',{key:section.id,id:'subchapter-title-'+section.id,tabIndex:-1},'Hidden inactive panel heading'))),h(Kanji,{layoutRef,isActive:true,showSidebar:sidebar,onToggleSidebar:()=>setSidebar(x=>!x),mode,allExercises:exercises,showReadings,showKanji:true,showKanjiReadings:true,showMyanmar:true,manageMode:false,canEdit:false,isEditor:false,content}));}
 createRoot(document.getElementById('root')).render(React.createElement(Check));</script></body></html>`));
     });
   },
@@ -40,6 +40,17 @@ try {
   await until(`document.querySelectorAll('.kanji-study-card').length===86`);
   assert.equal(await evaluate(`document.querySelectorAll('.n2-lesson-examples li').length`),14,'Two translated example sentences for each daily/column lesson');
   assert.equal(await evaluate(`document.querySelectorAll('.chapter-group-cards button').length`),8);
+  for (const width of [1366,768]) {
+    await cdp('Emulation.setDeviceMetricsOverride',{width,height:640,deviceScaleFactor:1,mobile:false});
+    for (const offset of [0,60,240]) {
+      await evaluate(`window.scrollTo(0,${offset})`);
+      await until(`document.querySelector('.layout>aside').getBoundingClientRect().bottom<=innerHeight-14`);
+      await evaluate(`(()=>{const list=document.querySelector('.layout>aside>.chapter-group');list.scrollTop=list.scrollHeight})()`);
+      assert.ok(await evaluate(`(()=>{const last=[...document.querySelectorAll('.chapter-group-cards button')].at(-1).getBoundingClientRect();const list=document.querySelector('.layout>aside>.chapter-group').getBoundingClientRect();return last.bottom<=list.bottom+1&&last.bottom<=innerHeight-14})()`),'Kanji last chapter fits at '+width+'px / '+offset);
+    }
+  }
+  await cdp('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
+
   assert.equal(await evaluate(`document.querySelectorAll('.kanji-lesson-group').length`),7);
   await cdp('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
   await evaluate(`document.querySelector('.kanji-study').scrollIntoView()`);

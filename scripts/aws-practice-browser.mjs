@@ -41,6 +41,55 @@ try {
   await cdp('Emulation.setDeviceMetricsOverride', { width: 1440, height: 1000, deviceScaleFactor: 1, mobile: false });
   await cdp('Page.navigate', { url: `http://127.0.0.1:${server.config.server.port}/__practice-check` });
   await until(`document.querySelector('button') !== null`);
+  assert.equal(await evaluate(`document.querySelectorAll('[data-aws-lesson]').length`),36);
+  // The sidebar bottom must fit before the page has scrolled to its sticky top.
+  for (const width of [1366, 768]) {
+    await cdp('Emulation.setDeviceMetricsOverride',{width,height:640,deviceScaleFactor:1,mobile:false});
+    for (const offset of [0, 60, 240]) {
+      await evaluate(`window.scrollTo(0,${offset})`);
+      await until(`document.querySelector('.aws-learning-layout>aside').getBoundingClientRect().bottom<=innerHeight-14`);
+      await evaluate(`(()=>{const list=document.querySelector('#aws-lesson-list');list.scrollTop=list.scrollHeight})()`);
+      assert.ok(await evaluate(`(()=>{const list=document.querySelector('#aws-lesson-list').getBoundingClientRect();const last=document.querySelector('[data-aws-lesson="9.4"]').getBoundingClientRect();return last.bottom<=list.bottom+1&&last.bottom<=innerHeight-14})()`),`Last lesson reachable at ${width}px, page offset ${offset}`);
+    }
+  }
+  await cdp('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
+  await evaluate(`window.scrollTo(0,0)`);
+  for (const part of ['Part 2','Part 3','Part 4']) {
+    await click(part);
+    await until(`document.querySelector('.aws-empty-part') !== null`);
+    assert.equal(await evaluate(`document.querySelectorAll('[data-aws-lesson]').length`),0);
+  }
+  await click('Part 1');
+  await until(`document.querySelector('.aws-lesson-panel') !== null`);
+  await click('Exercises · 2');
+  await until(`document.querySelectorAll('.exercise-answer-eye').length === 2`);
+  assert.equal(await evaluate(`document.querySelectorAll('.exercise-type-heading').length`),1);
+  await evaluate(`document.querySelector('.exercise-answer-eye').click()`);
+  assert.equal(await evaluate(`document.querySelectorAll('.exercise-answer-eye[aria-expanded=true]').length`),1);
+  await evaluate(`document.querySelector('[data-aws-lesson="9.4"]').click()`);
+  await until(`document.querySelector('.aws-lesson-header').textContent.includes('LESSON 9.4')`);
+  assert.equal(await evaluate(`document.querySelectorAll('.exercise-answer-eye[aria-expanded=true]').length`),0);
+  await click('သင်ခန်းစာ');
+  await until(`document.querySelector('.aws-steps') !== null`);
+  for (const width of [1440,768,393,360]) {
+    await cdp('Emulation.setDeviceMetricsOverride',{width,height:1000,deviceScaleFactor:1,mobile:width<600});
+    await evaluate(`new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))`);
+    assert.ok(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),`Handbook no overflow at ${width}px`);
+    assert.ok(await evaluate(`(()=>{const list=document.querySelector('#aws-lesson-list').getBoundingClientRect();const active=document.querySelector('[data-aws-lesson="9.4"]').getBoundingClientRect();return active.right<=list.right+1&&active.left>=list.left-1&&active.bottom<=list.bottom+1&&active.top>=list.top-1})()`),`Selected lesson visible at ${width}px`);
+    await cdp('Page.captureScreenshot',{format:'png',captureBeyondViewport:false}).then(({data})=>fs.writeFileSync(path.resolve(`.tmp-python/aws-handbook-${width}.png`),Buffer.from(data,'base64')));
+    await evaluate(`document.querySelector('.sidebar-toggle').click()`);
+    await until(`document.querySelector('main').dataset.showSidebar==='false'`);
+    assert.ok(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),`Collapsed handbook no overflow at ${width}px`);
+    await evaluate(`document.querySelector('.sidebar-toggle').click()`);
+    await until(`document.querySelector('main').dataset.showSidebar==='true'`);
+  }
+  await click('Exercises · 2');
+  await until(`document.querySelectorAll('.exercise-answer-eye').length === 2`);
+  await evaluate(`document.documentElement.dataset.theme='light';window.scrollTo(0,document.querySelector('.aws-lesson-panel').offsetTop)`);
+  assert.ok(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),'Light exercise view fits mobile');
+  await cdp('Page.captureScreenshot',{format:'png'}).then(({data})=>fs.writeFileSync(path.resolve('.tmp-python/aws-handbook-exercises-light.png'),Buffer.from(data,'base64')));
+  await click('Practice');
+  await until(`document.querySelector('.mock-exam-actions') !== null`);
   await click('Start practice');
   await until(`document.querySelector('.aws-source-card') !== null`);
   const jump = async number => {
@@ -102,5 +151,5 @@ try {
   assert.equal(await evaluate(`document.querySelectorAll('.aws-answer-letter[aria-pressed=true]').length`),0);
   await click('Quit practice');
   await until(`document.querySelector('.study-session-view') === null`);
-  console.log('PASS: All 684 questions, per-question A-D/A-E/A-F choices, one/two/three selection limits, navigation and answer retention, ungraded results, verified answer grading, policy image options, desktop columns, mobile layouts, finish, restart and quit.');
+  console.log('PASS: Handbook tabs, 36 lessons, empty Parts 2–4, grouped exercises, individual answer toggles, selected-lesson visibility, expanded/collapsed rails and responsive light/dark layouts. Existing 684-question Practice flow, grading, navigation, policy images, results, restart and quit also pass.');
 } finally {socket?.close();chrome.kill();await server.close();}

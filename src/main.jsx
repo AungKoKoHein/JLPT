@@ -3,7 +3,8 @@ import useShuffledCards from "./useShuffledCards.js";
 import DeleteDialog from "./DeleteDialog.jsx";
 import { removeChapter, removeSubchapter } from "./deleteContainers.js";
 import { hasVisibleChapterContent } from "./chapterVisibility.js";
-import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import useChapterSidebarViewport from './useChapterSidebarViewport.js';
 import { createRoot } from "react-dom/client";
 import { chapterGroup, groupChapters, sortChapters, renameChapterGroup } from "./chapterGroups.js";
 import { routesForLevel, levelFromPath, studyTabFromPath } from "./studyRoutes.js";
@@ -611,34 +612,7 @@ function App({ level }) {
   const chapterContentRef = useRef(null);
   const chapterLayoutRef = useRef(null);
   const kanjiLayoutRef = useRef(null);
-  useLayoutEffect(() => {
-    const layout = studyTab === "Kanji" ? kanjiLayoutRef.current : chapterLayoutRef.current;
-    if (!layout) return undefined;
-    let frame = 0;
-    const fitSidebar = () => {
-      frame = 0;
-      const viewportHeight = window.visualViewport?.height || window.innerHeight;
-      const top = Math.max(16, layout.getBoundingClientRect().top);
-      layout.style.setProperty("--chapter-sidebar-height", `${Math.max(80, viewportHeight - top - 16)}px`);
-    };
-    const scheduleFit = () => {
-      if (!frame) frame = window.requestAnimationFrame(fitSidebar);
-    };
-    const observer = new ResizeObserver(scheduleFit);
-    observer.observe(layout);
-    if (layout.parentElement) observer.observe(layout.parentElement);
-    window.addEventListener("scroll", scheduleFit, { passive: true });
-    window.addEventListener("resize", scheduleFit);
-    window.visualViewport?.addEventListener("resize", scheduleFit);
-    fitSidebar();
-    return () => {
-      observer.disconnect();
-      window.cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", scheduleFit);
-      window.removeEventListener("resize", scheduleFit);
-      window.visualViewport?.removeEventListener("resize", scheduleFit);
-    };
-  }, [studyTab, showSidebar, level]);
+  useChapterSidebarViewport(studyTab === 'Kanji' ? kanjiLayoutRef : chapterLayoutRef, `${studyTab}:${showSidebar}:${level}`);
   const focusChapterContent = () => {
     window.requestAnimationFrame(() => {
       if (window.innerWidth <= 800) {
@@ -1013,7 +987,7 @@ function App({ level }) {
           </p><StudyAccountControls /></div>
           <h1>JLPT {level.toUpperCase()}</h1>
           <nav className="level-switch" aria-label="JLPT level">
-            {["n3", "n2", "aws"].map((item) => <a key={item} href={routesForLevel(item)[studyTab] || routesForLevel(item).Vocab || routesForLevel(item).Practice} aria-current={item === level ? "page" : undefined}>{item === "aws" ? "AWS" : `JLPT ${item.toUpperCase()}`}</a>)}
+            {["n3", "n2", "aws"].map((item) => <a key={item} href={routesForLevel(item)['Part 1'] || routesForLevel(item)[studyTab] || routesForLevel(item).Vocab || routesForLevel(item).Practice} aria-current={item === level ? "page" : undefined}>{item === "aws" ? "AWS" : `JLPT ${item.toUpperCase()}`}</a>)}
           </nav>
           <p className="subtitle">Japanese · Myanmar · flashcards by chapter</p>
         </div>
