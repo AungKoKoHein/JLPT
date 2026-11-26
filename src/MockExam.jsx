@@ -17,6 +17,7 @@ import useN3FlaggedQuestions from "./useN3FlaggedQuestions.jsx";
 import { flaggedCollections } from "./n3FlaggedQuestions.js";
 import './n3QuestionLayout.css';
 import './mockExamDesign.css';
+import useQuestionNavigation from './useQuestionNavigation.js';
 
 const sections = ["Vocabulary", "Grammar", "Reading"];
 const formatTime = (seconds) => `${String(Math.floor(seconds / 60)).padStart(2, "0")}:${String(seconds % 60).padStart(2, "0")}`;
@@ -65,6 +66,7 @@ export default function MockExam() {
   const [arrangements, setArrangements] = useState({});
   const [navigationOpen, setNavigationOpen] = useState(false);
   const questionCard = useRef(null);
+  useQuestionNavigation(questionCard, questionIndex, mode === "attempt");
   useEffect(() => { if (mode === "attempt") scrollToQuestion(questionCard.current); }, [mode, questionIndex]);
 
 

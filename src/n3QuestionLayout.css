@@ -27,3 +27,23 @@
   :is(.practice-session, .mock-attempt).n3-letter-layout :is(.reading-answer-list, .mock-answer-list) { gap: 8px; }
   :is(.practice-session, .mock-attempt).n3-letter-layout :is(.reading-answer-list, .mock-answer-list) label { width: 52px; min-height: 54px; }
 }
+/* Keep question numbers scrollable inside mobile navigation popovers. */
+@media (max-width: 760px) {
+  .study-session-view .practice-session .practice-navigation-menu[open] > .reading-passage-nav,
+  .study-session-view .mock-attempt .mock-navigation-drawer[open] {
+    max-height: min(70dvh, 520px);
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    touch-action: pan-y;
+    scrollbar-width: thin;
+  }
+  .study-session-view .practice-session .practice-question-groups,
+  .study-session-view .mock-attempt .mock-question-palette {
+    min-height: 0;
+    max-height: min(40dvh, 320px);
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    touch-action: pan-y;
+    scrollbar-width: thin;
+  }
+}

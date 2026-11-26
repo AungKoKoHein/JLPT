@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import "./subchapterNav.css";
 
 export const subchapterTargetId = (id) => `subchapter-title-${id}`;
 
@@ -60,10 +61,37 @@ export default function SubchapterNav({ sections }) {
     };
   }, [sectionKey]);
 
+  useLayoutEffect(() => {
+    const nav = navRef.current;
+    if (!nav || !visible) return undefined;
+    const revealActiveNumber = () => {
+      const active = nav.querySelector('button[aria-current="location"]');
+      if (!active) return;
+      const bounds = nav.getBoundingClientRect();
+      const buttonBounds = active.getBoundingClientRect();
+      const top = bounds.top + nav.clientTop;
+      const bottom = top + nav.clientHeight;
+      const padding = 6;
+      if (buttonBounds.top < top + padding) {
+        nav.scrollTop -= top + padding - buttonBounds.top;
+      } else if (buttonBounds.bottom > bottom - padding) {
+        nav.scrollTop += buttonBounds.bottom - bottom + padding;
+      }
+    };
+    // Scroll only the numbered rail, leaving the user's reading position intact.
+    revealActiveNumber();
+    const observer = new ResizeObserver(revealActiveNumber);
+    observer.observe(nav);
+    return () => observer.disconnect();
+  }, [activeId, visible, sectionKey]);
+
   if (!sections.length) return null;
 
   return (
-    <nav ref={navRef} hidden={!visible} className="subchapter-nav" aria-label="Jump to subchapter">
+    <nav ref={navRef} hidden={!visible}
+      className={`subchapter-nav${sections.length <= 10 ? " subchapter-nav-complete" : ""}`}
+      style={{ "--section-count": sections.length }}
+      aria-label="Jump to subchapter">
       {sections.map((section, index) => (
         <button
           type="button"

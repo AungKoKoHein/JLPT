@@ -6,6 +6,7 @@ import PracticeExplanationDialog from "./PracticeExplanationDialog.jsx";
 import { practiceQuestionGroups, problemInstruction, scrollToQuestion, starLayout } from "./questionPresentation.js";
 import './n3QuestionLayout.css';
 import useN3FlaggedQuestions from './useN3FlaggedQuestions.jsx';
+import useQuestionNavigation from './useQuestionNavigation.js';
 
 export default function PracticeSession({ questions, title, showReadings = false, showKanji = true, autoScroll = false }) {
   const display = (text) => practiceText(text, showReadings, showKanji);
@@ -18,6 +19,7 @@ export default function PracticeSession({ questions, title, showReadings = false
   const [explanationOpen, setExplanationOpen] = useState(false);
   const explanationButton = useRef(null);
   const questionCard = useRef(null);
+  useQuestionNavigation(questionCard, selected, !results);
   useEffect(() => { if (autoScroll) scrollToQuestion(questionCard.current); }, [autoScroll]);
   const question = questions[selected];
   const completed = questions.filter((item) => checked[item.id]).length;

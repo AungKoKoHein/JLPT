@@ -194,11 +194,34 @@ body:has(.study-dashboard) { background:#edf4f3; }
   .study-dashboard .study-tabs { margin:0 0 18px; }
   .study-dashboard .study-tabs button { min-height:48px; min-width:90px; font-size:14px; padding:9px 14px; }
   .study-dashboard :is(.search-grid,.layout) { grid-template-columns:minmax(0,1fr); gap:14px; }
-  .study-dashboard .layout>aside { position:static; height:clamp(190px, 32dvh, 280px); max-height:none; overflow:hidden; padding:12px; }
-  .study-dashboard .layout>aside>.chapter-group { display:block; max-height:none; overflow-x:hidden; overflow-y:scroll; }
-  .study-dashboard .chapter-group-block { margin:0 0 14px; padding:0; border:0; }
-  .study-dashboard .chapter-group-cards { display:grid; gap:8px; }
-  .study-dashboard .chapter-group-cards>button { width:100%; min-height:64px; }
+  .study-dashboard .layout>aside { position:static; height:auto; max-height:none; overflow:hidden; padding:12px; }
+  .study-dashboard .layout>aside>.chapter-group { display:flex; flex:none; gap:16px; max-height:none; overflow-x:auto; overflow-y:hidden; scrollbar-gutter:auto; overscroll-behavior-x:contain; padding:3px 2px 9px; }
+  .study-dashboard .chapter-group::-webkit-scrollbar { height:6px; }
+  .study-dashboard .chapter-group-block { flex:0 0 auto; min-width:0; margin:0; padding:0; border:0; }
+  .study-dashboard .chapter-group-label {
+    position:sticky;
+    left:0;
+    z-index:1;
+    width:min(calc(100vw - 68px), 640px);
+    max-width:none;
+    margin-bottom:8px;
+    padding:2px 8px;
+    background:var(--surface);
+  }
+  .study-dashboard .chapter-group-title {
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+    line-clamp:2;
+    overflow:hidden;
+    font-size:14px;
+    line-height:1.6;
+    text-wrap:wrap;
+    text-decoration:none;
+  }
+  .study-dashboard .chapter-group-range { margin-top:3px; font-size:12px; line-height:1.5; }
+  .study-dashboard .chapter-group-cards { display:flex; align-items:stretch; gap:8px; }
+  .study-dashboard .layout>aside .chapter-group-cards>button { flex:0 0 min(220px, 68vw); width:min(220px, 68vw); min-height:76px; margin:0; }
   .study-dashboard .layout>article { padding:18px 14px; border-radius:13px; }
   .study-dashboard .book-entry { padding:15px; }
   .study-dashboard .book-term { font-size:20px; }
