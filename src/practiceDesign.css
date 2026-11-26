@@ -14,7 +14,7 @@
 .practice-lobby .flagged-practice-card:disabled { opacity:.5; cursor:not-allowed; }
 .practice-lobby>.reading-note { order:3; margin:0; padding:12px 16px; background:var(--accent-soft); border-radius:9px; color:var(--muted); }
 .practice-lobby>.mock-exam-set-grid { grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr)); }
-.practice-lobby .mock-exam-set-card { min-height:138px; }
+.practice-lobby .mock-exam-set-card { min-height:0; }
 .practice-session .reading-practice-heading { padding:12px 4px 18px; border-bottom:1px solid var(--line); }
 .practice-session .reading-progress { border:1px solid var(--line); border-radius:10px; background:var(--surface-muted); padding:10px 15px; }
 .practice-session .practice-response-heading { padding-bottom:14px; border-bottom:1px solid var(--line); }
@@ -34,3 +34,8 @@
   .practice-lobby>.mock-exam-actions>span { width:100%; text-align:center; }
   .practice-session .reading-practice-heading { align-items:flex-start; gap:12px; }
 }
+.practice-lobby .practice-lobby-hero h2 { font-size:clamp(23px,2.4vw,30px); line-height:1.7; }
+.practice-lobby .practice-lobby-hero { padding:18px 22px; }
+.practice-lobby>section[aria-label="Flagged practice"] { padding:16px; }
+.practice-lobby>.practice-import { padding:14px; }
+.practice-lobby .mock-lobby-section-heading h3 { margin-bottom:2px; }

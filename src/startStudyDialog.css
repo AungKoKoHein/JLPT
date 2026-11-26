@@ -1,0 +1,12 @@
+.start-study-dialog { width:min(460px,calc(100vw - 32px)); max-height:calc(100dvh - 32px); overflow:auto; margin:auto; padding:28px; border:1px solid var(--line); border-radius:18px; background:var(--surface); color:var(--ink); box-shadow:0 24px 80px #031a2450; line-height:1.9; }
+.start-study-dialog::backdrop { background:#03171ec4; backdrop-filter:blur(5px); }
+.start-study-eyebrow { margin:0 0 12px; color:var(--accent); font-size:14px; font-weight:650; }
+.start-study-dialog h2 { margin:0 0 12px; font-size:24px; line-height:1.6; overflow-wrap:anywhere; }
+.start-study-description { color:var(--muted); font-size:14px; margin:0; }
+.start-study-details { display:flex; flex-wrap:wrap; gap:12px 20px; padding:16px; margin:22px 0; border:1px solid var(--line); border-radius:10px; background:var(--surface-muted); font-size:14px; }
+.start-study-actions { display:flex; gap:10px; }
+.start-study-actions button { flex:1; min-height:48px; padding:10px 12px; border:1px solid var(--line); border-radius:9px; background:var(--surface-muted); color:var(--ink); font:inherit; font-size:14px; cursor:pointer; }
+.start-study-actions .start-study-confirm { border-color:#187e72; background:#187e72; color:#fff; font-weight:700; }
+.start-study-actions .start-study-confirm:hover { background:#12685e; }
+.start-study-actions button:focus-visible { outline:3px solid var(--focus); outline-offset:3px; }
+@media(max-width:480px) { .start-study-dialog { padding:22px; }.start-study-dialog h2 { font-size:21px; } }

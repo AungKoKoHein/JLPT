@@ -1,11 +1,11 @@
 /* Shared presentation for the study library and its focused workspaces. */
 :root {
-  --canvas: #eaf2ee;
-  --surface: #f7f2e7;
-  --surface-muted: #eee9dc;
-  --ink: #1e3042;
-  --muted: #5d6d7e;
-  --line: #dce4eb;
+  --canvas: #f1f5f7;
+  --surface: #ffffff;
+  --surface-muted: #f4f7f8;
+  --ink: #193640;
+  --muted: #58717c;
+  --line: #d7e3e7;
   --accent: #10776d;
   --accent-hover: #095e56;
   --accent-soft: #e9f5f2;

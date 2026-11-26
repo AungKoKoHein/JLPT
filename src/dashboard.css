@@ -1,11 +1,11 @@
 /* Dashboard presentation only: existing routes, controls and study modes remain intact. */
 .study-dashboard {
-  --canvas:#edf4f3;
+  --canvas:#f1f5f7;
   --surface:#ffffff;
-  --surface-muted:#e7efef;
+  --surface-muted:#f4f7f8;
   --ink:#183b3f;
   --muted:#566f74;
-  --line:#c3d6d6;
+  --line:#d7e3e7;
   --accent:#147e73;
   --accent-soft:#d9eeea;
   --focus:#35bca7;
@@ -13,7 +13,7 @@
   width:100%;
   max-width:none;
   min-height:100dvh;
-  padding:18px 20px var(--page-bottom-space, 100px);
+  padding:12px 16px var(--page-bottom-space, 100px);
   background:radial-gradient(ellipse at 50% 0, #39a49714, transparent 48%),var(--canvas);
 }
 [data-theme="dark"] .study-dashboard {
@@ -28,10 +28,10 @@
   --shadow:0 8px 24px #00000014;
   background:radial-gradient(ellipse at 50% -10%, #167e7540, transparent 42%),var(--canvas);
 }
-body:has(.study-dashboard) { background:#edf4f3; }
+body:has(.study-dashboard) { background:#f1f5f7; }
 [data-theme="dark"] body:has(.study-dashboard) { background:#071416; }
 .study-dashboard > .study-page-header {
-  padding:0 0 16px;
+  padding:0 0 8px;
   border:0;
   border-radius:0;
   background:none;
@@ -80,14 +80,14 @@ body:has(.study-dashboard) { background:#edf4f3; }
   background:none;
   padding:0;
   gap:0;
-  margin:12px 0 24px;
+  margin:6px 0 16px;
   scrollbar-width:none;
 }
 .study-dashboard .study-tabs::-webkit-scrollbar { display:none; }
-.study-dashboard .study-tabs button { border:0; border-bottom:3px solid transparent; border-radius:0; background:none; color:var(--muted); min-height:58px; font-size:16px; box-shadow:none; }
+.study-dashboard .study-tabs button { border:0; border-bottom:3px solid transparent; border-radius:0; background:none; color:var(--muted); min-height:48px; font-size:16px; box-shadow:none; }
 .study-dashboard .study-tabs button[aria-selected="true"] { background:none; border-bottom-color:var(--accent); color:var(--accent); box-shadow:none; }
 .study-dashboard .study-tabs button:hover { background:var(--accent-soft); }
-.study-dashboard :is(.search-grid,.layout) { grid-template-columns:clamp(280px, 24vw, 350px) minmax(0,1fr); gap:16px; }
+.study-dashboard :is(.search-grid,.layout) { grid-template-columns:clamp(280px, 24vw, 350px) minmax(0,1fr); gap:12px; }
 .study-dashboard .search-grid { margin-bottom:20px; }
 .study-dashboard :is(.search-grid input,.mobile-vocab-search input) { min-width:0; background:var(--surface); border-color:var(--line); color:var(--ink); border-radius:9px; min-height:44px; font-size:15px; padding:11px 14px; }
 .study-dashboard .search-grid label { color:var(--muted); font-size:13px; }
@@ -137,6 +137,49 @@ body:has(.study-dashboard) { background:#edf4f3; }
   .study-dashboard[data-show-sidebar="false"] .sidebar-heading { padding:0; margin:0; border:0; justify-content:center; }
   .study-dashboard[data-show-sidebar="false"] .sidebar-heading .count,
   .study-dashboard[data-show-sidebar="false"] .layout>aside>.chapter-group { display:none; }
+}
+
+/* Consistent, compact spacing across the study tabs. */
+.study-dashboard .search-grid { margin:0 0 8px; }
+.study-dashboard .search-grid label { gap:4px; }
+.study-dashboard .search-grid input { min-height:40px; padding:8px 12px; }
+.study-dashboard .layout>article { padding:12px; }
+.study-dashboard .layout>article>h2 { margin:4px 0 6px; }
+.study-dashboard .layout>article>.note { margin:6px 0; }
+.study-dashboard .layout>article>.tools { margin:6px 0 8px; padding-bottom:6px; gap:6px; }
+.study-dashboard .cards { gap:10px; }
+.study-dashboard .vocabulary-book { gap:10px; }
+.study-dashboard .book-entry { padding:14px 16px; }
+.study-dashboard .vocab-section { margin-top:8px; padding-top:6px; }
+.study-dashboard .vocab-section-heading { gap:8px; margin-bottom:4px; }
+.study-dashboard .vocab-section-heading h3 { margin:0; }
+.study-dashboard .vocab-section>.note { margin:2px 0 6px; }
+.study-dashboard .kanji-study>.kanji-subchapter-section { margin-top:4px; padding-top:0; }
+.study-dashboard .kanji-study>.note { margin:4px 0 6px; }
+.study-dashboard .kanji-lesson-group { margin-top:8px; padding-top:0; }
+.study-dashboard .kanji-lesson-group>.note { margin:2px 0 6px; }
+.study-dashboard .study-tabs { margin-bottom:8px; }
+.study-dashboard .grammar-card { padding:56px 20px 18px; }
+.study-dashboard .grammar-example { margin-top:12px; }
+.study-dashboard .grammar-explanation { margin-top:12px; padding:10px 14px; }
+.study-dashboard .kanji-study-card { padding:16px; }
+.study-dashboard .kanji-study-heading { margin-bottom:8px; }
+.study-dashboard .reading-collection-header { padding:20px; gap:16px; }
+.study-dashboard .reading-collection-header h2 { margin:4px 0 8px; }
+.study-dashboard .reading-collection-stats { gap:12px; margin-top:10px; }
+.study-dashboard .reading-passage-cards { gap:10px; padding:0 20px 20px; }
+.study-dashboard .reading-passage-cards button { padding:12px 14px; }
+.study-session-view:has(.practice-session) .study-session-toolbar { margin:6px 12px 0; padding:6px 12px; border-radius:12px; }
+.study-session-view:has(.practice-session) .study-session-content { padding:8px 12px; }
+.study-session-view .practice-session .reading-practice-heading { padding:4px 0 10px; margin-bottom:10px; gap:12px; }
+.study-session-view .practice-session .reading-question-topline { margin-bottom:10px; }
+.study-session-view .practice-session .practice-response-panel { padding:18px; }
+@media(max-width:760px) {
+  .study-dashboard .layout>article { padding:10px; }
+  .study-dashboard .grammar-card { padding:56px 14px 16px; }
+  .study-dashboard .reading-collection-header { padding:16px; gap:12px; }
+  .study-dashboard .reading-passage-cards { padding:0 16px 16px; }
+  .study-session-view .practice-session .practice-response-panel { padding:16px; }
 }
 .study-dashboard .chapter-group-cards { gap:7px; }
 .study-dashboard .layout>aside .chapter-group-cards>button { width:100%; min-width:0; padding:12px; background:var(--surface-muted); border:1px solid var(--line); color:var(--ink); border-radius:10px; }

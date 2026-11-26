@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { onValue, ref, set } from "firebase/database";
 import { database } from "./firebase.js";
 import ConfirmDialog from "./ConfirmDialog.jsx";
+import StartStudyDialog from "./StartStudyDialog.jsx";
 import PracticeSession from "./PracticeSession.jsx";
 import StudySessionView from "./StudySessionView.jsx";
 import "./mockExamDesign.css";
@@ -35,8 +36,9 @@ export default function Practice({ isEditor = false, showReadings = false, showK
   const { questions: flaggedQuestions } = useN3FlaggedQuestions();
   const [activeFlagged, setActiveFlagged] = useState(null);
   const [sets, setSets] = useState(bundledSets);
-  const [selectedId, setSelectedId] = useState(bundledSets[0].id);
+  const [selectedId, setSelectedId] = useState(null);
   const [activeId, setActiveId] = useState(null);
+  const [startSelection, setStartSelection] = useState(null);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [importing, setImporting] = useState(false);
@@ -49,7 +51,7 @@ export default function Practice({ isEditor = false, showReadings = false, showK
   }, () => { setSets(bundledSets); }), []);
 
   const availableSets = sets.filter(item => item.questions.length > 0);
-  const selected = availableSets.find((item) => item.id === selectedId) || availableSets[0];
+  const selected = availableSets.find((item) => item.id === selectedId);
   const active = activeFlagged || sets.find((item) => item.id === activeId);
   const importBank = async (event) => {
     const input = event.target;
@@ -70,7 +72,7 @@ export default function Practice({ isEditor = false, showReadings = false, showK
     setImporting(true);
     try {
       await set(ref(database, "n3Practice/sets"), bank);
-      setActiveId(null); setSelectedId(bank[0].id);
+      setActiveId(null); setSelectedId(null);
       setMessage("Imported all 26 categories.");
     } catch (reason) { setError(reason.message || "Could not import the question bank."); }
     finally { setImporting(false); }
@@ -80,9 +82,10 @@ export default function Practice({ isEditor = false, showReadings = false, showK
     <PracticeSession key={active.id} autoScroll showReadings={showReadings} showKanji={showKanji} questions={active.questions} title={`JLPT N3 · ${active.title}`} source={active.sourceRange ? `FULL-26-DE-日本語能力試験N3.pdf · pages ${active.sourceRange}` : null} />
   </StudySessionView>;
 
-  if (!selected) return <article className="mock-exam-panel"><h2>Practice categories</h2><p>No questions available.</p></article>;
+  if (!availableSets.length) return <article className="mock-exam-panel"><h2>Practice categories</h2><p>No questions available.</p></article>;
 
   return <article className="mock-exam-panel mock-exam-lobby practice-lobby">
+    {startSelection && <StartStudyDialog title={startSelection.title} count={startSelection.questions.length} onClose={() => setStartSelection(null)} onStart={() => { setActiveFlagged(null); setActiveId(startSelection.id); setStartSelection(null); }} />}
     {pendingBank && <ConfirmDialog title="Replace the practice bank?" message="Replace the cloud practice bank with these 26 sets?" confirmLabel="Replace practice bank" onClose={() => setPendingBank(null)} onConfirm={confirmImport} />}
     <header className="mock-lobby-hero practice-lobby-hero" lang="my">
       <div><div className="mock-exam-eyebrow">JLPT N3 · လေ့ကျင့်ခန်းများ</div><h2>နေ့တိုင်း လေ့ကျင့်ရင်း ပိုကျွမ်းကျင်လာမယ်။</h2><p>လေ့ကျင့်ခန်းတစ်စုံ ရွေးပြီး ကိုယ့်အချိန်နဲ့ကိုယ် လေ့လာပါ။ အဖြေတစ်ခုချင်းစီကို စစ်ဆေးနိုင်ပါတယ်။</p></div>
@@ -90,17 +93,17 @@ export default function Practice({ isEditor = false, showReadings = false, showK
     </header>
     <div className="mock-lobby-section-heading" lang="my"><h3>လေ့ကျင့်ခန်း ရွေးချယ်ပါ</h3><p>ဝေါဟာရ၊ သဒ္ဒါနဲ့ စာဖတ်စွမ်းရည်ကို တစ်ဆင့်ချင်း မြှင့်တင်လိုက်ပါ။</p></div>
     <section aria-label="Flagged practice"><h3>မှတ်သားထားသော မေးခွန်းများကို ပြန်လေ့လာရန်</h3><p>လေ့ကျင့်ခန်း သို့မဟုတ် အစမ်းစာမေးပွဲတွင် ပြန်လေ့လာရန် မှတ်သားထားသော မေးခွန်းများဖြစ်ပါသည်။ ဤဘရောက်ဇာတွင် သိမ်းထားပါသည်။</p><div className="mock-exam-set-grid">{flaggedCollections(flaggedQuestions).map(set => <button type="button" className="mock-exam-set-card flagged-practice-card" key={set.id} disabled={!set.questions.length} onClick={() => { setActiveId(null); setActiveFlagged(set); }}><strong>{set.title}</strong><span>{set.questions.length} questions</span></button>)}</div>{!flaggedQuestions.length && <p>ဤနေရာတွင် ပြန်လေ့လာနိုင်ရန် လေ့ကျင့်နေစဉ် သို့မဟုတ် ဖြေဆိုနေစဉ် မေးခွန်းကို မှတ်သားထားပါ။</p>}</section>
-    <div className="mock-exam-actions"><button type="button" className="primary-button" onClick={() => setActiveId(selected.id)}>{selected.title} · စတင်လေ့ကျင့်မည်</button><span>မေးခွန်း {selected.questions.length} ခု</span></div>
+    {selected && <div className="mock-exam-actions"><button type="button" className="primary-button" onClick={() => setActiveId(selected.id)}>{selected.title} · စတင်လေ့ကျင့်မည်</button><span>မေးခွန်း {selected.questions.length} ခု</span></div>}
     {isEditor && <details className="practice-import"><summary>{importing ? "Importing…" : "Import a replacement 26-set JSON bank"}</summary><p>PDF မေးခွန်းစုကို အသင့်အသုံးပြုနိုင်ပါသည်။ မေးခွန်းစုအသစ် တင်သွင်းပါက အကောင့်ဝင်ထားသူများအတွက် မူလမေးခွန်းစုကို အစားထိုးပါမည်။</p><input type="file" accept="application/json,.json" onChange={importBank} disabled={importing} /></details>}
     {error && <p role="alert">{error}</p>}
     {message && <p role="status">{message}</p>}
-    <div className="mock-exam-set-grid" aria-label="Practice categories">{availableSets.map((item) => <button type="button" key={item.id} className={`mock-exam-set-card${selected.id === item.id ? " selected" : ""}`} aria-pressed={selected.id === item.id} onClick={() => setSelectedId(item.id)}>
+    <div className="mock-exam-set-grid" aria-label="Practice categories">{availableSets.map((item) => <button type="button" key={item.id} className={`mock-exam-set-card${selected?.id === item.id ? " selected" : ""}`} aria-pressed={selected?.id === item.id} onClick={() => { setSelectedId(item.id); setStartSelection(item); }}>
       <strong>{item.title}</strong>{!item.questions.length && item.duplicateCount > 0 && <small>Repeated PDF set: {item.duplicateCategories.join(", ")}</small>}<span>{item.questions.length} questions · Vocabulary, Grammar, Reading</span>
       {item.sourceRange && <small>PDF pages {item.sourceRange}{item.printedLabel !== item.title ? ` · printed as ${item.printedLabel}` : ""}</small>}
     </button>)}</div>
-    <h3 className="mock-exam-selected-title">{selected.title}</h3>
-    {selected.duplicateCount > 0 && <p className="reading-note">{selected.duplicateCount} repeated questions · {selected.duplicateCategories.join(", ")}</p>}
-    {selected.reviewCount > 0 && <p className="reading-note">{selected.reviewCount} source items awaiting review.</p>}
-    <div className="mock-exam-overview"><div><strong>{selected.questions.length}</strong><span>လေ့ကျင့်ရန် မေးခွန်းများ</span></div><div><strong>{availableSets.length}</strong><span>လေ့ကျင့်ခန်း အစုံအရေအတွက်</span></div><div><strong>အချိန်မကန့်သတ်</strong><span>အဖြေတစ်ခုချင်း စစ်ဆေးနိုင်သည်</span></div></div>
+    {selected && <h3 className="mock-exam-selected-title">{selected.title}</h3>}
+    {selected?.duplicateCount > 0 && <p className="reading-note">{selected.duplicateCount} repeated questions · {selected.duplicateCategories.join(", ")}</p>}
+    {selected?.reviewCount > 0 && <p className="reading-note">{selected.reviewCount} source items awaiting review.</p>}
+    {selected && <div className="mock-exam-overview"><div><strong>{selected.questions.length}</strong><span>လေ့ကျင့်ရန် မေးခွန်းများ</span></div><div><strong>{availableSets.length}</strong><span>လေ့ကျင့်ခန်း အစုံအရေအတွက်</span></div><div><strong>အချိန်မကန့်သတ်</strong><span>အဖြေတစ်ခုချင်း စစ်ဆေးနိုင်သည်</span></div></div>}
   </article>;
 }

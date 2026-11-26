@@ -4,6 +4,7 @@ import { archivePracticeSets, shuffledQuestions } from "./mockExamArchivePractic
 import { createDecemberExam, createFocusedExam, focusedExamSkills } from "./decemberExam.js";
 import { practiceText } from "./practiceText.js";
 import ConfirmDialog from "./ConfirmDialog.jsx";
+import StartStudyDialog from "./StartStudyDialog.jsx";
 import StudySessionView from "./StudySessionView.jsx";
 import QuestionPrompt from "./QuestionPrompt.jsx";
 import StarAnswer from "./StarAnswer.jsx";
@@ -54,7 +55,8 @@ export default function MockExam() {
   const showKanji = true;
   const display = text => practiceText(text, showReadings, showKanji);
   const [mode, setMode] = useState("intro");
-  const [activeExam, setActiveExam] = useState(examChoices[0]);
+  const [activeExam, setActiveExam] = useState(null);
+  const [startSelection, setStartSelection] = useState(null);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState({});
   const [secondsLeft, setSecondsLeft] = useState(36 * 60);
@@ -81,10 +83,10 @@ export default function MockExam() {
     if (mode === "attempt" && secondsLeft === 0) setMode("results");
   }, [mode, secondsLeft]);
 
-  const examQuestions = activeExam.questions;
+  const examQuestions = activeExam?.questions || [];
   const examSections = sections.filter(section => examQuestions.some(question => question.section === section));
-  const sectionLabel = activeExam.skill || examSections.join(' · ');
-  const examSeconds = activeExam.durationMinutes ? activeExam.durationMinutes * 60 : examQuestions.length >= 60 ? 75 * 60 : examQuestions.length >= 24 ? 36 * 60 : 23 * 60;
+  const sectionLabel = activeExam?.skill || examSections.join(' · ');
+  const examSeconds = activeExam?.durationMinutes ? activeExam.durationMinutes * 60 : examQuestions.length >= 60 ? 75 * 60 : examQuestions.length >= 24 ? 36 * 60 : 23 * 60;
   const question = examQuestions[questionIndex];
   const reviewQuestions = useMemo(
     () => examQuestions.map((item, index) => ({ ...item, index })).filter((item) => reviewSection === "All" || item.section === reviewSection),
@@ -108,6 +110,7 @@ export default function MockExam() {
   }, [mode, answers, examQuestions, activeExam, correctTotal]);
 
   const startExam = (selection = activeExam) => {
+    if (!selection) return;
     if (selection.flaggedSet) {
       selection = flaggedCollections(flaggedQuestions).find(exam => exam.id === selection.id);
       if (!selection?.questions.length) return;
@@ -137,6 +140,7 @@ export default function MockExam() {
 
   if (mode === "intro") return (
     <article className="mock-exam-panel mock-exam-lobby">
+      {startSelection && <StartStudyDialog title={startSelection.title} count={startSelection.questions.length} minutes={startSelection.durationMinutes || (startSelection.questions.length >= 60 ? 75 : startSelection.questions.length >= 24 ? 36 : 23)} onClose={() => setStartSelection(null)} onStart={() => { startExam(startSelection); setStartSelection(null); }} />}
       {recordError && <div role="alert"><p>{recordStatus}</p><button type="button" className="secondary-button" onClick={saveRecord}>Retry saving record</button></div>}
       <header className="mock-lobby-hero">
         <div><div className="mock-exam-eyebrow">JLPT N3 · EXAM PRACTICE</div><h2>နောက်တစ်ကြိမ် ပိုကောင်းအောင် ဖြေဆိုကြမယ်။</h2><p>စာမေးပွဲတစ်ခု ရွေးပြီး လေ့ကျင့်ရင်း ထပ်လေ့လာဖို့ လိုအပ်တဲ့အပိုင်းတွေကို ရှာဖွေပါ။</p></div>
@@ -145,18 +149,18 @@ export default function MockExam() {
       <div className="mock-lobby-history"><MockExamHistory uid={account?.uid} dashboard /></div>
       <div className="mock-lobby-section-heading"><h3>လေ့ကျင့်မည့် စာမေးပွဲကို ရွေးပါ</h3><p>အချိန်တို လေ့ကျင့်မှု၊ ကျွမ်းကျင်မှုတစ်ခုချင်း သို့မဟုတ် စာမေးပွဲအပြည့်ကို ရွေးနိုင်ပါသည်။</p></div>
       <section aria-label="Flagged exams"><h3>မှတ်သားထားသော မေးခွန်းများကို ပြန်လေ့လာရန်</h3><p>ပြန်လေ့လာရန် မှတ်သားထားသော မေးခွန်းများဖြင့်သာ ဖြေဆိုပါ။ မှတ်သားမှုများကို ဤဘရောက်ဇာတွင် သိမ်းထားပါသည်။</p><div className="mock-exam-set-grid">{flaggedCollections(flaggedQuestions).map(exam => <button type="button" className="mock-exam-set-card flagged-exam-card" key={exam.id} disabled={!exam.questions.length} onClick={() => startExam(exam)}><strong>{exam.title}</strong><span>{exam.questions.length} questions · {exam.durationMinutes} min</span></button>)}</div>{!flaggedQuestions.length && <p>ဤနေရာတွင် ပြန်လေ့လာနိုင်ရန် လေ့ကျင့်နေစဉ် သို့မဟုတ် ဖြေဆိုနေစဉ် မေးခွန်းကို မှတ်သားထားပါ။</p>}</section>
-      <div className="mock-exam-actions">
+      {activeExam && <div className="mock-exam-actions">
         <button type="button" className="primary-button" onClick={() => startExam()}>Start {activeExam.title}</button>
-      </div>
-      <div className="mock-exam-set-grid">{examChoices.map((exam) => <button type="button" key={exam.id} className={`mock-exam-set-card${activeExam.id === exam.id ? " selected" : ""}`} aria-pressed={activeExam.id === exam.id} onClick={() => setActiveExam(exam)}><strong>{exam.title}</strong><span>{exam.questions.length} questions · {exam.skill || 'Vocabulary, Grammar, Reading'}</span>{exam.id !== "extra-mini" && <small>{exam.sourceNote}</small>}</button>)}<button type="button" className="secondary-button mock-choose-another" onClick={() => { const others = examChoices.filter(exam => exam.id !== activeExam.id); setActiveExam(others[Math.floor(Math.random() * others.length)]); }}>Choose another test</button></div>
-      <h3 className="mock-exam-selected-title">{activeExam.title}</h3>
-      {activeExam.structure && <section className="exam-history" aria-label="Exam structure"><h3>ပုံစံတူ၊ မေးခွန်းအသစ်များ</h3><p>{activeExam.skill ? `${activeExam.questions.length} ခု ပါဝင်သော ${activeExam.skill} မေးခွန်းများ။ စတင်ချိန်နှင့် ပြန်ဖြေချိန်တိုင်း မေးခွန်းအသစ်များကို ရွေးချယ်ပေးပါသည်။` : 'မေးခွန်း ၇၄ ခု — ဝေါဟာရ (ခန်းဂျီးအပါအဝင်) ၄၇%၊ သဒ္ဒါ ၃၁%၊ စာဖတ် ၂၂%။ အရေးဖြေ လေ့ကျင့်မှုသာဖြစ်ပြီး နားထောင်ခြင်း မပါဝင်ပါ။'}</p><div className="exam-skill-grid">{examSections.map(section => <div className="exam-skill" key={section}><strong>{activeExam.skill || section}</strong>{activeExam.structure.filter(group => group.section === section).map(group => <span key={group.type}>{group.type}: {group.count}</span>)}</div>)}</div><p>အမျိုးအစားတစ်ခုစီမှ မေးခွန်းများကို ကျပန်းရွေးချယ်ပါသည်။ စာပိုဒ်နှင့် သက်ဆိုင်ရာ မေးခွန်းများကို အတူတကွ ထားရှိပါသည်။</p></section>}
+      </div>}
+      <div className="mock-exam-set-grid">{examChoices.map((exam) => <button type="button" key={exam.id} className={`mock-exam-set-card${activeExam?.id === exam.id ? " selected" : ""}`} aria-pressed={activeExam?.id === exam.id} onClick={() => { setActiveExam(exam); setStartSelection(exam); }}><strong>{exam.title}</strong><span>{exam.questions.length} questions · {exam.skill || 'Vocabulary, Grammar, Reading'}</span>{exam.id !== "extra-mini" && <small>{exam.sourceNote}</small>}</button>)}<button type="button" className="secondary-button mock-choose-another" onClick={() => { const others = examChoices.filter(exam => exam.id !== activeExam?.id); const choice = others[Math.floor(Math.random() * others.length)]; setActiveExam(choice); setStartSelection(choice); }}>Choose another test</button></div>
+      {activeExam && <h3 className="mock-exam-selected-title">{activeExam.title}</h3>}
+      {activeExam?.structure && <section className="exam-history" aria-label="Exam structure"><h3>ပုံစံတူ၊ မေးခွန်းအသစ်များ</h3><p>{activeExam.skill ? `${activeExam.questions.length} ခု ပါဝင်သော ${activeExam.skill} မေးခွန်းများ။ စတင်ချိန်နှင့် ပြန်ဖြေချိန်တိုင်း မေးခွန်းအသစ်များကို ရွေးချယ်ပေးပါသည်။` : 'မေးခွန်း ၇၄ ခု — ဝေါဟာရ (ခန်းဂျီးအပါအဝင်) ၄၇%၊ သဒ္ဒါ ၃၁%၊ စာဖတ် ၂၂%။ အရေးဖြေ လေ့ကျင့်မှုသာဖြစ်ပြီး နားထောင်ခြင်း မပါဝင်ပါ။'}</p><div className="exam-skill-grid">{examSections.map(section => <div className="exam-skill" key={section}><strong>{activeExam.skill || section}</strong>{activeExam.structure.filter(group => group.section === section).map(group => <span key={group.type}>{group.type}: {group.count}</span>)}</div>)}</div><p>အမျိုးအစားတစ်ခုစီမှ မေးခွန်းများကို ကျပန်းရွေးချယ်ပါသည်။ စာပိုဒ်နှင့် သက်ဆိုင်ရာ မေးခွန်းများကို အတူတကွ ထားရှိပါသည်။</p></section>}
 
-      <div className="mock-exam-overview">
+      {activeExam && <div className="mock-exam-overview">
         <div><strong>{activeExam.questions.length}</strong><span>N3 practice questions</span></div>
         <div><strong>{examSeconds / 60} min</strong><span>practice timer</span></div>
         <div><strong>{activeExam.skill ? "1 skill" : `${examSections.length} sections`}</strong><span>{sectionLabel}</span></div>
-      </div>
+      </div>}
     </article>
   );
 
@@ -201,7 +205,7 @@ export default function MockExam() {
             <div className="mock-review-controls"><button type="button" className="secondary-button" disabled={reviewIndex === 0} onClick={() => setReviewIndex((index) => index - 1)}>← Previous</button><span>{reviewIndex + 1} / {reviewQuestions.length}</span><button type="button" className="secondary-button" disabled={reviewIndex === reviewQuestions.length - 1} onClick={() => setReviewIndex((index) => index + 1)}>Next →</button></div>
           </section>
         </div>
-        <div className="mock-exam-actions"><button type="button" className="primary-button" onClick={() => startExam(activeExam)}>Try again</button><button type="button" className="secondary-button" onClick={() => { setMode("intro"); setActiveExam(examChoices[0]); }}>Choose another test</button></div>
+        <div className="mock-exam-actions"><button type="button" className="primary-button" onClick={() => startExam(activeExam)}>Try again</button><button type="button" className="secondary-button" onClick={() => { setMode("intro"); setActiveExam(null); }}>Choose another test</button></div>
       </article></StudySessionView>
     );
   }
