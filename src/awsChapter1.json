@@ -1,0 +1,714 @@
+[
+  {
+    "type": "p",
+    "text": "ဒီစာတမ်းမှာ မူရင်းစာအုပ်ရဲ့ Chapter 1 အစီအစဉ်ကို လိုက်ထားပါတယ်။ Networking, Security နဲ့ Cloud ကို စတင်လေ့လာသူဖြစ်လို့ အဓိက စကားလုံးတွေကို အရင်ရှင်းပြပြီး လက်တွေ့ဥပမာနဲ့ ဆက်စပ်ပေးထားပါတယ်။ Section တစ်ခုစီရဲ့အဆုံးမှာ ဂျပန်လို မှတ်စု ထည့်ထားပါတယ်။",
+    "lang": "my"
+  },
+  {
+    "type": "h2",
+    "text": "အခြေခံ စကားလုံး ၈ ခု",
+    "lang": "my"
+  },
+  {
+    "type": "bullet",
+    "text": "Cloud — ကိုယ်ပိုင် Physical Server ဝယ်ထားစရာမလိုဘဲ Internet မှတစ်ဆင့် Compute, Storage စတဲ့ Resource များကို အသုံးပြုနိုင်သော နည်းလမ်း။",
+    "lang": "my"
+  },
+  {
+    "type": "bullet",
+    "text": "Server — Application ကို Run လုပ်ပြီး Request တွေကို ဖြေကြားပေးတဲ့ Computer/Virtual Machine။",
+    "lang": "my"
+  },
+  {
+    "type": "bullet",
+    "text": "Client — Website/App ကို အသုံးပြုပြီး Server ဆီ Request ပို့တဲ့ Browser သို့မဟုတ် Mobile App။",
+    "lang": "my"
+  },
+  {
+    "type": "bullet",
+    "text": "Database — Order, Customer, Product စတဲ့ Structured Data တွေကို သိမ်းဆည်း/ရှာဖွေရာနေရာ။",
+    "lang": "my"
+  },
+  {
+    "type": "bullet",
+    "text": "Network — Device နှစ်ခုကြား Data ပို့နိုင်ဖို့ ဆက်သွယ်ရေးလမ်းကြောင်း။",
+    "lang": "my"
+  },
+  {
+    "type": "bullet",
+    "text": "IP Address — Network ပေါ်က Destination ကို ဖော်ပြတဲ့ Address။",
+    "lang": "my"
+  },
+  {
+    "type": "bullet",
+    "text": "Port — Server တစ်လုံးထဲက Service တစ်ခုဆီ ဆက်သွယ်ဖို့ အသုံးပြုတဲ့ နံပါတ် (ဥပမာ HTTPS 443)။",
+    "lang": "my"
+  },
+  {
+    "type": "bullet",
+    "text": "Security — ဘယ်သူဝင်နိုင်သလဲ၊ ဘာလုပ်ခွင့်ရှိသလဲ၊ Data ကို ဘယ်လိုကာကွယ်ထားသလဲ ဆိုတာကို စီမံခြင်း။",
+    "lang": "my"
+  },
+  {
+    "type": "h2",
+    "text": "1.1 Turning Workload Requirements into Architectural Constraints",
+    "lang": "my"
+  },
+  {
+    "type": "h3",
+    "text": "Architecture ဆိုတာ ဘာလဲ",
+    "lang": "my"
+  },
+  {
+    "type": "p",
+    "text": "AWS Architecture ဆိုတာ EC2 Server တစ်လုံးဖန်တီးတာတင် မဟုတ်ပါဘူး။ User → Website → Application → Database → External Service ဆိုတဲ့ လမ်းကြောင်းတစ်လျှောက် ဘယ် Component က ဘာလုပ်သလဲ၊ တစ်ခုခု ပျက်သွားရင် ဘာဆက်ဖြစ်သလဲ၊ လုပ်ငန်းလိုအပ်ချက်ကို တကယ်ပြည့်မီသလား ဆိုတာ စဉ်းစားပြီး စီမံထားတဲ့ Design ဖြစ်ပါတယ်။",
+    "lang": "my"
+  },
+  {
+    "type": "p",
+    "text": "မူရင်းစာအုပ်က Online Retailer (အွန်လိုင်းအရောင်းဆိုင်) ဥပမာကို သုံးပါတယ်။ Customer က Order တင်မယ်၊ Staff က စစ်မယ်၊ External Delivery Provider က ပို့ဆောင်ရေး ဆက်လုပ်မယ်။ “Fast, secure, reliable, affordable” ဆိုတာ စတင်ပြောလို့ရပေမဲ့ တိုင်းတာလို့ မရသေးပါ။",
+    "lang": "my"
+  },
+  {
+    "type": "h3",
+    "text": "Requirement ကို တိုင်းတာနိုင်အောင် ပြောင်းခြင်း",
+    "lang": "my"
+  },
+  {
+    "type": "table",
+    "headers": [
+      "လိုချင်တဲ့အရာ",
+      "စာအုပ်ထဲက တိုင်းတာနိုင်သော ဥပမာ"
+    ],
+    "rows": [
+      [
+        "Fast",
+        "Order acceptance 95% အနည်းဆုံးက 300 ms အတွင်း; peak 100 requests/second"
+      ],
+      [
+        "Secure",
+        "Customer တစ်ဦးက အခြား Customer ရဲ့ Order ကို မဖတ်နိုင်"
+      ],
+      [
+        "Reliable",
+        "AZ တစ်ခုဆုံးရှုံးလျှင် 5 မိနစ်အတွင်း Order Acceptance ပြန်စနိုင်"
+      ],
+      [
+        "Recoverable",
+        "Human error အတွက် RPO 15 min; RTO 60 min"
+      ],
+      [
+        "Affordable",
+        "30 ရက် workload အတွက် AWS recurring cost ≤ $1,200"
+      ]
+    ]
+  },
+  {
+    "type": "p",
+    "text": "သတိပြုရန် — ဒီနံပါတ်တွေဟာ စာအုပ်ထဲက Retailer ဥပမာအတွက် သတ်မှတ်ချက်တွေဖြစ်ပြီး AWS အားလုံးအတွက် Universal Rule မဟုတ်ပါ။",
+    "lang": "my"
+  },
+  {
+    "type": "h3",
+    "text": "Requirement, Preference, Observation, Assumption, Proposed Action",
+    "lang": "my"
+  },
+  {
+    "type": "bullet",
+    "text": "Requirement = မဖြစ်မနေ ပြည့်မီရမယ့် စည်းကမ်း။ “Customer A က Customer B ရဲ့ Order မမြင်ရ”။",
+    "lang": "my"
+  },
+  {
+    "type": "bullet",
+    "text": "Preference = ရနိုင်ရင် ပိုကောင်းတဲ့ရွေးချယ်မှု။ “Maintenance လျော့ချဖို့ Managed Service သုံးချင်တယ်”။",
+    "lang": "my"
+  },
+  {
+    "type": "bullet",
+    "text": "Observation = တကယ်စမ်းသပ်/တိုင်းတာပြီး သိထားတဲ့ အချက်။ “Request 18% က 300 ms ထက် နှေးတယ်”။",
+    "lang": "my"
+  },
+  {
+    "type": "bullet",
+    "text": "Assumption = မှန်မမှန် မစစ်ရသေးတဲ့ ယူဆချက်။ “Delivery Provider ကို Retry လုပ်ရင် Order နှစ်ခါမဖြစ်ဘူး”။",
+    "lang": "my"
+  },
+  {
+    "type": "bullet",
+    "text": "Proposed Action = ပြဿနာကို ဖြေရှင်းဖို့ အဆိုပြုတဲ့ ပြောင်းလဲမှု။ “Delivery Processing ကို Background Worker ဆီ ရွှေ့မယ်”။",
+    "lang": "my"
+  },
+  {
+    "type": "p",
+    "text": "အရေးကြီးဆုံးအချက် — Assumption ကို Evidence လို့ မယူရပါ။ Diagram က ကြည့်ကောင်းတာနဲ့ System တကယ်ခံနိုင်တယ်ဆိုတာ မသေချာပါ။ Test Result နဲ့ သက်သေပြရပါတယ်။",
+    "lang": "my"
+  },
+  {
+    "type": "h3",
+    "text": "RPO နဲ့ RTO — Beginner Example",
+    "lang": "my"
+  },
+  {
+    "type": "p",
+    "text": "RPO (Recovery Point Objective) က “Data ဘယ်လောက်ပျောက်တာ လက်ခံနိုင်လဲ” ဆိုတာပါ။ RPO 15 min ဆိုရင် Failure မတိုင်မီ နောက်ဆုံး 15 မိနစ်အတွင်း Data ဆုံးရှုံးနိုင်တဲ့အတိုင်းအတာကို လက်ခံထားတယ်လို့ ဆိုလိုပါတယ်။ RTO (Recovery Time Objective) က “Service ဘယ်လောက်ကြာ ရပ်နေလို့ရလဲ” ဆိုတာပါ။ RTO 60 min ဆိုရင် 60 မိနစ်အတွင်း Service ကို ပြန်သုံးနိုင်ရမယ်။ RPO နဲ့ RTO က Failure Type အလိုက် မတူနိုင်ပါတယ်။",
+    "lang": "my"
+  },
+  {
+    "type": "h3",
+    "text": "Bottleneck ကို ဘယ်လိုရှာမလဲ",
+    "lang": "my"
+  },
+  {
+    "type": "p",
+    "text": "မူရင်း Design: Customer → App → External Fulfilment Provider → Save Order → Response။ External Provider နှေးရင် Customer ကို Response ပြန်တာလည်း နှေးပါတယ်။ 10,000 Requests ထဲက 1,800 က 300 ms ကျော်ခဲ့လို့ 82% ပဲ အချိန်မီပါတယ်။ Server ပိုကြီးတာနဲ့ External Provider ရဲ့ Network Delay မပျောက်ပါ။",
+    "lang": "my"
+  },
+  {
+    "type": "p",
+    "text": "ပြင်ဆင်ထားတဲ့ Design: Customer → App → Database မှာ Order + Pending Status ကို တစ်ပြိုင်နက် Durable Save → “Accepted” Response။ Background Worker က Provider ဆီ နောက်မှ ဆက်ပို့မယ်။ Test မှာ 9,860/10,000 = 98.6% အချိန်မီလာပါတယ်။ ဒါပေမဲ့ Retry ကြောင့် Duplicate Delivery မဖြစ်ဖို့နဲ့ AZ Failure မှာ Recovery လုပ်နိုင်ဖို့ ဆက်စစ်ရပါသေးတယ်။",
+    "lang": "my"
+  },
+  {
+    "type": "h3",
+    "text": "Well-Architected Pillars",
+    "lang": "my"
+  },
+  {
+    "type": "bullet",
+    "text": "Operational Excellence — Deploy, Monitor, Recover လုပ်ငန်းစဉ်တွေ ကောင်းမွန်စေခြင်း",
+    "lang": "my"
+  },
+  {
+    "type": "bullet",
+    "text": "Security — Access, Identity, Data ကို ကာကွယ်ခြင်း",
+    "lang": "my"
+  },
+  {
+    "type": "bullet",
+    "text": "Reliability — Component ပျက်သော်လည်း လိုအပ်တဲ့ Service ဆက်ပေးနိုင်ခြင်း",
+    "lang": "my"
+  },
+  {
+    "type": "bullet",
+    "text": "Performance Efficiency — Response Time နဲ့ Capacity ကို သင့်တော်အောင် အသုံးပြုခြင်း",
+    "lang": "my"
+  },
+  {
+    "type": "bullet",
+    "text": "Cost Optimization — Requirement ပြည့်မီတဲ့ Design ထဲက Cost သင့်တော်တာ ရွေးခြင်း",
+    "lang": "my"
+  },
+  {
+    "type": "bullet",
+    "text": "Sustainability — မလိုအပ်တဲ့ Compute/Storage သုံးစွဲမှု လျော့ခြင်း",
+    "lang": "my"
+  },
+  {
+    "type": "h3",
+    "text": "日本語ノート",
+    "lang": "ja"
+  },
+  {
+    "type": "p",
+    "text": "設計では、ビジネス要件を測定可能な技術要件に変換する。",
+    "lang": "ja"
+  },
+  {
+    "type": "p",
+    "text": "Requirement（必須要件）、Preference（希望）、Observation（観測事実）、Assumption（未検証の前提）、Proposed Action（改善案）を区別する。",
+    "lang": "ja"
+  },
+  {
+    "type": "p",
+    "text": "RPOは許容データ損失、RTOは許容停止時間を表す。",
+    "lang": "ja"
+  },
+  {
+    "type": "p",
+    "text": "外部サービスの遅延が原因なら、サーバーを大きくするだけでは解決しない。非同期処理による依存関係の分離を検討する。",
+    "lang": "ja"
+  },
+  {
+    "type": "p",
+    "text": "改善後も、再試行の安全性、障害復旧、権限、コストを検証する。",
+    "lang": "ja"
+  },
+  {
+    "type": "h2",
+    "text": "1.2 Accounts, Regions, Availability Zones and Service Scope",
+    "lang": "my"
+  },
+  {
+    "type": "h3",
+    "text": "Cloud の住所を三段階で考える",
+    "lang": "ja"
+  },
+  {
+    "type": "p",
+    "text": "Account = ဘယ်သူပိုင်/စီမံ/ငွေပေးသလဲ။ Region = ဘယ်ပထဝီဝင်ဒေသမှာထားသလဲ။ AZ = Region အတွင်း ဘယ် Infrastructure Failure Boundary မှာရှိသလဲ။ ဒီသုံးခုက မတူညီတဲ့ မေးခွန်းတွေကို ဖြေပါတယ်။",
+    "lang": "my"
+  },
+  {
+    "type": "h3",
+    "text": "AWS Account — ဘာကြောင့် ခွဲသလဲ",
+    "lang": "my"
+  },
+  {
+    "type": "p",
+    "text": "Company တစ်ခုမှာ Production Account, Development Account, Security Logs Account သုံးခုထားနိုင်ပါတယ်။ Development မှာ စမ်းသပ်ရင်း Resource မှားဖျက်မိတာက Production ကို တိုက်ရိုက်မထိခိုက်အောင် Permission ခွဲထားနိုင်ပါတယ်။ ဒါပေမဲ့ Development Administrator က Production Admin Role ကို Assume လုပ်ခွင့်ရှိနေသေးရင် အကာအကွယ် မပြည့်စုံပါ။",
+    "lang": "my"
+  },
+  {
+    "type": "p",
+    "text": "Account တစ်ခုအသစ် ဖန်တီးတာက Network ချိတ်ဆက်မှု၊ Data Copy၊ Backup တို့ကို အလိုအလျောက် မလုပ်ပေးပါ။ Logs ကို Security Account ဆီ ပို့ချင်ရင် Destination, Delivery Path, Permissions တို့ကို သီးခြား Configure လုပ်ရပါတယ်။",
+    "lang": "my"
+  },
+  {
+    "type": "h3",
+    "text": "Region — ဘာကြောင့် အရေးကြီးသလဲ",
+    "lang": "my"
+  },
+  {
+    "type": "p",
+    "text": "Region က AWS ရဲ့ Geographical Service Location ပါ။ ဥပမာ Tokyo (ap-northeast-1), Ireland (eu-west-1)။ User နီးတဲ့ Region ကို ရွေးရင် Latency ကောင်းလာနိုင်ပေမဲ့ Database/External Dependency တွေရဲ့ Latency ကိုလည်း ထည့်တွက်ရပါတယ်။ Customer Data ကို Ireland ထဲမှာပဲ သိမ်းရမယ်ဆိုရင် Backup, Logs, Replica, Export တွေကိုပါ စစ်ရပါမယ်။",
+    "lang": "my"
+  },
+  {
+    "type": "h3",
+    "text": "Availability Zone — Server နှစ်လုံးရှိတာနဲ့ မလုံလောက်",
+    "lang": "my"
+  },
+  {
+    "type": "p",
+    "text": "AZ တစ်ခုဟာ Region အတွင်း သီးခြား Infrastructure Failure Boundary ဖြစ်ပါတယ်။ Server A နဲ့ Server B နှစ်လုံးလုံး AZ-A မှာရှိရင် AZ-A ပျက်သွားတဲ့အခါ နှစ်လုံးလုံး ရပ်နိုင်ပါတယ်။ A ကို AZ-A၊ B ကို AZ-B မှာထားရင် AZ Failure ကို ပိုခံနိုင်ပါတယ်။ သို့သော် Database တစ်ခုတည်း AZ-A မှာရှိရင် Application B လည်း Database မရတော့ပါ။",
+    "lang": "my"
+  },
+  {
+    "type": "p",
+    "text": "RDS Multi-AZ DB Instance Deployment မှာ Primary DB နဲ့ Synchronously Replicated Standby DB ရှိနိုင်ပါတယ်။ ပုံမှန် Standby ရဲ့ အဓိကရည်ရွယ်ချက်က Failover ဖြစ်ပြီး Read Query ပိုမြန်အောင် Read Replica အဖြစ် မသုံးနိုင်ပါ။",
+    "lang": "my"
+  },
+  {
+    "type": "h3",
+    "text": "Service Scope ကို နားလည်ခြင်း",
+    "lang": "my"
+  },
+  {
+    "type": "table",
+    "headers": [
+      "Service",
+      "Scope / သတိပြုရန်"
+    ],
+    "rows": [
+      [
+        "IAM Roles",
+        "Account-wide; AZ ထဲမှာ ထားတာမဟုတ်"
+      ],
+      [
+        "EC2 Instance",
+        "AZ တစ်ခုထဲမှာ Run"
+      ],
+      [
+        "EBS Volume",
+        "AZ တစ်ခုထဲမှာ တည်ရှိ"
+      ],
+      [
+        "S3 Standard",
+        "ရွေးထားတဲ့ Region အတွင်း AZ အများအပြားကို အသုံးပြုသော Storage"
+      ],
+      [
+        "RDS",
+        "Deployment Type အလိုက် Placement ကွဲ"
+      ],
+      [
+        "Cognito User Pool",
+        "Regional identity resource"
+      ]
+    ]
+  },
+  {
+    "type": "p",
+    "text": "လက်တွေ့စစ်ဆေးမှု — AZ တစ်ခု ပျက်သွားရင် ALB က ကျန်တဲ့ Server ဆီ Route လုပ်နိုင်လား၊ Database Failover လုပ်နိုင်လား၊ Application က Reconnect လုပ်နိုင်လား၊ Key/Permission တွေ အလုပ်လုပ်နေသေးလား၊ Peak Load ကို ကျန်တဲ့ Capacity က ခံနိုင်လား ဆိုတာတွေကို Test လုပ်ရပါတယ်။",
+    "lang": "my"
+  },
+  {
+    "type": "h3",
+    "text": "日本語ノート",
+    "lang": "ja"
+  },
+  {
+    "type": "p",
+    "text": "Accountは所有・管理・請求の境界、Regionは地理的な境界、AZはインフラストラクチャ障害の境界である。",
+    "lang": "ja"
+  },
+  {
+    "type": "p",
+    "text": "同じAZにサーバーを2台配置しても、AZ全体の障害には対応できない。",
+    "lang": "ja"
+  },
+  {
+    "type": "p",
+    "text": "Multi-AZ構成では、アプリケーションだけでなくDB、ネットワーク、権限、復旧時間を確認する。",
+    "lang": "ja"
+  },
+  {
+    "type": "p",
+    "text": "通常のRDS Multi-AZ DBインスタンスのStandbyはRead Replicaではない。",
+    "lang": "ja"
+  },
+  {
+    "type": "p",
+    "text": "データ所在地の制約は、Backup、Logs、Replicaにも適用される。",
+    "lang": "ja"
+  },
+  {
+    "type": "h2",
+    "text": "1.3 Shared Responsibility Across Compute and Managed Services",
+    "lang": "my"
+  },
+  {
+    "type": "h3",
+    "text": "Security OF the Cloud / IN the Cloud",
+    "lang": "my"
+  },
+  {
+    "type": "p",
+    "text": "AWS က Physical Datacenter, Physical Network, Host Infrastructure ကို စီမံပါတယ်။ Customer က မိမိ Data, Access Permissions, Application Logic နဲ့ Service Configuration ကို စီမံရပါတယ်။ ဘယ်အပိုင်းကို Customer က လုပ်ရမလဲဆိုတာ EC2, RDS, Lambda စတဲ့ Service အလိုက် ကွဲပြားပါတယ်။",
+    "lang": "my"
+  },
+  {
+    "type": "table",
+    "headers": [
+      "Component",
+      "AWS ဘာလုပ်သလဲ",
+      "Customer ဘာလုပ်သလဲ"
+    ],
+    "rows": [
+      [
+        "EC2",
+        "Physical Host, Virtualization",
+        "Guest OS Patch, App Code, Security Group, IAM, Backup"
+      ],
+      [
+        "RDS PostgreSQL",
+        "DB Host/OS နှင့် Supported Maintenance",
+        "DB Users, SQL Privileges, Network Access, Backup Settings, Restore Test"
+      ],
+      [
+        "Lambda managed runtime",
+        "Execution Infrastructure, Managed Runtime",
+        "Function Code, Dependencies, Permissions, Runtime Compatibility"
+      ]
+    ]
+  },
+  {
+    "type": "h3",
+    "text": "EC2 Example",
+    "lang": "my"
+  },
+  {
+    "type": "p",
+    "text": "EC2 ကို Windows/Ubuntu Virtual Computer တစ်လုံးလို စဉ်းစားနိုင်ပါတယ်။ AWS က အောက်ခံ Physical Machine ကို ပြုပြင်ပေးပေမဲ့ သင့် Ubuntu ထဲက Package ဟောင်းနေရင် Patch လုပ်ဖို့ သင့်တာဝန်ပါ။ Security Group မှာ Database Port ကို Internet တစ်ခုလုံးဖွင့်ထားတာမျိုး မဖြစ်အောင်လည်း Customer က စီမံရပါတယ်။",
+    "lang": "my"
+  },
+  {
+    "type": "h3",
+    "text": "RDS Example",
+    "lang": "my"
+  },
+  {
+    "type": "p",
+    "text": "EC2 ပေါ်မှာ PostgreSQL ကို ကိုယ်တိုင် Install လုပ်ထားရင် OS, DB Software, Backup Jobs စတာတွေကို ကိုယ်တိုင် စီမံရပါတယ်။ RDS သုံးလိုက်ရင် AWS က Supported Database Infrastructure Maintenance ကို တာဝန်ယူပေးပါတယ်။ ဒါပေမဲ့ “ဘယ် Application User က Customer Address ဖတ်ခွင့်ရှိသလဲ” ဆိုတာ Customer က ဆုံးဖြတ်ရပါတယ်။",
+    "lang": "my"
+  },
+  {
+    "type": "h3",
+    "text": "Lambda Example",
+    "lang": "my"
+  },
+  {
+    "type": "p",
+    "text": "Lambda မှာ Server ကို ကိုယ်တိုင် Provision မလုပ်ဘဲ Function Code Run လို့ရပါတယ်။ AWS က Execution Infrastructure ကို စီမံပေးပေမဲ့ Code မှားလို့ Customer Information ကို Public Report ထဲ ထည့်မိရင် Customer ရဲ့ Application Defect ပါ။ Container Image သုံးရင် Image ထဲက Runtime/Library ကို Customer က ထိန်းသိမ်းရပါတယ်။",
+    "lang": "my"
+  },
+  {
+    "type": "h3",
+    "text": "Backup ရှိခြင်းနဲ့ Restore အောင်မြင်ခြင်း",
+    "lang": "my"
+  },
+  {
+    "type": "p",
+    "text": "Backup File ရှိတယ်ဆိုတာတစ်ခုတည်းနဲ့ Recovery Requirement ပြည့်မီတယ်လို့ မဆိုနိုင်ပါ။ တကယ် Restore လုပ်နိုင်သလား၊ Data မှန်သလား၊ Application က Reconnect လုပ်နိုင်သလား၊ လိုအပ်တဲ့အချိန်အတွင်း ပြန်သုံးနိုင်သလား ဆိုတာ စမ်းသပ်ဖို့လိုပါတယ်။",
+    "lang": "my"
+  },
+  {
+    "type": "h3",
+    "text": "日本語ノート",
+    "lang": "ja"
+  },
+  {
+    "type": "p",
+    "text": "Shared Responsibility Modelでは、AWSと利用者の責任範囲がサービスごとに異なる。",
+    "lang": "ja"
+  },
+  {
+    "type": "p",
+    "text": "EC2では利用者がGuest OSとアプリケーションを管理する。",
+    "lang": "ja"
+  },
+  {
+    "type": "p",
+    "text": "RDSではAWSがDB基盤を管理するが、利用者がアクセス権限や復旧設定を管理する。",
+    "lang": "ja"
+  },
+  {
+    "type": "p",
+    "text": "LambdaではAWSが実行基盤を管理し、利用者がコード・依存関係・権限を管理する。",
+    "lang": "ja"
+  },
+  {
+    "type": "p",
+    "text": "Managed Serviceを利用しても、アプリケーションの正しさとデータ保護の責任は残る。",
+    "lang": "ja"
+  },
+  {
+    "type": "p",
+    "text": "Backupの存在とRestoreの成功は別であり、復旧テストが必要である。",
+    "lang": "ja"
+  },
+  {
+    "type": "h2",
+    "text": "1.4 Reading Control Paths and Data Paths Through a Workload",
+    "lang": "my"
+  },
+  {
+    "type": "h3",
+    "text": "Network ကို မသိသေးသူအတွက် အခြေခံ Flow",
+    "lang": "my"
+  },
+  {
+    "type": "p",
+    "text": "Browser က Website ကို ဖွင့်တဲ့အခါ အမည်ကို IP Address နဲ့ ချိတ်ဆက်ဖို့ DNS ကို သုံးပါတယ်။ IP Address က Destination ကို ပြပါတယ်။ Port က Destination ထဲက ဘယ် Service ကို ဆက်သွယ်မလဲဆိုတာ ပြပါတယ်။ HTTPS အတွက် ပုံမှန် Port 443 ကို သုံးပါတယ်။ ဒီအဆင့်တွေက Customer ကို Order တင်ခွင့်ပေးတာနဲ့ မတူပါ။",
+    "lang": "my"
+  },
+  {
+    "type": "h3",
+    "text": "Control Path vs Data Path",
+    "lang": "my"
+  },
+  {
+    "type": "p",
+    "text": "Data Path (Data Plane) = Customer Order တင်တာ၊ Database ထဲ Order သိမ်းတာလို Application ရဲ့ တကယ့် Business Activity။ Control Path (Control Plane) = EC2 ဖန်တီးတာ၊ IAM Permission ပြောင်းတာ၊ ALB Listener Configure လုပ်တာလို Infrastructure Settings ပြောင်းခြင်း။ နှစ်ခုလုံး API သုံးနိုင်ပြီး API ဆိုတာနဲ့ Control Path မဖြစ်ပါ။",
+    "lang": "my"
+  },
+  {
+    "type": "h3",
+    "text": "စာအုပ်ထဲက Order Request ကို တစ်ဆင့်ချင်း လိုက်ကြည့်မယ်",
+    "lang": "my"
+  },
+  {
+    "type": "h4",
+    "text": "1. DNS Lookup",
+    "lang": "my"
+  },
+  {
+    "type": "p",
+    "text": "Browser က shop.example.com အတွက် IP Address ကို ရှာပါတယ်။ DNS ဖြေကြားတာ အောင်မြင်ပေမဲ့ Server Healthy ဖြစ်တယ်ဆိုတာ မသေချာပါ။",
+    "lang": "my"
+  },
+  {
+    "type": "h4",
+    "text": "2. TCP Connection",
+    "lang": "my"
+  },
+  {
+    "type": "p",
+    "text": "Browser က ALB ရဲ့ Port 443 ဆီ Connection တည်ဆောက်ပါတယ်။ Route နဲ့ Traffic Controls တွေက သွားလာနိုင်မှုကို သတ်မှတ်ပါတယ်။ Response ပြန်လာမယ့်လမ်းကြောင်းလည်း လိုပါတယ်။",
+    "lang": "my"
+  },
+  {
+    "type": "h4",
+    "text": "3. TLS / HTTPS",
+    "lang": "my"
+  },
+  {
+    "type": "p",
+    "text": "TLS က Data in Transit ကို Encrypt လုပ်ပြီး Certificate ကို စစ်ဆေးပါတယ်။ HTTPS = HTTP over TLS။ TLS အောင်မြင်တာနဲ့ User Permission ရတယ်လို့ မဆိုနိုင်ပါ။",
+    "lang": "my"
+  },
+  {
+    "type": "h4",
+    "text": "4. ALB Forwarding",
+    "lang": "my"
+  },
+  {
+    "type": "p",
+    "text": "ALB က Browser HTTPS 443 ကို လက်ခံပြီး Target Group ထဲက Application ဆီ ပို့ပါတယ်။ စာအုပ်ဥပမာမှာ ALB → EC2 ကို HTTPS 8443 သုံးထားပါတယ်။ Frontend HTTPS ရှိရုံနဲ့ Backend HTTPS အလိုအလျောက် မဖြစ်ပါ။",
+    "lang": "my"
+  },
+  {
+    "type": "h4",
+    "text": "5. Authentication",
+    "lang": "my"
+  },
+  {
+    "type": "p",
+    "text": "Customer Token မှန်သလား၊ ဘယ် User လဲဆိုတာ စစ်ပါတယ်။ Login အောင်မြင်ခြင်းကို Authentication လို့ ခေါ်ပါတယ်။",
+    "lang": "my"
+  },
+  {
+    "type": "h4",
+    "text": "6. Authorization",
+    "lang": "my"
+  },
+  {
+    "type": "p",
+    "text": "ဒီ User က ဒီ Order ကို Create/Read လုပ်ခွင့်ရှိသလား စစ်ပါတယ်။ Customer A က Customer B ရဲ့ Order ကို မမြင်ရပါ။",
+    "lang": "my"
+  },
+  {
+    "type": "h4",
+    "text": "7. Secrets & Database",
+    "lang": "my"
+  },
+  {
+    "type": "p",
+    "text": "Application က Secrets Manager မှ Credential ရယူပြီး PostgreSQL Port 5432 ကို TLS နဲ့ Connect လုပ်ပါတယ်။ Database User ရဲ့ SQL Privileges ကိုလည်း စစ်ပါတယ်။",
+    "lang": "my"
+  },
+  {
+    "type": "h4",
+    "text": "8. Durable Commit & Response",
+    "lang": "my"
+  },
+  {
+    "type": "p",
+    "text": "Order ကို Database ထဲ Durable Commit လုပ်ပြီးမှ Accepted Response ပြန်ပေးပါတယ်။ EC2 Running ဖြစ်တာနဲ့ Data Saved ဖြစ်တာ မတူပါ။",
+    "lang": "my"
+  },
+  {
+    "type": "h3",
+    "text": "Request တစ်ခုမှာ Identity သုံးမျိုး",
+    "lang": "my"
+  },
+  {
+    "type": "bullet",
+    "text": "Customer Identity — User ဘယ်သူလဲ၊ သူ့ Order ကိုသာ ဖတ်ခွင့်ရှိလား။",
+    "lang": "my"
+  },
+  {
+    "type": "bullet",
+    "text": "Application Workload Role — Application က AWS API (ဥပမာ Secrets Manager) ကို ဘာခေါ်ခွင့်ရှိလဲ။",
+    "lang": "my"
+  },
+  {
+    "type": "bullet",
+    "text": "Database User — PostgreSQL မှာ SELECT, INSERT စတဲ့ SQL Operations ဘာလုပ်ခွင့်ရှိလဲ။",
+    "lang": "my"
+  },
+  {
+    "type": "h3",
+    "text": "Troubleshooting အတွက် လေးမျိုးခွဲမှတ်",
+    "lang": "my"
+  },
+  {
+    "type": "table",
+    "headers": [
+      "အဆင့်",
+      "ဥပမာ Failure"
+    ],
+    "rows": [
+      [
+        "Connectivity",
+        "Route/Port ပိတ်လို့ Database ဆီ မရောက်"
+      ],
+      [
+        "Authentication",
+        "Token/Password မှား"
+      ],
+      [
+        "Authorization",
+        "Login ရပေမဲ့ တခြား Customer Order ဖတ်ခွင့်မရှိ"
+      ],
+      [
+        "Encryption",
+        "TLS Certificate မမှန် သို့မဟုတ် Backend Encryption မစီစဉ်ထား"
+      ]
+    ]
+  },
+  {
+    "type": "p",
+    "text": "အသုံးဝင်တဲ့ အတွေးပုံစံ — “Connection ရတယ်” “Login ဝင်လို့ရတယ်” “Permission ရတယ်” “Data တကယ်သိမ်းပြီးပြီ” ဆိုတာ လေးခု သီးခြားဖြစ်ပါတယ်။ Failure ဖြစ်ရင် တစ်ခုချင်းစီကို Evidence နဲ့ စစ်ရပါတယ်။",
+    "lang": "my"
+  },
+  {
+    "type": "h3",
+    "text": "日本語ノート",
+    "lang": "ja"
+  },
+  {
+    "type": "p",
+    "text": "Data Pathは注文受付やDBへの保存など、業務データが流れる経路である。",
+    "lang": "ja"
+  },
+  {
+    "type": "p",
+    "text": "Control Pathはリソース作成やIAM変更など、構成を変更する経路である。",
+    "lang": "ja"
+  },
+  {
+    "type": "p",
+    "text": "DNSは名前解決、TCPは通信接続、TLSは通信の暗号化とサーバー認証を担う。",
+    "lang": "ja"
+  },
+  {
+    "type": "p",
+    "text": "ALBはListenerとTarget Groupに基づいてリクエストを転送する。",
+    "lang": "ja"
+  },
+  {
+    "type": "p",
+    "text": "Authentication（認証）は「誰か」、Authorization（認可）は「何ができるか」を確認する。",
+    "lang": "ja"
+  },
+  {
+    "type": "p",
+    "text": "ネットワーク接続の成功は、認証・認可・DB保存の成功を保証しない。",
+    "lang": "ja"
+  },
+  {
+    "type": "h2",
+    "text": "Chapter 1 — 日本語総まとめ",
+    "lang": "ja"
+  },
+  {
+    "type": "bullet",
+    "text": "1. ビジネス要件を測定可能な技術要件に変換し、AssumptionとEvidenceを区別する。",
+    "lang": "ja"
+  },
+  {
+    "type": "bullet",
+    "text": "2. Account、Region、AZは異なる境界であり、Multi-AZの有効性は全体の依存関係で判断する。",
+    "lang": "ja"
+  },
+  {
+    "type": "bullet",
+    "text": "3. AWSと利用者の責任はサービスごとに異なる。Managed Serviceでも利用者の責任は残る。",
+    "lang": "ja"
+  },
+  {
+    "type": "bullet",
+    "text": "4. Control PathとData Pathを区別し、DNS、通信、TLS、認証、認可、DB操作を順番に確認する。",
+    "lang": "ja"
+  },
+  {
+    "type": "bullet",
+    "text": "5. 図や設定だけで判断せず、性能・障害復旧・アクセス・コストを実際に検証する。",
+    "lang": "ja"
+  },
+  {
+    "type": "p",
+    "text": "学習方針：Chapter 1–9 の説明が完了するまで、問題・Quiz・Practice Testは掲載しない。",
+    "lang": "ja"
+  }
+]
