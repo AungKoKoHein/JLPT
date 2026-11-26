@@ -1,0 +1,245 @@
+﻿.study-login-screen { --login-paper:#fff; --login-ink:#302c39; --login-muted:#797480; --login-line:#e8e4ec; background:#f4f1f7; padding:48px 24px; font-family:Inter,"Segoe UI",sans-serif; }
+.study-login-shell { display:grid; grid-template-columns:1fr 1fr; width:min(1060px,100%); min-height:690px; border-radius:22px; overflow:hidden; background:var(--login-paper); box-shadow:0 20px 80px #38214612,0 2px 8px #38214606; }
+.study-login-story { position:relative; overflow:hidden; padding:40px 44px 28px; background:#402b4d; color:#fff; display:flex; flex-direction:column; }
+.login-brand { display:flex; align-items:center; gap:12px; color:#fff; text-decoration:none; font-size:22px; font-weight:750; letter-spacing:-.6px; width:fit-content; }
+.login-brand-mark { width:39px; height:39px; display:grid; place-items:center; background:#ffffff12; border:1px solid #ffffff30; border-radius:12px; font-size:24px; }
+.login-brand-light { font-weight:400; color:#e1d5e9; }
+.login-story-copy { margin-top:49px; z-index:1; }
+.login-overline { font-size:11px; letter-spacing:2px; color:#d2badb; font-weight:600; margin:0 0 18px; }
+.login-story-copy h2 { font-size:42px; line-height:1.14; font-weight:650; letter-spacing:-1.6px; margin:0 0 17px; color:#fff; }
+.login-story-copy h2>span { color:#ff997f; }
+.login-story-copy>p:last-child { font-size:15px; line-height:1.8; color:#d6c9dc; margin:0; }
+.login-illustration { position:relative; height:300px; margin-top:15px; }
+.login-sun { position:absolute; width:248px; height:248px; border-radius:50%; background:#f78c73; left:55px; top:34px; }
+.login-orbit { position:absolute; width:300px; height:270px; border:1px solid #ffffff20; border-radius:50%; transform:rotate(-25deg); left:30px; top:20px; }
+.login-word-card { position:absolute; border-radius:15px; box-shadow:0 16px 28px #160b262b; }
+.login-word-back { width:180px; height:218px; background:#dbc9df; transform:rotate(13deg); top:35px; left:150px; padding:22px; color:#62446c; font-size:13px; }
+.login-card-lines { margin-top:95px; display:grid; gap:10px; }.login-card-lines i { display:block; height:6px; background:#bba4c4; border-radius:10px; }.login-card-lines i:last-child { width:65%; }
+.login-word-front { width:211px; height:244px; background:#fffaf4; transform:rotate(-9deg); top:29px; left:62px; padding:20px; color:#46334d; text-align:center; }
+.login-card-top { display:flex; justify-content:space-between; color:#8a7a8d; font-size:10px; }.login-word-front>strong { font-family:serif; display:block; font-size:57px; font-weight:500; line-height:1.4; margin-top:10px; }.login-reading { font-size:13px; color:#847386; letter-spacing:3px; }.login-word-rule { height:1px; background:#e7dfe5; margin:15px 0 12px; }.login-word-front>b { font-size:17px; font-weight:600; }.login-word-front>p { font-size:10px; color:#8a7a8d; margin:7px 0 16px; }.login-card-progress { display:flex; justify-content:center; gap:5px; }.login-card-progress i { width:5px; height:5px; border-radius:6px; background:#ded3df; }.login-card-progress i:first-child { width:18px; background:#ed927a; }
+.login-mini-card { position:absolute; display:flex; gap:10px; align-items:center; padding:15px 18px; border-radius:12px; background:#fff; color:#7e7282; top:214px; left:211px; box-shadow:0 8px 24px #25152d24; font-size:11px; transform:rotate(3deg); white-space:nowrap; }.login-mini-card strong { display:block; color:#493650; margin-top:4px; font-size:13px; }.login-check { width:28px; height:28px; display:grid; place-items:center; border-radius:50%; background:#edf4e9; color:#527d49; font-size:16px; }.login-spark { position:absolute; color:#f6c99c; font-size:31px; }.login-spark-one { top:11px; right:40px; }.login-spark-two { bottom:21px; left:18px; font-size:25px; }
+.login-story-footer { display:flex; gap:14px; align-items:center; color:#d6c6dd; font-size:12px; margin-top:auto; padding-top:22px; }.login-story-footer i { width:3px; height:3px; background:#a68bae; border-radius:50%; }
+.study-login-panel.study-access-card { position:relative; display:flex; flex-direction:column; width:100%; border:0; border-radius:0; box-shadow:none; background:var(--login-paper); padding:75px 58px 30px; color:var(--login-ink); }
+.study-login-panel .study-access-theme { position:absolute; top:22px; right:24px; margin:0; }.study-login-panel .theme-toggle { border:0; background:transparent; color:var(--login-muted); padding:6px; }.study-login-panel .theme-toggle span { display:none; }
+.study-login-panel .study-login-heading { background:none; padding:0; border-radius:0; margin:0 0 31px; }.study-login-panel .study-login-heading .eyebrow { color:#9b769e; font-size:10px; letter-spacing:1.9px; margin-bottom:13px; }.study-login-panel .study-login-heading h1 { color:var(--login-ink); font-size:34px; font-weight:650; letter-spacing:-1px; line-height:1.2; margin:0; }.login-form-intro { font-size:14px; line-height:1.7; color:var(--login-muted); margin:12px 0 0; }
+.study-login-panel .study-access-form { margin:0; gap:20px; }.study-login-panel .study-access-form label { color:var(--login-ink); font-size:14px; font-weight:600; gap:9px; }.study-login-panel .study-access-form input { height:51px; border:1px solid var(--login-line); background:var(--login-paper); border-radius:8px; padding:0 15px; font:inherit; font-size:14px; font-weight:400; color:var(--login-ink); box-shadow:0 2px 4px #30203802; }.study-login-panel input::placeholder { color:#a19aa7; }.study-login-panel input:focus { outline:3px solid #ae7baa28; border-color:#9a739f; }
+.login-password-wrap { position:relative; display:block; }.study-login-panel .login-password-wrap input { padding-right:48px; }.login-password-toggle { position:absolute; right:8px; top:7px; width:36px; height:36px; display:grid; place-items:center; border:0; background:transparent; color:var(--login-muted); cursor:pointer; border-radius:6px; }.login-password-toggle svg { width:20px; height:20px; }.login-access-hint { margin:-6px 0 2px; color:var(--login-muted); font-size:12px; line-height:1.7; }
+.study-login-panel .primary-button { background:#f28068; border:1px solid #f28068; color:#281b24; min-height:50px; border-radius:8px; font-size:14px; font-weight:650; box-shadow:0 6px 14px #f2806824; }.study-login-panel .primary-button:hover:not(:disabled) { background:#ef957f; border-color:#ef957f; }.study-login-panel .study-access-divider { margin:25px 0; font-size:12px; color:var(--login-muted); gap:15px; }.study-login-panel .study-access-divider::before,.study-login-panel .study-access-divider::after { background:var(--login-line); }
+.study-login-panel>.login-google { background:var(--login-paper); border:1px solid var(--login-line); color:var(--login-ink); min-height:49px; font-size:14px; border-radius:8px; }.study-login-panel>.login-google:hover:not(:disabled) { background:#9b769e10; }.login-google svg { width:19px; height:19px; margin-right:5px; }.login-account-note { text-align:center; font-size:12px; line-height:1.9; color:var(--login-muted); margin:24px 0; }.login-account-note strong { font-weight:500; color:var(--login-ink); }.login-panel-footer { text-align:center; margin:auto 0 0; padding-top:20px; font-size:11px; color:var(--login-muted); }.study-login-panel button:focus-visible { outline:3px solid #b18cb9; outline-offset:3px; }
+[data-theme="dark"] .study-login-screen { --login-paper:#24212d; --login-ink:#f4edf6; --login-muted:#b3aaba; --login-line:#443b4c; background:#19161f; }[data-theme="dark"] .study-login-story { background:#392445; }
+@media(min-width:1200px) { .study-login-shell { min-height:730px; }.login-illustration { margin-top:30px; } }
+@media(max-width:850px) { .study-login-story { padding:32px 28px 24px; }.login-story-copy h2 { font-size:34px; }.study-login-panel.study-access-card { padding:78px 32px 30px; }.login-illustration { transform:scale(.85); transform-origin:left center; }.login-story-footer { gap:9px; } }
+@media(max-width:640px) { .study-login-screen { padding:20px 14px; align-items:start; }.study-login-shell { grid-template-columns:1fr; min-height:0; border-radius:16px; max-width:460px; }.study-login-story { padding:25px 28px 28px; }.login-brand { font-size:19px; }.login-brand-mark { width:33px; height:33px; font-size:21px; }.login-story-copy { margin-top:26px; }.login-story-copy h2 { font-size:32px; }.login-story-copy h2 br { display:none; }.login-story-copy>p:last-child { font-size:14px; }.login-story-copy>p:last-child br { display:none; }.login-overline { font-size:10px; margin-bottom:12px; }.login-illustration,.login-story-footer { display:none; }.study-login-panel.study-access-card { padding:49px 28px 27px; }.study-login-panel .study-access-theme { top:12px; right:15px; }.study-login-panel .study-login-heading h1 { font-size:30px; }.login-panel-footer { padding-top:4px; } }
+@media(prefers-reduced-motion:no-preference) { .study-login-shell { animation:login-appear .5s ease-out both; }@keyframes login-appear { from { opacity:0; }to { opacity:1; } } }
+[data-theme] .study-login-panel .primary-button { background:#f28068; border-color:#f28068; color:#281b24; }
+[data-theme] .study-login-panel .primary-button:hover:not(:disabled) { background:#ef957f; border-color:#ef957f; }
+
+/* Myanmar text needs generous line height and natural letter spacing. */
+.study-login-story { font-family:"Noto Sans Myanmar","Myanmar Text","Pyidaungsu",sans-serif; }
+.login-brand { font-family:Inter,"Segoe UI",sans-serif; font-size:34px; line-height:1.2; }
+.login-brand-mark { width:46px; height:46px; font-size:28px; }
+.login-story-copy { margin-top:36px; }
+.login-overline { font-size:14px; line-height:1.9; letter-spacing:0; margin-bottom:15px; }
+.login-story-copy h2 { font-size:34px; line-height:1.75; letter-spacing:0; margin-bottom:12px; }
+.login-story-copy>p:last-child { font-size:15px; line-height:2; }
+.login-word-back { font-size:12px; line-height:1.9; }
+.login-card-top { font-size:10px; line-height:1.9; }
+.login-word-front>strong { margin-top:4px; font-size:51px; }
+.login-word-front>b { font-size:16px; line-height:1.9; }
+.login-word-front>p { font-size:10px; line-height:1.9; margin:4px 0 10px; }
+.login-word-rule { margin:10px 0 7px; }
+.login-mini-card { left:183px; font-size:11px; line-height:1.8; padding:12px 14px; }
+.login-mini-card strong { font-size:12px; margin-top:2px; }
+.login-story-footer { font-size:13px; line-height:1.9; }
+@media(max-width:850px) {
+  .login-brand { font-size:30px; }
+  .login-story-copy h2 { font-size:28px; }
+  .login-story-copy>p:last-child { font-size:14px; }
+}
+@media(max-width:640px) {
+  .login-brand { font-size:30px; }
+  .login-brand-mark { width:41px; height:41px; font-size:25px; }
+  .login-story-copy { margin-top:24px; }
+  .login-overline { font-size:13px; }
+  .login-story-copy h2 { font-size:28px; line-height:1.8; }
+  .login-story-copy h2 br { display:block; }
+  .login-story-copy>p:last-child { font-size:14px; line-height:2; }
+}
+
+/* Keep the complete login within the viewport; compact layouts first,
+   with proportional fitting for unusually short screens. */
+.study-login-screen {
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100dvh;
+  min-height:0;
+  padding:clamp(12px, 3vh, 32px);
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.study-login-shell {
+  flex-shrink:0;
+  min-width:0;
+  min-height:0;
+  transform:scale(var(--login-fit, 1));
+  transform-origin:center;
+}
+.study-login-story { min-width:0; }
+.study-login-story .login-brand {
+  font-size:clamp(38px, 4.5vw, 60px);
+  font-weight:800;
+  letter-spacing:-2px;
+  gap:14px;
+  white-space:nowrap;
+}
+.study-login-story .login-brand-light { font-weight:650; color:#fff; }
+.study-login-story .login-brand-mark { flex-shrink:0; width:48px; height:48px; font-size:30px; }
+.study-login-panel.study-access-card { padding-top:62px; }
+@media(min-width:641px) and (max-height:760px) {
+  .study-login-story { padding-top:28px; padding-bottom:22px; }
+  .login-story-copy { margin-top:24px; }
+  .login-story-copy h2 { font-size:28px; }
+  .login-illustration { height:255px; margin-top:5px; transform:scale(.85); transform-origin:left top; }
+  .login-story-footer { padding-top:8px; }
+  .study-login-panel.study-access-card { padding:48px 36px 22px; }
+  .study-login-panel .study-login-heading { margin-bottom:22px; }
+  .study-login-panel .study-access-form { gap:15px; }
+  .study-login-panel .study-access-divider { margin:18px 0; }
+  .login-account-note { margin:16px 0; }
+  .login-panel-footer { padding-top:8px; }
+}
+@media(max-width:640px) {
+  .study-login-screen { padding:12px; }
+  .study-login-shell { max-width:460px; }
+  .study-login-story { padding:20px 24px; }
+  .study-login-story .login-brand { font-size:clamp(34px, 9vw, 46px); letter-spacing:-1.5px; gap:10px; }
+  .study-login-story .login-brand-mark { width:38px; height:38px; font-size:24px; }
+  .login-story-copy { margin-top:14px; }
+  .login-overline { margin-bottom:6px; font-size:12px; }
+  .login-story-copy h2 { font-size:23px; line-height:1.8; margin-bottom:0; }
+  .login-story-copy h2 br { display:none; }
+  .login-story-copy>p:last-child { display:none; }
+  .study-login-panel.study-access-card { padding:40px 24px 20px; }
+  .study-login-panel .study-login-heading { margin-bottom:20px; }
+  .study-login-panel .study-login-heading .eyebrow { margin-bottom:8px; }
+  .study-login-panel .study-access-form { gap:14px; }
+  .study-login-panel .study-access-divider { margin:16px 0; }
+  .login-account-note { margin:14px 0 0; }
+  .login-panel-footer { display:none; }
+}
+
+/* Cool, contemporary colors for the welcome panel. */
+[data-theme] .study-login-story {
+  background:radial-gradient(ellipse at 95% 100%, #175b6466, transparent 65%),
+    linear-gradient(145deg, #142735, #163f49);
+}
+.login-brand-light { color:#f1fafb; }
+.login-brand-mark { background:#b9f3e510; border-color:#b9f3e530; color:#c6f6e9; }
+.login-overline { color:#8fd7ca; }
+.login-story-copy h2>span { color:#81dac8; }
+.login-story-copy>p:last-child { color:#b9cdd3; }
+.login-sun { background:linear-gradient(145deg, #8ce0cc, #48b4ad); }
+.login-orbit { border-color:#a7e3db30; }
+.login-word-back { background:#b5d3d6; color:#365a63; }
+.login-card-lines i { background:#89afb6; }
+.login-word-front { background:#f7fcfc; color:#213e49; box-shadow:0 16px 28px #061a2833; }
+.login-card-top, .login-reading, .login-word-front>p { color:#66818a; }
+.login-word-rule { background:#dbe8ea; }
+.login-card-progress i { background:#d0e1e4; }
+.login-card-progress i:first-child { background:#329f95; }
+.login-mini-card { background:#f7fcfc; color:#627e86; box-shadow:0 8px 24px #061a2833; }
+.login-mini-card strong { color:#284852; }
+.login-check { background:#dff5ed; color:#287d6c; }
+.login-spark { color:#b9eee0; }
+.login-story-footer { color:#abcbd0; }
+.login-story-footer i { background:#6c9a9f; }
+
+/* Give the form the same crisp navy and teal character. */
+.study-login-screen {
+  --login-paper:#f5f9fa;
+  --login-ink:#142f3d;
+  --login-muted:#536c79;
+  --login-line:#b9cdd4;
+  background:#dce7ec;
+}
+.study-login-panel.study-access-card { border-left:1px solid #1e526323; }
+.study-login-panel .study-login-heading .eyebrow { color:#167a73; font-weight:750; }
+.study-login-panel .study-login-heading h1 { font-weight:750; }
+.study-login-panel .study-access-form label { font-weight:650; }
+.study-login-panel .study-access-form input {
+  background:#fff;
+  border-color:var(--login-line);
+  border-radius:6px;
+  box-shadow:0 1px 2px #16374608;
+  font-size:16px;
+}
+.study-login-panel input::placeholder { color:#708792; }
+.study-login-panel input:focus {
+  border-color:#16877d;
+  outline:3px solid #16877d24;
+}
+[data-theme] .study-login-panel .primary-button {
+  background:#126c65;
+  border-color:#126c65;
+  border-radius:6px;
+  color:#fff;
+  font-size:15px;
+  font-weight:700;
+  box-shadow:0 4px 10px #126c651f;
+}
+[data-theme] .study-login-panel .primary-button:hover:not(:disabled) {
+  background:#0d5752;
+  border-color:#0d5752;
+}
+.study-login-panel>.login-google {
+  background:#e7eff2;
+  border-color:var(--login-line);
+  border-radius:6px;
+  font-weight:650;
+}
+.study-login-panel>.login-google:hover:not(:disabled) { background:#d8e7eb; }
+.study-login-panel .study-access-divider { color:var(--login-muted); }
+.study-login-panel .login-account-note strong { font-weight:650; color:#126c65; }
+.study-login-panel button:focus-visible { outline-color:#299e92; }
+.login-password-toggle:hover { background:#16877d12; }
+[data-theme="dark"] .study-login-screen {
+  --login-paper:#152b37;
+  --login-ink:#edf6f8;
+  --login-muted:#aec3ce;
+  --login-line:#45606e;
+  background:#0c1c27;
+}
+[data-theme="dark"] .study-login-panel.study-access-card { border-left-color:#547a8640; }
+[data-theme="dark"] .study-login-panel .study-login-heading .eyebrow { color:#7ed5c6; }
+[data-theme="dark"] .study-login-panel .study-access-form input { background:#10232e; }
+[data-theme="dark"] .study-login-panel input::placeholder { color:#8ca8b5; }
+[data-theme="dark"] .study-login-panel>.login-google { background:#203e4c; }
+[data-theme="dark"] .study-login-panel>.login-google:hover:not(:disabled) { background:#2a4d5b; }
+[data-theme="dark"] .study-login-panel .login-account-note strong { color:#82dbca; }
+[data-theme="dark"] .study-login-panel .primary-button { background:#65cbb7; border-color:#65cbb7; color:#092d31; }
+[data-theme="dark"] .study-login-panel .primary-button:hover:not(:disabled) { background:#87ddcc; border-color:#87ddcc; }
+.study-login-panel[lang="my"] {
+  font-family:"Noto Sans Myanmar","Myanmar Text","Pyidaungsu",sans-serif;
+  line-height:1.9;
+}
+.study-login-panel[lang="my"] .study-login-heading .eyebrow {
+  letter-spacing:0;
+  font-size:13px;
+  line-height:1.9;
+}
+.study-login-panel[lang="my"] .study-login-heading h1 {
+  font-size:clamp(24px, 2.6vw, 30px);
+  letter-spacing:0;
+  line-height:1.8;
+}
+.study-login-panel[lang="my"] .study-access-form label { line-height:1.9; }
+.study-login-panel[lang="my"] .study-access-form input { line-height:1.9; }
+.study-login-panel[lang="my"] .primary-button,
+.study-login-panel[lang="my"]>.login-google { line-height:1.9; padding:11px 14px; }
+.study-login-panel[lang="my"] .study-access-divider span { text-align:center; }
+@media(max-width:640px) {
+  .study-login-panel.study-access-card { border-left:0; border-top:1px solid #547a8629; }
+}

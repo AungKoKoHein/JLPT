@@ -4,6 +4,8 @@ import { database } from "./firebase.js";
 import ConfirmDialog from "./ConfirmDialog.jsx";
 import PracticeSession from "./PracticeSession.jsx";
 import StudySessionView from "./StudySessionView.jsx";
+import "./mockExamDesign.css";
+import "./practiceDesign.css";
 import sourceSets from "./n3PracticeBank.json";
 import { practiceCategories } from "./practiceCategories.js";
 import useN3FlaggedQuestions from './useN3FlaggedQuestions.jsx';
@@ -80,13 +82,16 @@ export default function Practice({ isEditor = false, showReadings = false, showK
 
   if (!selected) return <article className="mock-exam-panel"><h2>Practice categories</h2><p>No questions available.</p></article>;
 
-  return <article className="mock-exam-panel">
+  return <article className="mock-exam-panel mock-exam-lobby practice-lobby">
     {pendingBank && <ConfirmDialog title="Replace the practice bank?" message="Replace the cloud practice bank with these 26 sets?" confirmLabel="Replace practice bank" onClose={() => setPendingBank(null)} onConfirm={confirmImport} />}
-    <div className="mock-exam-eyebrow">JLPT N3 · Practice</div>
-    <h2>Practice categories</h2>
-    <section aria-label="Flagged practice"><h3>Review flagged questions</h3><p>Questions marked “Flag for review” in Practice or Mock Exam. Saved in this browser.</p><div className="mock-exam-set-grid">{flaggedCollections(flaggedQuestions).map(set => <button type="button" className="mock-exam-set-card flagged-practice-card" key={set.id} disabled={!set.questions.length} onClick={() => { setActiveId(null); setActiveFlagged(set); }}><strong>{set.title}</strong><span>{set.questions.length} questions</span></button>)}</div>{!flaggedQuestions.length && <p>Flag a question during practice or an exam to review it here.</p>}</section>
-    <div className="mock-exam-actions"><button type="button" className="primary-button" onClick={() => setActiveId(selected.id)}>Start {selected.title}</button><span>{selected.questions.length} questions</span></div>
-    {isEditor && <details className="practice-import"><summary>{importing ? "Importing…" : "Import a replacement 26-set JSON bank"}</summary><p>The PDF collection is already available. An imported cloud bank replaces it for signed-in users.</p><input type="file" accept="application/json,.json" onChange={importBank} disabled={importing} /></details>}
+    <header className="mock-lobby-hero practice-lobby-hero" lang="my">
+      <div><div className="mock-exam-eyebrow">JLPT N3 · လေ့ကျင့်ခန်းများ</div><h2>နေ့တိုင်း လေ့ကျင့်ရင်း ပိုကျွမ်းကျင်လာမယ်။</h2><p>လေ့ကျင့်ခန်းတစ်စုံ ရွေးပြီး ကိုယ့်အချိန်နဲ့ကိုယ် လေ့လာပါ။ အဖြေတစ်ခုချင်းစီကို စစ်ဆေးနိုင်ပါတယ်။</p></div>
+      <span className="mock-lobby-symbol" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M24 12c-5-5-13-5-19-2v28c6-3 14-3 19 2 5-5 13-5 19-2V10c-6-3-14-3-19 2Zm0 0v28M11 17h7m-7 7h7m12-7h7m-7 7h7" /></svg></span>
+    </header>
+    <div className="mock-lobby-section-heading" lang="my"><h3>လေ့ကျင့်ခန်း ရွေးချယ်ပါ</h3><p>ဝေါဟာရ၊ သဒ္ဒါနဲ့ စာဖတ်စွမ်းရည်ကို တစ်ဆင့်ချင်း မြှင့်တင်လိုက်ပါ။</p></div>
+    <section aria-label="Flagged practice"><h3>မှတ်သားထားသော မေးခွန်းများကို ပြန်လေ့လာရန်</h3><p>လေ့ကျင့်ခန်း သို့မဟုတ် အစမ်းစာမေးပွဲတွင် ပြန်လေ့လာရန် မှတ်သားထားသော မေးခွန်းများဖြစ်ပါသည်။ ဤဘရောက်ဇာတွင် သိမ်းထားပါသည်။</p><div className="mock-exam-set-grid">{flaggedCollections(flaggedQuestions).map(set => <button type="button" className="mock-exam-set-card flagged-practice-card" key={set.id} disabled={!set.questions.length} onClick={() => { setActiveId(null); setActiveFlagged(set); }}><strong>{set.title}</strong><span>{set.questions.length} questions</span></button>)}</div>{!flaggedQuestions.length && <p>ဤနေရာတွင် ပြန်လေ့လာနိုင်ရန် လေ့ကျင့်နေစဉ် သို့မဟုတ် ဖြေဆိုနေစဉ် မေးခွန်းကို မှတ်သားထားပါ။</p>}</section>
+    <div className="mock-exam-actions"><button type="button" className="primary-button" onClick={() => setActiveId(selected.id)}>{selected.title} · စတင်လေ့ကျင့်မည်</button><span>မေးခွန်း {selected.questions.length} ခု</span></div>
+    {isEditor && <details className="practice-import"><summary>{importing ? "Importing…" : "Import a replacement 26-set JSON bank"}</summary><p>PDF မေးခွန်းစုကို အသင့်အသုံးပြုနိုင်ပါသည်။ မေးခွန်းစုအသစ် တင်သွင်းပါက အကောင့်ဝင်ထားသူများအတွက် မူလမေးခွန်းစုကို အစားထိုးပါမည်။</p><input type="file" accept="application/json,.json" onChange={importBank} disabled={importing} /></details>}
     {error && <p role="alert">{error}</p>}
     {message && <p role="status">{message}</p>}
     <div className="mock-exam-set-grid" aria-label="Practice categories">{availableSets.map((item) => <button type="button" key={item.id} className={`mock-exam-set-card${selected.id === item.id ? " selected" : ""}`} aria-pressed={selected.id === item.id} onClick={() => setSelectedId(item.id)}>
@@ -96,6 +101,6 @@ export default function Practice({ isEditor = false, showReadings = false, showK
     <h3 className="mock-exam-selected-title">{selected.title}</h3>
     {selected.duplicateCount > 0 && <p className="reading-note">{selected.duplicateCount} repeated questions · {selected.duplicateCategories.join(", ")}</p>}
     {selected.reviewCount > 0 && <p className="reading-note">{selected.reviewCount} source items awaiting review.</p>}
-    <div className="mock-exam-overview"><div><strong>{selected.questions.length}</strong><span>practice questions</span></div><div><strong>{availableSets.length}</strong><span>categories</span></div><div><strong>At your pace</strong><span>Check answers individually</span></div></div>
+    <div className="mock-exam-overview"><div><strong>{selected.questions.length}</strong><span>လေ့ကျင့်ရန် မေးခွန်းများ</span></div><div><strong>{availableSets.length}</strong><span>လေ့ကျင့်ခန်း အစုံအရေအတွက်</span></div><div><strong>အချိန်မကန့်သတ်</strong><span>အဖြေတစ်ခုချင်း စစ်ဆေးနိုင်သည်</span></div></div>
   </article>;
 }

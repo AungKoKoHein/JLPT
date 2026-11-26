@@ -12,7 +12,7 @@ export function SkillScores({ scores, comparison = null }) {
     const { correct, total, percent, status } = skillSummary(scores[skill]);
     const previous = skillSummary(comparison?.[skill]);
     const change = percent !== null && previous.percent !== null ? percent - previous.percent : null;
-    return <div className="exam-skill" key={skill}><strong>{skill}</strong><span>{total ? `${percent}% · ${correct}/${total}` : 'No questions yet'}</span><progress max="100" value={percent ?? 0} aria-label={`${skill} accuracy`} /><span>{status}</span>{comparison && <small>{change === null ? 'No comparable score in the earlier exam' : change === 0 ? 'Unchanged from the earlier exam' : `${change > 0 ? '+' : ''}${change} percentage points from the earlier exam`}</small>}</div>;
+    return <div className="exam-skill" key={skill}><strong>{skill}</strong><span>{total ? `${percent}% · ${correct}/${total}` : 'မေးခွန်း မရှိသေးပါ'}</span><progress max="100" value={percent ?? 0} aria-label={`${skill} accuracy`} /><span>{status}</span>{comparison && <small>{change === null ? 'ယခင်စာမေးပွဲတွင် နှိုင်းယှဉ်နိုင်သော အမှတ် မရှိပါ' : change === 0 ? 'ယခင်စာမေးပွဲနှင့် အမှတ်တူပါသည်' : `${change > 0 ? '+' : ''}${change} percentage points from the earlier exam`}</small>}</div>;
   })}</div>;
 }
 export function OverallPerformance({ records }) {
@@ -23,7 +23,7 @@ function SavedExamReview({ record }) {
   const [index, setIndex] = useState(0);
   let review;
   try { review = JSON.parse(record.review || 'null'); } catch { review = null; }
-  if (!review?.questions?.length) return <p>Questions were not saved for this older exam. New completed exams include question review.</p>;
+  if (!review?.questions?.length) return <p>ဤစာမေးပွဲဟောင်းအတွက် မေးခွန်းများ သိမ်းဆည်းထားခြင်း မရှိပါ။ ယခုမှ ပြီးဆုံးသော စာမေးပွဲများတွင် မေးခွန်းများကို ပြန်ကြည့်နိုင်ပါသည်။</p>;
   const question = review.questions[index];
   const selected = review.answers?.[question.id];
   const display = text => practiceText(text || '', false, true);
@@ -57,13 +57,13 @@ export function ExamPerformance({ records, onDelete, deletingId = '', initialVie
     <div className="exam-performance-detail" aria-live="polite">
       <h4>{view === 'previous' ? 'Previous exam strengths and weaknesses' : 'Latest exam strengths and weaknesses'}</h4>
       {!result.count ? <p>No previous exams yet. Complete another exam to compare your performance.</p> : <>
-        <p>{view === 'overall' ? `Across all ${result.count} completed exams, weighted by the number of questions in each skill.` : `${result.record.examTitle} · ${completedDate(result.record)} · ${result.record.correct}/${result.record.total} correct`}</p>
+        <p>{view === 'overall' ? `ပြီးဆုံးခဲ့သော စာမေးပွဲ ${result.count} ခု၏ ရလဒ်ဖြစ်ပြီး ကျွမ်းကျင်မှုတစ်ခုစီရှိ မေးခွန်းအရေအတွက်အလိုက် တွက်ချက်ထားပါသည်။` : `${result.record.examTitle} · ${completedDate(result.record)} · ${result.record.correct}/${result.record.total} correct`}</p>
         {result.previous && <p>Changes compare this exam with {result.previous.examTitle} on {completedDate(result.previous)}.</p>}
         <SkillScores scores={result.scores} comparison={result.previous?.scores} />
         {reviewId === result.record.id && <SavedExamReview key={result.record.id} record={result.record} />}
       </>}
     </div>
-    <p>Strong: 80% or higher; developing: 60–79%; needs practice: below 60%. Unanswered questions count as incorrect. Practice accuracy is not an official JLPT scaled score.</p>
+    <p>၈၀% နှင့်အထက် — အားကောင်း၊ ၆၀–၇၉% — တိုးတက်ဆဲ၊ ၆၀% အောက် — ထပ်လေ့ကျင့်ရန် လိုအပ်။ မဖြေထားသော မေးခွန်းများကို အမှားအဖြစ် သတ်မှတ်ပါသည်။ ဤရလဒ်သည် တရားဝင် JLPT အမှတ် မဟုတ်ပါ။</p>
     <h4>All completed exams</h4>
     <div className="practice-user-table-wrap"><table className="practice-user-table"><thead><tr><th>Completed</th><th>Exam</th><th>Score</th>{skills.map(skill => <th key={skill}>{skill}</th>)}<th>Breakdown</th></tr></thead><tbody>{ordered.map(record => <tr key={record.id}><td>{completedDate(record)}</td><td>{record.examTitle}</td><td>{record.correct} / {record.total}</td>{skills.map(skill => {
       const summary = skillSummary(record.scores?.[skill]);
@@ -112,13 +112,13 @@ export default function MockExamHistory({ uid, overallOnly = false, dashboard = 
     setState({ uid, records: [], loading: true, error: '' });
     return subscribeExamRecords(uid, records => setState({ uid, records, loading: false, error: '' }), () => setState({ uid, records: [], loading: false, error: localExamRecords ? 'Could not load local exam records. Check that browser storage is available.' : 'Could not load exam history. Please check your connection and try again.' }));
   }, [uid]);
-  if (!uid) return <p>Sign in to save your exam records.</p>;
+  if (!uid) return <p>စာမေးပွဲမှတ်တမ်းများ သိမ်းဆည်းရန် အကောင့်ဝင်ပါ။</p>;
   if (state.uid !== uid || state.loading) return <p role="status">Loading your exam history…</p>;
   if (state.error) return <p role="alert">{state.error}</p>;
   if (overallOnly) return <OverallPerformance records={state.records} />;
   if (dashboard) return <>
     <div className="exam-history-topbar">
-      {localExamRecords && <p>Local test records are stored in this browser. Live account records are not changed.</p>}
+      {localExamRecords && <p>စမ်းသပ်မှတ်တမ်းများကို ဤဘရောက်ဇာတွင် သိမ်းဆည်းပါသည်။ အကောင့်ရှိ မူရင်းမှတ်တမ်းများကို မပြောင်းလဲပါ။</p>}
       <div className="exam-history-top-actions" role="group" aria-label="Exam records">
         <button type="button" className="secondary-button" aria-haspopup="dialog" onClick={() => setModalView('latest')}>Latest exam</button>
         <button type="button" className="secondary-button" aria-haspopup="dialog" onClick={() => setModalView('previous')}>Previous exams</button>

@@ -1,0 +1,36 @@
+.practice-lobby .practice-lobby-hero h2 { font-size:clamp(23px,2.6vw,34px); line-height:1.85; letter-spacing:0; }
+.practice-lobby .practice-lobby-hero p { line-height:2; max-width:760px; }
+.practice-lobby .mock-lobby-section-heading h3 { line-height:1.9; }
+.practice-lobby .mock-lobby-section-heading p { line-height:2; }
+.practice-lobby .mock-exam-overview>div:last-child strong { font-size:19px; line-height:1.9; letter-spacing:0; }
+.practice-lobby>.mock-exam-actions>span { font-size:14px; color:var(--muted); }
+.practice-lobby>.practice-import { order:7; border:1px dashed var(--line); border-radius:12px; padding:18px; color:var(--muted); }
+.practice-lobby>.practice-import summary { cursor:pointer; color:var(--ink); font-size:14px; }
+.practice-lobby>.practice-import p { font-size:14px; line-height:2; }
+.practice-lobby>section[aria-label="Flagged practice"] { order:6; background:var(--surface-muted); border:1px solid var(--line); border-radius:14px; padding:22px; }
+.practice-lobby>section[aria-label="Flagged practice"] h3 { font-size:20px; line-height:1.9; margin:0 0 8px; }
+.practice-lobby>section[aria-label="Flagged practice"] p { font-size:14px; line-height:2; color:var(--muted); }
+.practice-lobby .flagged-practice-card { min-height:100px; background:var(--surface); }
+.practice-lobby .flagged-practice-card:disabled { opacity:.5; cursor:not-allowed; }
+.practice-lobby>.reading-note { order:3; margin:0; padding:12px 16px; background:var(--accent-soft); border-radius:9px; color:var(--muted); }
+.practice-lobby>.mock-exam-set-grid { grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr)); }
+.practice-lobby .mock-exam-set-card { min-height:138px; }
+.practice-session .reading-practice-heading { padding:12px 4px 18px; border-bottom:1px solid var(--line); }
+.practice-session .reading-progress { border:1px solid var(--line); border-radius:10px; background:var(--surface-muted); padding:10px 15px; }
+.practice-session .practice-response-heading { padding-bottom:14px; border-bottom:1px solid var(--line); }
+.practice-session .reading-question-card { border-radius:14px; border-color:var(--line); }
+.practice-session .practice-response-tools { display:flex; gap:8px; flex-wrap:wrap; }
+.practice-session .practice-response-tools button { border-radius:8px; min-height:44px; }
+.practice-session .reading-question-actions { gap:10px; }
+.practice-session .reading-question-actions button { border-radius:9px; min-height:44px; }
+@media(max-width:760px) {
+  .practice-lobby .practice-lobby-hero { padding:20px 18px; }
+  .practice-lobby .practice-lobby-hero h2 { font-size:24px; }
+  .practice-lobby .mock-exam-overview { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+  .practice-lobby .mock-exam-overview>div:last-child { grid-column:1 / -1; }
+  .practice-lobby>section[aria-label="Flagged practice"] { padding:16px; }
+  .practice-lobby .mock-exam-set-card { min-height:0; }
+  .practice-lobby>.mock-exam-actions { align-items:stretch; }
+  .practice-lobby>.mock-exam-actions>span { width:100%; text-align:center; }
+  .practice-session .reading-practice-heading { align-items:flex-start; gap:12px; }
+}

@@ -138,7 +138,7 @@ function PassageReadingPractice({ collection, initialPassage = 0, showReadings =
             <h4 className="practice-question-prompt" lang="ja">{display(question.prompt)}</h4>
             {question.questionImage && <img className="practice-key-image" src={question.questionImage} alt="Source question and choices" />}
             <fieldset className="reading-answer-list" disabled={isChecked}>
-              <legend>Select one answer</legend>
+              <legend>အဖြေတစ်ခု ရွေးပါ</legend>
               {question.choices.map((choice, index) => <label key={choice} className={`${answers[questionId] === index ? "selected" : ""}${isChecked && index === question.answer ? " correct" : ""}${isChecked && answers[questionId] === index && !isCorrect ? " incorrect" : ""}`}>
                 <input type="radio" name={questionId} checked={answers[questionId] === index} onChange={() => { setAnswers(current => ({ ...current, [questionId]: index })); setChecked(current => ({ ...current, [questionId]: true })); }} />
                 <span className="reading-option-letter">{"ABCD"[index]}</span><span lang="ja">{display(choice)}</span>

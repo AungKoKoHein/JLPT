@@ -3,7 +3,7 @@ import useShuffledCards from "./useShuffledCards.js";
 import DeleteDialog from "./DeleteDialog.jsx";
 import { removeChapter, removeSubchapter } from "./deleteContainers.js";
 import { hasVisibleChapterContent } from "./chapterVisibility.js";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { chapterGroup, groupChapters, sortChapters, renameChapterGroup } from "./chapterGroups.js";
 import { routesForLevel, levelFromPath, studyTabFromPath } from "./studyRoutes.js";
@@ -16,6 +16,7 @@ import { useCloudContent } from "./useCloudContent.js";
 import CloudStatus from "./CloudStatus.jsx";
 import "./app.css";
 import "./design.css";
+import "./dashboard.css";
 import TextField from "./TextField.jsx";
 import SearchFeedback from "./SearchFeedback.jsx";
 import { kanjiExamples } from "./kanjiContent.js";
@@ -27,6 +28,7 @@ import Practice from "./Practice.jsx";
 const AwsApp = React.lazy(() => import("./AwsApp.jsx"));
 import StudyControlsHost from "./StudyControlsHost.jsx";
 import StudyAccess from "./StudyAccess.jsx";
+import SidebarToggle from "./SidebarToggle.jsx";
 import { StudyAccountControls } from "./StudyAccount.jsx";
 
 const chapterTitle = (
@@ -130,10 +132,10 @@ function GrammarDetails({ card, showReadings, showKanji, showMyanmar, showJapane
         className="grammar-more-toggle"
         aria-expanded={expanded}
         disabled={!hasMoreExamples}
-        title={hasMoreExamples ? undefined : "The current example is shown; no additional examples are available yet."}
+        title={hasMoreExamples ? undefined : "လက်ရှိ နမူနာကို ပြထားပါသည်။ အခြားနမူနာ မရှိသေးပါ။"}
         onClick={() => setExpanded((value) => !value)}
       >
-        {expanded ? "Show less" : "Show more"}
+        {expanded ? "လျှော့ပြမည်" : "ထပ်ကြည့်မည်"}
         {hasMoreExamples && <span aria-hidden="true"> · {examples.length - 1}</span>}
       </button>
     )}
@@ -416,7 +418,7 @@ function ContentEditor({ editor, setEditor, chapterOptions, groups, studyTabs, o
               {availableGroups.map((group) => <option key={group.id} value={group.label}>{group.label}</option>)}
             </select></label>}
             <label>Group Title<TextField fullWidth variant="outlined" size="small" value={editor.title} onChange={(event) => set("title", event.target.value)} required /></label>
-            <p className="editor-help">After saving, choose this group when adding or editing chapters. The chapter range updates automatically.</p>
+            <p className="editor-help">သိမ်းဆည်းပြီးပါက အခန်းထည့်သွင်းခြင်း သို့မဟုတ် ပြင်ဆင်ခြင်းတွင် ဤအုပ်စုကို ရွေးပါ။ အခန်းအပိုင်းအခြားကို အလိုအလျောက် ပြင်ဆင်ပေးပါသည်။</p>
           </>}
           {editor.type === "chapter" && (
             <>
@@ -424,7 +426,7 @@ function ContentEditor({ editor, setEditor, chapterOptions, groups, studyTabs, o
                 <option value="">Default group</option>
                 {availableGroups.map((group) => <option value={group.label} key={group.id}>{group.label}</option>)}
               </select></label>
-              <p className="editor-help">All groups are listed above. To create a group, choose Group Title in Type when adding a new item. Chapter ranges are counted automatically from the chapters in each group.</p>
+              <p className="editor-help">အုပ်စုအားလုံးကို အထက်တွင် ပြထားပါသည်။ အုပ်စုအသစ်ဖန်တီးရန် အကြောင်းအရာအသစ်ထည့်စဉ် Type တွင် Group Title ကို ရွေးပါ။ အခန်းအပိုင်းအခြားကို အုပ်စုရှိအခန်းများအလိုက် အလိုအလျောက် တွက်ချက်ပါသည်။</p>
               <label>Chapter Number<TextField fullWidth variant="outlined" size="small" value={editor.number} onChange={(event) => set("number", event.target.value)} placeholder="Optional" /></label>
               <label>Chapter Title<TextField fullWidth variant="outlined" size="small" value={editor.title} onChange={(event) => set("title", event.target.value)} placeholder="新しい章" required /></label>
               <label>Myanmar Translation<TextField fullWidth variant="outlined" size="small" lang="my" value={editor.titleMyanmar} onChange={(event) => set("titleMyanmar", event.target.value)} placeholder="အခန်း၏ မြန်မာဘာသာပြန်" /></label>
@@ -478,13 +480,13 @@ function ContentEditor({ editor, setEditor, chapterOptions, groups, studyTabs, o
           )}
           {editor.type === "exercise" && (
             <>
-              <p className="editor-help">Exercises always remain in the main chapter list. Assign a sub chapter to show the same exercise there too. Edits update both places. Clear the assignment to remove it from the sub chapter.</p>
+              <p className="editor-help">လေ့ကျင့်ခန်းများသည် မူလအခန်းတွင် အမြဲရှိပါသည်။ အခန်းခွဲတွင်လည်း ပြလိုပါက အခန်းခွဲတစ်ခု သတ်မှတ်ပါ။ ပြင်ဆင်မှုများကို နှစ်နေရာလုံးတွင် ပြောင်းလဲပေးပါသည်။ အခန်းခွဲမှ ဖယ်ရှားရန် သတ်မှတ်ချက်ကို ရှင်းပါ။</p>
               <label>Exercise Group<TextField fullWidth variant="outlined" size="small" value={editor.section} onChange={(event) => set("section", event.target.value)} placeholder="1-3" required /></label>
               <label>Sentence / Question<TextField fullWidth variant="outlined" size="small" multiline value={editor.question} onChange={(event) => set("question", event.target.value)} required /></label>
               <label>Myanmar Sentence / Question<TextField fullWidth variant="outlined" size="small" multiline lang="my" value={editor.questionMyanmar} onChange={(event) => set("questionMyanmar", event.target.value)} /></label>
               <label>Answer Key<TextField fullWidth variant="outlined" size="small" multiline value={editor.answer} onChange={(event) => set("answer", event.target.value)} required /></label>
               <label>Myanmar Answer / Explanation<TextField fullWidth variant="outlined" size="small" multiline lang="my" value={editor.answerMyanmar} onChange={(event) => set("answerMyanmar", event.target.value)} /></label>
-              <p className="editor-help">Myanmar fields are optional. Use |text| in a Japanese question to underline it.</p>
+              <p className="editor-help">မြန်မာစာအကွက်များကို မဖြည့်လည်း ရပါသည်။ ဂျပန်စာမေးခွန်းတွင် မျဉ်းတားလိုသော စာသားကို |text| ပုံစံဖြင့် ရေးပါ။</p>
             </>
           )}
         </fieldset>
@@ -606,6 +608,36 @@ function App({ level }) {
   const controlsRef = useRef(null);
   const exercisePageRef = useRef(null);
   const chapterContentRef = useRef(null);
+  const chapterLayoutRef = useRef(null);
+  const kanjiLayoutRef = useRef(null);
+  useLayoutEffect(() => {
+    const layout = studyTab === "Kanji" ? kanjiLayoutRef.current : chapterLayoutRef.current;
+    if (!layout) return undefined;
+    let frame = 0;
+    const fitSidebar = () => {
+      frame = 0;
+      const viewportHeight = window.visualViewport?.height || window.innerHeight;
+      const top = Math.max(16, layout.getBoundingClientRect().top);
+      layout.style.setProperty("--chapter-sidebar-height", `${Math.max(80, viewportHeight - top - 16)}px`);
+    };
+    const scheduleFit = () => {
+      if (!frame) frame = window.requestAnimationFrame(fitSidebar);
+    };
+    const observer = new ResizeObserver(scheduleFit);
+    observer.observe(layout);
+    if (layout.parentElement) observer.observe(layout.parentElement);
+    window.addEventListener("scroll", scheduleFit, { passive: true });
+    window.addEventListener("resize", scheduleFit);
+    window.visualViewport?.addEventListener("resize", scheduleFit);
+    fitSidebar();
+    return () => {
+      observer.disconnect();
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", scheduleFit);
+      window.removeEventListener("resize", scheduleFit);
+      window.visualViewport?.removeEventListener("resize", scheduleFit);
+    };
+  }, [studyTab, showSidebar, level]);
   const focusChapterContent = () => {
     window.requestAnimationFrame(() => {
       if (window.innerWidth <= 800) {
@@ -968,6 +1000,7 @@ function App({ level }) {
 
   return (
     <main
+      className="study-dashboard"
       data-show-myanmar={showMyanmar}
       data-show-japanese={showJapanese}
       data-show-sidebar={showSidebar}
@@ -1068,15 +1101,13 @@ function App({ level }) {
             <SearchFeedback query={tab === "exercises" ? "" : vocabQuery} count={vocabResults.length} />
           </label>
         </section>
-        <div className="layout">
+        <div className="layout" ref={chapterLayoutRef}>
           <aside>
             <div className="sidebar-heading">
               <p className="count">Total {filteredChapters.length} chapters</p>
-              <button type="button" className="sidebar-toggle" onClick={() => setShowSidebar(!showSidebar)} aria-label={showSidebar ? "Hide chapter sidebar" : "Show chapter sidebar"}>
-                <span className={`sidebar-toggle-icon ${showSidebar ? "collapse" : "expand"}`} aria-hidden="true" />
-              </button>
+              <SidebarToggle expanded={showSidebar} onToggle={() => setShowSidebar(value => !value)} controls="study-chapter-list" />
             </div>
-            <div className="chapter-group">
+            <div className="chapter-group" id="study-chapter-list">
               {chapterGroups.length ? (
                 chapterGroups.map((group) => (
                   <div className="chapter-group-block" key={group.id}>
@@ -1104,7 +1135,7 @@ function App({ level }) {
                 ))
               ) : (
                 <div className="empty search-empty">
-                  <p>No searched record found.</p>
+                  <p>ရှာဖွေမှုနှင့် ကိုက်ညီသော မှတ်တမ်း မတွေ့ပါ။</p>
                 </div>
               )}
             </div>
@@ -1232,7 +1263,7 @@ function App({ level }) {
                       )
                     ) : (
                       <div className="empty search-empty">
-                        <p>No searched record found.</p>
+                        <p>ရှာဖွေမှုနှင့် ကိုက်ညီသော မှတ်တမ်း မတွေ့ပါ။</p>
                       </div>
                     )
                   ) : (
@@ -1311,7 +1342,7 @@ function App({ level }) {
               </>
             ) : (
               <div className="empty search-empty">
-                <p>{!userChapters.length ? `No ${studyLabel} chapters yet.` : "No searched record found."}</p>
+                <p>{!userChapters.length ? `No ${studyLabel} chapters yet.` : "ရှာဖွေမှုနှင့် ကိုက်ညီသော မှတ်တမ်း မတွေ့ပါ။"}</p>
               </div>
             )}
           </article>
@@ -1328,6 +1359,9 @@ function App({ level }) {
         >
           {label === "Kanji" ? (
             <Kanji
+              layoutRef={kanjiLayoutRef}
+              showSidebar={showSidebar}
+              onToggleSidebar={() => setShowSidebar(value => !value)}
               isActive={studyTab === "Kanji"}
               mode={kanjiMode}
               allExercises={allExercises}

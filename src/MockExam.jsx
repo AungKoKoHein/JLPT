@@ -16,12 +16,13 @@ import { scoreExam } from "./mockExamRecords.js";
 import useN3FlaggedQuestions from "./useN3FlaggedQuestions.jsx";
 import { flaggedCollections } from "./n3FlaggedQuestions.js";
 import './n3QuestionLayout.css';
+import './mockExamDesign.css';
 
 const sections = ["Vocabulary", "Grammar", "Reading"];
 const formatTime = (seconds) => `${String(Math.floor(seconds / 60)).padStart(2, "0")}:${String(seconds % 60).padStart(2, "0")}`;
-const extraExam = { id: "extra-mini", title: "Extra 24-question mini mock", questions: mockQuestions, sourceNote: "The existing 24-question N3 practice test." };
+const extraExam = { id: "extra-mini", title: "Extra 24-question mini mock", questions: mockQuestions, sourceNote: "မေးခွန်း ၂၄ ခု ပါဝင်သော N3 အစမ်းစာမေးပွဲ။" };
 const archiveQuestionPool = archivePracticeSets.flatMap((set) => set.questions);
-const examChoices = [extraExam, createDecemberExam(), ...focusedExamSkills.map(skill => createFocusedExam(skill)), ...archivePracticeSets, { id: "random-60", title: "Random mixed mock · 60 questions", questions: shuffledQuestions(archiveQuestionPool), sourceNote: "A shuffled selection from the four N3 practice sets." }];
+const examChoices = [extraExam, createDecemberExam(), ...focusedExamSkills.map(skill => createFocusedExam(skill)), ...archivePracticeSets, { id: "random-60", title: "Random mixed mock · 60 questions", questions: shuffledQuestions(archiveQuestionPool), sourceNote: "N3 လေ့ကျင့်ခန်း လေးစုံမှ ကျပန်း ရွေးချယ်ထားသော မေးခွန်းများ။" }];
 
 export default function MockExam() {
   const account = useContext(StudyAccountContext);
@@ -133,18 +134,21 @@ export default function MockExam() {
   const finishExam = () => setConfirmation({ title: "Finish this exam?", message: `${answeredCount} of ${examQuestions.length} answered${answeredCount < examQuestions.length ? ` · ${examQuestions.length - answeredCount} unanswered` : ""}.`, confirmLabel: "Finish and view results", action: completeExam });
 
   if (mode === "intro") return (
-    <article className="mock-exam-panel">
+    <article className="mock-exam-panel mock-exam-lobby">
       {recordError && <div role="alert"><p>{recordStatus}</p><button type="button" className="secondary-button" onClick={saveRecord}>Retry saving record</button></div>}
-      <MockExamHistory uid={account?.uid} dashboard />
-      <div className="mock-exam-eyebrow">JLPT N3 · Practice mock</div>
-      <h2>Mock Exam</h2>
-      <section aria-label="Flagged exams"><h3>Review flagged questions</h3><p>Take an exam using only questions marked “Flag for review.” Saved in this browser.</p><div className="mock-exam-set-grid">{flaggedCollections(flaggedQuestions).map(exam => <button type="button" className="mock-exam-set-card flagged-exam-card" key={exam.id} disabled={!exam.questions.length} onClick={() => startExam(exam)}><strong>{exam.title}</strong><span>{exam.questions.length} questions · {exam.durationMinutes} min</span></button>)}</div>{!flaggedQuestions.length && <p>Flag a question during practice or an exam to review it here.</p>}</section>
+      <header className="mock-lobby-hero">
+        <div><div className="mock-exam-eyebrow">JLPT N3 · EXAM PRACTICE</div><h2>နောက်တစ်ကြိမ် ပိုကောင်းအောင် ဖြေဆိုကြမယ်။</h2><p>စာမေးပွဲတစ်ခု ရွေးပြီး လေ့ကျင့်ရင်း ထပ်လေ့လာဖို့ လိုအပ်တဲ့အပိုင်းတွေကို ရှာဖွေပါ။</p></div>
+        <span className="mock-lobby-symbol" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="10" y="9" width="28" height="33" rx="5" /><rect x="18" y="5" width="12" height="8" rx="3" /><path d="m17 23 3 3 5-6m-8 14h14m-3-11h3" /></svg></span>
+      </header>
+      <div className="mock-lobby-history"><MockExamHistory uid={account?.uid} dashboard /></div>
+      <div className="mock-lobby-section-heading"><h3>လေ့ကျင့်မည့် စာမေးပွဲကို ရွေးပါ</h3><p>အချိန်တို လေ့ကျင့်မှု၊ ကျွမ်းကျင်မှုတစ်ခုချင်း သို့မဟုတ် စာမေးပွဲအပြည့်ကို ရွေးနိုင်ပါသည်။</p></div>
+      <section aria-label="Flagged exams"><h3>မှတ်သားထားသော မေးခွန်းများကို ပြန်လေ့လာရန်</h3><p>ပြန်လေ့လာရန် မှတ်သားထားသော မေးခွန်းများဖြင့်သာ ဖြေဆိုပါ။ မှတ်သားမှုများကို ဤဘရောက်ဇာတွင် သိမ်းထားပါသည်။</p><div className="mock-exam-set-grid">{flaggedCollections(flaggedQuestions).map(exam => <button type="button" className="mock-exam-set-card flagged-exam-card" key={exam.id} disabled={!exam.questions.length} onClick={() => startExam(exam)}><strong>{exam.title}</strong><span>{exam.questions.length} questions · {exam.durationMinutes} min</span></button>)}</div>{!flaggedQuestions.length && <p>ဤနေရာတွင် ပြန်လေ့လာနိုင်ရန် လေ့ကျင့်နေစဉ် သို့မဟုတ် ဖြေဆိုနေစဉ် မေးခွန်းကို မှတ်သားထားပါ။</p>}</section>
       <div className="mock-exam-actions">
         <button type="button" className="primary-button" onClick={() => startExam()}>Start {activeExam.title}</button>
       </div>
       <div className="mock-exam-set-grid">{examChoices.map((exam) => <button type="button" key={exam.id} className={`mock-exam-set-card${activeExam.id === exam.id ? " selected" : ""}`} aria-pressed={activeExam.id === exam.id} onClick={() => setActiveExam(exam)}><strong>{exam.title}</strong><span>{exam.questions.length} questions · {exam.skill || 'Vocabulary, Grammar, Reading'}</span>{exam.id !== "extra-mini" && <small>{exam.sourceNote}</small>}</button>)}<button type="button" className="secondary-button mock-choose-another" onClick={() => { const others = examChoices.filter(exam => exam.id !== activeExam.id); setActiveExam(others[Math.floor(Math.random() * others.length)]); }}>Choose another test</button></div>
       <h3 className="mock-exam-selected-title">{activeExam.title}</h3>
-      {activeExam.structure && <section className="exam-history" aria-label="Exam structure"><h3>Fixed structure, fresh questions</h3><p>{activeExam.skill ? `${activeExam.questions.length} ${activeExam.skill.toLowerCase()} questions. A fresh selection is drawn each time you start or retry.` : '74 questions ? Vocabulary 47% (including Kanji), Grammar 31%, Reading 22%. Written practice only; listening is not included.'}</p><div className="exam-skill-grid">{examSections.map(section => <div className="exam-skill" key={section}><strong>{activeExam.skill || section}</strong>{activeExam.structure.filter(group => group.section === section).map(group => <span key={group.type}>{group.type}: {group.count}</span>)}</div>)}</div><p>Questions are randomly selected within each type. Shared passages and their questions stay together.</p></section>}
+      {activeExam.structure && <section className="exam-history" aria-label="Exam structure"><h3>ပုံစံတူ၊ မေးခွန်းအသစ်များ</h3><p>{activeExam.skill ? `${activeExam.questions.length} ခု ပါဝင်သော ${activeExam.skill} မေးခွန်းများ။ စတင်ချိန်နှင့် ပြန်ဖြေချိန်တိုင်း မေးခွန်းအသစ်များကို ရွေးချယ်ပေးပါသည်။` : 'မေးခွန်း ၇၄ ခု — ဝေါဟာရ (ခန်းဂျီးအပါအဝင်) ၄၇%၊ သဒ္ဒါ ၃၁%၊ စာဖတ် ၂၂%။ အရေးဖြေ လေ့ကျင့်မှုသာဖြစ်ပြီး နားထောင်ခြင်း မပါဝင်ပါ။'}</p><div className="exam-skill-grid">{examSections.map(section => <div className="exam-skill" key={section}><strong>{activeExam.skill || section}</strong>{activeExam.structure.filter(group => group.section === section).map(group => <span key={group.type}>{group.type}: {group.count}</span>)}</div>)}</div><p>အမျိုးအစားတစ်ခုစီမှ မေးခွန်းများကို ကျပန်းရွေးချယ်ပါသည်။ စာပိုဒ်နှင့် သက်ဆိုင်ရာ မေးခွန်းများကို အတူတကွ ထားရှိပါသည်။</p></section>}
 
       <div className="mock-exam-overview">
         <div><strong>{activeExam.questions.length}</strong><span>N3 practice questions</span></div>
@@ -228,9 +232,9 @@ export default function MockExam() {
           <h3 lang="ja"><QuestionPrompt question={question} showReadings={showReadings} showKanji={showKanji} /></h3>
           {question.target && !question.prompt.includes(question.target) && <p className="mock-target" lang="ja">{display(question.target)}</p>}
           {!starLayout(question.prompt) && <ol className="n3-source-options" type="A" lang="ja">{question.choices.map((choice, index) => <li key={index}>{display(choice)}</li>)}</ol>}
-          </div><div className="practice-response-panel"><div className="practice-response-heading"><strong>Choose your answer</strong><span>Exam mode</span></div>
+          </div><div className="practice-response-panel"><div className="practice-response-heading"><strong>အဖြေကို ရွေးပါ</strong><span>Exam mode</span></div>
           {starLayout(question.prompt) ? <StarAnswer key={question.id} question={question} value={arrangements[question.id]} display={display} onChange={(order, answer) => { setArrangements(current => ({ ...current, [question.id]: order })); setAnswers(current => ({ ...current, [question.id]: answer })); }} /> : <fieldset className={`mock-answer-list${question.choices.every(choice => choice.length <= 45) ? " mock-short-answers" : ""}`}>
-            <legend>Select one answer</legend>
+            <legend>အဖြေတစ်ခု ရွေးပါ</legend>
             {question.choices.map((choice, index) => <label key={index} className={`mock-answer-option${answers[question.id] === index ? " selected" : ""}`}>
               <input type="radio" name={`question-${question.id}`} checked={answers[question.id] === index} onChange={() => setAnswers((current) => ({ ...current, [question.id]: index }))} />
               <span className="mock-option-letter">{"ABCD"[index]}</span><span className="n3-answer-accessible" lang="ja">{display(choice)}</span>

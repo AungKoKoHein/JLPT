@@ -5,6 +5,7 @@ import useShuffledCards from "./useShuffledCards.js";
 import { sortChapters, groupChapters } from "./chapterGroups.js";
 import React, { useEffect, useState } from "react";
 import Exercises from "./Exercises.jsx";
+import SidebarToggle from "./SidebarToggle.jsx";
 import SearchFeedback from "./SearchFeedback.jsx";
 import SubchapterNav, { subchapterTargetId } from "./SubchapterNav.jsx";
 import { exercisesForView } from "./exerciseContent.js";
@@ -110,6 +111,9 @@ function KanjiFlashcard({ card, showReadings, showKanji, showKanjiReadings, show
 }
 
 export default function Kanji({
+  layoutRef,
+  showSidebar = true,
+  onToggleSidebar,
   isActive,
   mode = "book",
   allExercises,
@@ -241,10 +245,13 @@ export default function Kanji({
           <SearchFeedback query={query} count={cards.length} />
         </label>
       </section>
-      <div className="layout">
+      <div className="layout" ref={layoutRef}>
         <aside>
-          <p className="count">Total {filteredChapters.length} chapters</p>
-          <div className="chapter-group">{groupChapters(allChapters.map((chapter) => ({ ...chapter, studyTab: "Kanji" })), (content.groups || []).filter((group) => group.studyTab === "Kanji")).map((group) => <div className="chapter-group-block" key={group.id}>
+          <div className="sidebar-heading">
+            <p className="count">Total {filteredChapters.length} chapters</p>
+            <SidebarToggle expanded={showSidebar} onToggle={onToggleSidebar} controls="kanji-chapter-list" />
+          </div>
+          <div className="chapter-group" id="kanji-chapter-list">{groupChapters(allChapters.map((chapter) => ({ ...chapter, studyTab: "Kanji" })), (content.groups || []).filter((group) => group.studyTab === "Kanji")).map((group) => <div className="chapter-group-block" key={group.id}>
           <p className="chapter-group-label"><span className="chapter-group-title">{displayText(group.label, showReadings, showKanji)}</span><span className="chapter-group-range">{group.range}</span></p>
           <div className="chapter-group-cards">
           {group.chapters.filter((chapter) => filteredChapters.some((item) => item.id === chapter.id)).map((chapter) => (

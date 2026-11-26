@@ -1,6 +1,7 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { StudyAccountContext } from "./StudyAccount.jsx";
 import ThemeToggle from "./ThemeToggle.jsx";
+import "./studyLogin.css";
 import ViewerAccountDialog from "./ViewerAccountDialog.jsx";
 import {
   createUserWithEmailAndPassword,
@@ -145,9 +146,29 @@ export default function StudyAccess({ children }) {
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const loginScreenRef = useRef(null);
+  const loginShellRef = useRef(null);
   const [sessionStatus, setSessionStatus] = useState("checking");
   const allowed = Boolean(claims?.profile?.active || claims?.editor || claims?.admin);
   const canManageUsers = Boolean(claims?.editor || claims?.admin);
+
+  useLayoutEffect(() => {
+    const screen = loginScreenRef.current;
+    const shell = loginShellRef.current;
+    if (!screen || !shell) return undefined;
+    const fitLogin = () => {
+      const padding = parseFloat(getComputedStyle(screen).paddingTop) || 0;
+      const availableHeight = Math.max(1, screen.clientHeight - padding * 2);
+      const scale = Math.min(1, availableHeight / shell.offsetHeight);
+      shell.style.setProperty("--login-fit", String(scale));
+    };
+    const observer = new ResizeObserver(fitLogin);
+    observer.observe(screen);
+    observer.observe(shell);
+    fitLogin();
+    return () => observer.disconnect();
+  }, [checking, user, allowed, sessionStatus]);
 
   useEffect(() => onAuthStateChanged(auth, (nextUser) => {
     setUser(nextUser);
@@ -255,23 +276,41 @@ export default function StudyAccess({ children }) {
 
   if (checking || (user && allowed && sessionStatus === "checking")) return <main className="study-access-screen"><section className="study-access-card" role="status" aria-live="polite"><p className="eyebrow">JLPT Study</p><h1>Restoring your session…</h1><p className="study-access-lead">Your study page will be ready shortly.</p></section></main>;
   if (!user || !allowed || sessionStatus !== "ready") return (
-    <main className="study-access-screen">
-      <section className="study-access-card">
-        <div className="study-access-theme"><ThemeToggle /></div>
-        <div className="study-login-heading">
-        <p className="eyebrow">JLPT Study</p>
-        <h1>{user ? (sessionStatus === "error" ? "Device access unavailable" : checking ? "Checking account…" : "This account does not have access") : "Sign in to study"}</h1>
+    <main className="study-access-screen study-login-screen" ref={loginScreenRef}>
+      <section className="study-login-shell" ref={loginShellRef} aria-label="JLPT Study sign in">
+        <aside className="study-login-story" lang="my">
+          <a className="login-brand" href="/" aria-label="JLPT Study home"><span className="login-brand-mark" lang="ja">&#23398;</span><span>JLPT<span className="login-brand-light"> Study</span></span></a>
+          <div className="login-story-copy"><p className="login-overline">နေ့စဉ် နည်းနည်းစီ လေ့ကျင့်ရင်း</p><h2>ဂျပန်စာခရီးကို<br />ဒီကနေ စလိုက်ပါ<span>။</span></h2><p>တစ်နေ့ နည်းနည်းစီ သင်ယူရင်း<br />ဂျပန်စာကို ယုံကြည်မှုရှိရှိ အသုံးချနိုင်ဖို့။</p></div>
+          <div className="login-illustration" aria-hidden="true">
+            <div className="login-sun" /><div className="login-orbit" />
+            <div className="login-word-card login-word-back"><span>နေ့တိုင်း အတူလေ့လာမယ်</span><div className="login-card-lines"><i /><i /><i /></div></div>
+            <div className="login-word-card login-word-front"><div className="login-card-top"><span>ဒီနေ့အတွက် စကားလုံး</span><span>01 / 12</span></div><strong lang="ja">&#23398;&#12406;</strong><span className="login-reading" lang="ja">&#12414;&#12394;&#12406;</span><div className="login-word-rule" /><b>သင်ယူသည်</b><p>စကားလုံးအသစ်၊ အစပြုခြင်းအသစ်။</p><div className="login-card-progress"><i /><i /><i /><i /></div></div>
+            <div className="login-mini-card"><span className="login-check">&#10003;</span><span>တစ်လှမ်းချင်း သင်ယူရင်း<strong>နေ့တိုင်း ပိုတိုးတက်လာမယ်။</strong></span></div>
+            <span className="login-spark login-spark-one">&#10022;</span><span className="login-spark login-spark-two">&#10023;</span>
+          </div>
+          <div className="login-story-footer"><span>ဝေါဟာရ</span><i /> <span>သဒ္ဒါ</span><i /><span>လေ့ကျင့်ခန်း</span></div>
+        </aside>
+        <div className="study-access-card study-login-panel" lang="my">
+          <div className="study-access-theme"><ThemeToggle /></div>
+          <div className="study-login-heading">
+            <p className="eyebrow">သင့်ရဲ့ ဂျပန်စာလေ့လာရေးခရီး</p>
+            <h1>{user ? (sessionStatus === "error" ? "ဤစက်မှ ဝင်ရောက်၍မရပါ" : "ဝင်ရောက်ခွင့် လိုအပ်ပါသည်") : "ပြန်လည်ကြိုဆိုပါတယ်။"}</h1>
+            <p className="login-form-intro">{user ? "အကောင့်မှ ထွက်ပြီး လေ့လာခွင့်ရှိသော အကောင့်ဖြင့် ပြန်ဝင်ပါ။" : "လေ့လာခဲ့တဲ့နေရာကနေ ပြန်စလိုက်ရအောင်။"}</p>
+          </div>
+          {user ? <button type="button" className="primary-button" onClick={logout} disabled={busy}>အကောင့်မှ ထွက်မည်</button> : <>
+            <form className="study-access-form" onSubmit={submitLogin}>
+              <label htmlFor="study-username">အသုံးပြုသူအမည်<input id="study-username" type="text" autoComplete="username" placeholder="အသုံးပြုသူအမည် ထည့်ပါ" required value={username} onChange={(event) => setUsername(event.target.value)} /></label>
+              <label htmlFor="study-password">စကားဝှက်<span className="login-password-wrap"><input id="study-password" type={showPassword ? "text" : "password"} autoComplete="current-password" placeholder="စကားဝှက် ထည့်ပါ" required value={password} onChange={(event) => setPassword(event.target.value)} /><button type="button" className="login-password-toggle" aria-label={showPassword ? "စကားဝှက် ဖျောက်မည်" : "စကားဝှက် ပြမည်"} aria-pressed={showPassword} onClick={() => setShowPassword(!showPassword)}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" /><circle cx="12" cy="12" r="3" />{showPassword && <path d="m3 3 18 18" />}</svg></button></span></label>
+              <p className="login-access-hint">စီမံခန့်ခွဲသူ ပေးထားသော အကောင့်ဖြင့် ဝင်ရောက်ပါ။</p>
+              <button type="submit" className="primary-button" disabled={busy}>{busy ? "ဝင်ရောက်နေပါသည်…" : "ဝင်ရောက်လေ့လာမည်"}</button>
+            </form>
+            <div className="study-access-divider"><span>အကြောင်းအရာ တည်းဖြတ်သူများအတွက်</span></div>
+            <button type="button" className="secondary-button login-google" onClick={signInEditor} disabled={busy}><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.6 12.2c0-.7-.1-1.4-.2-2.1H12v4h5.4a4.6 4.6 0 0 1-2 3v2.6h3.3c2-1.8 2.9-4.4 2.9-7.5Z"/><path fill="#34A853" d="M12 22c2.7 0 5-.9 6.7-2.4l-3.3-2.6c-.9.6-2 .9-3.4.9-2.6 0-4.8-1.7-5.6-4H3v2.7A10 10 0 0 0 12 22Z"/><path fill="#FBBC05" d="M6.4 13.9a6 6 0 0 1 0-3.8V7.4H3a10 10 0 0 0 0 9.2l3.4-2.7Z"/><path fill="#EA4335" d="M12 6.1c1.5 0 2.8.5 3.8 1.5l2.8-2.8A9.6 9.6 0 0 0 12 2a10 10 0 0 0-9 5.4l3.4 2.7C7.2 7.8 9.4 6.1 12 6.1Z"/></svg>Google ဖြင့် ဝင်ရောက်မည်</button>
+            <p className="login-account-note">အကောင့် သို့မဟုတ် ဝင်ရောက်ရန် အကူအညီလိုပါသလား။<br /><strong>စီမံခန့်ခွဲသူထံ ဆက်သွယ်ပါ။</strong></p>
+          </>}
+          {error && <p className="practice-access-error" role="alert">{error}</p>}
+          <p className="login-panel-footer">ကိုယ့်အချိန်နဲ့ကိုယ်၊ ကိုယ့်ဟန်နဲ့ကိုယ် လေ့လာပါ။</p>
         </div>
-        {user ? <button type="button" className="primary-button" onClick={logout} disabled={busy}>Sign out</button> : <>
-          <form className="study-access-form" onSubmit={submitLogin}>
-            <label>Username<input type="text" autoComplete="username" required value={username} onChange={(event) => setUsername(event.target.value)} /></label>
-            <label>Password<input type="password" autoComplete="current-password" required value={password} onChange={(event) => setPassword(event.target.value)} /></label>
-            <button type="submit" className="primary-button" disabled={busy}>{busy ? "Signing in…" : "Sign in"}</button>
-          </form>
-          <div className="study-access-divider"><span>Owner editing</span></div>
-          <button type="button" className="secondary-button" onClick={signInEditor} disabled={busy}>Sign in with Google to edit</button>
-        </>}
-        {error && <p className="practice-access-error" role="alert">{error}</p>}
       </section>
     </main>
   );
