@@ -13,7 +13,7 @@ const server = await createServer({ configFile: false, logLevel: 'error', plugin
       res.end(await server.transformIndexHtml('/__n2-kanji-check', `<html><head><meta name="viewport" content="width=device-width,initial-scale=1"></head><body><div id="root"></div><script type="module">
 import React from 'react';import{createRoot}from'react-dom/client';import Kanji,{getKanjiChapterOptions}from'/src/Kanji.jsx';import{normalizeContent}from'/src/cloudContent.js';import{resolveExercises}from'/src/exerciseContent.js';import catalog from'/migrations/n2-soumatome-catalog.json';import{n2KanjiLessonExercises}from'/src/n2KanjiLessons.js';import'/src/app.css';import'/src/design.css';import'/src/dashboard.css';document.documentElement.dataset.theme='light';
 const content=normalizeContent(catalog);const sections=getKanjiChapterOptions(content.baselineKanjiChapters).flatMap(c=>c.subchapters);const exercises=resolveExercises([...n2KanjiLessonExercises(content.baselineKanjiChapters),...content.baselineExercises],content,sections);
-function Check(){const[mode,setMode]=React.useState('book');const[showReadings,setReadings]=React.useState(true);const h=React.createElement;return h('main',{className:'study-dashboard','data-show-sidebar':true},h('h1',null,'N2 Kanji'),h('button',{onClick:()=>setMode('flashcards')},'Flashcards'),h('button',{onClick:()=>setMode('book')},'Book view'),h('button',{onClick:()=>setReadings(x=>!x)},'Toggle readings'),h('section',{hidden:true},sections.map(section=>h('h3',{key:section.id,id:'subchapter-title-'+section.id,tabIndex:-1},'Hidden inactive panel heading'))),h(Kanji,{isActive:true,mode,allExercises:exercises,showReadings,showKanji:true,showKanjiReadings:true,showMyanmar:true,manageMode:false,canEdit:false,isEditor:false,content}));}
+function Check(){const[sidebar,setSidebar]=React.useState(true);const[mode,setMode]=React.useState('book');const[showReadings,setReadings]=React.useState(true);const h=React.createElement;return h('main',{className:'study-dashboard','data-show-sidebar':sidebar},h('h1',null,'N2 Kanji'),h('button',{onClick:()=>setMode('flashcards')},'Flashcards'),h('button',{onClick:()=>setMode('book')},'Book view'),h('button',{onClick:()=>setReadings(x=>!x)},'Toggle readings'),h('section',{hidden:true},sections.map(section=>h('h3',{key:section.id,id:'subchapter-title-'+section.id,tabIndex:-1},'Hidden inactive panel heading'))),h(Kanji,{isActive:true,showSidebar:sidebar,onToggleSidebar:()=>setSidebar(x=>!x),mode,allExercises:exercises,showReadings,showKanji:true,showKanjiReadings:true,showMyanmar:true,manageMode:false,canEdit:false,isEditor:false,content}));}
 createRoot(document.getElementById('root')).render(React.createElement(Check));</script></body></html>`));
     });
   },
@@ -103,6 +103,19 @@ try {
     await until(`document.querySelectorAll('.n2-lesson-examples li').length===14`);
     const { data } = await cdp('Page.captureScreenshot', { format: 'png' });
     fs.writeFileSync(path.resolve(`.tmp-python/n2-kanji-${width}.png`),Buffer.from(data,'base64'));
+    await evaluate(`document.querySelector('.sidebar-toggle').click()`);
+    await until(`document.querySelector('main').dataset.showSidebar==='false'`);
+    assert.equal(await evaluate(`[...document.querySelectorAll('.chapter-compact-number')].filter(item=>item.getClientRects().length).length`),8,'Collapsed sidebar shows numbered chapters');
+    assert.equal(await evaluate(`[...document.querySelectorAll('.chapter-full-label')].filter(item=>item.getClientRects().length).length`),0,'Full labels stay hidden in compact mode');
+    await evaluate(`document.querySelector('.chapter-group-cards button').click()`);
+    await until(`document.querySelectorAll('.kanji-study-card').length===86`);
+    assert.equal(await evaluate(`document.querySelector('.chapter-group-cards button').getAttribute('aria-current')`),'true','Numbered rail selects the requested chapter');
+    assert.ok(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),`Collapsed rail fits at ${width}px`);
+    await evaluate(`document.querySelector('aside').scrollIntoView({block:'start'})`);
+    const railScreenshot = await cdp('Page.captureScreenshot', { format:'png' });
+    fs.writeFileSync(path.resolve(`.tmp-python/n2-chapter-rail-${width}.png`),Buffer.from(railScreenshot.data,'base64'));
+    await evaluate(`document.querySelectorAll('.chapter-group-cards button')[7].click();document.querySelector('.sidebar-toggle').click()`);
+    await until(`document.querySelectorAll('.kanji-study-card').length===88`);
   }
   console.log('PASS: Numbered links 1-7 target visible headings, textbook dropdown hidden, native book/flashcards, Myanmar, readings, exercises, and responsive layouts.');
 } finally { socket?.close(); chrome.kill(); await server.close(); }

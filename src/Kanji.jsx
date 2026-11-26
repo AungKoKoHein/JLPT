@@ -264,6 +264,9 @@ export default function Kanji({
               key={chapter.id}
               type="button"
               className={selected?.id === chapter.id ? "active" : ""}
+              title={displayText(chapter.title, showReadings, showKanji)}
+              aria-label={`Chapter ${chapter.number}: ${displayText(chapter.title, showReadings, showKanji)}`}
+              aria-current={selected?.id === chapter.id ? "true" : undefined}
               onClick={() => {
                 setActive(chapter.id);
                 setExerciseScope("");
@@ -271,7 +274,8 @@ export default function Kanji({
                 onChapterChange?.();
               }}
             >
-              <span>Chapter {chapter.number}</span>
+              <span className="chapter-compact-number" aria-hidden="true">{chapter.number || filteredChapters.findIndex(item => item.id === chapter.id) + 1}</span>
+              <span className="chapter-full-label">Chapter {chapter.number}</span>
               <strong>
                 {displayText(chapter.title.split(" / ").filter((part) => !/\p{Script=Myanmar}/u.test(part)).join(" / "), showReadings, showKanji)}
               </strong>

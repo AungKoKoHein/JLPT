@@ -1120,6 +1120,9 @@ function App({ level }) {
                     {group.chapters.map((chapter) => (
                       <button
                         className={chapter.id === selected?.id ? "active" : ""}
+                        title={localizedChapterTitle(chapter, false, showReadings, true, showKanji)}
+                        aria-label={`Chapter ${chapter.number}: ${localizedChapterTitle(chapter, false, showReadings, true, showKanji)}`}
+                        aria-current={chapter.id === selected?.id ? "true" : undefined}
                         onClick={() => {
                           setActive(chapter.id);
                           setVocabQuery("");
@@ -1127,7 +1130,8 @@ function App({ level }) {
                         }}
                         key={chapter.id}
                       >
-                        <span>Chapter {chapter.number}</span>
+                        <span className="chapter-compact-number" aria-hidden="true">{chapter.number || filteredChapters.findIndex(item => item.id === chapter.id) + 1}</span>
+                        <span className="chapter-full-label">Chapter {chapter.number}</span>
                         <strong>{localizedChapterTitle(chapter, false, showReadings, true, showKanji)}</strong>
                       </button>
                     ))}
