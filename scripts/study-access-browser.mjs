@@ -15,10 +15,10 @@ const accessMock = `
         export async function getIdTokenResult(){return {claims:{auth_time:Math.floor(Date.now()/1000)}};}
         export async function get(){return {val:()=>({})};}
         export async function runTransaction(){await new Promise(resolve=>window.finishDevice=resolve);return {committed:true};}
-        export async function signOut(){window.restoreAuth(null);}
+        export async function signOut(target){if(target===practiceProvisioningAuth)practiceProvisioningAuth.currentUser=null;else window.restoreAuth(null);}
         export async function signInWithEmailAndPassword(){} export async function signInWithPopup(){}
-        export async function createUserWithEmailAndPassword(){} export async function deleteUser(){}
-        export async function updateProfile(){} export async function set(){} export async function update(path,value){window.accountWrites||=[];window.accountWrites.push({path,value});}
+        export async function createUserWithEmailAndPassword(target,email){const user={uid:'new-viewer-'+(window.nextViewer=(window.nextViewer||0)+1),email};target.currentUser=user;window.createdViewers||=[];window.createdViewers.push(user);return {user};} export async function deleteUser(){}
+        export async function updateProfile(){} export async function set(path,value){window.accountWrites||=[];window.accountWrites.push({path,value});} export async function update(path,value){window.accountWrites||=[];window.accountWrites.push({path,value});}
       `;
 const server = await createServer({ configFile: false, logLevel: 'error', plugins: [react(), {
   name: 'access-check-page',
@@ -104,6 +104,34 @@ try {
   await evaluate(`window.claimCallbacks['practiceUsers']({val:()=>({'fixture-user':{username:'fixture',active:true,tabAccess:window.accountWrites.at(-1).value.tabAccess}})})`);
   await until(`document.querySelector('.viewer-access-summary').textContent==='JLPT N3: Listening'`);
   assert.equal(await evaluate(`document.querySelector('.viewer-manager-modal').open`),true,'Closing nested access dialog keeps manager open');
+  const setField=(selector,value)=>evaluate(`(()=>{const field=document.querySelector(${JSON.stringify(selector)});Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(field,${JSON.stringify(value)});field.dispatchEvent(new Event('input',{bubbles:true}))})()`);
+  for(const mode of ['selected','all','none']) {
+    await setField('.practice-user-form input[type="text"]',`new-${mode}`);
+    await setField('.practice-user-form input[type="password"]','local-test-password');
+    if(mode!=='all') {
+      await evaluate(`[...document.querySelectorAll('.practice-user-form .viewer-access-mode label')].find(l=>l.textContent.trim()==='Selected tabs only').querySelector('input').click()`);
+      if(mode==='selected')await evaluate(`[...document.querySelectorAll('.practice-user-form .viewer-tab-group:first-child label')].find(l=>l.textContent.trim()==='Kanji').querySelector('input').click()`);
+    }
+    await evaluate(`document.querySelector('.practice-user-form').requestSubmit()`);
+    await until(`document.querySelector('.practice-user-form input[type="text"]').value===''`);
+    const saved=await evaluate(`window.accountWrites.at(-1)`);
+    assert.equal(saved.value.username,`new-${mode}`);
+    assert.deepEqual(saved.value.tabAccess,mode==='all'?{mode:'all'}:{mode:'selected',tabs:mode==='selected'?{'n3-kanji':true}:{}});
+    assert.equal(saved.value.active,true);
+    assert.equal(saved.value.createdBy,'viewer');
+    assert.equal('password' in saved.value,false);
+    assert.equal(await evaluate(`document.querySelector('.practice-user-form .viewer-access-mode input').checked`),true,'Next account defaults to all access');
+    assert.ok(await evaluate(`document.querySelector('.viewer-manager-modal')?.open`),'Creating a viewer preserves the manager session');
+  }
+  await evaluate(`window.claimCallbacks['practiceUsers']({val:()=>({'disabled-viewer':{username:'restore-test',active:false,createdAt:1,createdBy:'manager'}})})`);
+  await setField('.practice-user-form input[type="text"]','restore-test');
+  await evaluate(`[...document.querySelectorAll('.practice-user-form .viewer-access-mode label')].find(l=>l.textContent.trim()==='Selected tabs only').querySelector('input').click()`);
+  await evaluate(`[...document.querySelectorAll('.practice-user-form .viewer-tab-group:first-child label')].find(l=>l.textContent.trim()==='Kanji').querySelector('input').click()`);
+  await evaluate(`document.querySelector('.practice-user-form').requestSubmit()`);
+  await until(`document.querySelector('.practice-user-form input[type="text"]').value===''`);
+  assert.deepEqual(await evaluate(`window.accountWrites.at(-1).value.tabAccess`),{mode:'selected',tabs:{'n3-kanji':true}});
+  assert.equal(await evaluate(`window.accountWrites.at(-1).path`),'practiceUsers/disabled-viewer');
+  assert.equal(await evaluate(`window.createdViewers.length`),3,'Restoring an account keeps its existing login');
   for(const width of [1440,768,393,360]) {
     await cdp('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<600});
     await evaluate(`new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))`);
@@ -120,5 +148,15 @@ try {
   await evaluate(`window.restoreAuth(null)`);
   await until(`document.querySelector('.study-access-form') !== null`);
   assert.equal(await evaluate(`document.querySelector('#study-content')`), null);
+  await evaluate(`history.replaceState(null,'','/n3/kanji');window.dispatchEvent(new Event('study-navigation'));window.finishDevice=null;window.restoreAuth(window.createdViewers[0])`);
+  await until(`typeof window.claimCallbacks['practiceUsers/new-viewer-1']==='function'`);
+  await evaluate(`window.claimCallbacks['practiceUsers/new-viewer-1']({val:()=>window.accountWrites.find(w=>w.path==='practiceUsers/new-viewer-1').value});window.claimCallbacks['editors/new-viewer-1']({val:()=>false});window.claimCallbacks['practiceAdmins/new-viewer-1']({val:()=>false})`);
+  await until(`typeof window.finishDevice==='function'`);
+  await evaluate(`window.finishDevice()`);
+  await until(`document.querySelector('#study-content')!==null`);
+  await evaluate(`history.pushState(null,'','/n3/vocab');window.dispatchEvent(new Event('study-navigation'))`);
+  await until(`document.querySelector('.study-tab-restricted')!==null`);
+  assert.deepEqual(await evaluate(`[...document.querySelectorAll('.study-tab-restricted nav a')].map(a=>a.getAttribute('href'))`),['/n3/kanji'],'New login uses its own saved permissions');
+  console.log('PASS: new selected/all/no-tab accounts, safe form defaults, restored viewers, independent provisioning session and new-account sign-in.');
   console.log('PASS: auth restoration, device validation, live tab permissions, blocked direct URLs, empty access, editor bypass, manager modal, nested access editing, saved settings and mobile layouts.');
 } finally {socket?.close();chrome.kill();await server.close();}

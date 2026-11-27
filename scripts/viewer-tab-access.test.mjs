@@ -4,6 +4,21 @@ import fs from 'node:fs';
 import {canViewTab,canViewPath,effectiveTabAccess,permittedTabs,validateTabAccess,viewerTabGroups} from '../src/viewerTabAccess.js';
 import {validateAccountEdit} from '../server/viewerAccountValidation.js';
 
+test('every permission combination applies identically to existing and newly saved profiles',()=> {
+  for(const group of viewerTabGroups) for(let mask=0;mask<2**group.tabs.length;mask++) {
+    const selected=group.tabs.filter((_,index)=>mask&(1<<index));
+    const policy={mode:'selected',tabs:Object.fromEntries(selected.map(tab=>[tab.key,true]))};
+    const stored=JSON.parse(JSON.stringify(validateTabAccess(policy)));
+    assert.deepEqual(permittedTabs(stored).map(tab=>tab.key),selected.map(tab=>tab.key));
+    for(const subject of viewerTabGroups) for(const tab of subject.tabs) {
+      const expected=selected.some(item=>item.key===tab.key);
+      assert.equal(canViewTab(stored,subject.level,tab.label),expected);
+      assert.equal(canViewPath(stored,tab.path),expected);
+    }
+  }
+  for(const policy of [undefined,null,{mode:'all'}]) assert.equal(permittedTabs(policy).length,17);
+});
+
 test('legacy viewers retain access, explicit restrictions are subject-specific, and malformed policies fail closed',()=> {
   assert.equal(permittedTabs(undefined).length,17);
   const access={mode:'selected',tabs:{'n3-listening':true,'aws-part-3':true,'n3-vocab':false}};
