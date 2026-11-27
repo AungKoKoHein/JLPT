@@ -7,22 +7,41 @@ import { routesForLevel, studyTabFromPath } from './studyRoutes.js';
 import SidebarToggle from './SidebarToggle.jsx';
 import useChapterSidebarViewport from './useChapterSidebarViewport.js';
 import { awsHandbookSource as source, awsChapters } from './awsChapters.js';
+import { awsPart2Chapters } from './awsPart2Chapters.js';
+import { awsPart3Chapters, awsPart4Chapters } from './awsPerformanceCostChapters.js';
 import AwsChapterBody from './AwsChapterBody.jsx';
+import AwsExercises from './AwsExercises.jsx';
 import './dashboard.css';
 import './awsHandbook.css';
 
 const tabs = ['Part 1', 'Part 2', 'Part 3', 'Part 4', 'Practice'];
+const parts = {
+  'Part 1': { chapters:awsChapters, title:'DESIGN SECURE ARCHITECTURES', my:'လုံခြုံသော AWS စနစ်ကို အဆင့်ဆင့် တည်ဆောက်ခြင်း', count:'အခန်း ၉ ခန်း' },
+  'Part 2': { chapters:awsPart2Chapters, title:'DESIGN RESILIENT ARCHITECTURES', my:'Failure ဖြစ်သော်လည်း ဆက်လက်အသုံးပြုနိုင်သော AWS စနစ် တည်ဆောက်ခြင်း', count:'အခန်း ၈ ခန်း · Chapter 10–17' },
+  'Part 3': { chapters:awsPart3Chapters, title:'DESIGN HIGH-PERFORMING ARCHITECTURES', my:'စွမ်းဆောင်ရည်ကောင်းသော AWS စနစ် တည်ဆောက်ခြင်း', count:'အခန်း ၈ ခန်း · Chapter 18–25' },
+  'Part 4': { chapters:awsPart4Chapters, title:'DESIGN COST-OPTIMIZED ARCHITECTURES', my:'ကုန်ကျစရိတ်ကို ထိရောက်စွာ စီမံထားသော AWS စနစ် တည်ဆောက်ခြင်း', count:'အခန်း ၅ ခန်း · Chapter 26–30' },
+};
 
 export default function AwsApp() {
   const [active, setActive] = useState(false);
   const [tab, setTab] = useState(() => location.pathname.startsWith('/aws') ? studyTabFromPath(location.pathname) : 'Part 1');
-  const [lessonId, setLessonId] = useState(1);
+  const [selectedChapters, setSelectedChapters] = useState({'Part 1':1,'Part 2':10,'Part 3':18,'Part 4':26});
   const [showSidebar, setShowSidebar] = useState(true);
+  const [lessonView, setLessonView] = useState('lesson');
+  const [exerciseLanguage, setExerciseLanguage] = useState(() => {
+    try { const saved = localStorage.getItem('aws-exercise-language'); return ['my','en','ja'].includes(saved) ? saved : 'ja'; }
+    catch { return 'ja'; }
+  });
+  const [exerciseProgress, setExerciseProgress] = useState({});
+  useEffect(() => { try { localStorage.setItem('aws-exercise-language',exerciseLanguage); } catch { /* Language switching works without storage. */ } },[exerciseLanguage]);
   const lessonHeading = useRef(null);
   const layoutRef = useRef(null);
   useChapterSidebarViewport(layoutRef, `${tab}:${active}:${showSidebar}`);
-  const lesson = awsChapters.find(item => item.id === lessonId) || awsChapters[0];
-  const lessonIndex = awsChapters.indexOf(lesson);
+  const part = parts[tab];
+  const chapters = part?.chapters || [];
+  const lesson = chapters.find(item => item.id === selectedChapters[tab]) || chapters[0];
+  const lessonId = lesson?.id;
+  const lessonIndex = chapters.indexOf(lesson);
   useEffect(() => { document.title = `AWS SAA-C03 · ${tab}`; }, [tab]);
   useEffect(() => {
     const onBack = () => { setTab(studyTabFromPath(location.pathname)); setActive(false); };
@@ -52,7 +71,7 @@ export default function AwsApp() {
     setTab(next);
   }
   function selectLesson(id) {
-    setLessonId(id);
+    setSelectedChapters(current => ({...current,[tab]:id}));
     requestAnimationFrame(() => {
       lessonHeading.current?.focus({ preventScroll: true });
       lessonHeading.current?.scrollIntoView({ block: 'nearest' });
@@ -82,19 +101,28 @@ export default function AwsApp() {
         <div className="mock-exam-overview"><div><strong>{awsQuestions.length}</strong><span>practice questions</span></div><div><strong>A–F</strong><span>Only each question’s options</span></div><div><strong>At your pace</strong><span>Letter-only answers</span></div></div>
         <p className="reading-note">All questions include answer checking. Keys come from your solution notes, with missing answers supplemented using AWS documentation.</p>
         <div className="mock-exam-actions"><button type="button" className="primary-button" onClick={() => setActive(true)}>Start practice</button><span>Topic 1 · Questions 1–684</span></div>
-      </article> : tab !== 'Part 1' ? <article className="aws-empty-part"><span className="aws-kicker">AWS SAA-C03 · {tab}</span><h2>{tab}</h2><p lang="my">ဤအပိုင်းတွင် သင်ခန်းစာများ မထည့်ရသေးပါ။</p></article> : <>
-        <div className="aws-course-intro"><div><span className="aws-kicker">PART 1 · DESIGN SECURE ARCHITECTURES</span><h2 lang="my">လုံခြုံသော AWS စနစ်ကို အဆင့်ဆင့် တည်ဆောက်ခြင်း</h2></div><p lang="my">အခန်း ၉ ခန်း<br /><span lang="ja">ミャンマー語の解説と日本語の要点</span></p></div>
+      </article> : !part ? <article className="aws-empty-part"><span className="aws-kicker">AWS SAA-C03 · {tab}</span><h2>{tab}</h2><p lang="my">ဤအပိုင်းတွင် သင်ခန်းစာများ မထည့်ရသေးပါ။</p></article> : <>
+        <div className="aws-course-intro"><div><span className="aws-kicker">{tab.toUpperCase()} · {part.title}</span><h2 lang="my">{part.my}</h2></div><p lang="my">{part.count}<br /><span lang="ja">ミャンマー語の解説と日本語の要点</span></p></div>
         <div className="layout aws-learning-layout" ref={layoutRef}>
-          <aside aria-label="Part 1 chapters"><div className="sidebar-heading"><p className="count" lang="my">အခန်း ၉ ခန်း</p><SidebarToggle expanded={showSidebar} onToggle={() => setShowSidebar(value => !value)} controls="aws-lesson-list" /></div>
-            <div className="chapter-group" id="aws-lesson-list"><div className="chapter-group-block"><div className="chapter-group-cards">{awsChapters.map(chapter => <button type="button" key={chapter.id} data-aws-lesson={chapter.id} className={lesson.id === chapter.id ? 'active' : ''} aria-current={lesson.id === chapter.id ? 'step' : undefined} aria-label={`Chapter ${chapter.id}: ${chapter.en}`} title={chapter.en} onClick={() => selectLesson(chapter.id)}><span className="chapter-compact-number" aria-hidden="true">{chapter.id}</span><span className="chapter-full-label">CHAPTER {chapter.id}</span><strong lang="my">{chapter.my}</strong></button>)}</div></div></div>
+          <aside aria-label={`${tab} chapters`}><div className="sidebar-heading"><p className="count" lang="my">{part.count}</p><SidebarToggle expanded={showSidebar} onToggle={() => setShowSidebar(value => !value)} controls="aws-lesson-list" /></div>
+            <div className="chapter-group" id="aws-lesson-list"><div className="chapter-group-block"><div className="chapter-group-cards">{chapters.map(chapter => <button type="button" key={chapter.id} data-aws-lesson={chapter.id} className={lesson.id === chapter.id ? 'active' : ''} aria-current={lesson.id === chapter.id ? 'step' : undefined} aria-label={`Chapter ${chapter.id}: ${chapter.en}`} title={chapter.en} onClick={() => selectLesson(chapter.id)}><span className="chapter-compact-number" aria-hidden="true">{chapter.id}</span><span className="chapter-full-label">CHAPTER {chapter.id}</span><strong lang="my">{chapter.my}</strong></button>)}</div></div></div>
           </aside>
           <article className="aws-lesson-panel">
             <div className="aws-lesson-header"><span className="aws-kicker">CHAPTER {lesson.id} · {lesson.en}</span><h2 ref={lessonHeading} tabIndex={-1} lang="my">{lesson.my}</h2><p lang="ja">{lesson.ja}</p><small>Handbook pp. {lesson.pages.join('–')}</small></div>
-            <AwsChapterBody key={lesson.id} blocks={lesson.blocks} />
-            <nav className="aws-lesson-pagination" aria-label="Chapter navigation"><button type="button" disabled={lessonIndex === 0} onClick={() => selectLesson(awsChapters[lessonIndex - 1].id)}>ရှေ့အခန်း</button><span>{lessonIndex + 1} / 9</span><button type="button" disabled={lessonIndex === awsChapters.length - 1} onClick={() => selectLesson(awsChapters[lessonIndex + 1].id)}>နောက်အခန်း</button></nav>
+            <div className="aws-lesson-views" role="tablist" aria-label="Chapter view">
+              <button type="button" id="aws-view-lesson" role="tab" aria-selected={lessonView==='lesson'} aria-controls="aws-chapter-view" tabIndex={lessonView==='lesson'?0:-1}
+                onClick={() => setLessonView('lesson')} onKeyDown={event => { if (['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) { event.preventDefault(); const view=event.key==='Home'?'lesson':'exercises'; setLessonView(view); document.getElementById(`aws-view-${view}`)?.focus(); } }}>Lesson</button>
+              <button type="button" id="aws-view-exercises" role="tab" aria-selected={lessonView==='exercises'} aria-controls="aws-chapter-view" tabIndex={lessonView==='exercises'?0:-1}
+                onClick={() => setLessonView('exercises')} onKeyDown={event => { if (['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) { event.preventDefault(); const view=event.key==='End'?'exercises':'lesson'; setLessonView(view); document.getElementById(`aws-view-${view}`)?.focus(); } }}>{({my:'လေ့ကျင့်ခန်းများ',en:'Exercises',ja:'練習問題'})[exerciseLanguage]}</button>
+            </div>
+            <div id="aws-chapter-view" role="tabpanel" aria-labelledby={`aws-view-${lessonView}`}>
+              {lessonView==='lesson' ? <AwsChapterBody key={lesson.id} blocks={lesson.blocks} /> :
+                <AwsExercises chapter={lesson} language={exerciseLanguage} onLanguageChange={setExerciseLanguage} progress={exerciseProgress} onProgressChange={setExerciseProgress} />}
+            </div>
+            <nav className="aws-lesson-pagination" aria-label="Chapter navigation"><button type="button" disabled={lessonIndex === 0} onClick={() => selectLesson(chapters[lessonIndex - 1].id)}>ရှေ့အခန်း</button><span>{lessonIndex + 1} / {chapters.length}</span><button type="button" disabled={lessonIndex === chapters.length - 1} onClick={() => selectLesson(chapters[lessonIndex + 1].id)}>နောက်အခန်း</button></nav>
           </article>
         </div>
-        <footer className="aws-handbook-credit"><p><a href={source.url} target="_blank" rel="noreferrer">{source.title}</a> · {source.edition} · {source.copyright} · {source.author} · <a href={source.licenseUrl} target="_blank" rel="noreferrer">{source.license}</a></p><p lang="my">Chapter 1 ကို ပေးထားသော chapter1.docx မှ ထည့်သွင်းပြီး Chapter 2–9 ကို မူရင်း handbook အပေါ် အခြေခံ၍ အသေးစိတ် မြန်မာရှင်းလင်းချက်၊ လက်တွေ့ဥပမာနှင့် ဂျပန်မှတ်စုများအဖြစ် ပြန်လည်ရေးသားထားပါသည်။ စာမျက်နှာနံပါတ်များသည် စာအုပ်တွင် ပုံနှိပ်ထားသော နံပါတ်များဖြစ်သည်။</p><p>Expanded and adapted study material · Noncommercial use · Not official AWS exam questions.</p></footer>
+        <footer className="aws-handbook-credit"><p><a href={source.url} target="_blank" rel="noreferrer">{source.title}</a> · {source.edition} · {source.copyright} · {source.author} · <a href={source.licenseUrl} target="_blank" rel="noreferrer">{source.license}</a></p><p lang="my">{tab === 'Part 1' ? 'Chapter 1 ကို ပေးထားသော chapter1.docx မှ ထည့်သွင်းပြီး Chapter 2–9 ကို မူရင်း handbook အပေါ် အခြေခံ၍ အသေးစိတ် မြန်မာရှင်းလင်းချက်၊ လက်တွေ့ဥပမာနှင့် ဂျပန်မှတ်စုများအဖြစ် ပြန်လည်ရေးသားထားပါသည်။' : `${tab} Chapter ${chapters[0].id}–${chapters.at(-1).id} · Handbook pp. ${chapters[0].pages[0]}–${chapters.at(-1).pages[1]} အပေါ် အခြေခံ၍ အသေးစိတ် မြန်မာရှင်းလင်းချက်၊ လက်တွေ့ဥပမာနှင့် ဂျပန်မှတ်စုများအဖြစ် ပြန်လည်ရေးသားထားပါသည်။`} စာမျက်နှာနံပါတ်များသည် စာအုပ်တွင် ပုံနှိပ်ထားသော နံပါတ်များဖြစ်သည်။</p><p>Expanded and adapted study material · Noncommercial use · Not official AWS exam questions.</p></footer>
       </>}
     </section>
   </main>;

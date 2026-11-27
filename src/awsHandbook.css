@@ -18,6 +18,28 @@
 .aws-lesson-views { display:flex; gap:6px; padding:12px 0; margin-bottom:12px; border-bottom:1px solid var(--line); }
 .aws-lesson-views button { padding:8px 14px; border:1px solid var(--line); border-radius:8px; background:var(--surface-muted); color:var(--ink); }
 .aws-lesson-views button[aria-selected=true] { background:var(--accent-soft); color:var(--accent); border-color:var(--accent); }
+.aws-lesson-views { flex-wrap:wrap; }
+.aws-exercises { min-width:0; line-height:1.95; overflow-wrap:anywhere; }
+.aws-exercise-toolbar,.aws-exercise-actions { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.aws-exercise-toolbar { justify-content:space-between; }
+.aws-exercise-toolbar h3 { margin:0; font-size:17px; }
+.aws-exercise-language { display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-size:13px; }
+.aws-exercise-language select { max-width:100%; padding:8px 12px; background:var(--surface); color:var(--ink); border:1px solid var(--line); border-radius:8px; font:inherit; }
+.aws-exercise-source,.aws-exercise-reference { font-size:13px; color:var(--muted); }
+.aws-exercise-actions button { padding:8px 12px; border:1px solid var(--line); border-radius:8px; background:var(--surface-muted); color:var(--ink); font:inherit; font-size:13px; }
+.aws-exercise-actions button:disabled { opacity:.5; cursor:default; }
+.aws-exercise-score { margin:0; font-size:13px; }
+.aws-exercise-list { list-style:none; padding:0; display:grid; gap:20px; }
+.aws-exercise-list>li { min-width:0; padding:16px; border:1px solid var(--line); border-radius:12px; }
+.aws-exercise-list fieldset { border:0; padding:0; margin:0 0 12px; min-width:0; }
+.aws-exercise-list legend { font-weight:650; padding:0; margin-bottom:12px; max-width:100%; }
+.aws-exercise-options { display:grid; gap:8px; }
+.aws-exercise-options label { display:flex; gap:10px; align-items:flex-start; border:1px solid var(--line); border-radius:8px; padding:10px 12px; cursor:pointer; }
+.aws-exercise-options label[data-selected=true] { border-color:var(--accent); background:var(--accent-soft); }
+.aws-exercise-options input { flex:0 0 auto; margin-top:7px; accent-color:var(--accent); }
+.aws-exercise-feedback { margin-top:12px; border-left:3px solid var(--accent); background:var(--surface-muted); padding:10px 14px; border-radius:6px; }
+.aws-exercise-feedback p { margin:4px 0; }
+.aws-exercise-actions button:focus-visible,.aws-exercise-language select:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
 .aws-lesson-goal { background:var(--accent-soft); border-radius:9px; padding:12px 15px; line-height:2; margin:0 0 18px; }
 .aws-beginner-notes { padding:14px 16px; margin:0 0 18px; background:var(--surface-muted); border:1px solid var(--line); border-radius:10px; }
 .aws-beginner-notes h3 { margin:0 0 8px; font-size:16px; line-height:1.9; }

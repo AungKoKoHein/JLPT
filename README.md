@@ -9,6 +9,8 @@ Both levels use the same study and editing features, with independent content in
 
 ## Development
 
+The AWS section at `/aws/part-1` through `/aws/part-4` includes a Lesson / Exercises switch for each of its 30 chapters. Each chapter has five questions (150 total): three original handbook reviews and two shortened, translated adaptations of related questions from the existing 684-question AWS Practice bank. Each adaptation shows its original Practice number and source PDF pages; assumptions are clarified where needed. Questions, choices, feedback, and explanations are available in Myanmar, English, and Japanese. Exercises initially use Japanese, and the language selector remembers later choices in this browser. Answers remain selected while switching languages, chapters, or parts during the current session; Reset this chapter clears only that chapter. Show answer key reveals explanations without grading unanswered questions. The full original questions remain available in AWS Practice.
+
 ```sh
 npm install
 npm run dev

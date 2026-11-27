@@ -49,15 +49,34 @@ try {
       await evaluate(`window.scrollTo(0,${offset})`);
       await until(`document.querySelector('.aws-learning-layout>aside').getBoundingClientRect().bottom<=innerHeight-14`);
       await evaluate(`(()=>{const list=document.querySelector('#aws-lesson-list');list.scrollTop=list.scrollHeight})()`);
+      await evaluate(`new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))`);
+      await until(`(()=>{const list=document.querySelector('#aws-lesson-list');list.scrollTop=list.scrollHeight;const bounds=list.getBoundingClientRect();const last=document.querySelector('[data-aws-lesson="9"]').getBoundingClientRect();return last.bottom<=bounds.bottom+1&&last.bottom<=innerHeight-14})()`);
       assert.ok(await evaluate(`(()=>{const list=document.querySelector('#aws-lesson-list').getBoundingClientRect();const last=document.querySelector('[data-aws-lesson="9"]').getBoundingClientRect();return last.bottom<=list.bottom+1&&last.bottom<=innerHeight-14})()`),`Last lesson reachable at ${width}px, page offset ${offset}`);
     }
   }
   await cdp('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
   await evaluate(`window.scrollTo(0,0)`);
-  for (const part of ['Part 2','Part 3','Part 4']) {
+  for (const [part, first, last] of [['Part 3',18,25],['Part 4',26,30]]) {
     await click(part);
-    await until(`document.querySelector('.aws-empty-part') !== null`);
-    assert.equal(await evaluate(`document.querySelectorAll('[data-aws-lesson]').length`),0);
+    await until(`document.querySelector('.aws-lesson-header')?.textContent.includes('CHAPTER ${first}')`);
+    assert.deepEqual(await evaluate(`[...document.querySelectorAll('[data-aws-lesson]')].map(b=>Number(b.dataset.awsLesson))`),Array.from({length:last-first+1},(_,i)=>first+i));
+    for (let chapter=first;chapter<=last;chapter++) {
+      await evaluate(`document.querySelector('[data-aws-lesson="${chapter}"]').click()`);
+      await until(`document.querySelector('.aws-lesson-header').textContent.includes('CHAPTER ${chapter}')`);
+      assert.equal(await evaluate(`document.querySelectorAll('.aws-chapter-table').length`),2);
+      assert.ok(await evaluate(`document.querySelectorAll('.aws-chapter-japanese').length>=5`));
+      assert.ok(await evaluate(`document.querySelectorAll('.aws-chapter-body p').length>=17`));
+    }
+    assert.equal(await evaluate(`document.querySelector('.aws-lesson-pagination button:last-child').disabled`),true);
+    await evaluate(`document.querySelector('.aws-lesson-pagination button:first-child').click()`);
+    await until(`document.querySelector('.aws-lesson-header').textContent.includes('CHAPTER ${last-1}')`);
+    assert.ok(await evaluate(`document.querySelector('.aws-handbook-credit').textContent.includes('Chapter ${first}–${last}')`));
+    for (const width of [768,393,360]) {
+      await cdp('Emulation.setDeviceMetricsOverride',{width,height:800,deviceScaleFactor:1,mobile:width<600});
+      await evaluate(`new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))`);
+      assert.ok(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),`${part} fits ${width}px`);
+    }
+    await cdp('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false});
   }
   await click('Part 1');
   await until(`document.querySelector('.aws-lesson-panel') !== null`);
@@ -87,6 +106,113 @@ try {
   await until(`document.querySelectorAll('.aws-chapter-table').length===4`);
   assert.ok(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),'Imported comparison tables do not overflow mobile page');
   await cdp('Page.captureScreenshot',{format:'png'}).then(({data})=>fs.writeFileSync(path.resolve('.tmp-python/aws-chapters-light.png'),Buffer.from(data,'base64')));
+  await click('Part 2');
+  await until(`document.querySelector('.aws-lesson-header').textContent.includes('CHAPTER 10')`);
+  assert.deepEqual(await evaluate(`[...document.querySelectorAll('[data-aws-lesson]')].map(button=>Number(button.dataset.awsLesson))`),[10,11,12,13,14,15,16,17]);
+  assert.equal(await evaluate(`document.querySelector('.aws-lesson-pagination span').textContent`),'1 / 8');
+  for (let chapter=10;chapter<=17;chapter++) {
+    await evaluate(`document.querySelector('[data-aws-lesson="${chapter}"]').click()`);
+    await until(`document.querySelector('.aws-lesson-header').textContent.includes('CHAPTER ${chapter}')`);
+    assert.equal(await evaluate(`document.querySelectorAll('.aws-chapter-table').length`),2);
+    assert.ok(await evaluate(`document.querySelectorAll('.aws-chapter-japanese').length>=5`),'Part 2 Japanese notes and summary');
+    assert.ok(await evaluate(`document.querySelectorAll('.aws-chapter-body p').length>=20`),'Part 2 detailed Myanmar explanations');
+    assert.equal(await evaluate(`document.querySelector('.exercises')`),null,'Chapter reading remains separate from Practice');
+  }
+  for (const width of [1440,768,393,360]) {
+    await cdp('Emulation.setDeviceMetricsOverride',{width,height:800,deviceScaleFactor:1,mobile:width<600});
+    await evaluate(`new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))`);
+    assert.ok(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),`Part 2 no page overflow at ${width}px`);
+    if (width>760) {
+      await evaluate(`window.scrollTo(0,0)`);
+      await until(`document.querySelector('.aws-learning-layout>aside').getBoundingClientRect().bottom<=innerHeight-14`);
+      await evaluate(`(()=>{const list=document.querySelector('#aws-lesson-list');list.scrollTop=list.scrollHeight})()`);
+      assert.ok(await evaluate(`document.querySelector('[data-aws-lesson="17"]').getBoundingClientRect().bottom<=innerHeight-14`),'Part 2 last chapter reachable before page scroll');
+    }
+    await cdp('Page.captureScreenshot',{format:'png'}).then(({data})=>fs.writeFileSync(path.resolve(`.tmp-python/aws-part2-${width}.png`),Buffer.from(data,'base64')));
+    await evaluate(`document.querySelector('.sidebar-toggle').click()`);
+    await until(`document.querySelector('main').dataset.showSidebar==='false'`);
+    assert.ok(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),'Part 2 compact chapter rail fits');
+    await evaluate(`document.querySelector('.sidebar-toggle').click()`);
+    await until(`document.querySelector('main').dataset.showSidebar==='true'`);
+  }
+  await click('Part 1');
+  await until(`document.querySelector('.aws-lesson-header').textContent.includes('CHAPTER 1')`);
+  assert.equal(await evaluate(`document.querySelectorAll('[data-aws-lesson]').length`),9);
+  await click('Part 2');
+  await until(`document.querySelector('.aws-lesson-header').textContent.includes('CHAPTER 17')`);
+  assert.equal(await evaluate(`document.querySelector('.aws-lesson-pagination span').textContent`),'8 / 8','Each part remembers its own selected chapter');
+  const setExerciseLanguage = async language => {
+    await evaluate(`(()=>{const select=document.querySelector('.aws-exercise-language select');select.value=${JSON.stringify(language)};select.dispatchEvent(new Event('change',{bubbles:true}))})()`);
+    await until(`document.querySelector('.aws-exercises')?.lang===${JSON.stringify(language)}`);
+  };
+  await evaluate(`document.getElementById('aws-view-exercises').click()`);
+  await until(`document.querySelectorAll('[data-aws-exercise]').length===5`);
+  assert.equal(await evaluate(`document.querySelector('.aws-exercises').lang`),'ja','New users start with Japanese exercises');
+  await setExerciseLanguage('en');
+  assert.equal(await evaluate(`document.querySelectorAll('.aws-exercise-list li:first-child button').length`),1,'Only one answer button per question');
+  assert.equal(await evaluate(`[...document.querySelectorAll('.aws-exercises button')].some(b=>b.textContent==='Check answer')`),false);
+  await click('Show answer');
+  assert.equal(await evaluate(`document.querySelector('.aws-exercise-feedback').dataset.correct`),undefined,'Revealing an unanswered question does not grade it');
+  await click('Hide answer');
+  assert.equal(await evaluate(`document.querySelectorAll('.aws-exercise-feedback:not([hidden])').length`),0,'Answers start hidden');
+  const firstId = await evaluate(`document.querySelector('[data-aws-exercise]').dataset.awsExercise`);
+  const expectedIndex = await evaluate(`import('/src/awsExercises.js').then(m=>m.awsExercisesByChapter[17][0].answer)`);
+  await evaluate(`document.querySelectorAll('.aws-exercise-list li:first-child input')[${expectedIndex}].click()`);
+  await click('Show answer');
+  await until(`document.querySelector('.aws-exercise-feedback').dataset.correct==='true'`);
+  assert.ok(await evaluate(`document.querySelector('.aws-exercise-score').textContent.includes('1 / 1')`));
+  const englishQuestion = await evaluate(`document.querySelector('.aws-exercise-list legend').textContent`);
+  for (const language of ['ja','my','en']) {
+    await setExerciseLanguage(language);
+    assert.equal(await evaluate(`document.querySelector('.aws-exercise-list input:checked').value`),String(expectedIndex),'Language switch preserves the chosen option');
+    assert.equal(await evaluate(`document.querySelector('[data-aws-exercise]').dataset.awsExercise`),firstId);
+    assert.equal(await evaluate(`document.querySelector('.aws-exercise-feedback').dataset.correct`),'true','Grading survives translation');
+    if(language!=='en') assert.notEqual(await evaluate(`document.querySelector('.aws-exercise-list legend').textContent`),englishQuestion);
+  }
+  await click('Show answer key');
+  assert.equal(await evaluate(`document.querySelectorAll('.aws-exercise-feedback:not([hidden])').length`),5);
+  await click('Hide answer key');
+  assert.equal(await evaluate(`document.querySelectorAll('.aws-exercise-feedback:not([hidden])').length`),0);
+  await evaluate(`document.getElementById('aws-view-lesson').click()`);
+  await until(`document.querySelector('.aws-chapter-body')!==null`);
+  await evaluate(`document.getElementById('aws-view-exercises').click()`);
+  assert.equal(await evaluate(`document.querySelector('.aws-exercise-list input:checked').value`),String(expectedIndex),'Returning from the lesson preserves answers');
+  for (const [part,first,last] of [['Part 1',1,9],['Part 2',10,17],['Part 3',18,25],['Part 4',26,30]]) {
+    await click(part);
+    for(let chapter=first;chapter<=last;chapter++) {
+      await evaluate(`document.querySelector('[data-aws-lesson="${chapter}"]').click()`);
+      await until(`document.querySelector('[data-aws-exercise]')?.dataset.awsExercise==='aws-${chapter}-1'`);
+      assert.equal(await evaluate(`document.querySelectorAll('[data-aws-exercise]').length`),5);
+      assert.equal(await evaluate(`document.querySelectorAll('[data-practice-source]').length`),2,'Two related Practice sources per chapter');
+      for(const language of ['my','en','ja']) {
+        await setExerciseLanguage(language);
+        assert.ok(await evaluate(`document.querySelector('.aws-exercise-list legend').textContent.length>15`));
+        assert.ok(await evaluate(`document.querySelector('.aws-exercise-reference').textContent.match(/[0-9]+–[0-9]+/)!==null`));
+      }
+    }
+    for(const language of ['my','en','ja']) {
+      await setExerciseLanguage(language);
+      for(const width of [1440,768,393,360]) {
+        await cdp('Emulation.setDeviceMetricsOverride',{width,height:800,deviceScaleFactor:1,mobile:width<600});
+        await evaluate(`new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))`);
+        assert.ok(await evaluate(`document.documentElement.scrollWidth<=innerWidth`),`${part} exercises ${language} fit ${width}px`);
+      }
+    }
+  }
+  await setExerciseLanguage('en');
+  await click('Part 2');
+  await evaluate(`document.querySelector('[data-aws-lesson="17"]').click()`);
+  await until(`document.querySelector('[data-aws-exercise]')?.dataset.awsExercise==='aws-17-1'`);
+  assert.equal(await evaluate(`document.querySelector('.aws-exercise-list input:checked').value`),String(expectedIndex),'Chapter and part navigation preserve answers');
+  await click('Reset this chapter');
+  assert.equal(await evaluate(`document.querySelectorAll('.aws-exercise-list input:checked').length`),0);
+  await evaluate(`document.querySelector('.aws-exercise-list input').click()`);
+  await click('Show answer');
+  assert.equal(await evaluate(`document.querySelector('.aws-exercise-feedback').dataset.correct`),String(expectedIndex===0),'Incorrect answers are graded too');
+  assert.equal(await evaluate(`localStorage.getItem('aws-exercise-language')`),'en');
+  await evaluate(`document.querySelector('.aws-exercises').scrollIntoView({block:'start'});document.activeElement?.blur()`);
+  await evaluate(`new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))`);
+  await cdp('Page.captureScreenshot',{format:'png'}).then(({data})=>fs.writeFileSync(path.resolve('.tmp-python/aws-exercises-mobile.png'),Buffer.from(data,'base64')));
   await click('Practice');
   await until(`document.querySelector('.mock-exam-actions') !== null`);
   await click('Start practice');
@@ -150,5 +276,5 @@ try {
   assert.equal(await evaluate(`document.querySelectorAll('.aws-answer-letter[aria-pressed=true]').length`),0);
   await click('Quit practice');
   await until(`document.querySelector('.study-session-view') === null`);
-  console.log('PASS: Nine detailed chapters, imported Chapter 1 tables, Japanese notes, empty Parts 2-4, chapter visibility, expanded/collapsed rails and responsive light/dark layouts. Existing 684-question Practice flow, grading, navigation, policy images, results, restart and quit also pass.');
+  console.log('PASS: Parts 1–4, all 30 chapters and 150 exercises, related Practice sources, Japanese default, Myanmar/English/Japanese switching, answer preservation, grading, answer keys, reset, source credits and responsive layouts. Existing 684-question Practice flow, grading, navigation, policy images, results, restart and quit also pass.');
 } finally {socket?.close();chrome.kill();await server.close();}

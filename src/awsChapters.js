@@ -1,4 +1,5 @@
 import chapter1 from './awsChapter1.json' with { type: 'json' };
+import { p, h, table, notes, section, foundations, summary } from './awsChapterBlocks.js';
 
 export const awsHandbookSource = {
   title:'AWS SAA-C03 Study Handbook', edition:'Release 1.0 · 2026-11-09',
@@ -6,15 +7,6 @@ export const awsHandbookSource = {
   url:'https://masteryexamprep.com/exams/aws/saa-c03/',
   license:'CC BY-NC 4.0', licenseUrl:'https://creativecommons.org/licenses/by-nc/4.0/',
 };
-
-const p = text => ({type:'p',text,lang:'my'});
-const h = text => ({type:'h3',text,lang:'my'});
-const b = text => ({type:'bullet',text,lang:'my'});
-const table = (headers,rows) => ({type:'table',headers,rows});
-const notes = (...items) => [{type:'h3',text:'日本語ノート',lang:'ja'},...items.map(text => ({type:'bullet',text,lang:'ja'}))];
-const section = (text,...blocks) => [{type:'h2',text,lang:'my'},...blocks];
-const foundations = (...items) => section('အရင်သိထားရမည့် Technical Terms',...items.map(b));
-const summary = (...items) => [{type:'h2',text:'日本語総まとめ',lang:'ja'},...items.map(text => ({type:'bullet',text,lang:'ja'}))];
 
 // Chapter 1 is imported from the user's document, including its four tables.
 // Chapters 2–9 are newly expanded explanations of the corresponding handbook chapters.
