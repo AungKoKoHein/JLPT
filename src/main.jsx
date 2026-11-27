@@ -1054,8 +1054,8 @@ function App({ level }) {
       </div>
       <section
         role="tabpanel"
-        id={`study-panel-${isChapterStudy ? studyTabs.indexOf(studyTab) : 0}`}
-        aria-labelledby={`study-tab-${isChapterStudy ? studyTabs.indexOf(studyTab) : 0}`}
+        id={isChapterStudy ? `study-panel-${studyTabs.indexOf(studyTab)}` : undefined}
+        aria-labelledby={isChapterStudy ? `study-tab-${studyTabs.indexOf(studyTab)}` : undefined}
         hidden={!isChapterStudy}
         tabIndex={0}
       >
@@ -1336,12 +1336,12 @@ function App({ level }) {
           </article>
         </div>
       </section>
-      {studyTabs.slice(1).map((label, index) => label !== "Kanji" ? null : (
+      {studyTabs.map((label, index) => label !== "Kanji" ? null : (
         <section
           key={label}
           role="tabpanel"
-          id={`study-panel-${index + 1}`}
-          aria-labelledby={`study-tab-${index + 1}`}
+          id={`study-panel-${index}`}
+          aria-labelledby={`study-tab-${index}`}
           hidden={studyTab !== label}
           tabIndex={0}
         >
@@ -1411,6 +1411,12 @@ function App({ level }) {
         aria-labelledby={`study-tab-${studyTabs.indexOf("Mock exam")}`}
         tabIndex={0}
       ><MockExam showReadings={showReadings} showKanji={showKanji} /></section>}
+      {level === "n2" && studyTab === "Mock exam" && <section
+        role="tabpanel"
+        id={`study-panel-${studyTabs.indexOf("Mock exam")}`}
+        aria-labelledby={`study-tab-${studyTabs.indexOf("Mock exam")}`}
+        tabIndex={0}
+      ><article className="custom-study-panel"><h2>N2 Mock exam</h2><p>No N2 mock exams have been added yet.</p></article></section>}
       {level === "n3" && studyTab === "Listening" && <section
         role="tabpanel"
         id={`study-panel-${studyTabs.indexOf("Listening")}`}
