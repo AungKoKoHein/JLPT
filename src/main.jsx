@@ -1,9 +1,10 @@
 import { displayKanji, hideReadings } from "./studyText.js";
+import { vocabularyText } from './vocabularyText.js';
 import useShuffledCards from "./useShuffledCards.js";
 import DeleteDialog from "./DeleteDialog.jsx";
 import { removeChapter, removeSubchapter } from "./deleteContainers.js";
 import { hasVisibleChapterContent } from "./chapterVisibility.js";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import useChapterSidebarViewport from './useChapterSidebarViewport.js';
 import { createRoot } from "react-dom/client";
 import { chapterGroup, groupChapters, sortChapters, renameChapterGroup } from "./chapterGroups.js";
@@ -25,13 +26,15 @@ import { matchesVocabulary, vocabularySearchPlaceholder } from "./vocabularySear
 import supplementalGrammarExamples from "./grammarSupplementalExamples.js";
 import MockExam from "./MockExam.jsx";
 import ReadingPractice from "./ReadingPractice.jsx";
+import ListeningPractice from './ListeningPractice.jsx';
 import Practice from "./Practice.jsx";
 const AwsApp = React.lazy(() => import("./AwsApp.jsx"));
 import StudyControlsHost from "./StudyControlsHost.jsx";
 import StudyAccess from "./StudyAccess.jsx";
+import StudyLoading from './StudyLoading.jsx';
 import SidebarToggle from "./SidebarToggle.jsx";
 import { n2KanjiLessonExercises } from "./n2KanjiLessons.js";
-import { StudyAccountControls } from "./StudyAccount.jsx";
+import { StudyAccountControls, StudyAccountContext } from "./StudyAccount.jsx";
 
 const chapterTitle = (
   title,
@@ -160,7 +163,9 @@ function Flashcard({
   chapterLabel,
 }) {
   const [flipped, setFlipped] = useState(false);
-  const display = (value) => displayKanji(showReadings ? value : hideReadings(value), showKanji);
+  const display = (value) => card.studyTab === 'Grammar'
+    ? displayKanji(showReadings ? value : hideReadings(value), showKanji)
+    : vocabularyText(value,showReadings,showKanji);
   if (card.studyTab === "Grammar") return (
     <div className="grammar-card">
       {chapterLabel && <p className="chapter-tag">{chapterTitle(chapterLabel, showMyanmar, showReadings, showJapanese, showKanji)}</p>}
@@ -235,13 +240,13 @@ function VocabularyBook({ entries, showReadings, showKanji, showMyanmar, showJap
             <p className="book-chapter-label">{localizedChapterTitle(chapter, showMyanmar, showReadings, showJapanese, showKanji)}</p>
           )}
           <p className="book-term">
-            {showJapanese && <strong lang="ja">{display(card.term)}</strong>}
+            {showJapanese && <strong lang="ja">{card.studyTab === 'Grammar' ? display(card.term) : vocabularyText(card.term,showReadings,showKanji)}</strong>}
             {showJapanese && showMyanmar && card.meaning && " — "}
             {showMyanmar && <span lang="my">{card.meaning}</span>}
           </p>
           {card.studyTab === "Grammar" ? <GrammarDetails card={card} showReadings={showReadings} showKanji={showKanji} showMyanmar={showMyanmar} showJapanese={showJapanese} showExamples={showExamples} /> : <>
           {showExamples && showJapanese && card.exampleJapanese && (
-            <p className="book-example" lang="ja">e.g. {display(card.exampleJapanese)}</p>
+            <p className="book-example" lang="ja">e.g. {vocabularyText(card.exampleJapanese,showReadings,showKanji)}</p>
           )}
           {showExamples && showMyanmar && card.exampleMyanmar && (
             <p className="book-translation" lang="my">{card.exampleMyanmar}</p>
@@ -511,7 +516,9 @@ const baseStudyTabs = [
 ];
 
 function App({ level }) {
-  const studyTabs = level === "n3" ? [...baseStudyTabs, "Practice"] : baseStudyTabs;
+  const account=useContext(StudyAccountContext);
+  const canView=(subject,tab)=>account?.canViewTab?account.canViewTab(subject,tab):true;
+  const studyTabs = (level === "n3" ? ["Vocab", "Grammar", "Kanji", "Listening", "Reading", "Mock exam", "Practice"] : baseStudyTabs).filter(tab=>canView(level,tab));
   const studyRoutes = routesForLevel(level);
   useEffect(() => { document.title = `JLPT ${level.toUpperCase()}`; }, [level]);
   useEffect(() => {
@@ -527,8 +534,10 @@ function App({ level }) {
   const [deleteId, setDeleteId] = useState("");
   const [studyTab, updateStudyTab] = useState(() => studyTabFromPath(window.location.pathname));
   const setStudyTab = (label) => {
+    if(!canView(level,label)) return;
     if (window.location.pathname !== studyRoutes[label]) {
       window.history.pushState(null, "", studyRoutes[label] + window.location.search);
+      window.dispatchEvent(new Event('study-navigation'));
     }
     updateStudyTab(label);
     window.requestAnimationFrame(() => {
@@ -546,7 +555,7 @@ function App({ level }) {
     }
     return () => window.removeEventListener("popstate", onPopState);
   }, []);
-  const isChapterStudy = !["Kanji", "Mock exam"].includes(studyTab) && !(level === "n3" && ["Reading", "Practice"].includes(studyTab));
+  const isChapterStudy = !["Kanji", "Mock exam"].includes(studyTab) && !(level === "n3" && ["Listening", "Reading", "Practice"].includes(studyTab));
   const studyLabel = studyTab === "Vocab" ? "vocabulary" : studyTab.toLowerCase();
   useEffect(() => {
     setChapterQuery("");
@@ -987,7 +996,7 @@ function App({ level }) {
           </p><StudyAccountControls /></div>
           <h1>JLPT {level.toUpperCase()}</h1>
           <nav className="level-switch" aria-label="JLPT level">
-            {["n3", "n2", "aws"].map((item) => <a key={item} href={routesForLevel(item)['Part 1'] || routesForLevel(item)[studyTab] || routesForLevel(item).Vocab || routesForLevel(item).Practice} aria-current={item === level ? "page" : undefined}>{item === "aws" ? "AWS" : `JLPT ${item.toUpperCase()}`}</a>)}
+            {["n3", "n2", "aws"].filter(item=>Object.keys(routesForLevel(item)).some(tab=>canView(item,tab))).map((item) => <a key={item} href={canView(item,studyTab)&&routesForLevel(item)[studyTab] || Object.entries(routesForLevel(item)).find(([tab])=>canView(item,tab))?.[1]} aria-current={item === level ? "page" : undefined}>{item === "aws" ? "AWS" : `JLPT ${item.toUpperCase()}`}</a>)}
           </nav>
           <p className="subtitle">Japanese · Myanmar · flashcards by chapter</p>
         </div>
@@ -1402,6 +1411,12 @@ function App({ level }) {
         aria-labelledby={`study-tab-${studyTabs.indexOf("Mock exam")}`}
         tabIndex={0}
       ><MockExam showReadings={showReadings} showKanji={showKanji} /></section>}
+      {level === "n3" && studyTab === "Listening" && <section
+        role="tabpanel"
+        id={`study-panel-${studyTabs.indexOf("Listening")}`}
+        aria-labelledby={`study-tab-${studyTabs.indexOf("Listening")}`}
+        tabIndex={0}
+      ><ListeningPractice /></section>}
       {level === "n3" && studyTab === "Reading" && <section
         role="tabpanel"
         id={`study-panel-${studyTabs.indexOf("Reading")}`}
@@ -1510,6 +1525,6 @@ function App({ level }) {
 }
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <StudyAccess><React.Suspense fallback={<p role="status">読み込み中…</p>}>{levelFromPath(window.location.pathname) === "aws" ? <AwsApp /> : <App level={levelFromPath(window.location.pathname)} />}</React.Suspense></StudyAccess>
+    <StudyAccess><React.Suspense fallback={<StudyLoading phase="content" />}>{levelFromPath(window.location.pathname) === "aws" ? <AwsApp /> : <App level={levelFromPath(window.location.pathname)} />}</React.Suspense></StudyAccess>
   </React.StrictMode>,
 );

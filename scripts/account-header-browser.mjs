@@ -24,7 +24,7 @@ const mainSource = fs.readFileSync(new URL('../src/main.jsx', import.meta.url), 
 const start = mainSource.indexOf('<header className="study-page-header">');
 const header = mainSource.slice(start, mainSource.indexOf('</header>', start) + '</header>'.length);
 const previewPath = path.resolve('.tmp-account-header-preview.jsx');
-fs.writeFileSync(previewPath, `import React from 'react';import{StudyAccountControls}from'/src/StudyAccount.jsx';import{routesForLevel}from'/src/studyRoutes.js';export default function Preview(){const level='n3',studyTab='Reading',cloud={isEditor:false};return <main id="study-content">${header}</main>;}`);
+fs.writeFileSync(previewPath, `import React from 'react';import{StudyAccountControls}from'/src/StudyAccount.jsx';import{routesForLevel}from'/src/studyRoutes.js';export default function Preview(){const canView=()=>true;const level='n3',studyTab='Reading',cloud={isEditor:false};return <main id="study-content">${header}</main>;}`);
 const server = await createServer({ configFile: false, logLevel: 'error', plugins: [react(), {
   name: 'access-check-page',
   enforce: 'pre',
@@ -94,7 +94,7 @@ try {
   await evaluate(`document.querySelector('.study-signout-button').click()`);
   await until(`document.querySelector('.study-access-form') !== null`);
   assert.equal(await evaluate(`document.querySelector('#study-content')`), null);
-  assert.equal(await evaluate(`getComputedStyle(document.querySelector('.study-access-form button')).backgroundColor`), 'rgb(40, 124, 101)');
+  assert.ok(await evaluate(`(()=>{const button=document.querySelector('.study-access-form button[type="submit"]');const style=getComputedStyle(button);return style.backgroundColor!=='rgba(0, 0, 0, 0)' && style.backgroundColor!==style.color})()`),'Login submit button has a visible background distinct from its text');
   assert.ok(await evaluate(`document.documentElement.scrollWidth<=document.documentElement.clientWidth`),'Login fits phone');
   const loginShot=await cdp('Page.captureScreenshot',{format:'png'});
   fs.writeFileSync(new URL('../.tmp-python/account-login.png',import.meta.url),Buffer.from(loginShot.data,'base64'));

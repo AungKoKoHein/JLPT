@@ -5,8 +5,15 @@ import QuestionPrompt from './QuestionPrompt.jsx';
 import { practiceText } from './practiceText.js';
 import { deleteExamRecord, localExamRecords, subscribeExamRecords } from './mockExamStore.js';
 import { performanceView, skills, skillSummary } from './mockExamRecords.js';
+import MockScoreReport from './MockScoreReport.jsx';
 
 const completedDate = record => new Date(record.completedAt).toLocaleString();
+function reportReview(record) {
+  try {
+    const review=JSON.parse(record.review||'null');
+    return {questions:review?.questions||[],answers:review?.answers||{}};
+  } catch { return {}; }
+}
 export function SkillScores({ scores, comparison = null }) {
   return <div className="exam-skill-grid">{skills.map(skill => {
     const { correct, total, percent, status } = skillSummary(scores[skill]);
@@ -60,7 +67,7 @@ export function ExamPerformance({ records, onDelete, deletingId = '', initialVie
         <p>{view === 'overall' ? `ပြီးဆုံးခဲ့သော စာမေးပွဲ ${result.count} ခု၏ ရလဒ်ဖြစ်ပြီး ကျွမ်းကျင်မှုတစ်ခုစီရှိ မေးခွန်းအရေအတွက်အလိုက် တွက်ချက်ထားပါသည်။` : `${result.record.examTitle} · ${completedDate(result.record)} · ${result.record.correct}/${result.record.total} correct`}</p>
         {result.previous && <p>Changes compare this exam with {result.previous.examTitle} on {completedDate(result.previous)}.</p>}
         <SkillScores scores={result.scores} comparison={result.previous?.scores} />
-        {reviewId === result.record.id && <SavedExamReview key={result.record.id} record={result.record} />}
+        {reviewId === result.record.id && <><MockScoreReport title={result.record.examTitle} completedAt={result.record.completedAt} scores={result.record.scores} reportId={result.record.id} {...reportReview(result.record)} /><SavedExamReview key={result.record.id} record={result.record} /></>}
       </>}
     </div>
     <p>၈၀% နှင့်အထက် — အားကောင်း၊ ၆၀–၇၉% — တိုးတက်ဆဲ၊ ၆၀% အောက် — ထပ်လေ့ကျင့်ရန် လိုအပ်။ မဖြေထားသော မေးခွန်းများကို အမှားအဖြစ် သတ်မှတ်ပါသည်။ ဤရလဒ်သည် တရားဝင် JLPT အမှတ် မဟုတ်ပါ။</p>

@@ -1,0 +1,171 @@
+{
+  "duration": 1956.937143,
+  "boundaryMethod": "Local Japanese ASR word timings, refined at question-number announcements; 0.4s leading padding and next-question chime excluded.",
+  "sections": [
+    {
+      "number": 1,
+      "questions": [
+        {
+          "number": 1,
+          "start": 9.82,
+          "end": 84.12
+        },
+        {
+          "number": 2,
+          "start": 87.22,
+          "end": 161.6
+        },
+        {
+          "number": 3,
+          "start": 164.7,
+          "end": 248.19
+        },
+        {
+          "number": 4,
+          "start": 251.29,
+          "end": 328.06
+        },
+        {
+          "number": 5,
+          "start": 331.16,
+          "end": 418.3
+        },
+        {
+          "number": 6,
+          "start": 421.4,
+          "end": 517.54
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "questions": [
+        {
+          "number": 1,
+          "start": 520.64,
+          "end": 619.22
+        },
+        {
+          "number": 2,
+          "start": 622.32,
+          "end": 730.46
+        },
+        {
+          "number": 3,
+          "start": 733.56,
+          "end": 825.8
+        },
+        {
+          "number": 4,
+          "start": 828.9,
+          "end": 967.6
+        },
+        {
+          "number": 5,
+          "start": 970.7,
+          "end": 1085.98
+        },
+        {
+          "number": 6,
+          "start": 1089.08,
+          "end": 1207.54
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "questions": [
+        {
+          "number": 1,
+          "start": 1210.64,
+          "end": 1317.56
+        },
+        {
+          "number": 2,
+          "start": 1320.66,
+          "end": 1403.87
+        },
+        {
+          "number": 3,
+          "start": 1406.97,
+          "end": 1501.86
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "questions": [
+        {
+          "number": 1,
+          "start": 1504.96,
+          "end": 1536.68
+        },
+        {
+          "number": 2,
+          "start": 1539.78,
+          "end": 1573.4
+        },
+        {
+          "number": 3,
+          "start": 1576.5,
+          "end": 1612.69
+        },
+        {
+          "number": 4,
+          "start": 1615.79,
+          "end": 1653.84
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "questions": [
+        {
+          "number": 1,
+          "start": 1656.94,
+          "end": 1687.84
+        },
+        {
+          "number": 2,
+          "start": 1690.94,
+          "end": 1720.9
+        },
+        {
+          "number": 3,
+          "start": 1724.0,
+          "end": 1752.98
+        },
+        {
+          "number": 4,
+          "start": 1756.08,
+          "end": 1783.78
+        },
+        {
+          "number": 5,
+          "start": 1786.88,
+          "end": 1819.16
+        },
+        {
+          "number": 6,
+          "start": 1822.26,
+          "end": 1852.84
+        },
+        {
+          "number": 7,
+          "start": 1855.94,
+          "end": 1888.08
+        },
+        {
+          "number": 8,
+          "start": 1891.18,
+          "end": 1925.06
+        },
+        {
+          "number": 9,
+          "start": 1928.16,
+          "end": 1956.93
+        }
+      ]
+    }
+  ]
+}

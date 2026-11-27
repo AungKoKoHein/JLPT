@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { StudyAccountControls } from './StudyAccount.jsx';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { StudyAccountControls, StudyAccountContext } from './StudyAccount.jsx';
 import StudySessionView from './StudySessionView.jsx';
 import AwsPracticeSession from './AwsPracticeSession.jsx';
 import { awsPracticeTitle, awsQuestions } from './awsPractice.js';
@@ -14,7 +14,7 @@ import AwsExercises from './AwsExercises.jsx';
 import './dashboard.css';
 import './awsHandbook.css';
 
-const tabs = ['Part 1', 'Part 2', 'Part 3', 'Part 4', 'Practice'];
+const allTabs = ['Part 1', 'Part 2', 'Part 3', 'Part 4', 'Practice'];
 const parts = {
   'Part 1': { chapters:awsChapters, title:'DESIGN SECURE ARCHITECTURES', my:'လုံခြုံသော AWS စနစ်ကို အဆင့်ဆင့် တည်ဆောက်ခြင်း', count:'အခန်း ၉ ခန်း' },
   'Part 2': { chapters:awsPart2Chapters, title:'DESIGN RESILIENT ARCHITECTURES', my:'Failure ဖြစ်သော်လည်း ဆက်လက်အသုံးပြုနိုင်သော AWS စနစ် တည်ဆောက်ခြင်း', count:'အခန်း ၈ ခန်း · Chapter 10–17' },
@@ -23,6 +23,9 @@ const parts = {
 };
 
 export default function AwsApp() {
+  const account=useContext(StudyAccountContext);
+  const canView=(level,tab)=>account?.canViewTab?account.canViewTab(level,tab):true;
+  const tabs=allTabs.filter(tab=>canView('aws',tab));
   const [active, setActive] = useState(false);
   const [tab, setTab] = useState(() => location.pathname.startsWith('/aws') ? studyTabFromPath(location.pathname) : 'Part 1');
   const [selectedChapters, setSelectedChapters] = useState({'Part 1':1,'Part 2':10,'Part 3':18,'Part 4':26});
@@ -67,7 +70,9 @@ export default function AwsApp() {
     else list.scrollTop += item.top < bounds.top ? item.top - bounds.top : item.bottom > bounds.bottom ? item.bottom - bounds.bottom : 0;
   }
   function selectTab(next) {
+    if(!canView('aws',next)) return;
     history.pushState({}, '', routesForLevel('aws')[next]);
+    window.dispatchEvent(new Event('study-navigation'));
     setTab(next);
   }
   function selectLesson(id) {
@@ -84,7 +89,7 @@ export default function AwsApp() {
     <header className="study-page-header"><div className="study-page-heading">
       <div className="study-header-topline"><p className="eyebrow" lang="ja">自分用学習ノート</p><StudyAccountControls /></div>
       <h1>AWS SAA-C03</h1>
-      <nav className="level-switch" aria-label="Study subject"><a href="/n3/vocab">JLPT N3</a><a href="/n2/vocab">JLPT N2</a><a href="/aws/part-1" aria-current="page">AWS</a></nav>
+      <nav className="level-switch" aria-label="Study subject">{['n3','n2','aws'].map(level=>{const route=Object.entries(routesForLevel(level)).find(([tab])=>canView(level,tab));return route&&<a key={level} href={route[1]} aria-current={level==='aws'?'page':undefined}>{level==='aws'?'AWS':`JLPT ${level.toUpperCase()}`}</a>;})}</nav>
       <p className="subtitle">Solutions Architect Associate</p>
     </div></header>
     <nav className="study-tabs" role="tablist" aria-label="AWS study sections">

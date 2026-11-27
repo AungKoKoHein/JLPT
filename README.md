@@ -20,6 +20,10 @@ Development starts Vite directly. Production builds use `npm run build`. Neither
 
 ## Database
 
+N3 Listening at `/n3/listening` includes the supplied December 2016, 2017 and 2018 sets: 84 individually split MP3 question tracks, 17 original PDF illustrations, printed choices, and the listening-only PDF excerpt. An exam selector keeps browser-local answers and notes separate for each set; the supplied PDFs have no answer keys. The full source recording is also available. To reproduce the import with PyAV and PyMuPDF installed, run `python scripts/import-n3-listening.py <audio.mp3> <questions.pdf> scripts/fixtures/n3-listening-2016-12-timings.json`.
+
+Vocabulary book and flashcard views fill missing furigana from `src/vocabularyFurigana.json`, preserving the saved sentences and explicit authored readings. Its offline generator is `node scripts/build-vocabulary-furigana.mjs [read-only-n3-snapshot.json]`; it audits the migration catalog plus the optional current-content snapshot. The dictionary is not loaded into the browser. The current audit covers 1,796 visible vocabulary cards and 1,223 distinct example sentences.
+
 The existing `akkh-jlpt` project and database are used:
 
 | Level | Content path |
@@ -30,6 +34,8 @@ The existing `akkh-jlpt` project and database are used:
 Chapters, cards, exercises, edits, deletions, assignments, and ordering are stored in each level's versioned content record. N3's migrated catalog preserves original IDs and owner edits. N2 has no initial study data. Create its first chapter using New while signed in as the owner.
 
 See [FIREBASE_SETUP.md](FIREBASE_SETUP.md) for authentication and access rules.
+
+Account managers open **Manage viewer accounts** in a modal. New accounts and existing accounts (using **Tab access**) can allow all tabs or selected tabs across N3, N2, and AWS. Existing viewers without a policy retain all tabs; a selected policy with no tabs grants no study pages. Editors and account managers remain unrestricted. Changes are stored in the manager-writable viewer profile and applied live; navigation and direct page URLs respect the assignment. These are application tab restrictions, not per-tab data isolation: the shared catalog and publicly hosted static media are still shared resources. Profile validation for the new `tabAccess` field is included in `database.rules.json` for deployment with the application.
 
 ## Migration and source archive
 

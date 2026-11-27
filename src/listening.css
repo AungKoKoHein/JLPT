@@ -1,0 +1,45 @@
+.listening-practice { min-width:0; border:0; padding:0; background:transparent; box-shadow:none; }
+.listening-practice .listening-header { box-shadow:none; margin:0; }
+.listening-header { display:flex; justify-content:space-between; align-items:center; gap:24px; padding:24px 28px; border:1px solid var(--line); border-radius:16px; background:var(--surface); }
+.listening-eyebrow { color:var(--accent); font-size:11px; font-weight:750; letter-spacing:.12em; margin:0 0 8px; }
+.listening-header h2 { margin:0; font-size:clamp(24px,3vw,34px); letter-spacing:-.035em; }
+.listening-set-title { margin:7px 0 0; color:var(--muted); font-size:14px; }
+.listening-set-picker { display:grid; gap:5px; margin-top:12px; font-size:11px; color:var(--muted); }
+.listening-set-picker select { width:min(100%,340px); max-width:100%; min-width:0; padding:9px 12px; border:1px solid var(--line); border-radius:8px; background:var(--surface-muted); color:var(--ink); font:inherit; font-size:14px; }
+.listening-summary { display:flex; gap:24px; }
+.listening-summary>span { display:grid; gap:2px; color:var(--muted); font-size:12px; }
+.listening-summary strong { color:var(--ink); font-size:22px; font-weight:650; }
+.listening-sections { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px; margin:18px 0; }
+.listening-sections button { display:grid; gap:5px; text-align:left; padding:15px; border:1px solid var(--line); border-radius:12px; color:var(--ink); background:var(--surface); }
+.listening-sections button[aria-pressed=true] { border-color:var(--accent); background:var(--accent-soft); }
+.listening-sections button>span { color:var(--accent); font-size:11px; font-weight:700; }
+.listening-sections strong { font-size:15px; }.listening-sections small { color:var(--muted); font-size:11px; }
+.listening-workspace { display:grid; grid-template-columns:250px minmax(0,1fr); gap:18px; align-items:start; }
+.listening-question-nav { min-width:0; padding:18px; background:var(--surface); border:1px solid var(--line); border-radius:14px; }
+.listening-nav-heading h3 { margin:0; font-size:17px; }.listening-nav-heading>span { color:var(--muted); font-size:11px; }
+.listening-question-buttons { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:7px; margin:15px 0; }
+.listening-question-buttons button { position:relative; padding:10px 6px; border:1px solid var(--line); border-radius:8px; color:var(--ink); background:var(--surface-muted); font:inherit; font-size:13px; }
+.listening-question-buttons button[aria-current=step] { border-color:var(--accent); color:var(--accent); background:var(--accent-soft); font-weight:750; }
+.listening-saved-mark { margin-left:4px; color:var(--accent); font-size:10px; }
+.listening-directions { font-size:12px; line-height:1.95; color:var(--muted); border-top:1px solid var(--line); padding-top:14px; }
+.listening-source-actions { display:grid; gap:8px; }.listening-source-actions a { color:var(--accent); font-size:12px; text-align:center; padding:7px; }
+.listening-practice button,.listening-practice select { cursor:pointer; }
+.listening-source-actions button,.listening-player-tools button,.listening-introduction button,.listening-review-footer button,.listening-pagination button { padding:9px 12px; color:var(--ink); background:var(--surface-muted); border:1px solid var(--line); border-radius:8px; font:inherit; font-size:12px; }
+.listening-source-actions button[aria-pressed=true] { border-color:var(--accent); color:var(--accent); }
+.listening-question-panel { min-width:0; padding:clamp(16px,2.5vw,28px); background:var(--surface); border:1px solid var(--line); border-radius:14px; }
+.listening-track-heading { display:flex; justify-content:space-between; gap:12px; align-items:center; margin-bottom:18px; }.listening-track-heading h3 { margin:0; font-size:23px; }.listening-track-heading>span { font-variant-numeric:tabular-nums; color:var(--muted); font-size:13px; }
+.listening-player { border:1px solid var(--line); border-radius:12px; padding:14px; background:var(--surface-muted); }
+.listening-player audio { display:block; width:100%; min-width:0; }
+.listening-player-tools { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-top:10px; font-size:12px; }.listening-player-tools label { display:flex; align-items:center; gap:7px; }.listening-player-tools select { padding:5px; border:1px solid var(--line); border-radius:6px; background:var(--surface); color:var(--ink); font:inherit; }.listening-player-tools>span { color:var(--muted); margin-left:auto; }
+.listening-question-meta { display:flex; gap:12px; justify-content:space-between; margin:20px 0 12px; font-size:12px; color:var(--muted); }
+.listening-figure { margin:0 0 18px; padding:14px; border:1px solid var(--line); border-radius:10px; background:#fff; text-align:center; }.listening-figure img { display:block; max-width:100%; max-height:480px; width:auto; height:auto; margin:auto; }.listening-figure figcaption { color:#58717c; font-size:11px; margin-top:10px; }
+.listening-options { border:0; padding:0; margin:18px 0; display:grid; gap:9px; min-width:0; }.listening-options legend { margin-bottom:12px; font-size:14px; font-weight:650; }.listening-options label { display:flex; align-items:center; gap:12px; padding:12px 14px; line-height:1.8; border:1px solid var(--line); border-radius:10px; cursor:pointer; overflow-wrap:anywhere; }.listening-options label[data-selected=true] { border-color:var(--accent); background:var(--accent-soft); }.listening-options input { accent-color:var(--accent); flex-shrink:0; }.listening-option-number { display:grid; place-items:center; width:27px; height:27px; flex-shrink:0; border-radius:7px; color:var(--accent); background:var(--accent-soft); font-weight:700; font-size:12px; }
+.listening-notes { display:grid; gap:8px; font-size:12px; font-weight:650; }.listening-notes textarea { width:100%; min-height:95px; resize:vertical; padding:12px; font:inherit; font-size:14px; line-height:1.9; border:1px solid var(--line); border-radius:9px; background:var(--surface-muted); color:var(--ink); }
+.listening-review-footer { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px; margin-top:10px; }.listening-review-footer p,.listening-key-note { color:var(--muted); font-size:11px; line-height:1.8; }.listening-key-note { margin-top:18px; }
+.listening-audio-only { background:var(--accent-soft); padding:14px; border-radius:9px; font-size:14px; line-height:1.9; }.listening-audio-only>span { display:block; font-size:12px; color:var(--muted); margin-top:5px; }
+.listening-pagination { display:flex; gap:12px; align-items:center; justify-content:space-between; padding-top:18px; margin-top:20px; border-top:1px solid var(--line); }.listening-pagination span { font-size:12px; color:var(--muted); }.listening-pagination button:disabled { opacity:.4; cursor:default; }
+.listening-introduction { line-height:2; padding:18px 0; font-size:14px; }
+.listening-credit { font-size:11px; color:var(--muted); line-height:1.9; margin:18px 0; overflow-wrap:anywhere; }
+.listening-practice :is(button,select,textarea,a):focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+@media(max-width:900px) { .listening-workspace { grid-template-columns:210px minmax(0,1fr); }.listening-header { padding:20px; }.listening-summary { gap:15px; } }
+@media(max-width:650px) { .listening-header { align-items:flex-start; flex-direction:column; gap:16px; }.listening-summary { width:100%; justify-content:space-between; }.listening-sections { grid-template-columns:repeat(5,125px); overflow-x:auto; padding-bottom:6px; }.listening-workspace { grid-template-columns:minmax(0,1fr); }.listening-question-nav { padding:15px; }.listening-question-buttons { grid-template-columns:repeat(auto-fit,minmax(46px,1fr)); }.listening-directions { margin-bottom:10px; }.listening-source-actions { grid-template-columns:repeat(2,minmax(0,1fr)); }.listening-source-actions a { grid-column:1/-1; }.listening-player { padding:8px; }.listening-player-tools { gap:8px; }.listening-player-tools>span { width:100%; margin-left:0; }.listening-options label { padding:10px; gap:9px; }.listening-options label>span:last-child { font-size:14px; }.listening-figure { padding:8px; } }

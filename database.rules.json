@@ -34,6 +34,15 @@
         },
         "username": {
           ".validate": "newData.isString() && newData.val().matches(/^[a-z0-9._-]{3,24}$/)"
+        },
+        "tabAccess": {
+          ".validate": "newData.hasChildren(['mode'])",
+          "mode": { ".validate": "newData.val() === 'all' || newData.val() === 'selected'" },
+          "tabs": {
+            ".validate": "newData.hasChildren()",
+            "$tab": { ".validate": "newData.isBoolean() && ($tab === 'n3-vocab' || $tab === 'n3-grammar' || $tab === 'n3-kanji' || $tab === 'n3-listening' || $tab === 'n3-reading' || $tab === 'n3-mock-exam' || $tab === 'n3-practice' || $tab === 'n2-vocab' || $tab === 'n2-grammar' || $tab === 'n2-kanji' || $tab === 'n2-reading' || $tab === 'n2-mock-exam' || $tab === 'aws-part-1' || $tab === 'aws-part-2' || $tab === 'aws-part-3' || $tab === 'aws-part-4' || $tab === 'aws-practice')" }
+          },
+          "$other": { ".validate": false }
         }
       }
     },

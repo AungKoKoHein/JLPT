@@ -22,7 +22,10 @@ export function routesForLevel(level) {
   if (level === 'aws') return { 'Part 1': '/aws/part-1', 'Part 2': '/aws/part-2', 'Part 3': '/aws/part-3', 'Part 4': '/aws/part-4', Practice: '/aws/practice' };
   if (!["n2", "n3"].includes(level)) throw new Error("Unknown JLPT level");
   const routes = Object.fromEntries(Object.entries(studyRoutes).map(([tab, path]) => [tab, '/' + level + path]));
-  if (level === "n3") routes.Practice = "/n3/practice";
+  if (level === "n3") {
+    routes.Listening = "/n3/listening";
+    routes.Practice = "/n3/practice";
+  }
   return routes;
 }
 export function contentPathForLevel(level) {

@@ -43,6 +43,17 @@ test('renames the same UID and keeps the password unchanged when blank',async()=
   assert.deepEqual(calls.filter(c=>c.action==='auth-update'),[{action:'auth-update',id:'viewer-uid',data:{email:'new@users.akkh-jlpt.invalid'}}]);
   assert.ok(calls.some(c=>c.action==='PATCH'&&c.body.username==='new'));
 });
+
+test('managers can save selected tab permissions without exposing them to privilege escalation',async()=> {
+  const {run,calls}=setup();
+  const tabAccess={mode:'selected',tabs:{'n3-listening':true,'aws-part-1':true}};
+  const result=await run('PATCH',{uid:'viewer-uid',username:'old',tabAccess});
+  assert.equal(result.code,200);
+  assert.deepEqual(calls.find(call=>call.action==='PATCH').body.tabAccess,tabAccess);
+  const denied=setup({manager:false});
+  assert.equal((await denied.run('PATCH',{uid:'viewer-uid',username:'old',tabAccess})).code,403);
+  assert.ok(denied.calls.every(call=>call.action==='GET'));
+});
 test('changes the password only in Firebase Auth, never the profile or response',async()=>{
   const {run,calls}=setup();const result=await run('PATCH',{uid:'viewer-uid',username:'old',password:'secret123'});assert.equal(result.code,200);
   assert.deepEqual(calls.find(c=>c.action==='auth-update').data,{password:'secret123'});

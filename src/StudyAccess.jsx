@@ -1,6 +1,11 @@
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { StudyAccountContext } from "./StudyAccount.jsx";
+import { createPortal } from 'react-dom';
+import { StudyAccountContext, StudyAccountControls } from "./StudyAccount.jsx";
+import ViewerTabPermissions from './ViewerTabPermissions.jsx';
+import { canViewPath, canViewTab, effectiveTabAccess, permittedTabs, tabAccessSummary, validateTabAccess } from './viewerTabAccess.js';
+import './viewerManagement.css';
 import ThemeToggle from "./ThemeToggle.jsx";
+import StudyLoading from './StudyLoading.jsx';
 import "./studyLogin.css";
 import ViewerAccountDialog from "./ViewerAccountDialog.jsx";
 import {
@@ -31,7 +36,11 @@ const SESSION_MILLISECONDS = 7 * 24 * 60 * 60 * 1000;
 const DEVICE_SLOTS = ["0", "1", "2", "3", "4"];
 const authEmailForUsername = (username) => `${username.trim().toLowerCase()}@users.akkh-jlpt.invalid`;
 
-function PracticeUserManager() {
+export function PracticeUserManager() {
+  const [open,setOpen] = useState(false);
+  const modal = useRef(null);
+  const launcher = useRef(null);
+  const [tabAccess,setTabAccess] = useState({mode:'all'});
   const [users, setUsers] = useState({});
   const [accountDialog, setAccountDialog] = useState(null);
   const [username, setUsername] = useState("");
@@ -40,6 +49,16 @@ function PracticeUserManager() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
+
+  useEffect(()=> {
+    if(!open) return;
+    const previous=launcher.current||document.activeElement;
+    const overflow=document.body.style.overflow;
+    const element=modal.current;
+    element.showModal(); document.body.style.overflow='hidden';
+    return ()=> { element.close();document.body.style.overflow=overflow;if(previous?.isConnected)previous.focus(); };
+  },[open]);
+  const closeManager=()=> { if(!busy && !accountDialog) {setOpen(false);setPassword('');setError('');} };
 
   useEffect(() => onValue(ref(database, "practiceUsers"), (snapshot) => setUsers(snapshot.val() || {}), (reason) => setError(explainAuthError(reason))), []);
 
@@ -57,7 +76,7 @@ function PracticeUserManager() {
       const existing = sortedUsers.find((user) => (user.username || "").toLowerCase() === cleanUsername);
       if (existing) {
         if (existing.active) throw new Error("This username already has viewing access.");
-        await update(ref(database, `practiceUsers/${existing.uid}`), { active: true, restoredAt: Date.now(), changedBy: auth.currentUser?.uid || "" });
+        await update(ref(database, `practiceUsers/${existing.uid}`), { active: true, tabAccess:validateTabAccess(tabAccess), restoredAt: Date.now(), changedBy: auth.currentUser?.uid || "" });
         setMessage(`Viewing access restored for ${cleanUsername}.`);
       } else {
         const credential = await createUserWithEmailAndPassword(practiceProvisioningAuth, authEmailForUsername(cleanUsername), password);
@@ -67,6 +86,7 @@ function PracticeUserManager() {
           username: cleanUsername,
           displayName: displayName.trim(),
           active: true,
+          tabAccess:validateTabAccess(tabAccess),
           createdAt: Date.now(),
           createdBy: auth.currentUser?.uid || "",
         });
@@ -75,6 +95,7 @@ function PracticeUserManager() {
       setUsername("");
       setDisplayName("");
       setPassword("");
+      setTabAccess({mode:'all'});
     } catch (reason) {
       if (createdUser) {
         try { await deleteUser(createdUser); } catch { /* Access remains denied if cleanup is blocked. */ }
@@ -103,26 +124,29 @@ function PracticeUserManager() {
   };
 
   return (
-    <details className="practice-user-manager">
-      <summary>Manage viewer accounts</summary>
+    <><button ref={launcher} type="button" className="viewer-manager-launcher" aria-haspopup="dialog" onClick={()=>setOpen(true)}>Manage viewer accounts</button>
+      {open && createPortal(<dialog ref={modal} className="viewer-manager-modal" aria-labelledby="viewer-manager-title" onCancel={event=>{event.preventDefault();closeManager();}}>
+      <div className="viewer-manager-heading"><h2 id="viewer-manager-title">Viewer accounts</h2><button type="button" disabled={busy||Boolean(accountDialog)} onClick={closeManager} autoFocus>Close</button></div>
       <div className="practice-user-manager-content">
-        <h2>Viewer accounts</h2>
         <p>These username/password accounts can view the study site. They do not need real email addresses and cannot edit study content. Google sign-in remains the editor sign-in.</p>
         <form className="practice-user-form" onSubmit={addUser}>
           <label>Username<input type="text" autoComplete="off" minLength={3} maxLength={24} pattern="[a-zA-Z0-9._-]{3,24}" required value={username} onChange={(event) => setUsername(event.target.value)} /></label>
           <label>Name (optional)<input type="text" value={displayName} onChange={(event) => setDisplayName(event.target.value)} /></label>
           <label>Password<input type="password" autoComplete="new-password" minLength={6} required={!sortedUsers.some((user) => (user.username || "").toLowerCase() === username.trim().toLowerCase() && !user.active)} value={password} onChange={(event) => setPassword(event.target.value)} placeholder="At least 6 characters" /></label>
+          <ViewerTabPermissions value={tabAccess} onChange={setTabAccess} disabled={busy} />
           <button type="submit" className="primary-button" disabled={busy}>{busy ? "Saving…" : "Add viewer"}</button>
         </form>
         {error && <p className="practice-access-error" role="alert">{error}</p>}
         {message && <p className="practice-access-message" role="status">{message}</p>}
         <div className="practice-user-table-wrap">
           <table className="practice-user-table">
-            <thead><tr><th>Username</th><th>Status</th><th>Actions</th></tr></thead>
+            <thead><tr><th>Username</th><th>Status</th><th>Allowed tabs</th><th>Actions</th></tr></thead>
             <tbody>{sortedUsers.map((user) => <tr key={user.uid}>
               <td data-label="Username">{user.username || user.email}<small>{user.displayName}</small></td>
               <td data-label="Status"><span className={`practice-user-status ${user.active ? "active" : "inactive"}`}>{user.active ? "Can view" : "Access removed"}</span></td>
+              <td data-label="Allowed tabs"><span className="viewer-access-summary">{tabAccessSummary(user.tabAccess)}</span></td>
               <td data-label="Actions"><div className="practice-user-actions">
+                <button type="button" className="secondary-button" disabled={busy} onClick={()=>setAccountDialog({user,mode:'access'})}>Tab access</button>
                 <button type="button" className="secondary-button" disabled={busy} onClick={() => setAccountDialog({ user, mode: "edit" })}>Edit</button>
                 <button type="button" className="secondary-button" disabled={busy} onClick={() => setAccountDialog({ user, mode: "delete" })}>Delete permanently</button>
                 {user.active ? <button type="button" className="secondary-button" disabled={busy} onClick={() => setActive(user, false)}>Remove access</button> : <button type="button" className="secondary-button" disabled={busy} onClick={() => setActive(user, true)}>Restore access</button>}
@@ -134,11 +158,17 @@ function PracticeUserManager() {
         {accountDialog && <ViewerAccountDialog user={accountDialog.user} mode={accountDialog.mode} onClose={() => setAccountDialog(null)} onSaved={text => { setMessage(text); setError(""); setAccountDialog(null); }} />}
         <p className="practice-user-note">Removing access disables the account in this site but keeps its record, so you can restore it later. Passwords are not stored in the user table. The Google editor account is managed separately.</p>
       </div>
-    </details>
+    </dialog>,document.body)}</>
   );
 }
 
 export default function StudyAccess({ children }) {
+  const [pathname,setPathname] = useState(()=>location.pathname);
+  useEffect(()=> {
+    const navigate=()=>setPathname(location.pathname);
+    window.addEventListener('popstate',navigate);window.addEventListener('study-navigation',navigate);
+    return ()=>{window.removeEventListener('popstate',navigate);window.removeEventListener('study-navigation',navigate);};
+  },[]);
   const [user, setUser] = useState(null);
   const [claims, setClaims] = useState(null);
   const [checking, setChecking] = useState(true);
@@ -274,7 +304,7 @@ export default function StudyAccess({ children }) {
     finally { setBusy(false); }
   };
 
-  if (checking || (user && allowed && sessionStatus === "checking")) return <main className="study-access-screen"><section className="study-access-card" role="status" aria-live="polite"><p className="eyebrow">JLPT Study</p><h1>Restoring your session…</h1><p className="study-access-lead">Your study page will be ready shortly.</p></section></main>;
+  if (checking || (user && allowed && sessionStatus === "checking")) return <StudyLoading />;
   if (!user || !allowed || sessionStatus !== "ready") return (
     <main className="study-access-screen study-login-screen" ref={loginScreenRef}>
       <section className="study-login-shell" ref={loginShellRef} aria-label="JLPT Study sign in">
@@ -315,7 +345,9 @@ export default function StudyAccess({ children }) {
     </main>
   );
 
-  return <StudyAccountContext.Provider value={{ uid: user.uid, username: claims?.profile?.username || claims?.profile?.email || user.email, logout, busy, manager: canManageUsers ? <PracticeUserManager /> : null }}>
-    <div className="study-access-root">{children}</div>
+  const tabAccess=canManageUsers?{mode:'all'}:effectiveTabAccess(claims?.profile?.tabAccess);
+  const available=permittedTabs(tabAccess);
+  return <StudyAccountContext.Provider value={{ uid: user.uid, username: claims?.profile?.username || claims?.profile?.email || user.email, displayName:claims?.profile?.displayName||user.displayName, email:claims?.profile?.email||user.email, logout, busy, tabAccess, canViewTab:(level,tab)=>canViewTab(tabAccess,level,tab), manager: canManageUsers ? <PracticeUserManager /> : null }}>
+    <div className="study-access-root">{canViewPath(tabAccess,pathname)?children:<main className="study-tab-restricted"><StudyAccountControls /><h1>This tab is not available for your account.</h1><p>{available.length?'Choose one of your allowed study tabs below.':'No study tabs have been assigned. Contact your account manager for access.'}</p><nav aria-label="Allowed study tabs">{available.map(tab=><a key={tab.key} href={tab.path}>{tab.subject} · {tab.label}</a>)}</nav></main>}</div>
   </StudyAccountContext.Provider>;
 }

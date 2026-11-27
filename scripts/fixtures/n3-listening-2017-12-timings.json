@@ -1,0 +1,198 @@
+{
+  "id": "n3-2017-12",
+  "title": "2017年12月 · JLPT N3",
+  "pdfPages": [
+    12,
+    13
+  ],
+  "duration": 2270.765188,
+  "layoutFile": "n3-listening-2017-12-layout.json",
+  "boundaryMethod": "Question announcements aligned with local speech recognition and reviewed against supplied PDF; original MP3 frames copied.",
+  "sections": [
+    {
+      "number": 1,
+      "intro": {
+        "start": 0,
+        "end": 128.59
+      },
+      "questions": [
+        {
+          "number": 1,
+          "start": 129.19,
+          "end": 196.27
+        },
+        {
+          "number": 2,
+          "start": 199.37,
+          "end": 283.21
+        },
+        {
+          "number": 3,
+          "start": 286.31,
+          "end": 392.16
+        },
+        {
+          "number": 4,
+          "start": 395.26,
+          "end": 480.77
+        },
+        {
+          "number": 5,
+          "start": 483.87,
+          "end": 575.1
+        },
+        {
+          "number": 6,
+          "start": 578.2,
+          "end": 646.77
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "intro": {
+        "start": 647.27,
+        "end": 687.44
+      },
+      "questions": [
+        {
+          "number": 1,
+          "start": 688.04,
+          "end": 793.73
+        },
+        {
+          "number": 2,
+          "start": 796.83,
+          "end": 897.97
+        },
+        {
+          "number": 3,
+          "start": 901.07,
+          "end": 1019.5
+        },
+        {
+          "number": 4,
+          "start": 1022.6,
+          "end": 1125.06
+        },
+        {
+          "number": 5,
+          "start": 1128.16,
+          "end": 1234.63
+        },
+        {
+          "number": 6,
+          "start": 1237.73,
+          "end": 1404.4
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "intro": {
+        "start": 1404.9,
+        "end": 1454.98
+      },
+      "questions": [
+        {
+          "number": 1,
+          "start": 1455.58,
+          "end": 1541.63
+        },
+        {
+          "number": 2,
+          "start": 1544.73,
+          "end": 1631.25
+        },
+        {
+          "number": 3,
+          "start": 1634.35,
+          "end": 1735.3
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "intro": {
+        "start": 1735.8,
+        "end": 1767.8
+      },
+      "questions": [
+        {
+          "number": 1,
+          "start": 1768.4,
+          "end": 1805.99
+        },
+        {
+          "number": 2,
+          "start": 1809.09,
+          "end": 1847.1
+        },
+        {
+          "number": 3,
+          "start": 1850.2,
+          "end": 1889.32
+        },
+        {
+          "number": 4,
+          "start": 1892.42,
+          "end": 1934.17
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "intro": {
+        "start": 1934.67,
+        "end": 1972.13
+      },
+      "questions": [
+        {
+          "number": 1,
+          "start": 1972.73,
+          "end": 2000.21
+        },
+        {
+          "number": 2,
+          "start": 2003.31,
+          "end": 2034.53
+        },
+        {
+          "number": 3,
+          "start": 2037.63,
+          "end": 2070.16
+        },
+        {
+          "number": 4,
+          "start": 2073.26,
+          "end": 2104.57
+        },
+        {
+          "number": 5,
+          "start": 2107.67,
+          "end": 2137.54
+        },
+        {
+          "number": 6,
+          "start": 2140.64,
+          "end": 2169.64
+        },
+        {
+          "number": 7,
+          "start": 2172.74,
+          "end": 2204.09
+        },
+        {
+          "number": 8,
+          "start": 2207.19,
+          "end": 2237.99
+        },
+        {
+          "number": 9,
+          "start": 2241.09,
+          "end": 2266
+        }
+      ]
+    }
+  ]
+}

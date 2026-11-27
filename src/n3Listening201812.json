@@ -1,0 +1,526 @@
+{
+  "id": "n3-2018-12",
+  "title": "2018年12月 · JLPT N3",
+  "duration": 2289.28,
+  "audio": "listening/n3-2018-12/full-recording.mp3",
+  "pdf": "listening/n3-2018-12/listening-questions.pdf",
+  "sourcePdf": "2018 12月 (1).pdf",
+  "sourceAudio": "N3 12-2018.mp3",
+  "pdfPages": [
+    14,
+    15,
+    16
+  ],
+  "sourceAudioSha256": "218a73be08d4b40f7530bbc4813fd9dfba2b3241be591142228f9dd5d95df3f0",
+  "sourcePdfSha256": "bdd43b777190481ac2ed4096236aa8d8fe509454f38abba4d361a8a014a506ee",
+  "sections": [
+    {
+      "number": 1,
+      "title": "課題理解",
+      "directions": "まず質問を聞いてください。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つえらんでください。",
+      "questions": [
+        {
+          "number": 1,
+          "start": 56.83,
+          "end": 142.4,
+          "id": "s1-q1",
+          "section": 1,
+          "options": [
+            "東京駅に行く",
+            "東京駅に電話する",
+            "山川駅に行く",
+            "山川駅に電話する。"
+          ],
+          "audio": "listening/n3-2018-12/s1-q1.mp3",
+          "pdfPage": 14,
+          "answer": null
+        },
+        {
+          "number": 2,
+          "start": 145.5,
+          "end": 216.28,
+          "id": "s1-q2",
+          "section": 1,
+          "options": [
+            "部屋の予約時間を変える",
+            "大きい部屋を予約する",
+            "人数を確認する",
+            "弁当の数をかえる。"
+          ],
+          "audio": "listening/n3-2018-12/s1-q2.mp3",
+          "pdfPage": 14,
+          "answer": null
+        },
+        {
+          "number": 3,
+          "start": 219.38,
+          "end": 316.6,
+          "id": "s1-q3",
+          "section": 1,
+          "options": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "audio": "listening/n3-2018-12/s1-q3.mp3",
+          "pdfPage": 14,
+          "answer": null,
+          "image": "listening/n3-2018-12/s1-q3.png",
+          "imageAlt": "問題1・3番の問題用紙の図。図の選択肢を見てください。",
+          "printedChoices": true
+        },
+        {
+          "number": 4,
+          "start": 319.7,
+          "end": 417.97,
+          "id": "s1-q4",
+          "section": 1,
+          "options": [
+            "3000円",
+            "12000円",
+            "13000円",
+            "15000円。"
+          ],
+          "audio": "listening/n3-2018-12/s1-q4.mp3",
+          "pdfPage": 14,
+          "answer": null
+        },
+        {
+          "number": 5,
+          "start": 421.07,
+          "end": 504.49,
+          "id": "s1-q5",
+          "section": 1,
+          "options": [
+            "ア／イ",
+            "ア／ウ",
+            "ア／エ",
+            "ウ／エ"
+          ],
+          "audio": "listening/n3-2018-12/s1-q5.mp3",
+          "pdfPage": 14,
+          "answer": null,
+          "image": "listening/n3-2018-12/s1-q5.png",
+          "imageAlt": "問題1・5番の問題用紙の図。図の選択肢を見てください。"
+        },
+        {
+          "number": 6,
+          "start": 507.59,
+          "end": 615.96,
+          "id": "s1-q6",
+          "section": 1,
+          "options": [
+            "小学校のグラウンド",
+            "みどりばしの上",
+            "山田さんの家",
+            "船の上。"
+          ],
+          "audio": "listening/n3-2018-12/s1-q6.mp3",
+          "pdfPage": 14,
+          "answer": null
+        }
+      ],
+      "intro": {
+        "start": 0,
+        "end": 56.23,
+        "audio": "listening/n3-2018-12/s1-intro.mp3"
+      }
+    },
+    {
+      "number": 2,
+      "title": "ポイント理解",
+      "directions": "まず質問を聞いてください。そのあと、問題用紙を見てください。読む時間があります。それから話を聞いて、1から4の中から、最もよいものを一つえらんでください。",
+      "questions": [
+        {
+          "number": 1,
+          "start": 656.16,
+          "end": 754.98,
+          "id": "s2-q1",
+          "section": 2,
+          "options": [
+            "レポートはよくできていなかったこと",
+            "奨学金のおうぼに間に合わなかったこと",
+            "アルバイトをしすぎていること",
+            "体の調子がわるそうなこと"
+          ],
+          "audio": "listening/n3-2018-12/s2-q1.mp3",
+          "pdfPage": 15,
+          "answer": null
+        },
+        {
+          "number": 2,
+          "start": 758.08,
+          "end": 857.45,
+          "id": "s2-q2",
+          "section": 2,
+          "options": [
+            "外国語のパンフレットおいたから",
+            "全部のへやをたたみにかえたから",
+            "ようしきのベッドをへやに入れたから",
+            "日本料理の教室を始めたから。"
+          ],
+          "audio": "listening/n3-2018-12/s2-q2.mp3",
+          "pdfPage": 15,
+          "answer": null
+        },
+        {
+          "number": 3,
+          "start": 860.55,
+          "end": 965.26,
+          "id": "s2-q3",
+          "section": 2,
+          "options": [
+            "ゴミをかわかす",
+            "ゴミにすをかける",
+            "ゴミをこおらせる",
+            "ゴミをにわにうめる"
+          ],
+          "audio": "listening/n3-2018-12/s2-q3.mp3",
+          "pdfPage": 15,
+          "answer": null
+        },
+        {
+          "number": 4,
+          "start": 968.36,
+          "end": 1106.4,
+          "id": "s2-q4",
+          "section": 2,
+          "options": [
+            "花をかんさつするため",
+            "むすこにしぜんをたいけんさせるため",
+            "小説のアイデアを考えるため",
+            "家族との会話をふやすため。"
+          ],
+          "audio": "listening/n3-2018-12/s2-q4.mp3",
+          "pdfPage": 15,
+          "answer": null
+        },
+        {
+          "number": 5,
+          "start": 1109.5,
+          "end": 1226.27,
+          "id": "s2-q5",
+          "section": 2,
+          "options": [
+            "レストランに行ってピザを食べる",
+            "ピザ屋のはいたつのピザを食べる",
+            "家でピザを作って食べる",
+            "レストランの持ち帰りのピザを食べる"
+          ],
+          "audio": "listening/n3-2018-12/s2-q5.mp3",
+          "pdfPage": 15,
+          "answer": null
+        },
+        {
+          "number": 6,
+          "start": 1229.37,
+          "end": 1396.5,
+          "id": "s2-q6",
+          "section": 2,
+          "options": [
+            "小さくてどこにでもおけるから",
+            "インク代安いから",
+            "きれいに印刷できるから",
+            "紙を一度にたくさん入れておけるから。"
+          ],
+          "audio": "listening/n3-2018-12/s2-q6.mp3",
+          "pdfPage": 15,
+          "answer": null
+        }
+      ],
+      "intro": {
+        "start": 616.46,
+        "end": 655.56,
+        "audio": "listening/n3-2018-12/s2-intro.mp3"
+      }
+    },
+    {
+      "number": 3,
+      "title": "概要理解",
+      "directions": "問題用紙に何もいんさつされていません。まず話を聞いてください。それから、質問とせんたくしを聞いて、1から4の中から、最もよいものを一つえらんでください。",
+      "questions": [
+        {
+          "number": 1,
+          "start": 1447.43,
+          "end": 1536.94,
+          "id": "s3-q1",
+          "section": 3,
+          "options": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "audio": "listening/n3-2018-12/s3-q1.mp3",
+          "pdfPage": 16,
+          "answer": null
+        },
+        {
+          "number": 2,
+          "start": 1540.04,
+          "end": 1638.92,
+          "id": "s3-q2",
+          "section": 3,
+          "options": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "audio": "listening/n3-2018-12/s3-q2.mp3",
+          "pdfPage": 16,
+          "answer": null
+        },
+        {
+          "number": 3,
+          "start": 1642.02,
+          "end": 1730.7,
+          "id": "s3-q3",
+          "section": 3,
+          "options": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "audio": "listening/n3-2018-12/s3-q3.mp3",
+          "pdfPage": 16,
+          "answer": null
+        }
+      ],
+      "intro": {
+        "start": 1397.0,
+        "end": 1446.83,
+        "audio": "listening/n3-2018-12/s3-intro.mp3"
+      }
+    },
+    {
+      "number": 4,
+      "title": "発話表現",
+      "directions": "えを見ながら質問を聞いてください。やじるし（➡）の人は何と言いますか。1から3の中から、最もよいものを一つえらんでください。",
+      "questions": [
+        {
+          "number": 1,
+          "start": 1763.8,
+          "end": 1804.96,
+          "id": "s4-q1",
+          "section": 4,
+          "options": [
+            "",
+            "",
+            ""
+          ],
+          "audio": "listening/n3-2018-12/s4-q1.mp3",
+          "pdfPage": 16,
+          "answer": null,
+          "image": "listening/n3-2018-12/s4-q1.png",
+          "imageAlt": "問題4・1番の問題用紙の図。矢印の人の発話を選んでください。"
+        },
+        {
+          "number": 2,
+          "start": 1808.06,
+          "end": 1845.92,
+          "id": "s4-q2",
+          "section": 4,
+          "options": [
+            "",
+            "",
+            ""
+          ],
+          "audio": "listening/n3-2018-12/s4-q2.mp3",
+          "pdfPage": 16,
+          "answer": null,
+          "image": "listening/n3-2018-12/s4-q2.png",
+          "imageAlt": "問題4・2番の問題用紙の図。矢印の人の発話を選んでください。"
+        },
+        {
+          "number": 3,
+          "start": 1849.02,
+          "end": 1889.68,
+          "id": "s4-q3",
+          "section": 4,
+          "options": [
+            "",
+            "",
+            ""
+          ],
+          "audio": "listening/n3-2018-12/s4-q3.mp3",
+          "pdfPage": 16,
+          "answer": null,
+          "image": "listening/n3-2018-12/s4-q3.png",
+          "imageAlt": "問題4・3番の問題用紙の図。矢印の人の発話を選んでください。"
+        },
+        {
+          "number": 4,
+          "start": 1892.78,
+          "end": 1938.71,
+          "id": "s4-q4",
+          "section": 4,
+          "options": [
+            "",
+            "",
+            ""
+          ],
+          "audio": "listening/n3-2018-12/s4-q4.mp3",
+          "pdfPage": 16,
+          "answer": null,
+          "image": "listening/n3-2018-12/s4-q4.png",
+          "imageAlt": "問題4・4番の問題用紙の図。矢印の人の発話を選んでください。"
+        }
+      ],
+      "intro": {
+        "start": 1731.2,
+        "end": 1763.2,
+        "audio": "listening/n3-2018-12/s4-intro.mp3"
+      }
+    },
+    {
+      "number": 5,
+      "title": "即時応答",
+      "directions": "問題用紙に何もいんさつされていません。まず文を聞いてください。それから、そのへんじを聞いて、1から3の中から、最もよいものを一つえらんでください。",
+      "questions": [
+        {
+          "number": 1,
+          "start": 1975.99,
+          "end": 2005.32,
+          "id": "s5-q1",
+          "section": 5,
+          "options": [
+            "",
+            "",
+            ""
+          ],
+          "audio": "listening/n3-2018-12/s5-q1.mp3",
+          "pdfPage": 16,
+          "answer": null
+        },
+        {
+          "number": 2,
+          "start": 2008.42,
+          "end": 2037.18,
+          "id": "s5-q2",
+          "section": 5,
+          "options": [
+            "",
+            "",
+            ""
+          ],
+          "audio": "listening/n3-2018-12/s5-q2.mp3",
+          "pdfPage": 16,
+          "answer": null
+        },
+        {
+          "number": 3,
+          "start": 2040.28,
+          "end": 2069.2,
+          "id": "s5-q3",
+          "section": 5,
+          "options": [
+            "",
+            "",
+            ""
+          ],
+          "audio": "listening/n3-2018-12/s5-q3.mp3",
+          "pdfPage": 16,
+          "answer": null
+        },
+        {
+          "number": 4,
+          "start": 2072.3,
+          "end": 2103.15,
+          "id": "s5-q4",
+          "section": 5,
+          "options": [
+            "",
+            "",
+            ""
+          ],
+          "audio": "listening/n3-2018-12/s5-q4.mp3",
+          "pdfPage": 16,
+          "answer": null
+        },
+        {
+          "number": 5,
+          "start": 2106.25,
+          "end": 2137.71,
+          "id": "s5-q5",
+          "section": 5,
+          "options": [
+            "",
+            "",
+            ""
+          ],
+          "audio": "listening/n3-2018-12/s5-q5.mp3",
+          "pdfPage": 16,
+          "answer": null
+        },
+        {
+          "number": 6,
+          "start": 2140.81,
+          "end": 2168.76,
+          "id": "s5-q6",
+          "section": 5,
+          "options": [
+            "",
+            "",
+            ""
+          ],
+          "audio": "listening/n3-2018-12/s5-q6.mp3",
+          "pdfPage": 16,
+          "answer": null
+        },
+        {
+          "number": 7,
+          "start": 2171.86,
+          "end": 2201.04,
+          "id": "s5-q7",
+          "section": 5,
+          "options": [
+            "",
+            "",
+            ""
+          ],
+          "audio": "listening/n3-2018-12/s5-q7.mp3",
+          "pdfPage": 16,
+          "answer": null
+        },
+        {
+          "number": 8,
+          "start": 2204.14,
+          "end": 2235.79,
+          "id": "s5-q8",
+          "section": 5,
+          "options": [
+            "",
+            "",
+            ""
+          ],
+          "audio": "listening/n3-2018-12/s5-q8.mp3",
+          "pdfPage": 16,
+          "answer": null
+        },
+        {
+          "number": 9,
+          "start": 2238.89,
+          "end": 2265,
+          "id": "s5-q9",
+          "section": 5,
+          "options": [
+            "",
+            "",
+            ""
+          ],
+          "audio": "listening/n3-2018-12/s5-q9.mp3",
+          "pdfPage": 16,
+          "answer": null
+        }
+      ],
+      "intro": {
+        "start": 1939.21,
+        "end": 1975.39,
+        "audio": "listening/n3-2018-12/s5-intro.mp3"
+      }
+    }
+  ]
+}

@@ -37,7 +37,7 @@ export function createViewerAccountHandler({ getAuth, request = fetch, now = Dat
       const renamed = email !== user.email;
       if (renamed) await auth.updateUser(input.uid, { email });
       try {
-        await db(`practiceUsers/${input.uid}`, { method: 'PATCH', body: JSON.stringify({ username: input.username, changedAt: now(), changedBy: caller.uid }) });
+        await db(`practiceUsers/${input.uid}`, { method: 'PATCH', body: JSON.stringify({ username: input.username, ...(input.tabAccess?{tabAccess:input.tabAccess}:{}), changedAt: now(), changedBy: caller.uid }) });
       } catch (error) {
         if (renamed) {
           try { await auth.updateUser(input.uid, { email: user.email }); }

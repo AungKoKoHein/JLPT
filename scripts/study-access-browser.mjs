@@ -9,7 +9,7 @@ import react from '@vitejs/plugin-react';
 const profile = fs.mkdtempSync(path.resolve('node_modules/.cache/practice-chrome-'));
 const accessMock = `
         export const auth={},database={},googleProvider={},practiceProvisioningAuth={};
-        export function onAuthStateChanged(_auth, callback){window.restoreAuth=callback;return ()=>{};}
+        export function onAuthStateChanged(_auth, callback){window.restoreAuth=user=>{auth.currentUser=user;callback(user);};return ()=>{};}
         export function ref(_db,path){return path;}
         export function onValue(path, callback){window.claimCallbacks||={};window.claimCallbacks[path]=callback;return ()=>{};}
         export async function getIdTokenResult(){return {claims:{auth_time:Math.floor(Date.now()/1000)}};}
@@ -18,7 +18,7 @@ const accessMock = `
         export async function signOut(){window.restoreAuth(null);}
         export async function signInWithEmailAndPassword(){} export async function signInWithPopup(){}
         export async function createUserWithEmailAndPassword(){} export async function deleteUser(){}
-        export async function updateProfile(){} export async function set(){} export async function update(){}
+        export async function updateProfile(){} export async function set(){} export async function update(path,value){window.accountWrites||=[];window.accountWrites.push({path,value});}
       `;
 const server = await createServer({ configFile: false, logLevel: 'error', plugins: [react(), {
   name: 'access-check-page',
@@ -26,13 +26,13 @@ const server = await createServer({ configFile: false, logLevel: 'error', plugin
   resolveId(id) { if (id === '/__access-mock') return '\0access-mock'; },
   load(id) { if (id === '\0access-mock') return accessMock; },
   transform(code, id) {
-    if (!id.replaceAll('\\', '/').endsWith('/src/StudyAccess.jsx')) return;
-    return code.replaceAll('from "firebase/auth"', 'from "/__access-mock"').replaceAll('from "firebase/database"', 'from "/__access-mock"').replaceAll('from "./firebase.js"', 'from "/__access-mock"');
+    if (!['StudyAccess.jsx','ViewerAccountDialog.jsx'].some(name=>id.replaceAll('\\', '/').endsWith(`/src/${name}`))) return;
+    return code.replaceAll('from "firebase/auth"', 'from "/__access-mock"').replaceAll('from "firebase/database"', 'from "/__access-mock"').replaceAll('from "./firebase.js"', 'from "/__access-mock"').replaceAll("from './firebase.js'",'from "/__access-mock"').replaceAll("from 'firebase/database'",'from "/__access-mock"');
   },
   configureServer(server) {
     server.middlewares.use('/__practice-check' , async (_req, res) => {
       res.setHeader('Content-Type', 'text/html');
-      res.end(await server.transformIndexHtml('/__practice-check', `<html><body><div id="root"></div><script type="module">import React from 'react';import{createRoot}from'react-dom/client';import StudyAccess from '/src/StudyAccess.jsx';import '/src/app.css';createRoot(document.getElementById('root')).render(React.createElement(StudyAccess,null,React.createElement('div',{id:'study-content'},'Study page')));</script></body></html>`));
+      res.end(await server.transformIndexHtml('/__practice-check', `<html><head><meta name="viewport" content="width=device-width, initial-scale=1"></head><body><div id="root"></div><script type="module">import React from 'react';import{createRoot}from'react-dom/client';import StudyAccess from '/src/StudyAccess.jsx';import{StudyAccountControls}from'/src/StudyAccount.jsx';import '/src/app.css';import '/src/design.css';createRoot(document.getElementById('root')).render(React.createElement(StudyAccess,null,React.createElement('div',{id:'study-content'},'Study page',React.createElement(StudyAccountControls))));</script></body></html>`));
     });
   },
 }], server: { host: '127.0.0.1', port: 0 } });
@@ -72,8 +72,53 @@ try {
   await evaluate(`window.finishDevice()`);
   await until(`document.querySelector('#study-content') !== null`);
   assert.equal(await evaluate(`document.querySelector('.study-access-form')`), null);
+  await evaluate(`window.claimCallbacks['practiceUsers/viewer']({val:()=>({active:true,username:'viewer',tabAccess:{mode:'selected',tabs:{'n3-listening':true}}})})`);
+  await until(`document.querySelector('.study-tab-restricted')!==null`);
+  assert.deepEqual(await evaluate(`[...document.querySelectorAll('.study-tab-restricted nav a')].map(a=>a.getAttribute('href'))`),['/n3/listening']);
+  await evaluate(`history.pushState(null,'','/n3/listening');window.dispatchEvent(new Event('study-navigation'))`);
+  await until(`document.querySelector('#study-content')!==null`);
+  await evaluate(`history.pushState(null,'','/n3/grammar');window.dispatchEvent(new PopStateEvent('popstate'))`);
+  await until(`document.querySelector('.study-tab-restricted')!==null`);
+  assert.equal(await evaluate(`document.querySelector('#study-content')`),null,'Direct URLs cannot mount an unassigned tab');
+  await evaluate(`window.claimCallbacks['practiceUsers/viewer']({val:()=>({active:true,username:'viewer',tabAccess:{mode:'selected',tabs:{'aws-part-3':true}}})});history.pushState(null,'','/aws/part-3');window.dispatchEvent(new Event('study-navigation'))`);
+  await until(`document.querySelector('#study-content')!==null`);
+  await evaluate(`window.claimCallbacks['practiceUsers/viewer']({val:()=>({active:true,username:'viewer',tabAccess:{mode:'selected'}})})`);
+  await until(`document.querySelector('.study-tab-restricted')!==null`);
+  assert.equal(await evaluate(`document.querySelectorAll('.study-tab-restricted nav a').length`),0,'No selected tabs means no app access');
+  await evaluate(`window.claimCallbacks['editors/viewer']({val:()=>true})`);
+  await until(`document.querySelector('#study-content')!==null`);
+  await click('Manage viewer accounts');
+  await until(`document.querySelector('.viewer-manager-modal')?.open`);
+  assert.equal(await evaluate(`document.body.style.overflow`),'hidden');
+  await until(`typeof window.claimCallbacks['practiceUsers']==='function'`);
+  await evaluate(`window.claimCallbacks['practiceUsers']({val:()=>({'fixture-user':{username:'fixture',active:true,createdAt:1,createdBy:'manager'}})})`);
+  await until(`document.querySelector('.practice-user-table tbody tr')!==null`);
+  assert.ok(await evaluate(`document.querySelector('.viewer-access-summary').textContent==='All tabs'`),'Existing viewers retain all tabs');
+  await click('Tab access');
+  await until(`document.querySelector('.viewer-account-dialog')?.open`);
+  await evaluate(`[...document.querySelectorAll('.viewer-account-dialog label')].find(label=>label.textContent.trim()==='Selected tabs only').querySelector('input').click()`);
+  await evaluate(`[...document.querySelectorAll('.viewer-account-dialog .viewer-tab-group:first-child label')].find(label=>label.textContent.trim()==='Listening').querySelector('input').click()`);
+  await click('Save changes');
+  await until(`document.querySelector('.viewer-account-dialog')===null`);
+  assert.deepEqual(await evaluate(`window.accountWrites.at(-1).value.tabAccess`),{mode:'selected',tabs:{'n3-listening':true}});
+  await evaluate(`window.claimCallbacks['practiceUsers']({val:()=>({'fixture-user':{username:'fixture',active:true,tabAccess:window.accountWrites.at(-1).value.tabAccess}})})`);
+  await until(`document.querySelector('.viewer-access-summary').textContent==='JLPT N3: Listening'`);
+  assert.equal(await evaluate(`document.querySelector('.viewer-manager-modal').open`),true,'Closing nested access dialog keeps manager open');
+  for(const width of [1440,768,393,360]) {
+    await cdp('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<600});
+    await evaluate(`new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))`);
+    assert.ok(await evaluate(`document.querySelector('.viewer-manager-modal').getBoundingClientRect().width<=innerWidth`));
+    assert.ok(await evaluate(`document.querySelector('.viewer-manager-modal').scrollWidth<=document.querySelector('.viewer-manager-modal').clientWidth+1`),'Manager content fits');
+    await cdp('Page.captureScreenshot',{format:'png'}).then(({data})=>fs.writeFileSync(path.resolve(`.tmp-python/viewer-manager-${width}.png`),Buffer.from(data,'base64')));
+  }
+  await click('Close');
+  await until(`document.querySelector('.viewer-manager-modal')===null`);
+  assert.equal(await evaluate(`document.body.style.overflow`),'');
+  assert.equal(await evaluate(`document.activeElement.textContent`),'Manage viewer accounts');
+  await evaluate(`window.claimCallbacks['editors/viewer']({val:()=>false});window.claimCallbacks['practiceUsers/viewer']({val:()=>({active:true,username:'viewer'})})`);
+  await until(`document.querySelector('#study-content')!==null`);
   await evaluate(`window.restoreAuth(null)`);
   await until(`document.querySelector('.study-access-form') !== null`);
   assert.equal(await evaluate(`document.querySelector('#study-content')`), null);
-  console.log('PASS: delayed auth restoration, permission loading, device validation, restored content, and genuine signed-out login.');
+  console.log('PASS: auth restoration, device validation, live tab permissions, blocked direct URLs, empty access, editor bypass, manager modal, nested access editing, saved settings and mobile layouts.');
 } finally {socket?.close();chrome.kill();await server.close();}

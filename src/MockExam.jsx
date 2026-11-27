@@ -14,6 +14,7 @@ import { examRecordPath, localExamRecords, saveExamRecord } from "./mockExamStor
 import { StudyAccountContext } from "./StudyAccount.jsx";
 import MockExamHistory, { SkillScores } from "./MockExamHistory.jsx";
 import { scoreExam } from "./mockExamRecords.js";
+import MockScoreReport from './MockScoreReport.jsx';
 import useN3FlaggedQuestions from "./useN3FlaggedQuestions.jsx";
 import { flaggedCollections } from "./n3FlaggedQuestions.js";
 import './n3QuestionLayout.css';
@@ -168,12 +169,7 @@ export default function MockExam() {
     const item = reviewQuestion || examQuestions[0];
     return (
       <StudySessionView label="Mock exam" onQuit={() => setMode("intro")}><article className="mock-exam-panel mock-results">
-        <div className="mock-exam-eyebrow">JLPT N3 · Results</div>
-        <h2>{activeExam.title} · Result</h2>
-        <div className="mock-score-summary">
-          <div className="mock-score-total"><strong>{correctTotal}<span> / {examQuestions.length}</span></strong><small>raw correct answers</small></div>
-          <div className="mock-section-scores">{examSections.map((section) => <div key={section}><span>{activeExam.skill || section}</span><strong>{correctCounts[section].correct} / {correctCounts[section].total}</strong></div>)}</div>
-        </div>
+        <MockScoreReport title={activeExam.title} completedAt={attempt.current?.record?.completedAt} questions={examQuestions} answers={answers} />
         <section aria-label="Current exam strengths and weaknesses">
           <h3>Current exam strengths and weaknesses</h3>
           <SkillScores scores={scoreExam(examQuestions, answers)} />
